@@ -1,0 +1,1594 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🦐 小蓝虾 Dashboard</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0d0d1a; --panel: #13131f; --border: #1e1e33;
+  --accent: #6c63ff; --green: #2dd4bf; --yellow: #fbbf24;
+  --red: #f87171; --blue: #60a5fa; --text: #e2e8f0; --muted: #64748b;
+  --tag-bg: #1e1e38;
+}
+body { background: var(--bg); color: var(--text); font-family: -apple-system,'Segoe UI',sans-serif; font-size: 13px; line-height: 1.5; }
+
+input[type="radio"] { display: none; }
+
+/* show pages */
+#tab-overview:checked ~ .shell #page-overview,
+#tab-agents:checked ~ .shell #page-agents,
+#tab-cron:checked ~ .shell #page-cron,
+#tab-skills:checked ~ .shell #page-skills,
+#tab-memory:checked ~ .shell #page-memory,
+#tab-files:checked ~ .shell #page-files,
+#tab-api:checked ~ .shell #page-api,
+#tab-evolution:checked ~ .shell #page-evolution,
+#tab-logs:checked ~ .shell #page-logs,
+#tab-history:checked ~ .shell #page-history { display: block; }
+#tab-portfolio:checked ~ .shell #page-portfolio { display: block; }
+
+/* active nav */
+#tab-overview:checked ~ .shell .nb-overview,
+#tab-agents:checked ~ .shell .nb-agents,
+#tab-cron:checked ~ .shell .nb-cron,
+#tab-skills:checked ~ .shell .nb-skills,
+#tab-memory:checked ~ .shell .nb-memory,
+#tab-files:checked ~ .shell .nb-files,
+#tab-api:checked ~ .shell .nb-api,
+#tab-evolution:checked ~ .shell .nb-evolution,
+#tab-logs:checked ~ .shell .nb-logs,
+#tab-history:checked ~ .shell .nb-history { background: var(--accent); color: white; }
+#tab-portfolio:checked ~ .shell .nb-portfolio { background: var(--accent); color: white; }
+
+/* active sidebar */
+#tab-overview:checked ~ .shell .sb-overview,
+#tab-agents:checked ~ .shell .sb-agents,
+#tab-cron:checked ~ .shell .sb-cron,
+#tab-skills:checked ~ .shell .sb-skills,
+#tab-memory:checked ~ .shell .sb-memory,
+#tab-files:checked ~ .shell .sb-files,
+#tab-api:checked ~ .shell .sb-api,
+#tab-evolution:checked ~ .shell .sb-evolution,
+#tab-logs:checked ~ .shell .sb-logs,
+#tab-history:checked ~ .shell .sb-history { background: rgba(108,99,255,.1); border-left-color: var(--accent); color: var(--accent); }
+#tab-portfolio:checked ~ .shell .sb-portfolio { background: rgba(108,99,255,.1); border-left-color: var(--accent); color: var(--accent); }
+
+.topbar { background: var(--panel); border-bottom: 1px solid var(--border); padding: 0 20px; height: 50px; display: flex; align-items: center; justify-content: space-between; position: fixed; top:0; left:0; right:0; z-index:200; }
+.brand { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 700; }
+.dot { width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 7px var(--green);animation:pulse 2s infinite; }
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
+.nav { display:flex;gap:2px; }
+.nav label { background:none;color:var(--muted);padding:5px 11px;border-radius:6px;cursor:pointer;font-size:11px;transition:background .15s,color .15s;user-select:none; }
+.nav label:hover { background:var(--tag-bg);color:var(--text); }
+.status-badge { background:rgba(45,212,191,.15);color:var(--green);border:1px solid rgba(45,212,191,.3);padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600; }
+.shell { display:flex;height:100vh;overflow:hidden;padding-top:50px; }
+.sidebar { width:210px;min-width:210px;background:var(--panel);border-right:1px solid var(--border);overflow-y:auto;padding:10px 0; }
+.main { flex:1;overflow-y:auto;padding:18px; }
+.sb-section { padding:6px 14px 2px;font-size:10px;color:var(--muted);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-top:6px; }
+.sidebar label { display:flex;align-items:center;gap:8px;padding:7px 14px;cursor:pointer;border-left:3px solid transparent;color:var(--muted);transition:all .15s;user-select:none; }
+.sidebar label:hover { background:var(--tag-bg);color:var(--text); }
+.sb-icon { font-size:13px;min-width:16px; }
+.sb-count { margin-left:auto;background:var(--tag-bg);padding:1px 6px;border-radius:10px;font-size:10px; }
+.page { display:none; }
+.card { background:var(--panel);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:14px; }
+.card-header { padding:11px 15px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between; }
+.card-title { font-size:12px;font-weight:700; }
+.card-body { padding:14px; }
+.g2 { display:grid;grid-template-columns:1fr 1fr;gap:14px; }
+.g3 { display:grid;grid-template-columns:repeat(3,1fr);gap:14px; }
+.g4 { display:grid;grid-template-columns:repeat(4,1fr);gap:14px; }
+@media(max-width:900px){.g4,.g3{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.g2,.g3,.g4{grid-template-columns:1fr}.sidebar{display:none}.nav{display:none}.mobile-nav-select{display:block !important}}
+.stat { background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:14px; }
+.stat-lbl { font-size:11px;color:var(--muted);margin-bottom:3px; }
+.stat-val { font-size:22px;font-weight:800;margin-bottom:3px; }
+.stat-sub { font-size:10px;color:var(--muted); }
+.tbl { width:100%;border-collapse:collapse; }
+.tbl th { padding:7px 11px;text-align:left;font-size:11px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border); }
+.tbl td { padding:8px 11px;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px;vertical-align:middle; }
+.tbl tr:last-child td { border-bottom:none; }
+.tbl tr:hover td { background:rgba(255,255,255,.02); }
+.badge { display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700; }
+.badge::before { content:'●';font-size:7px; }
+.badge.on { background:rgba(45,212,191,.15);color:var(--green); }
+.badge.idle { background:rgba(251,191,36,.15);color:var(--yellow); }
+.badge.off { background:rgba(248,113,113,.15);color:var(--red); }
+.badge.blue { background:rgba(96,165,250,.15);color:var(--blue); }
+.tag { display:inline-block;background:var(--tag-bg);color:var(--muted);padding:2px 7px;border-radius:4px;font-size:11px;margin:2px; }
+.tag.g { background:rgba(45,212,191,.12);color:var(--green); }
+.tag.y { background:rgba(251,191,36,.12);color:var(--yellow); }
+.tag.r { background:rgba(248,113,113,.12);color:var(--red); }
+.tag.b { background:rgba(96,165,250,.12);color:var(--blue); }
+.tag.p { background:rgba(108,99,255,.12);color:var(--accent); }
+a { color:var(--accent);text-decoration:none; }
+a:hover { text-decoration:underline;color:#8b83ff; }
+.link-btn { display:inline-flex;align-items:center;gap:4px;background:rgba(108,99,255,.15);color:var(--accent);border:1px solid rgba(108,99,255,.3);padding:3px 9px;border-radius:5px;font-size:11px;text-decoration:none;transition:all .15s; }
+.link-btn:hover { background:rgba(108,99,255,.25);text-decoration:none; }
+.prog-wrap { background:var(--tag-bg);border-radius:4px;height:5px;overflow:hidden;margin-top:4px; }
+.prog-fill { height:100%;border-radius:4px;background:var(--accent); }
+.timeline { position:relative;padding-left:18px; }
+.timeline::before { content:'';position:absolute;left:5px;top:0;bottom:0;width:1px;background:var(--border); }
+.tl-item { position:relative;margin-bottom:14px; }
+.tl-item::before { content:'';position:absolute;left:-16px;top:4px;width:7px;height:7px;border-radius:50%;background:var(--accent); }
+.tl-time { font-size:10px;color:var(--muted);margin-bottom:1px; }
+.tl-title { font-size:12px;font-weight:600; }
+.tl-desc { font-size:11px;color:var(--muted);margin-top:2px; }
+.li { padding:9px 0;border-bottom:1px solid rgba(255,255,255,.04);display:flex;align-items:flex-start;gap:9px; }
+.li:last-child { border-bottom:none; }
+.li-icon { width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;background:var(--tag-bg); }
+.sk-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:7px; }
+.sk-card { background:var(--tag-bg);border-radius:7px;padding:9px 11px;display:flex;align-items:center;gap:7px; }
+.sk-name { font-size:11px;font-weight:600; }
+.sk-desc { font-size:10px;color:var(--muted);margin-top:1px; }
+.trace-box { background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:12px;font-family:monospace;font-size:11px;line-height:1.8;max-height:380px;overflow-y:auto;color:var(--green); }
+.t-time{color:var(--muted)}.t-ok{color:var(--green)}.t-warn{color:var(--yellow)}.t-err{color:var(--red)}.t-info{color:var(--blue)}.t-idle{color:var(--muted)}
+.push-item { background:var(--tag-bg);border-radius:8px;padding:11px 13px;margin-bottom:8px; }
+.push-meta { font-size:10px;color:var(--muted);margin-bottom:4px;display:flex;gap:8px;align-items:center; }
+.push-body { font-size:12px;line-height:1.6; }
+::-webkit-scrollbar{width:3px;height:3px}::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+</style>
+</head>
+<body>
+
+<input type="radio" name="tab" id="tab-overview" checked>
+<input type="radio" name="tab" id="tab-agents">
+<input type="radio" name="tab" id="tab-cron">
+<input type="radio" name="tab" id="tab-skills">
+<input type="radio" name="tab" id="tab-memory">
+<input type="radio" name="tab" id="tab-files">
+<input type="radio" name="tab" id="tab-api">
+<input type="radio" name="tab" id="tab-evolution">
+<input type="radio" name="tab" id="tab-logs">
+<input type="radio" name="tab" id="tab-history">
+<input type="radio" name="tab" id="tab-portfolio">
+
+<div class="shell">
+
+<div class="topbar">
+  <div class="brand"><span>🦐</span><span>小蓝虾 Dashboard</span><div class="dot"></div></div>
+  <nav class="nav">
+    <label for="tab-overview" class="nb-overview">总览</label>
+    <label for="tab-agents" class="nb-agents">Agent</label>
+    <label for="tab-cron" class="nb-cron">定时任务</label>
+    <label for="tab-skills" class="nb-skills">Skills</label>
+    <label for="tab-memory" class="nb-memory">记忆</label>
+    <label for="tab-files" class="nb-files">文件</label>
+    <label for="tab-api" class="nb-api">API</label>
+    <label for="tab-evolution" class="nb-evolution">进化</label>
+    <label for="tab-portfolio" class="nb-portfolio">📈 持仓</label>
+    <label for="tab-history" class="nb-history">推送历史</label>
+    <label for="tab-logs" class="nb-logs">日志</label>
+  </nav>
+  <select class="mobile-nav-select" style="display:none;background:var(--panel);color:var(--text);border:1px solid var(--border);border-radius:6px;padding:5px 8px;font-size:12px;cursor:pointer;max-width:120px" onchange="document.getElementById(this.value).click()">
+    <option value="tab-overview">⚡ 总览</option>
+    <option value="tab-agents">🤖 Agent</option>
+    <option value="tab-cron">⏰ 定时任务</option>
+    <option value="tab-skills">🔧 Skills</option>
+    <option value="tab-memory">🧠 记忆</option>
+    <option value="tab-files">📁 文件</option>
+    <option value="tab-api">🔑 API</option>
+    <option value="tab-evolution">🌱 进化</option>
+    <option value="tab-portfolio">📈 持仓</option>
+    <option value="tab-history">📋 推送历史</option>
+    <option value="tab-logs">📜 日志</option>
+  </select>
+  <div style="display:flex;align-items:center;gap:10px">
+    <span class="status-badge">🟢 ONLINE</span>
+    <span id="clock" style="color:var(--muted);font-size:11px">--:--:--</span>
+  </div>
+</div>
+
+<div class="sidebar">
+  <div class="sb-section">系统</div>
+  <label for="tab-overview" class="sb-overview"><span class="sb-icon">⚡</span>总览</label>
+  <label for="tab-agents" class="sb-agents"><span class="sb-icon">🤖</span>Agent<span class="sb-count">2</span></label>
+  <label for="tab-cron" class="sb-cron"><span class="sb-icon">⏰</span>定时任务<span class="sb-count">15</span></label>
+  <div class="sb-section">能力</div>
+  <label for="tab-skills" class="sb-skills"><span class="sb-icon">🔧</span>Skills<span class="sb-count">74</span></label>
+  <label for="tab-api" class="sb-api"><span class="sb-icon">🔑</span>APIs<span class="sb-count">7</span></label>
+  <div class="sb-section">数据</div>
+  <label for="tab-memory" class="sb-memory"><span class="sb-icon">🧠</span>记忆</label>
+  <label for="tab-files" class="sb-files"><span class="sb-icon">📁</span>文件</label>
+  <label for="tab-portfolio" class="sb-portfolio"><span class="sb-icon">📈</span>持仓追踪</label>
+  <label for="tab-history" class="sb-history"><span class="sb-icon">📨</span>推送历史</label>
+  <label for="tab-logs" class="sb-logs"><span class="sb-icon">📋</span>日志</label>
+  <div class="sb-section">成长</div>
+  <label for="tab-evolution" class="sb-evolution"><span class="sb-icon">🧬</span>进化轨迹</label>
+</div>
+
+<div class="main">
+
+<!-- ══ OVERVIEW ══ -->
+<div id="page-overview" class="page">
+  <div style="margin-bottom:14px"><h2 style="font-size:17px;font-weight:800">⚡ 系统总览</h2><p style="color:var(--muted);font-size:11px;margin-top:3px">小蓝虾 OpenClaw Agent · 2026-04-16</p></div>
+  <div class="g4" style="margin-bottom:14px">
+    <div class="stat" style="border-top:3px solid var(--green)"><div class="stat-lbl">🤖 Agents</div><div class="stat-val" style="color:var(--green)">2</div><div class="stat-sub">主 + ZHC</div></div>
+    <div class="stat" style="border-top:3px solid var(--accent)"><div class="stat-lbl">⏰ 定时任务</div><div class="stat-val" style="color:var(--accent)">15</div><div class="stat-sub">每日自动运行</div></div>
+    <div class="stat" style="border-top:3px solid var(--blue)"><div class="stat-lbl">🔧 Skills</div><div class="stat-val" style="color:var(--blue)">74</div><div class="stat-sub">72官方+2本地</div></div>
+    <div class="stat" style="border-top:3px solid var(--yellow)"><div class="stat-lbl">💰 ClawWork余额</div><div class="stat-val" style="color:var(--yellow)">$290</div><div class="stat-sub">总收入 $281.34</div></div>
+  </div>
+  <div class="g2">
+    <div class="card">
+      <div class="card-header"><div class="card-title">📡 今日推送 (2026-04-16)</div></div>
+      <div class="card-body" style="padding:0">
+        <table class="tbl">
+          <thead><tr><th>时间</th><th>任务</th><th>状态</th></tr></thead>
+          <tbody>
+            <tr><td>08:01</td><td>ClawWork 开工报告</td><td><span class="badge on">已发</span></td></tr>
+            <tr><td>09:05</td><td>早间 Twitter 情报</td><td><span class="badge on">已发</span></td></tr>
+            <tr><td>10:30</td><td>深度推送（Sapiom/CZ加密支付）</td><td><span class="badge on">已发</span></td></tr>
+            <tr><td>12:03</td><td>深度推送（Nansen×OpenClaw）</td><td><span class="badge on">已发</span></td></tr>
+            <tr><td>14:00</td><td>深度推送（OpenAI三合一/Meta Agent）</td><td><span class="badge on">已发</span></td></tr>
+            <tr><td>16:05</td><td>三账户持仓扫描</td><td><span class="badge on">已发</span></td></tr>
+            <tr><td>16:05</td><td>深度推送（AgentCard/YOAP）</td><td><span class="badge on">已发</span></td></tr>
+            <tr><td>19:00</td><td>晚间深度推送（Morgan Stanley BTC ETF）</td><td><span class="badge on">已发</span></td></tr>
+            <tr><td>22:00</td><td>学城日报 + 记忆压缩</td><td><span class="badge idle">待发</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:14px">
+        <div class="card-header"><div class="card-title">💪 系统健康</div></div>
+        <div class="card-body">
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px"><span style="font-size:11px">Gateway</span><span class="badge on">ONLINE</span></div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px"><span style="font-size:11px">Engram Memory Plugin</span><span class="badge on">v9.0.92</span></div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px"><span style="font-size:11px">AISA API</span><span class="badge off">余额耗尽 · <a href="https://api.aisa.one" target="_blank">充值</a></span></div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px"><span style="font-size:11px">Tavily API</span><span class="badge on">可用</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="font-size:11px">学城 KM Sync</span><span class="badge idle">每日22:00</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-title">🚀 快速链接</div></div>
+        <div class="card-body" style="display:flex;flex-wrap:wrap;gap:8px">
+          <a class="link-btn" href="https://km.sankuai.com/collabpage/2750734438" target="_blank">📚 学城母文档</a>
+          <a class="link-btn" href="https://s3plus-bj02.vip.sankuai.com/openclaw-bucket/product-1-openclaw-finance-agent-guide.pdf" target="_blank">📄 ZHC PDF</a>
+          <a class="link-btn" href="https://x.com/search?q=openclaw&f=live" target="_blank">🐦 Twitter搜索</a>
+          <a class="link-btn" href="https://api.aisa.one" target="_blank">💳 AISA充值</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ AGENTS ══ -->
+<div id="page-agents" class="page">
+  <div style="margin-bottom:14px"><h2 style="font-size:17px;font-weight:800">🤖 Agents (2个)</h2></div>
+  <div class="g2">
+    <div class="card">
+      <div class="card-header"><div class="card-title">🦐 小蓝虾 (主 Agent)</div><span class="badge on">ACTIVE</span></div>
+      <div class="card-body">
+        <div class="li"><div class="li-icon">🎯</div><div><div style="font-weight:600">核心使命</div><div style="color:var(--muted);font-size:11px">每小时挖掘全网 AI/OpenClaw/金融情报，推送给掌管🦞的神</div></div></div>
+        <div class="li"><div class="li-icon">🧠</div><div><div style="font-weight:600">记忆系统</div><div style="color:var(--muted);font-size:11px">Engram v9.0.92 · QMD 混合搜索 · 每日22:00自动压缩</div></div></div>
+        <div class="li"><div class="li-icon">📡</div><div><div style="font-weight:600">推送频道</div><div style="color:var(--muted);font-size:11px">私聊 single_2872173767 (仅此一个频道)</div></div></div>
+        <div class="li" style="border:none"><div class="li-icon">⚙️</div><div><div style="font-weight:600">模型</div><div style="color:var(--muted);font-size:11px">catclaw-proxy (默认) · gpt-4.1-mini (记忆压缩)</div></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header"><div class="card-title">💼 ZHC Agent (零人公司)</div><span class="badge idle">IN PROGRESS</span></div>
+      <div class="card-body">
+        <div class="li"><div class="li-icon">📄</div><div><div style="font-weight:600">Product 1</div><div style="color:var(--muted);font-size:11px">《用 OpenClaw 搭建自动金融情报 Agent 完整指南》</div><div style="margin-top:6px"><a class="link-btn" href="https://s3plus-bj02.vip.sankuai.com/openclaw-bucket/product-1-openclaw-finance-agent-guide.pdf" target="_blank">📄 查看PDF</a></div></div></div>
+        <div style="margin:10px 0 4px;font-size:11px;color:var(--muted)">进度 50%</div>
+        <div class="prog-wrap"><div class="prog-fill" style="width:50%"></div></div>
+        <div class="li" style="border:none;margin-top:10px"><div class="li-icon">💰</div><div><div style="font-weight:600">定价</div><div style="color:var(--muted);font-size:11px">Basic $29 · Advanced $49 · 目标 $150K/6周 (@FelixCraftAI)</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CRON ══ -->
+<div id="page-cron" class="page">
+  <div style="margin-bottom:14px"><h2 style="font-size:17px;font-weight:800">⏰ 定时任务 (15个)</h2><p style="color:var(--muted);font-size:11px;margin-top:3px">Asia/Shanghai 时区 · 仅私聊推送</p></div>
+  <div class="card">
+    <div class="card-body" style="padding:0">
+      <table class="tbl">
+        <thead><tr>
+          <th>任务名</th><th>Cron</th><th>时间</th><th>状态</th>
+          <th style="text-align:right;color:#94a3b8;font-size:10px">Twitter</th>
+          <th style="text-align:right;color:#94a3b8;font-size:10px">Perplexity</th>
+          <th style="text-align:right;color:#2dd4bf;font-size:11px">AISA成本</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td style="font-size:12px">🌅 早间Twitter情报</td>
+            <td><code style="color:var(--green);font-size:10px">0 9 * * *</code></td>
+            <td style="font-size:12px">09:00</td>
+            <td><span class="badge on">活跃</span></td>
+            <td style="color:#fbbf24;font-weight:600;text-align:right;font-size:11px">$0.004</td>
+            <td style="color:#475569;text-align:right">—</td>
+            <td style="color:#2dd4bf;font-weight:700;text-align:right;font-size:12px">$0.024</td>
+          </tr>
+          <tr>
+            <td style="font-size:12px">📊 10点持仓扫描</td>
+            <td><code style="color:var(--green);font-size:10px">0 10 * * *</code></td>
+            <td style="font-size:12px">10:00</td>
+            <td><span class="badge on">活跃</span></td>
+            <td style="color:#475569;text-align:right">—</td>
+            <td style="color:#475569;text-align:right">—</td>
+            <td style="color:#2dd4bf;font-weight:700;text-align:right;font-size:12px">$0.020</td>
+          </tr>
+          <tr>
+            <td style="font-size:12px">🔥 10点深度推送</td>
+            <td><code style="color:var(--green);font-size:10px">0 10 * * *</code></td>
+            <td style="font-size:12px">10:00</td>
+            <td><span class="badge on">活跃</span></td>
+            <td style="color:#fbbf24;font-weight:600;text-align:right;font-size:11px">$0.002</td>
+            <td style="color:#475569;text-align:right">—</td>
+            <td style="color:#2dd4bf;font-weight:700;text-align:right;font-size:12px">$0.022</td>
+          </tr>
+          <tr>
+            <td style="font-size:12px">🦞 10点OpenClaw热帖</td>
+            <td><code style="color:var(--green);font-size:10px">0 10 * * *</code></td>
+            <td style="font-size:12px">10:00</td>
+            <td><span class="badge on">活跃</span></td>
+            <td style="color:#fbbf24;font-weight:600;text-align:right;font-size:11px">$0.004</td>
+            <td style="color:#475569;text-align:right">—</td>
+            <td style="color:#2dd4bf;font-weight:700;text-align:right;font-size:12px">$0.024</td>
+          </tr>
+          <tr>
+            <td style="font-size:12px">📡 Alpha扫描</td>
+            <td><code style="color:var(--green);font-size:10px">0 11 * * *</code></td>
+            <td style="font-size:12px">11:00</td>
+            <td><span class="badge on">活跃</span></td>
+            <td style="color:#475569;text-align:right">—</td>
+            <td style="color:#475569;text-align:right">—</td>
+            <td style="color:#2dd4bf;font-weight:700;text-align:right;font-size:12px">$0.020</td>
+          </tr>
+          <tr>
+            <td style="font-size:12px">🔥 12点深度推送</td>
+            <td><code style="color:var(--green);font-size:10px">0 12 * * *</code></td>
+            <td style="font-size:12px">12:00</td>
+            <td><span class="badge on">活跃</span></td>
+            <td style="color:#fbbf24;font-weight:600;text-align:right;font-size:11px">$0.002</td>
+            <td style="color:#475569;text-align:right">—</td>
+            <td style="color:#2dd4bf;font-weight:700;text-align:right;font-size:12px">$0.022</td>
+          </tr>
+          <tr>
+            <td style="font-size:12px">🐦 午间Twitter情报</td>
+            <td><code style="color:var(--green);font-size:10px">30 13 * * *</code></td>
+            <td style="font-size:12px">13:30</td>
+            <td><span class="badge on">活跃</span></td>
+            <td style="color:#fbbf24;font-weight:600;text-align:right;font-size:11px">$0.004</td>
+            <td style="color:#475569;text-align:right">—</td>
+            <td style="color:#2dd4bf;font-weight:700;text-align:right;font-size:12px">$0.024</td>
+          </tr>
+          <tr>
+            <td style="font-size:12px">🔥 14点深度推送</td>
+            <td><code style="color:var(--green);font-size:10px">0 14 * * *</code></td>
+            <td style="font-size:12px">14:00</td>
+            <td><span class="badge on">活跃</span></td>
+            <td style="color:#fbbf24;font-weight:600;text-align:right;font-size:11px">$0.002</td>
+            <td style="color:#475569;text-align:right">—</td>
+            <td style="color:#2dd4bf;font-weight:700;text-align:right;font-size:12px">$0.022</td>
+          </tr>
+          <tr>
+            <td style="font-size:12px">🦞 14点OpenClaw热帖</td>
+            <td><code style="color:var(--green);font-size:10px">0 14 * * *</code></td>
+            <td style="font-size:12px">14:00</td>
+            <td><span class="badge on">活跃</span></td>
+            <td style="color:#fbbf24;font-weight:600;text-align:right;font-size:11px">$0.004</td>
+            <td style="color:#475569;text-align:right">—</td>
+            <td style="color:#2dd4bf;font-weight:700;text-align:right;font-size:12px">$0.024</td>
+          </tr>
+          <tr>
+            <td style="font-size:12px">🔥 16点深度推送</td>
+            <td><code style="color:var(--green);font-size:10px">0 16 * * *</code></td>
+            <td style="font-size:12px">16:00</td>
+            <td><span class="badge on">活跃</span></td>
+            <td style="color:#fbbf24;font-weight:600;text-align:right;font-size:11px">$0.002</td>
+            <td style="color:#475569;text-align:right">—</td>
+            <td style="color:#2dd4bf;font-weight:700;text-align:right;font-size:12px">$0.022</td>
+          </tr>
+          <tr>
+            <td style="font-size:12px">🦞 16点OpenClaw热帖</td>
+            <td><code style="color:var(--green);font-size:10px">0 16 * * *</code></td>
+            <td style="font-size:12px">16:00</td>
+            <td><span class="badge on">活跃</span></td>
+            <td style="color:#fbbf24;font-weight:600;text-align:right;font-size:11px">$0.004</td>
+            <td style="color:#475569;text-align:right">—</td>
+            <td style="color:#2dd4bf;font-weight:700;text-align:right;font-size:12px">$0.024</td>
+          </tr>
+          <tr>
+            <td style="font-size:12px">🐦 傍晚Twitter情报</td>
+            <td><code style="color:var(--green);font-size:10px">0 17 * * *</code></td>
+            <td style="font-size:12px">17:00</td>
+            <td><span class="badge on">活跃</span></td>
+            <td style="color:#fbbf24;font-weight:600;text-align:right;font-size:11px">$0.004</td>
+            <td style="color:#475569;text-align:right">—</td>
+            <td style="color:#2dd4bf;font-weight:700;text-align:right;font-size:12px">$0.024</td>
+          </tr>
+          <tr>
+            <td style="font-size:12px">🏦 18点机构持仓日报</td>
+            <td><code style="color:var(--green);font-size:10px">0 18 * * *</code></td>
+            <td style="font-size:12px">18:00</td>
+            <td><span class="badge on">活跃</span></td>
+            <td style="color:#fbbf24;font-weight:600;text-align:right;font-size:11px">$0.002</td>
+            <td style="color:#fbbf24;font-weight:600;text-align:right;font-size:11px">$0.012</td>
+            <td style="color:#2dd4bf;font-weight:700;text-align:right;font-size:12px">$0.044</td>
+          </tr>
+          <tr>
+            <td style="font-size:12px">🔥 19点深度推送</td>
+            <td><code style="color:var(--green);font-size:10px">0 19 * * *</code></td>
+            <td style="font-size:12px">19:00</td>
+            <td><span class="badge on">活跃</span></td>
+            <td style="color:#fbbf24;font-weight:600;text-align:right;font-size:11px">$0.002</td>
+            <td style="color:#475569;text-align:right">—</td>
+            <td style="color:#2dd4bf;font-weight:700;text-align:right;font-size:12px">$0.022</td>
+          </tr>
+          <tr>
+            <td style="font-size:12px">💼 8点ClawWork</td>
+            <td><code style="color:var(--green);font-size:10px">0 8 * * *</code></td>
+            <td style="font-size:12px">08:00</td>
+            <td><span class="badge off">E2B阻塞</span></td>
+            <td style="color:#475569;text-align:right">—</td>
+            <td style="color:#475569;text-align:right">—</td>
+            <td style="color:#2dd4bf;font-weight:700;text-align:right;font-size:12px">$0.030</td>
+          </tr>
+          <tr>
+            <td style="font-size:12px">📖 Engram日总结</td>
+            <td><code style="color:var(--green);font-size:10px">47 23 * * *</code></td>
+            <td style="font-size:12px">23:47</td>
+            <td><span class="badge on">活跃</span></td>
+            <td style="color:#475569;text-align:right">—</td>
+            <td style="color:#475569;text-align:right">—</td>
+            <td style="color:#2dd4bf;font-weight:700;text-align:right;font-size:12px">$0.010</td>
+          </tr>
+          <tr>
+            <td style="font-size:12px">🔄 三账户策略扫描</td>
+            <td><code style="color:var(--green);font-size:10px">0 */6 * * *</code></td>
+            <td style="font-size:12px">6h/次</td>
+            <td><span class="badge on">活跃×4</span></td>
+            <td style="color:#475569;text-align:right">—</td>
+            <td style="color:#475569;text-align:right">—</td>
+            <td style="color:#2dd4bf;font-weight:700;text-align:right;font-size:12px">$0.080/天</td>
+          </tr>
+          <tr style="border-top:2px solid #334155;background:rgba(45,212,191,0.05)">
+            <td colspan="4" style="font-weight:700;color:#94a3b8;font-size:11px">📊 每日合计（15任务）</td>
+            <td style="color:#fbbf24;font-weight:700;text-align:right">~$0.015</td>
+            <td style="color:#fbbf24;font-weight:700;text-align:right">~$0.012</td>
+            <td style="color:#2dd4bf;font-weight:800;text-align:right;font-size:13px">~$0.02/天<br><span style="font-size:10px;color:#64748b">≈$0.56/月</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SKILLS ══ -->
+<div id="page-skills" class="page">
+  <div style="margin-bottom:14px"><h2 style="font-size:17px;font-weight:800">🔧 Skills (74个)</h2></div>
+  <div class="card" style="margin-bottom:14px">
+    <div class="card-header"><div class="card-title">⭐ 核心 Skills</div></div>
+    <div class="card-body">
+      <div class="sk-grid">
+        <div class="sk-card"><span>🐘</span><div><div class="sk-name">daxiang-channel</div><div class="sk-desc">大象消息格式</div></div></div>
+        <div class="sk-card"><span>⏰</span><div><div class="sk-name">daxiang-scheduled-msg</div><div class="sk-desc">定时消息</div></div></div>
+        <div class="sk-card"><span>🔍</span><div><div class="sk-name">catclaw-search</div><div class="sk-desc">多引擎搜索</div></div></div>
+        <div class="sk-card"><span>🎨</span><div><div class="sk-name">catclaw-image</div><div class="sk-desc">AI文生图</div></div></div>
+        <div class="sk-card"><span>📊</span><div><div class="sk-name">xlsx</div><div class="sk-desc">Excel处理</div></div></div>
+        <div class="sk-card"><span>📄</span><div><div class="sk-name">pdf</div><div class="sk-desc">PDF创建编辑</div></div></div>
+        <div class="sk-card"><span>📝</span><div><div class="sk-name">docx</div><div class="sk-desc">Word文档</div></div></div>
+        <div class="sk-card"><span>🎭</span><div><div class="sk-name">pptx</div><div class="sk-desc">PPT创建</div></div></div>
+        <div class="sk-card"><span>🐱</span><div><div class="sk-name">catpaw-agent</div><div class="sk-desc">美团AI编码</div></div></div>
+        <div class="sk-card"><span>📚</span><div><div class="sk-name">km-wiki</div><div class="sk-desc">学城知识库</div></div></div>
+        <div class="sk-card"><span>☁️</span><div><div class="sk-name">s3plus-upload</div><div class="sk-desc">S3上传</div></div></div>
+        <div class="sk-card"><span>🔗</span><div><div class="sk-name">github</div><div class="sk-desc">GitHub CLI</div></div></div>
+        <div class="sk-card" style="border:1px solid var(--accent)"><span>🔮</span><div><div class="sk-name">find-skills ⭐</div><div class="sk-desc">发现新skill</div></div></div>
+        <div class="sk-card" style="border:1px solid var(--accent)"><span>🔄</span><div><div class="sk-name">self-improving ⭐</div><div class="sk-desc">自我进化</div></div></div>
+        <div class="sk-card"><span>🔒</span><div><div class="sk-name">healthcheck</div><div class="sk-desc">安全审计</div></div></div>
+        <div class="sk-card"><span>🔑</span><div><div class="sk-name">sso-qrcode-login</div><div class="sk-desc">SSO扫码</div></div></div>
+        <div class="sk-card"><span>🗓️</span><div><div class="sk-name">calendar-manager</div><div class="sk-desc">日程管理</div></div></div>
+        <div class="sk-card"><span>🏠</span><div><div class="sk-name">room-booking</div><div class="sk-desc">会议室预订</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MEMORY ══ -->
+<div id="page-memory" class="page">
+  <div id="today-memory" style="margin-bottom:16px;padding:12px;background:#111;border-radius:8px"><div style="color:#64b5f6;font-size:13px;font-weight:bold;margin-bottom:8px">📝 今日记忆事件</div><p style="color:#888;font-style:italic">今日暂无重要记忆事件</p></div>
+  <div style="margin-bottom:14px"><h2 style="font-size:17px;font-weight:800">🧠 记忆系统</h2></div>
+  <div class="g4" style="margin-bottom:14px">
+    <div class="stat"><div class="stat-lbl">记忆后端</div><div class="stat-val" style="font-size:14px;color:var(--accent)">Engram</div><div class="stat-sub">v9.0.92 · balanced</div></div>
+    <div class="stat"><div class="stat-lbl">日记文件</div><div class="stat-val" style="color:var(--blue)">39</div><div class="stat-sub">自动统计</div></div>
+    <div class="stat"><div class="stat-lbl">长期记忆</div><div class="stat-val" style="color:var(--green)">MEMORY.md</div><div class="stat-sub">精华提炼</div></div>
+    <div class="stat"><div class="stat-lbl">最后同步</div><div class="stat-val" style="color:var(--yellow);font-size:13px">2026-04-16 04:01</div><div class="stat-sub">自动更新</div></div>
+  </div>
+  <div class="g2">
+    <div class="card">
+      <div class="card-header"><div class="card-title">📅 日记文件</div></div>
+      <div class="card-body" style="padding:0">
+        <table class="tbl">
+          <thead><tr><th>文件</th><th>内容</th><th>学城日报</th></tr></thead>
+          <tbody>
+            <tr><td>2026-04-15</td><td>-</td><td><span class="tag" style="color:#64748b">本地</span></td></tr>
+<tr><td>2026-04-14</td><td>-</td><td><span class="tag" style="color:#64748b">本地</span></td></tr>
+<tr><td>2026-04-13</td><td>-</td><td><span class="tag" style="color:#64748b">本地</span></td></tr>
+<tr><td>2026-04-12</td><td>-</td><td><span class="tag" style="color:#64748b">本地</span></td></tr>
+<tr><td>2026-04-11</td><td>-</td><td><span class="tag" style="color:#64748b">本地</span></td></tr>
+<tr><td>2026-04-10</td><td>-</td><td><span class="tag" style="color:#64748b">本地</span></td></tr>
+<tr><td>2026-04-09</td><td>-</td><td><span class="tag" style="color:#64748b">本地</span></td></tr>
+<tr><td>2026-04-08</td><td>-</td><td><span class="tag" style="color:#64748b">本地</span></td></tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header"><div class="card-title">🔑 今日关键事件（2026-04-16）</div></div>
+      <div class="card-body">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div><div style="font-size:10px;color:var(--muted);text-transform:uppercase;margin-bottom:3px">身份</div><div style="font-size:11px">小蓝虾 🦐🔵 · 主人 uid:2872173767</div></div>
+          <div><div style="font-size:10px;color:var(--muted);text-transform:uppercase;margin-bottom:3px">今日关键事件</div><div style="font-size:11px;display:flex;flex-wrap:wrap;gap:3px"><span class="tag">今日无记录</span></div></div>
+          <div><div style="font-size:10px;color:var(--muted);text-transform:uppercase;margin-bottom:3px">铁律</div><div style="font-size:11px">持仓变动 → 更新Dashboard → push GitHub Pages</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ FILES ══ -->
+<div id="page-files" class="page">
+  <div style="margin-bottom:14px"><h2 style="font-size:17px;font-weight:800">📁 文件 &amp; 链接</h2></div>
+  <div class="g2">
+    <div class="card">
+      <div class="card-header"><div class="card-title">💼 ZHC 产品</div></div>
+      <div class="card-body" style="padding:0">
+        <table class="tbl">
+          <thead><tr><th>文件</th><th>状态</th><th>链接</th></tr></thead>
+          <tbody>
+            <tr><td>Product 1 PDF</td><td><span class="badge on">完成</span></td><td><a class="link-btn" href="https://s3plus-bj02.vip.sankuai.com/openclaw-bucket/product-1-openclaw-finance-agent-guide.pdf" target="_blank">📄 打开</a></td></tr>
+            <tr><td>Product 1 草稿</td><td><span class="badge on">完成 34KB</span></td><td><span class="tag">本地</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header"><div class="card-title">📚 学城日报</div></div>
+      <div class="card-body" style="padding:0">
+        <table class="tbl">
+          <thead><tr><th>日期</th><th>链接</th></tr></thead>
+          <tbody>
+            <tr><td>母文档</td><td><a class="link-btn" href="https://km.sankuai.com/collabpage/2750734438" target="_blank">📚 小蓝虾主页</a></td></tr>
+            <tr><td>3月16日</td><td><a class="link-btn" href="https://km.sankuai.com/collabpage/2751287503" target="_blank">📖 查看</a></td></tr>
+            <tr><td>3月15日</td><td><a class="link-btn" href="https://km.sankuai.com/collabpage/2750985954" target="_blank">📖 查看</a></td></tr>
+            <tr><td>3月14日</td><td><a class="link-btn" href="https://km.sankuai.com/collabpage/2750625854" target="_blank">📖 查看</a></td></tr>
+            <tr><td>3月13日</td><td><a class="link-btn" href="https://km.sankuai.com/collabpage/2750714330" target="_blank">📖 查看</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header"><div class="card-title">🐦 Twitter 引用</div></div>
+      <div class="card-body" style="padding:0">
+        <table class="tbl">
+          <thead><tr><th>账号</th><th>主题</th><th>链接</th></tr></thead>
+          <tbody>
+            <tr><td>@everestchris6</td><td>本地商业 Agent</td><td><a class="link-btn" href="https://x.com/everestchris6" target="_blank">🐦</a></td></tr>
+            <tr><td>@xmayeth</td><td>Polymarket 风控</td><td><a class="link-btn" href="https://x.com/xmayeth" target="_blank">🐦</a></td></tr>
+            <tr><td>@zerqfer</td><td>双 Agent 架构</td><td><a class="link-btn" href="https://x.com/zerqfer" target="_blank">🐦</a></td></tr>
+            <tr><td>@FelixCraftAI</td><td>ZHC $150K</td><td><a class="link-btn" href="https://x.com/FelixCraftAI" target="_blank">🐦</a></td></tr>
+            <tr><td>@nateliason</td><td>ZHC 模型</td><td><a class="link-btn" href="https://x.com/nateliason" target="_blank">🐦</a></td></tr>
+            <tr><td>全局搜索</td><td>openclaw 最新</td><td><a class="link-btn" href="https://x.com/search?q=openclaw&f=live" target="_blank">🔍 搜索</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header"><div class="card-title">🔧 核心脚本</div></div>
+      <div class="card-body" style="padding:0">
+        <table class="tbl">
+          <thead><tr><th>脚本</th><th>功能</th></tr></thead>
+          <tbody>
+            <tr><td>alpha_scanner.py</td><td>10只快速Alpha评分</td></tr>
+            <tr><td>alpha_scanner_full.py</td><td>20只完整4维度</td></tr>
+            <tr><td>microcap_full_scanner.py</td><td>2187只NASDAQ全量</td></tr>
+            <tr><td>memory_compressor.py</td><td>记忆压缩·22:00自动</td></tr>
+            <tr><td>km_daily_sync.py</td><td>学城日报同步</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ API ══ -->
+<div id="page-api" class="page">
+  <div style="margin-bottom:14px"><h2 style="font-size:17px;font-weight:800">🔑 API 状态 (7个)</h2></div>
+  <div class="card" style="margin-bottom:14px">
+    <div class="card-body" style="padding:0">
+      <table class="tbl">
+        <thead><tr><th>API</th><th>用途</th><th>Base URL</th><th>费用/次</th><th>状态</th></tr></thead>
+        <tbody>
+          <tr><td><strong>AISA LLM</strong></td><td>GPT/Claude/Gemini等53个模型</td><td><a href="https://api.aisa.one/v1" target="_blank">api.aisa.one/v1</a></td><td>模型定价</td><td><span class="badge off">余额-$0.003</span></td></tr>
+          <tr><td><strong>AISA Twitter</strong></td><td>搜推文/趋势/用户</td><td><code style="font-size:10px">/apis/v1/twitter/</code></td><td>~$0.0004</td><td><span class="badge off">余额不足</span></td></tr>
+          <tr><td><strong>AISA Search</strong></td><td>Scholar/Web混合搜索</td><td><code style="font-size:10px">/apis/v1/scholar/</code></td><td>~$0.001</td><td><span class="badge off">余额不足</span></td></tr>
+          <tr><td><strong>AISA YouTube</strong></td><td>YouTube视频搜索</td><td><code style="font-size:10px">/apis/v1/youtube/search</code></td><td>~$0.001</td><td><span class="badge off">余额不足</span></td></tr>
+          <tr><td><strong>AISA Financial</strong></td><td>财务指标/机构持仓</td><td><code style="font-size:10px">/apis/v1/financial/</code></td><td>$0.024~$0.50+</td><td><span class="badge off">余额不足</span></td></tr>
+          <tr><td><strong>AISA Perplexity</strong></td><td>sonar/sonar-pro联网问答</td><td><code style="font-size:10px">/apis/v1/perplexity/</code></td><td>$0.012</td><td><span class="badge off">余额不足</span></td></tr>
+          <tr><td><strong>智谱 GLM</strong></td><td>ClawWork接单·GLM-4-Plus</td><td><a href="https://open.bigmodel.cn" target="_blank">open.bigmodel.cn</a></td><td>独立计费</td><td><span class="badge on">可用</span></td></tr>
+          <tr><td><strong>Tavily</strong></td><td>网页搜索·RAG增强</td><td><code style="font-size:10px">api.tavily.com/v1</code></td><td>免费额度内</td><td><span class="badge on">可用</span></td></tr>
+          <tr><td><strong>E2B 沙箱</strong></td><td>ClawWork代码执行环境</td><td><a href="https://e2b.dev" target="_blank">e2b.dev</a></td><td>模板按量</td><td><span class="badge off">模板404</span></td></tr>
+          <tr><td><strong>SEC EDGAR</strong></td><td>Form4内部交易零成本扫描</td><td><a href="https://efts.sec.gov" target="_blank">efts.sec.gov</a></td><td>完全免费</td><td><span class="badge on">可用</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header"><div class="card-title">⚠️ AISA 余额警告</div></div>
+    <div class="card-body">
+      <div style="padding:12px;background:rgba(248,113,113,.08);border-radius:7px;border:1px solid rgba(248,113,113,.2);margin-bottom:10px">
+        <div style="color:var(--red);font-weight:700;font-size:13px">余额 -$0.003414，所有 AISA API 已锁定</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:6px">充值地址：<a href="https://api.aisa.one" target="_blank" style="font-weight:700">https://api.aisa.one</a> &nbsp;·&nbsp; 建议充 $10</div>
+      </div>
+      <div style="font-size:11px;color:var(--muted)">⚠️ Financial API 实际成本远高于文档标注：institutional-ownership / analyst-estimates 实测 $0.50+/次（非 $0.024）。批量调用需主人明确授权后执行。</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ EVOLUTION ══ -->
+<div id="page-evolution" class="page">
+  <div id="today-evolution" style="margin-bottom:16px;padding:12px;background:#111;border-radius:8px"><div style="color:#81c784;font-size:13px;font-weight:bold;margin-bottom:8px">🦐 今日进化</div><p style="color:#888;font-style:italic">今日暂无进化记录</p></div>
+  <div style="margin-bottom:14px"><h2 style="font-size:17px;font-weight:800">🧬 进化轨迹</h2></div>
+  <div class="g2">
+    <div class="card">
+      <div class="card-header"><div class="card-title">📈 能力雷达</div></div>
+      <div class="card-body">
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <div><div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:2px"><span>情报搜集</span><span style="color:var(--green)">95%</span></div><div class="prog-wrap"><div class="prog-fill" style="width:95%;background:var(--green)"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:2px"><span>记忆管理</span><span style="color:var(--green)">90%</span></div><div class="prog-wrap"><div class="prog-fill" style="width:90%;background:var(--green)"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:2px"><span>内容创作</span><span style="color:var(--accent)">85%</span></div><div class="prog-wrap"><div class="prog-fill" style="width:85%"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:2px"><span>金融分析</span><span style="color:var(--blue)">80%</span></div><div class="prog-wrap"><div class="prog-fill" style="width:80%;background:var(--blue)"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:2px"><span>代码开发</span><span style="color:var(--yellow)">70%</span></div><div class="prog-wrap"><div class="prog-fill" style="width:70%;background:var(--yellow)"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:2px"><span>自主赚钱</span><span style="color:var(--red)">45%</span></div><div class="prog-wrap"><div class="prog-fill" style="width:45%;background:var(--red)"></div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header"><div class="card-title">🗓️ 里程碑</div></div>
+      <div class="card-body">
+        <div class="timeline">
+          <div class="tl-item"><div class="tl-time">2026-03-20</div><div class="tl-title">推送→持仓联动系统确立</div><div class="tl-desc">每日推送自动转为建仓依据 · Dashboard实时同步</div></div>
+          <div class="tl-item"><div class="tl-time">2026-03-20</div><div class="tl-title">学城日报系统重建</div><div class="tl-desc">每日写入+链接附件 · km.sankuai.com/2750734438</div></div>
+          <div class="tl-item"><div class="tl-time">2026-03-19</div><div class="tl-title">AISA Financial API全面替换</div><div class="tl-desc">Stooq+SEC EDGAR+Yahoo Finance零成本</div></div>
+          <div class="tl-item"><div class="tl-time">2026-03-18</div><div class="tl-title">三账户模拟交易系统上线</div><div class="tl-desc">大机构+激进+蓝虾 总$150K · 首批8只建仓</div></div>
+          <div class="tl-item"><div class="tl-time">2026-03-17</div><div class="tl-title">SEC Form 4 零成本扫描</div><div class="tl-desc">SENS +281% · SVV +80%</div></div>
+          <div class="tl-item" style="margin-bottom:0"><div class="tl-time">2026-03-10</div><div class="tl-title">小蓝虾诞生 🦐</div><div class="tl-desc">首次推送 · HEARTBEAT.md建立</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header"><div class="card-title">🎯 进化 Backlog</div></div>
+    <div class="card-body" style="padding:0">
+      <table class="tbl">
+        <thead><tr><th>项目</th><th>优先级</th><th>状态</th></tr></thead>
+        <tbody>
+          <tr><td>📅 学城日报自动同步（每日22:00）</td><td><span class="tag r">高</span></td><td><a class="link-btn" href="https://km.sankuai.com/collabpage/2750734438" target="_blank">📖 查看母文档</a></td></tr>
+          <tr><td>🔗 推送→持仓自动联动（当日信号→建仓决策）</td><td><span class="tag r">高</span></td><td><span class="badge idle">设计中</span></td></tr>
+          <tr><td>⚠️ UPXI止损监控（当前$1.01，止损$0.75）</td><td><span class="tag r">高</span></td><td><span class="badge idle">监控中</span></td></tr>
+          <tr><td>⚠️ ROLR止损监控（当前$3.84，止损$3.20）</td><td><span class="tag r">高</span></td><td><span class="badge idle">监控中</span></td></tr>
+          <tr><td>Dashboard每次更新铁律（sync_dashboard.py自动化）</td><td><span class="tag r">高</span></td><td><span class="badge on">已建立</span></td></tr>
+          <tr><td>修复 E2B Sandbox 模板</td><td><span class="tag y">中</span></td><td><span class="badge off">待处理</span></td></tr>
+          <tr><td>内化 Hermes Agent 动态工具注册</td><td><span class="tag y">中</span></td><td><span class="badge idle">设计中</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PUSH HISTORY ══ -->
+<div id="page-history" class="page">
+  <div style="margin-bottom:14px"><h2 style="font-size:17px;font-weight:800">📨 推送历史</h2><p style="color:var(--muted);font-size:11px;margin-top:3px">私聊推送记录 · 仅展示近期</p></div>
+
+  <div style="margin-bottom:8px;font-weight:700;font-size:13px;color:var(--accent)">📅 2026-03-23</div>
+
+  <div class="push-item">
+    <div class="push-meta"><span class="tag g">2026-03-20 19:00</span><span class="tag">晚间情报</span></div>
+    <div class="push-body">
+      <b>🚨 Morgan Stanley 申请现货比特币ETF (MSBT)</b>：NYSE Arca挂牌申请，托管Coinbase+BNY Mellon，TradFi全面入场<br>
+      <b>📊 ORCL Q3 FY26</b>：营收$17.2B超预期，EPS $1.79，有机收入+非GAAP EPS双双≥20%，15年首次，盘后+9.2%<br>
+      <b>💸 美股今日蒸发$8200亿</b>：科技+成长股大范围回调<br>
+      来源：<a href="https://x.com/search?q=MSBT+bitcoin+ETF&f=live" target="_blank">Twitter·MSBT</a>
+    </div>
+  </div>
+
+  <div class="push-item">
+    <div class="push-meta"><span class="tag g">2026-03-20 16:05</span><span class="tag">持仓扫描+深度推送</span></div>
+    <div class="push-body">
+      <b>📊 三账户扫描</b>：总资产$147,724 (-1.52%)｜大机构$49,425｜激进$48,633｜蓝虾$49,654<br>
+      <b>⚠️ 警戒</b>：UPXI $1.01(-12.1%)接近止损$0.75；ROLR $3.84(-11.7%)接近止损$3.20<br>
+      <b>✅ 强势</b>：CVNA $315(+8.2%)；HBAN $15.95(+3.6%)<br>
+      <b>🤖 AgentCard</b>：AI专属虚拟Visa卡，1天18000人候补；YOAP A2A社交协议开源
+    </div>
+  </div>
+
+  <div class="push-item">
+    <div class="push-meta"><span class="tag g">2026-03-20 14:00</span><span class="tag">深度推送</span></div>
+    <div class="push-body">
+      <b>🔥 OpenAI三合一统一App</b>：ChatGPT+Codex+Atlas浏览器合并，正面对标OpenClaw<br>
+      <b>🤖 Meta AI内容审核Agent全面上线</b>：史上最大规模企业级Agent替代人工案例，影响数万岗位<br>
+      <b>💾 三星$730亿豪赌AI芯片</b>：2026年AI芯片产能投资+22%，Agentic AI推动存储订单激增<br>
+      来源：<a href="https://x.com/search?q=openai+unified+app&f=live" target="_blank">Twitter·OpenAI</a>
+    </div>
+  </div>
+
+  <div class="push-item">
+    <div class="push-meta"><span class="tag g">2026-03-20 12:03</span><span class="tag">深度推送</span></div>
+    <div class="push-body">
+      <b>🔗 Nansen×OpenClaw链上智能钱包雷达</b>：3个官方Skill(token-discovery/fund-tracker/exit-signals)，Smart Money追踪<br>
+      <b>🏢 YC背书AI企业雇员赛道</b>：Tensol将OpenClaw打包成"AI企业雇员"，支持+工程+销售24/7自动运转<br>
+      <b>💊 JNJ+PTGX银屑病新药FDA批准</b>：ICOTYDE获批，Biotech信号<br>
+      来源：<a href="https://x.com/nansen_ai" target="_blank">@nansen_ai</a>
+    </div>
+  </div>
+
+  <div class="push-item">
+    <div class="push-meta"><span class="tag g">2026-03-20 10:30</span><span class="tag">深度推送</span></div>
+    <div class="push-body">
+      <b>💰 BTC $70,232 (-1.40%)｜ETH $2,138 (-2.84%)｜SOL $89.08 (-1.36%)</b><br>
+      <b>🔥 Sapiom $1500万融资</b>：AI Agent"金融中台"，让Agent自主完成API鉴权和微支付，前Shopify支付工程总监创立<br>
+      <b>⚡ CZ达沃斯宣言</b>：AI Agent支付笔数将是人类100万倍，加密是Agent原生支付层<br>
+      <b>⚠️ OpenClaw 3.2 Bug</b>：默认关闭所有权限，需手动重开Tools设置<br>
+      来源：<a href="https://techcrunch.com/2026/02/05/sapiom-raises-15m" target="_blank">TechCrunch·Sapiom</a>
+    </div>
+  </div>
+
+  <div class="push-item">
+    <div class="push-meta"><span class="tag g">2026-03-20 09:05</span><span class="tag">早间情报</span></div>
+    <div class="push-body">
+      <b>🚨 Claude Code Channels发布</b>：v2.1.80+ 通过MCP把Telegram/Discord接进Claude Code会话，双向通信<br>
+      <b>🧠 Graph Memory开源</b>：95K→24K tokens(75%压缩率)，跨对话知识图谱自动召回<br>
+      <b>💰 Replit $4亿Series D</b>：vibe coding赛道持续烧钱，AI编程工具军备赛白热化<br>
+      <b>🔴 MCP安全漏洞×3</b>：Azure MCP Server SSRF(CVSS 8.8)、Claude Code RCE、ANTHROPIC泄露<br>
+      来源：<a href="https://x.com/search?q=claude+code+channels&f=live" target="_blank">Twitter·Claude Code</a>
+    </div>
+  </div>
+
+  <div class="push-item">
+    <div class="push-meta"><span class="tag g">2026-03-20 14:40</span><span class="tag">系统更新</span></div>
+    <div class="push-body">
+      <b>🔧 GitHub Pages 稳定外链配置完成</b>：S3不可用后，改用 GitHub Pages 托管 Dashboard<br>
+      外链：<a href="https://seanliii.github.io/xialanxia-dashboard/" target="_blank">seanliii.github.io/xialanxia-dashboard</a><br>
+      portfolio_scanner.py 已内置自动 push，每次扫描后自动更新
+    </div>
+  </div>
+
+  <div class="push-item">
+    <div class="push-meta"><span class="tag g">2026-03-20 15:52</span><span class="tag">系统更新</span></div>
+    <div class="push-body">
+      <b>🔧 Dashboard 三账户数据联动修复</b>：分仓卡从静态 $50,000 改为实时数据联动<br>
+      新增 sync_dashboard.py，Yahoo Finance 实时价格 → structure.json → HTML 完整重建
+    </div>
+  </div>
+
+  <div class="push-item">
+    <div class="push-meta"><span class="tag g">2026-03-20 19:08</span><span class="tag">系统修复</span></div>
+    <div class="push-body">
+      <b>🔧 Dashboard Tab叠层修复</b>：JS tab 控制器改坏了，恢复到 CSS radio 原版（commit 125b55d）<br>
+      首页恢复为总览页，CSS radio 方案稳定可靠
+    </div>
+  </div>
+
+  <div style="margin-bottom:8px;margin-top:16px;font-weight:700;font-size:13px;color:var(--accent)">📅 2026-03-23</div>
+
+  <div class="push-item">
+    <div class="push-meta"><span class="tag g">2026-03-17 16:00</span><span class="tag">深度推送</span></div>
+    <div class="push-body">
+      <b>💰 行情</b>：BTC ~$74,000 强势突破 $74K 关口，ETH $3,890 跟随上涨<br>
+      <b>📊 CB Insights 2026 AI Agent 报告</b>：6大趋势 — ①执行优先 ②身份认证战争 ③多Agent协作 ④企业渗透(82%12月内部署) ⑤工具调用层基础设施化 ⑥收入层级分化<br>
+      <b>🤖 NemoClaw</b>：GTC发布，OpenShell™运行时，单命令安装 nvidia-openclaw 全栈<br>
+      来源：<a href="https://x.com/search?q=nemoclaw&f=live" target="_blank">Twitter·NemoClaw</a> · <a href="https://x.com/search?q=openclaw&f=live" target="_blank">Twitter·OpenClaw</a>
+    </div>
+  </div>
+
+  <div class="push-item">
+    <div class="push-meta"><span class="tag g">2026-03-17 14:00</span><span class="tag">深度推送</span></div>
+    <div class="push-body">
+      <b>🧬 Leanstral</b>：法国 AI Infra 初创，$40M A轮，专做边缘推理优化<br>
+      <b>🎧 AirPods Max 2</b>：Apple发布，主动降噪提升35%，开发者API开放<br>
+      <b>🏛️ SEC 提议</b>：AI生成内容需强制标注，影响所有上市公司文件<br>
+      来源：<a href="https://techcrunch.com" target="_blank">TechCrunch</a> · <a href="https://x.com/search?q=SEC+AI&f=live" target="_blank">Twitter·SEC</a>
+    </div>
+  </div>
+
+  <div class="push-item">
+    <div class="push-meta"><span class="tag g">2026-03-17 13:30</span><span class="tag">Twitter情报</span></div>
+    <div class="push-body">
+      <b>🐦 今日热推</b>：<br>
+      · BTC突破$74K，<a href="https://x.com/search?q=bitcoin+74000&f=live" target="_blank">实时推文</a><br>
+      · Legora法律AI融资$550M，<a href="https://x.com/legora" target="_blank">@legora</a><br>
+      · Wonderful Health融资$150M，AI驱动医疗保险<br>
+      · Anthropic Partner Network $1亿建生态
+    </div>
+  </div>
+
+  <div class="push-item">
+    <div class="push-meta"><span class="tag g">2026-03-17 12:00</span><span class="tag">深度推送</span></div>
+    <div class="push-body">
+      <b>💰 BTC</b>：$74,046 日高，24h +6.2%，多头主导<br>
+      <b>📊 CB Insights</b>：AI Agent 6大趋势首发解析（首次推送）<br>
+      <b>🚀 NemoClaw</b>：GTC 2026 企业级 Agent 框架，CNCERT 安全合规
+    </div>
+  </div>
+
+  <div class="push-item">
+    <div class="push-meta"><span class="tag g">2026-03-17 11:00</span><span class="tag">Alpha扫描</span></div>
+    <div class="push-body">
+      <b>📈 今日 Alpha 信号</b>：<br>
+      🟢 <b>GME +6分</b>：Ryan Cohen 买入 1M股/$10.8M，创始人回购信号<br>
+      🟢 <b>ALDX +5分</b>：9个内部人买入，EPS预测 $1.02，PDUFA本周<br>
+      🟢 <b>SOFI +3分</b>：高管买入 $3.04M<br>
+      🔴 规避：ACHR(大量内部人抛售) · CLOV(CFO减持)<br>
+      数据来源：SEC EDGAR Form 4 · <a href="https://efts.sec.gov" target="_blank">efts.sec.gov</a>（零成本）
+    </div>
+  </div>
+
+  <div class="push-item">
+    <div class="push-meta"><span class="tag g">2026-03-17 10:00</span><span class="tag">深度推送</span></div>
+    <div class="push-body">
+      <b>🤖 NemoClaw 正式发布</b>：GTC2026，企业级开源 Agent 平台<br>
+      <b>💬 GLM-5</b>：智谱新模型，比肩 GPT-4o，中文推理领先<br>
+      <b>🚀 WuKong Agent</b>：华为内部 Agent 框架开源，支持多端部署<br>
+      <b>🔧 Replit Agent 4</b>：代码生成准确率 +40%，支持多文件工程
+    </div>
+  </div>
+
+  <div class="push-item">
+    <div class="push-meta"><span class="tag g">2026-03-17 09:00</span><span class="tag">早间情报</span></div>
+    <div class="push-body">
+      <b>🌅 早间摘要 (2026-03-17)</b>：<br>
+      · GTC 2026 第3天，Jensen Huang 今日主题演讲 11AM PT<br>
+      · <a href="https://x.com/search?q=nemoclaw&f=live" target="_blank">NemoClaw 企业版</a>开放早鸟申请<br>
+      · NVDA 盘前 +1.2%，市值接近 $6T<br>
+      · BTC 凌晨站稳 $72K，ETH $3,820
+    </div>
+  </div>
+
+  <div style="margin-top:16px;margin-bottom:8px;font-weight:700;font-size:13px;color:var(--accent)">📅 2026-03-23</div>
+  <div class="push-item">
+    <div class="push-meta"><span class="tag">历史</span><span class="tag">SEC Form 4 分析</span></div>
+    <div class="push-body">
+      <b>🏛️ 今日 SEC Form 4 Top信号</b>：<br>
+      · <b>SENS</b>：$5.96→$22.70目标(+281%)，FDA催化，<a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=SENS&type=4" target="_blank">EDGAR</a><br>
+      · <b>SVV</b>：~$8→$14.43(+80%)，COO接盘信号<br>
+      · <b>HBAN</b>：$15.21→$20.69(+36%)，CEO买入<br>
+      · <b>RGA</b>：$205→$247.75(+21%)，两EVP同日买入
+    </div>
+  </div>
+
+  <div style="margin-top:16px;margin-bottom:8px;font-weight:700;font-size:13px;color:var(--accent)">📅 2026-03-23</div>
+  <div class="push-item">
+    <div class="push-meta"><span class="tag">历史</span><span class="tag">GTC开幕+进化洞察</span></div>
+    <div class="push-body">
+      <b>🎯 进化洞察 (3月15日)</b>：<br>
+      · 工具价值归零，整合×业务知识=护城河<br>
+      · AI让个人拥有机构级能力（澳洲创业者mRNA疫苗案例）<br>
+      · Lightpanda 无头浏览器，Zig语言，比Playwright轻10x<br>
+      来源：<a href="https://x.com/search?q=openclaw+site:reddit.com&f=live" target="_blank">Reddit·ClaudeAI</a> · HN讨论
+    </div>
+  </div>
+</div>
+
+<!-- ══ LOGS ══ -->
+<div id="page-logs" class="page">
+  <div id="today-intel" style="margin-bottom:16px;padding:12px;background:#111;border-radius:8px"><div style="color:#ba68c8;font-size:13px;font-weight:bold;margin-bottom:8px">🐦 今日情报拉取</div><p style="color:#888;font-style:italic">今日暂无情报记录</p></div>
+  <div style="margin-bottom:14px"><h2 style="font-size:17px;font-weight:800">📋 日志 &amp; Trace</h2></div>
+  <div class="card" style="margin-bottom:14px">
+    <div class="card-header"><div class="card-title">🔭 工作 Trace (2026-04-16)</div><span class="badge on">实时</span></div>
+    <div class="card-body" style="padding:10px">
+      <div class="trace-box">
+<span class="t-time">[08:01]</span> <span class="t-ok">✅ CRON</span> <span class="t-info">ClawWork开工</span> → 余额$290.67，任务池已耗尽(03-10~03-16全完成)
+<span class="t-time">[09:05]</span> <span class="t-ok">✅ CRON</span> <span class="t-info">早间Twitter情报</span> → Claude Code Channels·Graph Memory·Replit $4亿·MCP漏洞×3 → 已发
+<span class="t-time">[10:30]</span> <span class="t-ok">✅ CRON</span> <span class="t-info">深度推送</span> → Sapiom $15M·CZ加密支付·OpenClaw 3.2 Bug → 已发
+<span class="t-time">[12:03]</span> <span class="t-ok">✅ CRON</span> <span class="t-info">深度推送</span> → Nansen×OpenClaw·YC AI雇员·JNJ+PTGX FDA批准 → 已发
+<span class="t-time">[14:00]</span> <span class="t-ok">✅ CRON</span> <span class="t-info">深度推送</span> → OpenAI三合一·Meta内容审核Agent·三星$730亿 → 已发
+<span class="t-time">[16:05]</span> <span class="t-ok">✅ CRON</span> <span class="t-info">三账户扫描</span> → 总$147,724(-1.52%) CVNA+8.2% UPXI⚠️-12.1% ROLR⚠️-11.7%
+<span class="t-time">[16:05]</span> <span class="t-ok">✅ CRON</span> <span class="t-info">深度推送</span> → AgentCard 1天18K候补·YOAP A2A协议·Agent Primitives → 已发
+<span class="t-time">[19:00]</span> <span class="t-ok">✅ CRON</span> <span class="t-info">晚间情报</span> → Morgan Stanley MSBT ETF·ORCL Q3 +9.2%·美股蒸发$8200亿 → 已发
+<span class="t-time">[19:20]</span> <span class="t-warn">🔧 FIX</span>  <span class="t-info">Dashboard全面更新</span> → 日期3.17→3.20·加今日推送·修Trace·更新进化Tab
+<span class="t-time">[22:00]</span> <span class="t-idle">⏳ PENDING</span> 学城日报同步 + 记忆压缩
+      </div>
+    </div>
+  </div>
+  <div class="g2">
+    <div class="card">
+      <div class="card-header"><div class="card-title">⚠️ 错误记录</div></div>
+      <div class="card-body" style="padding:0">
+        <table class="tbl">
+          <thead><tr><th>时间</th><th>错误</th><th>状态</th></tr></thead>
+          <tbody>
+            <tr><td>03-20</td><td>学城 SSO CIBA 授权等待超时</td><td><span class="badge idle">每次需手动授权</span></td></tr>
+            <tr><td>03-20</td><td>Dashboard 日期未自动更新(3.17→3.20)</td><td><span class="badge on">已修复</span></td></tr>
+            <tr><td>03-19</td><td>AISA Financial API余额耗尽</td><td><span class="badge on">已替换免费源</span></td></tr>
+            <tr><td>03-17</td><td>S3Plus CSP 阻止所有script</td><td><span class="badge on">纯CSS解决</span></td></tr>
+            <tr><td>03-14</td><td>ClawWork E2B 沙箱 404</td><td><span class="badge off">未修复</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header"><div class="card-title">💡 已学教训</div></div>
+      <div class="card-body" style="padding:0">
+        <table class="tbl">
+          <thead><tr><th>教训</th></tr></thead>
+          <tbody>
+            <tr><td>S3Plus CSP对所有script严格限制，纯CSS tab方案最可靠</td></tr>
+            <tr><td>AISA Financial API实际成本 $0.50+/次（非文档标注$0.024）</td></tr>
+            <tr><td>catclaw-search用python3直接调，不用uv run</td></tr>
+            <tr><td>大象消息目标格式：single_XXX（非user:XXX）</td></tr>
+            <tr><td>zengke02需要数字uid:251156发消息</td></tr>
+            <tr><td>全量API批量调用前必须确认成本</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ PORTFOLIO ══ -->
+<div id="page-portfolio" class="page">
+  <div id="today-stocks" style="margin-bottom:16px;padding:12px;background:#111;border-radius:8px"><div style="color:#ffb74d;font-size:13px;font-weight:bold;margin-bottom:8px">📊 今日股票动态</div>
+        <div style="background:#1a2332;border-radius:8px;padding:12px;margin-bottom:12px">
+          <div style="color:#888;font-size:12px">持仓快照 · 04:01</div>
+          <div style="font-size:22px;font-weight:bold;color:#fff;margin:4px 0">$931,134</div>
+          <div style="color:#f44336;font-size:16px">-5.96% 今日</div>
+        </div><p style="color:#888;font-style:italic;font-size:13px">今日无交易操作，持仓稳定</p></div>
+  <div style="margin-bottom:10px;display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px">
+    <div>
+      <h2 style="font-size:17px;font-weight:800">📈 三账户模拟交易系统</h2>
+      <p style="color:#64748b;font-size:11px;margin-top:3px">🏦 大机构 · ⚡ 激进交易 · 🦐 蓝虾交易 · <b style="color:#fbbf24">建仓时间: 2026-03-18 10:13 CST</b></p>
+    </div>
+    <div style="font-size:11px;color:#64748b;text-align:right">总资金 $150,000 · 三账户各 $50,000<br>自动扫描: <b style="color:#2dd4bf">北京时间 10/16/22/04点</b><br>股价更新：2026-04-16 04:01</div>
+  </div>
+
+  <!-- 三账户汇总 -->
+  <div class="g4" style="margin-bottom:14px">
+    <div class="stat" style="border-top:3px solid #2dd4bf"><div class="stat-lbl">💰 总资产</div><div class="stat-val" style="color:#2dd4bf">$148,386</div><div class="stat-sub">总损益 <span style="color:#f87171">$1,614 (-1.08%)</span></div></div>
+    <div class="stat" style="border-top:3px solid #6c63ff"><div class="stat-lbl">🏦 大机构</div><div class="stat-val" style="color:#6c63ff">$42,061</div><div class="stat-sub">CPNG·HBAN·CVNA·SOFI 4只 | 现金$9,219</div></div>
+    <div class="stat" style="border-top:3px solid #fbbf24"><div class="stat-lbl">⚡ 激进交易</div><div class="stat-val" style="color:#fbbf24">$47,310</div><div class="stat-sub">UPXI·QUBT·SOUN·MLEC 4只 | 现金$27,728</div></div>
+    <div class="stat" style="border-top:3px solid #f87171"><div class="stat-lbl">🦐 蓝虾交易</div><div class="stat-val" style="color:#f87171">$50,299</div><div class="stat-sub">ROLR·TOI 2只 | 现金$42,999</div></div>
+  </div>
+
+  <!-- ===== 大机构账户 ===== -->
+  <div class="card" style="margin-bottom:14px;border-top:3px solid #6c63ff">
+    <div class="card-header" style="background:rgba(108,99,255,.07)">
+      <div class="card-title">🏦 大机构账户 · $42,061</div>
+      <span style="font-size:10px;color:#94a3b8">策略：跟踪13F顶级投资人持仓变化 · 低频高确定性 · 30-90天持有周期</span>
+    </div>
+    <div style="display:flex;gap:12px;padding:10px 14px;flex-wrap:wrap;border-bottom:1px solid #1e1e33">
+      <div style="font-size:11px"><span style="color:#64748b">总资产</span> <b style="color:#6c63ff">$42,061</b></div>
+      <div style="font-size:11px"><span style="color:#64748b">已投入</span> <b style="color:#fbbf24">$32,843</b></div>
+      <div style="font-size:11px"><span style="color:#64748b">现金</span> <b style="color:#2dd4bf">$9,219</b></div>
+      <div style="font-size:11px"><span style="color:#64748b">持仓</span> <b>4只</b></div>
+      <div style="font-size:11px;margin-left:auto"><span style="color:#64748b">浮动盈亏</span> <b style="color:#2dd4bf">+$3,098 (+10.41%)</b></div>
+    </div>
+    <div style="overflow-x:auto">
+      <table class="tbl">
+        <thead><tr>
+          <th>代码 / 公司</th><th>信号来源</th><th>建仓价</th><th>持仓成本</th>
+          <th>当前价</th><th>浮动盈亏</th><th>目标价</th><th>止损</th>
+          <th>已持/目标天</th><th>预计达标日</th><th>信号强度</th>
+        </tr></thead>
+        <tbody>
+<tr data-ticker="CPNG" data-entry="20.8" data-shares="360" data-entry-date="2026-03-18" data-target-days="45">
+  <td><b style="font-size:13px">CPNG</b><br><span style="font-size:10px;color:#94a3b8">Coupang Inc — 韩国最大电商平台</span></td>
+  <td style="font-size:10px;color:#94a3b8;max-width:150px">董事Neil Mehta 3/11-13连续3天买入$1.365亿 | 股价因数据泄露跌40%后顶级VC抄底 | 目标$…</td>
+  <td style="font-weight:600">$20.80</td>
+  <td style="font-weight:700;color:#fbbf24">$7,488<br><span style="font-size:10px;color:#64748b">360股</span></td>
+  <td style="font-weight:700;font-size:13px"><b style="color:#e2e8f0;font-size:13px">$21.31</b></td>
+  <td><span style="color:#2dd4bf;font-weight:700">+$183 (+2.5%)</span></td>
+  <td style="color:#60a5fa;font-weight:700">$26.00<br><span style="font-size:10px;color:#2dd4bf">+25%</span></td>
+  <td style="color:#f87171">$17.50</td>
+  <td><div style="background:#1e1e33;border-radius:4px;height:6px;width:80px;display:inline-block;vertical-align:middle"><div style="background:#6c63ff;width:64%;height:6px;border-radius:4px"></div></div><span style="font-size:10px;color:#64748b;margin-left:4px">29/45天</span></td>
+  <td style="font-size:11px;color:#60a5fa">2026-05-02</td>
+  <td><span class="badge on" style="background:#f87171;font-weight:800">S级</span></td>
+</tr>
+<tr data-ticker="HBAN" data-entry="15.39" data-shares="487" data-entry-date="2026-03-18" data-target-days="60">
+  <td><b style="font-size:13px">HBAN</b><br><span style="font-size:10px;color:#94a3b8">Huntington Bancshares — 美国区域银行</span></td>
+  <td style="font-size:10px;color:#94a3b8;max-width:150px">CEO Stephen Steinour 3/12买入$50万 | 当前价低于CEO建仓价 | P/E 10.2x 低估…</td>
+  <td style="font-weight:600">$15.39</td>
+  <td style="font-weight:700;color:#fbbf24">$7,495<br><span style="font-size:10px;color:#64748b">487股</span></td>
+  <td style="font-weight:700;font-size:13px"><b style="color:#e2e8f0;font-size:13px">$16.59</b></td>
+  <td><span style="color:#2dd4bf;font-weight:700">+$584 (+7.8%)</span></td>
+  <td style="color:#60a5fa;font-weight:700">$19.00<br><span style="font-size:10px;color:#2dd4bf">+23%</span></td>
+  <td style="color:#f87171">$13.50</td>
+  <td><div style="background:#1e1e33;border-radius:4px;height:6px;width:80px;display:inline-block;vertical-align:middle"><div style="background:#6c63ff;width:48%;height:6px;border-radius:4px"></div></div><span style="font-size:10px;color:#64748b;margin-left:4px">29/60天</span></td>
+  <td style="font-size:11px;color:#60a5fa">2026-05-17</td>
+  <td><span class="badge on" style="background:#fbbf24;font-weight:800">A级</span></td>
+</tr>
+<tr data-ticker="CVNA" data-entry="291.01" data-shares="25" data-entry-date="2026-03-19" data-target-days="45">
+  <td><b style="font-size:13px">CVNA</b><br><span style="font-size:10px;color:#94a3b8">Carvana — 美国最大在线二手车交易平台</span></td>
+  <td style="font-size:10px;color:#94a3b8;max-width:150px">当前$314已低于Lone Pine建仓价，两大顶级基金共同重仓，触发价$310</td>
+  <td style="font-weight:600">$291.01</td>
+  <td style="font-weight:700;color:#fbbf24">$7,275<br><span style="font-size:10px;color:#64748b">25股</span></td>
+  <td style="font-weight:700;font-size:13px"><b style="color:#e2e8f0;font-size:13px">$336.31</b></td>
+  <td><span style="color:#2dd4bf;font-weight:700">+$1,132 (+15.6%)</span></td>
+  <td style="color:#60a5fa;font-weight:700">$420.00<br><span style="font-size:10px;color:#2dd4bf">+44%</span></td>
+  <td style="color:#f87171">$260.00</td>
+  <td><div style="background:#1e1e33;border-radius:4px;height:6px;width:80px;display:inline-block;vertical-align:middle"><div style="background:#6c63ff;width:62%;height:6px;border-radius:4px"></div></div><span style="font-size:10px;color:#64748b;margin-left:4px">28/45天</span></td>
+  <td style="font-size:11px;color:#60a5fa">—</td>
+  <td><span class="badge on" style="background:#94a3b8;font-weight:800">—</span></td>
+</tr>
+<tr data-ticker="SOFI" data-entry="15.63" data-shares="479" data-entry-date="2026-04-02" data-target-days="45">
+  <td><b style="font-size:13px">SOFI</b><br><span style="font-size:10px;color:#94a3b8">SoFi Technologies</span></td>
+  <td style="font-size:10px;color:#94a3b8;max-width:150px">等限价$16触发建仓</td>
+  <td style="font-weight:600">$15.63</td>
+  <td style="font-weight:700;color:#fbbf24">$7,487<br><span style="font-size:10px;color:#64748b">479股</span></td>
+  <td style="font-weight:700;font-size:13px"><b style="color:#e2e8f0;font-size:13px">$18.13</b></td>
+  <td><span style="color:#2dd4bf;font-weight:700">+$1,198 (+16.0%)</span></td>
+  <td style="color:#60a5fa;font-weight:700">$22.00<br><span style="font-size:10px;color:#2dd4bf">+41%</span></td>
+  <td style="color:#f87171">$13.00</td>
+  <td><div style="background:#1e1e33;border-radius:4px;height:6px;width:80px;display:inline-block;vertical-align:middle"><div style="background:#6c63ff;width:31%;height:6px;border-radius:4px"></div></div><span style="font-size:10px;color:#64748b;margin-left:4px">14/45天</span></td>
+  <td style="font-size:11px;color:#60a5fa">—</td>
+  <td><span class="badge on" style="background:#94a3b8;font-weight:800">—</span></td>
+</tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="padding:8px 14px;font-size:11px;color:#64748b;border-top:1px solid #1e1e33">
+      ⏳ 等待入场：<b style='color:#60a5fa'>SOFI</b> 等回调$16建仓
+    </div>
+  </div>
+
+  <!-- ===== 激进交易账户 ===== -->
+  <div class="card" style="margin-bottom:14px;border-top:3px solid #fbbf24">
+    <div class="card-header" style="background:rgba(251,191,36,.07)">
+      <div class="card-title">⚡ 激进交易账户 · $47,310</div>
+      <span style="font-size:10px;color:#94a3b8">策略：猎暴涨微盘股 · Battalion Oil(27x) / 亿珑能源(15x) / MLEC(3x) 模式</span>
+    </div>
+    <div style="display:flex;gap:12px;padding:10px 14px;flex-wrap:wrap;border-bottom:1px solid #1e1e33">
+      <div style="font-size:11px"><span style="color:#64748b">总资产</span> <b style="color:#fbbf24">$47,310</b></div>
+      <div style="font-size:11px"><span style="color:#64748b">已投入</span> <b style="color:#fbbf24">$19,582</b></div>
+      <div style="font-size:11px"><span style="color:#64748b">现金</span> <b style="color:#2dd4bf">$27,728</b></div>
+      <div style="font-size:11px"><span style="color:#64748b">持仓</span> <b>4只</b></div>
+      <div style="font-size:11px;margin-left:auto"><span style="color:#64748b">浮动盈亏</span> <b style="color:#2dd4bf">+$591 (+3.11%)</b></div>
+    </div>
+    <div style="overflow-x:auto">
+      <table class="tbl">
+        <thead><tr>
+          <th>代码 / 公司</th><th>信号来源</th><th>建仓价</th><th>持仓成本</th>
+          <th>当前价</th><th>浮动盈亏</th><th>目标价</th><th>止损</th>
+          <th>已持/目标天</th><th>预计达标日</th><th>信号强度</th>
+        </tr></thead>
+        <tbody>
+<tr data-ticker="UPXI" data-entry="1.15" data-shares="4347" data-entry-date="2026-03-18" data-target-days="14">
+  <td><b style="font-size:13px">UPXI</b><br><span style="font-size:10px;color:#94a3b8">Upexi Inc — 消费品牌+Solana国库战略</span></td>
+  <td style="font-size:10px;color:#94a3b8;max-width:140px">纳斯达克上市公司，2026年转型Solana国库战略（持仓217万枚SOL），分</td>
+  <td style="font-weight:600">$1.15</td>
+  <td style="font-weight:700;color:#fbbf24">$4,999<br><span style="font-size:10px;color:#64748b">4347股</span></td>
+  <td style="font-weight:700;font-size:13px"><b style="color:#e2e8f0;font-size:13px">$1.20</b></td>
+  <td><span style="color:#2dd4bf;font-weight:700">+$217 (+4.3%)</span></td>
+  <td style="color:#60a5fa;font-weight:700">$5.00<br><span style="font-size:10px;color:#2dd4bf">+335%</span></td>
+  <td style="color:#f87171">$0.75</td>
+  <td><div style="background:#1e1e33;border-radius:4px;height:6px;width:80px;display:inline-block;vertical-align:middle"><div style="background:#6c63ff;width:100%;height:6px;border-radius:4px"></div></div><span style="font-size:10px;color:#64748b;margin-left:4px">29/14天</span></td>
+  <td style="font-size:11px;color:#60a5fa">—</td>
+  <td><span style="padding:3px 7px;background:rgba(251,191,36,.15);border-radius:6px;font-size:10px;color:#fbbf24;font-weight:700">A</span></td>
+</tr>
+<tr data-ticker="QUBT" data-entry="7.54" data-shares="663" data-entry-date="2026-03-18" data-target-days="14">
+  <td><b style="font-size:13px">QUBT</b><br><span style="font-size:10px;color:#94a3b8">Quantum Computing Inc</span></td>
+  <td style="font-size:10px;color:#94a3b8;max-width:140px">量子光子计算，Google/IBM量子投入未减，Ascendiant目标$40</td>
+  <td style="font-weight:600">$7.54</td>
+  <td style="font-weight:700;color:#fbbf24">$4,999<br><span style="font-size:10px;color:#64748b">663股</span></td>
+  <td style="font-weight:700;font-size:13px"><b style="color:#e2e8f0;font-size:13px">$8.13</b></td>
+  <td><span style="color:#2dd4bf;font-weight:700">+$391 (+7.8%)</span></td>
+  <td style="color:#60a5fa;font-weight:700">$15.00<br><span style="font-size:10px;color:#2dd4bf">+99%</span></td>
+  <td style="color:#f87171">$4.50</td>
+  <td><div style="background:#1e1e33;border-radius:4px;height:6px;width:80px;display:inline-block;vertical-align:middle"><div style="background:#6c63ff;width:100%;height:6px;border-radius:4px"></div></div><span style="font-size:10px;color:#64748b;margin-left:4px">29/14天</span></td>
+  <td style="font-size:11px;color:#60a5fa">—</td>
+  <td><span style="padding:3px 7px;background:rgba(251,191,36,.15);border-radius:6px;font-size:10px;color:#fbbf24;font-weight:700">A</span></td>
+</tr>
+<tr data-ticker="SOUN" data-entry="7.82" data-shares="639" data-entry-date="2026-03-18" data-target-days="14">
+  <td><b style="font-size:13px">SOUN</b><br><span style="font-size:10px;color:#94a3b8">SoundHound AI Inc</span></td>
+  <td style="font-size:10px;color:#94a3b8;max-width:140px">NVIDIA投资+车载AI合作，语音AI赛道未衰退</td>
+  <td style="font-weight:600">$7.82</td>
+  <td style="font-weight:700;color:#fbbf24">$4,997<br><span style="font-size:10px;color:#64748b">639股</span></td>
+  <td style="font-weight:700;font-size:13px"><b style="color:#e2e8f0;font-size:13px">$7.06</b></td>
+  <td><span style="color:#f87171;font-weight:700">$486 (-9.7%)</span></td>
+  <td style="color:#60a5fa;font-weight:700">$16.00<br><span style="font-size:10px;color:#2dd4bf">+105%</span></td>
+  <td style="color:#f87171">$4.80</td>
+  <td><div style="background:#1e1e33;border-radius:4px;height:6px;width:80px;display:inline-block;vertical-align:middle"><div style="background:#6c63ff;width:100%;height:6px;border-radius:4px"></div></div><span style="font-size:10px;color:#64748b;margin-left:4px">29/14天</span></td>
+  <td style="font-size:11px;color:#60a5fa">—</td>
+  <td><span style="padding:3px 7px;background:rgba(251,191,36,.15);border-radius:6px;font-size:10px;color:#fbbf24;font-weight:700">A</span></td>
+</tr>
+<tr data-ticker="MLEC" data-entry="6.66" data-shares="600" data-entry-date="2026-03-26" data-target-days="14">
+  <td><b style="font-size:13px">MLEC</b><br><span style="font-size:10px;color:#94a3b8">Moolec Science SA</span></td>
+  <td style="font-size:10px;color:#94a3b8;max-width:140px">基因编辑农作物，小众赛道</td>
+  <td style="font-weight:600">$6.66</td>
+  <td style="font-weight:700;color:#fbbf24">$3,996<br><span style="font-size:10px;color:#64748b">600股</span></td>
+  <td style="font-weight:700;font-size:13px"><b style="color:#e2e8f0;font-size:13px">$7.44</b></td>
+  <td><span style="color:#2dd4bf;font-weight:700">+$468 (+11.7%)</span></td>
+  <td style="color:#60a5fa;font-weight:700">$15.00<br><span style="font-size:10px;color:#2dd4bf">+125%</span></td>
+  <td style="color:#f87171">$5.00</td>
+  <td><div style="background:#1e1e33;border-radius:4px;height:6px;width:80px;display:inline-block;vertical-align:middle"><div style="background:#6c63ff;width:100%;height:6px;border-radius:4px"></div></div><span style="font-size:10px;color:#64748b;margin-left:4px">21/14天</span></td>
+  <td style="font-size:11px;color:#60a5fa">—</td>
+  <td><span style="padding:3px 7px;background:rgba(251,191,36,.15);border-radius:6px;font-size:10px;color:#fbbf24;font-weight:700">A</span></td>
+</tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="padding:8px 14px;font-size:11px;color:#64748b;border-top:1px solid #1e1e33">
+      🔫 触发模式：<b style="color:#2dd4bf">breakout↑</b> 向上突破建仓 · <b style="color:#f87171">pullback↓</b> 回调入场
+    </div>
+  </div>
+
+  <!-- ===== 蓝虾账户 ===== -->
+  <div class="card" style="margin-bottom:14px;border-top:3px solid #f87171">
+    <div class="card-header" style="background:rgba(248,113,113,.07)">
+      <div class="card-title">🦐 蓝虾交易账户 · $50,299</div>
+      <span style="font-size:10px;color:#94a3b8">策略：小蓝虾自主决策 · ABCDE评分≥70建仓 · 多信源交叉验证</span>
+    </div>
+    <div style="display:flex;gap:12px;padding:10px 14px;flex-wrap:wrap;border-bottom:1px solid #1e1e33">
+      <div style="font-size:11px"><span style="color:#64748b">总资产</span> <b style="color:#f87171">$50,299</b></div>
+      <div style="font-size:11px"><span style="color:#64748b">已投入</span> <b style="color:#fbbf24">$7,300</b></div>
+      <div style="font-size:11px"><span style="color:#64748b">现金</span> <b style="color:#2dd4bf">$42,999</b></div>
+      <div style="font-size:11px"><span style="color:#64748b">持仓</span> <b>2只</b></div>
+      <div style="font-size:11px;margin-left:auto"><span style="color:#64748b">浮动盈亏</span> <b style="color:#2dd4bf">+$299 (+4.27%)</b></div>
+    </div>
+    <div style="overflow-x:auto">
+      <table class="tbl">
+        <thead><tr>
+          <th>代码 / 公司</th><th>ABCDE评分</th><th>建仓价</th><th>持仓成本</th>
+          <th>当前价</th><th>浮动盈亏</th><th>目标价</th><th>止损</th>
+          <th>已持/目标天</th><th>预计达标日</th><th>决策依据</th>
+        </tr></thead>
+        <tbody>
+<tr data-ticker="ROLR" data-entry="4.35" data-shares="690" data-entry-date="2026-03-18" data-target-days="7">
+  <td><b style="font-size:13px">ROLR</b><br><span style="font-size:10px;color:#94a3b8">High Roller Technologies — 在线预测市场/赌博平台</span></td>
+  <td style="text-align:center"><b style="color:#fbbf24;font-size:16px">70</b><span style="font-size:10px;color:#64748b">/100</span></td>
+  <td>$4.35</td>
+  <td style="color:#fbbf24">$3,002<br><span style="font-size:10px;color:#64748b">690股</span></td>
+  <td style="font-weight:700"><b style="color:#e2e8f0;font-size:13px">$5.09</b></td>
+  <td><span style="color:#2dd4bf;font-weight:700">+$511 (+17.0%)</span></td>
+  <td style="color:#60a5fa">$7.50<br><span style="font-size:10px;color:#2dd4bf">+72%</span></td>
+  <td style="color:#f87171">$3.20</td>
+  <td><div style="background:#1e1e33;border-radius:4px;height:6px;width:80px;display:inline-block;vertical-align:middle"><div style="background:#6c63ff;width:100%;height:6px;border-radius:4px"></div></div><span style="font-size:10px;color:#64748b;margin-left:4px">29/7天</span></td>
+  <td style="font-size:11px;color:#60a5fa">2026-03-25</td>
+  <td style="font-size:10px;color:#94a3b8">预测市场主题股(Trump/政治事件驱动) + COO今日开市买@$3.95 + Stocktwits实时热榜4位 + 市值$37M低流通</td>
+</tr>
+<tr data-ticker="TOI" data-entry="3.59" data-shares="1114" data-entry-date="2026-03-18" data-target-days="30">
+  <td><b style="font-size:13px">TOI</b><br><span style="font-size:10px;color:#94a3b8">The Oncology Institute — 美国肿瘤门诊医疗连锁</span></td>
+  <td style="text-align:center"><b style="color:#fbbf24;font-size:16px">70</b><span style="font-size:10px;color:#64748b">/100</span></td>
+  <td>$3.59</td>
+  <td style="color:#fbbf24">$3,999<br><span style="font-size:10px;color:#64748b">1114股</span></td>
+  <td style="font-weight:700"><b style="color:#e2e8f0;font-size:13px">$3.40</b></td>
+  <td><span style="color:#f87171;font-weight:700">$212 (-5.3%)</span></td>
+  <td style="color:#60a5fa">$5.50<br><span style="font-size:10px;color:#2dd4bf">+53%</span></td>
+  <td style="color:#f87171">$2.80</td>
+  <td><div style="background:#1e1e33;border-radius:4px;height:6px;width:80px;display:inline-block;vertical-align:middle"><div style="background:#6c63ff;width:97%;height:6px;border-radius:4px"></div></div><span style="font-size:10px;color:#64748b;margin-left:4px">29/30天</span></td>
+  <td style="font-size:11px;color:#60a5fa">2026-04-17</td>
+  <td style="font-size:10px;color:#94a3b8">大股东Chernett Jorey 3/13-16连续4天买入$97万(32万股) + 肿瘤医疗刚需赛道 + 营收增长9% + 市值$353M估值合理</td>
+</tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="padding:8px 14px;font-size:11px;color:#64748b;border-top:1px solid #1e1e33">
+      🦐 ABCDE模型：A激活(20) · B业务(20) · C催化剂(20) · D流通(20) · E时机(20) · <b style="color:#2dd4bf">≥70建仓</b>
+    </div>
+  </div>
+
+  <!-- 汇总 + 规则 -->
+  <div class="g2" style="margin-bottom:14px">
+    <div class="card">
+      <div class="card-header"><div class="card-title">📊 三账户对比</div></div>
+      <table class="tbl">
+        <thead><tr><th>账户</th><th>总资产</th><th>持仓</th><th>现金</th><th>风格</th></tr></thead>
+        <tbody>
+          <tr><td>🏦 大机构</td><td><b style="color:#6c63ff">$42,061</b></td><td>4只/$29,745</td><td>$9,219</td><td style="font-size:10px">13F跟踪 30-90天</td></tr>
+          <tr><td>⚡ 激进交易</td><td><b style="color:#fbbf24">$47,310</b></td><td>4只/$18,991</td><td>$27,728</td><td style="font-size:10px">暴涨猎手 1-21天</td></tr>
+          <tr><td>🦐 蓝虾</td><td><b style="color:#f87171">$50,299</b></td><td>2只/$7,001</td><td>$42,999</td><td style="font-size:10px">自主决策 1-30天</td></tr>
+          <tr><td><b>合计</b></td><td><b style="color:#2dd4bf">$139,670</b></td><td>10只/$55,737</td><td>$79,946</td><td style="font-size:10px">+$3,987(+2.66%)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-header"><div class="card-title">📏 仓位规则</div></div>
+      <div class="card-body" style="font-size:11px;line-height:2">
+        <div><b style="color:#6c63ff">🏦 大机构：</b>单笔≤20% · 止损-15% · 持有30-90天</div>
+        <div><b style="color:#fbbf24">⚡ 激进：</b>单笔≤10%($5K) · 止损-30% · 快进快出1-5天</div>
+        <div><b style="color:#f87171">🦐 蓝虾：</b>单笔≤20% · ABCDE≥70 · 止损-20%</div>
+        <div style="margin-top:8px;padding:8px;background:rgba(45,212,191,.06);border-radius:6px;border-left:3px solid #2dd4bf;font-size:10px">
+          <b>🔄 自动扫描：</b>北京时间 10/16/22/04点，更新价格 + 推送新信号
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 交易日志 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">📜 交易日志</div>
+      <span style="font-size:10px;color:#64748b">按时间倒序 · 全账户统一记录</span>
+    </div>
+    <div style="overflow-x:auto">
+      <table class="tbl">
+        <thead><tr><th>时间</th><th>账户</th><th>操作</th><th>代码</th><th>价格</th><th>金额</th><th>理由摘要</th></tr></thead>
+        <tbody>
+<tr><td>2026-03-19 10:09</td><td><span style="color:#6c63ff">🏦 大机构</span></td><td><span class="badge on">建仓</span></td><td><b>CVNA</b></td><td>$291.01</td><td style="color:#fbbf24">$7,275</td><td style="font-size:10px;color:#94a3b8">Lone Pine $7.51亿新建仓+Whale Rock双重确认 watchlist触发价$310 自动入场</td></tr>
+<tr><td>2026-03-18 15:34</td><td><span style="color:#fbbf24">⚡ 激进</span></td><td><span class="badge on">建仓</span></td><td><b>IREN</b></td><td>$42.96</td><td style="color:#fbbf24">$4,983</td><td style="font-size:10px;color:#94a3b8">Discovery Capital 13F重仓+蓝虾76分 距90D峰-43.8% Stooq验证</td></tr>
+<tr><td>2026-03-18 11:44</td><td><span style="color:#fbbf24">⚡ 激进</span></td><td><span class="badge on">自动触发</span></td><td><b>SOUN</b></td><td>$7.82</td><td style="color:#fbbf24">$4,997</td><td style="font-size:10px;color:#94a3b8">NVIDIA背书 距峰-68.7% pullback入场 触发价$8</td></tr>
+<tr><td>2026-03-18 11:44</td><td><span style="color:#fbbf24">⚡ 激进</span></td><td><span class="badge on">自动触发</span></td><td><b>QUBT</b></td><td>$7.54</td><td style="color:#fbbf24">$4,999</td><td style="font-size:10px;color:#94a3b8">量子计算 距峰-72.2% pullback入场 触发价$8</td></tr>
+<tr><td>2026-03-18 11:44</td><td><span style="color:#fbbf24">⚡ 激进</span></td><td><span class="badge on">自动触发</span></td><td><b>UPXI</b></td><td>$1.15</td><td style="color:#fbbf24">$4,999</td><td style="font-size:10px;color:#94a3b8">Solana国库转型 历史暴涨记录 Penny stock $0.01+策略</td></tr>
+<tr><td>2026-03-18 10:13</td><td><span style="color:#f87171">🦐 蓝虾</span></td><td><span class="badge on">建仓</span></td><td><b>TOI</b></td><td>$3.59</td><td style="color:#fbbf24">$3,999</td><td style="font-size:10px;color:#94a3b8">大股东4天买$97万+肿瘤医疗+营收+9% ABCDE 78分</td></tr>
+<tr><td>2026-03-18 10:13</td><td><span style="color:#f87171">🦐 蓝虾</span></td><td><span class="badge on">建仓</span></td><td><b>ROLR</b></td><td>$4.35</td><td style="color:#fbbf24">$3,001</td><td style="font-size:10px;color:#94a3b8">预测市场主题+COO买入+Stocktwits热榜#4 ABCDE 72分</td></tr>
+<tr><td>2026-03-18 10:13</td><td><span style="color:#6c63ff">🏦 大机构</span></td><td><span class="badge on">建仓</span></td><td><b>HBAN</b></td><td>$15.39</td><td style="color:#fbbf24">$7,495</td><td style="font-size:10px;color:#94a3b8">CEO $50万@$15.49，P/E 10.2x，当前低于CEO价</td></tr>
+<tr><td>2026-03-18 10:13</td><td><span style="color:#6c63ff">🏦 大机构</span></td><td><span class="badge on">建仓</span></td><td><b>CPNG</b></td><td>$20.80</td><td style="color:#fbbf24">$7,488</td><td style="font-size:10px;color:#94a3b8">Neil Mehta 3天$1.365亿 S级信号 跌40%抄底</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===== 自选观察仓 ===== -->
+
+  <!-- 激进账户自选仓 -->
+  <div class="card" style="margin-bottom:10px;border-top:3px solid #fbbf24">
+    <div class="card-header" style="background:rgba(251,191,36,.06)">
+      <div class="card-title">⚡ 激进账户 · 自选观察仓</div>
+      <span style="font-size:10px;color:#94a3b8">策略：曾暴涨2x+ · 等回落50-70%再建仓 · 止损-30%</span>
+    </div>
+    <div style="overflow-x:auto">
+      <table class="tbl">
+        <thead><tr>
+          <th style="min-width:90px">代码 / 公司</th>
+          <th style="min-width:130px">历史暴涨</th>
+          <th style="min-width:70px">历史高点</th>
+          <th style="min-width:70px">当前价</th>
+          <th style="min-width:80px">从高点跌</th>
+          <th style="min-width:60px">甜蜜区?</th>
+          <th style="min-width:70px">目标入场</th>
+          <th style="min-width:70px">目标出场</th>
+          <th style="min-width:50px">优先级</th>
+          <th style="min-width:140px">加仓条件</th>
+        </tr></thead>
+        <tbody>
+<tr data-ticker="QUBT" data-entry="7.54" data-shares="663" data-entry-date="2026-03-18" data-target-days="14">
+  <td><b>QUBT</b><br><span style="font-size:10px;color:#94a3b8">量子计算</span></td>
+  <td style="font-size:10px;color:#94a3b8">2024全年<br><b style="color:#f87171">+3,427%</b> ($0.35→$27)</td>
+  <td style="font-weight:700;color:#64748b">$27.15</td>
+  <td style="font-weight:700;color:#2dd4bf">$7.54</td>
+  <td><b style="color:#e2e8f0;font-size:13px">$7.62</b></td>
+  <td style="text-align:center;font-size:14px"><span style="color:#2dd4bf;font-weight:700">+$53 (+1.1%)</span></td>
+  <td style="color:#60a5fa;font-weight:700">$6-8</td>
+  <td style="color:#2dd4bf">$15</td>
+  <td><div style="background:#1e1e33;border-radius:4px;height:6px;width:80px;display:inline-block;vertical-align:middle"><div style="background:#6c63ff;width:7%;height:6px;border-radius:4px"></div></div><span style="font-size:10px;color:#64748b;margin-left:4px">1/14天</span></td>
+  <td style="font-size:10px;color:#94a3b8"><span style="font-size:11px;color:#60a5fa">04/01</span></td>
+</tr>
+<tr data-ticker="SOUN" data-entry="7.82" data-shares="639" data-entry-date="2026-03-18" data-target-days="14">
+  <td><b>SOUN</b><br><span style="font-size:10px;color:#94a3b8">语音AI / NVIDIA合作</span></td>
+  <td style="font-size:10px;color:#94a3b8">2025-01<br><b style="color:#f87171">+733%</b> ($3→$25)</td>
+  <td style="font-weight:700;color:#64748b">$25.00</td>
+  <td style="font-weight:700;color:#2dd4bf">$7.82</td>
+  <td><b style="color:#e2e8f0;font-size:13px">$7.70</b></td>
+  <td style="text-align:center;font-size:14px"><span style="color:#f87171;font-weight:700">$77 (-1.5%)</span></td>
+  <td style="color:#60a5fa;font-weight:700">$6-8</td>
+  <td style="color:#2dd4bf">$16</td>
+  <td><div style="background:#1e1e33;border-radius:4px;height:6px;width:80px;display:inline-block;vertical-align:middle"><div style="background:#6c63ff;width:7%;height:6px;border-radius:4px"></div></div><span style="font-size:10px;color:#64748b;margin-left:4px">1/14天</span></td>
+  <td style="font-size:10px;color:#94a3b8"><span style="font-size:11px;color:#60a5fa">04/01</span></td>
+</tr>
+<tr>
+  <td><b>BATL</b><br><span style="font-size:10px;color:#94a3b8">Battalion Oil 小盘油气</span></td>
+  <td style="font-size:10px;color:#94a3b8">2026-03<br><b style="color:#f87171">+1069%</b> (二次暴涨)</td>
+  <td style="font-weight:700;color:#64748b">$29.22</td>
+  <td style="font-weight:700;color:#fbbf24">$11.33</td>
+  <td><b style="color:#fbbf24">-61.2%</b></td>
+  <td style="text-align:center;font-size:14px">⏳</td>
+  <td style="color:#60a5fa;font-weight:700">$6-8</td>
+  <td style="color:#2dd4bf">$20</td>
+  <td><span style="padding:3px 8px;background:#2dd4bf;border-radius:6px;font-size:11px;color:#0f172a;font-weight:800">A</span></td>
+  <td style="font-size:10px;color:#94a3b8">等跌回$6-8才入，现$11偏高</td>
+</tr>
+<tr>
+  <td><b>MLEC</b><br><span style="font-size:10px;color:#94a3b8">Moolec 农业biotech</span></td>
+  <td style="font-size:10px;color:#94a3b8">2026-02<br><b style="color:#f87171">+326%</b> ($5→$21)</td>
+  <td style="font-weight:700;color:#64748b">$21.75</td>
+  <td style="font-weight:700;color:#fbbf24">$10.01</td>
+  <td><b style="color:#fbbf24">-54.0%</b></td>
+  <td style="text-align:center;font-size:14px">⏳</td>
+  <td style="color:#60a5fa;font-weight:700">$7.5</td>
+  <td style="color:#2dd4bf">$15</td>
+  <td><span class="badge idle">B</span></td>
+  <td style="font-size:10px;color:#94a3b8">等跌到$7.5以下，叙事偏弱</td>
+</tr>
+<tr>
+  <td><b>IONQ</b><br><span style="font-size:10px;color:#94a3b8">IonQ 量子计算龙头</span></td>
+  <td style="font-size:10px;color:#94a3b8">2024-2025<br>多次暴涨</td>
+  <td style="font-weight:700;color:#64748b">$55+</td>
+  <td style="font-weight:700;color:#64748b">$33.31</td>
+  <td><b style="color:#64748b">-39.4%</b></td>
+  <td style="text-align:center;font-size:14px">🚫</td>
+  <td style="color:#60a5fa;font-weight:700">$20-22</td>
+  <td style="color:#2dd4bf">$45</td>
+  <td><span class="badge idle">B</span></td>
+  <td style="font-size:10px;color:#64748b">跌幅不够，等$20-22再看</td>
+</tr>
+<tr data-ticker="IREN" data-entry="42.96" data-shares="116" data-entry-date="2026-03-18" data-target-days="21">
+  <td><b>IREN</b><br><span style="font-size:10px;color:#94a3b8">IREN BTC矿+AI算力</span></td>
+  <td style="font-size:10px;color:#94a3b8">Discovery Capital 13F重仓<br><b style="color:#fbbf24">+Twitter猎手高频提及</b><br>BTC $74K受益</td>
+  <td style="font-weight:700;color:#64748b">~$35</td>
+  <td style="font-weight:700;color:#2dd4bf">~$11</td>
+  <td><b style="color:#e2e8f0;font-size:13px">$42.06</b></td>
+  <td style="text-align:center;font-size:14px"><span style="color:#f87171;font-weight:700">$104 (-2.1%)</span></td>
+  <td style="color:#60a5fa;font-weight:700">$10-12</td>
+  <td style="color:#2dd4bf">$22</td>
+  <td><div style="background:#1e1e33;border-radius:4px;height:6px;width:80px;display:inline-block;vertical-align:middle"><div style="background:#6c63ff;width:7%;height:6px;border-radius:4px"></div></div><span style="font-size:10px;color:#64748b;margin-left:4px">1/14天</span></td>
+  <td style="font-size:10px;color:#2dd4bf"><span style="font-size:11px;color:#60a5fa">04/08</span></td>
+</tr>
+<tr>
+  <td><b>METC</b><br><span style="font-size:10px;color:#94a3b8">Ramaco Resources 稀土+煤</span></td>
+  <td style="font-size:10px;color:#94a3b8">Discovery Capital<br><b style="color:#fbbf24">$1.82亿逆势重仓</b><br>美国稀土第一股</td>
+  <td style="font-weight:700;color:#64748b">~$20</td>
+  <td style="font-weight:700;color:#fbbf24">~$14</td>
+  <td><b style="color:#fbbf24">-30%</b></td>
+  <td style="text-align:center;font-size:14px">⏳</td>
+  <td style="color:#60a5fa;font-weight:700">$12-13</td>
+  <td style="color:#2dd4bf">$25</td>
+  <td><span class="badge idle">B</span></td>
+  <td style="font-size:10px;color:#64748b">稀土+冶金煤双叙事，等-50%</td>
+</tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="padding:8px 14px;font-size:11px;color:#64748b;border-top:1px solid #1e1e33">
+      甜蜜区：🔥已到位 · ✅在区间 · ⏳等更大回调 · 🚫跌幅不足 | 新增: IREN/METC = Discovery Capital微盘13F信号
+    </div>
+  </div>
+
+  <!-- 大机构自选仓 -->
+  <!-- 大机构自选仓（进化版：顶级基金13F共识追踪） -->
+  <div class="card" style="margin-bottom:10px;border-top:3px solid #6c63ff">
+    <div class="card-header" style="background:rgba(108,99,255,.06)">
+      <div class="card-title">🏦 大机构账户 · 自选观察仓</div>
+      <span style="font-size:10px;color:#94a3b8">进化版：追踪全球10年最强基金的13F持仓共识 · 2026-03-18 深度扫描</span>
+    </div>
+    <!-- 追踪基金说明 -->
+    <div style="padding:10px 14px;border-bottom:1px solid #1e1e33;font-size:10px;color:#94a3b8;line-height:1.9">
+      <b style="color:#6c63ff">追踪基金（3-5年年化收益最高）：</b>
+      <span style="color:#2dd4bf">Light Street +243%/3年</span> ·
+      <span style="color:#2dd4bf">Whale Rock +45%/2025</span> ·
+      <span style="color:#2dd4bf">Maverick +40%/2025</span> ·
+      <span style="color:#2dd4bf">Lone Pine $13.6B Q4巨变</span> ·
+      <span style="color:#2dd4bf">Viking $37.7B 宏观+科技</span>
+      <br><b style="color:#f87171">规避：</b> META（多个顶基Q4清仓）· 大型银行（Viking削减60%）
+    </div>
+    <div style="overflow-x:auto">
+      <table class="tbl">
+        <thead><tr>
+          <th style="min-width:80px">代码</th>
+          <th style="min-width:160px">信号来源（顶基13F共识）</th>
+          <th style="min-width:70px">当前价</th>
+          <th style="min-width:70px">目标入场</th>
+          <th style="min-width:70px">目标出场</th>
+          <th style="min-width:60px">止损</th>
+          <th style="min-width:50px">优先级</th>
+          <th style="min-width:130px">等待条件</th>
+        </tr></thead>
+        <tbody>
+<tr>
+  <td><b>TSM</b><br><span style="font-size:10px;color:#94a3b8">台积电 AI芯片制造</span></td>
+  <td style="font-size:10px;color:#94a3b8"><b style="color:#f87171">S级：4家顶基共同持仓</b><br>Light Street + Maverick + Lone Pine + Viking</td>
+  <td style="font-weight:700;color:#2dd4bf">~$185</td>
+  <td style="color:#60a5fa;font-weight:700">$170-175</td>
+  <td style="color:#2dd4bf">$240</td>
+  <td style="color:#f87171">$150</td>
+  <td><span class="badge on" style="background:#f87171">S</span></td>
+  <td style="font-size:10px;color:#fbbf24">⏳ 等回调$170入</td>
+</tr>
+<tr>
+  <td><b>CVNA</b><br><span style="font-size:10px;color:#94a3b8">Carvana 二手车电商</span></td>
+  <td style="font-size:10px;color:#94a3b8">Lone Pine新建<b style="color:#fbbf24">$7.51亿</b><br>+ Whale Rock重仓，双重确认</td>
+  <td style="font-weight:700;color:#f87171">$440</td>
+  <td style="color:#60a5fa;font-weight:700">$380-400</td>
+  <td style="color:#2dd4bf">$520</td>
+  <td style="color:#f87171">$320</td>
+  <td><span style="padding:3px 8px;background:#2dd4bf;border-radius:6px;font-size:11px;color:#0f172a;font-weight:800">A</span></td>
+  <td style="font-size:10px;color:#64748b">⏳ 等大盘调整时入</td>
+</tr>
+<tr>
+  <td><b>VST</b><br><span style="font-size:10px;color:#94a3b8">Vistra 核电+AI数据中心电力</span></td>
+  <td style="font-size:10px;color:#94a3b8">Lone Pine重仓<br>Tiger Cubs AI电力共识主题</td>
+  <td style="font-weight:700;color:#f87171">~$160</td>
+  <td style="color:#60a5fa;font-weight:700">$145-150</td>
+  <td style="color:#2dd4bf">$236</td>
+  <td style="color:#f87171">$125</td>
+  <td><span style="padding:3px 8px;background:#2dd4bf;border-radius:6px;font-size:11px;color:#0f172a;font-weight:800">A</span></td>
+  <td style="font-size:10px;color:#64748b">⏳ 核电AI电力赛道，等回调</td>
+</tr>
+<tr>
+  <td><b>SOFI</b><br><span style="font-size:10px;color:#94a3b8">SoFi 数字银行</span></td>
+  <td style="font-size:10px;color:#94a3b8">CEO买入$100万内部人信号<br>（非13F但高质量）</td>
+  <td style="font-weight:700;color:#fbbf24">$17.54</td>
+  <td style="color:#60a5fa;font-weight:700">$16.00</td>
+  <td style="color:#2dd4bf">$22</td>
+  <td style="color:#f87171">$13</td>
+  <td><span class="badge on">A</span></td>
+  <td style="font-size:10px;color:#fbbf24">⏳ 限价$16，差-8.8%</td>
+</tr>
+<tr>
+  <td><b>APP</b><br><span style="font-size:10px;color:#94a3b8">AppLovin 移动广告AI</span></td>
+  <td style="font-size:10px;color:#94a3b8">Whale Rock重仓<br>2025年+700%，AI广告叙事最强</td>
+  <td style="font-weight:700;color:#f87171">~$340</td>
+  <td style="color:#60a5fa;font-weight:700">$200-220</td>
+  <td style="color:#2dd4bf">$450</td>
+  <td style="color:#f87171">$160</td>
+  <td><span class="badge idle">B</span></td>
+  <td style="font-size:10px;color:#64748b">⏳ 等大跌50%+才入（高估值）</td>
+</tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 蓝虾账户自选仓（进化版） -->
+  <div class="card" style="margin-bottom:14px;border-top:3px solid #f87171">
+    <div class="card-header" style="background:rgba(248,113,113,.06)">
+      <div class="card-title">🦐 蓝虾账户 · 自选观察仓</div>
+      <span style="font-size:10px;color:#94a3b8">进化版：Twitter/Reddit投资人情绪 + 自主ABCDE评分 · 全力输出自主决策</span>
+    </div>
+    <div style="overflow-x:auto">
+      <table class="tbl">
+        <thead><tr>
+          <th style="min-width:90px">代码 / 公司</th>
+          <th style="min-width:130px">信号来源</th>
+          <th style="min-width:70px">当前价</th>
+          <th style="min-width:60px">预评分</th>
+          <th style="min-width:70px">目标入场</th>
+          <th style="min-width:50px">优先级</th>
+          <th style="min-width:140px">备注</th>
+        </tr></thead>
+        <tbody>
+<tr data-ticker="IREN" data-entry="42.96" data-shares="116" data-entry-date="2026-03-18" data-target-days="21">
+  <td><b>IREN</b><br><span style="font-size:10px;color:#94a3b8">IREN Ltd BTC矿+AI数据中心</span></td>
+  <td style="font-size:10px;color:#94a3b8">Discovery Capital 13F重仓<br>Twitter矿业社区高热度<br>BTC $74K双重受益</td>
+  <td style="font-weight:700;color:#2dd4bf">~$11</td>
+  <td style="text-align:center"><b style="color:#2dd4bf;font-size:16px">76</b><span style="font-size:9px">/100</span></td>
+  <td style="color:#60a5fa;font-weight:700">$10-12</td>
+  <td><span style="padding:3px 8px;background:#2dd4bf;border-radius:6px;font-size:11px;color:#0f172a;font-weight:800">A</span></td>
+  <td style="font-size:10px;color:#2dd4bf">✅ 直接加入，当前价合理</td>
+</tr>
+<tr>
+  <td><b>PLTR</b><br><span style="font-size:10px;color:#94a3b8">Palantir AI政府+商业</span></td>
+  <td style="font-size:10px;color:#94a3b8">WSB 2026排名第3<br>S&P500纳入+机构强制配置<br>Reddit散户热度极高</td>
+  <td style="font-weight:700;color:#f87171">~$95</td>
+  <td style="text-align:center"><b style="color:#fbbf24;font-size:16px">74</b><span style="font-size:9px">/100</span></td>
+  <td style="color:#60a5fa;font-weight:700">$75-80</td>
+  <td><span class="badge on">A</span></td>
+  <td style="font-size:10px;color:#fbbf24">⏳ 等回调$75-80入</td>
+</tr>
+<tr>
+  <td><b>RKLB</b><br><span style="font-size:10px;color:#94a3b8">Rocket Lab 小型火箭</span></td>
+  <td style="font-size:10px;color:#94a3b8">WSB太空赛道最爱<br>2026年Neutron中型火箭催化剂<br>Reddit r/spacex高频讨论</td>
+  <td style="font-weight:700;color:#f87171">~$28</td>
+  <td style="text-align:center"><b style="color:#fbbf24;font-size:16px">71</b><span style="font-size:9px">/100</span></td>
+  <td style="color:#60a5fa;font-weight:700">$20-22</td>
+  <td><span class="badge on">A</span></td>
+  <td style="font-size:10px;color:#64748b">⏳ 等回调$20-22</td>
+</tr>
+<tr>
+  <td><b>HOOD</b><br><span style="font-size:10px;color:#94a3b8">Robinhood 散户交易平台</span></td>
+  <td style="font-size:10px;color:#94a3b8">WSB自我认同符号股<br>2026波动性增加=HOOD收入增加<br>加密交易费爆发</td>
+  <td style="font-weight:700;color:#f87171">~$55</td>
+  <td style="text-align:center"><b style="color:#fbbf24;font-size:16px">70</b><span style="font-size:9px">/100</span></td>
+  <td style="color:#60a5fa;font-weight:700">$45-48</td>
+  <td><span class="badge idle">B</span></td>
+  <td style="font-size:10px;color:#64748b">⏳ 等回调$45-48</td>
+</tr>
+<tr>
+  <td><b>IMVT</b><br><span style="font-size:10px;color:#94a3b8">Immunovant 自免疾病</span></td>
+  <td style="font-size:10px;color:#94a3b8">Roivant $3.5亿@$21<br>(2025-12-12) 机构建仓</td>
+  <td style="color:#64748b">待更新</td>
+  <td style="text-align:center"><b style="color:#fbbf24">65</b><span style="font-size:9px">/100</span></td>
+  <td style="color:#60a5fa">TBD</td>
+  <td><span class="badge idle">C</span></td>
+  <td style="font-size:10px;color:#64748b">需确认当前价后复评</td>
+</tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="padding:8px 14px;font-size:11px;color:#64748b;border-top:1px solid #1e1e33">
+      🤖 自主扫描信号来源：Twitter/Reddit情绪 + 13F机构交叉验证 + ABCDE评分 · 每天10/16/22/04点自动更新
+    </div>
+  </div>
+
+</div>
+
+</div><!-- main -->
+</div><!-- shell -->
+
+<script>
+/* ===== 时钟 ===== */
+function tick(){
+  var el=document.getElementById('clock');
+  if(!el)return;
+  var d=new Date();
+  el.textContent=d.toLocaleTimeString('zh-CN',{timeZone:'Asia/Shanghai',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false})+' CST';
+}
+setInterval(tick,1000); tick();
+
+/* ===== 实时价格 + 持仓天数 + 盈亏刷新 ===== */
+var STOOQ_BASE = 'https://stooq.com/q/l/?f=sd2t2ohlcv&h&e=csv&s=';
+
+function daysBetween(dateStr) {
+  var d0 = new Date(dateStr + 'T00:00:00+08:00');
+  var d1 = new Date();
+  return Math.floor((d1 - d0) / 86400000);
+}
+
+function fmtPnl(val, pct) {
+  var color = val >= 0 ? '#2dd4bf' : '#f87171';
+  var sign  = val >= 0 ? '+' : '';
+  return '<span style="color:'+color+';font-weight:700">'
+    + sign + '$' + Math.abs(val).toFixed(0)
+    + ' (' + sign + pct.toFixed(1) + '%)</span>';
+}
+
+function fmtDays(days, targetDays) {
+  var pct = Math.min(days / targetDays * 100, 100);
+  return '<div style="background:#2d2d4a;border-radius:4px;height:6px;width:80px;display:inline-block;vertical-align:middle">'
+    + '<div style="background:#6c63ff;width:'+pct+'%;height:6px;border-radius:4px"></div></div>'
+    + '<span style="font-size:10px;color:#64748b;margin-left:4px">'+days+'/'+targetDays+'天</span>';
+}
+
+function refreshRow(row, price) {
+  var entry      = parseFloat(row.dataset.entry);
+  var shares     = parseInt(row.dataset.shares);
+  var entryDate  = row.dataset.entryDate;
+  var targetDays = parseInt(row.dataset.targetDays);
+  var days       = daysBetween(entryDate);
+
+  var pnlAbs  = (price - entry) * shares;
+  var pnlPct  = (price - entry) / entry * 100;
+
+  // 找列：当前价 (3rd td after 建仓价), 浮动盈亏 (4th), 已持天数 (8th or 7th)
+  var tds = row.querySelectorAll('td');
+  // 通过遍历找到含建仓价的td后的"当前价"和"浮动盈亏"
+  // 结构固定：[0]代码 [1]信号 [2]建仓价 [3]成本 [4]当前价 [5]浮动盈亏 [6]目标价 [7]止损 [8]天数 ...
+  if (tds.length >= 9) {
+    tds[4].innerHTML = '<b style="color:#e2e8f0;font-size:13px">$' + price.toFixed(2) + '</b>';
+    tds[5].innerHTML = fmtPnl(pnlAbs, pnlPct);
+    tds[8].innerHTML = fmtDays(days, targetDays);
+  } else if (tds.length >= 8) {
+    // 蓝虾账户列结构：[0]代码 [1]评分 [2]建仓价 [3]成本 [4]当前价 [5]盈亏 [6]目标 [7]止损 [8]天数 [9]达标日 [10]依据
+    tds[4].innerHTML = '<b style="color:#e2e8f0;font-size:13px">$' + price.toFixed(2) + '</b>';
+    tds[5].innerHTML = fmtPnl(pnlAbs, pnlPct);
+    tds[8].innerHTML = fmtDays(days, targetDays);
+  }
+}
+
+function fetchPrice(ticker, callback) {
+  var url = STOOQ_BASE + ticker.toLowerCase() + '.us';
+  fetch(url).then(function(r){ return r.text(); }).then(function(csv){
+    var lines = csv.trim().split('
+');
+    if (lines.length < 2) return;
+    var cols = lines[1].split(',');
+    var close = parseFloat(cols[4]); // Close is col 4 in ohlcv
+    if (close > 0) callback(close);
+  }).catch(function(){});
+}
+
+function refreshAll() {
+  var rows = document.querySelectorAll('tr[data-ticker]');
+  rows.forEach(function(row) {
+    var ticker = row.dataset.ticker;
+    fetchPrice(ticker, function(price) {
+      refreshRow(row, price);
+    });
+  });
+  // 更新最后刷新时间
+  var el = document.getElementById('live-refresh-ts');
+  if (el) {
+    var d = new Date();
+    el.textContent = '价格最后刷新: ' + d.toLocaleTimeString('zh-CN',{timeZone:'Asia/Shanghai',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
+  }
+}
+
+// 页面加载后立刻刷新，之后每5分钟
+window.addEventListener('load', function(){
+  refreshAll();
+  setInterval(refreshAll, 5 * 60 * 1000);
+});
+</script>
+</body></html>
