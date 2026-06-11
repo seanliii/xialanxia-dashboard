@@ -1,0 +1,164 @@
+{
+  "scan_date": "2026-03-18",
+  "scan_type": "deep_evolution_scan",
+  
+  "institutional": {
+    "top_funds_tracked": [
+      {
+        "fund": "Light Street Capital (Glen Kacher)",
+        "returns": {"2023": "+45.7%", "2024": "+59.1%", "2025": "+37.3%", "3yr_cumulative": "+243%"},
+        "style": "科技/AI集中押注，低持仓数量(<30只)",
+        "q4_2025_top": ["TSM", "NVDA", "AVGO", "BILL", "CHYM"],
+        "key_new": "TSM为第一大持仓",
+        "risk": "高集中度，科技轮动风险"
+      },
+      {
+        "fund": "Maverick Capital (Lee Ainslie)",
+        "returns": {"2025": "+40%", "5yr_annual": "+24.3%"},
+        "style": "Tiger Cub长/短策略，179只持仓，$9.3B AUM",
+        "q4_2025_top": ["NVDA", "MSFT", "AMZN", "TSM", "GOOG"],
+        "risk": "大盘科技为主，回撤与纳指相关"
+      },
+      {
+        "fund": "Whale Rock Capital (Alex Sacerdote)",
+        "returns": {"2025": "+45%", "5yr_annual": "+21.9%"},
+        "style": "科技/成长集中，32只持仓，$7.8B AUM",
+        "q4_2025_top": ["GOOGL", "APP", "CVNA", "AMZN", "CLS"],
+        "key_new": "APP Applovin重仓，CVNA也大量持有",
+        "risk": "成长股整体下跌风险"
+      },
+      {
+        "fund": "Lone Pine Capital (Stephen Mandel)",
+        "returns": {"5yr_annual": "+23.5%", "aum": "$13.6B"},
+        "style": "Tiger Cub，集中+长/短，Q4巨变",
+        "q4_2025_top": ["TSM", "VST", "CVNA", "LPLA", "BN"],
+        "key_new": "Q4新建Carvana($751M), ASML($647M), DoorDash($573M), Capital One($556M), Nu Holdings($496M)",
+        "key_exit": "META完全退出",
+        "risk": "换仓频繁，需跟踪Q1 2026"
+      },
+      {
+        "fund": "Viking Global (Ole Andreas Halvorsen)",
+        "returns": {"5yr_annual": "+22.6%", "aum": "$37.7B"},
+        "style": "宏观+多行业，76只持仓，Q4剧烈调仓",
+        "q4_2025_top": ["MSFT", "PNC", "TSM", "V", "SCHW"],
+        "key_new": "Amazon重新买入(Q3卖出后Q4反转), Alphabet替换Meta，银行仓位削减60%",
+        "key_exit": "META清仓",
+        "risk": "银行业信贷风险已规避，但新持仓集中科技"
+      },
+      {
+        "fund": "Discovery Capital (Robert Citrone)",
+        "returns": {"2025": "+35.6%", "aum": "$4.3B"},
+        "style": "全球宏观+微小盘，88只持仓",
+        "q4_2025_top": ["AMKR", "METC", "IREN", "AMX", "JPM"],
+        "key_new": "METC Ramaco Resources（稀土+冶金煤）大量增仓+$1.82亿，IREN（比特币矿+AI数据中心）",
+        "risk": "小盘流动性低，连续持仓有拉升嫌疑，需注意出货"
+      }
+    ],
+    "consensus_buys": {
+      "TSM": {"holders": ["Light Street", "Maverick", "Lone Pine", "Viking"], "note": "四大顶基共同持有，台积电AI受益最强共识"},
+      "CVNA": {"holders": ["Whale Rock", "Lone Pine"], "note": "Lone Pine新建$751M，Whale Rock重仓，汽车电商叙事"},
+      "VST": {"holders": ["Lone Pine", "其他Tiger Cubs"], "note": "Vistra核电+数据中心电力，能源AI主题"},
+      "NVDA": {"holders": ["Light Street", "Maverick", "多个"], "note": "无需解释"},
+      "APP": {"holders": ["Whale Rock"], "note": "AppLovin广告AI，Whale Rock重仓，2025最强股之一"}
+    },
+    "risk_avoids": ["META（多个顶基Q4清仓）", "大型银行股（Viking削减60%）"]
+  },
+
+  "aggressive": {
+    "micro_cap_signals": [
+      {
+        "ticker": "METC",
+        "company": "Ramaco Resources",
+        "sector": "稀土+冶金煤",
+        "signal": "Discovery Capital Q4 2025增仓4.18M股 = $1.82亿押注",
+        "current_price_est": "~$14",
+        "thesis": "唯一持有稀土矿Brook Mine的上市公司+冶金煤，美国稀土自给战略受益，Discovery当时在股价大跌时逆势重仓",
+        "risk": "Discovery之前重仓现在可能在出货阶段",
+        "priority": "B",
+        "action": "加入激进账户自选，等Discovery不再卖出时再入"
+      },
+      {
+        "ticker": "IREN",
+        "company": "IREN Limited (formerly Iris Energy)",
+        "sector": "比特币矿+AI数据中心",
+        "signal": "Discovery Capital Q4 2025三大持仓之一，多家13F出现",
+        "current_price_est": "~$10-12",
+        "thesis": "BTC价格上涨+AI算力需求双重受益，2.75GW已签约电力，正在从纯BTC矿向AI云转型，市场仍按矿机估值",
+        "risk": "BTC价格波动，算力过剩风险",
+        "priority": "A",
+        "action": "加入激进账户自选，BTC涨则IREN大幅受益"
+      },
+      {
+        "ticker": "APP",
+        "company": "AppLovin Corporation",
+        "sector": "移动广告AI",
+        "signal": "Whale Rock重仓+2025年股价+700%",
+        "current_price_est": "~$300-350",
+        "thesis": "AI广告引擎AXON 2.0持续超预期，Q4 2025广告业务营收+73%",
+        "risk": "估值极高，任何业绩miss直接腰斩",
+        "priority": "B",
+        "action": "已涨太多，等大幅回调50%以上再看，加入激进回踩自选"
+      }
+    ],
+    "twitter_hunters_to_track": [
+      {"account": "@MicrocapClub", "style": "专业微盘研究社区，Ian Cassel主持，历史战绩极强"},
+      {"account": "@roikoi", "style": "Twitter最知名微盘猎手，提前发掘多只10x股"},
+      {"account": "@TreyHenninger", "style": "微小盘深度研究，偏财务分析"},
+      {"account": "@oddballstocks", "style": "隐秘价值股，追踪不为人知的小盘"},
+      {"account": "@StockJabber", "style": "综合微盘，活跃度高"},
+      {"account": "@HayesMarket", "style": "科技小盘猎手，多个早期发掘案例"}
+    ],
+    "13f_micro_overlap": {
+      "IREN": "Discovery Capital持仓 + Twitter财经社区热议",
+      "METC": "Discovery Capital大仓 + 稀土政策受益",
+      "CVNA": "Lone Pine $751M新建 + Whale Rock持仓 = 双重13F背书"
+    }
+  },
+
+  "blueshrimp": {
+    "reddit_wsb_top_2026": [
+      {"ticker": "NVDA", "wsb_rank": 1, "note": "永恒主题"},
+      {"ticker": "TSLA", "wsb_rank": 2, "note": "震荡中有人做波段"},
+      {"ticker": "PLTR", "wsb_rank": 3, "note": "政府合同AI数据分析，2026继续强"},
+      {"ticker": "IONQ", "wsb_rank": 4, "note": "量子计算WSB热门，散户情绪极高"},
+      {"ticker": "RKLB", "wsb_rank": 5, "note": "火箭实验室，太空赛道最爱"},
+      {"ticker": "HOOD", "wsb_rank": 6, "note": "Robinhood，散户平台本身也是散户最爱"},
+      {"ticker": "GME", "wsb_rank": 7, "note": "文化符号，RC随时可触发"},
+      {"ticker": "SMCI", "wsb_rank": 8, "note": "AI服务器，审计风波后被散户抄底"}
+    ],
+    "autonomous_picks": [
+      {
+        "ticker": "PLTR",
+        "company": "Palantir Technologies",
+        "thesis": "政府AI+商业AI双轮驱动，2025年纳入S&P 500，机构被迫买入，散户+机构共振，WSB排名稳定前3",
+        "current": "~$95",
+        "abcde_prelim": 74,
+        "action": "加入蓝虾自选，等回调到$75-80入场"
+      },
+      {
+        "ticker": "HOOD",
+        "company": "Robinhood Markets",
+        "thesis": "散户交易量与市场波动正相关，2026波动加大是利好，加密交易手续费爆发，新推出退休账户+银行服务",
+        "current": "~$55",
+        "abcde_prelim": 70,
+        "action": "加入蓝虾自选，等回调$45-48"
+      },
+      {
+        "ticker": "RKLB",
+        "company": "Rocket Lab USA",
+        "thesis": "小型火箭市场唯一可靠服务商，2025年已开始盈利，2026年中型Neutron火箭首飞是重大催化剂",
+        "current": "~$25-30",
+        "abcde_prelim": 71,
+        "action": "加入蓝虾自选，等回调$20-22入"
+      },
+      {
+        "ticker": "IREN",
+        "company": "IREN Limited",
+        "thesis": "BTC价格$74K+，矿机盈利能力强，同时建设AI数据中心双重叙事，Discovery 13F背书，Twitter矿业社区热度高",
+        "current": "~$11",
+        "abcde_prelim": 76,
+        "action": "直接加入蓝虾自选仓，信号最强，当前价合理"
+      }
+    ]
+  }
+}

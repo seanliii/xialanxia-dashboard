@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🦐 小蓝虾 Dashboard</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0d0d1a;
+    --panel: #13131f;
+    --border: #1e1e33;
+    --accent: #6c63ff;
+    --accent2: #ff6584;
+    --green: #2dd4bf;
+    --yellow: #fbbf24;
+    --red: #f87171;
+    --blue: #60a5fa;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --tag-bg: #1e1e38;
+  }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'SF Pro Display', -apple-system, 'Segoe UI', sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    min-height: 100vh;
+  }
+
+  /* TOP NAV */
+  .topbar {
+    background: var(--panel);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky; top: 0; z-index: 100;
+  }
+  .topbar-brand { display: flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 700; }
+  .topbar-brand .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.5} }
+  .topbar-nav { display: flex; gap: 4px; }
+  .nav-btn { background: none; border: none; color: var(--muted); padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 12px; transition: all .2s; }
+  .nav-btn:hover, .nav-btn.active { background: var(--accent); color: white; }
+  .topbar-right { display: flex; align-items: center; gap: 12px; }
+  .status-badge { background: rgba(45,212,191,.15); color: var(--green); border: 1px solid rgba(45,212,191,.3); padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+  #clock { color: var(--muted); font-size: 12px; }
+
+  /* LAYOUT */
+  .layout { display: flex; height: calc(100vh - 52px); overflow: hidden; }
+  .sidebar { width: 220px; min-width: 220px; background: var(--panel); border-right: 1px solid var(--border); overflow-y: auto; padding: 12px 0; }
+  .main { flex: 1; overflow-y: auto; padding: 20px; }
+
+  /* SIDEBAR */
+  .sidebar-section { padding: 6px 16px 2px; font-size: 10px; color: var(--muted); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-top: 8px; }
+  .sidebar-item { display: flex; align-items: center; gap: 8px; padding: 7px 16px; cursor: pointer; transition: all .15s; border-left: 3px solid transparent; color: var(--muted); }
+  .sidebar-item:hover { background: var(--tag-bg); color: var(--text); }
+  .sidebar-item.active { background: rgba(108,99,255,.1); border-left-color: var(--accent); color: var(--accent); }
+  .sidebar-item .icon { font-size: 14px; min-width: 18px; }
+  .sidebar-item .count { margin-left: auto; background: var(--tag-bg); padding: 1px 7px; border-radius: 10px; font-size: 10px; color: var(--muted); }
+
+  /* SECTION PAGES */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* CARDS */
+  .card { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 16px; }
+  .card-header { padding: 12px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+  .card-title { font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+  .card-body { padding: 16px; }
+
+  /* GRID */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+  /* STAT CARDS */
+  .stat-card { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+  .stat-label { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+  .stat-value { font-size: 24px; font-weight: 800; margin-bottom: 4px; }
+  .stat-sub { font-size: 11px; color: var(--muted); }
+
+  /* TAGS */
+  .tag { display: inline-block; background: var(--tag-bg); color: var(--muted); padding: 2px 8px; border-radius: 4px; font-size: 11px; margin: 2px; }
+  .tag.green { background: rgba(45,212,191,.15); color: var(--green); }
+  .tag.yellow { background: rgba(251,191,36,.15); color: var(--yellow); }
+  .tag.red { background: rgba(248,113,113,.15); color: var(--red); }
+  .tag.blue { background: rgba(96,165,250,.15); color: var(--blue); }
+  .tag.purple { background: rgba(108,99,255,.15); color: var(--accent); }
+
+  /* TABLE */
+  .table { width: 100%; border-collapse: collapse; }
+  .table th { padding: 8px 12px; text-align: left; font-size: 11px; color: var(--muted); font-weight: 600; border-bottom: 1px solid var(--border); background: rgba(255,255,255,.02); }
+  .table td { padding: 9px 12px; border-bottom: 1px solid rgba(255,255,255,.04); font-size: 12px; vertical-align: middle; }
+  .table tr:hover td { background: rgba(255,255,255,.02); }
+  .table tr:last-child td { border-bottom: none; }
+
+  /* LIST */
+  .list-item { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.04); display: flex; align-items: flex-start; gap: 10px; }
+  .list-item:last-child { border-bottom: none; }
+  .list-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; background: var(--tag-bg); }
+
+  /* BADGE */
+  .badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px; border-radius: 20px; font-size: 10px; font-weight: 700; }
+  .badge.online { background: rgba(45,212,191,.15); color: var(--green); }
+  .badge.idle { background: rgba(251,191,36,.15); color: var(--yellow); }
+  .badge.off { background: rgba(248,113,113,.15); color: var(--red); }
+  .badge::before { content: '●'; font-size: 8px; }
+
+  /* MEMORY VIEWER */
+  .memory-content { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 14px; font-family: 'SF Mono', monospace; font-size: 11px; line-height: 1.7; max-height: 400px; overflow-y: auto; color: var(--text); white-space: pre-wrap; word-break: break-word; }
+  .memory-content h1, .memory-content h2, .memory-content h3 { color: var(--accent); margin: 8px 0 4px; }
+
+  /* CODE BLOCK */
+  .code-block { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 12px; font-family: monospace; font-size: 11px; color: var(--green); overflow-x: auto; }
+
+  /* TIMELINE */
+  .timeline { position: relative; padding-left: 20px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 0; bottom: 0; width: 1px; background: var(--border); }
+  .timeline-item { position: relative; margin-bottom: 16px; }
+  .timeline-item::before { content: ''; position: absolute; left: -17px; top: 5px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+  .timeline-time { font-size: 10px; color: var(--muted); margin-bottom: 2px; }
+  .timeline-title { font-size: 12px; font-weight: 600; }
+  .timeline-desc { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  /* PROGRESS BAR */
+  .progress-bar { background: var(--tag-bg); border-radius: 4px; height: 6px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 4px; background: var(--accent); }
+
+  /* SKILL GRID */
+  .skill-card { background: var(--tag-bg); border-radius: 8px; padding: 10px 12px; display: flex; align-items: center; gap: 8px; transition: all .15s; cursor: default; }
+  .skill-card:hover { background: rgba(108,99,255,.15); }
+  .skill-icon { font-size: 18px; }
+  .skill-name { font-size: 11px; font-weight: 600; }
+  .skill-desc { font-size: 10px; color: var(--muted); margin-top: 1px; }
+
+  /* SCROLL */
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+  /* RESPONSIVE */
+  @media(max-width:900px) { .grid-4{grid-template-columns:1fr 1fr} .grid-3{grid-template-columns:1fr 1fr} }
+  @media(max-width:600px) { .grid-2,.grid-3,.grid-4{grid-template-columns:1fr} .sidebar{display:none} }
+
+  /* SEARCH BAR */
+  .search-bar { background: var(--tag-bg); border: 1px solid var(--border); border-radius: 8px; padding: 7px 12px; color: var(--text); font-size: 12px; width: 200px; outline: none; }
+  .search-bar:focus { border-color: var(--accent); }
+
+  /* MINI CHART PLACEHOLDER */
+  .mini-chart { height: 40px; display: flex; align-items: flex-end; gap: 2px; }
+  .mini-bar { flex: 1; background: var(--accent); border-radius: 2px; opacity: 0.7; }
+
+  /* REFRESH BTN */
+  .btn { background: var(--accent); color: white; border: none; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 11px; font-weight: 600; transition: opacity .15s; }
+  .btn:hover { opacity: .85; }
+  .btn-ghost { background: var(--tag-bg); color: var(--text); border: 1px solid var(--border); }
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-brand">
+    <span>🦐</span>
+    <span>小蓝虾 Dashboard</span>
+    <div class="dot"></div>
+  </div>
+  <div class="topbar-nav">
+    <button class="nav-btn active" onclick="showPage('overview')">总览</button>
+    <button class="nav-btn" onclick="showPage('agents')">Agent</button>
+    <button class="nav-btn" onclick="showPage('cron')">定时任务</button>
+    <button class="nav-btn" onclick="showPage('skills')">Skills</button>
+    <button class="nav-btn" onclick="showPage('memory')">记忆</button>
+    <button class="nav-btn" onclick="showPage('files')">文件</button>
+    <button class="nav-btn" onclick="showPage('api')">API</button>
+    <button class="nav-btn" onclick="showPage('evolution')">进化</button>
+    <button class="nav-btn" onclick="showPage('logs')">日志</button>
+  </div>
+  <div class="topbar-right">
+    <span class="status-badge">🟢 ONLINE</span>
+    <span id="clock">--:--:--</span>
+  </div>
+</div>
+
+<div class="layout">
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <div class="sidebar-section">系统</div>
+  <div class="sidebar-item active" onclick="showPage('overview')"><span class="icon">⚡</span> 总览</div>
+  <div class="sidebar-item" onclick="showPage('agents')"><span class="icon">🤖</span> Sub-Agents <span class="count">3</span></div>
+  <div class="sidebar-item" onclick="showPage('cron')"><span class="icon">⏰</span> 定时任务 <span class="count">19</span></div>
+
+  <div class="sidebar-section">能力</div>
+  <div class="sidebar-item" onclick="showPage('skills')"><span class="icon">🔧</span> Skills <span class="count">74</span></div>
+  <div class="sidebar-item" onclick="showPage('api')"><span class="icon">🔑</span> APIs <span class="count">5</span></div>
+
+  <div class="sidebar-section">数据</div>
+  <div class="sidebar-item" onclick="showPage('memory')"><span class="icon">🧠</span> 记忆</div>
+  <div class="sidebar-item" onclick="showPage('files')"><span class="icon">📁</span> 文件</div>
+  <div class="sidebar-item" onclick="showPage('logs')"><span class="icon">📋</span> 日志</div>
+
+  <div class="sidebar-section">成长</div>
+  <div class="sidebar-item" onclick="showPage('evolution')"><span class="icon">🧬</span> 进化轨迹</div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main">
+
+<!-- ===== OVERVIEW PAGE ===== -->
+<div id="page-overview" class="page active">
+  <div style="margin-bottom:16px">
+    <h2 style="font-size:18px;font-weight:800">⚡ 系统总览</h2>
+    <p style="color:var(--muted);font-size:12px;margin-top:4px">小蓝虾 OpenClaw Agent 运行状态 · 实时</p>
+  </div>
+
+  <!-- STAT ROW -->
+  <div class="grid-4" style="margin-bottom:16px">
+    <div class="stat-card" style="border-top:3px solid var(--green)">
+      <div class="stat-label">🤖 Sub-Agents</div>
+      <div class="stat-value" style="color:var(--green)">3</div>
+      <div class="stat-sub">主Agent + 虾团群 + ZHC</div>
+    </div>
+    <div class="stat-card" style="border-top:3px solid var(--accent)">
+      <div class="stat-label">⏰ 定时任务</div>
+      <div class="stat-value" style="color:var(--accent)">19</div>
+      <div class="stat-sub">每日自动运行</div>
+    </div>
+    <div class="stat-card" style="border-top:3px solid var(--blue)">
+      <div class="stat-label">🔧 Skills</div>
+      <div class="stat-value" style="color:var(--blue)">74</div>
+      <div class="stat-sub">72 官方 + 2 本地</div>
+    </div>
+    <div class="stat-card" style="border-top:3px solid var(--yellow)">
+      <div class="stat-label">🧠 记忆文件</div>
+      <div class="stat-value" style="color:var(--yellow)">15</div>
+      <div class="stat-sub">Daily + MEMORY.md</div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <!-- 今日推送 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">📡 今日推送日志 (2026-03-17)</div>
+        <span class="tag green">运行中</span>
+      </div>
+      <div class="card-body" style="padding:0">
+        <table class="table">
+          <thead><tr><th>时间</th><th>任务</th><th>状态</th></tr></thead>
+          <tbody>
+            <tr><td>09:00</td><td>早间 Twitter 情报</td><td><span class="badge online">已发</span></td></tr>
+            <tr><td>10:00</td><td>10点深度推送 + OpenClaw热帖</td><td><span class="badge online">已发</span></td></tr>
+            <tr><td>11:00</td><td>Alpha 扫描 + 虾团群互动</td><td><span class="badge online">已发</span></td></tr>
+            <tr><td>12:00</td><td>12点深度推送</td><td><span class="badge online">已发</span></td></tr>
+            <tr><td>13:30</td><td>午间 Twitter 情报</td><td><span class="badge online">已发</span></td></tr>
+            <tr><td>14:00</td><td>14点深度推送</td><td><span class="badge online">已发</span></td></tr>
+            <tr><td>16:00</td><td>16点深度推送 + OpenClaw热帖</td><td><span class="badge online">已发</span></td></tr>
+            <tr><td>17:00</td><td>傍晚情报 + 虾团群</td><td><span class="badge idle">待发</span></td></tr>
+            <tr><td>18:00</td><td>13F 机构持仓日报</td><td><span class="badge idle">待发</span></td></tr>
+            <tr><td>19:00</td><td>晚间深度推送</td><td><span class="badge idle">待发</span></td></tr>
+            <tr><td>22:00</td><td>学城日报 + 记忆压缩</td><td><span class="badge idle">待发</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 系统健康 -->
+    <div>
+      <div class="card" style="margin-bottom:16px">
+        <div class="card-header"><div class="card-title">💪 系统健康</div></div>
+        <div class="card-body">
+          <div style="margin-bottom:12px">
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+              <span style="font-size:11px">Gateway</span>
+              <span class="badge online">ONLINE</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+              <span style="font-size:11px">Engram Memory Plugin</span>
+              <span class="badge online">v9.0.92</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+              <span style="font-size:11px">AISA API</span>
+              <span class="badge off">余额耗尽</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+              <span style="font-size:11px">Daxiang Channel</span>
+              <span class="badge online">已连接</span>
+            </div>
+            <div style="display:flex;justify-content:space-between">
+              <span style="font-size:11px">学城 KM Sync</span>
+              <span class="badge idle">每日22:00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><div class="card-title">💰 资产状态</div></div>
+        <div class="card-body">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+            <span style="font-size:12px">AISA API 余额</span>
+            <span style="color:var(--red);font-weight:700">-$0.003 (耗尽)</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+            <span style="font-size:12px">ClawWork 余额</span>
+            <span style="color:var(--green);font-weight:700">$290.87</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+            <span style="font-size:12px">ClawWork 总收入</span>
+            <span style="color:var(--text);font-weight:700">$281.34</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:12px">ZHC Product 1 状态</span>
+            <span style="color:var(--yellow);font-weight:700">PDF 已生成 ✅</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== AGENTS PAGE ===== -->
+<div id="page-agents" class="page">
+  <div style="margin-bottom:16px">
+    <h2 style="font-size:18px;font-weight:800">🤖 Sub-Agents</h2>
+    <p style="color:var(--muted);font-size:12px;margin-top:4px">当前运行中的 Agent 实例</p>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">🦐 小蓝虾 (主 Agent)</div>
+        <span class="badge online">ACTIVE</span>
+      </div>
+      <div class="card-body">
+        <div class="list-item">
+          <div class="list-icon">🎯</div>
+          <div>
+            <div style="font-weight:600">核心使命</div>
+            <div style="color:var(--muted);font-size:11px">每小时挖掘全网 AI/OpenClaw/金融情报，推送给掌管🦞的神</div>
+          </div>
+        </div>
+        <div class="list-item">
+          <div class="list-icon">🧠</div>
+          <div>
+            <div style="font-weight:600">记忆系统</div>
+            <div style="color:var(--muted);font-size:11px">Engram v9.0.92 · QMD 混合搜索 · 每日自动压缩</div>
+          </div>
+        </div>
+        <div class="list-item">
+          <div class="list-icon">📡</div>
+          <div>
+            <div style="font-weight:600">推送频道</div>
+            <div style="color:var(--muted);font-size:11px">私聊 single_2872173767 · 群聊 group_70392594740</div>
+          </div>
+        </div>
+        <div class="list-item" style="border:none">
+          <div class="list-icon">⚙️</div>
+          <div>
+            <div style="font-weight:600">模型</div>
+            <div style="color:var(--muted);font-size:11px">catclaw-proxy-model (默认) · AISA gpt-4.1-mini (记忆)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">👥 虾团群 Agent</div>
+        <span class="badge online">ACTIVE</span>
+      </div>
+      <div class="card-body">
+        <div class="list-item">
+          <div class="list-icon">🔍</div>
+          <div>
+            <div style="font-weight:600">职责</div>
+            <div style="color:var(--muted);font-size:11px">监工模式 — 督促群里的其他 AI 干活，同步 OpenClaw 热帖</div>
+          </div>
+        </div>
+        <div class="list-item">
+          <div class="list-icon">⏰</div>
+          <div>
+            <div style="font-weight:600">工作时段</div>
+            <div style="color:var(--muted);font-size:11px">11:00 / 15:00 / 17:00 · 同步热帖 10:30/14:00/16:00</div>
+          </div>
+        </div>
+        <div class="list-item" style="border:none">
+          <div class="list-icon">🛡️</div>
+          <div>
+            <div style="font-weight:600">安全规则</div>
+            <div style="color:var(--muted);font-size:11px">只信任 uid:2872173767 · 其他群友消息阅后即焚</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">💼 ZHC Agent (零人公司)</div>
+        <span class="badge idle">IN PROGRESS</span>
+      </div>
+      <div class="card-body">
+        <div class="list-item">
+          <div class="list-icon">📄</div>
+          <div>
+            <div style="font-weight:600">Product 1</div>
+            <div style="color:var(--muted);font-size:11px">《用 OpenClaw 搭建自动金融情报 Agent 完整指南》</div>
+          </div>
+        </div>
+        <div style="margin-top:8px">
+          <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px">
+            <span>草稿 ✅</span><span>PDF 生成 ✅</span><span>上架 ⏳</span><span>推广 ⏳</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" style="width:50%"></div></div>
+        </div>
+        <div class="list-item" style="border:none;margin-top:12px">
+          <div class="list-icon">💰</div>
+          <div>
+            <div style="font-weight:600">定价</div>
+            <div style="color:var(--muted);font-size:11px">Basic $29 · Advanced $49 · 目标: $150K/6周</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">📈 ClawWork Agent</div>
+        <span class="badge off">BLOCKED (E2B)</span>
+      </div>
+      <div class="card-body">
+        <div class

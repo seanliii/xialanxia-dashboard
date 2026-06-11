@@ -1,0 +1,373 @@
+{
+  "updated": "2026-03-18T15:28:45.103601",
+  "total": 20,
+  "stocks": [
+    {
+      "ticker": "LNAI",
+      "price": 0.5568,
+      "score": 110,
+      "tags": [
+        "💎Penny$0.557",
+        "历史单日+163%",
+        "回踩-63%✅",
+        "量比x39.5🔥",
+        "3月-52%（回调机会）"
+      ],
+      "current": 0.5568,
+      "peak_3m": 1.5,
+      "trough_3m": 0.1844,
+      "from_peak": -62.9,
+      "from_trough": 202.0,
+      "max_spike_3m": 162.8,
+      "vol_ratio": 39.53,
+      "change_3m": -52.4
+    },
+    {
+      "ticker": "UCAR",
+      "price": 0.7222,
+      "score": 100,
+      "tags": [
+        "💎Penny$0.722",
+        "历史单日+63%",
+        "回踩-67%✅",
+        "量比x1127.2🔥",
+        "3月-66%（回调机会）"
+      ],
+      "current": 0.7222,
+      "peak_3m": 2.19,
+      "trough_3m": 0.4438,
+      "from_peak": -67.0,
+      "from_trough": 62.7,
+      "max_spike_3m": 62.7,
+      "vol_ratio": 1127.16,
+      "change_3m": -65.6
+    },
+    {
+      "ticker": "PSQH",
+      "price": 0.7728,
+      "score": 80,
+      "tags": [
+        "💎Penny$0.773",
+        "历史单日+22%",
+        "回踩-60%✅",
+        "量比x3.9",
+        "3月-60%（回调机会）"
+      ],
+      "current": 0.7728,
+      "peak_3m": 1.94,
+      "trough_3m": 0.61,
+      "from_peak": -60.2,
+      "from_trough": 26.7,
+      "max_spike_3m": 21.6,
+      "vol_ratio": 3.9,
+      "change_3m": -60.2
+    },
+    {
+      "ticker": "OCG",
+      "price": 1.03,
+      "score": 75,
+      "tags": [
+        "低价$1.03",
+        "历史单日+292%",
+        "量比x6.2🔥",
+        "3月-100%（回调机会）"
+      ],
+      "current": 1.03,
+      "peak_3m": 2259.4,
+      "trough_3m": 0.6338,
+      "from_peak": -100.0,
+      "from_trough": 62.5,
+      "max_spike_3m": 292.0,
+      "vol_ratio": 6.15,
+      "change_3m": -99.8
+    },
+    {
+      "ticker": "ISPR",
+      "price": 2.3,
+      "score": 65,
+      "tags": [
+        "低价$2.30",
+        "历史单日+33%",
+        "回踩-38%",
+        "量比x6.6🔥",
+        "3月+26%"
+      ],
+      "current": 2.3,
+      "peak_3m": 3.68,
+      "trough_3m": 1.495,
+      "from_peak": -37.5,
+      "from_trough": 53.8,
+      "max_spike_3m": 32.6,
+      "vol_ratio": 6.61,
+      "change_3m": 26.4
+    },
+    {
+      "ticker": "YAAS",
+      "price": 1.0,
+      "score": 60,
+      "tags": [
+        "💎Penny$1.000",
+        "历史单日+35%",
+        "回踩-54%✅"
+      ],
+      "current": 1.0,
+      "peak_3m": 2.17,
+      "trough_3m": 0.77,
+      "from_peak": -53.9,
+      "from_trough": 29.9,
+      "max_spike_3m": 34.8,
+      "vol_ratio": 1.36,
+      "change_3m": -45.4
+    },
+    {
+      "ticker": "GAUZ",
+      "price": 0.69,
+      "score": 55,
+      "tags": [
+        "💎Penny$0.690",
+        "历史单日+60%",
+        "3月-86%（回调机会）"
+      ],
+      "current": 0.69,
+      "peak_3m": 5.11,
+      "trough_3m": 0.48,
+      "from_peak": -86.5,
+      "from_trough": 43.7,
+      "max_spike_3m": 59.6,
+      "vol_ratio": 0.88,
+      "change_3m": -86.5
+    },
+    {
+      "ticker": "CYCU",
+      "price": 1.23,
+      "score": 55,
+      "tags": [
+        "低价$1.23",
+        "历史单日+51%",
+        "量比x3.0",
+        "3月-50%（回调机会）"
+      ],
+      "current": 1.23,
+      "peak_3m": 6.2082,
+      "trough_3m": 1.03,
+      "from_peak": -80.2,
+      "from_trough": 19.4,
+      "max_spike_3m": 51.2,
+      "vol_ratio": 3.03,
+      "change_3m": -50.3
+    },
+    {
+      "ticker": "BIAF",
+      "price": 2.74,
+      "score": 53,
+      "tags": [
+        "低价$2.74",
+        "历史单日+98%",
+        "高位0%⚠️",
+        "量比x197.0🔥",
+        "3月+26%"
+      ],
+      "current": 2.74,
+      "peak_3m": 2.74,
+      "trough_3m": 0.75,
+      "from_peak": 0.0,
+      "from_trough": 265.3,
+      "max_spike_3m": 98.1,
+      "vol_ratio": 196.96,
+      "change_3m": 26.3
+    },
+    {
+      "ticker": "KRKR",
+      "price": 4.74,
+      "score": 45,
+      "tags": [
+        "低价$4.74",
+        "历史单日+37%",
+        "量比x14.5🔥"
+      ],
+      "current": 4.74,
+      "peak_3m": 5.73,
+      "trough_3m": 3.23,
+      "from_peak": -17.3,
+      "from_trough": 46.7,
+      "max_spike_3m": 37.4,
+      "vol_ratio": 14.48,
+      "change_3m": -5.6
+    },
+    {
+      "ticker": "AEI",
+      "price": 1.95,
+      "score": 37,
+      "tags": [
+        "低价$1.95",
+        "历史单日+26%",
+        "回踩-49%"
+      ],
+      "current": 1.95,
+      "peak_3m": 3.81,
+      "trough_3m": 1.536,
+      "from_peak": -48.8,
+      "from_trough": 27.0,
+      "max_spike_3m": 25.5,
+      "vol_ratio": 1.18,
+      "change_3m": -27.8
+    },
+    {
+      "ticker": "JVA",
+      "price": 4.12,
+      "score": 35,
+      "tags": [
+        "低价$4.12",
+        "历史单日+30%",
+        "高位0%⚠️",
+        "量比x16.5🔥"
+      ],
+      "current": 4.12,
+      "peak_3m": 4.12,
+      "trough_3m": 2.94,
+      "from_peak": 0.0,
+      "from_trough": 40.1,
+      "max_spike_3m": 30.0,
+      "vol_ratio": 16.48,
+      "change_3m": 4.6
+    },
+    {
+      "ticker": "DCX",
+      "price": 2.14,
+      "score": 35,
+      "tags": [
+        "低价$2.14",
+        "历史单日+34%",
+        "3月-94%（回调机会）"
+      ],
+      "current": 2.14,
+      "peak_3m": 37.08,
+      "trough_3m": 1.43,
+      "from_peak": -94.2,
+      "from_trough": 49.7,
+      "max_spike_3m": 34.3,
+      "vol_ratio": 0.15,
+      "change_3m": -94.2
+    },
+    {
+      "ticker": "EDSA",
+      "price": 7.0,
+      "score": 25,
+      "tags": [
+        "历史单日+91%",
+        "高位-2%⚠️",
+        "3月+314%"
+      ],
+      "current": 7.0,
+      "peak_3m": 7.14,
+      "trough_3m": 0.8,
+      "from_peak": -2.0,
+      "from_trough": 775.0,
+      "max_spike_3m": 90.7,
+      "vol_ratio": 0.86,
+      "change_3m": 314.2
+    },
+    {
+      "ticker": "LONA",
+      "price": 11.3,
+      "score": 25,
+      "tags": [
+        "历史单日+62%",
+        "高位0%⚠️",
+        "3月+170%"
+      ],
+      "current": 11.3,
+      "peak_3m": 11.3,
+      "trough_3m": 3.85,
+      "from_peak": 0.0,
+      "from_trough": 193.5,
+      "max_spike_3m": 62.5,
+      "vol_ratio": 0.12,
+      "change_3m": 169.7
+    },
+    {
+      "ticker": "LNZA",
+      "price": 18.85,
+      "score": 20,
+      "tags": [
+        "历史单日+37%",
+        "高位0%⚠️",
+        "量比x5.6🔥"
+      ],
+      "current": 18.85,
+      "peak_3m": 18.85,
+      "trough_3m": 7.98,
+      "from_peak": 0.0,
+      "from_trough": 136.2,
+      "max_spike_3m": 36.9,
+      "vol_ratio": 5.56,
+      "change_3m": 1.0
+    },
+    {
+      "ticker": "INLF",
+      "price": 0.431,
+      "score": 15,
+      "tags": [
+        "💎Penny$0.431",
+        "高位0%⚠️"
+      ],
+      "current": 0.431,
+      "from_peak": 0,
+      "from_trough": 0,
+      "max_spike_3m": 0,
+      "vol_ratio": 1,
+      "change_3m": 0,
+      "peak_3m": 0.431,
+      "trough_3m": 0.431
+    },
+    {
+      "ticker": "DCGO",
+      "price": 0.7775,
+      "score": 15,
+      "tags": [
+        "💎Penny$0.777",
+        "高位0%⚠️"
+      ],
+      "current": 0.7775,
+      "from_peak": 0,
+      "from_trough": 0,
+      "max_spike_3m": 0,
+      "vol_ratio": 1,
+      "change_3m": 0,
+      "peak_3m": 0.7775,
+      "trough_3m": 0.7775
+    },
+    {
+      "ticker": "ALOY",
+      "price": 13.75,
+      "score": -10,
+      "tags": [
+        "高位0%⚠️"
+      ],
+      "current": 13.75,
+      "from_peak": 0,
+      "from_trough": 0,
+      "max_spike_3m": 0,
+      "vol_ratio": 1,
+      "change_3m": 0,
+      "peak_3m": 13.75,
+      "trough_3m": 13.75
+    },
+    {
+      "ticker": "SWMR",
+      "price": 31.0,
+      "score": -10,
+      "tags": [
+        "高位0%⚠️"
+      ],
+      "current": 31.0,
+      "from_peak": 0,
+      "from_trough": 0,
+      "max_spike_3m": 0,
+      "vol_ratio": 1,
+      "change_3m": 0,
+      "peak_3m": 31.0,
+      "trough_3m": 31.0
+    }
+  ]
+}

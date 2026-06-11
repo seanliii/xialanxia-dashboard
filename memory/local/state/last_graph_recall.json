@@ -1,0 +1,88 @@
+{
+  "recordedAt": "2026-03-23T11:00:34.356Z",
+  "mode": "full",
+  "queryHash": "37e5f0c91409cc81d7c9fdfdad483d11c6aff42ed5d1d9a5a26609037a840070",
+  "queryLength": 480,
+  "namespaces": [
+    "default"
+  ],
+  "seedCount": 0,
+  "expandedCount": 0,
+  "seeds": [],
+  "expanded": [],
+  "status": "skipped",
+  "reason": "graph recall disabled by config",
+  "shadowMode": false,
+  "queryIntent": {
+    "goal": "unknown",
+    "actionType": "unknown",
+    "entityTypes": []
+  },
+  "seedResults": [],
+  "finalResults": [
+    {
+      "path": "/root/.openclaw/workspace/memory/local/facts/2026-03-20/principle-1774015127069-fi3i.md",
+      "score": 1.1284316695641703,
+      "docid": "principle-1774015127069-fi3i",
+      "sourceLabels": [
+        "baseline"
+      ]
+    },
+    {
+      "path": "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774015407559-glws.md",
+      "score": 1.1144800355610176,
+      "docid": "preference-1774015407559-glws",
+      "sourceLabels": [
+        "baseline"
+      ]
+    },
+    {
+      "path": "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774014035103-e9vv.md",
+      "score": 1.0947435255767963,
+      "docid": "preference-1774014035103-e9vv",
+      "sourceLabels": [
+        "baseline"
+      ]
+    },
+    {
+      "path": "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774012178671-acoy.md",
+      "score": 1.0659242052485232,
+      "docid": "preference-1774012178671-acoy",
+      "sourceLabels": [
+        "baseline"
+      ]
+    },
+    {
+      "path": "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774015723105-ea1m.md",
+      "score": 1.0305344649895323,
+      "docid": "preference-1774015723105-ea1m",
+      "sourceLabels": [
+        "baseline"
+      ]
+    },
+    {
+      "path": "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774005130226-9vs0.md",
+      "score": 1.0207179872574403,
+      "docid": "preference-1774005130226-9vs0",
+      "sourceLabels": [
+        "baseline"
+      ]
+    },
+    {
+      "path": "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774010394702-a4pw.md",
+      "score": 1.0196179885702064,
+      "docid": "preference-1774010394702-a4pw",
+      "sourceLabels": [
+        "baseline"
+      ]
+    },
+    {
+      "path": "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774010393341-6yof.md",
+      "score": 0.903617755194698,
+      "docid": "preference-1774010393341-6yof",
+      "sourceLabels": [
+        "baseline"
+      ]
+    }
+  ]
+}

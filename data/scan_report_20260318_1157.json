@@ -1,0 +1,136 @@
+{
+  "scan_time": "2026-03-18 11:57",
+  "triggers_fired": [
+    {
+      "ticker": "UPXI",
+      "account": "aggressive",
+      "price": 1.15,
+      "trigger_price": 1.2,
+      "shares": 4347,
+      "cost": 4999.05,
+      "company": "Upexi Inc — 消费品牌+Solana国库战略",
+      "target": 5.0,
+      "stop": 0.75
+    },
+    {
+      "ticker": "QUBT",
+      "account": "aggressive",
+      "price": 7.54,
+      "trigger_price": 8.0,
+      "shares": 663,
+      "cost": 4999.02,
+      "company": "Quantum Computing Inc",
+      "target": 15.0,
+      "stop": 4.5
+    },
+    {
+      "ticker": "SOUN",
+      "account": "aggressive",
+      "price": 7.82,
+      "trigger_price": 8.0,
+      "shares": 639,
+      "cost": 4996.98,
+      "company": "SoundHound AI Inc",
+      "target": 16.0,
+      "stop": 4.8
+    }
+  ],
+  "stops_triggered": [],
+  "watchlist_approaching": [
+    {
+      "ticker": "CVNA",
+      "account": "institutional",
+      "current": 314.74,
+      "trigger": 310.0,
+      "gap_pct": 1.5,
+      "priority": "A",
+      "status": "watch"
+    },
+    {
+      "ticker": "SOUN",
+      "account": "aggressive",
+      "current": 7.82,
+      "trigger": 8.0,
+      "gap_pct": -2.2,
+      "priority": "A",
+      "status": "entered"
+    },
+    {
+      "ticker": "UPXI",
+      "account": "aggressive",
+      "current": 1.15,
+      "trigger": 1.2,
+      "gap_pct": -4.2,
+      "priority": "A",
+      "status": "entered"
+    },
+    {
+      "ticker": "TSM",
+      "account": "institutional",
+      "current": 345.98,
+      "trigger": 330.0,
+      "gap_pct": 4.8,
+      "priority": "S",
+      "status": "watch"
+    },
+    {
+      "ticker": "QUBT",
+      "account": "aggressive",
+      "current": 7.54,
+      "trigger": 8.0,
+      "gap_pct": -5.8,
+      "priority": "A",
+      "status": "entered"
+    },
+    {
+      "ticker": "NVDA",
+      "account": "institutional",
+      "current": 181.93,
+      "trigger": 170.0,
+      "gap_pct": 7.0,
+      "priority": "B",
+      "status": "watch"
+    },
+    {
+      "ticker": "VST",
+      "account": "institutional",
+      "current": 164.33,
+      "trigger": 150.0,
+      "gap_pct": 9.6,
+      "priority": "A",
+      "status": "watch"
+    }
+  ],
+  "portfolio_summary": {
+    "institutional": {
+      "name": "大机构",
+      "emoji": "🏦",
+      "total_value": 49999.93,
+      "cash": 35017,
+      "position_value": 14982.93,
+      "pnl": -0.07,
+      "return_pct": -0.0,
+      "positions": 2
+    },
+    "aggressive": {
+      "name": "激进交易",
+      "emoji": "⚡",
+      "total_value": 50000.0,
+      "cash": 35004.95,
+      "position_value": 14995.05,
+      "pnl": 0.0,
+      "return_pct": 0.0,
+      "positions": 3
+    },
+    "blueshrimp": {
+      "name": "蓝虾交易",
+      "emoji": "🦐",
+      "total_value": 49965.5,
+      "cash": 42999.24,
+      "position_value": 6966.26,
+      "pnl": -34.5,
+      "return_pct": -0.07,
+      "positions": 2
+    }
+  }
+}

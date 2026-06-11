@@ -1,0 +1,533 @@
+[
+  {
+    "symbol": "FXNC",
+    "name": "First National Corporation Common Stock",
+    "market_cap": 238876759.0,
+    "sector": "Finance",
+    "industry": "Major Banks",
+    "price": 26.55,
+    "chg": 1.57
+  },
+  {
+    "symbol": "ATLO",
+    "name": "Ames National Corporation Common Stock",
+    "market_cap": 238834937.0,
+    "sector": "Finance",
+    "industry": "Major Banks",
+    "price": 27,
+    "chg": 1.31
+  },
+  {
+    "symbol": "RDIB",
+    "name": "Reading International Inc Class B Common Stock",
+    "market_cap": 238531230.0,
+    "sector": "Consumer Discretionary",
+    "industry": "Movies/Entertainment",
+    "price": 10.43,
+    "chg": 0.48
+  },
+  {
+    "symbol": "RZLT",
+    "name": "Rezolute Inc. Common Stock (NV)",
+    "market_cap": 238287236.0,
+    "sector": "Health Care",
+    "industry": "Biotechnology: Pharmaceutical Preparations",
+    "price": 2.48,
+    "chg": -4.62
+  },
+  {
+    "symbol": "NVCT",
+    "name": "Nuvectis Pharma Inc. Common Stock",
+    "market_cap": 238160401.0,
+    "sector": "Health Care",
+    "industry": "Biotechnology: Pharmaceutical Preparations",
+    "price": 9.01,
+    "chg": -0.22
+  },
+  {
+    "symbol": "TAYD",
+    "name": "Taylor Devices Inc. Common Stock",
+    "market_cap": 238123396.0,
+    "sector": "Industrials",
+    "industry": "Industrial Machinery/Components",
+    "price": 75.99,
+    "chg": 2.07
+  },
+  {
+    "symbol": "JILL",
+    "name": "J. Jill Inc. Common Stock",
+    "market_cap": 238066810.0,
+    "sector": "Consumer Discretionary",
+    "industry": "Apparel",
+    "price": 15.87,
+    "chg": 3.66
+  },
+  {
+    "symbol": "ANNA",
+    "name": "AleAnna Inc. Class A Common Stock",
+    "market_cap": 237955783.0,
+    "sector": "Energy",
+    "industry": "Oil & Gas Production",
+    "price": 3.57,
+    "chg": -9.85
+  },
+  {
+    "symbol": "NREF",
+    "name": "NexPoint Real Estate Finance Inc. Common Stock",
+    "market_cap": 237649713.0,
+    "sector": "Real Estate",
+    "industry": "Real Estate Investment Trusts",
+    "price": 13.4,
+    "chg": 1.9
+  },
+  {
+    "symbol": "SPOK",
+    "name": "Spok Holdings Inc. Common Stock",
+    "market_cap": 236947935.0,
+    "sector": "Telecommunications",
+    "industry": "Telecommunications Equipment",
+    "price": 11.43,
+    "chg": -2.97
+  },
+  {
+    "symbol": "CFFI",
+    "name": "C&F Financial Corporation Common Stock",
+    "market_cap": 236859523.0,
+    "sector": "Finance",
+    "industry": "Major Banks",
+    "price": 72.61,
+    "chg": 1.55
+  },
+  {
+    "symbol": "SMWB",
+    "name": "Similarweb Ltd. Ordinary Shares",
+    "market_cap": 236548749.0,
+    "sector": "Technology",
+    "industry": "Computer Software: Programming Data Processing",
+    "price": 2.72,
+    "chg": 0.74
+  },
+  {
+    "symbol": "MYFW",
+    "name": "First Western Financial Inc. Common Stock",
+    "market_cap": 236075957.0,
+    "sector": "Finance",
+    "industry": "Major Banks",
+    "price": 24.27,
+    "chg": 1.17
+  },
+  {
+    "symbol": "BRR",
+    "name": "ProCap Financial Inc. Common Stock",
+    "market_cap": 235252226.0,
+    "sector": "Finance",
+    "industry": "Finance: Consumer Services",
+    "price": 2.83,
+    "chg": 4.43
+  },
+  {
+    "symbol": "ESCA",
+    "name": "Escalade Incorporated Common Stock",
+    "market_cap": 235097178.0,
+    "sector": "Consumer Discretionary",
+    "industry": "Recreational Games/Products/Toys",
+    "price": 17.27,
+    "chg": 0.52
+  },
+  {
+    "symbol": "HUMA",
+    "name": "Humacyte Inc. Common Stock",
+    "market_cap": 234844691.0,
+    "sector": "Health Care",
+    "industry": "Biotechnology: Biological Products (No Diagnostic Substances)",
+    "price": 1.12,
+    "chg": -3.45
+  },
+  {
+    "symbol": "HELP",
+    "name": "Cybin Inc. Common Stock",
+    "market_cap": 234667879.0,
+    "sector": "Health Care",
+    "industry": "Biotechnology: Pharmaceutical Preparations",
+    "price": 4.68,
+    "chg": 0.86
+  },
+  {
+    "symbol": "FUNC",
+    "name": "First United Corporation Common Stock",
+    "market_cap": 234504849.0,
+    "sector": "Finance",
+    "industry": "Major Banks",
+    "price": 36.05,
+    "chg": 0.53
+  },
+  {
+    "symbol": "CLIR",
+    "name": "ClearSign Technologies Corporation Common Stock (DE)",
+    "market_cap": 233497641.0,
+    "sector": "Industrials",
+    "industry": "Industrial Machinery/Components",
+    "price": 4.31,
+    "chg": 902.33
+  },
+  {
+    "symbol": "ZEPP",
+    "name": "Zepp Health Corporation American depositary shares each representing sixteen Class A ordinary shares",
+    "market_cap": 233049966.0,
+    "sector": "Technology",
+    "industry": "Computer Manufacturing",
+    "price": 16.21,
+    "chg": -22.18
+  },
+  {
+    "symbol": "CBNA",
+    "name": "Chain Bridge Bancorp Inc. Class A Common Stock",
+    "market_cap": 233010122.0,
+    "sector": "Finance",
+    "industry": "Major Banks",
+    "price": 35.52,
+    "chg": 0.94
+  },
+  {
+    "symbol": "OSG",
+    "name": "Octave Specialty Group Inc. Common Stock",
+    "market_cap": 232850909.0,
+    "sector": "Finance",
+    "industry": "Property-Casualty Insurers",
+    "price": 5.17,
+    "chg": 0.98
+  },
+  {
+    "symbol": "GRRR",
+    "name": "Gorilla Technology Group Inc. Ordinary shares",
+    "market_cap": 232353561.0,
+    "sector": "Technology",
+    "industry": "Computer Software: Prepackaged Software",
+    "price": 11.48,
+    "chg": 4.36
+  },
+  {
+    "symbol": "FLYX",
+    "name": "flyExclusive Inc. Class A Common Stock",
+    "market_cap": 232105994.0,
+    "sector": "Consumer Discretionary",
+    "industry": "Transportation Services",
+    "price": 2.43,
+    "chg": 4.29
+  },
+  {
+    "symbol": "STRZ",
+    "name": "Starz Entertainment Corp. Common Shares",
+    "market_cap": 231390366.0,
+    "sector": "Consumer Discretionary",
+    "industry": "Movies/Entertainment",
+    "price": 13.82,
+    "chg": -1.43
+  },
+  {
+    "symbol": "MKTW",
+    "name": "MarketWise Inc. Class A Common Stock",
+    "market_cap": 231275174.0,
+    "sector": "Technology",
+    "industry": "Computer Software: Prepackaged Software",
+    "price": 14.57,
+    "chg": 2.97
+  },
+  {
+    "symbol": "HWBK",
+    "name": "Hawthorn Bancshares Inc. Common Stock",
+    "market_cap": 231141617.0,
+    "sector": "Finance",
+    "industry": "Major Banks",
+    "price": 33.31,
+    "chg": 0.42
+  },
+  {
+    "symbol": "PLX",
+    "name": "Protalix BioTherapeutics Inc. (DE) Common Stock",
+    "market_cap": 230808789.0,
+    "sector": "Health Care",
+    "industry": "Biotechnology: Biological Products (No Diagnostic Substances)",
+    "price": 2.88,
+    "chg": 1.77
+  },
+  {
+    "symbol": "PPIH",
+    "name": "Perma-Pipe International Holdings Inc. Common Stock",
+    "market_cap": 230680283.0,
+    "sector": "Industrials",
+    "industry": "Pollution Control Equipment",
+    "price": 28.61,
+    "chg": 1.78
+  },
+  {
+    "symbol": "SJT",
+    "name": "San Juan Basin Royalty Trust Common Stock",
+    "market_cap": 230247452.0,
+    "sector": "Energy",
+    "industry": "Oil & Gas Production",
+    "price": 4.93,
+    "chg": 0.61
+  },
+  {
+    "symbol": "AIFU",
+    "name": "AIFU Inc. Class A Ordinary Share",
+    "market_cap": 229491895.0,
+    "sector": "Finance",
+    "industry": "Specialty Insurers",
+    "price": 1.64,
+    "chg": -12.3
+  },
+  {
+    "symbol": "LCNB",
+    "name": "LCNB Corporation Common Stock",
+    "market_cap": 229373632.0,
+    "sector": "Finance",
+    "industry": "Major Banks",
+    "price": 16.12,
+    "chg": -0.62
+  },
+  {
+    "symbol": "PRHIZ",
+    "name": "Presurance Holdings Inc. 9.75% Senior Unsecured Notes due 2028",
+    "market_cap": 228873447.0,
+    "sector": "Finance",
+    "industry": "Property-Casualty Insurers",
+    "price": 19.4,
+    "chg": 3.58
+  },
+  {
+    "symbol": "RPAY",
+    "name": "Repay Holdings Corporation Class A Common Stock",
+    "market_cap": 228443412.0,
+    "sector": "Real Estate",
+    "industry": "Real Estate",
+    "price": 2.67,
+    "chg": 0
+  },
+  {
+    "symbol": "RDNW",
+    "name": "RideNow Group Inc. Class B Common Stock",
+    "market_cap": 228405012.0,
+    "sector": "Technology",
+    "industry": "EDP Services",
+    "price": 6,
+    "chg": -0.83
+  },
+  {
+    "symbol": "RGCO",
+    "name": "RGC Resources Inc. Common Stock",
+    "market_cap": 228262935.0,
+    "sector": "Utilities",
+    "industry": "Oil & Gas Production",
+    "price": 22.34,
+    "chg": 3
+  },
+  {
+    "symbol": "LIEN",
+    "name": "Chicago Atlantic BDC Inc. Common Stock",
+    "market_cap": 228205900.0,
+    "sector": "Finance",
+    "industry": "Finance: Consumer Services",
+    "price": 10.05,
+    "chg": 1.21
+  },
+  {
+    "symbol": "BRCC",
+    "name": "BRC Inc. Class A Common Stock",
+    "market_cap": 227734733.0,
+    "sector": "Consumer Staples",
+    "industry": "Beverages (Production/Distribution)",
+    "price": 0.91,
+    "chg": 0
+  },
+  {
+    "symbol": "MASS",
+    "name": "908 Devices Inc. Common Stock",
+    "market_cap": 227643914.0,
+    "sector": "Industrials",
+    "industry": "Industrial Machinery/Components",
+    "price": 6.1,
+    "chg": 0.49
+  },
+  {
+    "symbol": "SKYX",
+    "name": "SKYX Platforms Corp. Common Stock",
+    "market_cap": 227521137.0,
+    "sector": "Consumer Discretionary",
+    "industry": "Building Products",
+    "price": 1.72,
+    "chg": -1.15
+  },
+  {
+    "symbol": "BPRN",
+    "name": "Princeton Bancorp Inc. Common Stock (PA)",
+    "market_cap": 226623405.0,
+    "sector": "Finance",
+    "industry": "Major Banks",
+    "price": 33.63,
+    "chg": 0.36
+  },
+  {
+    "symbol": "MINE",
+    "name": "Mayfair Gold Corp. Common Shares",
+    "market_cap": 225775871.0,
+    "sector": "Energy",
+    "industry": "Oil & Gas Production",
+    "price": 3.35,
+    "chg": -1.47
+  },
+  {
+    "symbol": "JAKK",
+    "name": "JAKKS Pacific Inc. Common Stock",
+    "market_cap": 225454897.0,
+    "sector": "Consumer Discretionary",
+    "industry": "Recreational Games/Products/Toys",
+    "price": 19.66,
+    "chg": -0.25
+  },
+  {
+    "symbol": "IONR",
+    "name": "ioneer Ltd American Depositary Shares",
+    "market_cap": 224762962.0,
+    "sector": "Industrials",
+    "industry": "Mining & Quarrying of Nonmetallic Minerals (No Fuels)",
+    "price": 3.38,
+    "chg": 4.97
+  },
+  {
+    "symbol": "CMRC",
+    "name": "Commerce.com Inc. Series 1 Common Stock",
+    "market_cap": 224406000.0,
+    "sector": "Technology",
+    "industry": "Computer Software: Prepackaged Software",
+    "price": 2.73,
+    "chg": -0.36
+  },
+  {
+    "symbol": "MFM",
+    "name": "MFS Municipal Income Trust Common Stock",
+    "market_cap": 224060713.0,
+    "sector": "Finance",
+    "industry": "Finance Companies",
+    "price": 5.43,
+    "chg": 0.74
+  },
+  {
+    "symbol": "HBIO",
+    "name": "Harvard Bioscience Inc. Common Stock",
+    "market_cap": 224046669.0,
+    "sector": "Industrials",
+    "industry": "Biotechnology: Laboratory Analytical Instruments",
+    "price": 5.01,
+    "chg": 965.96
+  },
+  {
+    "symbol": "ELTX",
+    "name": "Elicio Therapeutics Inc. Common Stock",
+    "market_cap": 223696260.0,
+    "sector": "Health Care",
+    "industry": "Biotechnology: Pharmaceutical Preparations",
+    "price": 12.15,
+    "chg": -0.41
+  },
+  {
+    "symbol": "ACHV",
+    "name": "Achieve Life Sciences Inc. Common Shares",
+    "market_cap": 223582750.0,
+    "sector": "Health Care",
+    "industry": "Biotechnology: In Vitro & In Vivo Diagnostic Substances",
+    "price": 4.21,
+    "chg": 0.96
+  },
+  {
+    "symbol": "FRAF",
+    "name": "Franklin Financial Services Corporation Common Stock",
+    "market_cap": 223011252.0,
+    "sector": "Finance",
+    "industry": "Major Banks",
+    "price": 49.87,
+    "chg": 1.65
+  },
+  {
+    "symbol": "MDWD",
+    "name": "MediWound Ltd. Ordinary Shares",
+    "market_cap": 222615357.0,
+    "sector": "Health Care",
+    "industry": " Medicinal Chemicals and Botanical Products ",
+    "price": 17.39,
+    "chg": 4.89
+  },
+  {
+    "symbol": "GDC",
+    "name": "GD Culture Group Limited Common Stock",
+    "market_cap": 222394271.0,
+    "sector": "Industrials",
+    "industry": "Steel/Iron Ore",
+    "price": 3.88,
+    "chg": -1.27
+  },
+  {
+    "symbol": "VTIX",
+    "name": "Virtuix Holdings Inc. Class A Common Stock",
+    "market_cap": 221990646.0,
+    "sector": "Technology",
+    "industry": "Computer peripheral equipment",
+    "price": 6.97,
+    "chg": 2.95
+  },
+  {
+    "symbol": "CMTV",
+    "name": "Community Bancorp. Common Stock",
+    "market_cap": 221326128.0,
+    "sector": "Finance",
+    "industry": "Major Banks",
+    "price": 39.7,
+    "chg": 1.85
+  },
+  {
+    "symbol": "MFIN",
+    "name": "Medallion Financial Corp. Common Stock",
+    "market_cap": 221182780.0,
+    "sector": "Finance",
+    "industry": "Finance: Consumer Services",
+    "price": 9.4,
+    "chg": 0.53
+  },
+  {
+    "symbol": "KINS",
+    "name": "Kingstone Companies Inc. Common Stock",
+    "market_cap": 221124300.0,
+    "sector": "Finance",
+    "industry": "Property-Casualty Insurers",
+    "price": 15.62,
+    "chg": 2.76
+  },
+  {
+    "symbol": "QTRX",
+    "name": "Quanterix Corporation Common Stock",
+    "market_cap": 221087282.0,
+    "sector": "Industrials",
+    "industry": "Biotechnology: Laboratory Analytical Instruments",
+    "price": 4.71,
+    "chg": -0.21
+  },
+  {
+    "symbol": "NXDT",
+    "name": "NexPoint Diversified Real Estate Trust Common Stock",
+    "market_cap": 221082045.0,
+    "sector": "Real Estate",
+    "industry": "Real Estate Investment Trusts",
+    "price": 4.49,
+    "chg": 0.67
+  },
+  {
+    "symbol": "EICA",
+    "name": "Eagle Point Income Company Inc. 5.00% Series A Term Preferred Stock due 2026",
+    "market_cap": 220921078.0,
+    "sector": "Finance",
+    "industry": "Finance/Investors Services",
+    "price": 24.72,
+    "chg": -0.04
+  }
+]

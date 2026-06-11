@@ -1,0 +1,1317 @@
+{
+  "lastUpdate": "2026-03-31T10:29:00+08:00",
+  "note": "1700 OpenClaw玩法精选 - Q1末日关税T=0/ClawWork $19915/Sycamore $65M Agent OS/SOUL.md多Agent一致性/Gumloop $50M/Felix$177k/日报$0.01/垂直Skill暴利/内容流水线MRR/Agent自审40%降本",
+  "recentSentIds": [
+    "deep-1900-armadin-190m-kevin-mandia-autonomous-security-agent-mar25",
+    "deep-1900-interloom-14m-seed-enterprise-knowledge-memory-agent-mar25",
+    "deep-1900-blockbrain-17m-series-a-germany-genai-agent-mar25",
+    "deep-1900-coxwave-4m-prea-korea-agent-verification-mar25",
+    "deep-1900-fortune500-67pct-ai-agent-production-stat-mar25",
+    "deep-1900-openclaw-matthew-berman-25b-tokens-21-usecases-mar25",
+    "deep-1900-openclaw-wy-30plus-usecases-github-repo-mar25",
+    "deep-1900-openclaw-opik-native-observability-plugin-mar25",
+    "deep-1900-hn-arm-agi-cpu-2x-perf-mar25",
+    "deep-1900-hn-litellm-1827-1828-pypi-compromised-mar25",
+    "deep-1900-hn-wine11-kernel-rewrite-88pct-smaller-mar25",
+    "deep-1900-btc-71485-eth-2184-sol-9258-19h-mar25",
+    "deep-1900-btc-etf-2-5b-march-gold-etf-outflow-mar25",
+    "tw-1700-openclaw-hackday-sf-march25-skills-built-mar29",
+    "tw-1700-openclaw-7ways-money-clawHub-4200mo-mar29",
+    "tw-1700-openclaw-setupclaw-door-install-3000usd-mar29",
+    "tw-1700-openclaw-mikebechtel-gumroad-pdf-planner-linkedin-mar29",
+    "tw-1700-openclaw-tencent-api-rapidapi-passive-income-mar29",
+    "tw-1700-openclaw-322-323-update-memory-security-mar29",
+    "tw-1700-openclaw-multiagent-token-save-workspace-mar29",
+    "tw-1700-openclaw-juejin-3000-passive-income-3months-mar29",
+    "tw-1700-openclaw-10proven-setup-service-3600-month1-mar29",
+    "tw-1700-openclaw-awesome-skills-5200-voltagent-mar29",
+    "deep-1029-btc-66655-eth-2011-sol-8270-mar30",
+    "deep-1029-nvidia-nemoclaw-openclaw-stack-rtx-dgxspark-mar16",
+    "deep-1029-gemini-31-flashlive-realtime-voice-vision-api-mar30",
+    "deep-1029-openai-chatgpt-box-notion-linear-enterprise-mar27",
+    "deep-1029-anthropic-claude-paid-subscribers-record-surge-mar29",
+    "deep-1029-hemab-fda-breakthrough-sutacimig-glanzmann-mar5",
+    "deep-1029-openclaw-5-business-ideas-superframeworks-feb2026",
+    "tw-1330-btc-67590-court-tariff-rebound-mar30",
+    "tw-1330-jensen-agi-achieved-nvda-openai-1t-mar30",
+    "tw-1330-clawwork-hkuds-15k-11h-closedloop-mar30",
+    "tw-1330-legora-550m-d-5b-legalai-mar30",
+    "tw-1330-gpt54-mini-nano-arcagi2-leaderboard-mar30",
+    "tw-1330-tunguz-agents-outearn-humans-2026-mar30",
+    "tw-1330-washu-cart-tcell-fda-breakthrough-mar30",
+    "deep-1400-openclaw-3.28-migration-report-towardsai-mar30",
+    "deep-1400-merck-terns-67b-tern701-hematology-mar30",
+    "deep-1400-denali-dnl310-hunter-syndrome-fda-approved-mar30",
+    "deep-1400-ai-security-36b-funding-torq-witnessai-noma-mar30",
+    "deep-1400-tunguz-agent-income-vc-series-ab-logic-mar30",
+    "deep-1400-btc-67462-eth-2047-sol-836-tariff-t48h-mar30",
+    "deep-1400-reddit-openclaw-enterprise-1pct-closedloop-mar30",
+    "tw-1700-anthropic-march-madcap-14launches-5outages-mcp97m-mar30",
+    "tw-1700-claude-computer-use-vs-openclaw-cnbc-competition-mar30",
+    "tw-1700-anthropic-380b-series-g-openai-vs-anthropic-mar30",
+    "tw-1700-grok4-api-aicc-2026-benchmark-comparison-mar30",
+    "tw-1700-btc-67k-tariff-liberation-t36h-premarket-signal-mar30",
+    "tw-1700-enterprise-ai-agents-stop-waiting-techradar-mar30",
+    "tw-1700-openclaw-36kr-github-stars-no1-history-linux-mar30",
+    "tw-1700-felix-craft-14718-25weeks-openclaw-income-mar30",
+    "tw-1700-markaicode-5automations-moneymaking-openclaw-mar30",
+    "tw-1700-superframeworks-10ways-make-money-clawhub-mar30",
+    "tw-1700-tencent-lighthouse-passive-income-factory-mar30",
+    "tw-1700-cnbc-claude-computer-use-vs-openclaw-anthropic-mar30",
+    "tw-1700-mark-savant-youtube-700mrr-content-agent-mar30",
+    "tw-1700-openclaws-v20263.22-clawhub-subagent-control-mar30",
+    "tw-1700-aliyun-67pct-devs-openclaw-income-mar30",
+    "tw-1700-laozhang-browser-agent-3modes-token-save-mar30",
+    "tw-1700-tencent-openclaw-beats-react-github-no1-mar30",
+    "tw-1016-clawwork-hkuds-2579-hr-benchmark-apr1-mar31",
+    "tw-1016-openclaw-google-maps-local-biz-6agents-mar31",
+    "tw-1016-openclaw-subagent-parallel-3layer-content-mar31",
+    "tw-1016-openclaw-april2-tariff-positioning-portfolio-mar31",
+    "tw-1016-openclaw-cron-heartbeat-daily-brief-under1cent-mar31",
+    "tw-1016-openclaw-skill-stack-vertical-60x-realestate-mar31",
+    "tw-1016-openclaw-soul-md-memory-persistence-multiagent-mar31",
+    "tw-1016-openclaw-polymarket-arbitrage-xmayeth-formula-mar31",
+    "tw-1016-openclaw-browser-agent-price-monitor-ecommerce-mar31",
+    "tw-1016-openclaw-3agent-audit-cost-save-40pct-mar31",
+    "deep-1200-btc-67647-eth-2065-sol-8346-tariff-countdown-mar31",
+    "deep-1200-openclaw-hamburg-setup-night-mar31-global-meetup",
+    "deep-1200-trendmicro-trendai-openclaw-enterprise-security-mar31",
+    "deep-1200-microsoft-board-agents-fpa-controller-mar31-launch",
+    "deep-1200-nexthop-ai-500m-series-b-42b-ai-networking-mar10",
+    "deep-1200-washu-cart-tcell-fda-breakthrough-t-cell-cancer-mar26",
+    "deep-1200-openclaw-peter-steinberger-openai-creator-insight-mar31",
+    "tw-1330-karpathy-vibe-coding-dead-agentic-engineering-mar31",
+    "tw-1330-claude-code-cursor-codex-2026-ranking-mar31",
+    "tw-1330-btc-67813-q1-close-tariff-t20h-mar31",
+    "tw-1330-solana-meme-coin-36b-dex-collapse-mar31",
+    "tw-1330-openclaw-multiagent-cn-dev-20k-stars-mar31",
+    "tw-1330-openclaw-34-usecases-community-guide-mar31",
+    "tw-1330-cursor-full-stack-mcp-plugin-mar31",
+    "deep-1600-sycamore-65m-seed-coatue-lightspeed-enterprise-agent-os-mar31",
+    "deep-1600-harvard-hks-openclaw-paradox-china-labor-apr9-mar31",
+    "deep-1600-btc-67294-eth-2053-sol-8301-q1-end-tariff-t0-mar31",
+    "deep-1600-isgf-india-openclaw-training-apr17-mar31",
+    "deep-1600-tfsf-ventures-ai-studio-ranking-mar31",
+    "deep-1600-nvda-16352-afterhours-q1close-mar31",
+    "deep-1600-fda-siren-bio-aav-glioma-ind-mar23-mar31",
+    "tw-1700-openclaw-q1-finale-tariff-t0-mar31",
+    "tw-1700-clawwork-hkuds-19915-atic-qwen-mar31",
+    "tw-1700-openclaw-sycamore-65m-enterprise-agent-os-mar31",
+    "tw-1700-openclaw-soul-md-consistency-multiagent-case-mar31",
+    "tw-1700-openclaw-gumloop-50m-automation-stack-mar31",
+    "tw-1700-openclaw-felix-nat-177k-autorun-mar31",
+    "tw-1700-openclaw-cron-skill-combo-7tasks-1cent-mar31",
+    "tw-1700-openclaw-vertical-real-estate-skill-60x-mar31",
+    "tw-1700-openclaw-3layer-content-pipeline-mrr-mar31",
+    "tw-1700-openclaw-agent-audit-40pct-cost-save-method-mar31"
+  ],
+  "last_updated": "2026-03-31 17:13",
+  "sent_ids": [
+    "tw-1016-openclaw-pdf-docx-auto-processing-pipeline-mar26",
+    "deep-1900-coxwave-4m-prea-korea-agent-verification-mar25",
+    "tw-0900-lobsterai-netease-openclaw-desktop-sandbox-mar25",
+    "deep-1200-google-turboquant-memory-compression-mar26",
+    "tw-1330-agent-memory-layer-mem0-letta-startup-mar25",
+    "deep-1400-hn-ai-bored-openclaw-mentioned-hammer-metaphor-mar25",
+    "deep-1600-congress-rwa-tokenization-hearing-march-25-mar25",
+    "deep-1200-manus-desktop-mycomputer-local-agent-mar25",
+    "deep-1030-crypto-market-structure-bill-today-mar26",
+    "tw-0900-ecommerce-agent-decision-shift-search-to-ai-mar25",
+    "2028013619548406180",
+    "2026020486157865173",
+    "tw-1016-claude-code-acp-spawn-subagent-parallel-tasks-mar25",
+    "deep-1600-openclaw-150k-agents-economy-nate-newsletter-mar25",
+    "tw-0900-claude-code-auto-mode-2layer-safety-mar26",
+    "tw-0900-startupideaspod-agent-automation-compound-mar26",
+    "tw-1330-btc-83k-85k-onchain-rebound-solana-tvl-mar25",
+    "tw-1016-openclaw-memory-soul-persistence-architecture-mar26",
+    "deep-1200-btc-70868-eth-2152-sol-9101-mar26",
+    "deep-1900-openclaw-opik-native-observability-plugin-mar25",
+    "2036676954791842282",
+    "deep-1200-harvey-11b-valuation-sequoia-law-ai-mar26",
+    "deep-1200-taiwan-security-openclaw-warning-mar25",
+    "tw-1016-openclaw-financial-data-aisa-api-dashboard-mar26",
+    "tw-1016-openclaw-github-issue-watcher-pr-bot-daily-mar26",
+    "deep-1200-arc-agi-3-interactive-reasoning-benchmark-mar26",
+    "tw-0900-binance-ai-pro-openclaw-trading-agent-mar26",
+    "tw-1000-openclaw-saas-solo-10k-mrr-90days-mar25",
+    "2032399594290630945",
+    "tw-0900-gpt54-mini-nano-openai-gtc-release-mar27",
+    "tw-1330-regn-eylea-hd-8mg-eu-approved-amd-mar25",
+    "tw-1016-openclaw-skills-marketplace-clawhub-passive-income-mar25",
+    "2026982903574606234",
+    "tw-0900-openclaw-2026-3-1-release-android-feishu-mar25",
+    "deep-1600-nexthop-ai-500m-series-b-lightspeed-networking-mar25",
+    "2032563054559326664",
+    "2031522059696951733",
+    "tw-1016-openclaw-cron-heartbeat-proactive-digest-mar26",
+    "deep-1900-openclaw-wy-30plus-usecases-github-repo-mar25",
+    "deep-1600-anthropic-economic-index-25pct-enterprise-mar26",
+    "tw-0900-openclaw-315k-stars-multi-platform-mar27",
+    "tw-1016-openclaw-telegram-bot-zero-server-income-stream-mar25",
+    "deep-1600-btc-70059-eth-2122-sol-8907-mar26",
+    "deep-1900-armadin-190m-kevin-mandia-autonomous-security-agent-mar25",
+    "deep-1600-meta-avocado-delay-again-opensource-to-closed-mar25",
+    "tw-1000-openclaw-cron-heartbeat-passive-income-mar25",
+    "tw-0900-anthropic-350b-valuation-10features-2weeks-mar26",
+    "deep-1600-anthropic-vercept-computeruse-acquisition-mar26",
+    "deep-1400-btc-71k-eth-2168-sol-924-crypto-mar25",
+    "deep-1900-btc-etf-2-5b-march-gold-etf-outflow-mar25",
+    "deep-1400-sora-official-shutdown-goodbye-tweet-mar25",
+    "deep-1400-wine11-kernel-linux-gaming-88pct-smaller-mar25",
+    "tw-1000-openclaw-seo-article-factory-autopilot-mar25",
+    "tw-0900-oracle-enterprise-agent-data-stack-mar27",
+    "tw-1000-openclaw-resell-digital-employees-agency-mar25",
+    "tw-0900-openclaw-github-star-history-agent-era-mar25",
+    "deep-1600-jesse-genet-5agents-home-finance-code-mar26",
+    "tw-1016-openclaw-daxiang-scheduled-msg-daily-digest-mar25",
+    "2032071257789976897",
+    "deep-1400-young-grads-grimest-job-market-ai-displacement-mar25",
+    "2037348918485524688",
+    "deep-1600-openclaw-72h-121k-vibe-coding-wrapper-mar25",
+    "deep-1600-fda-teclistamab-daratumumab-myeloma-approval-mar25",
+    "tw-0900-claude-code-voice-loop-1m-context-mar27",
+    "2035714854745710741",
+    "deep-1200-kleiner-perkins-3-5b-fund-ai-allin-mar26",
+    "tw-1016-openclaw-multimodel-routing-cheap-expensive-task-mar25",
+    "deep-1029-evolution-offline-mode-cache-fallback-mar25",
+    "deep-1200-granola-125m-1-5b-meeting-ai-mar26",
+    "deep-1400-arm-agi-cpu-2x-perf-meta-openai-mar25",
+    "deep-1900-blockbrain-17m-series-a-germany-genai-agent-mar25",
+    "tw-1000-openclaw-voice-assistant-11labs-tts-mar25",
+    "tw-1016-openclaw-computer-vision-screenshot-analyze-mar25",
+    "deep-1200-anthropic-claude-code-text-vs-openclaw-mar25",
+    "tw-1330-openclaw-reddit-entrepreneur-80-20-human-mar25",
+    "deep-1029-ai-agent-moat-l1l2l3-system-builder-mar25",
+    "tw-1330-claude-code-pricing-dau-roi-8k-engineer-mar25",
+    "2033532901015642149",
+    "tw-1000-prompt-engineering-soul-md-behavior-control-mar25",
+    "deep-1900-fortune500-67pct-ai-agent-production-stat-mar25",
+    "deep-1030-github-spec-kit-vibe-coding-dead-mar26",
+    "deep-1600-spade-40m-series-b-financial-data-ai-mar25",
+    "deep-1029-agent-structural-shift-3transitions-mar25",
+    "deep-1029-ai-ecosystem-3arbitrage-opportunities-mar25",
+    "deep-1900-openclaw-matthew-berman-25b-tokens-21-usecases-mar25",
+    "2034170507625697545",
+    "tw-1016-openclaw-skills-chain-combo-research-to-report-mar26",
+    "deep-1200-billy-doge-openclaw-overhyped-nft-mar25",
+    "tw-0900-mit-banda-hackathon-ai-agent-mar27",
+    "tw-0900-openclaw-enterprise-feishu-digital-employee-mar26",
+    "deep-1200-openclaw-12229-api-50-cost-ziwenxu-mar25",
+    "deep-1900-hn-arm-agi-cpu-2x-perf-mar25",
+    "deep-1030-openclaw-youtube-slack-auto-report-mar26",
+    "deep-1600-btc-70900-eth-2164-sol-9187-mar25",
+    "deep-1900-hn-litellm-1827-1828-pypi-compromised-mar25",
+    "tw-1000-openclaw-local-ollama-privacy-first-mar25",
+    "deep-1900-interloom-14m-seed-enterprise-knowledge-memory-agent-mar25",
+    "deep-1400-litellm-1828-pypi-compromised-credential-stealer-mar25",
+    "tw-1000-vibe-coding-openclaw-no-code-solopreneur-mar25",
+    "deep-1400-amazon-aws-bahrain-drone-attack-disrupted-mar25",
+    "2036195789601374705",
+    "deep-1200-github-copilot-interaction-data-policy-mar26",
+    "tw-1016-openclaw-daxiang-telegram-crosschannel-routing-mar26",
+    "deep-1200-deccan-ai-25m-india-talent-mar26",
+    "2037348884972974275",
+    "tw-1330-yc-w26-demoday-ai-agent-40pct-mar25",
+    "deep-1030-openclaw-nansen-holder-analysis-skill-mar26",
+    "deep-1200-china-8rmb-codex-pincaron-openclaw-mar25",
+    "tw-0900-cashclaw-framework-make-money-openclaw-mar26",
+    "deep-1200-ai-agency-50k-month-5clients-mar25",
+    "tw-1000-openclaw-youtube-summary-daily-briefing-mar25",
+    "tw-1000-openclaw-skill-stack-combo-10x-output-mar25",
+    "tw-0900-china-token-140trillion-2year-1000x-growth-mar25",
+    "deep-1030-google-421page-agentic-design-patterns-mar26",
+    "tw-0900-cursor-composer2-kimi-k25-chinese-model-mar27",
+    "tw-1330-vibe-coding-cursor-claude-openclaw-fullstack-mar25",
+    "deep-1900-hn-wine11-kernel-rewrite-88pct-smaller-mar25",
+    "deep-1600-gpt54-computer-use-openai-mar26",
+    "2034650814573346853",
+    "tw-1016-openclaw-nocode-app-launch-1hr-solopreneur-mar26",
+    "deep-1900-btc-71485-eth-2184-sol-9258-19h-mar25",
+    "deep-1200-claude-code-90pct-output-2star-github-repos-mar26",
+    "deep-1029-soul-md-value-os-multi-agent-consistency-mar25",
+    "deep-1600-anthropic-arr-19b-claude-beats-openai-70pct-ramp-index-mar25",
+    "tw-0900-levelsio-clawinho-self-earning-openclaw-mar26",
+    "2032074102656418113",
+    "deep-1030-anthropic-economic-index-longterm-users-mar26",
+    "deep-1030-lovable-pentest-ai-agent-security-mar26",
+    "2035537088314290236",
+    "2027421224239005951",
+    "deep-1900-temporal-300m-series-d-a16z-ai-agent-reliability-mar25",
+    "deep-1200-alibaba-accio-work-ecommerce-vertical-openclaw-mar25",
+    "tw-1016-openclaw-subagent-parallel-10x-throughput-mar26",
+    "tw-1016-openclaw-tts-podcast-auto-publish-anchor-mar25",
+    "tw-1016-openclaw-claude-code-acp-coding-agent-real-deploy-mar26",
+    "deep-1600-fda-teclistamab-daratumumab-jnj-myeloma-mar26",
+    "tw-1016-openclaw-browser-agent-ecommerce-price-monitor-mar25",
+    "2034912881364672922",
+    "deep-1030-arc-agi-3-launch-2m-prize-mar26",
+    "deep-1600-molmoweb-ai2-opensource-webagent-mar26",
+    "deep-1030-mark-cuban-smb-ai-agent-blueprint-mar26",
+    "deep-1400-apple-business-allinone-mdm-biz-platform-mar25",
+    "deep-1030-anthropic-claude-code-auto-mode-mar26",
+    "tw-0900-openclaw-clawteam-multi-agent-mar25-mar27",
+    "2028576159001121018",
+    "tw-0900-steipete-codex-openclaw-plugin-bridge-mar26",
+    "deep-1600-santander-mastercard-europe-first-ai-agent-payment-mar25",
+    "tw-0900-openclaw-multiagent-4layer-team-workflow-mar25",
+    "tw-0900-openclaw-passive-income-3000cny-case-mar27",
+    "deep-1030-btc-70927-eth-2154-sol-9129-mar26",
+    "tw-1016-openclaw-linkedin-outreach-personalized-200leads-mar25",
+    "tw-1016-openclaw-github-issue-auto-fix-pr-bot-mar25",
+    "deep-1030-openai-sora-shutdown-disney-cancel-mar26",
+    "deep-1600-nvda-q4-68b-record-physical-ai-gtc-mar25",
+    "tw-1330-openclaw-per-agent-reasoning-gpt54-default-mar27",
+    "tw-1330-openclaw-vertical-skill-60x-markup-realestate-mar27",
+    "tw-1330-sharbel-agent-audit-skill-40pct-cost-save-mar27",
+    "tw-1330-btc-68780-eth-2063-sol-864-extremefear-mar27",
+    "tw-1330-circle-eliminate-gas-token-proposal-mar27",
+    "tw-1330-mcp-agent-framework-standard-wins-mar27",
+    "tw-1330-harvey-200m-11b-valuation-sequoia-gic-mar27",
+    "deep-1400-xrp-etf-sec-final-deadline-march27-grayscale-21shares",
+    "deep-1400-shield-ai-2b-raise-53b-valuation-military-drone-mar27",
+    "deep-1400-xero-anthropic-claude-multiyear-partnership-sme-mar27",
+    "deep-1400-biontech-bnt327-pumitamig-elcc2026-phase2-nsclc-mar27",
+    "deep-1400-btc-68585-eth-2059-sol-86-crypto-correction-mar27",
+    "tw-1600-minchoi-rip-openclaw-claude-cowork-mar27",
+    "tw-1600-ashen-one-no-longer-recommend-openclaw-mar27",
+    "tw-1600-nickvasiles-claude-code-openclaw-dual-agent-mar27",
+    "tw-1600-sharbel-youtube-monetized-openclaw-mar27",
+    "tw-1600-xmayeth-polymarket-1300-per-day-mar27",
+    "tw-1700-btc-68208-stoplos-027pct-usstock-open-mar27",
+    "tw-1700-harvey-200m-11b-sequoia-gic-legal-ai-mar27",
+    "tw-1700-openclaw-elite-tier-split-cowork-mar27",
+    "tw-1700-rsac2026-astrix-45m-agent-security-mar27",
+    "tw-1700-mcp-protocol-standard-wins-mar27",
+    "tw-1700-biontech-bnt327-insilico-tenacia-biotech-mar27",
+    "tw-1700-nvda-meta-gold-4440-premarket-mar27",
+    "tw-1700-minchoi-rip-openclaw-elite-split-mar27",
+    "tw-1700-nickvasiles-dual-agent-claude-code-openclaw-mar27",
+    "tw-1700-sharbel-youtube-monetized-cron-mar27",
+    "tw-1700-openclaw-per-agent-reasoning-control-v2-mar27",
+    "tw-1700-proptechsam-vertical-skill-60x-realestate-mar27",
+    "tw-1700-sharbel-agent-audit-skill-cost-save-v2-mar27",
+    "tw-1700-n8n-3200-passive-income-template-v2-mar27",
+    "tw-1700-alicloud-openclaw-tutorial-mar27",
+    "tw-1700-trustwallet-onchain-agent-openclaw-mar27",
+    "tw-1700-openclaw-33automations-guide-v2-mar27",
+    "deep-1900-btc-66400-eth-1988-sol-8308-extremefear-mar27",
+    "deep-1900-iran-oil-hawkish-fed-crypto-dump-mar27",
+    "deep-1900-openclaw-v20263.22-45features-clawhub-mar27",
+    "deep-1900-nscale-2b-seriec-gpu-cloud-uk-14b-mar27",
+    "deep-1900-edra-30m-seriesa-sequoia-palantir-rag-mar27",
+    "deep-1900-biontech-bnt327-elcc2026-nsclc-esclc-data-mar27",
+    "deep-1900-sequoia-services-new-software-ai-swallows-mar27",
+    "deep-1200-btc-66169-eth-1987-sol-8256-tariff-iran-war-mar28",
+    "deep-1200-meta-12pct-drop-layoffs-court-addictive-mar28",
+    "deep-1200-sp500-7month-low-war-tariff-april2-fear-mar28",
+    "deep-1200-nivolumab-opdivo-hodgkin-lymphoma-fda-mar20-mar28",
+    "deep-1200-venturebeat-ai-agent-80-90pct-autonomy-prod-mar28",
+    "deep-1200-xmemory-token-cost-context-agent-mar28",
+    "deep-1200-stripe-10lessons-agentic-payments-march2026-mar28",
+    "deep-1200-openclaw-261plus-usecases-directory-foxes-mar28",
+    "deep-1200-reddit-openclaw-business-usecase-debate-mar28",
+    "deep-1400-btc-66307-eth-1993-sol-8268-tariff-fear-mar28",
+    "deep-1400-morgan-stanley-msbt-bitcoin-etf-014pct-apr2026-mar28",
+    "deep-1400-dash0-110m-series-b-unicorn-agentic-observability-mar28",
+    "deep-1400-parallel-20m-seriesa-ai-agent-hospital-mar28",
+    "deep-1400-openclaw-v2026322-clawhub-subagents-march-mar28",
+    "deep-1400-clawhub-security-silverfort-vulnerability-mar28",
+    "deep-1600-kresladi-fda-approved-rckt-gene-therapy-lad-mar28",
+    "deep-1600-wonderful-150m-agent-enterprise-2b-mar28",
+    "deep-1600-isara-94m-openai-swarm-agent-mar28",
+    "deep-1600-anaplan-agent-studio-enterprise-mar28",
+    "deep-1600-btc-66516-eth-2006-sol-8352-tariff-april2-mar28",
+    "tw-1700-hermes-agent-opensourced-memory-openclaw-mar28",
+    "tw-1700-sidbing-hermes-spawn-subagent-mar28",
+    "tw-1700-physical-intelligence-11b-funding-1b-round-mar28",
+    "tw-1700-krane-9m-ai-agent-construction-datacenter-mar28",
+    "tw-1700-sp500-50week-ma-broken-market-crash-continue-mar28",
+    "tw-1700-google-agent-smith-openai-spud-anthropic-mythos-leak-mar28",
+    "tw-1700-btc-stack-tariff-dip-holders-buy-mar28",
+    "2036857428273487903",
+    "2036097882055496022",
+    "2021951942327750952",
+    "2033658026058789236",
+    "2037089621809783170",
+    "2036805308916339187",
+    "2037202884941545549",
+    "2037046986281464299",
+    "2034168130856227177",
+    "2034959261290438919",
+    "deep-1900-karpathy-autoresearch-57k-stars-autonomous-lab-mar28",
+    "deep-1900-gemini-31-flash-live-a2a-audio-mar26-mar28",
+    "deep-1900-nyt-tiny-team-2person-ai-startup-mar28",
+    "deep-1900-alibaba-hongqi-qwen-agent-incar-mar28",
+    "deep-1900-sequoia-services-new-software-ai-vendor-swap-mar28",
+    "deep-1900-openai-pentagon-in-anthropic-out-mar28",
+    "deep-1900-openai-monitor-coding-agents-misalignment-mar28",
+    "deep-1900-btc-66400-eth-1988-sol-8300-tariff-april2-1900-mar28",
+    "tw-1016-feedgrab-multiplatform-content-scraper-mar29",
+    "tw-1016-lancontrol-router-smarthome-skill-mar29",
+    "tw-1016-autoloop-zero-glue-issue-driven-mar29",
+    "tw-1016-x-tweet-fetcher-v2-noproxy-mar29",
+    "tw-1016-moritzkremb-chatcrm-google-sheet-mar29",
+    "tw-1016-alexfinn-setup-revenue-doubled-mar29",
+    "tw-1016-openclaw-for-good-nonprofit-mar29",
+    "tw-1016-hisevenih-file-delete-cloud-lesson-mar29",
+    "tw-1016-runclaw-kill-openclaw-narrative-mar29",
+    "tw-1016-zkme-agent-identity-crisis-mar29",
+    "2036469677203796445",
+    "2034229168008003816",
+    "2037492277988479447",
+    "2036103404133740601",
+    "2036760722919575670",
+    "2033598141925364010",
+    "2034373670437519594",
+    "2037485584504275243",
+    "2036783780615303206",
+    "2037086386000716160",
+    "deep-1029-claude-computer-use-desktop-agent-anthropic-mar29",
+    "deep-1029-claude-gaining-openclaw-theinformation-competition-mar29",
+    "deep-1029-openclaw-google-ads-reddit-business-usecase-mar29",
+    "deep-1029-voltagent-awesome-openclaw-skills-github-mar29",
+    "deep-1029-btc-66618-eth-2004-sol-8252-weekend-tariff-mar29",
+    "deep-1029-april2-tariff-fear-crypto-market-weekend-mar29",
+    "deep-1029-openclaw-autonomous-ceo-10days-reddit-mar29",
+    "deep-1029-gpt54-gemini3-model-wars-multimodel-mar29",
+    "deep-1200-interloom-16m-tacit-knowledge-agent-mar29",
+    "deep-1200-agentmail-6m-email-infrastructure-mar29",
+    "deep-1200-lio-30m-a16z-procurement-mar29",
+    "deep-1200-merck-mk0616-coralreef-phase3-mar29",
+    "deep-1200-voxtral-tts-mistral-open-source-mar29",
+    "deep-1200-reddit-openclaw-4biz-models-mar29",
+    "deep-1200-btc-66865-eth-2009-sol-8294-tariff-apr2-mar29",
+    "deep-1600-google-gemini-ban-openclaw-tos-agent-mar29",
+    "deep-1600-arc-agi2-leaderboard-gpt51-grok4-opus45-mar29",
+    "deep-1600-otsuka-transcend-700m-tsnd201-neuroplastogen-confirm-mar29",
+    "deep-1600-btc-66622-eth-2005-sol-8245-tariff-countdown-mar29",
+    "deep-1600-biontech-bnt327-phase3-tracking-mar29",
+    "deep-1600-startup-larry-vc-pipeline-openclaw-podcast-mar29",
+    "tw-0900-network-error-fallback-rolling-summary-mar30",
+    "tw-0900-april2-tariff-48h-btc-66k-countdown-mar30",
+    "tw-0900-openai-superapp-chatgpt-codex-astral-mar30",
+    "tw-0900-msft-agent365-frontier-suite-mar30",
+    "tw-0900-gpt54-apex-agents-leaderboard-mar30",
+    "tw-0900-physical-intelligence-11b-1b-round-mar30",
+    "tw-1016-openclaw-weixin-cli-gpuhell-mar30",
+    "tw-1016-cccbot-lucianlamp-chainagent-mar30",
+    "tw-1016-grok420-multiagent-chinazoro-mar30",
+    "tw-1016-isara-2000agent-openai-invest-mar30",
+    "tw-1016-claude-phone-trigger-desktop-mar30",
+    "tw-1016-openclaw-v20263.28-grok-plugin-mar30",
+    "tw-1016-openclaw-261usecases-fox-dir-mar30",
+    "tw-1016-drchintandave-medical-researcher-mar30",
+    "tw-1016-msft-agent365-enterprise-mar30",
+    "tw-1016-bezos-100b-manufacturing-ai-mar30",
+    "deep-1029-btc-66655-eth-2011-sol-8270-mar30",
+    "deep-1029-nvidia-nemoclaw-openclaw-stack-rtx-dgxspark-mar16",
+    "deep-1029-gemini-31-flashlive-realtime-voice-vision-api-mar30",
+    "deep-1029-openai-chatgpt-box-notion-linear-enterprise-mar27",
+    "deep-1029-anthropic-claude-paid-subscribers-record-surge-mar29",
+    "deep-1029-hemab-fda-breakthrough-sutacimig-glanzmann-mar5",
+    "deep-1029-openclaw-5-business-ideas-superframeworks-feb2026",
+    "tw-1330-btc-67590-court-tariff-rebound-mar30",
+    "tw-1330-jensen-agi-achieved-nvda-openai-1t-mar30",
+    "tw-1330-clawwork-hkuds-15k-11h-closedloop-mar30",
+    "tw-1330-legora-550m-d-5b-legalai-mar30",
+    "tw-1330-gpt54-mini-nano-arcagi2-leaderboard-mar30",
+    "tw-1330-tunguz-agents-outearn-humans-2026-mar30",
+    "tw-1330-washu-cart-tcell-fda-breakthrough-mar30",
+    "tw-1700-felix-craft-14718-25weeks-openclaw-income-mar30",
+    "tw-1700-markaicode-5automations-moneymaking-openclaw-mar30",
+    "tw-1700-superframeworks-10ways-make-money-clawhub-mar30",
+    "tw-1700-tencent-lighthouse-passive-income-factory-mar30",
+    "tw-1700-cnbc-claude-computer-use-vs-openclaw-anthropic-mar30",
+    "tw-1700-mark-savant-youtube-700mrr-content-agent-mar30",
+    "tw-1700-openclaws-v20263.22-clawhub-subagent-control-mar30",
+    "tw-1700-aliyun-67pct-devs-openclaw-income-mar30",
+    "tw-1700-laozhang-browser-agent-3modes-token-save-mar30",
+    "tw-1700-tencent-openclaw-beats-react-github-no1-mar30",
+    "tw-1016-clawwork-hkuds-2579-hr-benchmark-apr1-mar31",
+    "tw-1016-openclaw-google-maps-local-biz-6agents-mar31",
+    "tw-1016-openclaw-subagent-parallel-3layer-content-mar31",
+    "tw-1016-openclaw-april2-tariff-positioning-portfolio-mar31",
+    "tw-1016-openclaw-cron-heartbeat-daily-brief-under1cent-mar31",
+    "tw-1016-openclaw-skill-stack-vertical-60x-realestate-mar31",
+    "tw-1016-openclaw-soul-md-memory-persistence-multiagent-mar31",
+    "tw-1016-openclaw-polymarket-arbitrage-xmayeth-formula-mar31",
+    "tw-1016-openclaw-browser-agent-price-monitor-ecommerce-mar31",
+    "tw-1016-openclaw-3agent-audit-cost-save-40pct-mar31",
+    "deep-1200-btc-67647-eth-2065-sol-8346-tariff-countdown-mar31",
+    "deep-1200-openclaw-hamburg-setup-night-mar31-global-meetup",
+    "deep-1200-trendmicro-trendai-openclaw-enterprise-security-mar31",
+    "deep-1200-microsoft-board-agents-fpa-controller-mar31-launch",
+    "deep-1200-nexthop-ai-500m-series-b-42b-ai-networking-mar10",
+    "deep-1200-washu-cart-tcell-fda-breakthrough-t-cell-cancer-mar26",
+    "deep-1200-openclaw-peter-steinberger-openai-creator-insight-mar31"
+  ],
+  "tw-1700-openclaw-nerve-dashboard-mission-control-mar25": {
+    "ts": 1774429330,
+    "slot": "1700"
+  },
+  "tw-1700-openclaw-318k-github-stars-multiagent-comm-mar25": {
+    "ts": 1774429330,
+    "slot": "1700"
+  },
+  "tw-1700-woshipm-openclaw-agent-scene-challenge-mar25": {
+    "ts": 1774429330,
+    "slot": "1700"
+  },
+  "tw-1700-openclaw-3-23-deepseek-qwen-openrouter-mar25": {
+    "ts": 1774429330,
+    "slot": "1700"
+  },
+  "tw-1700-openclaw-medical-869-skills-healthcare-mar25": {
+    "ts": 1774429330,
+    "slot": "1700"
+  },
+  "tw-1700-nvidia-premarket-q4-earnings-ai-chip-mar25": {
+    "ts": 1774429330,
+    "slot": "1700"
+  },
+  "tw-1700-msft-down-10pct-premarket-recovery-mar25": {
+    "ts": 1774429330,
+    "slot": "1700"
+  },
+  "tw-1700-openclaw-2036195789601374705": {
+    "ts": 1774430001,
+    "slot": "1700"
+  },
+  "tw-1700-openclaw-2032563054559326664": {
+    "ts": 1774430001,
+    "slot": "1700"
+  },
+  "tw-1700-openclaw-2034170507625697545": {
+    "ts": 1774430001,
+    "slot": "1700"
+  },
+  "tw-1700-openclaw-2034912881364672922": {
+    "ts": 1774430001,
+    "slot": "1700"
+  },
+  "tw-1700-openclaw-2035714854745710741": {
+    "ts": 1774430001,
+    "slot": "1700"
+  },
+  "tw-1700-openclaw-2031522059696951733": {
+    "ts": 1774430001,
+    "slot": "1700"
+  },
+  "tw-1700-openclaw-2032074102656418113": {
+    "ts": 1774430001,
+    "slot": "1700"
+  },
+  "tw-1700-openclaw-2032399594290630945": {
+    "ts": 1774430001,
+    "slot": "1700"
+  },
+  "tw-1700-openclaw-2033532901015642149": {
+    "ts": 1774430001,
+    "slot": "1700"
+  },
+  "tw-1700-openclaw-2028576159001121018": {
+    "ts": 1774430001,
+    "slot": "1700"
+  },
+  "note_1700": "1700 OpenClaw玩法精选 - claudeai computer use、Polymarket套利、177生产级Agent、小红书矩阵、Skill必装10件套",
+  "tw-0900-binance-ai-pro-openclaw-trading-agent-mar26": {
+    "ts": 1774487486,
+    "slot": "0900"
+  },
+  "tw-0900-levelsio-clawinho-self-earning-openclaw-mar26": {
+    "ts": 1774487486,
+    "slot": "0900"
+  },
+  "tw-0900-cashclaw-framework-make-money-openclaw-mar26": {
+    "ts": 1774487486,
+    "slot": "0900"
+  },
+  "tw-0900-steipete-codex-openclaw-plugin-bridge-mar26": {
+    "ts": 1774487486,
+    "slot": "0900"
+  },
+  "tw-0900-claude-code-auto-mode-2layer-safety-mar26": {
+    "ts": 1774487486,
+    "slot": "0900"
+  },
+  "tw-0900-anthropic-350b-valuation-10features-2weeks-mar26": {
+    "ts": 1774487486,
+    "slot": "0900"
+  },
+  "tw-0900-startupideaspod-agent-automation-compound-mar26": {
+    "ts": 1774487486,
+    "slot": "0900"
+  },
+  "tw-0900-openclaw-enterprise-feishu-digital-employee-mar26": {
+    "ts": 1774487486,
+    "slot": "0900"
+  },
+  "2026-03-26": [
+    "claudeai_2036195789601374705",
+    "SuisPasDaVinci_2030832001335329032",
+    "AYi_AInotes_2030488292299329841",
+    "davidonchainx_2036233287115460852",
+    "perplexity_ai_2031790180521427166",
+    "DataCamp_2033916326679359750",
+    "EMPIRE_MCP_2037021108331778334",
+    "jreuben1_claudecode_2037035836244475932",
+    "ruma_karpathy_smarthome_2037022771168092476",
+    "armadin_190m_funding_mar26",
+    "agentforge_solana_mar26",
+    "claudeai_2036850783526719610",
+    "xmayeth_2035741298066325773",
+    "JetBrains_Air_ADE_mar26",
+    "NVIDIA_VeraRubin_mar26",
+    "xmayeth_2029943091528950248",
+    "BentoBoiNFT_2033658026058789236",
+    "IndieDevHailey_2030545813299142860",
+    "TechAppTracker_denchclaw_2037092347096277204",
+    "xrplclaw_2036921255354654834",
+    "JulianGoldieSEO_manus_2037092194503581882",
+    "pop_ikeda_perplexity_computer_2037092203109986546",
+    "blerbznews_openclaw_guilttrap_2036869687519158342",
+    "The_AI_Protocol_200k_2037092146843365402",
+    "YourBuddyConner_valet_2037092279282999377",
+    "LMonkeyfuc90048_x_post_2037092300074213651"
+  ],
+  "note_1330_mar26": "1330 午间情报 - VibeCoding分类、Agent编排技能缺口、Claude Code预言、MCP护城河、Karpathy智能家居、Armadin1.9亿融资、AgentForge Solana",
+  "tw-1700-denchclaw-crm-openclaw-ph-mar26": {
+    "ts": 1774515840,
+    "slot": "1700"
+  },
+  "tw-1700-xrplclaw-trading-monitor-mar26": {
+    "ts": 1774515840,
+    "slot": "1700"
+  },
+  "tw-1700-manus-openclaw-competitor-meta-mar26": {
+    "ts": 1774515840,
+    "slot": "1700"
+  },
+  "tw-1700-perplexity-personal-computer-openclaw-mar26": {
+    "ts": 1774515840,
+    "slot": "1700"
+  },
+  "tw-1700-openclaw-guilt-trip-vulnerability-mar26": {
+    "ts": 1774515840,
+    "slot": "1700"
+  },
+  "tw-1700-openclaw-200k-instances-security-mar26": {
+    "ts": 1774515840,
+    "slot": "1700"
+  },
+  "tw-1700-valet-sandboxed-agent-orchestrator-mar26": {
+    "ts": 1774515840,
+    "slot": "1700"
+  },
+  "tw-1700-openclaw-x-post-ability-mar26": {
+    "ts": 1774515840,
+    "slot": "1700"
+  },
+  "note_1700_mar26": "1700 傍晚情报 - DenchClaw CRM上PH、XRPLClaw链上交易监控、Manus vs OpenClaw、Perplexity Personal Computer、200k裸奔实例安全警告、Valet沙箱Agent框架、OpenClaw接入X发帖能力",
+  "tw-1900-claude-computer-use-vs-openclaw-mar26": {
+    "ts": 1774523118,
+    "slot": "1900"
+  },
+  "tw-1900-sentinelone-snyk-ai-agent-security-rsac-mar26": {
+    "ts": 1774523118,
+    "slot": "1900"
+  },
+  "tw-1900-interloom-14m-seed-tacit-knowledge-mar26": {
+    "ts": 1774523118,
+    "slot": "1900"
+  },
+  "tw-1900-trace-3m-agent-observability-mar26": {
+    "ts": 1774523118,
+    "slot": "1900"
+  },
+  "tw-1900-openclaw-1000mrr-passive-income-reddit-mar26": {
+    "ts": 1774523118,
+    "slot": "1900"
+  },
+  "tw-1900-ascendis-transcon-cnp-fda-approved-mar26": {
+    "ts": 1774523118,
+    "slot": "1900"
+  },
+  "tw-1900-teclistamab-daratumumab-fda-myeloma-mar26": {
+    "ts": 1774523118,
+    "slot": "1900"
+  },
+  "note_1900_mar26": "1900 深度情报 - Claude电脑控制能力上线、SentinelOne+Snyk AI安全、Interloom €14M融资隐性知识、Trace $3M Agent可观测性、OpenClaw $1000MRR案例、TransCon CNP FDA批准、Teclistamab组合获批",
+  "note_0900_mar27": "0900早间情报 - Cursor Composer2用Kimi K2.5引爆争议、MIT BANDA Agent黑客松、Oracle企业Agent数据层、OpenClaw ClawTeam多Agent实操、被动收入案例",
+  "2026-03-27": [
+    "2035537088314290236",
+    "2026020486157865173",
+    "2028013619548406180",
+    "2032071257789976897",
+    "2026982903574606234",
+    "2027421224239005951",
+    "2036676954791842282",
+    "2037348884972974275",
+    "2034650814573346853",
+    "2037348918485524688",
+    "cisco-defenseclaw-launch-mar27",
+    "figma-canvas-agent-mar27",
+    "meta-rogue-agent-mar27",
+    "legora-550m-mar27",
+    "anthropic-pentagon-court-mar27",
+    "deep-1200-btc-68732-eth-2060-sol-8638-mar27",
+    "deep-1200-nvidia-nemoclaw-openclaw-stack-gtc-mar27",
+    "deep-1200-legora-550m-seriesd-legal-ai-mar27",
+    "deep-1200-laminar-3m-seed-agent-debugging-mar27",
+    "deep-1200-insilico-tenacia-cns-ai-drug-mar27",
+    "deep-1200-openclaw-33automations-moneymaking-guide-mar27",
+    "tw-1330-openclaw-per-agent-reasoning-gpt54-default-mar27",
+    "tw-1330-openclaw-vertical-skill-60x-markup-realestate-mar27",
+    "tw-1330-sharbel-agent-audit-skill-40pct-cost-save-mar27",
+    "tw-1330-btc-68780-eth-2063-sol-864-extremefear-mar27",
+    "tw-1330-circle-eliminate-gas-token-proposal-mar27",
+    "tw-1330-mcp-agent-framework-standard-wins-mar27",
+    "tw-1330-harvey-200m-11b-valuation-sequoia-gic-mar27",
+    "deep-1600-twak-trust-wallet-ai-agent-crypto-mar27",
+    "deep-1600-rsac2026-astrix-agent-security-mar27",
+    "deep-1600-openclaw-alibaba-cloud-ecs-tutorial-mar27",
+    "deep-1600-kachyng-acommerce-platform-mar27",
+    "deep-1600-bntx-bnt327-nsclc-data-mar27",
+    "deep-1600-n8n-3200-passive-income-template-mar27",
+    "tw-1600-minchoi-rip-openclaw-claude-cowork-mar27",
+    "tw-1600-ashen-one-no-longer-recommend-openclaw-mar27",
+    "tw-1600-nickvasiles-claude-code-openclaw-dual-agent-mar27",
+    "tw-1600-sharbel-youtube-monetized-openclaw-mar27",
+    "tw-1600-xmayeth-polymarket-1300-per-day-mar27",
+    "tw-1700-btc-68208-stoplos-027pct-usstock-open-mar27",
+    "tw-1700-harvey-200m-11b-sequoia-gic-legal-ai-mar27",
+    "tw-1700-openclaw-elite-tier-split-cowork-mar27",
+    "tw-1700-rsac2026-astrix-45m-agent-security-mar27",
+    "tw-1700-mcp-protocol-standard-wins-mar27",
+    "tw-1700-biontech-bnt327-insilico-tenacia-biotech-mar27",
+    "tw-1700-nvda-meta-gold-4440-premarket-mar27",
+    "tw-1700-minchoi-rip-openclaw-elite-split-mar27",
+    "tw-1700-nickvasiles-dual-agent-claude-code-openclaw-mar27",
+    "tw-1700-sharbel-youtube-monetized-cron-mar27",
+    "tw-1700-openclaw-per-agent-reasoning-control-v2-mar27",
+    "tw-1700-proptechsam-vertical-skill-60x-realestate-mar27",
+    "tw-1700-sharbel-agent-audit-skill-cost-save-v2-mar27",
+    "tw-1700-n8n-3200-passive-income-template-v2-mar27",
+    "tw-1700-alicloud-openclaw-tutorial-mar27",
+    "tw-1700-trustwallet-onchain-agent-openclaw-mar27",
+    "tw-1700-openclaw-33automations-guide-v2-mar27",
+    "deep-1900-btc-66400-eth-1988-sol-8308-extremefear-mar27",
+    "deep-1900-iran-oil-hawkish-fed-crypto-dump-mar27",
+    "deep-1900-openclaw-v20263.22-45features-clawhub-mar27",
+    "deep-1900-nscale-2b-seriec-gpu-cloud-uk-14b-mar27",
+    "deep-1900-edra-30m-seriesa-sequoia-palantir-rag-mar27",
+    "deep-1900-biontech-bnt327-elcc2026-nsclc-esclc-data-mar27",
+    "deep-1900-sequoia-services-new-software-ai-swallows-mar27"
+  ],
+  "note_1030_mar27": "1030深度情报 - CiscoDefenseClaw发布/Figma向Agent开放/Meta流氓Agent事件/Legora550M/Anthropic五角大楼诉讼/Capricor PDUFA8月/加密全线下跌",
+  "note_1200_mar27": "1200深度情报 - 加密全线下跌BTC68k/NVIDIA NemoClaw×OpenClaw/Legora550M/Laminar3M/Insilico CNS/OpenClaw赚钱33自动化",
+  "note_1330_mar27": "1330午间情报 - OpenClaw per-agent推理控制/垂直Skill暴利/AgentAudit省钱工具/加密极度恐慌BTC68k/Circle废Gas提案/MCP协议胜出/Harvey200M融资11B估值",
+  "note_1600_mar27": "1600傍晚热帖 - RIP OpenClaw争议/Claude Cowork取代论/双层Agent互修架构/YouTube变现/Polymarket鸡血帖",
+  "tw-1700-btc-68208-stoplos-027pct-usstock-open-mar27": {
+    "ts": 1774602112,
+    "slot": "1700"
+  },
+  "tw-1700-harvey-200m-11b-sequoia-gic-legal-ai-mar27": {
+    "ts": 1774602112,
+    "slot": "1700"
+  },
+  "tw-1700-openclaw-elite-tier-split-cowork-mar27": {
+    "ts": 1774602112,
+    "slot": "1700"
+  },
+  "tw-1700-rsac2026-astrix-45m-agent-security-mar27": {
+    "ts": 1774602112,
+    "slot": "1700"
+  },
+  "tw-1700-mcp-protocol-standard-wins-mar27": {
+    "ts": 1774602112,
+    "slot": "1700"
+  },
+  "tw-1700-biontech-bnt327-insilico-tenacia-biotech-mar27": {
+    "ts": 1774602112,
+    "slot": "1700"
+  },
+  "tw-1700-nvda-meta-gold-4440-premarket-mar27": {
+    "ts": 1774602112,
+    "slot": "1700"
+  },
+  "note_1700_mar27": "1700傍晚情报 - BTC止损0.27%极限预警/Harvey200M/OpenClaw精英化分化/RSAC安全融资/MCP标准化/BioNTech+Insilico/美股科技承压黄金440",
+  "tw-1700-minchoi-rip-openclaw-elite-split-mar27": {
+    "ts": 1774602356,
+    "slot": "1700"
+  },
+  "tw-1700-nickvasiles-dual-agent-claude-code-openclaw-mar27": {
+    "ts": 1774602356,
+    "slot": "1700"
+  },
+  "tw-1700-sharbel-youtube-monetized-cron-mar27": {
+    "ts": 1774602356,
+    "slot": "1700"
+  },
+  "tw-1700-openclaw-per-agent-reasoning-control-v2-mar27": {
+    "ts": 1774602356,
+    "slot": "1700"
+  },
+  "tw-1700-proptechsam-vertical-skill-60x-realestate-mar27": {
+    "ts": 1774602356,
+    "slot": "1700"
+  },
+  "tw-1700-sharbel-agent-audit-skill-cost-save-v2-mar27": {
+    "ts": 1774602356,
+    "slot": "1700"
+  },
+  "tw-1700-n8n-3200-passive-income-template-v2-mar27": {
+    "ts": 1774602356,
+    "slot": "1700"
+  },
+  "tw-1700-alicloud-openclaw-tutorial-mar27": {
+    "ts": 1774602356,
+    "slot": "1700"
+  },
+  "tw-1700-trustwallet-onchain-agent-openclaw-mar27": {
+    "ts": 1774602356,
+    "slot": "1700"
+  },
+  "tw-1700-openclaw-33automations-guide-v2-mar27": {
+    "ts": 1774602356,
+    "slot": "1700"
+  },
+  "note_1700_v2_mar27": "1700 OpenClaw玩法精选 - 精英分化/双Agent架构/YouTube变现/per-agent降本/垂直Skill暴利/Agent自审/n8n被动收入/阿里云教程/TrustWallet链上/33自动化合集",
+  "note_1900_mar27": "1900深度情报 - BTC66k/伊朗地缘+鹰派美联储致加密暴跌/OpenClaw v2026.3.22发布45+新功能/Nscale2B英国GPU云/Edra30M前Palantir知识检索/BioNTech BNT327 ELCC2026双数据",
+  "twitter": [
+    "tw_20260328_001",
+    "tw_20260328_002",
+    "tw_20260328_003",
+    "tw_20260328_004",
+    "tw_20260328_005",
+    "tw_20260328_006",
+    "tw_20260328_007",
+    "tw_20260328_008",
+    "tw_20260328_009",
+    "tw_20260328_010",
+    "tw_20260328_011",
+    "tw_20260328_012",
+    "tw_20260328_013",
+    "tw_20260328_014",
+    "tw_20260328_015",
+    "tw_20260328_016",
+    "tw_20260328_017"
+  ],
+  "last_twitter_report": "2026-03-30-1700",
+  "note_1000_mar28": "1000早间OpenClaw玩法精选 - 睡后收入/Make双向打通/三Agent仲裁/SOUL.md/法律合同/CKB变现/ComputerUse/竞情周报/个人CFO/推理分级降本",
+  "tw-1030-btc-66k-tariff-april2-fear-mar28": {
+    "ts": 1774665245,
+    "slot": "1030"
+  },
+  "tw-1030-isara-94m-openai-agent-coordinator-mar28": {
+    "ts": 1774665245,
+    "slot": "1030"
+  },
+  "tw-1030-nvo-awiqli-weekly-insulin-fda-mar28": {
+    "ts": 1774665245,
+    "slot": "1030"
+  },
+  "tw-1030-corcept-lifyorli-fda-ovarian-mar28": {
+    "ts": 1774665245,
+    "slot": "1030"
+  },
+  "tw-1030-yc-spring2026-rfs-ai-hedge-fund-mar28": {
+    "ts": 1774665245,
+    "slot": "1030"
+  },
+  "note_1030_mar28": "1030深度情报 - BTC66k关税恐慌/Isara94M OpenAI投Agent协调平台/NVO每周胰岛素获批/Corcept卵巢癌新药/YC Spring2026 RFS四大方向",
+  "2026-03-28": [
+    "deep-1200-btc-66169-eth-1987-sol-8256-tariff-iran-war-mar28",
+    "deep-1200-meta-12pct-drop-layoffs-court-addictive-mar28",
+    "deep-1200-sp500-7month-low-war-tariff-april2-fear-mar28",
+    "deep-1200-nivolumab-opdivo-hodgkin-lymphoma-fda-mar20-mar28",
+    "deep-1200-venturebeat-ai-agent-80-90pct-autonomy-prod-mar28",
+    "deep-1200-xmemory-token-cost-context-agent-mar28",
+    "deep-1200-stripe-10lessons-agentic-payments-march2026-mar28",
+    "deep-1200-openclaw-261plus-usecases-directory-foxes-mar28",
+    "deep-1200-reddit-openclaw-business-usecase-debate-mar28",
+    "deep-1400-btc-66307-eth-1993-sol-8268-tariff-fear-mar28",
+    "deep-1400-morgan-stanley-msbt-bitcoin-etf-014pct-apr2026-mar28",
+    "deep-1400-dash0-110m-series-b-unicorn-agentic-observability-mar28",
+    "deep-1400-parallel-20m-seriesa-ai-agent-hospital-mar28",
+    "deep-1400-openclaw-v2026322-clawhub-subagents-march-mar28",
+    "deep-1400-clawhub-security-silverfort-vulnerability-mar28",
+    "deep-1600-kresladi-fda-approved-rckt-gene-therapy-lad-mar28",
+    "deep-1600-wonderful-150m-agent-enterprise-2b-mar28",
+    "deep-1600-isara-94m-openai-swarm-agent-mar28",
+    "deep-1600-anaplan-agent-studio-enterprise-mar28",
+    "deep-1600-btc-66516-eth-2006-sol-8352-tariff-april2-mar28",
+    "tw-1700-hermes-agent-opensourced-memory-openclaw-mar28",
+    "tw-1700-sidbing-hermes-spawn-subagent-mar28",
+    "tw-1700-physical-intelligence-11b-funding-1b-round-mar28",
+    "tw-1700-krane-9m-ai-agent-construction-datacenter-mar28",
+    "tw-1700-sp500-50week-ma-broken-market-crash-continue-mar28",
+    "tw-1700-google-agent-smith-openai-spud-anthropic-mythos-leak-mar28",
+    "tw-1700-btc-stack-tariff-dip-holders-buy-mar28"
+  ],
+  "note_1400_mar28": "1400深度情报 - BTC66k关税恐慌/Morgan Stanley ETF 0.14%最低费率/Dash0 110M独角兽/Parallel医院Agent20M/OpenClaw v2026.3.22 ClawHub大更新/ClawHub安全漏洞",
+  "note_1600_mar28": "1600深度推送 - BTC66.5k关税恐慌/Wonderful 150M 2B估值企业Agent/Isara 94M OpenAI押注Swarm/Anaplan Agent Studio/KRESLADI FDA首批LAD-I基因疗法RCKT",
+  "note_1700_mar28": "1700傍晚情报 - Hermes Agent开源自学习内存系统/Physical Intelligence $1B/$11B/Krane建筑AI $9M/S&P500跌破50周均线/三大AI公司下代模型同时在路上/BTC关税抄底",
+  "note_1900_mar28": "1900深度情报 - Karpathy autoresearch 5.79万星自主研究Agent/Gemini 3.1 Flash Live音频对话/NYT硅谷两人团队革命/红旗×阿里云Qwen Agent上车/Sequoia服务即软件/OpenAI赢五角大楼Anthropic出局/OpenClaw monitoring agent misalignment",
+  "2026-03-29": [
+    "tw-0900-steipete-openai-openclaw-foundation-mar29",
+    "tw-0900-nvidia-nemoclaw-openclaw-cloud-mar29",
+    "tw-0900-iamlukethedev-multiagent-openclaw-connected-mar29",
+    "tw-0900-feishu-cli-opensource-agent-mar29",
+    "tw-0900-everestchris-openclaw-6agents-local-biz-mar29",
+    "tw-0900-xmayeth-openclaw-200-6700-polymarket-mar29",
+    "tw-0900-theallinpod-jensen-huang-openclaw-inflection-mar29",
+    "2036469677203796445",
+    "2034229168008003816",
+    "2037492277988479447",
+    "2036103404133740601",
+    "2036760722919575670",
+    "2033598141925364010",
+    "2034373670437519594",
+    "2037485584504275243",
+    "2036783780615303206",
+    "2037086386000716160",
+    "deep-1029-claude-computer-use-desktop-agent-anthropic-mar29",
+    "deep-1029-claude-gaining-openclaw-theinformation-competition-mar29",
+    "deep-1029-openclaw-google-ads-reddit-business-usecase-mar29",
+    "deep-1029-voltagent-awesome-openclaw-skills-github-mar29",
+    "deep-1029-btc-66618-eth-2004-sol-8252-weekend-tariff-mar29",
+    "deep-1029-april2-tariff-fear-crypto-market-weekend-mar29",
+    "deep-1029-openclaw-autonomous-ceo-10days-reddit-mar29",
+    "deep-1029-gpt54-gemini3-model-wars-multimodel-mar29",
+    "deep-1200-interloom-16m-tacit-knowledge-agent-mar29",
+    "deep-1200-agentmail-6m-email-infrastructure-mar29",
+    "deep-1200-lio-30m-a16z-procurement-mar29",
+    "deep-1200-merck-mk0616-coralreef-phase3-mar29",
+    "deep-1200-voxtral-tts-mistral-open-source-mar29",
+    "deep-1200-reddit-openclaw-4biz-models-mar29",
+    "deep-1200-btc-66865-eth-2009-sol-8294-tariff-apr2-mar29",
+    "tw-1330-glm51-zai-opensource-coding-mar29",
+    "tw-1330-binance-aipro-memecoin-bait-autonomous-mar29",
+    "tw-1330-binance-official-ai-agent-trading-mar29",
+    "tw-1330-juliangoldie-claw-flows-111-workflows-mar29",
+    "tw-1330-openclaw-vibe-code-AI-models-mar29",
+    "tw-1330-jasonlk-openclaw-data-leak-warning-mar29",
+    "tw-1330-playcode-ai-website-builder-ph-mar29",
+    "deep-1600-google-gemini-ban-openclaw-tos-agent-mar29",
+    "deep-1600-arc-agi2-leaderboard-gpt51-grok4-opus45-mar29",
+    "deep-1600-otsuka-transcend-700m-tsnd201-neuroplastogen-confirm-mar29",
+    "deep-1600-btc-66622-eth-2005-sol-8245-tariff-countdown-mar29",
+    "deep-1600-biontech-bnt327-phase3-tracking-mar29",
+    "deep-1600-startup-larry-vc-pipeline-openclaw-podcast-mar29"
+  ],
+  "note_0900_mar29": "0900早间情报 - steipete加入OpenAI/OpenClaw独立/NVIDIA NemoClaw发布/飞书CLI开源/多Agent互联突破/本地商业bot玩法/Polymarket套利6700美元叙事体",
+  "note_1016_mar29": "1016 OpenClaw玩法精选 - YuLin807工具链三件套(feedgrab/lan-control/AutoLoop)/x-tweet-fetcher2.0/Chat CRM变现/44万粉教程/公益场景/云部署踩坑/RunClaw竞品/Agent身份验证",
+  "note_1029_mar29": "1029深度情报 - Claude Computer Use桌面控制发布/Claude追赶OpenClaw/OpenClaw Google Ads实战/VoltAgent Skill库/BTC66k周末低迷/4月2日关税恐慌/OpenClaw自主CEO10天实验/模型大战GPT5.4 vs Gemini3",
+  "note_1200_mar29": "1200深度情报 - Interloom隐性知识Agent16.5M/AgentMail邮件基础设施6M/Lio采购自动化30M(a16z)/MRK MK-0616口服PCSK9 Phase3读出/Voxtral TTS开源/OpenClaw4种商业模式/BTC66k关税恐慌",
+  "note_1330_mar29": "1330午间情报 - Binance AI Pro自主造币BAIT/GLM-5.1开源对标ClaudeOpus4.6/Claw Flows 111工作流变现/Jason Lemkin Agent数据泄露警告/PlayCode AI建站PH",
+  "note_1400_mar29": "1400深度情报 - BTC $83k关税倒计时/Isara$94M OpenAI入股/Lyzr$250M估值/VentureBeat Agent自主化/Corcept Lifyorli FDA批准/Otsuka$7亿收购Transcend神经可塑原",
+  "tw-1400-isara-94m-openai-invest-agent-coordinator-mar29": {
+    "user": "mlq/thenextweb",
+    "text": "Isara raised $94M at $650M valuation, OpenAI invested, AI agent swarms",
+    "sent": true
+  },
+  "tw-1400-lyzr-250m-agentic-os-enterprise-mar29": {
+    "user": "heraldtribune",
+    "text": "Lyzr AI $250M valuation Series A+",
+    "sent": true
+  },
+  "tw-1400-otsuka-transcend-700m-neuroplastogen-mar29": {
+    "user": "thepharmaletter",
+    "text": "Otsuka acquires Transcend $700M+$525M neuroplastogens TSND-201",
+    "sent": true
+  },
+  "tw-1400-corcept-lifyorli-fda-ovarian-repeat-mar29": "skip-already-sent-in-am",
+  "tw-1400-voltAgent-skill-library-update-mar29": {
+    "user": "github.com/VoltAgent",
+    "text": "awesome-openclaw-skills updated 3 days ago",
+    "sent": true
+  },
+  "note_1600_mar29": "1600深度情报 - Google封禁OpenClaw用户Gemini API/ARC-AGI2榜GPT-5.1登顶Grok4第二Opus4.5第三/4月2日关税倒计时BTC66k/Otsuka收购Transcend神经可塑原/模型代际加速洞察",
+  "tw-1700-openclaw-v2026328-plugin-hooks-xai-clawcon-tokyo-mar29": {
+    "user": "OpenClaw/@OpenClaw",
+    "text": "OpenClaw v2026.3.28: plugin approval hooks, xAI Grok x_search integration, ACP bindings, Tokyo ClawCon Camp",
+    "sent": true
+  },
+  "tw-1700-bezos-100b-manufacturing-ai-fund-prometheus-mar29": {
+    "user": "TechCrunch/reuters",
+    "text": "Bezos raising $100B Manufacturing Transformation Vehicle fund, AI replacing factory workers",
+    "sent": true
+  },
+  "tw-1700-openai-supperapp-chatgpt-codex-merge-astral-google-firebase-mar29": {
+    "user": "TheNeuronDaily",
+    "text": "OpenAI merging ChatGPT+Codex super-app, acquires Astral; Google AI Studio Antigravity+Firebase full-stack",
+    "sent": true
+  },
+  "tw-1700-tariff-april2-liberation-day-btc-66k-premarket-mar29": {
+    "user": "CoinTelegraph/MSN",
+    "text": "April 2 tariff Liberation Day countdown, BTC $66k range, stock market premarket pressure",
+    "sent": true
+  },
+  "note_1700_mar29": "OpenClaw v2026.3.28发布+东京ClawCon/Bezos $1000亿制造业AI基金/OpenAI超级App合并ChatGPT+Codex/关税4/2解放日压力BTC66k",
+  "deep-1900-claude-computer-use-desktop-phone-trigger-mar29": {
+    "title": "Claude Computer Use手机触发桌面执行",
+    "source": "CNBC/Anthropic",
+    "sent": true
+  },
+  "deep-1900-microsoft-365-frontier-suite-agent365-mar29": {
+    "title": "Microsoft 365 Frontier Suite + Agent 365控制平台",
+    "source": "Microsoft Blog",
+    "sent": true
+  },
+  "deep-1900-teclistamab-daratumumab-fda-myeloma-mar29": {
+    "title": "FDA批准Teclistamab+Daratumumab多发性骨髓瘤联合方案",
+    "source": "FDA",
+    "sent": true
+  },
+  "deep-1900-agentic-ai-security-3b6-funding-2026-mar29": {
+    "title": "2026 Agentic AI安全赛道$36亿融资 Torq WitnessAI Noma",
+    "source": "SoftwareStrategiesBlog",
+    "sent": true
+  },
+  "deep-1900-btc-66468-eth-1994-sol-8214-tariff-countdown-mar29": {
+    "title": "BTC $66,468 / ETH $1,994 / SOL $82 关税倒计时72小时",
+    "source": "CoinGecko",
+    "sent": true
+  },
+  "deep-1900-openclaw-turo-business-ai-automation-mar29": {
+    "title": "Turo车主用OpenClaw自动化经营副业案例",
+    "source": "Facebook/Reddit",
+    "sent": true
+  },
+  "deep-1900-gpt54-apex-agents-top-benchmark-mar29": {
+    "title": "GPT-5.4登顶APEX-Agents专业基准 law+finance双冠",
+    "source": "OpenAI/TheNextWeb",
+    "sent": true
+  },
+  "note_1900_mar29": "1900深度情报 - Claude手机触发电脑执行/Microsoft Frontier Suite+Agent365/FDA批Teclistamab多骨髓瘤/Agentic安全赛道$36亿/BTC66k关税72h倒计时/Turo+OpenClaw副业案例/GPT-5.4 APEX登顶",
+  "2026-03-30": [
+    "tw-0900-network-error-fallback-rolling-summary-mar30",
+    "tw-0900-april2-tariff-48h-btc-66k-countdown-mar30",
+    "tw-0900-openai-superapp-chatgpt-codex-astral-mar30",
+    "tw-0900-msft-agent365-frontier-suite-mar30",
+    "tw-0900-gpt54-apex-agents-leaderboard-mar30",
+    "tw-0900-physical-intelligence-11b-1b-round-mar30",
+    "tw-1030-openclaw-weixin-cli-gpuhell-mar30",
+    "tw-1030-cccbot-lucianlamp-mar30",
+    "tw-1030-grok420-multiagent-chinazoro-mar30",
+    "scan-1008-portfolio-3accts-mar30",
+    "tw-1016-openclaw-weixin-cli-gpuhell-mar30",
+    "tw-1016-cccbot-lucianlamp-chainagent-mar30",
+    "tw-1016-grok420-multiagent-chinazoro-mar30",
+    "tw-1016-isara-2000agent-openai-invest-mar30",
+    "tw-1016-claude-phone-trigger-desktop-mar30",
+    "tw-1016-openclaw-v20263.28-grok-plugin-mar30",
+    "tw-1016-openclaw-261usecases-fox-dir-mar30",
+    "tw-1016-drchintandave-medical-researcher-mar30",
+    "tw-1016-msft-agent365-enterprise-mar30",
+    "tw-1016-bezos-100b-manufacturing-ai-mar30",
+    "1200-deep-intel-tariff-btc-ai-mar30",
+    "deep-1200-clawwork-hkuds-ai-coworker-15k-11h-mar30",
+    "deep-1200-legora-550m-seriesd-5b-legal-ai-mar30",
+    "deep-1200-gpt54-mini-nano-openai-mar30",
+    "deep-1200-washu-cart-tcell-fda-breakthrough-mar30",
+    "deep-1200-alzheimer-nature-drug-review-mar30",
+    "deep-1200-tomtunguz-agents-outearn-people-2026-mar30",
+    "deep-1200-openclaw-president-brief-medium-mar30",
+    "deep-1200-btc-67k-eth-2035-tariff-48h-mar30",
+    "tw-1330-btc-67590-court-tariff-rebound-mar30",
+    "tw-1330-jensen-agi-achieved-nvda-openai-1t-mar30",
+    "tw-1330-clawwork-hkuds-15k-11h-closedloop-mar30",
+    "tw-1330-legora-550m-d-5b-legalai-mar30",
+    "tw-1330-gpt54-mini-nano-arcagi2-leaderboard-mar30",
+    "tw-1330-tunguz-agents-outearn-humans-2026-mar30",
+    "tw-1330-washu-cart-tcell-fda-breakthrough-mar30",
+    "deep-1400-openclaw-3.28-migration-report-towardsai-mar30",
+    "deep-1400-merck-terns-67b-tern701-hematology-mar30",
+    "deep-1400-denali-dnl310-hunter-syndrome-fda-approved-mar30",
+    "deep-1400-ai-security-36b-funding-torq-witnessai-noma-mar30",
+    "deep-1400-tunguz-agent-income-vc-series-ab-logic-mar30",
+    "deep-1400-btc-67462-eth-2047-sol-836-tariff-t48h-mar30",
+    "deep-1400-reddit-openclaw-enterprise-1pct-closedloop-mar30",
+    "deep-1600-btc-67516-tariff-t36h-liberation-day-mar30",
+    "deep-1600-jensen-huang-agi-achieved-lex-fridman-mar30",
+    "deep-1600-figma-canvas-agents-mcp-server-open-mar30",
+    "deep-1600-datadog-mcp-server-ai-agents-mar9-mar30",
+    "deep-1600-okta-ai-agents-identity-blueprint-apr30-mar30",
+    "deep-1600-openclaw-reddit-making-money-github-pr-mar30",
+    "deep-1600-hbr-agentic-ai-brand-consumer-mar30",
+    "deep-1600-msft-dynamics-2026-wave1-ai-agents-mar30",
+    "tw-1700-anthropic-march-madcap-14launches-5outages-mcp97m-mar30",
+    "tw-1700-claude-computer-use-vs-openclaw-cnbc-competition-mar30",
+    "tw-1700-anthropic-380b-series-g-openai-vs-anthropic-mar30",
+    "tw-1700-grok4-api-aicc-2026-benchmark-comparison-mar30",
+    "tw-1700-btc-67k-tariff-liberation-t36h-premarket-signal-mar30",
+    "tw-1700-enterprise-ai-agents-stop-waiting-techradar-mar30",
+    "tw-1700-openclaw-36kr-github-stars-no1-history-linux-mar30",
+    "tw-1700-felix-craft-14718-25weeks-openclaw-income-mar30",
+    "tw-1700-markaicode-5automations-moneymaking-openclaw-mar30",
+    "tw-1700-superframeworks-10ways-make-money-clawhub-mar30",
+    "tw-1700-tencent-lighthouse-passive-income-factory-mar30",
+    "tw-1700-cnbc-claude-computer-use-vs-openclaw-anthropic-mar30",
+    "tw-1700-mark-savant-youtube-700mrr-content-agent-mar30",
+    "tw-1700-openclaws-v20263.22-clawhub-subagent-control-mar30",
+    "tw-1700-aliyun-67pct-devs-openclaw-income-mar30",
+    "tw-1700-laozhang-browser-agent-3modes-token-save-mar30",
+    "tw-1700-tencent-openclaw-beats-react-github-no1-mar30"
+  ],
+  "note_1016_mar30": "1016 OpenClaw玩法精选 - 网络受限(AISA余额耗尽+API全断)，基于缓存信号：openclaw-weixin/CCCBot链上三层/Grok4.20对标/2000-Agent蜂群/Claude手机触发/v2026.3.28/261用例目录/医学研究员/MS Agent365/Bezos制造业AI基金",
+  "deep-1200-clawwork-hkuds-ai-coworker-15k-11h-mar30": {
+    "title": "ClawWork HKUDS OpenClaw变赚钱机器 $15K/11h",
+    "source": "github.com/HKUDS/ClawWork",
+    "sent": true
+  },
+  "deep-1200-legora-550m-seriesd-5b-legal-ai-mar30": {
+    "title": "Legora $550M D轮 $5.55B估值法律AI",
+    "source": "Sifted",
+    "sent": true
+  },
+  "deep-1200-gpt54-mini-nano-openai-mar30": {
+    "title": "GPT-5.4 mini/nano上线 mini准确率75%",
+    "source": "OpenAI",
+    "sent": true
+  },
+  "deep-1200-washu-cart-tcell-fda-breakthrough-mar30": {
+    "title": "WashU CAR-T T细胞癌FDA突破性认定 Wugen",
+    "source": "WashU Medicine",
+    "sent": true
+  },
+  "deep-1200-alzheimer-nature-drug-review-mar30": {
+    "title": "Alzheimer药物30年创新综述 Nature",
+    "source": "Nature s44386-026",
+    "sent": true
+  },
+  "deep-1200-tomtunguz-agents-outearn-people-2026-mar30": {
+    "title": "Tomasz Tunguz: AI agents将超越人类收入 Series A/B膨胀分析",
+    "source": "tomtunguz.com",
+    "sent": true
+  },
+  "deep-1200-openclaw-president-brief-medium-mar30": {
+    "title": "OpenClaw总统级每日简报玩法 <$0.1/天",
+    "source": "Medium",
+    "sent": true
+  },
+  "deep-1200-btc-67k-eth-2035-tariff-48h-mar30": {
+    "title": "BTC $67k ETH $2035 关税4/2解放日T-48h",
+    "source": "CoinGecko",
+    "sent": true
+  },
+  "note_1200_mar30": "1200深度 - ClawWork闭环赚钱/Legora $5.55B法律AI/GPT-5.4mini75%/WashU CAR-T FDA突破/Alzheimer Nature综述/Tunguz agents超人类/OpenClaw总统简报/BTC67k关税T-48h",
+  "note_1700_mar30": "1700傍晚情报 - Anthropic三月14+发布MCP97M/Claude vs OpenClaw竞争CNBC/Anthropic $3800亿G轮/2026 API四强格局/美股关税T-36h/企业AI Agent进入生产/OpenClaw超越Linux登顶GitHub史上最多Star",
+  "deep-1900-btc-67434-eth-2055-sol-8383-tariff-t36h-mar30": {
+    "sent": true
+  },
+  "deep-1900-nvda-16892-msft-tariff-mar27-mar30": {
+    "sent": true
+  },
+  "deep-1900-shieldai-2b-raise-127b-val-military-drones-mar30": {
+    "sent": true
+  },
+  "deep-1900-clawsecure-nist-ai-rmf-openclaw-agents-mar30": {
+    "sent": true
+  },
+  "deep-1900-china-ban-openclaw-stateowned-bloomberg-mar30": {
+    "sent": true
+  },
+  "deep-1900-nivolumab-fda-hodgkin-lymphoma-bms-mar30": {
+    "sent": true
+  },
+  "deep-1900-teclistamab-daratumumab-fda-myeloma-mar30": {
+    "sent": true
+  },
+  "deep-1900-medium-4models-openclaw-income-mar30": {
+    "sent": true
+  },
+  "deep-1900-n8n-8k-month-workflow-client-mar30": {
+    "sent": true
+  },
+  "deep-1900-intel-push-1900-mar30": {
+    "sent": true
+  },
+  "twitter-morning-0900-mar31-2026": {
+    "title": "Twitter早间情报 3月31日 - 关税T-1/Claude Code vs OpenClaw/GPT-5.4 Opus4.6 Gemini3.1/Nvidia H200",
+    "sent": true,
+    "time": "2026-03-31T09:05+08:00"
+  },
+  "note_0900_mar31": "9点早报 - 关税4/2解放日T-1/Anthropic Claude Code Channels威胁OpenClaw/三大旗舰GPT-5.4+Opus4.6+Gemini3.1/OpenAI融资1100亿/Nvidia H200重启中国",
+  "note_1016_mar31": "1016 OpenClaw玩法精选(网络断/本地知识) - ClawWork $2579/hr Agent时薪/本地商家建站6Agent/三层内容流水线/关税抄底positioning/日报$0.01/垂直Skill暴利/SOUL.md多Agent一致性/Polymarket套利/Browser价格监控/Agent自审省40%",
+  "2026-03-31": [
+    "tw-1016-clawwork-hkuds-2579-hr-benchmark-apr1-mar31",
+    "tw-1016-openclaw-google-maps-local-biz-6agents-mar31",
+    "tw-1016-openclaw-subagent-parallel-3layer-content-mar31",
+    "tw-1016-openclaw-april2-tariff-positioning-portfolio-mar31",
+    "tw-1016-openclaw-cron-heartbeat-daily-brief-under1cent-mar31",
+    "tw-1016-openclaw-skill-stack-vertical-60x-realestate-mar31",
+    "tw-1016-openclaw-soul-md-memory-persistence-multiagent-mar31",
+    "tw-1016-openclaw-polymarket-arbitrage-xmayeth-formula-mar31",
+    "tw-1016-openclaw-browser-agent-price-monitor-ecommerce-mar31",
+    "tw-1016-openclaw-3agent-audit-cost-save-40pct-mar31",
+    "deep-1000-nvidia-nemoclaw-openclaw-gtc-mar31",
+    "deep-1000-temporal-300m-5b-ai-reliability-mar31",
+    "deep-1000-yc-spring26-ai-native-agencies-mar31",
+    "deep-1000-productized-ai-agency-retainer-model-mar31",
+    "deep-1000-siren-bio-aav-glioma-ind-mar31",
+    "deep-1000-btc-67983-tariff-t1-liberation-day-mar31",
+    "tw-1330-karpathy-vibe-coding-dead-agentic-engineering-mar31",
+    "tw-1330-claude-code-cursor-codex-2026-ranking-mar31",
+    "tw-1330-btc-67813-q1-close-tariff-t20h-mar31",
+    "tw-1330-solana-meme-coin-36b-dex-collapse-mar31",
+    "tw-1330-openclaw-multiagent-cn-dev-20k-stars-mar31",
+    "tw-1330-openclaw-34-usecases-community-guide-mar31",
+    "tw-1330-cursor-full-stack-mcp-plugin-mar31",
+    "deep-1400-wonderful-ai-agent-129m-seriesb-amsterdam-mar31",
+    "deep-1400-isara-94m-openai-agent-swarms-mar31",
+    "deep-1400-gumloop-50m-seriesb-workflow-mar31",
+    "deep-1400-natEliason-felix-openclaw-177k-business-mar31",
+    "deep-1400-ark-invest-nvidia-ai-infra-software-revenue-mar31",
+    "deep-1400-denali-avlayah-hunter-syndrome-fda-mar25-mar31",
+    "deep-1400-viridian-veligrotug-TED-fda-pdufa-jun30-mar31",
+    "deep-1400-btc-67618-q1-close-tariff-t1day-mar31",
+    "deep-1600-sycamore-65m-seed-coatue-lightspeed-enterprise-agent-os-mar31",
+    "deep-1600-harvard-hks-openclaw-paradox-china-labor-apr9-mar31",
+    "deep-1600-btc-67294-eth-2053-sol-8301-q1-end-tariff-t0-mar31",
+    "deep-1600-isgf-india-openclaw-training-apr17-mar31",
+    "deep-1600-tfsf-ventures-ai-studio-ranking-mar31",
+    "deep-1600-nvda-16352-afterhours-q1close-mar31",
+    "deep-1600-fda-siren-bio-aav-glioma-ind-mar23-mar31",
+    "tw-1700-openclaw-q1-finale-tariff-t0-mar31",
+    "tw-1700-clawwork-hkuds-19915-atic-qwen-mar31",
+    "tw-1700-openclaw-sycamore-65m-enterprise-agent-os-mar31",
+    "tw-1700-openclaw-soul-md-consistency-multiagent-case-mar31",
+    "tw-1700-openclaw-gumloop-50m-automation-stack-mar31",
+    "tw-1700-openclaw-felix-nat-177k-autorun-mar31",
+    "tw-1700-openclaw-cron-skill-combo-7tasks-1cent-mar31",
+    "tw-1700-openclaw-vertical-real-estate-skill-60x-mar31",
+    "tw-1700-openclaw-3layer-content-pipeline-mrr-mar31",
+    "tw-1700-openclaw-agent-audit-40pct-cost-save-method-mar31"
+  ],
+  "deep-1000-nvidia-nemoclaw-openclaw-gtc-mar31": {
+    "sent": true
+  },
+  "deep-1000-temporal-300m-5b-ai-reliability-mar31": {
+    "sent": true
+  },
+  "deep-1000-yc-spring26-ai-native-agencies-mar31": {
+    "sent": true
+  },
+  "deep-1000-productized-ai-agency-retainer-model-mar31": {
+    "sent": true
+  },
+  "deep-1000-siren-bio-aav-glioma-ind-mar31": {
+    "sent": true
+  },
+  "deep-1000-btc-67983-tariff-t1-liberation-day-mar31": {
+    "sent": true
+  },
+  "note_1000_mar31": "10点深度推送 - NVIDIA NemoClaw GTC发布/Temporal $300M $5B AI可靠性/YC春2026 AI原生机构/产品化AI服务铁律/Siren Bio AAV基因疗法IND/BTC$67983关税T-1解放日",
+  "note_1330_mar31": "1330午间情报 - Karpathy宣判VibeCoding过时/ClaudeCode>Cursor>Codex格局/BTC67813季末关税T20h/Solana meme崩36B/OpenClaw中文多Agent浪潮/34个真实用例/Cursor全栈MCP",
+  "deep-1400-wonderful-ai-agent-129m-seriesb-amsterdam-mar31": {
+    "title": "Wonderful AI Agent €129.8M Series B €1.7B估值 阿姆斯特丹企业AI",
+    "source": "EU-Startups/LinkedIn",
+    "sent": true
+  },
+  "deep-1400-isara-94m-openai-agent-swarms-mar31": {
+    "title": "Isara $94M OpenAI参投 Agent Swarms $650M估值",
+    "source": "TechFundingNews",
+    "sent": true
+  },
+  "deep-1400-gumloop-50m-seriesb-workflow-mar31": {
+    "title": "Gumloop $50M Series B 企业AI工作流",
+    "source": "ubos.tech",
+    "sent": true
+  },
+  "deep-1400-natEliason-felix-openclaw-177k-business-mar31": {
+    "title": "Nat Eliason Felix OpenClaw赚$177k自主AI创业案例",
+    "source": "creatoreconomy.so/bankless",
+    "sent": true
+  },
+  "deep-1400-ark-invest-nvidia-ai-infra-software-revenue-mar31": {
+    "title": "ARK Invest: AI基础设施状态报告 Nvidia企业软件收入",
+    "source": "ARK Invest",
+    "sent": true
+  },
+  "deep-1400-denali-avlayah-hunter-syndrome-fda-mar25-mar31": {
+    "title": "Denali AVLAYAH FDA批准 Hunter综合征血脑屏障突破",
+    "source": "FDA/Nature",
+    "sent": true
+  },
+  "deep-1400-viridian-veligrotug-TED-fda-pdufa-jun30-mar31": {
+    "title": "Viridian veligrotug甲状腺眼病FDA优先审评PDUFA 6/30",
+    "source": "biopharmadive",
+    "sent": true
+  },
+  "deep-1400-btc-67618-q1-close-tariff-t1day-mar31": {
+    "title": "BTC$67618 Q1末尾关税T-1解放日前夜行情",
+    "source": "CoinGecko",
+    "sent": true
+  },
+  "note_1400_mar31": "1400深度 - Wonderful €129.8M Series B/Isara $94M OpenAI参投/Gumloop $50M/Felix OpenClaw赚$177k/ARK AI基础设施报告/Denali AVLAYAH FDA批准Hunter综/Viridian veligrotug PDUFA 6-30/BTC67618关税T-1",
+  "deep-1600-sycamore-65m-seed-coatue-lightspeed-enterprise-agent-os-mar31": {
+    "sent": true
+  },
+  "deep-1600-harvard-hks-openclaw-paradox-china-labor-apr9-mar31": {
+    "sent": true
+  },
+  "deep-1600-btc-67294-eth-2053-sol-8301-q1-end-tariff-t0-mar31": {
+    "sent": true
+  },
+  "deep-1600-isgf-india-openclaw-training-apr17-mar31": {
+    "sent": true
+  },
+  "deep-1600-tfsf-ventures-ai-studio-ranking-mar31": {
+    "sent": true
+  },
+  "deep-1600-nvda-16352-afterhours-q1close-mar31": {
+    "sent": true
+  },
+  "deep-1600-fda-siren-bio-aav-glioma-ind-mar23-mar31": {
+    "sent": true
+  },
+  "note_1600_mar31": "1600深度推送 - Sycamore $65M Coatue+Lightspeed企业Agent OS/哈佛HKS OpenClaw悖论研究/BTC67k SOL83 Q1末关税T-0/印度ISGF OpenClaw培训/TFSF AI风险工作室排名/Siren Bio IND获批",
+  "sent": [
+    {
+      "date": "2026-03-31",
+      "time": "17:00",
+      "topic": "Twitter傍晚情报：Q1最差季度收官/BTC恐惧指数11/OpenClaw 28万Stars/AI融资爆发",
+      "type": "17点推送"
+    },
+    {
+      "date": "2026-03-31",
+      "time": "17:13",
+      "topic": "tw-1700 OpenClaw玩法精选 Q1末/ClawWork/Sycamore/三层内容流水线",
+      "type": "1700玩法精选"
+    }
+  ],
+  "deep-1900-meta-tobacco-280b-decline-social-media-mar31": {
+    "title": "Meta $280B市值蒸发 Tobacco Moment 社媒监管风险",
+    "source": "Japan Times/letsdatascience.com",
+    "sent": true
+  },
+  "deep-1900-openclaw-creator-tokyo-japan-pitch-mar31": {
+    "title": "OpenClaw创始人访问东京推广AI Agent生活管家",
+    "source": "Japan Times",
+    "sent": true
+  },
+  "deep-1900-genspark-claw-hosted-openclaw-review-mar31": {
+    "title": "GenSpark Claw托管版OpenClaw实测评测成本分析",
+    "source": "Instagram/Threads/Facebook",
+    "sent": true
+  },
+  "deep-1900-ema-chmp-5medicines-mar2026-mar31": {
+    "title": "EMA CHMP推荐5款新药批准欧盟市场 3月会议",
+    "source": "EMA/FirstWordPharma",
+    "sent": true
+  },
+  "deep-1900-teclistamab-daratumumab-fda-myeloma-mar5-mar31": {
+    "title": "Teclistamab+Daratumumab FDA批准 复发/难治多发性骨髓瘤",
+    "source": "FDA/OncNursingNews",
+    "sent": true
+  },
+  "deep-1900-btc-66307-q1end-tariff-eve-mar31": {
+    "title": "BTC$66307 ETH$2024 SOL$80.5 关税解放日前夜Q1收官",
+    "source": "CoinGecko",
+    "sent": true
+  },
+  "note_1900_mar31": "Q1尾盘行情: BTC66307/ETH2024/SOL80.5 关税T-0晚/Meta烟草时刻280B蒸发/OpenClaw创始人东京/GenSpark Claw托管评测/EMA5新药/Teclistamab FDA批准RRMM"
+}

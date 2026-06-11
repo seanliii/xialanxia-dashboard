@@ -1,0 +1,355 @@
+{
+  "date": "2026-03-18",
+  "top_funds": [
+    {
+      "rank": 1,
+      "name": "Duquesne Family Office",
+      "manager": "Stanley Druckenmiller",
+      "annual_ret": "22.5%",
+      "win_rate": "66.6%"
+    },
+    {
+      "rank": 2,
+      "name": "APG Asset Management",
+      "manager": "APG Team",
+      "annual_ret": "7.7%",
+      "win_rate": "65.0%"
+    },
+    {
+      "rank": 3,
+      "name": "Renaissance Technologies",
+      "manager": "Jim Simons",
+      "annual_ret": "22.4%",
+      "win_rate": "64.7%"
+    },
+    {
+      "rank": 4,
+      "name": "Berkshire Hathaway",
+      "manager": "Warren Buffett",
+      "annual_ret": "14.9%",
+      "win_rate": "64.5%"
+    },
+    {
+      "rank": 5,
+      "name": "PIMCO",
+      "manager": "Dan Ivascyn",
+      "annual_ret": "16.9%",
+      "win_rate": "64.5%"
+    }
+  ],
+  "buffett_analysis": [
+    {
+      "ticker": "AAPL",
+      "price": 254.23,
+      "chg": 0.5,
+      "top_holder": "Cacti Asset Management Llc",
+      "pct": 53.1,
+      "report_period": "2025-12-31"
+    },
+    {
+      "ticker": "BAC",
+      "price": 47.28,
+      "chg": -0.8,
+      "top_holder": "Adams Asset Advisors Llc",
+      "pct": 37.8,
+      "report_period": "2025-06-30"
+    },
+    {
+      "ticker": "CVX",
+      "price": 197.97,
+      "chg": 0.25,
+      "top_holder": "Insight Wealth Strategies Llc",
+      "pct": 53.8,
+      "report_period": "2025-12-31"
+    },
+    {
+      "ticker": "OXY",
+      "price": 57.73,
+      "chg": 0.42,
+      "top_holder": "Procyon Advisors Llc",
+      "pct": 65.7,
+      "report_period": "2025-06-30"
+    },
+    {
+      "ticker": "MA",
+      "price": 506.58,
+      "chg": -0.78,
+      "top_holder": "Confluence Investment Management Llc",
+      "pct": 88.1,
+      "report_period": "2025-06-30"
+    },
+    {
+      "ticker": "ABBV",
+      "price": 219.76,
+      "chg": -1.03,
+      "top_holder": "Parallel Advisors Llc",
+      "pct": 34.0,
+      "report_period": "2025-06-30"
+    },
+    {
+      "ticker": "PEP",
+      "price": 156.5,
+      "chg": -1.47,
+      "top_holder": "Confluence Investment Management Llc",
+      "pct": 80.9,
+      "report_period": "2025-06-30"
+    }
+  ],
+  "small_cap_top5": [
+    {
+      "ticker": "HIMS",
+      "price": 24.98,
+      "chg": 1.77,
+      "upside": 17.6,
+      "target": 29.39,
+      "score": 35,
+      "action": "关注",
+      "inst_count": 5,
+      "buy_count": 0,
+      "insider_signal": "❄️卖出",
+      "top_buyer": "",
+      "top_inst": "Fiduciary Alliance Llc"
+    },
+    {
+      "ticker": "RVLV",
+      "price": 23.19,
+      "chg": -0.02,
+      "upside": 10.3,
+      "target": 25.59,
+      "score": 20,
+      "action": "关注",
+      "inst_count": 3,
+      "buy_count": 0,
+      "insider_signal": "❄️卖出",
+      "top_buyer": "",
+      "top_inst": "Bloombergsen Inc"
+    },
+    {
+      "ticker": "SOFI",
+      "price": 17.37,
+      "chg": -1.98,
+      "upside": 0,
+      "target": 0,
+      "score": 10,
+      "action": "关注",
+      "inst_count": 0,
+      "buy_count": 0,
+      "insider_signal": "中性",
+      "top_buyer": "",
+      "top_inst": ""
+    },
+    {
+      "ticker": "SOUN",
+      "price": 7.82,
+      "chg": 4.2,
+      "upside": 0,
+      "target": 0,
+      "score": 10,
+      "action": "关注",
+      "inst_count": 0,
+      "buy_count": 0,
+      "insider_signal": "中性",
+      "top_buyer": "",
+      "top_inst": ""
+    },
+    {
+      "ticker": "QUBT",
+      "price": 7.54,
+      "chg": 2.59,
+      "upside": 0,
+      "target": 0,
+      "score": 10,
+      "action": "关注",
+      "inst_count": 0,
+      "buy_count": 0,
+      "insider_signal": "中性",
+      "top_buyer": "",
+      "top_inst": ""
+    }
+  ],
+  "all_small_cap": [
+    {
+      "ticker": "HIMS",
+      "price": 24.98,
+      "chg": 1.77,
+      "upside": 17.6,
+      "target": 29.39,
+      "score": 35,
+      "action": "关注",
+      "inst_count": 5,
+      "buy_count": 0,
+      "insider_signal": "❄️卖出",
+      "top_buyer": "",
+      "top_inst": "Fiduciary Alliance Llc"
+    },
+    {
+      "ticker": "RVLV",
+      "price": 23.19,
+      "chg": -0.02,
+      "upside": 10.3,
+      "target": 25.59,
+      "score": 20,
+      "action": "关注",
+      "inst_count": 3,
+      "buy_count": 0,
+      "insider_signal": "❄️卖出",
+      "top_buyer": "",
+      "top_inst": "Bloombergsen Inc"
+    },
+    {
+      "ticker": "SOFI",
+      "price": 17.37,
+      "chg": -1.98,
+      "upside": 0,
+      "target": 0,
+      "score": 10,
+      "action": "关注",
+      "inst_count": 0,
+      "buy_count": 0,
+      "insider_signal": "中性",
+      "top_buyer": "",
+      "top_inst": ""
+    },
+    {
+      "ticker": "SOUN",
+      "price": 7.82,
+      "chg": 4.2,
+      "upside": 0,
+      "target": 0,
+      "score": 10,
+      "action": "关注",
+      "inst_count": 0,
+      "buy_count": 0,
+      "insider_signal": "中性",
+      "top_buyer": "",
+      "top_inst": ""
+    },
+    {
+      "ticker": "QUBT",
+      "price": 7.54,
+      "chg": 2.59,
+      "upside": 0,
+      "target": 0,
+      "score": 10,
+      "action": "关注",
+      "inst_count": 0,
+      "buy_count": 0,
+      "insider_signal": "中性",
+      "top_buyer": "",
+      "top_inst": ""
+    },
+    {
+      "ticker": "IONQ",
+      "price": 33.31,
+      "chg": 0.03,
+      "upside": 0,
+      "target": 0,
+      "score": 0,
+      "action": "关注",
+      "inst_count": 0,
+      "buy_count": 0,
+      "insider_signal": "中性",
+      "top_buyer": "",
+      "top_inst": ""
+    },
+    {
+      "ticker": "HOOD",
+      "price": 77.35,
+      "chg": 2.59,
+      "upside": 0,
+      "target": 0,
+      "score": 0,
+      "action": "关注",
+      "inst_count": 0,
+      "buy_count": 0,
+      "insider_signal": "中性",
+      "top_buyer": "",
+      "top_inst": ""
+    },
+    {
+      "ticker": "TOI",
+      "price": 3.59,
+      "chg": 7.81,
+      "upside": 0,
+      "target": 0,
+      "score": 10,
+      "action": "关注",
+      "inst_count": 0,
+      "buy_count": 0,
+      "insider_signal": "中性",
+      "top_buyer": "",
+      "top_inst": ""
+    },
+    {
+      "ticker": "IMVT",
+      "price": 25.1,
+      "chg": 1.05,
+      "upside": 0,
+      "target": 0,
+      "score": 0,
+      "action": "关注",
+      "inst_count": 0,
+      "buy_count": 0,
+      "insider_signal": "中性",
+      "top_buyer": "",
+      "top_inst": ""
+    },
+    {
+      "ticker": "OCUL",
+      "price": 8.68,
+      "chg": 0.81,
+      "upside": 0,
+      "target": 0,
+      "score": 10,
+      "action": "关注",
+      "inst_count": 0,
+      "buy_count": 0,
+      "insider_signal": "中性",
+      "top_buyer": "",
+      "top_inst": ""
+    },
+    {
+      "ticker": "UPXI",
+      "price": 1.15,
+      "chg": 7.48,
+      "upside": 0,
+      "target": 0,
+      "score": 10,
+      "action": "关注",
+      "inst_count": 0,
+      "buy_count": 0,
+      "insider_signal": "中性",
+      "top_buyer": "",
+      "top_inst": ""
+    },
+    {
+      "ticker": "IREN",
+      "price": 42.96,
+      "chg": -1.92,
+      "upside": 0,
+      "target": 0,
+      "score": 0,
+      "action": "关注",
+      "inst_count": 0,
+      "buy_count": 0,
+      "insider_signal": "中性",
+      "top_buyer": "",
+      "top_inst": ""
+    },
+    {
+      "ticker": "FVRR",
+      "price": 10.99,
+      "chg": 3.88,
+      "upside": -1.1,
+      "target": 10.87,
+      "score": 20,
+      "action": "关注",
+      "inst_count": 2,
+      "buy_count": 0,
+      "insider_signal": "中性",
+      "top_buyer": "",
+      "top_inst": "Absolute Investment Advisers Llc"
+    }
+  ],
+  "scan_time": "2026-03-18T16:01:06.819284"
+}

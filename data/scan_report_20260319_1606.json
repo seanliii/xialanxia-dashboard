@@ -1,0 +1,111 @@
+{
+  "scan_time": "2026-03-19 16:06",
+  "triggers_fired": [],
+  "stops_triggered": [],
+  "watchlist_approaching": [
+    {
+      "ticker": "SOUN",
+      "account": "aggressive",
+      "current": 7.7,
+      "trigger": 8.0,
+      "gap_pct": -3.7,
+      "priority": "A",
+      "status": "entered"
+    },
+    {
+      "ticker": "NVDA",
+      "account": "institutional",
+      "current": 180.2,
+      "trigger": 170.0,
+      "gap_pct": 6.0,
+      "priority": "B",
+      "status": "watch"
+    },
+    {
+      "ticker": "CVNA",
+      "account": "institutional",
+      "current": 291.17,
+      "trigger": 310.0,
+      "gap_pct": -6.1,
+      "priority": "A",
+      "status": "entered"
+    },
+    {
+      "ticker": "TSM",
+      "account": "institutional",
+      "current": 352.2,
+      "trigger": 330.0,
+      "gap_pct": 6.7,
+      "priority": "S",
+      "status": "watch"
+    },
+    {
+      "ticker": "METC",
+      "account": "aggressive",
+      "current": 13.91,
+      "trigger": 13.0,
+      "gap_pct": 7.0,
+      "priority": "B",
+      "status": "watch"
+    },
+    {
+      "ticker": "SOFI",
+      "account": "institutional",
+      "current": 17.18,
+      "trigger": 16.0,
+      "gap_pct": 7.4,
+      "priority": "A",
+      "status": "limit_pending"
+    },
+    {
+      "ticker": "VST",
+      "account": "institutional",
+      "current": 161.95,
+      "trigger": 150.0,
+      "gap_pct": 8.0,
+      "priority": "A",
+      "status": "watch"
+    },
+    {
+      "ticker": "QUBT",
+      "account": "aggressive",
+      "current": 7.25,
+      "trigger": 8.0,
+      "gap_pct": -9.4,
+      "priority": "A",
+      "status": "entered"
+    }
+  ],
+  "portfolio_summary": {
+    "institutional": {
+      "name": "大机构",
+      "emoji": "🏦",
+      "total_value": 50021.05,
+      "cash": 27741.75,
+      "position_value": 22279.3,
+      "pnl": 21.05,
+      "return_pct": 0.04,
+      "positions": 3
+    },
+    "aggressive": {
+      "name": "激进交易",
+      "emoji": "⚡",
+      "total_value": 49583.18,
+      "cash": 30021.59,
+      "position_value": 19561.59,
+      "pnl": -416.82,
+      "return_pct": -0.83,
+      "positions": 4
+    },
+    "blueshrimp": {
+      "name": "蓝虾交易",
+      "emoji": "🦐",
+      "total_value": 49659.24,
+      "cash": 42999.24,
+      "position_value": 6660.0,
+      "pnl": -340.76,
+      "return_pct": -0.68,
+      "positions": 2
+    }
+  }
+}

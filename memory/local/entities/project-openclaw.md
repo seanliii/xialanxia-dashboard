@@ -1,0 +1,730 @@
+# project-openclaw
+
+**Type:** project
+**Updated:** 2026-03-20T15:36:30.464Z
+
+## Facts
+
+- An existing AI agent system running on the user's machine.
+- Environment isolated from Hermes Agent.
+- Existing mature AI agent system the user operates.
+- Preferred target for integrating Hermes Agent's design ideas.
+- AI agent system referred to as '小蓝虾'
+- More mature architecture combined with Engram
+- Preferred for integration rather than running multiple agents in parallel
+- An AI agent framework already deployed on the user's machine.
+- More mature architecture compared to Hermes Agent in the user's context.
+- Existing AI agent system used by the user, with a mature architecture that includes Engram for semantic search.
+- Can adopt design ideas from Hermes Agent.
+- AI agent system that the user develops and prefers to internalize design ideas from other agents into.
+- Existing AI agent system used by the user.
+- Will internalize Hermes Agent's architectural design ideas rather than run Hermes Agent in parallel.
+- Is the existing AI agent system into which Hermes Agent's architectural insights are to be internalized.
+- The user's existing AI agent system being enhanced with architectural insights from project-hermes-agent to avoid running multiple parallel AI agents.
+- Has an automated daily memory compression workflow using gpt-4.1-mini.
+- User's existing AI agent system where Hermes Agent's architectural insights are being integrated.
+- Has a daily automated memory compression workflow using GPT-4.1-mini.
+- User's existing AI agent system.
+- Agent into which Hermes Agent architectural ideas are internalized.
+- Avoids parallel installation with Hermes due to conflicts.
+- An existing AI agent system used by the user.
+- The user integrates design insights from other AI agent projects into OpenClaw.
+- User operates this AI agent system and intends to integrate project-hermes-agent design insights into it.
+- Avoids running it in parallel with project-hermes-agent to prevent resource conflicts.
+- Existing AI agent system into which Hermes Agent's architectural insights are integrated.
+- Runs alone on the user's machine to avoid resource conflicts.
+- An AI agent project used by the user as the main system for internalizing design insights from other AI agents.
+- An AI agent system used by the user as the main agent environment.
+- The user integrates architectural and evolutionary AI agent ideas from project-hermes-agent into it.
+- The existing AI agent system used by the user where Hermes Agent architectural ideas are being integrated.
+- Avoids running in parallel with Hermes Agent due to resource and conflict concerns.
+- Existing AI agent system into which the user integrates evolutionary design insights from project-hermes-agent.
+- User's existing AI agent system targeted for enhancement by internalizing architectural insights from project-hermes-agent.
+- User avoids running multiple parallel agents on the same machine including this project.
+- User integrates architectural insights from project-hermes-agent into project-openclaw, focusing on evolutionary AI agent design.
+- The user’s existing AI agent system.
+- User integrates architectural insights and features from project-hermes-agent into this system.
+- User prefers not to run project-hermes-agent in parallel on the same machine.
+- User integrates evolutionary AI architectural ideas from project-hermes-agent into this ongoing AI agent system.
+- User's existing AI agent system into which architectural insights and features from project-hermes-agent are integrated.
+- Is an AI agent system into which the user integrates architectural insights from project-hermes-agent.
+- An AI agent system that integrates architectural and evolutionary ideas from project-hermes-agent.
+- An AI agent system into which the user integrates architectural insights and evolutionary design ideas from project-hermes-agent.
+- User integrates architectural insights and evolutionary AI agent features from project-hermes-agent into project-openclaw.
+- An AI agent system into which user integrates architectural ideas from project-hermes-agent.
+- An AI agent framework with evolutionary design.
+- Has a significant update termed CashClaw which automates task discovery, quoting, execution and on-chain payments.
+- User integrates evolutionary AI architectural ideas from project-hermes-agent into this AI agent system.
+- Integrates architectural insights from project-hermes-agent, focusing on evolutionary AI agent design.
+- AI agent system into which the user integrates architectural insights and features from project-hermes-agent, emphasizing evolutionary design.
+- Integrates evolutionary AI agent architectural ideas from project-hermes-agent.
+- Focuses on secure and cautious AI agent operation.
+- Integrates architectural features inspired by project-hermes-agent, including self-evolving and tool auto-creation.
+- Uses Baidu as an intelligence source.
+- Runs cron jobs for scheduled intelligence tasks including deep push and hot post private chat.
+- The user's own AI agent project which integrates architectural insights and features from project-hermes-agent.
+- User integrates architectural insights and evolutionary AI features from project-hermes-agent.
+- AI agent system into which evolutionary features from project-hermes-agent are integrated.
+- AI agent system that integrates architectural ideas from project-hermes-agent.
+- An AI agent system into which the user integrates evolutionary AI agent architectural ideas, especially from project-hermes-agent.
+- An AI agent system into which evolutionary design ideas and features from project-hermes-agent are integrated.
+- An AI agent system into which the user integrates architectural ideas from project-hermes-agent, focusing on evolutionary AI agent design.
+- User integrates evolutionary AI agent architectural ideas from project-hermes-agent into this project.
+- Under active integration of evolutionary AI agent architectural ideas from project-hermes-agent.
+- The user integrates architectural insights from project-hermes-agent into this AI agent system.
+- AI agent system that integrates architectural insights and evolutionary design from project-hermes-agent
+- AI agent system that the user integrates architectural insights from project-hermes-agent into.
+- An existing AI agent system that integrates evolutionary architectural ideas from project-hermes-agent
+- User integrates architectural insights from project-hermes-agent into this AI agent system.
+- Is the user's existing AI agent system into which architectural insights and features from project-hermes-agent are integrated.
+- User integrates evolutionary AI architectural ideas from project-hermes-agent into this project.
+- User integrates evolutionary AI agent architectural ideas from project-hermes-agent.
+- User applies strict security and internalization principles in its development.
+- Integrates architectural ideas from project-hermes-agent, including self-evolving and tool auto-creation capabilities.
+- AI agent system where architectural insights and evolutionary features from project-hermes-agent are integrated.
+- User's AI agent project that integrates architectural insights from project-hermes-agent.
+- AI agent system targeted for integration of evolutionary architectural insights from project-hermes-agent.
+- AI agent system integrating evolutionary architectural ideas from project-hermes-agent.
+- Preferred by the user for internalizing advanced AI agent designs.
+- User's AI agent system that integrates architectural insights from project-hermes-agent, focusing on evolutionary AI agent design.
+- AI agent system integrating architectural insights from project-hermes-agent.
+- AI agent system integrating architectural ideas from project-hermes-agent.
+- Focus on evolutionary AI agent design and internalization of open-source insights.
+- Receives architectural integration of evolutionary AI agent ideas from project-hermes-agent.
+- AI agent project integrating architectural ideas from project-hermes-agent.
+- Related cron jobs encountered errors in 10:00 private chat and Alpha scanning tasks, but main push workflows remained operational.
+- Integrates architectural insights from project-hermes-agent to enhance evolutionary AI agent capabilities
+- User integrates evolutionary AI architectural insights from project-hermes-agent.
+- Integrates architectural features from project-hermes-agent such as self-evolving and tool auto-creation.
+- User integrates evolutionary AI agent architectural insights from project-hermes-agent into this AI agent system.
+- Maintains a disciplined automated memory compression workflow.
+- The user's AI agent system that integrates architectural insights from project-hermes-agent.
+- An AI agent system that the user is developing and into which they are integrating evolutionary AI architectural ideas from project-hermes-agent.
+- An AI agent system into which architectural ideas, especially from project-hermes-agent, are integrated.
+- The user's AI agent system into which architectural insights from project-hermes-agent are integrated, focusing on evolutionary AI agent design.
+- Is the AI agent system into which evolutionary architectural insights, particularly from project-hermes-agent, are integrated.
+- User integrates evolutionary AI agent architectural ideas from project-hermes-agent into this system.
+- Focus on internalizing advanced AI agent architectural designs.
+- User integrates architectural insights and evolutionary AI design features from project-hermes-agent into this AI agent system.
+- AI agent system into which user integrates architectural insights from project-hermes-agent.
+- Focus on evolutionary AI agent design.
+- User integrates architectural insights and evolutionary features from project-hermes-agent
+- Focus of user for AI agent system integration
+- User integrates evolutionary AI architectural ideas from project-hermes-agent.
+- User integrates architectural insights and evolutionary AI features into this project.
+- User avoids running multiple AI agents alongside this project to prevent conflicts.
+- Integrates evolutionary AI agent features from project-hermes-agent.
+- Focus of user's AI agent architectural research and integration efforts.
+- User integrates architectural features from project-hermes-agent into this project.
+- Focuses on evolutionary AI agent development.
+- User's AI project that integrates architectural and evolutionary features from project-hermes-agent.
+- Focuses on evolutionary AI system development with a security-first and methodical approach.
+- User's AI agent project that integrates architectural features from project-hermes-agent.
+- User integrates features from project-hermes-agent into this project.
+- User integrates architectural insights and evolutionary features from project-hermes-agent into this project.
+- Integrates evolutionary AI agent features notably from project-hermes-agent.
+- User integrates evolutionary AI architectural features from project-hermes-agent into project-openclaw.
+- User's AI agent project that integrates evolutionary AI agent features from project-hermes-agent.
+- AI agent project that integrates evolutionary features from project-hermes-agent.
+- User integrates evolutionary AI agent features from project-hermes-agent into this project.
+- Focuses on deep architectural integration rather than concurrent execution of multiple agents.
+- Integrates architectural features from project-hermes-agent including self-evolving and tool auto-creation.
+- Integrates evolutionary AI agent architectural features such as self-evolving and tool auto-creation from project-hermes-agent.
+- User integrates architectural features from project-hermes-agent including evolutionary capabilities.
+- Focuses on evolutionary AI system development.
+- AI project integrating evolutionary AI agent features from project-hermes-agent.
+- User's AI agent project that integrates features from project-hermes-agent.
+- Focused on evolutionary AI architectural ideas, emphasizing integration and internalization of open-source community innovations.
+- Integrates architectural and design insights from project-hermes-agent
+- Focuses on evolutionary AI system development
+- Being developed with integrated evolutionary AI features inspired by project-hermes-agent.
+- Focuses on deep architectural understanding and integration rather than concurrent multiple agent execution.
+- User's own AI agent project that integrates architectural features inspired by project-hermes-agent.
+- Integrates evolutionary features from project-hermes-agent.
+- Integrates architectural features from project-hermes-agent.
+- Focuses on evolutionary AI system development with a security-first mindset.
+- Integrates architectural insights and evolutionary AI features from project-hermes-agent.
+- User integrates architectural and design insights from project-hermes-agent into this project.
+- User's own AI project that integrates architectural features from project-hermes-agent, focusing on evolutionary AI system development.
+- Integrates architectural features based on project-hermes-agent such as self-evolving and tool auto-creation.
+- Integrates architectural and design features inspired by project-hermes-agent.
+- Integrates architectural features such as self-evolving and tool auto-creation from project-hermes-agent.
+- Integrates evolutionary AI agent architectural features from project-hermes-agent.
+- Focuses on deep architectural understanding and integration for evolutionary AI system development.
+- User integrates architectural features from project-hermes-agent such as self-evolving and tool auto-creation into this project.
+- User integrates evolutionary features from project-hermes-agent.
+- Focuses on deep architectural integration for AI system development.
+- User's AI project that integrates architectural features from project-hermes-agent.
+- AI agent project that integrates evolutionary features from project-hermes-agent
+- User prioritizes deep architectural understanding and integration over running multiple AI agents concurrently
+- Incorporates evolutionary AI architectural features such as self-evolving and tool auto-creation inspired by project-hermes-agent.
+- User integrates evolutionary architecture and tool auto-creation design from project-hermes-agent.
+- User prefers to run it as a single AI agent per machine.
+- Is the user's existing AI agent system where evolutionary features from project-hermes-agent are integrated.
+- User prioritizes evolving this system by incorporating architectural ideas rather than running multiple agents.
+- A project into which user integrates evolutionary AI architectural features from project-hermes-agent.
+- Project that integrates evolutionary AI features such as self-evolving and tool auto-creation from project-hermes-agent.
+- User's own project that integrates evolutionary AI architectural features from project-hermes-agent.
+- User is integrating evolutionary architectural features from project-hermes-agent into this project.
+- Target project for integrating evolutionary AI architectural features from project-hermes-agent.
+- User aims to integrate evolutionary AI architectural and design insights from project-hermes-agent into this project.
+- Integrates evolutionary AI architectural features from project-hermes-agent
+- Focuses on evolutionary AI development
+- User's project focused on integrating evolutionary AI agent architectural ideas from project-hermes-agent.
+- User's own AI project integrating evolutionary features from project-hermes-agent
+- User's own AI project that integrates evolutionary features from project-hermes-agent.
+- User is integrating evolutionary AI architectural insights from project-hermes-agent into this project.
+- User integrates evolutionary AI architectural features from project-hermes-agent
+- An AI project interested in integrating evolutionary features from project-hermes-agent.
+- Focuses on in-depth study and internalization of AI architectural insights.
+- User's own AI project integrating evolutionary AI architectural ideas from project-hermes-agent.
+- User's project that integrates evolutionary features from project-hermes-agent.
+- User is integrating evolutionary features from project-hermes-agent into this project.
+- AI agent project integrating architectural ideas from project-hermes-agent, focusing on evolutionary AI features.
+- User integrates evolutionary features from project-hermes-agent into project-openclaw.
+- Target project for integrating evolutionary AI features from project-hermes-agent.
+- User integrates evolutionary AI agent architectural features from project-hermes-agent into this project.
+- Focuses on evolutionary AI agent system development.
+- User is integrating evolutionary AI features from project-hermes-agent into this project.
+- User's own project focused on integrating evolutionary AI architectural features from project-hermes-agent.
+- Focuses on integration of evolutionary AI features from project-hermes-agent.
+- User wishes to incorporate self-evolving and tool auto-creation architectural insights.
+- User's own AI agent project focusing on integrating evolutionary architectural features from project-hermes-agent.
+- User's own AI project focused on integrating evolutionary features from project-hermes-agent.
+- User's AI agent project that integrates evolutionary architectural features from project-hermes-agent.
+- Incorporates evolutionary features from project-hermes-agent.
+- User integrates evolutionary AI agent architectural ideas and features from project-hermes-agent.
+- Focuses on integrating evolutionary AI architectural features from open-source projects.
+- User's own AI agent project emphasizing evolutionary AI architectural integration and security-first principles.
+- Deeply studies and integrates evolutionary AI architectural features from project-hermes-agent.
+- Prioritizes internalizing architectural features over concurrent multi-agent execution.
+- Focuses on deep architectural understanding and integration of evolutionary AI agent features.
+- User integrates evolutionary architectural features from project-hermes-agent.
+- User's own AI project emphasizing integration of evolutionary AI architectural features from project-hermes-agent.
+- Focuses on deep architectural understanding rather than concurrent multi-agent execution.
+- User's own AI project focusing on evolutionary AI agent architectures.
+- Receives architectural feature integration from project-hermes-agent.
+- User integrates features from project-hermes-agent into project-openclaw.
+- User is deeply interested in evolutionary AI agent architectural ideas in this project.
+- User integrates evolutionary AI architectural features from project-hermes-agent into this project.
+- User's AI project focused on evolutionary AI architectures.
+- Integrates architectural features studied from project-hermes-agent.
+- User's project focused on integrating evolutionary AI architectural features from project-hermes-agent
+- User's own project focused on evolutionary AI architectures.
+- User prioritizes integrating features from project-hermes-agent into project-openclaw.
+- User's own evolutionary AI project focusing on deep architectural understanding and integration of features from project-hermes-agent.
+- User's own AI project focused on evolutionary AI agent architecture.
+- User prioritizes deep architectural integration of features from project-hermes-agent.
+- User's own AI agent project emphasizing deep architectural integration of evolutionary AI features from project-hermes-agent.
+- User's project that integrates evolutionary AI architectural features learned from project-hermes-agent.
+- User’s own AI project that integrates evolutionary AI architectural features from project-hermes-agent.
+- User's own project focused on integrating evolutionary AI architectural ideas from open-source projects such as project-hermes-agent.
+- User's own AI project focused on integrating evolutionary AI architectural features from project-hermes-agent.
+- User's own AI project focused on evolutionary AI systems.
+- User emphasizes deep architectural understanding and integration of features from project-hermes-agent.
+- Project into which the user integrates evolutionary AI architectural features from project-hermes-agent.
+- User's own project focusing on evolutionary AI architecture.
+- User's AI agent project focused on deep architectural integration of evolutionary AI features from open source projects like project-hermes-agent.
+- User's project focused on integrating evolutionary AI architectural features learned from projects like project-hermes-agent.
+- User's own AI agent project that integrates evolutionary architectural features from project-hermes-agent.
+- User's own AI agent project focused on deep architectural understanding and integration of evolutionary AI features.
+- User prefers to run only one AI agent per machine for this project.
+- User integrates evolutionary AI architectural features into project-openclaw.
+- Subject to user's disciplined knowledge and memory management workflows.
+- User manages project-openclaw with a security-first and methodical approach.
+- User integrates evolutionary AI architectural features into project-openclaw from open-source projects.
+- User runs only one AI agent instance of project-openclaw per machine.
+- User integrates evolutionary AI architectural features into this project.
+- User prefers running this AI agent singly per machine to avoid conflicts.
+- User integrates architectural learnings from project-hermes-agent into project-openclaw.
+- User prefers deep architectural integration rather than running multiple parallel agents within project-openclaw.
+- User's project integrating evolutionary AI architectural features learned from project-hermes-agent.
+- User prioritizes architectural depth over concurrent multi-agent execution in this project.
+- User integrates architectural features from project-hermes-agent into this AI agent system.
+- User manages knowledge and memory workflows related to this project.
+- Integrates architectural design features from project-hermes-agent based on study rather than direct installation.
+- Prioritizes a security-first and cautious approach in AI agent development and deployment.
+- Integrates architectural design features from project-hermes-agent.
+- Has a dashboard service running on port 9876 accessible externally.
+- Incorporates architectural design features learned from project-hermes-agent.
+- Preferred over running multiple parallel AI agents to reduce complexity and resource conflicts.
+- An evolutionary AI agent system developed and maintained by the user.
+- Integrates design architectural features from project-hermes-agent.
+- Hosts a dashboard served locally at port 9876 since March 17, 2026.
+- Integrates evolutionary AI architectural features inspired by project-hermes-agent.
+- Uses a local python3 HTTP server on port 9876 to serve the dashboard.
+- Integrates evolutionary AI architectural learnings from project-hermes-agent.
+- Uses a local python HTTP server on port 9876 to serve its dashboard since March 17, 2026.
+- Dashboard is accessible externally without relying on S3.
+- Integrates architectural features learned from project-hermes-agent
+- Uses a python3 -m http.server on port 9876 to serve a dashboard since March 17, 2026
+- Integrates evolutionary AI architectural features studied from project-hermes-agent.
+- Hosts a dashboard service locally using python3 HTTP server on port 9876, accessible externally via sandbox IDE URL.
+- Runs an internal web server on port 18789 to serve workspace files including dashboard.html.
+- User's project integrating evolutionary AI architectural learnings from project-hermes-agent.
+- User's own AI project that integrates architectural features from project-hermes-agent focused on evolutionary AI systems.
+- User's own AI project integrating architectural features learned from project-hermes-agent.
+- User's own project focused on evolutionary AI agent architecture.
+- Integrates architectural learnings from project-hermes-agent.
+- User's project that integrates architectural features learned from project-hermes-agent
+- Focused on evolutionary AI agent architecture
+- Dashboard external access on port 9876 depends on environment port mappings.
+- Focuses on evolutionary AI agent architecture.
+- Maintains daily automated AI-based memory compression workflow.
+- Dashboard external accessibility depends on environment port mappings.
+- Dashboard may not always be accessible externally depending on environment port mappings.
+- Deep integration of architectural features from project-hermes-agent is prioritized by the user.
+- User integrates architectural learnings from project-hermes-agent.
+- User's own AI project integrating architectural concepts from project-hermes-agent.
+- Has approximately 270 facts documented.
+- Dashboard external access depends on environment port mappings (port 9876).
+- User integrates architectural features from project-hermes-agent into project-openclaw
+- Dashboard on port 9876 has conditional external accessibility depending on environment port mappings
+- Project focused on evolutionary AI systems integrating architectural features learned from project-hermes-agent.
+- Dashboard accessibility on port 9876 is subject to environment port mapping.
+- User integrates architectural designs from project-hermes-agent into project-openclaw.
+- Has a dashboard accessible on port 9876 depending on environment port mappings.
+- Dashboard external access depends on environment port mappings and may not always be accessible on port 9876.
+- Dashboard listens on port 9876, external access depends on environment port mappings.
+- Actively integrates architectural features from project-hermes-agent.
+- User's own AI agent project where they integrate learnings from project-hermes-agent to advance evolutionary AI systems.
+- Dashboard external access on port 9876 depends on container or machine port mappings.
+- Evolving AI system integrating architectural designs from project-hermes-agent
+- Dashboard port 9876 external accessibility depends on environment port mappings
+- An AI agent project which user actively develops by integrating architectural learnings from project-hermes-agent.
+- Dashboard runs on port 9876 with external access depending on environment port configurations.
+- Evolves AI systems with a focus on deep architectural integration
+- Dashboard access on port 9876 depends on environment port mapping
+- User emphasizes secure access and port mapping for its dashboard on port 9876.
+- It incorporates architectural learnings from project-hermes-agent.
+- Dashboard runs on port 9876 with conditional external accessibility depending on environment port mappings.
+- An evolutionary AI system project worked on by the user
+- Has a dashboard accessible on port 9876 depending on environment configuration
+- Dashboard port 9876 external access depends on environment port mappings.
+- Integrates architectural features inspired by project-hermes-agent.
+- User integrates learnings from project-hermes-agent architecture into project-openclaw.
+- Its dashboard listens on port 9876, which may not always be accessible externally depending on environment port mappings.
+- Evolving AI agent project integrating architectural features from project-hermes-agent.
+- Dashboard may be exposed on port 9876 depending on environment port mappings.
+- Dashboard runs on port 9876 which may not always be externally accessible depending on environment port mappings
+- Focused on deep architectural integration of evolutionary AI agent designs
+- Dashboard external access on port 9876 depends on environment port mapping.
+- User integrates architectural features from project-hermes-agent to advance evolutionary AI systems.
+- Dashboard is accessible on port 9876 depending on environment port mappings.
+- User integrates architectural features from project-hermes-agent into project-openclaw for evolutionary AI.
+- Incorporates learnings from project-hermes-agent's architectural features for evolutionary AI.
+- User emphasizes secure management and cautious operation for installation and execution.
+- An evolutionary AI system project of the user.
+- Dashboard runs on port 9876 but external access depends on environment port mappings.
+- User integrates architectural features from project-hermes-agent into it.
+- A user project focused on evolutionary AI systems integration.
+- Dashboard default port is 9876, which requires specific environment port mappings for external access.
+- Deeply integrates architectural designs from project-hermes-agent.
+- Dashboard accessed on port 9876 (external access conditional on environment).
+- Project focused on evolutionary AI agent systems.
+- Integrates architectural designs learned from project-hermes-agent.
+- Dashboard access depends on environment port mappings.
+- Has a dashboard on port 9876 which may or may not be externally accessible depending on environment port mappings.
+- User integrates learnings from project-hermes-agent into this project to develop evolutionary AI systems.
+- Managed with automated workflows and security-first practices.
+- Project focused on evolutionary AI systems.
+- Dashboard runs on port 9876 with environment-dependent external access.
+- Integrates architectural designs from project-hermes-agent for evolutionary AI systems.
+- Managed with automated workflows for updates and dashboards.
+- Integrates architectural designs from project-hermes-agent.
+- Dashboard may run on port 9876 with environment-dependent external access.
+- AI evolutionary agent system emphasizing deep architectural integration.
+- Uses automated workflows for daily memory summarization and project dashboard updating.
+- Emphasizes secure handling of access keys and cautious deployment practices.
+- User manages project-openclaw with automated workflows and prioritizes security.
+- User actively integrates architectural learnings into project-openclaw to advance evolutionary AI systems.
+- External dashboard access on port 9876 depends on environment port mappings.
+- Dashboard runs on port 9876 with external access depending on environment port mappings
+- Integrates architectural designs from project-hermes-agent
+- Dashboard may be accessed externally depending on environment port mappings on port 9876
+- Integrates learnings from project-hermes-agent for evolutionary AI systems
+- Manages automated workflows for updates and knowledge summarization
+- User integrates learnings from project-hermes-agent into project-openclaw to advance evolutionary AI systems.
+- External access to dashboard on port 9876 depends on environment port mappings and may not always be accessible externally.
+- Managed with automated workflows and prefers fully functional APIs that limit credential sharing.
+- An evolutionary AI system project integrating architectural designs learned from project-hermes-agent.
+- Managed with automated workflows for updates and dashboard synchronization.
+- User manages project-openclaw with automated workflows that synchronize daily memory markdown files to a GitHub Pages dashboard.
+- User prioritizes security and minimal concurrency in running AI agents within project-openclaw.
+- Evolves using learnings from project-hermes-agent.
+- Uses Yahoo Finance API selectively for real-time stock pricing.
+- User integrates architectural designs from project-hermes-agent into this project to advance evolutionary AI systems.
+- Dashboard runs on port 9876 which may or may not be accessible externally depending on port mappings.
+- Has a dashboard optionally accessible on port 9876 depending on environment port mappings
+- User actively integrates architectural learnings into this project
+- Deeply integrates evolutionary AI system designs.
+- Uses a dashboard with port 9876 whose external access depends on environment port mapping.
+- Managed with automated workflows for updates and memory summarization.
+- User actively integrates architectural learnings from project-hermes-agent into project-openclaw to advance evolutionary AI systems.
+- Project dashboard runs on port 9876, external access depends on environment port mappings.
+- Focuses on evolutionary AI systems.
+- Has a dashboard possibly exposed on port 9876 depending on environment setup.
+- User's own AI agent project emphasizing evolutionary agent architecture.
+- Dashboard runs on port 9876 with external access depending on environment port mappings.
+- Focuses on evolutionary AI systems architecture
+- Dashboard service port 9876 accessibility depends on environment port mappings
+- Integrates learnings from open-source project-hermes-agent.
+- Dashboard accessible on port 9876, with access controlled by environment port mappings.
+- Advances evolutionary AI agent systems
+- Dashboard runs typically on port 9876
+- User manages project-openclaw with automated workflows and prefers fully functional APIs that limit credential sharing.
+- External access to project-openclaw dashboard on port 9876 depends on environment port mappings and may not always be accessible externally.
+- Evolves as the user's main evolutionary AI system integrating learnings from project-hermes-agent.
+- User manages project-openclaw with automated workflows and prioritizes secure, disciplined operations.
+- Dashboard exposed on port 9876 depending on environment port mappings; external access is conditional.
+- Includes a dashboard with a live overview page.
+- Manages stock trading triggers and cash accounting.
+- Uses watchlist.json and structure.json for configuration.
+- Incorporates learnings from project-hermes-agent.
+- Managed with automated workflows for dashboard updates.
+- Dashboard runs on port 9876 with configurable external access based on environment.
+- Focuses on evolutionary AI agent systems with deep architectural integration.
+- Managed with automated workflows for security and updates.
+- Dashboard runs optionally on port 9876 with environment-dependent external access.
+- Incorporates architectural designs from project-hermes-agent.
+- Managed with automated workflows for daily memory summarization and dashboard updating.
+- Dashboard external accessibility on port 9876 depends on environment network settings.
+- A project focused on evolutionary AI systems with deep architectural integration.
+- Managed with automated workflows including a dashboard accessible on port 9876 depending on environment port mapping.
+- User integrates open-source architectural learnings from project-hermes-agent into this project.
+- Has a dashboard accessible potentially on port 9876 depending on environment setup.
+- Receives architectural integration from project-hermes-agent.
+- Deeply integrates open-source architectural designs from project-hermes-agent
+- Uses automated daily memory compression and dashboard updating workflows
+- Exposes dashboard optionally on port 9876 depending on environment port mappings
+- Focuses on deep architectural integration of evolutionary AI agent designs.
+- Includes a dashboard accessible on port 9876 depending on environment port mappings.
+- Uses automated workflows for memory summarization and dashboard updating.
+- Dashboard listens on port 9876 depending on environment port mappings.
+- Actively integrates open-source architectural designs from project-hermes-agent.
+- Dashboard runs on port 9876 with external access dependent on environment port mappings.
+- Project focusing on AI agent architecture with emphasis on deep integration and security.
+- Dashboard runs on port 9876 externally depending on environment configuration.
+- Integrates open-source architecture from project-hermes-agent for evolutionary AI systems.
+- Dashboard accessible on port 9876 depending on environment port mappings.
+- Focuses on evolutionary AI agent design.
+- Integrates architectural designs deeply from project-hermes-agent.
+- Has a project dashboard accessible on port 9876 depending on environment port mappings.
+- User integrates open-source architectural designs from project-hermes-agent into project-openclaw.
+- User manages project-openclaw dashboard accessible on port 9876 depending on environment configuration.
+- User actively integrates open-source architectural designs, notably from project-hermes-agent, into project-openclaw.
+- External access to the dashboard depends on environment port mappings on port 9876.
+- User integrates open-source architectural designs from project-hermes-agent into this project.
+- Includes frontend robustness improvements like JavaScript fallbacks.
+- User's own AI project that integrates architectural designs from project-hermes-agent.
+- Managed with disciplined automated workflows.
+- Integrates open-source architectural designs from project-hermes-agent
+- Dashboard external access depends on environment port mappings on port 9876
+- Has robustness in project tooling including JavaScript fallbacks for frontend UX.
+- External dashboard access depends on environment port mappings for port 9876.
+- User integrates open-source architecture from project-hermes-agent into this project.
+- External dashboard access is managed via environment port mappings.
+- User maintains disciplined memory summarization and dashboard updating workflows for this project.
+- User integrates learnings from project-hermes-agent deeply into this project for evolutionary AI systems.
+- Dashboard external access depends on environment port mappings at port 9876.
+- Has a dashboard where tab switching is implemented using pure CSS radio inputs.
+- Attempts to use JS tab control introduced timing issues with DOM loading.
+- Dashboard hosted on port 9876 with external access controlled by environment port mappings
+- Integrates design ideas from project-hermes-agent
+- Includes JavaScript and CSS tab controllers for UX
+- Integrated open-source AI architectural designs from project-hermes-agent.
+- Dashboard external access depends on environment port mappings on port 9876.
+- Includes automated workflows for memory summarization and dashboard updating.
+- Has frontend robustness improvements with JavaScript fallbacks.
+- AI agent project emphasizing deep architectural integration from open-source designs.
+- Uses port 9876 externally depending on environment port mappings.
+- User strongly prioritizes security and cautious execution for agent installation and operation.
+- Has an external dashboard accessible based on environment port mappings.
+- User integrates open-source architectural designs from project-hermes-agent into it.
+- Integrates open-source architectural designs from project-hermes-agent.
+- Deeply integrates open-source architectural designs from project-hermes-agent.
+- Managed using automated daily workflows for memory summarization and dashboard updates.
+- Dashboard is accessible externally on port 9876 depending on environment port mappings.
+- User manages this project with disciplined automated workflows for updates and knowledge management.
+- It integrates open-source architectures from project-hermes-agent.
+- User integrates open-source architectural designs deeply into this project.
+- Implements automated workflows for knowledge management and memory summarization.
+- Robust tooling including fixes for frontend JavaScript fallbacks to improve UX.
+- Dashboard external access depends on environment port mappings for port 9876.
+- User integrates open-source architectures deeply into this project.
+- User integrates open-source architectures from project-hermes-agent into this project.
+- Dashboard external access is controlled by environment port mappings on port 9876.
+- User manages external dashboard access on port 9876 depending on environment port mappings.
+- User integrates open-source architectural designs from project-hermes-agent deeply into project-openclaw.
+- Project tooling includes robustness such as frontend fixes with JavaScript fallbacks.
+- External access to project-openclaw dashboard on port 9876 depends on environment port mappings.
+- Project dashboard external access depends on environment port mappings on port 9876.
+- Incorporates deep architectural designs from project-hermes-agent.
+- User clarifies that external access to project-openclaw dashboard on port 9876 depends on environment port mappings.
+- User actively integrates open-source architectural designs from project-hermes-agent into project-openclaw.
+- Exposes dashboard optionally accessible externally on port 9876 depending on environment port mappings.
+- The dashboard runs on port 9876 and external access is controlled via environment port mappings.
+- The project employs automated workflows for updates and memory management.
+- An AI agent project emphasizing deep architectural integration and security-first installation practices.
+- Its dashboard external access on port 9876 depends on environment port mappings.
+- Dashboard external access controlled via environment port mappings on port 9876
+- Project integrates architectural designs from project-hermes-agent.
+- A project actively developed by the user integrating open-source AI architectures.
+- Dashboard is accessible externally depending on environment port mappings on port 9876.
+- User actively integrates open-source architecture from project-hermes-agent into project-openclaw.
+- External dashboard access on port 9876 is controlled by environment port mappings.
+- Maintains frontend robustness with JavaScript fallbacks for better UX
+- Includes a dashboard accessible on port 9876 with environment-dependent external access
+- User integrates open-source architectural designs, notably from project-hermes-agent, into project-openclaw.
+- Includes frontend robustness fixes such as JavaScript fallback for UX.
+- Has a dashboard accessible on port 9876 with environment-dependent external access
+- Has a dashboard accessible on port 9876 based on environment port mappings.
+- Dashboard external access on port 9876 depends on environment port mappings
+- Uses automated workflows for updates and memory summarization
+- Actively integrates architectural designs from project-hermes-agent.
+- Has a dashboard accessible on port 9876 depending on environment configuration.
+- User integrates learnings from project-hermes-agent architecture into this project.
+- Evolves AI system architecture deeply integrating open-source designs from project-hermes-agent.
+- Exposes dashboard on port 9876 with external access depending on environment port mappings.
+- User's own AI project integrating open-source architectural designs from project-hermes-agent.
+- Dashboard can be accessed externally depending on environment port mappings.
+- Favors deep architectural integration over concurrent multi-agent execution.
+- User's own AI agent project emphasizing evolutionary AI system design.
+- Has a dashboard accessible on port 9876 depending on environment port mapping.
+- Open-source AI agent project receiving architectural integration from project-hermes-agent
+- Dashboard accessibility on port 9876 depends on environment port mappings
+- Is the user's own project integrating open-source AI architectural designs from project-hermes-agent.
+- User manages its dashboard with automated workflows.
+- Contains a dashboard accessible on port 9876 depending on environment port mapping.
+- Project where user integrates open-source architectural designs and evolutionary AI system ideas.
+- Has a dashboard available on port 9876 subject to environment port mappings.
+- Has a dashboard accessible on port 9876 with access dependent on environment port mappings
+- Uses automated workflows for updates and dashboard management
+- Integrates open-source architectural designs notably from project-hermes-agent
+- Has a dashboard accessible on port 9876 depending on environment port mappings
+- Dashboard accessible externally depending on environment port mappings on port 9876.
+- An AI project that integrates architectural designs from project-hermes-agent.
+- Dashboard accessible externally on port 9876 depending on environment port mapping.
+- Has robust frontend tooling including JavaScript fallbacks for UX.
+- Includes a dashboard accessible on port 9876 depending on environment port mappings
+- Has a dashboard running on port 9876 with environment-dependent external access
+- Uses an AI evolutionary system architectural design.
+- Integrates open-source architecture from project-hermes-agent.
+- Has a dashboard potentially accessible on port 9876 depending on environment port mappings.
+- Dashboard runs on port 9876
+- Integrates architecture from project-hermes-agent
+- Incorporates evolutionary AI architectural principles
+- Uses open-source architectural designs from project-hermes-agent
+- Has a dashboard that may be accessed externally on port 9876 depending on environment port mappings.
+- Dashboard runs on port 9876 externally depending on environment port mappings.
+- Maintains robustness in tooling including frontend fixes like JavaScript fallbacks.
+- User integrates open-source architectural designs notably from project-hermes-agent.
+- Dashboard external access depends on environment port mappings.
+- Automated daily workflows update its dashboard and memory.
+
+## Connected to
+
+- [[user]] — uses (reverse)
+- [[project-engram]] — combined with
+- [[company-nousresearch]] — affiliated with
+- [[project-hermes-agent]] — can internalize design ideas from
+- [[user]] — develops and maintains (reverse)
+- [[project-hermes-agent]] — internalizing design features from
+- [[user]] — developer and main user of (reverse)
+- [[project-hermes-agent]] — internalizes architectural insights from
+- [[company-nousresearch]] — developed by
+- [[user]] — integrates design features into (reverse)
+- [[user]] — integrating design insights into (reverse)
+- [[company-nousresearch]] — associated with
+- [[user]] — maintains and develops (reverse)
+- [[project-hermes-agent]] — design ideas internalized into (reverse)
+- [[company-nousresearch]] — develops (reverse)
+- [[user]] — integrates design insights into (reverse)
+- [[project-hermes-agent]] — design studied for internalization into (reverse)
+- [[user]] — operates and integrates architectures into (reverse)
+- [[company-nousresearch]] — is associated with
+- [[user]] — operates and integrates design insights from project-hermes-agent into (reverse)
+- [[user]] — runs and integrates design insights into (reverse)
+- [[user]] — uses as primary AI agent system (reverse)
+- [[user]] — manages and integrates architectural insights (reverse)
+- [[project-hermes-agent]] — architectural design studied and internalized into (reverse)
+- [[user]] — integrates evolutionary architectural ideas into (reverse)
+- [[company-nousresearch]] — is a project of
+- [[user]] — develops and extends (reverse)
+- [[user]] — integrates features into (reverse)
+- [[user]] — develops and integrates features into (reverse)
+- [[project-hermes-agent]] — integrates architectural ideas from
+- [[company-nousresearch]] — is affiliated with
+- [[user]] — integrates evolutionary AI architectural ideas into (reverse)
+- [[project-hermes-agent]] — provides architectural ideas integrated into (reverse)
+- [[project-hermes-agent]] — integrates architectural features from
+- [[user]] — integrates evolutionary AI designs into (reverse)
+- [[project-hermes-agent]] — provides self-evolving and tool auto-creation architectural features to (reverse)
+- [[user]] — integrates evolutionary AI architectural features into (reverse)
+- [[project-hermes-agent]] — incorporates architectural ideas from
+- [[user]] — integrates evolutionary AI agent features into (reverse)
+- [[project-hermes-agent]] — provides architectural ideas for integration into (reverse)
+- [[project-hermes-agent]] — architectural ideas integrated into (reverse)
+- [[company-baidu]] — entered ecosystem (reverse)
+- [[company-alibaba]] — participates in ecosystem (reverse)
+- [[company-tencent]] — participates in ecosystem (reverse)
+- [[project-hermes-agent]] — source of evolutionary AI agent designs integrated into (reverse)
+- [[project-hermes-agent]] — integrates architectural and evolutionary AI features from
+- [[project-hermes-agent]] — provides evolutionary AI architectural ideas to (reverse)
+- [[user]] — maintains and enhances with evolutionary AI agent features (reverse)
+- [[project-hermes-agent]] — integrates evolutionary architectural ideas from
+- [[company-baidu]] — uses as intelligence source
+- [[project-hermes-agent]] — evolutionary AI agent architectural features integrated into (reverse)
+- [[project-hermes-agent]] — integrates evolutionary AI architectural ideas from
+- [[user]] — integrates evolutionary AI features into (reverse)
+- [[project-hermes-agent]] — incorporates design ideas from
+- [[user]] — integrates features from project-hermes-agent into (reverse)
+- [[project-hermes-agent]] — integrates architectural insights and evolutionary features from
+- [[user]] — integrates evolutionary features from project-hermes-agent into (reverse)
+- [[project-hermes-agent]] — incorporates features from
+- [[project-hermes-agent]] — provides architectural insights and features integrated into (reverse)
+- [[project-hermes-agent]] — integrates architectural ideas and features from
+- [[user]] — develops (reverse)
+- [[project-hermes-agent]] — integrates architectural insights and evolutionary AI features from
+- [[person-user]] — integrates evolutionary AI agent architectural ideas into (reverse)
+- [[project-hermes-agent]] — architecture inspired by
+- [[project-hermes-agent]] — integrates evolutionary AI agent features from
+- [[project-hermes-agent]] — architectural insights integrated into (reverse)
+- [[person-user]] — integrates architectural insights into (reverse)
+- [[project-hermes-agent]] — integrates features from
+- [[project-hermes-agent]] — integrates architectural insights from
+- [[user]] — integrates evolutionary AI agent ideas from project-hermes-agent into (reverse)
+- [[project-hermes-agent]] — provides evolutionary AI architectural ideas integrated into (reverse)
+- [[project-hermes-agent]] — architectural features integrated into (reverse)
+- [[project-hermes-agent]] — inherits architectural concepts from
+- [[project-hermes-agent]] — integrates architectural and self-evolving features from
+- [[project-hermes-agent]] — provides evolutionary AI agent architectural ideas integrated into (reverse)
+- [[user]] — integrates evolutionary AI agent architectural ideas into (reverse)
+- [[project-hermes-agent]] — incorporates self-evolving and tool auto-creation features from
+- [[project-hermes-agent]] — integration source for evolutionary AI agent features (reverse)
+- [[user]] — actively develops and integrates architectural insights into (reverse)
+- [[user]] — develops evolutionary AI agent system with (reverse)
+- [[project-hermes-agent]] — incorporates architectural insights from
+- [[user]] — integrates architectural features into (reverse)
+- [[project-hermes-agent]] — integrates evolutionary AI features derived from
+- [[project-hermes-agent]] — provides architectural features to (reverse)
+- [[project-hermes-agent]] — features integrated into (reverse)
+- [[project-hermes-agent]] — source of architectural and feature inspiration integrated into (reverse)
+- [[project-hermes-agent]] — provides architectural features for integration into (reverse)
+- [[project-hermes-agent]] — integrates architectural and design insights from
+- [[project-hermes-agent]] — source of architectural features integrated into (reverse)
+- [[project-hermes-agent]] — provides architectural features integrated into (reverse)
+- [[company-nousresearch]] — associated with (reverse)
+- [[user]] — develops and integrates architectural innovations into (reverse)
+- [[project-hermes-agent]] — integrates evolutionary architectural features inspired by
+- [[project-hermes-agent]] — integrates evolutionary architectural design from
+- [[user]] — develops and integrates evolutionary AI features into (reverse)
+- [[user]] — integrates evolutionary AI architectural ideas from project-hermes-agent into (reverse)
+- [[project-hermes-agent]] — is architectural inspiration for (reverse)
+- [[project-hermes-agent]] — integrates evolutionary AI architectural features from
+- [[project-hermes-agent]] — integrates evolutionary AI architectural ideas and features from
+- [[project-hermes-agent]] — provides evolutionary AI architecture features integrated into (reverse)
+- [[project-hermes-agent]] — provides evolutionary AI architectural features for integration into (reverse)
+- [[project-hermes-agent]] — incorporates evolutionary AI features from
+- [[project-hermes-agent]] — integrates evolutionary architectural features from
+- [[project-hermes-agent]] — integrates evolutionary AI features from
+- [[project-hermes-agent]] — integrates evolutionary features from
+- [[project-hermes-agent]] — incorporates design elements from
+- [[project-hermes-agent]] — provides evolutionary features integrated into (reverse)
+- [[user]] — develops and applies deep AI architectural understanding in (reverse)
+- [[user]] — develops and integrates evolutionary AI architectures into (reverse)
+- [[user]] — develops and integrates features from (reverse)
+- [[project-hermes-agent]] — features studied and integrated into (reverse)
+- [[user]] — develops an AI project integrating features learned from project-hermes-agent (reverse)
+- [[user]] — develops and integrates evolutionary AI architectures in (reverse)
+- [[user]] — develops and advances evolutionary AI features in (reverse)
+- [[tool-s3plus]] — used for storing dashboard uploads (reverse)
+- [[user]] — develops and integrates evolutionary AI architecture into (reverse)
+- [[user]] — develops and manages (reverse)
+- [[user]] — integrates architectural features from (reverse)
+- [[user]] — runs single AI agent instance of (reverse)
+- [[project-hermes-agent]] — inspired architectural features from
+- [[user]] — integrates evolutionary design into (reverse)
+- [[project-hermes-agent]] — inspired by architecture of
+- [[user]] — develops and integrates evolutionary design features into (reverse)
+- [[project-hermes-agent]] — studies and integrates architecture from
+- [[company-nousresearch]] — is connected to
+- [[project-hermes-agent]] — integrates architectural design from
+- [[project-hermes-agent]] — internalizes architectural design features from
+- [[project-hermes-agent]] — integrates architectural design features from
+- [[user]] — integrates evolutionary AI architectural design from (reverse)
+- [[project-hermes-agent]] — internalizes architectural features from
+- [[project-hermes-agent]] — studies and internalizes architecture from
+- [[user]] — integrates architecture from (reverse)
+- [[project-hermes-agent]] — incorporates architecture inspired by
+- [[user]] — actively develops and integrates advanced AI architectures into (reverse)
+- [[project-hermes-agent]] — integrates evolutionary AI and tool auto-creation architecture from
+- [[user]] — actively develops and integrates architectural features from (reverse)
+- [[project-hermes-agent]] — incorporates evolutionary AI architecture inspired by
+- [[user]] — actively develops and integrates architecture into (reverse)
+- [[user]] — owns and integrates learnings from project-hermes-agent into (reverse)
+- [[user]] — develops and integrates architecture into (reverse)
+- [[user]] — develops with focus on evolutionary AI architecture (reverse)
+- [[user]] — actively integrates architectural learnings from project-hermes-agent into (reverse)
+- [[project-hermes-agent]] — architecture is based on
+- [[user]] — actively integrates architectural learnings into (reverse)
+- [[engram]] — provides memory system used in (reverse)
+- [[project-hermes-agent]] — studies and integrates architectural features from
+- [[tool-engram]] — used for memory management and dashboard visualization (reverse)
+- [[user]] — integrates architectural learnings from (reverse)
+- [[project-hermes-agent]] — based on architectural design of
+- [[project-hermes-agent]] — integrates architectural designs from
+- [[project-hermes-agent]] — integrates architectural learnings from
+- [[user]] — actively develops and manages with disciplined workflows (reverse)
+- [[user]] — actively integrates learnings from (reverse)
+- [[project-openclaw]] — manages automated memory synchronization workflow for dashboard updates
+- [[project-openclaw]] — manages automated memory synchronization workflow for dashboard updates (reverse)
+- [[project-hermes-agent]] — integrates architecture from
+- [[tool-yahoo-finance]] — uses
+- [[user]] — manages and integrates architectural learnings into (reverse)
+- [[user]] — works on and manages (reverse)
+- [[user]] — actively integrates architectural designs into (reverse)
+- [[project-hermes-agent]] — architectural design integrated into (reverse)
+- [[entity-ocul]] — manages trading logic and triggers for
+- [[project-hermes-agent]] — integrates architectural design learnings from
+- [[project-hermes-agent]] — provides architectural designs integrated into (reverse)
+- [[project-hermes-agent]] — deeply integrates architecture from
+- [[user]] — manages and develops (reverse)
+- [[tool-yahoo-finance]] — prefers for real-time small-cap stock prices
+- [[tool-stooq]] — uses as alternative for real-time small-cap stock prices
+- [[user]] — owns and manages (reverse)
+- [[project-hermes-agent]] — integrates design from
+- [[user]] — actively develops and integrates open-source architectures from project-hermes-agent (reverse)
+- [[company-nousresearch]] — connected to
+- [[user]] — develops and integrates architectural learnings into (reverse)
+- [[project-hermes-agent]] — architecture based on
+- [[user]] — develops and maintains with security-first approach (reverse)
+- [[project-hermes-agent]] — integrates open-source architectural designs from
+- [[user]] — actively develops and manages (reverse)
+- [[project-hermes-agent]] — based on architectural designs from
+- [[project-hermes-agent]] — integrates open-source architecture from
+- [[environment]] — dashboard external access depends on port mappings in
+- [[project-hermes-agent]] — integrates architectures from
+
+## Activity
+
+- 2026-03-20: Mentioned in conversation
+- 2026-03-20: Mentioned in conversation
+- 2026-03-20: Mentioned in conversation
+- 2026-03-20: Mentioned in conversation
+- 2026-03-20: Mentioned in conversation
+- 2026-03-20: Mentioned in conversation
+- 2026-03-20: Mentioned in conversation
+- 2026-03-20: Mentioned in conversation
+- 2026-03-20: Mentioned in conversation
+- 2026-03-20: Mentioned in conversation
+- 2026-03-20: Mentioned in conversation
+- 2026-03-20: Mentioned in conversation
+- 2026-03-20: Mentioned in conversation
+- 2026-03-20: Mentioned in conversation
+- 2026-03-20: Mentioned in conversation
+- 2026-03-20: Mentioned in conversation
+- 2026-03-20: Mentioned in conversation
+- 2026-03-20: Mentioned in conversation
+- 2026-03-20: Mentioned in conversation
+- 2026-03-20: Mentioned in conversation

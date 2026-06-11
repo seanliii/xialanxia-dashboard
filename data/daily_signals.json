@@ -1,0 +1,82 @@
+{
+  "date": "2026-03-22",
+  "new_signals": [
+    {
+      "ticker": "SOFI",
+      "company": "SoFi Technologies - 数字银行/金融科技",
+      "price": 17.54,
+      "mktcap_B": 21.15,
+      "signal": "CEO Anthony Noto 开市买入 $100万（56,000股@$17.88，3/2）",
+      "pe": 43.9,
+      "revenue_growth": "8.8%",
+      "target": 24.0,
+      "stop_loss": 15.0,
+      "hold_days": 45,
+      "thesis": "CEO真金白银买$100万，估值偏高但高管信心强，等回调至$16入场",
+      "action": "WATCHLIST - 等$16-16.5入场",
+      "priority": "HIGH"
+    },
+    {
+      "ticker": "HBAN",
+      "company": "Huntington Bancshares - 区域银行",
+      "price": 15.39,
+      "mktcap_B": 22.46,
+      "signal": "CEO Stephen Steinour 买入 $50万（32,277股@$15.49，3/12）",
+      "pe": 10.2,
+      "revenue_growth": "2.7%",
+      "target": 19.0,
+      "stop_loss": 13.5,
+      "hold_days": 60,
+      "thesis": "CEO买入+P/E 10x低估，区域银行防御性持仓，利率敏感但估值合理",
+      "action": "WATCHLIST - 可在$15以下建仓",
+      "priority": "MEDIUM"
+    },
+    {
+      "ticker": "SNES",
+      "company": "SenesTech Inc - 害虫控制/生物农药（微盘）",
+      "price": 1.8,
+      "mktcap_M": 9.2,
+      "signal": "10%大股东 Glenbrook Capital 3月13-17日持续增持 17万股，总计$33万",
+      "pe": "N/A（亏损）",
+      "revenue_growth": "-3.5%",
+      "target": 2.8,
+      "stop_loss": 1.45,
+      "hold_days": 21,
+      "thesis": "大股东连续5天增持，微盘流动性差，上下波动大；营收负增长是风险",
+      "action": "SPECULATIVE - 高风险，小仓1%以内",
+      "priority": "LOW-SPECULATIVE"
+    },
+    {
+      "ticker": "TOI",
+      "company": "The Oncology Institute - 肿瘤门诊医疗",
+      "price": 3.59,
+      "mktcap_M": 353,
+      "signal": "10%大股东 Chernett Jorey 3/13-16 买入32.4万股，$97万",
+      "pe": "N/A（亏损）",
+      "revenue_growth": "9%",
+      "target": 5.5,
+      "stop_loss": 2.8,
+      "hold_days": 30,
+      "thesis": "大股东近$100万主动买入，营收增速9%，医疗服务刚需赛道",
+      "action": "CONSIDER - 等财报确认趋势",
+      "priority": "MEDIUM"
+    }
+  ],
+  "push_signals": [
+    {
+      "ticker": "NVDA",
+      "company": "NVIDIA Corporation",
+      "signal": "CEO Jensen Huang内部人买入，机构目标价上调至50，股价当日上涨3%",
+      "signal_type": "insider_buy",
+      "score": 85,
+      "source": "测试",
+      "added_at": "2026-03-22 13:47 CST",
+      "price": null,
+      "target": null,
+      "stop_loss": null,
+      "hold_days": 30,
+      "account_hint": "aggressive",
+      "status": "evaluated"
+    }
+  ]
+}

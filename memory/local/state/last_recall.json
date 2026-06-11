@@ -1,0 +1,1489 @@
+{
+  "agent:main:daxiang:direct:2872173767": {
+    "sessionKey": "agent:main:daxiang:direct:2872173767",
+    "recordedAt": "2026-03-23T02:22:18.630Z",
+    "queryHash": "0c34e710fdcb92ba74d2ec8905855f6654253b4316d99dc67ad8bf022841a874",
+    "queryLen": 1982,
+    "memoryIds": [
+      "fact-1774012180376-ly8h",
+      "fact-1774012203605-81d1",
+      "principle-1774005346092-6p4u",
+      "fact-1774005423326-s1mw",
+      "preference-1774005114209-090k",
+      "fact-1774004845451-hddf",
+      "fact-1774005389827-dwej",
+      "fact-1774005114912-a5bq"
+    ],
+    "namespace": "default",
+    "traceId": "89ed55fc239d2368",
+    "plannerMode": "full",
+    "source": "recent_scan",
+    "fallbackUsed": true,
+    "sourcesUsed": [
+      "recent_scan",
+      "profile",
+      "knowledge-index",
+      "verbatim-artifacts",
+      "memories",
+      "transcript"
+    ],
+    "budgetsApplied": {
+      "appliedTopK": 8,
+      "recallBudgetChars": 8000,
+      "maxMemoryTokens": 2000,
+      "qmdFetchLimit": 24,
+      "qmdHybridFetchLimit": 56,
+      "finalContextChars": 8000,
+      "truncated": true,
+      "includedSections": [
+        "profile",
+        "knowledge-index",
+        "memories"
+      ],
+      "omittedSections": [
+        "verbatim-artifacts",
+        "transcript"
+      ]
+    },
+    "latencyMs": 961,
+    "resultPaths": [
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/fact-1774012180376-ly8h.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/fact-1774012203605-81d1.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/principle-1774005346092-6p4u.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/fact-1774005423326-s1mw.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774005114209-090k.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/fact-1774004845451-hddf.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/fact-1774005389827-dwej.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/fact-1774005114912-a5bq.md"
+    ],
+    "policyVersion": "8d5faf16d6ad",
+    "identityInjectionMode": "none",
+    "identityInjectedChars": 0,
+    "identityInjectionTruncated": false
+  },
+  "agent:main:cron:9b8de7d0-432f-4e94-9d68-22f6ae97fa9a": {
+    "sessionKey": "agent:main:cron:9b8de7d0-432f-4e94-9d68-22f6ae97fa9a",
+    "recordedAt": "2026-03-23T02:29:19.013Z",
+    "queryHash": "289cba552dda45171f321e516a3e81fa900d83d03e0b0dc98d4f2c11200eb499",
+    "queryLen": 480,
+    "memoryIds": [
+      "principle-1774015127069-fi3i",
+      "preference-1774015407559-glws",
+      "preference-1774014035103-e9vv",
+      "preference-1774012178671-acoy",
+      "preference-1774015723105-ea1m",
+      "preference-1774005130226-9vs0",
+      "preference-1774010394702-a4pw",
+      "preference-1774010393341-6yof"
+    ],
+    "namespace": "default",
+    "traceId": "069714d1c7fa699a",
+    "plannerMode": "full",
+    "source": "recent_scan",
+    "fallbackUsed": true,
+    "sourcesUsed": [
+      "recent_scan",
+      "profile",
+      "knowledge-index",
+      "verbatim-artifacts",
+      "memories"
+    ],
+    "budgetsApplied": {
+      "appliedTopK": 8,
+      "recallBudgetChars": 8000,
+      "maxMemoryTokens": 2000,
+      "qmdFetchLimit": 24,
+      "qmdHybridFetchLimit": 56,
+      "finalContextChars": 8000,
+      "truncated": true,
+      "includedSections": [
+        "profile",
+        "knowledge-index",
+        "memories"
+      ],
+      "omittedSections": [
+        "verbatim-artifacts"
+      ]
+    },
+    "latencyMs": 831,
+    "resultPaths": [
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/principle-1774015127069-fi3i.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774015407559-glws.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774014035103-e9vv.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774012178671-acoy.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774015723105-ea1m.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774005130226-9vs0.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774010394702-a4pw.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774010393341-6yof.md"
+    ],
+    "policyVersion": "8d5faf16d6ad",
+    "identityInjectionMode": "none",
+    "identityInjectedChars": 0,
+    "identityInjectionTruncated": false
+  },
+  "agent:main:subagent:d58eaec5-350a-4430-bb90-7fc9db294420": {
+    "sessionKey": "agent:main:subagent:d58eaec5-350a-4430-bb90-7fc9db294420",
+    "recordedAt": "2026-03-17T02:50:59.980Z",
+    "queryHash": "92accfa67e9c8f231dae46652ea0e31706211fcbe0703f95360a50ef30f9babb",
+    "queryLen": 1880,
+    "memoryIds": [
+      "fact-1773715493549-3mwt",
+      "decision-1773715413711-xyhk",
+      "fact-1773714655528-1kdm"
+    ],
+    "namespace": "default",
+    "traceId": "62f5bc000961b91b",
+    "plannerMode": "full",
+    "source": "recent_scan",
+    "fallbackUsed": true,
+    "sourcesUsed": [
+      "recent_scan",
+      "profile",
+      "knowledge-index",
+      "verbatim-artifacts",
+      "memories"
+    ],
+    "budgetsApplied": {
+      "appliedTopK": 8,
+      "recallBudgetChars": 8000,
+      "maxMemoryTokens": 2000,
+      "qmdFetchLimit": 24,
+      "qmdHybridFetchLimit": 56,
+      "finalContextChars": 4623,
+      "truncated": false,
+      "includedSections": [
+        "profile",
+        "knowledge-index",
+        "verbatim-artifacts",
+        "memories"
+      ],
+      "omittedSections": []
+    },
+    "latencyMs": 38,
+    "resultPaths": [
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-17/fact-1773715493549-3mwt.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-17/decision-1773715413711-xyhk.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-17/fact-1773714655528-1kdm.md"
+    ],
+    "policyVersion": "8d5faf16d6ad",
+    "identityInjectionMode": "none",
+    "identityInjectedChars": 0,
+    "identityInjectionTruncated": false
+  },
+  "agent:main:main": {
+    "sessionKey": "agent:main:main",
+    "recordedAt": "2026-03-23T13:06:36.846Z",
+    "queryHash": "bf462b329bc35ba97e908dd4acb968b8667ad60efc6623271c19f493bde5e1d3",
+    "queryLen": 235,
+    "memoryIds": [
+      "principle-1774015127069-fi3i",
+      "preference-1774014035103-e9vv",
+      "preference-1774015407559-glws",
+      "preference-1774012178671-acoy",
+      "preference-1774005130226-9vs0",
+      "principle-1774010393003-3fsl",
+      "preference-1774010394702-a4pw",
+      "fact-1774012180376-ly8h"
+    ],
+    "namespace": "default",
+    "traceId": "569587fb82e07395",
+    "plannerMode": "full",
+    "source": "recent_scan",
+    "fallbackUsed": true,
+    "sourcesUsed": [
+      "recent_scan",
+      "profile",
+      "knowledge-index",
+      "verbatim-artifacts",
+      "memories",
+      "transcript"
+    ],
+    "budgetsApplied": {
+      "appliedTopK": 8,
+      "recallBudgetChars": 8000,
+      "maxMemoryTokens": 2000,
+      "qmdFetchLimit": 24,
+      "qmdHybridFetchLimit": 56,
+      "finalContextChars": 8000,
+      "truncated": true,
+      "includedSections": [
+        "profile",
+        "knowledge-index",
+        "memories"
+      ],
+      "omittedSections": [
+        "verbatim-artifacts",
+        "transcript"
+      ]
+    },
+    "latencyMs": 1189,
+    "resultPaths": [
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/principle-1774015127069-fi3i.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774014035103-e9vv.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774015407559-glws.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774012178671-acoy.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774005130226-9vs0.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/principle-1774010393003-3fsl.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774010394702-a4pw.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/fact-1774012180376-ly8h.md"
+    ],
+    "policyVersion": "8d5faf16d6ad",
+    "identityInjectionMode": "none",
+    "identityInjectedChars": 0,
+    "identityInjectionTruncated": false
+  },
+  "agent:main:cron:d9c566bd-d89d-4836-9782-9a6877741a43": {
+    "sessionKey": "agent:main:cron:d9c566bd-d89d-4836-9782-9a6877741a43",
+    "recordedAt": "2026-03-23T03:00:00.997Z",
+    "queryHash": "8a96895c5314182e8be333f63a8ec85c7d5d9f80019e640dd2db8893755ccf58",
+    "queryLen": 480,
+    "memoryIds": [
+      "fact-1773976278289-6883",
+      "fact-1773810127872-uyve",
+      "decision-1773792758292-ump4",
+      "fact-1773792758141-baiz",
+      "fact-1773715493549-3mwt",
+      "decision-1773715413711-xyhk",
+      "fact-1773714655528-1kdm"
+    ],
+    "namespace": "default",
+    "traceId": "5522c2be277e4944",
+    "plannerMode": "full",
+    "source": "recent_scan",
+    "fallbackUsed": true,
+    "sourcesUsed": [
+      "recent_scan",
+      "profile",
+      "knowledge-index",
+      "verbatim-artifacts",
+      "memories"
+    ],
+    "budgetsApplied": {
+      "appliedTopK": 8,
+      "recallBudgetChars": 8000,
+      "maxMemoryTokens": 2000,
+      "qmdFetchLimit": 24,
+      "qmdHybridFetchLimit": 56,
+      "finalContextChars": 8000,
+      "truncated": true,
+      "includedSections": [
+        "profile",
+        "knowledge-index",
+        "memories"
+      ],
+      "omittedSections": [
+        "verbatim-artifacts"
+      ]
+    },
+    "latencyMs": 871,
+    "resultPaths": [
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/fact-1773976278289-6883.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-18/fact-1773810127872-uyve.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-18/decision-1773792758292-ump4.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-18/fact-1773792758141-baiz.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-17/fact-1773715493549-3mwt.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-17/decision-1773715413711-xyhk.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-17/fact-1773714655528-1kdm.md"
+    ],
+    "policyVersion": "8d5faf16d6ad",
+    "identityInjectionMode": "none",
+    "identityInjectedChars": 0,
+    "identityInjectionTruncated": false
+  },
+  "agent:main:cron:weipan-daily-1100": {
+    "sessionKey": "agent:main:cron:weipan-daily-1100",
+    "recordedAt": "2026-03-23T03:01:05.721Z",
+    "queryHash": "b2068bf65541f4bb59a83a9e0ceafadad4b7e4b9b71021a5cd4d0426a272b5fd",
+    "queryLen": 480,
+    "memoryIds": [
+      "fact-1774012180376-ly8h",
+      "principle-1773997729147-u6bu",
+      "principle-1774010393003-3fsl",
+      "preference-1773995580163-gsfh",
+      "preference-1773995579323-iyq4",
+      "fact-1773993196807-tfc0",
+      "fact-1773993196239-er2r",
+      "fact-1773993196531-94pw"
+    ],
+    "namespace": "default",
+    "traceId": "eb4d3dd77a901207",
+    "plannerMode": "full",
+    "source": "recent_scan",
+    "fallbackUsed": true,
+    "sourcesUsed": [
+      "recent_scan",
+      "profile",
+      "knowledge-index",
+      "verbatim-artifacts",
+      "memories"
+    ],
+    "budgetsApplied": {
+      "appliedTopK": 8,
+      "recallBudgetChars": 8000,
+      "maxMemoryTokens": 2000,
+      "qmdFetchLimit": 24,
+      "qmdHybridFetchLimit": 56,
+      "finalContextChars": 8000,
+      "truncated": true,
+      "includedSections": [
+        "profile",
+        "knowledge-index",
+        "memories"
+      ],
+      "omittedSections": [
+        "verbatim-artifacts"
+      ]
+    },
+    "latencyMs": 1207,
+    "resultPaths": [
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/fact-1774012180376-ly8h.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/principle-1773997729147-u6bu.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/principle-1774010393003-3fsl.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1773995580163-gsfh.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1773995579323-iyq4.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/fact-1773993196807-tfc0.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/fact-1773993196239-er2r.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/fact-1773993196531-94pw.md"
+    ],
+    "policyVersion": "8d5faf16d6ad",
+    "identityInjectionMode": "none",
+    "identityInjectedChars": 0,
+    "identityInjectionTruncated": false
+  },
+  "agent:main:cron:04e6baf1-753a-4418-80fb-6ce9b9d1474d": {
+    "sessionKey": "agent:main:cron:04e6baf1-753a-4418-80fb-6ce9b9d1474d",
+    "recordedAt": "2026-03-23T04:00:01.187Z",
+    "queryHash": "d7a20ff4d41fabd6cf14fd3efe0378eed45d6aeb1bab14dcb35c42b17521f528",
+    "queryLen": 480,
+    "memoryIds": [
+      "principle-1774015127069-fi3i",
+      "preference-1774015407559-glws",
+      "preference-1774014035103-e9vv",
+      "preference-1774012178671-acoy",
+      "preference-1774015723105-ea1m",
+      "preference-1774005130226-9vs0",
+      "preference-1774010394702-a4pw",
+      "preference-1774010393341-6yof"
+    ],
+    "namespace": "default",
+    "traceId": "333bbb20fea0b0ab",
+    "plannerMode": "full",
+    "source": "recent_scan",
+    "fallbackUsed": true,
+    "sourcesUsed": [
+      "recent_scan",
+      "profile",
+      "knowledge-index",
+      "verbatim-artifacts",
+      "memories"
+    ],
+    "budgetsApplied": {
+      "appliedTopK": 8,
+      "recallBudgetChars": 8000,
+      "maxMemoryTokens": 2000,
+      "qmdFetchLimit": 24,
+      "qmdHybridFetchLimit": 56,
+      "finalContextChars": 8000,
+      "truncated": true,
+      "includedSections": [
+        "profile",
+        "knowledge-index",
+        "memories"
+      ],
+      "omittedSections": [
+        "verbatim-artifacts"
+      ]
+    },
+    "latencyMs": 1080,
+    "resultPaths": [
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/principle-1774015127069-fi3i.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774015407559-glws.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774014035103-e9vv.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774012178671-acoy.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774015723105-ea1m.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774005130226-9vs0.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774010394702-a4pw.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774010393341-6yof.md"
+    ],
+    "policyVersion": "8d5faf16d6ad",
+    "identityInjectionMode": "none",
+    "identityInjectedChars": 0,
+    "identityInjectionTruncated": false
+  },
+  "agent:main:cron:9ba288bb-1f51-4211-8bf0-cd205f09f132": {
+    "sessionKey": "agent:main:cron:9ba288bb-1f51-4211-8bf0-cd205f09f132",
+    "recordedAt": "2026-03-23T05:30:00.779Z",
+    "queryHash": "32502467dc0e51dca7b894652e008e73a0d3ef390ac40525a4280ca0c329dd25",
+    "queryLen": 480,
+    "memoryIds": [
+      "principle-1774015127069-fi3i",
+      "preference-1774015407559-glws",
+      "preference-1774014035103-e9vv",
+      "preference-1774012178671-acoy",
+      "preference-1774015723105-ea1m",
+      "preference-1774005130226-9vs0",
+      "preference-1774010394702-a4pw",
+      "preference-1774010393341-6yof"
+    ],
+    "namespace": "default",
+    "traceId": "de55de2522955105",
+    "plannerMode": "full",
+    "source": "recent_scan",
+    "fallbackUsed": true,
+    "sourcesUsed": [
+      "recent_scan",
+      "profile",
+      "knowledge-index",
+      "verbatim-artifacts",
+      "memories"
+    ],
+    "budgetsApplied": {
+      "appliedTopK": 8,
+      "recallBudgetChars": 8000,
+      "maxMemoryTokens": 2000,
+      "qmdFetchLimit": 24,
+      "qmdHybridFetchLimit": 56,
+      "finalContextChars": 8000,
+      "truncated": true,
+      "includedSections": [
+        "profile",
+        "knowledge-index",
+        "memories"
+      ],
+      "omittedSections": [
+        "verbatim-artifacts"
+      ]
+    },
+    "latencyMs": 658,
+    "resultPaths": [
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/principle-1774015127069-fi3i.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774015407559-glws.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774014035103-e9vv.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774012178671-acoy.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774015723105-ea1m.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774005130226-9vs0.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774010394702-a4pw.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774010393341-6yof.md"
+    ],
+    "policyVersion": "8d5faf16d6ad",
+    "identityInjectionMode": "none",
+    "identityInjectedChars": 0,
+    "identityInjectionTruncated": false
+  },
+  "agent:main:cron:47c7323c-da8e-4529-b52a-832bd7097831": {
+    "sessionKey": "agent:main:cron:47c7323c-da8e-4529-b52a-832bd7097831",
+    "recordedAt": "2026-03-23T06:00:01.145Z",
+    "queryHash": "37dad8f3f935a841a67875f823be10e56f5dd3c71349d841b854758b5c32ee23",
+    "queryLen": 480,
+    "memoryIds": [
+      "principle-1774015127069-fi3i",
+      "preference-1774015407559-glws",
+      "preference-1774014035103-e9vv",
+      "preference-1774012178671-acoy",
+      "preference-1774015723105-ea1m",
+      "preference-1774005130226-9vs0",
+      "preference-1774010394702-a4pw",
+      "preference-1774010393341-6yof"
+    ],
+    "namespace": "default",
+    "traceId": "47a4fec3ba4532b5",
+    "plannerMode": "full",
+    "source": "recent_scan",
+    "fallbackUsed": true,
+    "sourcesUsed": [
+      "recent_scan",
+      "profile",
+      "knowledge-index",
+      "verbatim-artifacts",
+      "memories"
+    ],
+    "budgetsApplied": {
+      "appliedTopK": 8,
+      "recallBudgetChars": 8000,
+      "maxMemoryTokens": 2000,
+      "qmdFetchLimit": 24,
+      "qmdHybridFetchLimit": 56,
+      "finalContextChars": 8000,
+      "truncated": true,
+      "includedSections": [
+        "profile",
+        "knowledge-index",
+        "memories"
+      ],
+      "omittedSections": [
+        "verbatim-artifacts"
+      ]
+    },
+    "latencyMs": 1037,
+    "resultPaths": [
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/principle-1774015127069-fi3i.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774015407559-glws.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774014035103-e9vv.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774012178671-acoy.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774015723105-ea1m.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774005130226-9vs0.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774010394702-a4pw.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774010393341-6yof.md"
+    ],
+    "policyVersion": "8d5faf16d6ad",
+    "identityInjectionMode": "none",
+    "identityInjectedChars": 0,
+    "identityInjectionTruncated": false
+  },
+  "agent:main:cron:713f3a86-1756-4e01-98cb-f03ee43bb181": {
+    "sessionKey": "agent:main:cron:713f3a86-1756-4e01-98cb-f03ee43bb181",
+    "recordedAt": "2026-03-23T07:00:00.792Z",
+    "queryHash": "2aa426e3e2a5b18a74c1e06b4e4fe64f3ee0027727b8e84a7e54c2ba049f384d",
+    "queryLen": 480,
+    "memoryIds": [
+      "fact-1773976278289-6883",
+      "fact-1773810127872-uyve",
+      "decision-1773792758292-ump4",
+      "fact-1773792758141-baiz",
+      "fact-1773715493549-3mwt",
+      "decision-1773715413711-xyhk",
+      "fact-1773714655528-1kdm"
+    ],
+    "namespace": "default",
+    "traceId": "5c3cec0608c0b464",
+    "plannerMode": "full",
+    "source": "recent_scan",
+    "fallbackUsed": true,
+    "sourcesUsed": [
+      "recent_scan",
+      "profile",
+      "knowledge-index",
+      "verbatim-artifacts",
+      "memories"
+    ],
+    "budgetsApplied": {
+      "appliedTopK": 8,
+      "recallBudgetChars": 8000,
+      "maxMemoryTokens": 2000,
+      "qmdFetchLimit": 24,
+      "qmdHybridFetchLimit": 56,
+      "finalContextChars": 8000,
+      "truncated": true,
+      "includedSections": [
+        "profile",
+        "knowledge-index",
+        "memories"
+      ],
+      "omittedSections": [
+        "verbatim-artifacts"
+      ]
+    },
+    "latencyMs": 680,
+    "resultPaths": [
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/fact-1773976278289-6883.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-18/fact-1773810127872-uyve.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-18/decision-1773792758292-ump4.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-18/fact-1773792758141-baiz.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-17/fact-1773715493549-3mwt.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-17/decision-1773715413711-xyhk.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-17/fact-1773714655528-1kdm.md"
+    ],
+    "policyVersion": "8d5faf16d6ad",
+    "identityInjectionMode": "none",
+    "identityInjectedChars": 0,
+    "identityInjectionTruncated": false
+  },
+  "agent:main:cron:80d2e591-e070-4785-bd6c-e70351cb097d": {
+    "sessionKey": "agent:main:cron:80d2e591-e070-4785-bd6c-e70351cb097d",
+    "recordedAt": "2026-03-23T08:00:00.936Z",
+    "queryHash": "afbf97633684f18298bb0159757abc3e0122dbe29b6caf7c747ea299a4c6ef12",
+    "queryLen": 480,
+    "memoryIds": [
+      "principle-1774015127069-fi3i",
+      "preference-1774015407559-glws",
+      "preference-1774014035103-e9vv",
+      "preference-1774012178671-acoy",
+      "preference-1774015723105-ea1m",
+      "preference-1774005130226-9vs0",
+      "preference-1774010394702-a4pw",
+      "preference-1774010393341-6yof"
+    ],
+    "namespace": "default",
+    "traceId": "8c91352a8a284503",
+    "plannerMode": "full",
+    "source": "recent_scan",
+    "fallbackUsed": true,
+    "sourcesUsed": [
+      "recent_scan",
+      "profile",
+      "knowledge-index",
+      "verbatim-artifacts",
+      "memories"
+    ],
+    "budgetsApplied": {
+      "appliedTopK": 8,
+      "recallBudgetChars": 8000,
+      "maxMemoryTokens": 2000,
+      "qmdFetchLimit": 24,
+      "qmdHybridFetchLimit": 56,
+      "finalContextChars": 8000,
+      "truncated": true,
+      "includedSections": [
+        "profile",
+        "knowledge-index",
+        "memories"
+      ],
+      "omittedSections": [
+        "verbatim-artifacts"
+      ]
+    },
+    "latencyMs": 832,
+    "resultPaths": [
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/principle-1774015127069-fi3i.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774015407559-glws.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774014035103-e9vv.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774012178671-acoy.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774015723105-ea1m.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774005130226-9vs0.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774010394702-a4pw.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774010393341-6yof.md"
+    ],
+    "policyVersion": "8d5faf16d6ad",
+    "identityInjectionMode": "none",
+    "identityInjectedChars": 0,
+    "identityInjectionTruncated": false
+  },
+  "agent:main:cron:5b631ffa-86fc-47c1-8669-188218ad555d": {
+    "sessionKey": "agent:main:cron:5b631ffa-86fc-47c1-8669-188218ad555d",
+    "recordedAt": "2026-03-23T09:00:01.014Z",
+    "queryHash": "a2c3d4fe90f728b9a08595af884d4022e3518160e88d0c60d3ddf5ecbf28d601",
+    "queryLen": 480,
+    "memoryIds": [
+      "fact-1773976278289-6883",
+      "fact-1773810127872-uyve",
+      "decision-1773792758292-ump4",
+      "fact-1773792758141-baiz",
+      "fact-1773715493549-3mwt",
+      "decision-1773715413711-xyhk",
+      "fact-1773714655528-1kdm"
+    ],
+    "namespace": "default",
+    "traceId": "eb239a7751da5fdb",
+    "plannerMode": "full",
+    "source": "recent_scan",
+    "fallbackUsed": true,
+    "sourcesUsed": [
+      "recent_scan",
+      "profile",
+      "knowledge-index",
+      "verbatim-artifacts",
+      "memories"
+    ],
+    "budgetsApplied": {
+      "appliedTopK": 8,
+      "recallBudgetChars": 8000,
+      "maxMemoryTokens": 2000,
+      "qmdFetchLimit": 24,
+      "qmdHybridFetchLimit": 56,
+      "finalContextChars": 8000,
+      "truncated": true,
+      "includedSections": [
+        "profile",
+        "knowledge-index",
+        "memories"
+      ],
+      "omittedSections": [
+        "verbatim-artifacts"
+      ]
+    },
+    "latencyMs": 906,
+    "resultPaths": [
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/fact-1773976278289-6883.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-18/fact-1773810127872-uyve.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-18/decision-1773792758292-ump4.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-18/fact-1773792758141-baiz.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-17/fact-1773715493549-3mwt.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-17/decision-1773715413711-xyhk.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-17/fact-1773714655528-1kdm.md"
+    ],
+    "policyVersion": "8d5faf16d6ad",
+    "identityInjectionMode": "none",
+    "identityInjectedChars": 0,
+    "identityInjectionTruncated": false
+  },
+  "agent:main:cron:8774c01d-dc67-4682-ac30-ab5f78a3a2ec": {
+    "sessionKey": "agent:main:cron:8774c01d-dc67-4682-ac30-ab5f78a3a2ec",
+    "recordedAt": "2026-03-23T09:00:25.497Z",
+    "queryHash": "5946002e29fcfaef44b5ce23a6a32fae8cd6ffa7798f945a005a26ad94d11a2e",
+    "queryLen": 480,
+    "memoryIds": [
+      "principle-1774015127069-fi3i",
+      "preference-1774015407559-glws",
+      "preference-1774014035103-e9vv",
+      "preference-1774012178671-acoy",
+      "preference-1774015723105-ea1m",
+      "preference-1774005130226-9vs0",
+      "preference-1774010394702-a4pw",
+      "preference-1774010393341-6yof"
+    ],
+    "namespace": "default",
+    "traceId": "7e8dc4054eee8dd6",
+    "plannerMode": "full",
+    "source": "recent_scan",
+    "fallbackUsed": true,
+    "sourcesUsed": [
+      "recent_scan",
+      "profile",
+      "knowledge-index",
+      "verbatim-artifacts",
+      "memories"
+    ],
+    "budgetsApplied": {
+      "appliedTopK": 8,
+      "recallBudgetChars": 8000,
+      "maxMemoryTokens": 2000,
+      "qmdFetchLimit": 24,
+      "qmdHybridFetchLimit": 56,
+      "finalContextChars": 8000,
+      "truncated": true,
+      "includedSections": [
+        "profile",
+        "knowledge-index",
+        "memories"
+      ],
+      "omittedSections": [
+        "verbatim-artifacts"
+      ]
+    },
+    "latencyMs": 678,
+    "resultPaths": [
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/principle-1774015127069-fi3i.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774015407559-glws.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774014035103-e9vv.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774012178671-acoy.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774015723105-ea1m.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774005130226-9vs0.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774010394702-a4pw.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774010393341-6yof.md"
+    ],
+    "policyVersion": "8d5faf16d6ad",
+    "identityInjectionMode": "none",
+    "identityInjectedChars": 0,
+    "identityInjectionTruncated": false
+  },
+  "agent:main:daxiang:direct:single_2872173767": {
+    "sessionKey": "agent:main:daxiang:direct:single_2872173767",
+    "recordedAt": "2026-03-23T09:05:39.684Z",
+    "queryHash": "8141a20fe8f32fefd559249acb7a40594e44629646eac46907d23c2482152a17",
+    "queryLen": 3624,
+    "memoryIds": [
+      "principle-1774015127069-fi3i",
+      "preference-1774015407559-glws",
+      "preference-1774014035103-e9vv",
+      "preference-1774012178671-acoy",
+      "preference-1774005130226-9vs0",
+      "preference-1774010394702-a4pw",
+      "preference-1774015723105-ea1m",
+      "principle-1774014035448-wgab"
+    ],
+    "namespace": "default",
+    "traceId": "915f3a695359d5c7",
+    "plannerMode": "full",
+    "source": "recent_scan",
+    "fallbackUsed": true,
+    "sourcesUsed": [
+      "recent_scan",
+      "profile",
+      "knowledge-index",
+      "verbatim-artifacts",
+      "memories",
+      "transcript"
+    ],
+    "budgetsApplied": {
+      "appliedTopK": 8,
+      "recallBudgetChars": 8000,
+      "maxMemoryTokens": 2000,
+      "qmdFetchLimit": 24,
+      "qmdHybridFetchLimit": 56,
+      "finalContextChars": 8000,
+      "truncated": true,
+      "includedSections": [
+        "profile",
+        "knowledge-index",
+        "memories"
+      ],
+      "omittedSections": [
+        "verbatim-artifacts",
+        "transcript"
+      ]
+    },
+    "latencyMs": 884,
+    "resultPaths": [
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/principle-1774015127069-fi3i.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774015407559-glws.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774014035103-e9vv.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774012178671-acoy.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774005130226-9vs0.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774010394702-a4pw.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774015723105-ea1m.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/principle-1774014035448-wgab.md"
+    ],
+    "policyVersion": "8d5faf16d6ad",
+    "identityInjectionMode": "none",
+    "identityInjectedChars": 0,
+    "identityInjectionTruncated": false
+  },
+  "agent:main:cron:e8a35bc3-964b-43ad-ac23-ce2e079e77f4": {
+    "sessionKey": "agent:main:cron:e8a35bc3-964b-43ad-ac23-ce2e079e77f4",
+    "recordedAt": "2026-03-23T09:02:01.644Z",
+    "queryHash": "bd589d84abcf149858c96ca391645cf8f168848c2f427e06c434fbfa2a4ac11d",
+    "queryLen": 480,
+    "memoryIds": [
+      "principle-1774015127069-fi3i",
+      "preference-1774015407559-glws",
+      "preference-1774014035103-e9vv",
+      "preference-1774012178671-acoy",
+      "preference-1774015723105-ea1m",
+      "preference-1774005130226-9vs0",
+      "preference-1774010394702-a4pw",
+      "preference-1774010393341-6yof"
+    ],
+    "namespace": "default",
+    "traceId": "50977c131e7a2f60",
+    "plannerMode": "full",
+    "source": "recent_scan",
+    "fallbackUsed": true,
+    "sourcesUsed": [
+      "recent_scan",
+      "profile",
+      "knowledge-index",
+      "verbatim-artifacts",
+      "memories"
+    ],
+    "budgetsApplied": {
+      "appliedTopK": 8,
+      "recallBudgetChars": 8000,
+      "maxMemoryTokens": 2000,
+      "qmdFetchLimit": 24,
+      "qmdHybridFetchLimit": 56,
+      "finalContextChars": 8000,
+      "truncated": true,
+      "includedSections": [
+        "profile",
+        "knowledge-index",
+        "memories"
+      ],
+      "omittedSections": [
+        "verbatim-artifacts"
+      ]
+    },
+    "latencyMs": 377,
+    "resultPaths": [
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/principle-1774015127069-fi3i.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774015407559-glws.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774014035103-e9vv.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774012178671-acoy.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774015723105-ea1m.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774005130226-9vs0.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774010394702-a4pw.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774010393341-6yof.md"
+    ],
+    "policyVersion": "8d5faf16d6ad",
+    "identityInjectionMode": "none",
+    "identityInjectedChars": 0,
+    "identityInjectionTruncated": false
+  },
+  "agent:main:cron:4ce4314f-6e56-4ef5-8bf7-624c73a7e04f": {
+    "sessionKey": "agent:main:cron:4ce4314f-6e56-4ef5-8bf7-624c73a7e04f",
+    "recordedAt": "2026-03-23T09:03:25.491Z",
+    "queryHash": "ba9fc0638a585effe6df2b611ed6a4bf4c522a8fbbebaad98624e5f2b536dc45",
+    "queryLen": 480,
+    "memoryIds": [
+      "principle-1774015127069-fi3i",
+      "preference-1774015407559-glws",
+      "preference-1774014035103-e9vv",
+      "preference-1774012178671-acoy",
+      "preference-1774015723105-ea1m",
+      "preference-1774005130226-9vs0",
+      "preference-1774010394702-a4pw",
+      "preference-1774010393341-6yof"
+    ],
+    "namespace": "default",
+    "traceId": "b5cbf45988696c14",
+    "plannerMode": "full",
+    "source": "recent_scan",
+    "fallbackUsed": true,
+    "sourcesUsed": [
+      "recent_scan",
+      "profile",
+      "knowledge-index",
+      "verbatim-artifacts",
+      "memories"
+    ],
+    "budgetsApplied": {
+      "appliedTopK": 8,
+      "recallBudgetChars": 8000,
+      "maxMemoryTokens": 2000,
+      "qmdFetchLimit": 24,
+      "qmdHybridFetchLimit": 56,
+      "finalContextChars": 8000,
+      "truncated": true,
+      "includedSections": [
+        "profile",
+        "knowledge-index",
+        "memories"
+      ],
+      "omittedSections": [
+        "verbatim-artifacts"
+      ]
+    },
+    "latencyMs": 929,
+    "resultPaths": [
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/principle-1774015127069-fi3i.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774015407559-glws.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774014035103-e9vv.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774012178671-acoy.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774015723105-ea1m.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774005130226-9vs0.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774010394702-a4pw.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774010393341-6yof.md"
+    ],
+    "policyVersion": "8d5faf16d6ad",
+    "identityInjectionMode": "none",
+    "identityInjectedChars": 0,
+    "identityInjectionTruncated": false
+  },
+  "agent:main:cron:d19b8f76-7756-4cec-83d9-b7908385831f": {
+    "sessionKey": "agent:main:cron:d19b8f76-7756-4cec-83d9-b7908385831f",
+    "recordedAt": "2026-03-23T10:05:24.039Z",
+    "queryHash": "da65b34251b925d2208ab360cbcd60357ac8187296c92613c11598a9ead1e2b0",
+    "queryLen": 480,
+    "memoryIds": [
+      "fact-1773976278289-6883",
+      "fact-1773810127872-uyve",
+      "decision-1773792758292-ump4",
+      "fact-1773792758141-baiz",
+      "fact-1773715493549-3mwt",
+      "decision-1773715413711-xyhk",
+      "fact-1773714655528-1kdm"
+    ],
+    "namespace": "default",
+    "traceId": "414b6081fea5c52b",
+    "plannerMode": "full",
+    "source": "recent_scan",
+    "fallbackUsed": true,
+    "sourcesUsed": [
+      "recent_scan",
+      "profile",
+      "knowledge-index",
+      "verbatim-artifacts",
+      "memories"
+    ],
+    "budgetsApplied": {
+      "appliedTopK": 8,
+      "recallBudgetChars": 8000,
+      "maxMemoryTokens": 2000,
+      "qmdFetchLimit": 24,
+      "qmdHybridFetchLimit": 56,
+      "finalContextChars": 8000,
+      "truncated": true,
+      "includedSections": [
+        "profile",
+        "knowledge-index",
+        "memories"
+      ],
+      "omittedSections": [
+        "verbatim-artifacts"
+      ]
+    },
+    "latencyMs": 838,
+    "resultPaths": [
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/fact-1773976278289-6883.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-18/fact-1773810127872-uyve.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-18/decision-1773792758292-ump4.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-18/fact-1773792758141-baiz.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-17/fact-1773715493549-3mwt.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-17/decision-1773715413711-xyhk.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-17/fact-1773714655528-1kdm.md"
+    ],
+    "policyVersion": "8d5faf16d6ad",
+    "identityInjectionMode": "none",
+    "identityInjectedChars": 0,
+    "identityInjectionTruncated": false
+  },
+  "agent:main:daxiang:direct:single_heartbeat": {
+    "sessionKey": "agent:main:daxiang:direct:single_heartbeat",
+    "recordedAt": "2026-03-23T10:08:21.426Z",
+    "queryHash": "32b683be7154b3db5835d8c47588c00d274724f55e209b50ba62aedf39555c4f",
+    "queryLen": 642,
+    "memoryIds": [
+      "fact-1774003631758-9ybq",
+      "fact-1774003138981-c3gx",
+      "preference-1773976277547-23x1",
+      "fact-1774002919796-fyju",
+      "decision-1773976172678-zadx",
+      "principle-1773945017243-t1ty",
+      "fact-1773810127872-uyve",
+      "fact-1773810127692-at2z"
+    ],
+    "namespace": "default",
+    "traceId": "199ddeee4d5fe6ef",
+    "plannerMode": "full",
+    "source": "recent_scan",
+    "fallbackUsed": true,
+    "sourcesUsed": [
+      "recent_scan",
+      "profile",
+      "knowledge-index",
+      "verbatim-artifacts",
+      "memories"
+    ],
+    "budgetsApplied": {
+      "appliedTopK": 8,
+      "recallBudgetChars": 8000,
+      "maxMemoryTokens": 2000,
+      "qmdFetchLimit": 24,
+      "qmdHybridFetchLimit": 56,
+      "finalContextChars": 8000,
+      "truncated": true,
+      "includedSections": [
+        "profile",
+        "knowledge-index",
+        "memories"
+      ],
+      "omittedSections": [
+        "verbatim-artifacts"
+      ]
+    },
+    "latencyMs": 744,
+    "resultPaths": [
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/fact-1774003631758-9ybq.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/fact-1774003138981-c3gx.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1773976277547-23x1.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/fact-1774002919796-fyju.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/decision-1773976172678-zadx.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-19/principle-1773945017243-t1ty.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-18/fact-1773810127872-uyve.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-18/fact-1773810127692-at2z.md"
+    ],
+    "policyVersion": "8d5faf16d6ad",
+    "identityInjectionMode": "none",
+    "identityInjectedChars": 0,
+    "identityInjectionTruncated": false
+  },
+  "agent:main:cron:a3948c5d-f7c4-45a2-9715-866c01160218": {
+    "sessionKey": "agent:main:cron:a3948c5d-f7c4-45a2-9715-866c01160218",
+    "recordedAt": "2026-03-23T11:00:34.358Z",
+    "queryHash": "37e5f0c91409cc81d7c9fdfdad483d11c6aff42ed5d1d9a5a26609037a840070",
+    "queryLen": 480,
+    "memoryIds": [
+      "principle-1774015127069-fi3i",
+      "preference-1774015407559-glws",
+      "preference-1774014035103-e9vv",
+      "preference-1774012178671-acoy",
+      "preference-1774015723105-ea1m",
+      "preference-1774005130226-9vs0",
+      "preference-1774010394702-a4pw",
+      "preference-1774010393341-6yof"
+    ],
+    "namespace": "default",
+    "traceId": "0c6feced19d69a9f",
+    "plannerMode": "full",
+    "source": "recent_scan",
+    "fallbackUsed": true,
+    "sourcesUsed": [
+      "recent_scan",
+      "profile",
+      "knowledge-index",
+      "verbatim-artifacts",
+      "memories"
+    ],
+    "budgetsApplied": {
+      "appliedTopK": 8,
+      "recallBudgetChars": 8000,
+      "maxMemoryTokens": 2000,
+      "qmdFetchLimit": 24,
+      "qmdHybridFetchLimit": 56,
+      "finalContextChars": 8000,
+      "truncated": true,
+      "includedSections": [
+        "profile",
+        "knowledge-index",
+        "memories"
+      ],
+      "omittedSections": [
+        "verbatim-artifacts"
+      ]
+    },
+    "latencyMs": 853,
+    "resultPaths": [
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/principle-1774015127069-fi3i.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774015407559-glws.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774014035103-e9vv.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774012178671-acoy.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774015723105-ea1m.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774005130226-9vs0.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774010394702-a4pw.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774010393341-6yof.md"
+    ],
+    "policyVersion": "8d5faf16d6ad",
+    "identityInjectionMode": "none",
+    "identityInjectedChars": 0,
+    "identityInjectionTruncated": false
+  },
+  "agent:main:cron:engram-day-summary": {
+    "sessionKey": "agent:main:cron:engram-day-summary",
+    "recordedAt": "2026-03-22T15:47:00.997Z",
+    "queryHash": "e7f188972518599c339406e3386e47b904a07344ae012ef8bafd6ebd2df258f3",
+    "queryLen": 328,
+    "memoryIds": [
+      "fact-1774012180376-ly8h",
+      "fact-1774012203605-81d1",
+      "fact-1774005423326-s1mw",
+      "fact-1774004845451-hddf",
+      "fact-1774005389827-dwej",
+      "fact-1774005114912-a5bq",
+      "fact-1774005114581-atvp",
+      "decision-1774002901364-wm4w"
+    ],
+    "namespace": "default",
+    "traceId": "ac509f2c09b5ebc2",
+    "plannerMode": "full",
+    "source": "recent_scan",
+    "fallbackUsed": true,
+    "sourcesUsed": [
+      "recent_scan",
+      "profile",
+      "knowledge-index",
+      "verbatim-artifacts",
+      "memories"
+    ],
+    "budgetsApplied": {
+      "appliedTopK": 8,
+      "recallBudgetChars": 8000,
+      "maxMemoryTokens": 2000,
+      "qmdFetchLimit": 24,
+      "qmdHybridFetchLimit": 56,
+      "finalContextChars": 8000,
+      "truncated": true,
+      "includedSections": [
+        "profile",
+        "knowledge-index",
+        "memories"
+      ],
+      "omittedSections": [
+        "verbatim-artifacts"
+      ]
+    },
+    "latencyMs": 877,
+    "resultPaths": [
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/fact-1774012180376-ly8h.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/fact-1774012203605-81d1.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/fact-1774005423326-s1mw.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/fact-1774004845451-hddf.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/fact-1774005389827-dwej.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/fact-1774005114912-a5bq.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/fact-1774005114581-atvp.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/decision-1774002901364-wm4w.md"
+    ],
+    "policyVersion": "8d5faf16d6ad",
+    "identityInjectionMode": "none",
+    "identityInjectedChars": 0,
+    "identityInjectionTruncated": false
+  },
+  "agent:main:cron:fae4da45-09ee-4db7-9d24-c1cd884caa5e": {
+    "sessionKey": "agent:main:cron:fae4da45-09ee-4db7-9d24-c1cd884caa5e",
+    "recordedAt": "2026-03-23T00:01:26.637Z",
+    "queryHash": "1f2f758877c9d23434ebf00db350352e4b7484a8011ceb9ddfb92f3e2948691f",
+    "queryLen": 480,
+    "memoryIds": [
+      "principle-1774015127069-fi3i",
+      "preference-1774015407559-glws",
+      "preference-1774014035103-e9vv",
+      "preference-1774012178671-acoy",
+      "preference-1774015723105-ea1m",
+      "preference-1774010394702-a4pw",
+      "preference-1774005130226-9vs0",
+      "preference-1774010393341-6yof"
+    ],
+    "namespace": "default",
+    "traceId": "1cec152a8a9d4640",
+    "plannerMode": "full",
+    "source": "recent_scan",
+    "fallbackUsed": true,
+    "sourcesUsed": [
+      "recent_scan",
+      "profile",
+      "knowledge-index",
+      "verbatim-artifacts",
+      "memories"
+    ],
+    "budgetsApplied": {
+      "appliedTopK": 8,
+      "recallBudgetChars": 8000,
+      "maxMemoryTokens": 2000,
+      "qmdFetchLimit": 24,
+      "qmdHybridFetchLimit": 56,
+      "finalContextChars": 8000,
+      "truncated": true,
+      "includedSections": [
+        "profile",
+        "knowledge-index",
+        "memories"
+      ],
+      "omittedSections": [
+        "verbatim-artifacts"
+      ]
+    },
+    "latencyMs": 1043,
+    "resultPaths": [
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/principle-1774015127069-fi3i.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774015407559-glws.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774014035103-e9vv.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774012178671-acoy.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774015723105-ea1m.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774010394702-a4pw.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774005130226-9vs0.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774010393341-6yof.md"
+    ],
+    "policyVersion": "8d5faf16d6ad",
+    "identityInjectionMode": "none",
+    "identityInjectedChars": 0,
+    "identityInjectionTruncated": false
+  },
+  "agent:main:cron:138cb067-e020-465c-a4c7-316fef660860": {
+    "sessionKey": "agent:main:cron:138cb067-e020-465c-a4c7-316fef660860",
+    "recordedAt": "2026-03-23T01:05:30.079Z",
+    "queryHash": "8f883fd00a06cc91ebfef3440e1412739386679f082c521ae2de2ddf3ae1fc1a",
+    "queryLen": 479,
+    "memoryIds": [
+      "principle-1774015127069-fi3i",
+      "preference-1774015407559-glws",
+      "preference-1774014035103-e9vv",
+      "preference-1774012178671-acoy",
+      "preference-1774015723105-ea1m",
+      "preference-1774005130226-9vs0",
+      "preference-1774010394702-a4pw",
+      "preference-1774010393341-6yof"
+    ],
+    "namespace": "default",
+    "traceId": "8e3665e5c5219f9d",
+    "plannerMode": "full",
+    "source": "recent_scan",
+    "fallbackUsed": true,
+    "sourcesUsed": [
+      "recent_scan",
+      "profile",
+      "knowledge-index",
+      "verbatim-artifacts",
+      "memories"
+    ],
+    "budgetsApplied": {
+      "appliedTopK": 8,
+      "recallBudgetChars": 8000,
+      "maxMemoryTokens": 2000,
+      "qmdFetchLimit": 24,
+      "qmdHybridFetchLimit": 56,
+      "finalContextChars": 8000,
+      "truncated": true,
+      "includedSections": [
+        "profile",
+        "knowledge-index",
+        "memories"
+      ],
+      "omittedSections": [
+        "verbatim-artifacts"
+      ]
+    },
+    "latencyMs": 814,
+    "resultPaths": [
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/principle-1774015127069-fi3i.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774015407559-glws.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774014035103-e9vv.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774012178671-acoy.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774015723105-ea1m.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774005130226-9vs0.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774010394702-a4pw.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774010393341-6yof.md"
+    ],
+    "policyVersion": "8d5faf16d6ad",
+    "identityInjectionMode": "none",
+    "identityInjectedChars": 0,
+    "identityInjectionTruncated": false
+  },
+  "agent:main:cron:708e85d7-8616-497b-8a88-f982be84fde6": {
+    "sessionKey": "agent:main:cron:708e85d7-8616-497b-8a88-f982be84fde6",
+    "recordedAt": "2026-03-23T02:07:42.295Z",
+    "queryHash": "209ea13beb90119d470efa065c36b8f189ad23fdeb027dcef364c755e4ddf019",
+    "queryLen": 480,
+    "memoryIds": [
+      "principle-1774015127069-fi3i",
+      "preference-1774015407559-glws",
+      "preference-1774014035103-e9vv",
+      "preference-1774012178671-acoy",
+      "preference-1774015723105-ea1m",
+      "preference-1774005130226-9vs0",
+      "preference-1774010394702-a4pw",
+      "preference-1774010393341-6yof"
+    ],
+    "namespace": "default",
+    "traceId": "e2597fbdd2617e00",
+    "plannerMode": "full",
+    "source": "recent_scan",
+    "fallbackUsed": true,
+    "sourcesUsed": [
+      "recent_scan",
+      "profile",
+      "knowledge-index",
+      "verbatim-artifacts",
+      "memories"
+    ],
+    "budgetsApplied": {
+      "appliedTopK": 8,
+      "recallBudgetChars": 8000,
+      "maxMemoryTokens": 2000,
+      "qmdFetchLimit": 24,
+      "qmdHybridFetchLimit": 56,
+      "finalContextChars": 8000,
+      "truncated": true,
+      "includedSections": [
+        "profile",
+        "knowledge-index",
+        "memories"
+      ],
+      "omittedSections": [
+        "verbatim-artifacts"
+      ]
+    },
+    "latencyMs": 695,
+    "resultPaths": [
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/principle-1774015127069-fi3i.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774015407559-glws.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774014035103-e9vv.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774012178671-acoy.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774015723105-ea1m.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774005130226-9vs0.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774010394702-a4pw.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774010393341-6yof.md"
+    ],
+    "policyVersion": "8d5faf16d6ad",
+    "identityInjectionMode": "none",
+    "identityInjectedChars": 0,
+    "identityInjectionTruncated": false
+  },
+  "agent:main:cron:178432ec-ff09-4e82-acfd-b4df9306166e": {
+    "sessionKey": "agent:main:cron:178432ec-ff09-4e82-acfd-b4df9306166e",
+    "recordedAt": "2026-03-23T02:17:00.152Z",
+    "queryHash": "8b1fad83434c403c2376f7cbc94696eac4ccff1c8c6a435b0730f1ae9ade97ee",
+    "queryLen": 480,
+    "memoryIds": [
+      "principle-1774015127069-fi3i",
+      "preference-1774015407559-glws",
+      "preference-1774014035103-e9vv",
+      "preference-1774012178671-acoy",
+      "preference-1774015723105-ea1m",
+      "preference-1774005130226-9vs0",
+      "preference-1774010394702-a4pw",
+      "preference-1774010393341-6yof"
+    ],
+    "namespace": "default",
+    "traceId": "9284883e95149d22",
+    "plannerMode": "full",
+    "source": "recent_scan",
+    "fallbackUsed": true,
+    "sourcesUsed": [
+      "recent_scan",
+      "profile",
+      "knowledge-index",
+      "verbatim-artifacts",
+      "memories"
+    ],
+    "budgetsApplied": {
+      "appliedTopK": 8,
+      "recallBudgetChars": 8000,
+      "maxMemoryTokens": 2000,
+      "qmdFetchLimit": 24,
+      "qmdHybridFetchLimit": 56,
+      "finalContextChars": 8000,
+      "truncated": true,
+      "includedSections": [
+        "profile",
+        "knowledge-index",
+        "memories"
+      ],
+      "omittedSections": [
+        "verbatim-artifacts"
+      ]
+    },
+    "latencyMs": 732,
+    "resultPaths": [
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/principle-1774015127069-fi3i.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774015407559-glws.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774014035103-e9vv.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774012178671-acoy.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774015723105-ea1m.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774005130226-9vs0.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774010394702-a4pw.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/preference-1774010393341-6yof.md"
+    ],
+    "policyVersion": "8d5faf16d6ad",
+    "identityInjectionMode": "none",
+    "identityInjectedChars": 0,
+    "identityInjectionTruncated": false
+  },
+  "agent:main:cron:7c0613a7-cca5-4e97-8973-286213a4bc73": {
+    "sessionKey": "agent:main:cron:7c0613a7-cca5-4e97-8973-286213a4bc73",
+    "recordedAt": "2026-03-23T08:02:23.411Z",
+    "queryHash": "d727e5e4586eab6a59540f8e2aea75d35c31678916580d4b5864ff851b5dac94",
+    "queryLen": 480,
+    "memoryIds": [
+      "principle-1774010393003-3fsl",
+      "fact-1774012180376-ly8h",
+      "decision-1774005424020-lz2b",
+      "fact-1774005114912-a5bq",
+      "fact-1774005114581-atvp",
+      "decision-1774004936037-95h3",
+      "fact-1774004937331-1zh9",
+      "fact-1774004936382-yns7"
+    ],
+    "namespace": "default",
+    "traceId": "a741ff2d52a0ebdd",
+    "plannerMode": "full",
+    "source": "recent_scan",
+    "fallbackUsed": true,
+    "sourcesUsed": [
+      "recent_scan",
+      "profile",
+      "knowledge-index",
+      "verbatim-artifacts",
+      "memories"
+    ],
+    "budgetsApplied": {
+      "appliedTopK": 8,
+      "recallBudgetChars": 8000,
+      "maxMemoryTokens": 2000,
+      "qmdFetchLimit": 24,
+      "qmdHybridFetchLimit": 56,
+      "finalContextChars": 8000,
+      "truncated": true,
+      "includedSections": [
+        "profile",
+        "knowledge-index",
+        "memories"
+      ],
+      "omittedSections": [
+        "verbatim-artifacts"
+      ]
+    },
+    "latencyMs": 338,
+    "resultPaths": [
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/principle-1774010393003-3fsl.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/fact-1774012180376-ly8h.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/decision-1774005424020-lz2b.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/fact-1774005114912-a5bq.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/fact-1774005114581-atvp.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/decision-1774004936037-95h3.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/fact-1774004937331-1zh9.md",
+      "/root/.openclaw/workspace/memory/local/facts/2026-03-20/fact-1774004936382-yns7.md"
+    ],
+    "policyVersion": "8d5faf16d6ad",
+    "identityInjectionMode": "none",
+    "identityInjectedChars": 0,
+    "identityInjectionTruncated": false
+  }
+}

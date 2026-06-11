@@ -1,0 +1,84 @@
+{
+  "scan_time": "2026-03-22 16:02",
+  "triggers_fired": [],
+  "stops_triggered": [],
+  "watchlist_approaching": [
+    {
+      "ticker": "TSM",
+      "account": "institutional",
+      "current": 329.24,
+      "trigger": 330.0,
+      "gap_pct": -0.2,
+      "priority": "S",
+      "status": "entered"
+    },
+    {
+      "ticker": "METC",
+      "account": "aggressive",
+      "current": 13.45,
+      "trigger": 13.0,
+      "gap_pct": 3.5,
+      "priority": "B",
+      "status": "watch"
+    },
+    {
+      "ticker": "NVDA",
+      "account": "institutional",
+      "current": 178.19,
+      "trigger": 170.0,
+      "gap_pct": 4.8,
+      "priority": "B",
+      "status": "watch"
+    },
+    {
+      "ticker": "SOFI",
+      "account": "institutional",
+      "current": 16.9,
+      "trigger": 16.0,
+      "gap_pct": 5.6,
+      "priority": "A",
+      "status": "limit_pending"
+    },
+    {
+      "ticker": "CVNA",
+      "account": "institutional",
+      "current": 281.28,
+      "trigger": 310.0,
+      "gap_pct": -9.3,
+      "priority": "A",
+      "status": "entered"
+    }
+  ],
+  "portfolio_summary": {
+    "institutional": {
+      "name": "大机构",
+      "emoji": "🏦",
+      "total_value": 50492.1,
+      "cash": 13038.79,
+      "position_value": 37453.31,
+      "pnl": 492.1,
+      "return_pct": 0.98,
+      "positions": 5
+    },
+    "aggressive": {
+      "name": "激进交易",
+      "emoji": "⚡",
+      "total_value": 48250.93,
+      "cash": 30021.59,
+      "position_value": 18229.34,
+      "pnl": -1749.07,
+      "return_pct": -3.5,
+      "positions": 4
+    },
+    "blueshrimp": {
+      "name": "蓝虾交易",
+      "emoji": "🦐",
+      "total_value": 49645.44,
+      "cash": 42999.24,
+      "position_value": 6646.2,
+      "pnl": -354.56,
+      "return_pct": -0.71,
+      "positions": 2
+    }
+  }
+}

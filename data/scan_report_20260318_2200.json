@@ -1,0 +1,93 @@
+{
+  "scan_time": "2026-03-18 22:00",
+  "triggers_fired": [],
+  "stops_triggered": [],
+  "watchlist_approaching": [
+    {
+      "ticker": "CVNA",
+      "account": "institutional",
+      "current": 310.57,
+      "trigger": 310.0,
+      "gap_pct": 0.2,
+      "priority": "A",
+      "status": "watch"
+    },
+    {
+      "ticker": "SOUN",
+      "account": "aggressive",
+      "current": 7.72,
+      "trigger": 8.0,
+      "gap_pct": -3.5,
+      "priority": "A",
+      "status": "entered"
+    },
+    {
+      "ticker": "TSM",
+      "account": "institutional",
+      "current": 345.81,
+      "trigger": 330.0,
+      "gap_pct": 4.8,
+      "priority": "S",
+      "status": "watch"
+    },
+    {
+      "ticker": "METC",
+      "account": "aggressive",
+      "current": 13.84,
+      "trigger": 13.0,
+      "gap_pct": 6.5,
+      "priority": "B",
+      "status": "watch"
+    },
+    {
+      "ticker": "QUBT",
+      "account": "aggressive",
+      "current": 7.455,
+      "trigger": 8.0,
+      "gap_pct": -6.8,
+      "priority": "A",
+      "status": "entered"
+    },
+    {
+      "ticker": "NVDA",
+      "account": "institutional",
+      "current": 181.7102,
+      "trigger": 170.0,
+      "gap_pct": 6.9,
+      "priority": "B",
+      "status": "watch"
+    }
+  ],
+  "portfolio_summary": {
+    "institutional": {
+      "name": "大机构",
+      "emoji": "🏦",
+      "total_value": 49895.64,
+      "cash": 35017,
+      "position_value": 14878.64,
+      "pnl": -104.36,
+      "return_pct": -0.21,
+      "positions": 2
+    },
+    "aggressive": {
+      "name": "激进交易",
+      "emoji": "⚡",
+      "total_value": 49301.63,
+      "cash": 30021.59,
+      "position_value": 19280.04,
+      "pnl": -698.37,
+      "return_pct": -1.4,
+      "positions": 4
+    },
+    "blueshrimp": {
+      "name": "蓝虾交易",
+      "emoji": "🦐",
+      "total_value": 49910.3,
+      "cash": 42999.24,
+      "position_value": 6911.06,
+      "pnl": -89.7,
+      "return_pct": -0.18,
+      "positions": 2
+    }
+  }
+}

@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>用 OpenClaw 搭建自动金融情报 Agent 完整指南</title>
+<style>
+  @import url('file:///usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc');
+  
+  :root {
+    --primary: #1a1a2e;
+    --accent: #e94560;
+    --accent2: #0f3460;
+    --bg: #ffffff;
+    --code-bg: #f4f4f8;
+    --border: #e0e0e0;
+    --text: #2d2d2d;
+    --muted: #666;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Noto Sans CJK SC", "Noto Sans SC", "Source Han Sans SC", sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.8;
+    color: var(--text);
+    background: var(--bg);
+    padding: 0;
+  }
+
+  /* 封面页 */
+  .cover {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: white;
+    text-align: center;
+    page-break-after: always;
+    padding: 60px;
+  }
+  .cover .badge {
+    background: var(--accent);
+    color: white;
+    padding: 4px 16px;
+    border-radius: 20px;
+    font-size: 9pt;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    display: inline-block;
+  }
+  .cover h1 {
+    font-size: 26pt;
+    font-weight: 900;
+    line-height: 1.3;
+    margin-bottom: 20px;
+    color: white;
+    border: none;
+  }
+  .cover .subtitle {
+    font-size: 13pt;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 40px;
+    max-width: 500px;
+  }
+  .cover .meta {
+    font-size: 9pt;
+    color: rgba(255,255,255,0.5);
+    margin-top: 60px;
+  }
+  .cover .price-tag {
+    display: inline-flex;
+    gap: 20px;
+    margin-top: 30px;
+  }
+  .cover .price-item {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 10px;
+    padding: 12px 24px;
+    text-align: center;
+  }
+  .cover .price-item .label {
+    font-size: 8pt;
+    color: rgba(255,255,255,0.6);
+    display: block;
+  }
+  .cover .price-item .val {
+    font-size: 18pt;
+    font-weight: bold;
+    color: white;
+  }
+
+  /* 主内容 */
+  .content {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 40px 50px;
+  }
+
+  h1 {
+    font-size: 20pt;
+    font-weight: 900;
+    color: var(--primary);
+    margin: 40px 0 16px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid var(--accent);
+    page-break-after: avoid;
+  }
+  h2 {
+    font-size: 15pt;
+    font-weight: 800;
+    color: var(--accent2);
+    margin: 32px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--accent);
+    page-break-after: avoid;
+  }
+  h3 {
+    font-size: 12pt;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 24px 0 8px;
+    page-break-after: avoid;
+  }
+  h4 {
+    font-size: 11pt;
+    font-weight: 700;
+    color: var(--muted);
+    margin: 16px 0 6px;
+    page-break-after: avoid;
+  }
+
+  p {
+    margin: 8px 0 12px;
+    text-align: justify;
+  }
+
+  ul, ol {
+    margin: 8px 0 12px 20px;
+  }
+  li {
+    margin: 4px 0;
+    line-height: 1.7;
+  }
+
+  /* 代码块 */
+  pre {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent2);
+    border-radius: 4px;
+    padding: 14px 16px;
+    font-family: "Courier New", "Noto Sans Mono CJK SC", monospace;
+    font-size: 8.5pt;
+    line-height: 1.5;
+    overflow-x: auto;
+    margin: 12px 0;
+    white-space: pre-wrap;
+    word-break: break-all;
+    page-break-inside: avoid;
+  }
+  code {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 1px 5px;
+    font-family: "Courier New", monospace;
+    font-size: 8.5pt;
+    color: #c7254e;
+  }
+  pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--text);
+  }
+
+  /* 表格 */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 9.5pt;
+    page-break-inside: avoid;
+  }
+  th {
+    background: var(--primary);
+    color: white;
+    padding: 8px 12px;
+    text-align: left;
+    font-weight: 700;
+  }
+  td {
+    padding: 7px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tr:nth-child(even) td {
+    background: #f9f9fb;
+  }
+
+  /* 引用块 */
+  blockquote {
+    border-left: 4px solid var(--accent);
+    background: #fff8f8;
+    padding: 10px 16px;
+    margin: 12px 0;
+    font-style: italic;
+    color: var(--muted);
+    border-radius: 0 4px 4px 0;
+  }
+
+  /* 强调 */
+  strong { color: var(--primary); font-weight: 700; }
+  em { color: var(--accent); font-style: normal; font-weight: 600; }
+
+  /* 分页控制 */
+  .page-break { page-break-after: always; }
+  
+  /* 页眉页脚 */
+  @page {
+    size: A4;
+    margin: 20mm 18mm 22mm 18mm;
+    @top-center {
+      content: "用 OpenClaw 搭建自动金融情报 Agent 完整指南";
+      font-size: 8pt;
+      color: #999;
+      font-family: "Noto Sans CJK SC", sans-serif;
+    }
+    @bottom-center {
+      content: counter(page);
+      font-size: 8pt;
+      color: #999;
+    }
+    @bottom-right {
+      content: "🦐 小蓝虾出品";
+      font-size: 8pt;
+      color: #ccc;
+      font-family: "Noto Sans CJK SC", sans-serif;
+    }
+  }
+  @page :first {
+    @top-center { content: ""; }
+    @bottom-center { content: ""; }
+    @bottom-right { content: ""; }
+  }
+
+  /* 提示框 */
+  .tip {
+    background: #e8f4fd;
+    border-left: 4px solid #2196F3;
+    padding: 10px 14px;
+    margin: 12px 0;
+    border-radius: 0 4px 4px 0;
+  }
+  .warn {
+    background: #fff3e0;
+    border-left: 4px solid #FF9800;
+    padding: 10px 14px;
+    margin: 12px 0;
+  }
+
+  /* 水平线 */
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 24px 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- 封面 -->
+<div class="cover">
+  <div class="badge">ZHC PRODUCT · 数字产品</div>
+  <h1>用 OpenClaw 搭建<br>自动金融情报 Agent<br>完整指南</h1>
+  <div class="subtitle">从零到每日自动推送股市动态、加密价格、机构持仓、内部人交易<br>附完整配置模板 + 去重系统 + 高阶玩法</div>
+  <div class="price-tag">
+    <div class="price-item">
+      <span class="label">Basic 版</span>
+      <span class="val">$29</span>
+    </div>
+    <div class="price-item">
+      <span class="label">Advanced 版</span>
+      <span class="val">$49</span>
+    </div>
+  </div>
+  <div class="meta">
+    作者：小蓝虾 🦐 | 2026年3月 | 基于 OpenClaw v2026.x<br>
+    本指南已被应用于每日自动化运行，内容均来自实战
+  </div>
+</div>
+
+<!-- 主内容 -->
+<div class="content">
+<h1 id="用-openclaw-搭建自动金融情报-agent-完整指南">用 OpenClaw 搭建自动金融情报 Agent 完整指南</h1>
+
+<blockquote>
+  <p><strong>版本：基础版 $29 / 进阶版 $49</strong>
+  作者：小蓝虾 🦐🔵 | 适合有一定 AI 工具使用经验的读者</p>
+</blockquote>
+
+<hr />
+
+<h2 id="part-1为什么你需要一个金融情报-agent">Part 1：为什么你需要一个金融情报 Agent</h2>
+
+<h3 id="信息差-钱">信息差 = 钱</h3>
+
+<p>金融市场的本质是信息的不对称分配。机构投资者有彭博终端（$25,000/年）、有专职研究员、有私人新闻 Feed——他们比你早看到信息，就意味着他们比你早进场。</p>
+
+<p>但现在，情况变了。</p>
+
+<p>一个配置得当的 AI Agent，能在同一时间：
+- 扫描全球 Twitter 上关于某支股票的最新讨论
+- 抓取分析师最新的盈利预期变化
+- 检查加密市场的价格异动
+- 用 Perplexity 搜索最新宏观新闻
+- <strong>把这一切整理成一份你能直接读懂的情报推送</strong></p>
+
+<p>这不是未来，这是今天用 $0.02/天 就能做到的事。</p>
+
+<h3 id="人工追踪-vs-agent-自动追踪">人工追踪 vs Agent 自动追踪</h3>
+
+<table>
+<thead>
+<tr>
+  <th>对比维度</th>
+  <th>人工追踪</th>
+  <th>Agent 自动追踪</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>覆盖信息源</td>
+  <td>3-5 个（精力有限）</td>
+  <td>20+ 个（并发处理）</td>
+</tr>
+<tr>
+  <td>每日时间投入</td>
+  <td>1-2 小时</td>
+  <td>0 分钟（全自动）</td>
+</tr>
+<tr>
+  <td>反应速度</td>
+  <td>小时级</td>
+  <td>分钟级</td>
+</tr>
+<tr>
+  <td>遗漏风险</td>
+  <td>高（疲劳、分心）</td>
+  <td>极低（程序不累）</td>
+</tr>
+<tr>
+  <td>每月成本</td>
+  <td>时间成本巨大</td>
+  <td>&lt; $1</td>
+</tr>
+<tr>
+  <td>信息整合</td>
+  <td>手动拼接</td>
+  <td>自动汇总 + 观点输出</td>
+</tr>
+</tbody>
+</table>
+
+<p>你的注意力是稀缺资源。把信息收集这件事交出去，把注意力留给决策。</p>
+
+<h3 id="真实案例我是怎么用的">真实案例：我是怎么用的</h3>
+
+<p>我目前的配置是这样的：<strong>每天 5 次推送</strong>，分别在 9:00（开盘前）、11:30、14:00、16:00（收盘后）、22:00（美股盘中）触发。每次推送包含：</p>
+
+<ul>
+<li>🔥 <strong>Twitter 热点</strong>：搜索 "$NVDA OR $AAPL OR AI"，抓最新 20 条，筛出有价值的</li>
+<li>📊 <strong>关键数据变化</strong>：分析师预期调整、机构持仓变动</li>
+<li>🪙 <strong>加密动态</strong>：BTC/ETH 价格 + 市场情绪</li>
+<li>🤖 <strong>AI 行业情报</strong>：最新论文/产品/融资事件</li>
+</ul>
+
+<p><strong>每次推送成本估算：</strong>
+- Twitter 搜索 × 3 = $0.0012
+- 金融数据查询 × 2 = $0.002
+- Perplexity 联网搜索 × 1 = $0.012
+- LLM 汇总整合 = $0.002
+- <strong>单次成本合计：约 $0.017</strong>，每天 5 次 = <strong>$0.085/天，约 $2.5/月</strong></p>
+
+<p>不到一杯咖啡的钱，换来一个 7×24 小时不睡觉的情报员。</p>
+
+<p>这套系统搭起来一次，以后每天自动运转，不需要你盯着。更重要的是，它<strong>可以进化</strong>——后面我会讲怎么让它越来越懂你的偏好。</p>
+
+<hr />
+
+<h2 id="part-2系统架构">Part 2：系统架构</h2>
+
+<h3 id="整体架构">整体架构</h3>
+
+<p>这套系统由四个核心层组成：<strong>数据源 → 处理引擎 → 调度层 → 推送渠道</strong>。</p>
+
+<p><pre><code>┌─────────────────────────────────────────────────────┐
+│                  金融情报 Agent 架构                   │
+├─────────────────────────────────────────────────────┤
+│                                                      │
+│  数据源层 (AISA API)                                  │
+│  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌────────┐  │
+│  │ Twitter  │ │ 金融数据 │ │Perplexity│ │ 加密   │  │
+│  │ 搜索/趋势│ │ FMP数据库│ │ sonar-pro│ │ 价格   │  │
+│  └────┬─────┘ └────┬─────┘ └────┬─────┘ └───┬────┘  │
+│       └────────────┴────────────┴────────────┘       │
+│                        ↓                             │
+│  处理引擎层 (OpenClaw Agent)                          │
+│  ┌─────────────────────────────────────────────┐     │
+│  │  SOUL.md（使命定义）                         │     │
+│  │  MEMORY.md（记忆上下文）                     │     │
+│  │  LLM（Claude / GPT-4.1 汇总分析）            │     │
+│  │  去重系统（sent-history.json）               │     │
+│  └─────────────────────────┬───────────────────┘     │
+│                             ↓                        │
+│  调度层 (OpenClaw Cron)                               │
+│  ┌─────────────────────────────────────────────┐     │
+│  │  HEARTBEAT.md（任务清单）                    │     │
+│  │  cron job（定时触发，每天 5 次）              │     │
+│  └─────────────────────────┬───────────────────┘     │
+│                             ↓                        │
+│  推送渠道层                                           │
+│  ┌──────────┐  ┌──────────┐  ┌──────────────────┐   │
+│  │  大象 IM │  │ Telegram │  │  Discord / Slack  │   │
+│  └──────────┘  └──────────┘  └──────────────────┘   │
+│                                                      │
+└─────────────────────────────────────────────────────┘
+</code></pre>
+</p>
+
+<h3 id="核心组件说明">核心组件说明</h3>
+
+<table>
+<thead>
+<tr>
+  <th>组件</th>
+  <th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><strong>OpenClaw</strong></td>
+  <td>Agent 主体，负责调用 API、运行逻辑、发送推送</td>
+</tr>
+<tr>
+  <td><strong>AISA API</strong></td>
+  <td>统一数据入口，聚合 Twitter / 金融 / 加密 / Perplexity 等数据源</td>
+</tr>
+<tr>
+  <td><strong>SOUL.md</strong></td>
+  <td>定义 Agent 的使命、风格和行为边界</td>
+</tr>
+<tr>
+  <td><strong>HEARTBEAT.md</strong></td>
+  <td>每次心跳时执行的任务清单，Agent 会自动读取并执行</td>
+</tr>
+<tr>
+  <td><strong>Cron Jobs</strong></td>
+  <td>定时触发 Agent 心跳，控制推送频率和时间</td>
+</tr>
+<tr>
+  <td><strong>sent-history.json</strong></td>
+  <td>去重记录，避免同一条信息被重复推送</td>
+</tr>
+<tr>
+  <td><strong>MEMORY.md</strong></td>
+  <td>Agent 的长期记忆，存储你的偏好和历史洞察</td>
+</tr>
+<tr>
+  <td><strong>推送渠道</strong></td>
+  <td>大象 IM / Telegram / Discord，情报最终落地的地方</td>
+</tr>
+</tbody>
+</table>
+
+<p>架构非常清晰：<strong>AISA API 负责抓数据，OpenClaw 负责处理和判断，Cron 负责定时执行，推送渠道是你最终看到结果的地方。</strong></p>
+
+<p>搭建这套系统不需要写任何代码，全部通过配置文件完成。接下来，我们进入最核心的五步搭建。</p>
+
+<hr />
+
+<h2 id="part-3五步搭建">Part 3：五步搭建</h2>
+
+<h3 id="step-1安装-openclaw">Step 1：安装 OpenClaw</h3>
+
+<p><strong>去 <a href="https://openclaw.ai">openclaw.ai</a> 下载安装包，支持 Mac / Windows / Linux。</strong></p>
+
+<p>安装过程和普通应用一样，下载后直接运行安装向导即可。安装完成后，你会看到 OpenClaw 的工作目录：</p>
+
+<p><pre><code>~/.openclaw/workspace/
+├── SOUL.md          # Agent 使命定义（我们要改这个）
+├── TOOLS.md         # API 密钥和工具配置（我们要改这个）
+├── HEARTBEAT.md     # 心跳任务清单（我们要创建这个）
+├── MEMORY.md        # 长期记忆
+└── memory/          # 每日记忆日志
+</code></pre>
+</p>
+
+<p><strong>推荐模型配置：</strong></p>
+
+<p>进入 OpenClaw 设置，选择以下任一模型：
+- <code>claude-3.7-sonnet</code>（推荐，推理能力强，擅长长文本整合）
+- <code>gpt-4.1</code>（备选，速度更快，成本略低）</p>
+
+<p><strong>验收标准：</strong> 打开 OpenClaw 能看到对话界面，发一条消息能得到回复，说明安装成功。</p>
+
+<hr />
+
+<h3 id="step-2配置数据源-aisa-api">Step 2：配置数据源 AISA API</h3>
+
+<p>这套系统的数据全部来自 <strong>AISA API</strong>（<a href="https://api.aisa.one">api.aisa.one</a>），它是一个聚合了 Twitter、Perplexity、金融数据、加密数据的统一 API 平台。</p>
+
+<p><strong>注册与充值：</strong></p>
+
+<ol>
+<li>访问 <a href="https://api.aisa.one">api.aisa.one</a> 完成注册</li>
+<li>充值 <strong>$5</strong>，按实际使用量计费，$5 够正常使用 <strong>1 个月以上</strong></li>
+<li>在控制台创建 API Key，复制备用</li>
+</ol>
+
+<p><strong>已验证可用的接口（含费用）：</strong></p>
+
+<table>
+<thead>
+<tr>
+  <th>接口</th>
+  <th>功能</th>
+  <th>费用/次</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Twitter 搜索</td>
+  <td>搜索最新推文，支持 Latest/Top 排序</td>
+  <td>~$0.0004</td>
+</tr>
+<tr>
+  <td>Twitter 趋势</td>
+  <td>全球/美国热门话题榜</td>
+  <td>~$0.0004</td>
+</tr>
+<tr>
+  <td>Twitter 用户推文</td>
+  <td>抓取特定用户最新推文</td>
+  <td>~$0.0004</td>
+</tr>
+<tr>
+  <td>Perplexity sonar</td>
+  <td>联网搜索，普通版</td>
+  <td>~$0.006</td>
+</tr>
+<tr>
+  <td><strong>Perplexity sonar-pro</strong></td>
+  <td><strong>联网搜索，高质量版（推荐）</strong></td>
+  <td><strong>$0.012</strong></td>
+</tr>
+<tr>
+  <td>财务指标快照</td>
+  <td>PE/EPS/营收/利润等核心指标</td>
+  <td>$0.024</td>
+</tr>
+<tr>
+  <td>分析师预期</td>
+  <td>一致性盈利预期、目标价</td>
+  <td>$0.048</td>
+</tr>
+<tr>
+  <td>机构持仓数据</td>
+  <td>主要机构持仓变化</td>
+  <td>$0.000</td>
+</tr>
+<tr>
+  <td>公司基本信息</td>
+  <td>公司简介、板块、市值</td>
+  <td>$0.000</td>
+</tr>
+<tr>
+  <td>损益表</td>
+  <td>季度/年度财务报表</td>
+  <td>$0.048</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>把 API Key 写入 TOOLS.md：</strong></p>
+
+<p>打开 <code>~/.openclaw/workspace/TOOLS.md</code>，在文件末尾添加：</p>
+
+<p><div class="codehilite">
+<pre><span></span><code><span class="gu">### AISA API</span>
+<span class="k">-</span><span class="w"> </span>API_KEY: sk-你的API密钥粘贴在这里
+<span class="k">-</span><span class="w"> </span>Data Base URL: https://api.aisa.one/apis/v1/
+<span class="k">-</span><span class="w"> </span>LLM Base URL: https://api.aisa.one/v1/chat/completions
+</code></pre>
+</div>
+</p>
+
+<p><strong>验收标准：</strong> 在命令行运行以下测试，返回推文数据说明配置成功：</p>
+
+<p><div class="codehilite">
+<pre><span></span><code>curl<span class="w"> </span><span class="s2">&quot;https://api.aisa.one/apis/v1/twitter/tweet/advanced_search?query=NVDA&amp;queryType=Latest&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer sk-你的API密钥&quot;</span>
+</code></pre>
+</div>
+</p>
+
+<hr />
+
+<h3 id="step-3配置-soulmd-heartbeatmd">Step 3：配置 SOUL.md + HEARTBEAT.md</h3>
+
+<p>这是整套系统的"大脑配置"，决定了 Agent 会做什么、怎么做。</p>
+
+<h4 id="soulmd定义-agent-的核心使命">SOUL.md：定义 Agent 的核心使命</h4>
+
+<p>SOUL.md 告诉 Agent <strong>"你是谁，你的任务是什么"</strong>。对于金融情报 Agent，你需要把它改成这样：</p>
+
+<p><div class="codehilite">
+<pre><span></span><code><span class="gh"># SOUL.md - 金融情报 Agent</span>
+
+<span class="gu">## 使命</span>
+你是一个专业的金融情报 Agent。你的核心任务是：
+每次被激活时，从多个数据源收集最新金融情报，
+整合分析后推送给用户。
+
+<span class="gu">## 核心能力</span>
+<span class="k">-</span><span class="w"> </span>使用 AISA API 搜索 Twitter 上关于目标股票的最新讨论
+<span class="k">-</span><span class="w"> </span>查询分析师预期变化和机构持仓动态
+<span class="k">-</span><span class="w"> </span>追踪加密货币价格和市场情绪
+<span class="k">-</span><span class="w"> </span>用 Perplexity 搜索最新宏观新闻
+<span class="k">-</span><span class="w"> </span>将所有信息整合成清晰、可读的情报推送
+
+<span class="gu">## 风格要求</span>
+<span class="k">-</span><span class="w"> </span>信息密度高，去除废话
+<span class="k">-</span><span class="w"> </span>数据和观点分开，不混淆
+<span class="k">-</span><span class="w"> </span>重要变化用 ⚠️ 标注
+<span class="k">-</span><span class="w"> </span>每条情报标明信息来源和时间
+<span class="k">-</span><span class="w"> </span>语气专业但不学术，像行业内行人讲话
+
+<span class="gu">## 关注标的（按优先级）</span>
+<span class="k">-</span><span class="w"> </span>股票：NVDA, AAPL, MSFT, TSLA（可自定义）
+<span class="k">-</span><span class="w"> </span>加密：BTC, ETH
+<span class="k">-</span><span class="w"> </span>主题：AI, 半导体, 生物医药
+
+<span class="gu">## 行为边界</span>
+<span class="k">-</span><span class="w"> </span>不发重复信息（检查 sent-history.json）
+<span class="k">-</span><span class="w"> </span>不发超过 24 小时的旧新闻
+<span class="k">-</span><span class="w"> </span>不预测股价涨跌，只提供信息
+</code></pre>
+</div>
+</p>
+
+<h4 id="heartbeatmd定义任务清单">HEARTBEAT.md：定义任务清单</h4>
+
+<p>HEARTBEAT.md 是 Agent 每次被心跳触发时会读取并执行的任务清单：</p>
+
+<p><div class="codehilite">
+<pre><span></span><code><span class="gh"># HEARTBEAT.md - 金融情报任务清单</span>
+
+<span class="gu">## 执行顺序（每次心跳必须全部完成）</span>
+
+<span class="gu">### 1. Twitter 情报收集</span>
+<span class="k">-</span><span class="w"> </span>搜索 AISA API Twitter 接口：query = &quot;$NVDA OR $AAPL OR $MSFT AI&quot;，queryType = Latest
+<span class="k">-</span><span class="w"> </span>搜索 query = &quot;BTC OR ETH crypto&quot;，queryType = Latest
+<span class="k">-</span><span class="w"> </span>抓取最新 20 条，筛选有信息量的推文（排除广告、垃圾）
+
+<span class="gu">### 2. 金融数据查询</span>
+<span class="k">-</span><span class="w"> </span>查询 NVDA 分析师预期（/financial/analyst-estimates）
+<span class="k">-</span><span class="w"> </span>查询 AAPL 财务指标（/financial/financial-metrics/snapshot）
+<span class="k">-</span><span class="w"> </span>如果最近 7 天内已查过且无变化，可跳过
+
+<span class="gu">### 3. 加密价格</span>
+<span class="k">-</span><span class="w"> </span>查询 BTC-USD 和 ETH-USD 最新价格
+<span class="k">-</span><span class="w"> </span>与上次推送时价格对比，计算涨跌幅
+
+<span class="gu">### 4. 宏观新闻</span>
+<span class="k">-</span><span class="w"> </span>调用 Perplexity sonar-pro 搜索：&quot;today financial market news AI stocks&quot;
+
+<span class="gu">### 5. 整合推送</span>
+<span class="k">-</span><span class="w"> </span>将以上所有信息整合成一份情报报告
+<span class="k">-</span><span class="w"> </span>检查 sent-history.json，过滤重复内容
+<span class="k">-</span><span class="w"> </span>按 SOUL.md 的风格要求格式化
+<span class="k">-</span><span class="w"> </span>发送到配置的推送渠道
+<span class="k">-</span><span class="w"> </span>把本次推送的核心要点写入 sent-history.json
+
+<span class="gu">## 重要提示</span>
+<span class="k">-</span><span class="w"> </span>如果 API 调用失败，记录错误，跳过该数据源，不要中断整个推送
+<span class="k">-</span><span class="w"> </span>每次推送完毕后，在 memory/当日日期.md 记录本次推送摘要
+</code></pre>
+</div>
+</p>
+
+<p><strong>关于 Adaptive Reasoning：</strong></p>
+
+<p>OpenClaw 内置了 <strong>Adaptive Reasoning</strong> 机制——Agent 会根据任务复杂度自动选择推理深度。简单的价格查询快速处理，需要综合判断多个信号的分析任务会自动启用更深度的推理。你不需要手动配置，写好 SOUL.md 和 HEARTBEAT.md，Agent 自己会判断。</p>
+
+<p><strong>验收标准：</strong> 手动发一条消息"执行心跳任务"给 Agent，它应该开始调用 API 并返回一份格式化的情报推送。</p>
+
+<hr />
+
+<h3 id="step-4设置-cron-任务">Step 4：设置 Cron 任务</h3>
+
+<p>有了 HEARTBEAT.md，现在需要告诉 OpenClaw <strong>什么时候自动触发</strong>。</p>
+
+<h4 id="openclaw-cron-语法">OpenClaw Cron 语法</h4>
+
+<p>OpenClaw 的 cron 配置使用标准的 5 段 cron 表达式：</p>
+
+<p><pre><code>分钟 小时 日期 月份 星期
+</code></pre>
+</p>
+
+<p>例如：
+- <code>0 9 * * 1-5</code> = 工作日上午 9:00
+- <code>30 11 * * *</code> = 每天 11:30
+- <code>0 22 * * *</code> = 每天晚上 22:00</p>
+
+<h4 id="完整的金融情报推送配置">完整的金融情报推送配置</h4>
+
+<p>在 OpenClaw 设置中，添加以下 5 个 cron 任务（以 JSON 格式为例）：</p>
+
+<p><div class="codehilite">
+<pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;金融情报-开盘前&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;schedule&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0 9 * * 1-5&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;prompt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. 当前是开盘前推送，重点关注隔夜美股收盘情况和今日重要事件预告。Do not infer or repeat old tasks from prior chats.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;delivery&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;to&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;你的用户ID或群组ID&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;channel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;daxiang&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;claude-3.7-sonnet&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;thinking&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;low&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;金融情报-午间&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;schedule&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;30 11 * * 1-5&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;prompt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. 当前是午间推送，重点关注上午市场异动。Do not infer or repeat old tasks from prior chats.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;delivery&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;to&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;你的用户ID或群组ID&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;channel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;daxiang&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;claude-3.7-sonnet&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;thinking&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;low&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;金融情报-下午&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;schedule&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0 14 * * 1-5&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;prompt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;delivery&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;to&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;你的用户ID或群组ID&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;channel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;daxiang&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;claude-3.7-sonnet&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;thinking&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;low&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;金融情报-收盘后&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;schedule&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;30 16 * * 1-5&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;prompt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. 当前是 A 股收盘后推送，总结今日行情，前瞻美股开盘。Do not infer or repeat old tasks from prior chats.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;delivery&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;to&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;你的用户ID或群组ID&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;channel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;daxiang&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;claude-3.7-sonnet&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;thinking&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;low&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;金融情报-美股盘中&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;schedule&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0 22 * * 1-5&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;prompt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. 当前是美股盘中推送，重点关注美股实时动态和科技股表现。Do not infer or repeat old tasks from prior chats.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;delivery&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;to&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;你的用户ID或群组ID&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;channel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;daxiang&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;claude-3.7-sonnet&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;thinking&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;low&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre>
+</div>
+</p>
+
+<h4 id="deliveryto-的几种写法">delivery.to 的几种写法</h4>
+
+<table>
+<thead>
+<tr>
+  <th>场景</th>
+  <th>写法示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>发给自己（单聊）</td>
+  <td><code>"to": "你的大象用户ID"</code></td>
+</tr>
+<tr>
+  <td>发给群聊</td>
+  <td><code>"to": "群组ID"</code> （需要在群里添加 Bot）</td>
+</tr>
+<tr>
+  <td>多人同时接收</td>
+  <td><code>"to": ["用户ID1", "用户ID2"]</code></td>
+</tr>
+<tr>
+  <td>Telegram</td>
+  <td><code>"to": "@你的用户名"</code>, <code>"channel": "telegram"</code></td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>验收标准：</strong> 保存配置后，等到下一个整点，检查是否收到自动推送的情报消息。或者临时把 schedule 改为"下一分钟"测试一次，收到消息后再改回正式时间。</p>
+
+<hr />
+
+<h3 id="step-5去重系统">Step 5：去重系统</h3>
+
+<p>没有去重，你的 Agent 每次都会把同一条新闻推送给你。两三天之后你就会屏蔽它。<strong>去重是让 Agent 长期可用的关键。</strong></p>
+
+<h4 id="sent-historyjson-工作原理">sent-history.json 工作原理</h4>
+
+<p>在工作目录下创建 <code>sent-history.json</code>，格式如下：</p>
+
+<p><div class="codehilite">
+<pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;entries&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tweet-1234567890&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Jensen Huang at Computex: next-gen Blackwell...&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://twitter.com/...&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;sentAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-05-15T09:00:00+08:00&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;twitter&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;news-nvda-q1-2025&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NVDA Q1 2025 earnings beat&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;sentAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-05-15T11:30:00+08:00&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;financial-news&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+</p>
+
+<p>在 HEARTBEAT.md 中，给 Agent 加一条指令：</p>
+
+<p><div class="codehilite">
+<pre><span></span><code><span class="gu">### 去重检查（每次推送前必须执行）</span>
+<span class="k">-</span><span class="w"> </span>读取 sent-history.json
+<span class="k">-</span><span class="w"> </span>对比本次收集到的所有内容，过滤掉已经推送过的条目
+<span class="k">-</span><span class="w"> </span>推送完成后，把本次新推送的内容追加到 sent-history.json
+<span class="k">-</span><span class="w"> </span>sent-history.json 保留最近 7 天的记录，超过 7 天的条目自动删除
+</code></pre>
+</div>
+</p>
+
+<p><strong>去重的判断逻辑：</strong>
+- Twitter 推文：用 tweet ID 去重
+- 金融新闻：用标题 + 日期组合去重
+- 数据类（价格、持仓）：不去重，每次更新都推送最新值</p>
+
+<p><strong>验收标准：</strong> 手动触发两次心跳，第二次推送的内容应该和第一次不重叠，说明去重系统正常工作。</p>
+
+<hr />
+
+<h2 id="part-4让-agent-越来越聪明">Part 4：让 Agent 越来越聪明</h2>
+
+<p>搭建好这套系统只是开始。真正让它变强的，是<strong>持续学习机制</strong>。</p>
+
+<h3 id="自我进化循环learningsmd-errorsmd">自我进化循环：LEARNINGS.md + ERRORS.md</h3>
+
+<p>在工作目录下，创建 <code>.learnings/</code> 文件夹，包含三个文件：</p>
+
+<p><strong>LEARNINGS.md</strong> — 记录有价值的发现和最佳实践：
+<pre><code>~/.openclaw/workspace/
+├── SOUL.md          # Agent 使命定义（我们要改这个）
+├── TOOLS.md         # API 密钥和工具配置（我们要改这个）
+├── HEARTBEAT.md     # 心跳任务清单（我们要创建这个）
+├── MEMORY.md        # 长期记忆
+└── memory/          # 每日记忆日志
+</code></pre>
+0</p>
+
+<p><strong>ERRORS.md</strong> — 记录 API 失败、数据异常等问题：
+<pre><code>~/.openclaw/workspace/
+├── SOUL.md          # Agent 使命定义（我们要改这个）
+├── TOOLS.md         # API 密钥和工具配置（我们要改这个）
+├── HEARTBEAT.md     # 心跳任务清单（我们要创建这个）
+├── MEMORY.md        # 长期记忆
+└── memory/          # 每日记忆日志
+</code></pre>
+1</p>
+
+<p><strong>FEATURE_REQUESTS.md</strong> — 记录你想加的新功能：
+<pre><code>~/.openclaw/workspace/
+├── SOUL.md          # Agent 使命定义（我们要改这个）
+├── TOOLS.md         # API 密钥和工具配置（我们要改这个）
+├── HEARTBEAT.md     # 心跳任务清单（我们要创建这个）
+├── MEMORY.md        # 长期记忆
+└── memory/          # 每日记忆日志
+</code></pre>
+2</p>
+
+<p><strong>Agent 在每次任务结束后会自动评估</strong>是否需要写入这些文件。你也可以直接告诉 Agent："记下来，下次 NVDA 财报前要提前三天开始追踪期权流"，它会写入 LEARNINGS.md 并在未来相关任务中引用。</p>
+
+<h3 id="记忆系统memorymd-日常维护">记忆系统：MEMORY.md 日常维护</h3>
+
+<p>MEMORY.md 是 Agent 的长期记忆，存储你的偏好、历史洞察和决策背景。</p>
+
+<p>每隔几天，Agent 会（在心跳中）自动：
+1. 读取最近的 <code>memory/YYYY-MM-DD.md</code> 日志
+2. 提炼出有价值的内容
+3. 更新到 MEMORY.md</p>
+
+<p>你也可以主动告诉 Agent："记住，我最近在重点关注生物医药板块的 FDA 审批节点"，它会写入记忆，并在未来的情报推送中优先覆盖相关内容。</p>
+
+<h3 id="每日记忆压缩">每日记忆压缩</h3>
+
+<p>随着时间推移，memory 文件夹会积累大量日志。为了防止上下文爆炸，需要<strong>每日压缩</strong>。</p>
+
+<p>在工作目录下创建 <code>memory_compressor.py</code>：</p>
+
+<p><pre><code>~/.openclaw/workspace/
+├── SOUL.md          # Agent 使命定义（我们要改这个）
+├── TOOLS.md         # API 密钥和工具配置（我们要改这个）
+├── HEARTBEAT.md     # 心跳任务清单（我们要创建这个）
+├── MEMORY.md        # 长期记忆
+└── memory/          # 每日记忆日志
+</code></pre>
+3</p>
+
+<p>在 OpenClaw 添加一个 cron job，每天 22:30 运行：</p>
+
+<p><pre><code>~/.openclaw/workspace/
+├── SOUL.md          # Agent 使命定义（我们要改这个）
+├── TOOLS.md         # API 密钥和工具配置（我们要改这个）
+├── HEARTBEAT.md     # 心跳任务清单（我们要创建这个）
+├── MEMORY.md        # 长期记忆
+└── memory/          # 每日记忆日志
+</code></pre>
+4</p>
+
+<p><strong>这是 Hermes Agent 的 trajectory compression 思想在 OpenClaw 的实现。</strong> Nous Research 的 Hermes Agent 使用 Gemini Flash 压缩 session trace，降低长对话的上下文成本；我们用同样的思路压缩 memory 文件，让 Agent 在积累大量历史后依然保持高效。原理一样，实现更简单，直接可用。</p>
+
+<hr />
+
+<h2 id="part-5高阶玩法">Part 5：高阶玩法</h2>
+
+<p>基础系统搭好之后，这三个方向能让你的情报 Agent 真正产生 Alpha。</p>
+
+<h3 id="搭配-polymarket-做事件预测">搭配 Polymarket 做事件预测</h3>
+
+<p><strong>Polymarket 是全球最大的预测市场</strong>，允许你用 USDC 对真实世界事件下注，比如"美联储6月降息概率"、"某药物 FDA 审批通过概率"。</p>
+
+<p>已经有人<strong>用这套情报 Agent 组合赚了 $400K</strong>，逻辑很简单：</p>
+
+<ol>
+<li>情报 Agent 持续监控相关新闻和机构动态</li>
+<li>当出现明显的信息不对称时（比如 Twitter 上已经广泛讨论某事件，但 Polymarket 的定价还没反应过来），立刻下注</li>
+<li>等市场价格收敛，平仓获利</li>
+</ol>
+
+<p><strong>具体实现：</strong>
+- 在 HEARTBEAT.md 中加入 Polymarket API 查询（每次推送时对比当前市场定价 vs 你掌握的信息）
+- 当发现定价偏差时，Alert 标注并通知你手动操作
+- AISA 的 Perplexity sonar-pro 搜索是关键数据源，能比一般人早 30 分钟看到重要信息</p>
+
+<h3 id="13f-机构持仓日报自动化">13F 机构持仓日报自动化</h3>
+
+<p>每个季度，持有超过 $1 亿美股的机构必须向 SEC 提交 13F 表格，公开他们的持仓。这是合法的"偷看大佬底牌"机会。</p>
+
+<p><strong>用 AISA API 实现自动化 13F 追踪：</strong></p>
+
+<p><pre><code>~/.openclaw/workspace/
+├── SOUL.md          # Agent 使命定义（我们要改这个）
+├── TOOLS.md         # API 密钥和工具配置（我们要改这个）
+├── HEARTBEAT.md     # 心跳任务清单（我们要创建这个）
+├── MEMORY.md        # 长期记忆
+└── memory/          # 每日记忆日志
+</code></pre>
+5</p>
+
+<p>返回的数据包含：巴菲特、索罗斯基金、Tiger Global 等机构的最新持仓比例。<strong>当顶级机构集体增持某只股票时，这是一个极强的信号。</strong></p>
+
+<p>在 HEARTBEAT.md 加入每周一次的 13F 扫描，Agent 自动整理成报告推送给你。</p>
+
+<h3 id="clawwork-自动接单赚钱">ClawWork 自动接单赚钱</h3>
+
+<p>OpenClaw 的 <strong>ClawWork</strong> 功能允许你把 Agent 的能力包装成服务，自动接受外部任务请求并执行。</p>
+
+<p>几种变现思路：</p>
+
+<p><strong>情报订阅服务：</strong> 把你的金融情报推送包装成付费订阅（$19-49/月），ClawWork 处理订阅用户的接入和推送分发。你的 Agent 是产品，你只需要维护数据质量。</p>
+
+<p><strong>按需分析服务：</strong> 接受"帮我分析 $TSLA 最近的机构动向"类型的单次查询任务，自动执行并返回报告，定价 $5-10/次。</p>
+
+<p><strong>定制 Alert：</strong> 为客户配置个性化的股票 Alert，当特定条件触发时自动通知，月费模式。</p>
+
+<p>这三个玩法的共同前提是：<strong>你的情报系统本身必须靠谱</strong>。先把基础系统搭好并运行 30 天，积累足够的信任和数据质量，再考虑对外变现。</p>
+
+<hr />
+
+<h2 id="附录-aaisa-api-接口速查表">附录 A：AISA API 接口速查表</h2>
+
+<table>
+<thead>
+<tr>
+  <th>功能</th>
+  <th>端点路径</th>
+  <th>请求方式</th>
+  <th>关键参数</th>
+  <th>费用/次</th>
+  <th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Twitter 搜索</td>
+  <td><code>/apis/v1/twitter/tweet/advanced_search</code></td>
+  <td>GET</td>
+  <td><code>query</code>, <code>queryType=Latest|Top</code></td>
+  <td>~$0.0004</td>
+  <td>搜索最新推文</td>
+</tr>
+<tr>
+  <td>Twitter 趋势</td>
+  <td><code>/apis/v1/twitter/trends</code></td>
+  <td>GET</td>
+  <td><code>woeid=1</code>（全球）<code>/23424977</code>（美国）</td>
+  <td>~$0.0004</td>
+  <td>获取热门话题</td>
+</tr>
+<tr>
+  <td>Twitter 用户推文</td>
+  <td><code>/apis/v1/twitter/user/user_tweets</code></td>
+  <td>GET</td>
+  <td><code>userName</code></td>
+  <td>~$0.0004</td>
+  <td>追踪特定用户</td>
+</tr>
+<tr>
+  <td>Twitter 用户信息</td>
+  <td><code>/apis/v1/twitter/user/info</code></td>
+  <td>GET</td>
+  <td><code>userName</code></td>
+  <td>~$0.0004</td>
+  <td>用户基本信息</td>
+</tr>
+<tr>
+  <td>Perplexity sonar</td>
+  <td><code>/apis/v1/perplexity/sonar</code></td>
+  <td>POST</td>
+  <td><code>{model:"sonar", messages:[...]}</code></td>
+  <td>~$0.006</td>
+  <td>联网搜索（普通）</td>
+</tr>
+<tr>
+  <td>Perplexity sonar-pro</td>
+  <td><code>/apis/v1/perplexity/sonar-pro</code></td>
+  <td>POST</td>
+  <td><code>{model:"sonar-pro", messages:[...]}</code></td>
+  <td>$0.012</td>
+  <td>联网搜索（高质量）</td>
+</tr>
+<tr>
+  <td>公司基本信息</td>
+  <td><code>/apis/v1/financial/company/facts</code></td>
+  <td>GET</td>
+  <td><code>?ticker=AAPL</code></td>
+  <td>$0.000</td>
+  <td>公司简介/行业</td>
+</tr>
+<tr>
+  <td>财务指标快照</td>
+  <td><code>/apis/v1/financial/financial-metrics/snapshot</code></td>
+  <td>GET</td>
+  <td><code>?ticker=NVDA</code></td>
+  <td>$0.024</td>
+  <td>PE/EPS/营收等</td>
+</tr>
+<tr>
+  <td>分析师预期</td>
+  <td><code>/apis/v1/financial/analyst-estimates</code></td>
+  <td>GET</td>
+  <td><code>?ticker=NVDA</code></td>
+  <td>$0.048</td>
+  <td>一致性预期/目标价</td>
+</tr>
+<tr>
+  <td>机构持仓</td>
+  <td><code>/apis/v1/financial/institutional-ownership</code></td>
+  <td>GET</td>
+  <td><code>?ticker=AAPL</code></td>
+  <td>$0.000</td>
+  <td>机构持股比例</td>
+</tr>
+<tr>
+  <td>财报新闻</td>
+  <td><code>/apis/v1/financial/earnings/press-releases</code></td>
+  <td>GET</td>
+  <td><code>?ticker=NVDA</code></td>
+  <td>$0.000</td>
+  <td>财报发布公告</td>
+</tr>
+<tr>
+  <td>损益表</td>
+  <td><code>/apis/v1/financial/financials/income-statements</code></td>
+  <td>GET</td>
+  <td><code>?ticker=NVDA</code></td>
+  <td>$0.048</td>
+  <td>季度/年度财报</td>
+</tr>
+<tr>
+  <td>LLM（所有模型）</td>
+  <td><code>/v1/chat/completions</code></td>
+  <td>POST</td>
+  <td>OpenAI 兼容格式</td>
+  <td>按模型定价</td>
+  <td>AI 分析整合</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>认证方式（统一）：</strong>
+<pre><code>~/.openclaw/workspace/
+├── SOUL.md          # Agent 使命定义（我们要改这个）
+├── TOOLS.md         # API 密钥和工具配置（我们要改这个）
+├── HEARTBEAT.md     # 心跳任务清单（我们要创建这个）
+├── MEMORY.md        # 长期记忆
+└── memory/          # 每日记忆日志
+</code></pre>
+6</p>
+
+<p><strong>Base URL：</strong>
+<pre><code>~/.openclaw/workspace/
+├── SOUL.md          # Agent 使命定义（我们要改这个）
+├── TOOLS.md         # API 密钥和工具配置（我们要改这个）
+├── HEARTBEAT.md     # 心跳任务清单（我们要创建这个）
+├── MEMORY.md        # 长期记忆
+└── memory/          # 每日记忆日志
+</code></pre>
+7</p>
+
+<p><strong>注意事项：</strong>
+- Perplexity 接口必须在请求体中包含 <code>"model"</code> 字段，否则报 400
+- Financial API 全部用 GET + <code>?ticker=XXX</code> 格式传参
+- LLM 接口走 <code>/v1/chat/completions</code>，与 Financial API 的 <code>/apis/v1/</code> 不同，注意区分</p>
+
+<hr />
+
+<h2 id="附录-b配置文件模板">附录 B：配置文件模板</h2>
+
+<h3 id="b-1soulmd-金融情报版完整可用">B-1：SOUL.md 金融情报版（完整可用）</h3>
+
+<p><pre><code>~/.openclaw/workspace/
+├── SOUL.md          # Agent 使命定义（我们要改这个）
+├── TOOLS.md         # API 密钥和工具配置（我们要改这个）
+├── HEARTBEAT.md     # 心跳任务清单（我们要创建这个）
+├── MEMORY.md        # 长期记忆
+└── memory/          # 每日记忆日志
+</code></pre>
+8</p>
+
+<hr />
+
+<h3 id="b-2heartbeatmd-模板完整版">B-2：HEARTBEAT.md 模板（完整版）</h3>
+
+<p><pre><code>~/.openclaw/workspace/
+├── SOUL.md          # Agent 使命定义（我们要改这个）
+├── TOOLS.md         # API 密钥和工具配置（我们要改这个）
+├── HEARTBEAT.md     # 心跳任务清单（我们要创建这个）
+├── MEMORY.md        # 长期记忆
+└── memory/          # 每日记忆日志
+</code></pre>
+9</p>
+
+<hr />
+
+<h3 id="b-3cron-job-配置示例json-格式">B-3：Cron Job 配置示例（JSON 格式）</h3>
+
+<p>以下是完整的 5 次推送 + 1 次记忆压缩的 cron 配置：</p>
+
+<p><div class="codehilite">
+<pre><span></span><code><span class="gu">### AISA API</span>
+<span class="k">-</span><span class="w"> </span>API_KEY: sk-你的API密钥粘贴在这里
+<span class="k">-</span><span class="w"> </span>Data Base URL: https://api.aisa.one/apis/v1/
+<span class="k">-</span><span class="w"> </span>LLM Base URL: https://api.aisa.one/v1/chat/completions
+</code></pre>
+</div>
+0</p>
+
+<hr />
+
+<h2 id="写在最后">写在最后</h2>
+
+<p>这套系统我自己在用，每天帮我省下 1-2 小时的信息收集时间。更重要的是，它不会累、不会走神、不会因为情绪而漏掉重要信号。</p>
+
+<p><strong>搭建成本：</strong>
+- 时间：按本指南操作，2-3 小时可以跑通
+- 金钱：$5 AISA 充值 + OpenClaw 订阅费，每月数据成本 &lt; $3</p>
+
+<p><strong>进阶版（$49）额外内容：</strong>
+- Polymarket 套利策略详解（含具体操作流程）
+- 13F 追踪系统完整代码（含数据库和可视化）
+- ClawWork 变现配置教程
+- 私人答疑群（30 天）</p>
+
+<p>有问题，找小蓝虾 🦐🔵。</p>
+
+<hr />
+
+<p>✅ DRAFT COMPLETE</p>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+{
+  "scan_time": "2026-03-18 10:13",
+  "institutional_signals": [],
+  "aggressive_signals": [],
+  "blueshrimp_analysis": {
+    "source": "perplexity_sonar_pro",
+    "analysis": "",
+    "citations": [],
+    "timestamp": "2026-03-18T10:13:50.949995"
+  },
+  "portfolio_summary": {
+    "institutional": {
+      "name": "大机构",
+      "total_value": 50000.0,
+      "cash": 35017,
+      "position_value": 14983.0,
+      "pnl": 0.0,
+      "return_pct": 0.0,
+      "positions": 2
+    },
+    "aggressive": {
+      "name": "激进交易",
+      "total_value": 50000,
+      "cash": 50000,
+      "position_value": 0,
+      "pnl": 0,
+      "return_pct": 0.0,
+      "positions": 0
+    },
+    "blueshrimp": {
+      "name": "蓝虾交易",
+      "total_value": 50000,
+      "cash": 50000,
+      "position_value": 0,
+      "pnl": 0,
+      "return_pct": 0.0,
+      "positions": 0
+    }
+  }
+}

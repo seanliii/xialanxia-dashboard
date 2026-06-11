@@ -1,0 +1,24 @@
+{
+  "recordedAt": "2026-03-23T13:06:36.845Z",
+  "promptHash": "bf462b329bc35ba97e908dd4acb968b8667ad60efc6623271c19f493bde5e1d3",
+  "promptLength": 235,
+  "retrievalQueryHash": "bf462b329bc35ba97e908dd4acb968b8667ad60efc6623271c19f493bde5e1d3",
+  "retrievalQueryLength": 235,
+  "plannerEnabled": true,
+  "plannedMode": "full",
+  "effectiveMode": "full",
+  "recallResultLimit": 8,
+  "queryIntent": {
+    "goal": "unknown",
+    "actionType": "unknown",
+    "entityTypes": []
+  },
+  "graphExpandedIntentDetected": false,
+  "graphDecision": {
+    "status": "not_requested",
+    "shadowMode": false,
+    "qmdAvailable": false,
+    "graphRecallEnabled": false,
+    "multiGraphMemoryEnabled": false
+  }
+}

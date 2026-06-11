@@ -1,0 +1,616 @@
+# project-hermes-agent
+
+**Type:** project
+**Updated:** 2026-03-20T15:36:30.465Z
+
+## Facts
+
+- Open-source AI agent with self-evolving capabilities built by NousResearch.
+- Installs under ~/.hermes directory and requires separate API key configuration.
+- Includes learning loops and automatic tool creation/optimization mechanisms.
+- Open-source AI agent framework by Nous Research with self-evolving capabilities.
+- Installs to ~/.hermes/ and operates independently as a Python gateway.
+- Requires installation dependencies such as ripgrep and ffmpeg.
+- Does not read or send user's API keys or system config files during installation.
+- Open-source self-evolving AI agent framework
+- Built-in learning loops and automatic tool creation/optimization
+- Installs to '~/.hermes/' directory
+- Runs as independent Python gateway requiring separate API key
+- Open-source AI agent framework by Nous Research with self-evolving capability.
+- Hosted on GitHub under github.com/NousResearch/hermes-agent.
+- Installs to ~/.hermes and runs independently of OpenClaw.
+- Requires separate API key configuration and gateway process.
+- Open-source self-evolving AI agent with built-in learning loops.
+- Installs into ~/.hermes/ directory.
+- Developed and maintained by Nous Research.
+- Uses Gemini Flash for automatic session compression.
+- Supports dynamic tool registration and selection by task type.
+- Open-source self-evolving AI agent framework developed by company-nousresearch.
+- Includes learning loop and automatic tool creation/optimization.
+- Installs into ~/.hermes/ separately from project-openclaw.
+- Open-source self-evolving AI agent framework developed by Nous Research.
+- Installs to ~/.hermes/ directory and runs independently from OpenClaw.
+- Has a built-in learning loop and automatic tool creation and optimization.
+- Require compilation dependencies and optional packages ripgrep and ffmpeg.
+- Three key design features identified for internalization into OpenClaw: Gemini Flash session trace compression, dynamic tool schema registration/loading, and SQLite FTS5 keyword search complement.
+- Is an open-source self-evolving AI agent framework developed by company-nousresearch.
+- Features a built-in learning loop and automatic tool creation/optimization.
+- Installs independently into ~/.hermes/ and operates separately from project-openclaw.
+- A research AI agent project focused on self-evolving and tool creation architectures.
+- Its architectural design is being studied and internalized by the user into project-openclaw.
+- A research AI agent project focusing on self-evolution and automatic tool creation.
+- Its installation script is verified to be free of malicious code and prompts users clearly for optional dependencies.
+- Design aspects are being studied for internal integration rather than direct installation.
+- Self-evolving AI agent architecture.
+- Includes tool auto-creation capabilities.
+- Related research interest by user.
+- Not installed independently parallel to OpenClaw due to resource concerns.
+- An AI agent project focusing on self-evolution and tool auto-creation.
+- Its architecture is being studied for internalization into existing AI agent systems.
+- Is an AI agent project researched for its self-evolution and tool auto-creation design.
+- User prefers to internalize its architectural insights rather than install it directly.
+- Known for its self-evolving AI agent architecture with automatic tool generation.
+- Not installed independently due to resource and conflict concerns with OpenClaw.
+- Studied for architectural insights to internalize design into existing AI agent systems.
+- An AI agent project known for its evolutionary architecture and tool creation capabilities.
+- Related to user interest in evolutionary AI agents.
+- Has self-evolving and tool auto-creation architecture features.
+- Focuses on evolutionary AI agent architectures with self-evolving and tool auto-creation features.
+- Noted for its self-evolving and tool auto-creation AI agent architecture.
+- Focus of user interest and study regarding evolutionary AI agent designs.
+- An evolutionary AI agent architecture featuring self-evolving and tool auto-creation capabilities.
+- User is particularly interested in its design and architecture.
+- Focuses on self-evolving AI agent architectures.
+- Includes tool auto-creation features.
+- Focuses on evolutionary AI agent architectures with self-evolving and tool auto-creation capabilities.
+- An AI agent architecture focused on self-evolving capabilities and automatic tool creation.
+- Focuses on evolutionary AI agent architectures.
+- Includes self-evolving and tool auto-creation capabilities.
+- Focuses on self-evolving AI agent architectures
+- Includes features for AI agents to create tools autonomously
+- Project focuses on self-evolving AI agent architectures.
+- Has features related to tool auto-creation.
+- An AI agent architecture focused on self-evolving processes and automated tool creation.
+- Focuses on evolutionary AI agent architectures featuring self-evolution and automatic tool creation.
+- Has self-evolving and tool auto-creation features that attract user interest.
+- An AI agent project with self-evolving and tool creation features.
+- Known for its self-evolving and tool auto-creation features relevant to evolutionary AI agent architectures.
+- Focuses on evolutionary AI agent architecture with self-evolution and tool auto-creation features.
+- An AI agent project notable for self-evolution and automatic tool creation features.
+- Known for self-evolving AI agent architecture.
+- Focuses on tool auto-creation capabilities.
+- An AI agent project focused on self-evolution and automatic tool creation features.
+- User interested in its evolutionary AI agent architecture.
+- An AI agent architecture featuring self-evolution and tool creation.
+- Features evolutionary AI agent architectures.
+- Supports self-evolving and automated tool creation capabilities.
+- Is an AI agent project featuring self-evolving and tool creation architectural aspects.
+- User studies this project to understand evolutionary AI agent architectures.
+- Features evolutionary AI agent architecture with self-evolving and tool auto-creation capabilities.
+- Contains features of self-evolution and automatic tool creation.
+- Is a focus of the user's interest in evolutionary AI agent architectures.
+- An AI agent architecture focused on self-evolution and automatic creation of tools.
+- Features self-evolving AI agent architectures
+- Includes automatic tool creation aspects
+- Has self-evolving and tool auto-creation features.
+- Is of interest for evolutionary AI agent architectures.
+- Features evolutionary AI agent architecture.
+- Supports self-evolving and automatic tool creation aspects.
+- An open-source AI agent project focused on evolutionary design and self-evolving, tool auto-creation features.
+- Its architecture is studied and internalized by the user for integration into another AI agent system.
+- An evolutionary AI agent project with architectural features including self-evolving mechanisms and tool auto-creation capabilities.
+- Studied by the user for internalization of architectural insights rather than direct deployment.
+- Contains evolutionary AI agent architectural designs with self-evolving and tool auto-creation features.
+- An open-source AI agent project focused on self-evolving and tool auto-creation architectural design.
+- User prefers to study its architecture rather than running it directly.
+- Known for evolutionary AI agent architectural ideas including self-evolving and tool auto-creation features.
+- An open-source AI agent project with evolutionary and self-evolving architectural features.
+- Includes tool auto-creation capabilities that user wants to integrate into project-openclaw.
+- Provides evolutionary AI agent architectural ideas, including self-evolving and tool auto-creation features.
+- An open-source AI agent project providing self-evolving and tool auto-creation architectural features.
+- Features from this project are integrated into project-openclaw.
+- Is an open-source AI agent project with evolutionary architectural ideas.
+- Includes self-evolving and tool auto-creation features.
+- An open-source AI agent project with evolutionary architectural ideas, including self-evolving and tool auto-creation features.
+- An open-source AI agent project focusing on evolutionary architectural ideas, including self-evolving capabilities and tool auto-creation features.
+- Contains evolutionary AI agent architectural ideas including self-evolving and tool auto-creation features.
+- An open-source AI agent project with evolutionary architectural ideas including self-evolving and tool auto-creation features.
+- Open-source AI agent project notable for self-evolving and tool auto-creation features.
+- Provides evolutionary AI agent architectures featuring self-evolving and tool auto-creation capabilities.
+- Provides evolutionary AI agent architectures with self-evolving and tool auto-creation features integrated by the user into project-openclaw.
+- Provides self-evolving and tool auto-creation architectural features.
+- Source of architectural insights integrated into project-openclaw.
+- Provides evolutionary AI agent architectural ideas such as self-evolving and tool auto-creation.
+- An open-source AI agent project focusing on evolutionary AI agent architecture with self-evolving and tool auto-creation features.
+- An open-source AI agent project with evolutionary architectural features including self-evolving and tool auto-creation capabilities.
+- Contains evolutionary AI agent architectural ideas.
+- Focuses on evolutionary AI agent architecture.
+- An open-source AI agent project with evolutionary architecture ideas including self-evolving and tool auto-creation features.
+- An open-source AI agent project that features self-evolving and tool auto-creation capabilities.
+- Contains architectural ideas for self-evolving and tool auto-creation AI agent features.
+- Includes architectural ideas about evolutionary AI agents.
+- Features self-evolving capabilities and tool auto-creation.
+- Provides evolutionary AI agent architectural ideas including self-evolving and tool auto-creation features
+- An open-source AI agent project with evolutionary architecture features including self-evolving and tool auto-creation.
+- An open-source AI agent project known for self-evolving and tool auto-creation features
+- Provides evolutionary AI agent architectural ideas.
+- Provides evolutionary AI agent architectural ideas such as self-evolving and tool auto-creation features.
+- Contains evolutionary AI agent architectural ideas, including self-evolving and tool auto-creation features.
+- Focuses on self-evolving AI agent architecture and tool auto-creation features.
+- Provides self-evolving and tool auto-creation features.
+- User integrates architectural insights from this project into project-openclaw.
+- Provides evolutionary AI agent architectural ideas including self-evolving and tool auto-creation features.
+- Open-source AI agent project with evolutionary, self-evolving, and tool auto-creation features.
+- Known for self-evolving and tool auto-creation features influential to the user.
+- Known for self-evolving and tool auto-creation features in evolutionary AI agent architecture.
+- Open-source AI agent project known for evolutionary AI agent architecture with self-evolving and tool auto-creation features.
+- Known for evolutionary AI agent architecture and self-evolving tool auto-creation features.
+- Contains self-evolving and tool auto-creation features.
+- An open-source AI agent project providing evolutionary architectural ideas including self-evolving and tool auto-creation features.
+- Provides evolutionary AI agent architectural ideas with self-evolving and tool auto-creation features.
+- Known source of evolutionary AI agent architectural ideas.
+- Features self-evolving and tool auto-creation capabilities.
+- Known for self-evolving and tool auto-creation features.
+- Open-source AI agent project with evolutionary AI agent architectural ideas.
+- Features include self-evolving and tool auto-creation capabilities.
+- Focuses on evolutionary AI agent architectural ideas, including self-evolving and tool auto-creation features.
+- Known for innovative evolutionary AI agent architectural ideas.
+- Feature set includes self-evolving and tool auto-creation capabilities.
+- Provides evolutionary AI agent architectural ideas with self-evolving and tool auto-creation capabilities.
+- Provides evolutionary AI agent architecture ideas including self-evolving and tool auto-creation features.
+- Provides evolutionary AI agent architectural ideas with self-evolving and tool auto-creation features
+- Known for evolutionary AI agent architecture with self-evolving and tool auto-creation features.
+- Provides evolutionary AI agent architectural features including self-evolving and tool auto-creation.
+- Provides architectural ideas for evolutionary AI agents.
+- Is an open-source AI agent project with evolutionary design features such as self-evolving capabilities and tool auto-creation.
+- An open-source AI agent project notable for its evolutionary AI architecture incorporating self-evolving and tool auto-creation features.
+- An open-source AI agent project focusing on self-evolving AI agent architectural ideas and tool auto-creation features.
+- Open-source AI agent project with evolutionary architectural features.
+- Has self-evolving and tool auto-creation capabilities.
+- An open-source AI agent project with features of self-evolving and tool auto-creation that the user values integrating into project-openclaw.
+- Open-source AI agent project with evolutionary architectural ideas.
+- Notably includes self-evolving and tool auto-creation features.
+- Contains self-evolving and tool auto-creation features valued by the user
+- Contains self-evolving and tool auto-creation architectural features of interest to the user.
+- User studies and internalizes its architecture but avoids running it in parallel.
+- Source of evolutionary AI agent architectural features such as self-evolving and tool auto-creation.
+- Is an open-source AI agent project studied and integrated from by the user.
+- An open-source AI agent project known for evolutionary architectural features such as self-evolving and tool auto-creation.
+- An open-source AI agent project with evolutionary AI architectural ideas such as self-evolving and tool auto-creation.
+- Known for evolutionary AI agent architectural features.
+- Features such as self-evolving and tool auto-creation are noted by user.
+- Open-source AI agent project notable for evolutionary features including self-evolving capabilities and tool auto-creation.
+- Contains evolutionary AI architectural ideas including self-evolving and tool auto-creation features.
+- An open-source AI agent project with features like self-evolving and tool auto-creation.
+- Open-source AI agent project featuring evolutionary AI agent architectural ideas including self-evolving and tool auto-creation.
+- Known for architectural ideas including self-evolving and tool auto-creation features.
+- Includes evolutionary AI agent architectural ideas.
+- Features self-evolving capability and tool auto-creation.
+- Contains architectural features such as self-evolving and tool auto-creation.
+- Contains evolutionary AI agent features including self-evolving and tool auto-creation.
+- Includes evolutionary AI agent features such as self-evolving and tool auto-creation.
+- Architectural designs valued and integrated by the user into project-openclaw.
+- Open-source AI agent project featuring self-evolving and tool auto-creation capabilities.
+- An open-source AI agent project with features including self-evolving behavior and tool auto-creation.
+- Serves as a source of architectural inspiration and features integrated into project-openclaw.
+- Includes architectural features such as self-evolving and tool auto-creation that are valued by the user for integration.
+- Contains evolutionary AI architectural ideas such as self-evolving features and tool auto-creation
+- Has architectural features for self-evolving AI agents and tool auto-creation.
+- Its architectural insights are valued for integration into other AI projects.
+- An open-source AI agent project with evolutionary AI agent architectural ideas such as self-evolving and tool auto-creation.
+- An open-source AI agent project featuring evolutionary architectural ideas like self-evolving and tool auto-creation.
+- Features evolutionary AI agent architectural ideas such as self-evolving and tool auto-creation.
+- Contains evolutionary AI architectural features such as self-evolving and tool auto-creation.
+- Contains architectural features such as self-evolving capability and tool auto-creation that are of interest for integration.
+- Notable for evolutionary AI agent architectural features such as self-evolving and tool auto-creation.
+- Noted for evolutionary AI agent architectural ideas and self-evolving, tool auto-creation features.
+- An open-source AI agent project with evolutionary features including self-evolving capabilities and tool auto-creation.
+- Known for features like self-evolving and tool auto-creation which user integrates into project-openclaw.
+- Known for evolutionary AI agent architecture with features such as self-evolving and tool auto-creation.
+- Known for evolutionary AI agent architecture featuring self-evolving and tool auto-creation.
+- Contains evolutionary AI agent architectural features such as self-evolving and tool auto-creation.
+- An open-source AI agent project known for features such as self-evolving and tool auto-creation.
+- Open-source AI agent project noted for evolutionary features like self-evolving and tool auto-creation
+- User studies its architectural and design insights to integrate into project-openclaw
+- Known for evolutionary AI architectural ideas including self-evolving and tool auto-creation.
+- Known for evolutionary AI architectural ideas including self-evolving and tool auto-creation features.
+- User studies and integrates its architectural design into project-openclaw.
+- Is an open-source AI agent project with evolutionary and tool auto-creation architectural features.
+- Its architectural and design insights are studied and internalized by the user into project-openclaw.
+- Exhibits evolutionary AI architectural ideas such as self-evolving features and tool auto-creation.
+- Source of architectural inspirations integrated into project-openclaw.
+- Source of evolutionary AI agent architectural ideas integrated into project-openclaw.
+- An open-source AI agent project that includes evolutionary features such as self-evolving and tool auto-creation.
+- Open-source AI agent project focused on evolutionary AI architectural ideas and features.
+- Known for evolutionary AI agent architectural ideas and features such as self-evolving and tool auto-creation.
+- Is an open-source AI agent project with evolutionary features such as self-evolving and tool auto-creation.
+- Source project for evolutionary AI architectural features
+- Provides self-evolving and tool auto-creation capabilities
+- An open-source AI agent project with evolutionary architectural features such as self-evolving and tool auto-creation.
+- Open-source AI agent project with evolutionary AI architectural ideas
+- Features include self-evolving and tool auto-creation
+- An open-source AI agent project known for evolutionary AI architectural ideas including self-evolving and tool auto-creation features.
+- Is an open-source AI agent project with evolutionary architectural features such as self-evolving and tool auto-creation.
+- Known for evolutionary AI features such as self-evolving and tool auto-creation
+- An open-source AI agent project focused on evolutionary architectural ideas.
+- Known for features such as self-evolving and tool auto-creation.
+- An open-source AI agent project with evolutionary architectural features such as self-evolving capabilities and tool auto-creation.
+- Open-source AI agent with evolutionary features such as self-evolving and tool auto-creation.
+- Known open-source AI agent project with evolutionary AI architectural ideas.
+- Supports features like self-evolving and tool auto-creation.
+- Supports features such as self-evolving and tool auto-creation.
+- Open source AI agent project known for evolutionary features such as self-evolving and tool auto-creation.
+- Includes evolutionary AI architectural ideas such as self-evolving and tool auto-creation features.
+- Contains evolutionary AI architectural ideas such as self-evolving features and tool auto-creation.
+- An open-source AI agent project with evolutionary architectural features including self-evolving capabilities and automatic tool creation.
+- Contains evolutionary AI agent architectural features.
+- Serves as a source of architectural ideas for project-openclaw.
+- Known for evolutionary AI agent architectural features such as self-evolving and tool auto-creation.
+- Open-source AI agent project known for evolutionary features like self-evolving and tool auto-creation.
+- An open-source AI agent project with evolutionary features such as self-evolving and tool auto-creation.
+- An open-source AI agent project notable for evolutionary features like self-evolving and tool auto-creation.
+- Open-source AI agent project with evolutionary features such as self-evolving and tool auto-creation.
+- Contains evolutionary features such as self-evolving and tool auto-creation.
+- Source of evolutionary AI architectural ideas that user integrates into project-openclaw.
+- An open-source AI agent project that influences the user's architectural approach.
+- Source of evolutionary AI architectural features integrated into project-openclaw.
+- Source of evolutionary AI architectural features studied and integrated by the user into project-openclaw.
+- Open-source project providing evolutionary AI architectural ideas tested and integrated into project-openclaw.
+- Open-source project providing evolutionary AI architectural features.
+- Source project for architectural integration into project-openclaw.
+- An open-source evolutionary AI agent architectural project from company-nousresearch.
+- User prioritizes studying, internalizing, and integrating architectural features from project-hermes-agent into project-openclaw.
+- Open-source project providing evolutionary AI agent architectural ideas.
+- Source of architectural features integrated into project-openclaw.
+- This open-source project contains evolutionary AI architectural features that the user studies and internalizes for integration into project-openclaw.
+- An open-source project with evolutionary AI architectural features studied and integrated by the user.
+- Open-source project with evolutionary AI agent architectural features.
+- Features from this project are studied and integrated by the user into project-openclaw.
+- An open-source AI agent project with evolutionary architectural features valuable for understanding and integration.
+- Open-source project with evolutionary AI architectural features
+- Open-source project noted for evolutionary AI architectural features relevant for integration.
+- An open-source project with evolutionary AI architectural features of interest to the user.
+- An open-source evolutionary AI agent project studied by the user for architectural features.
+- Is an open-source evolutionary AI agent project.
+- Provides architectural features sought for integration into project-openclaw.
+- Open-source project known for evolutionary AI agent architectural features.
+- An open-source evolutionary AI agent project that the user studies and from which they prioritize integrating architectural features.
+- Open-source evolutionary AI agent project that user studies for architectural ideas.
+- Open-source project with evolutionary AI architectural features studied and integrated by user.
+- Open-source evolutionary AI agent project.
+- Architectural features are studied and integrated by the user into project-openclaw.
+- Is a source of evolutionary AI architectural features studied by the user.
+- Open-source project with evolutionary AI architectural features.
+- An open-source AI agent project providing evolutionary architectural features.
+- Source of inspiration and features for project-openclaw.
+- An open-source AI agent project whose evolutionary architectural features are of strong interest to the user.
+- An open-source AI project focused on evolutionary AI architecture features.
+- Open-source AI agent project with evolutionary AI architectural features that the user studies and integrates.
+- Open-source evolutionary AI agent project that user studies deeply for architectural ideas.
+- User integrates features from project-hermes-agent into project-openclaw.
+- Source of evolutionary AI architectural ideas prioritized by user.
+- Not installed as a separate parallel agent on user's machines due to resource and conflict concerns.
+- Source of evolutionary AI architectural ideas important to the user.
+- User decided against installing project-hermes-agent to run concurrently with project-openclaw due to resource and security concerns.
+- Project-hermes-agent is an open-source evolutionary AI project.
+- User decided not to run project-hermes-agent side-by-side with project-openclaw on the same machine.
+- Represents an open-source evolutionary AI architecture which user studies and integrates features from.
+- User decided not to run it side-by-side with project-openclaw on the same machine.
+- Project-hermes-agent has an evolutionary AI architectural design that user studies for integration into project-openclaw.
+- An open-source AI agent project with evolutionary architecture features.
+- Architectural features are studied and internalized by the user into project-openclaw.
+- An open-source AI agent with evolutionary design features studied and internalized by user.
+- User chose not to install it directly but to integrate its architecture into project-openclaw.
+- An open-source evolutionary AI agent whose architecture is internally studied and integrated into project-openclaw.
+- Has an evolutionary AI agent architectural design studied for integration into project-openclaw.
+- An open-source evolutionary AI agent project whose architectural design is being studied and internalized by the user.
+- An open-source evolutionary AI agent project whose architecture the user studies intensively.
+- Not installed directly by the user; studied for architectural inspiration.
+- Is an open-source evolutionary AI agent project studied and internalized by the user for architectural design.
+- Is an open-source project providing evolutionary AI architectural features studied and internalized by the user into project-openclaw.
+- Open-source evolutionary AI agent architecture studied by user
+- Source of architectural inspiration integrated into project-openclaw
+- Open source project with evolutionary AI agent architecture studied and internalized by user as a reference for project-openclaw.
+- Open-source evolutionary AI agent architecture whose features are integrated into project-openclaw.
+- Open-source project providing architectural features for evolutionary AI agents.
+- An open-source evolutionary AI agent project that serves as an architectural reference for user integration into project-openclaw.
+- Open-source evolutionary AI agent project serving as an architectural reference for the user.
+- An open-source project providing evolutionary AI agent architecture features that the user studies and integrates.
+- Open-source evolutionary AI agent architecture, which serves as a learning source for the user
+- Known for evolutionary AI architecture and tool auto-creation features.
+- User studies and internalizes its architecture rather than installing it directly.
+- Has evolutionary AI architectural design and tool auto-creation features.
+- Studied and internalized by user into project-openclaw rather than installed directly.
+- Source of architectural features studied and integrated into project-openclaw by the user.
+- Open-source project whose architectural features user studies and integrates.
+- Open-source project studied intensively by user for AI architectural features.
+- Has approximately 318 facts documented.
+- Open-source AI agent project studied by user for architectural design
+- An open-source AI agent project whose architectural features are studied and integrated by the user into project-openclaw.
+- Serves as an architectural reference for project-openclaw's evolutionary AI agent design.
+- Open-source AI agent project whose architectural features are studied and integrated by the user.
+- An open-source AI agent project from which the user studies architectural features for their own AI research.
+- Open-source AI agent architecture serving as a reference for project-openclaw
+- An open-source AI agent project whose architectural features the user studies and internalizes for application in project-openclaw.
+- Open-source AI agent project whose architectural features are studied and integrated by user
+- Open-source AI agent architecture that user studies and integrates into project-openclaw.
+- Open-source AI architecture providing features studied and internalized by the user.
+- An open-source AI agent project whose architectural features are deeply studied and integrated by the user
+- Open-source AI agent project studied for architectural insights by user.
+- Open-source AI agent project studied and internalized by the user for architectural features.
+- Open-source AI agent project studied by the user for architectural design.
+- Serves as an open-source reference architecture for evolutionary AI agents
+- Architectural features are actively studied and integrated by project-openclaw
+- An open-source AI agent project whose architecture is studied and internalized by the user.
+- An open-source AI agent project whose architectural features are studied and integrated by the user.
+- Open-source AI agent project whose architecture is studied and internalized by user for integration into project-openclaw.
+- Serves as a reference architectural design for evolutionary AI agent features that user studies and integrates into project-openclaw.
+- Open-source AI agent architecture studied and internalized by user.
+- An open-source project serving as an architectural reference for evolutionary AI agent designs.
+- Closely studied and integrated into project-openclaw.
+- Open-source AI agent architecture that user studies and integrates deeply into project-openclaw.
+- Open-source AI agent project providing architectural designs.
+- Source of architectural integration learnings for project-openclaw.
+- Provides open-source architectural designs for evolutionary AI systems.
+- Open-source AI agent architecture project whose designs are studied and integrated by the user into project-openclaw.
+- Open-source project whose architectural designs are deeply studied and integrated by the user into project-openclaw.
+- User prioritizes studying and internalizing architectural designs from project-hermes-agent.
+- Open-source AI agent architecture integrated into project-openclaw
+- Open-source project whose architectural designs are studied and integrated into project-openclaw
+- Architectural designs are studied and internalized by the user for integration into project-openclaw.
+- An open-source AI agent architecture studied and integrated by the user into project-openclaw.
+- Acts as an architectural reference for project-openclaw.
+- Open source AI agent architecture studied and integrated by the user.
+- Open-source AI agent architecture studied and internalized deeply by the user
+- Open-source AI agent architecture whose design is studied and integrated by the user into project-openclaw.
+- Open source AI agent architecture that the user studies and internalizes deeply.
+- An open-source AI agent architectural project used as a reference by the user.
+- Open-source AI agent architecture used for learning and integration
+- Open-source AI agent architecture studied and internalized by the user.
+- An open-source project providing architectural designs for evolutionary AI agents
+- Open-source AI agent whose architectural designs are deeply studied and integrated by the user.
+- Open-source AI agent architecture whose design the user studies and integrates into project-openclaw.
+- Open source AI agent architecture considered important learning source for project-openclaw.
+- Open-source AI agent architecture project that user studies and integrates learnings from.
+- An open source project whose architectural designs are deeply studied and internalized by the user for evolutionary AI systems.
+- An open-source AI agent project whose architectural designs are deeply studied and integrated by the user into project-openclaw.
+- Provides open-source architectural designs integrated into project-openclaw.
+- Provides open-source architectural designs for evolutionary AI agent architectures
+- Has design features deeply integrated by user into project-openclaw
+- Open-source AI agent architecture actively integrated by the user into project-openclaw.
+- Open-source AI agent architecture used as a base for integration into project-openclaw.
+- Provides open-source architectural designs leveraged by project-openclaw.
+- Open-source AI agent architecture providing designs integrated by the user into project-openclaw.
+- Open-source AI agent architecture used as a reference for project-openclaw integration.
+- An open-source AI agent architecture used as a design reference by project-openclaw.
+- Source of open-source AI agent architecture integrated into project-openclaw by user.
+- Open-source AI agent architecture design that user incorporates deeply into project-openclaw.
+- Open-source architectural design used as deep integration basis by user.
+- An open-source AI agent architecture deeply studied and integrated by the user.
+- Connected to company-nousresearch.
+- Open-source AI agent architecture actively integrated into project-openclaw
+- Architectural designs from project-hermes-agent are actively integrated into project-openclaw.
+- Open-source architectural designs from this project are actively integrated into project-openclaw.
+- Open-source AI agent architecture used as a base for user integration into project-openclaw.
+- User actively integrates open-source architectural designs from this project into their own project, project-openclaw.
+- Open-source AI agent architecture used as a design basis for project-openclaw
+- Provides open-source AI architectural designs integrated into project-openclaw.
+- Open-source AI agent architecture with designs deeply integrated by user into project-openclaw.
+- Open-source AI agent architecture that user deeply integrates into project-openclaw.
+- Open source AI architecture used as design reference for project-openclaw.
+- Contributes open-source architectural designs adopted deeply by project-openclaw.
+- Provides open-source architectural designs actively integrated into project-openclaw by the user.
+- Source of open-source AI architectural designs integrated into project-openclaw.
+- Open-source AI agent architecture widely integrated by user into their own projects.
+- Serves as an open-source architectural design integrated deeply by the user into project-openclaw.
+- Source of open-source architectural designs used in project-openclaw.
+- Open-source AI agent architecture referenced and integrated into project-openclaw by user.
+- Source architectural design actively integrated into project-openclaw by user.
+- Open-source AI architecture integrated by user into project-openclaw.
+- Provides open-source architectural designs integrated by user into project-openclaw.
+- Provides open-source evolutionary AI agent architectural designs actively integrated into project-openclaw.
+- An open-source AI agent architecture that the user integrates into project-openclaw.
+- An open-source AI agent architecture actively integrated into project-openclaw.
+- Provides open-source architectural designs actively integrated by the user into project-openclaw
+- Open-source architectural designs are actively integrated into project-openclaw.
+- An open-source AI agent architecture whose designs are actively integrated into project-openclaw.
+- Open-source AI architecture used as a basis for project-openclaw.
+- Provides open-source architectural designs integrated by project-openclaw
+- Open-source AI agent architecture integrated by user into project-openclaw
+- Provides open-source architectural designs that user integrates into project-openclaw.
+- Provides architectural designs that are actively integrated by project-openclaw
+- Source of open-source architectural designs integrated into project-openclaw.
+- Provides architectural designs integrated by project-openclaw
+- Source of open-source architectural designs used by project-openclaw.
+- Open-source architectural designs are actively integrated into project-openclaw by the user.
+- Source of open-source AI architecture design integrated into project-openclaw.
+- An open-source AI agent architecture project.
+- Provides architectural designs that the user integrates into project-openclaw.
+- Open-source AI agent architecture that user integrates into project-openclaw.
+- Provides open-source architectural designs used by project-openclaw
+- Provides open-source architectural designs actively integrated by the user into project-openclaw.
+- Open-source AI agent architecture used as a design reference for project-openclaw.
+- Open-source architectural design that user actively integrates into project-openclaw.
+- Provides open-source architectural designs integrated by the user into project-openclaw
+- Open-source architectural designs used by project-openclaw
+- Open source AI agent architectural design integrated into project-openclaw.
+- Architectural designs are integrated by project-openclaw.
+- An open-source AI agent architecture used as a reference for project-openclaw.
+- Serves as an open-source architectural design source for project-openclaw
+- Provides open-source AI agent architectural designs integrated by project-openclaw
+- Open-source AI agent project serving as a basis for architectural integration by the user.
+- Source of open-source architectural designs integrated into project-openclaw
+- Provides architectural designs integrated into project-openclaw.
+- Open-source architectural designs are integrated into project-openclaw.
+- Open-source architectural design that is integrated into project-openclaw.
+
+## Connected to
+
+- [[company-nousresearch]] — created (reverse)
+- [[company-nousresearch]] — created by
+- [[user]] — researches for integration into openclaw (reverse)
+- [[company-nousresearch]] — developed by
+- [[project-openclaw]] — can internalize design ideas from (reverse)
+- [[user]] — studies architecture of to internalize design features (reverse)
+- [[project-openclaw]] — internalizing design features from (reverse)
+- [[company-nousresearch]] — developed-by
+- [[project-openclaw]] — internalizes architectural insights from (reverse)
+- [[user]] — studies architecture of (reverse)
+- [[user]] — studying and internalizing architecture of (reverse)
+- [[user]] — studies and internalizes architecture of (reverse)
+- [[project-openclaw]] — design ideas internalized into
+- [[company-nousresearch]] — develops (reverse)
+- [[project-openclaw]] — design studied for internalization into
+- [[company-nousresearch]] — is developed by
+- [[user]] — interested in evolutionary AI agent architecture of (reverse)
+- [[user]] — interested in research and evolutionary AI agent architecture features (reverse)
+- [[user]] — interested in evolutionary architecture of (reverse)
+- [[user]] — interested in architectural features of (reverse)
+- [[user]] — interested in evolutionary AI agent architectures of (reverse)
+- [[user]] — interested in evolutionary AI architectures of (reverse)
+- [[user]] — interested in evolutionary and self-evolving AI agent architecture of (reverse)
+- [[user]] — interested in evolutionary AI architectures with self-evolving and tool creation features (reverse)
+- [[user]] — interested in evolutionary AI architecture of (reverse)
+- [[user]] — is a focus of research and evolutionary AI architecture interest for
+- [[fact]] — features evolutionary AI architectures with self-evolving, tool creation capabilities
+- [[user]] — studies and draws architectural insights from (reverse)
+- [[user]] — interested in evolutionary AI agent architecture (reverse)
+- [[user]] — interested in evolutionary architecture and self-evolving tool creation (reverse)
+- [[user]] — interested in evolutionary AI agent architectures including self-evolving and tool auto-creation features (reverse)
+- [[user]] — studies and internalizes architectural design (reverse)
+- [[project-openclaw]] — architectural design studied and internalized into
+- [[user]] — interested in self-evolving and tool auto-creation features (reverse)
+- [[company-nousresearch]] — is a project of
+- [[user]] — studies architectural insights from (reverse)
+- [[project-openclaw]] — integrates architectural ideas from (reverse)
+- [[user]] — studies and internalizes architectural insights from (reverse)
+- [[project-openclaw]] — provides architectural ideas integrated into
+- [[project-openclaw]] — integrates architectural features from (reverse)
+- [[project-openclaw]] — provides self-evolving and tool auto-creation architectural features to
+- [[project-openclaw]] — incorporates architectural ideas from (reverse)
+- [[project-openclaw]] — provides architectural ideas for integration into
+- [[user]] — values architectural ideas from (reverse)
+- [[project-openclaw]] — architectural ideas integrated into
+- [[project-openclaw]] — source of evolutionary AI agent designs integrated into
+- [[project-openclaw]] — integrates architectural and evolutionary AI features from (reverse)
+- [[project-openclaw]] — provides evolutionary AI architectural ideas to
+- [[user]] — integrates architectural insights from (reverse)
+- [[project-openclaw]] — integrates evolutionary architectural ideas from (reverse)
+- [[project-openclaw]] — evolutionary AI agent architectural features integrated into
+- [[project-openclaw]] — integrates evolutionary AI architectural ideas from (reverse)
+- [[user]] — studies and integrates architectural insights from (reverse)
+- [[project-openclaw]] — incorporates design ideas from (reverse)
+- [[user]] — interested in architectural and design insights from (reverse)
+- [[project-openclaw]] — integrates architectural insights and evolutionary features from (reverse)
+- [[user]] — studies architectural and design insights from (reverse)
+- [[project-openclaw]] — incorporates features from (reverse)
+- [[project-openclaw]] — provides architectural insights and features integrated into
+- [[project-openclaw]] — integrates architectural ideas and features from (reverse)
+- [[project-openclaw]] — integrates architectural insights and evolutionary AI features from (reverse)
+- [[person-user]] — studies architectural and design insights from (reverse)
+- [[project-openclaw]] — architecture inspired by (reverse)
+- [[project-openclaw]] — integrates evolutionary AI agent features from (reverse)
+- [[project-openclaw]] — architectural insights integrated into
+- [[user]] — interested in evolutionary AI agent architectural ideas from (reverse)
+- [[person-user]] — values architectural ideas from (reverse)
+- [[project-openclaw]] — integrates features from (reverse)
+- [[project-openclaw]] — integrates architectural insights from (reverse)
+- [[project-openclaw]] — provides evolutionary AI architectural ideas integrated into
+- [[project-openclaw]] — architectural features integrated into
+- [[user]] — studies architectural design of (reverse)
+- [[project-openclaw]] — inherits architectural concepts from (reverse)
+- [[project-openclaw]] — integrates architectural and self-evolving features from (reverse)
+- [[project-openclaw]] — provides evolutionary AI agent architectural ideas integrated into
+- [[project-openclaw]] — incorporates self-evolving and tool auto-creation features from (reverse)
+- [[project-openclaw]] — integration source for evolutionary AI agent features
+- [[user]] — studies and internalizes architectural features from (reverse)
+- [[user]] — chooses not to install in parallel alongside project-openclaw (reverse)
+- [[user]] — studies and integrates architectural features from (reverse)
+- [[project-openclaw]] — incorporates architectural insights from (reverse)
+- [[project-openclaw]] — integrates evolutionary AI features derived from (reverse)
+- [[project-openclaw]] — provides architectural features to
+- [[project-openclaw]] — features integrated into
+- [[project-openclaw]] — source of architectural and feature inspiration integrated into
+- [[project-openclaw]] — provides architectural features for integration into
+- [[project-openclaw]] — integrates architectural and design insights from (reverse)
+- [[user]] — studies architectural ideas from (reverse)
+- [[project-openclaw]] — source of architectural features integrated into
+- [[project-openclaw]] — provides architectural features integrated into
+- [[project-openclaw]] — integrates evolutionary architectural features inspired by (reverse)
+- [[project-openclaw]] — integrates evolutionary architectural design from (reverse)
+- [[user]] — studies and internalizes architectural design of (reverse)
+- [[project-openclaw]] — is architectural inspiration for
+- [[project-openclaw]] — integrates evolutionary AI architectural features from (reverse)
+- [[project-openclaw]] — integrates evolutionary AI architectural ideas and features from (reverse)
+- [[project-openclaw]] — provides evolutionary AI architecture features integrated into
+- [[project-openclaw]] — provides evolutionary AI architectural features for integration into
+- [[project-openclaw]] — incorporates evolutionary AI features from (reverse)
+- [[project-openclaw]] — integrates evolutionary architectural features from (reverse)
+- [[project-openclaw]] — integrates evolutionary AI features from (reverse)
+- [[project-openclaw]] — integrates evolutionary features from (reverse)
+- [[project-openclaw]] — incorporates design elements from (reverse)
+- [[user]] — studies architectural and evolutionary AI features from (reverse)
+- [[project-openclaw]] — provides evolutionary features integrated into
+- [[project-openclaw]] — features studied and integrated into
+- [[user]] — prioritizes studying and integrating architectural features from (reverse)
+- [[user]] — studies and internalizes architecture from (reverse)
+- [[user]] — studies evolutionary AI architecture of (reverse)
+- [[user]] — rejects parallel execution with project-openclaw due to resource conflicts (reverse)
+- [[project-openclaw]] — inspired architectural features from (reverse)
+- [[project-openclaw]] — inspired by architecture of (reverse)
+- [[project-openclaw]] — studies and integrates architecture from (reverse)
+- [[project-openclaw]] — integrates architectural design from (reverse)
+- [[project-openclaw]] — internalizes architectural design features from (reverse)
+- [[project-openclaw]] — integrates architectural design features from (reverse)
+- [[project-openclaw]] — internalizes architectural features from (reverse)
+- [[project-openclaw]] — studies and internalizes architecture from (reverse)
+- [[user]] — learns architectural features from (reverse)
+- [[project-openclaw]] — incorporates architecture inspired by (reverse)
+- [[user]] — studies architectural features of (reverse)
+- [[project-openclaw]] — integrates evolutionary AI and tool auto-creation architecture from (reverse)
+- [[project-openclaw]] — incorporates evolutionary AI architecture inspired by (reverse)
+- [[user]] — studies and internalizes architectural design from (reverse)
+- [[project-openclaw]] — architecture is based on (reverse)
+- [[project-openclaw]] — studies and integrates architectural features from (reverse)
+- [[project-openclaw]] — based on architectural design of (reverse)
+- [[project-openclaw]] — integrates architectural designs from (reverse)
+- [[project-openclaw]] — integrates architectural learnings from (reverse)
+- [[user]] — studies and internalizes architectural designs from (reverse)
+- [[project-openclaw]] — integrates architecture from (reverse)
+- [[project-openclaw]] — architectural design integrated into
+- [[project-openclaw]] — integrates architectural design learnings from (reverse)
+- [[project-openclaw]] — provides architectural designs integrated into
+- [[project-openclaw]] — deeply integrates architecture from (reverse)
+- [[user]] — studies and integrates architecture from (reverse)
+- [[project-openclaw]] — integrates design from (reverse)
+- [[company-nousresearch]] — associated with
+- [[user]] — actively integrates architectural designs from (reverse)
+- [[project-openclaw]] — architecture based on (reverse)
+- [[project-openclaw]] — integrates open-source architectural designs from (reverse)
+- [[user]] — integrates architectural designs from (reverse)
+- [[project-openclaw]] — based on architectural designs from (reverse)
+- [[project-openclaw]] — integrates open-source architecture from (reverse)
+- [[project-openclaw]] — integrates architectures from (reverse)
+
+## Activity
+
+- 2026-03-20: Mentioned in conversation
+- 2026-03-20: Mentioned in conversation
+- 2026-03-20: Mentioned in conversation
+- 2026-03-20: Mentioned in conversation
+- 2026-03-20: Mentioned in conversation
+- 2026-03-20: Mentioned in conversation
+- 2026-03-20: Mentioned in conversation
+- 2026-03-20: Mentioned in conversation
+- 2026-03-20: Mentioned in conversation
+- 2026-03-20: Mentioned in conversation
+- 2026-03-20: Mentioned in conversation
+- 2026-03-20: Mentioned in conversation
+- 2026-03-20: Mentioned in conversation
+- 2026-03-20: Mentioned in conversation
+- 2026-03-20: Mentioned in conversation
+- 2026-03-20: Mentioned in conversation
+- 2026-03-20: Mentioned in conversation
+- 2026-03-20: Mentioned in conversation
+- 2026-03-20: Mentioned in conversation
+- 2026-03-20: Mentioned in conversation

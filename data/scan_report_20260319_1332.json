@@ -1,0 +1,57 @@
+{
+  "scan_time": "2026-03-19 13:32",
+  "triggers_fired": [],
+  "stops_triggered": [],
+  "watchlist_approaching": [
+    {
+      "ticker": "TSM",
+      "account": "institutional",
+      "current": 339.57,
+      "trigger": 330.0,
+      "gap_pct": 2.9,
+      "priority": "S",
+      "status": "watch"
+    },
+    {
+      "ticker": "CVNA",
+      "account": "institutional",
+      "current": 291.17,
+      "trigger": 310.0,
+      "gap_pct": -6.1,
+      "priority": "A",
+      "status": "entered"
+    }
+  ],
+  "portfolio_summary": {
+    "institutional": {
+      "name": "大机构",
+      "emoji": "🏦",
+      "total_value": 49588.57,
+      "cash": 27741.75,
+      "position_value": 21846.82,
+      "pnl": -411.43,
+      "return_pct": -0.82,
+      "positions": 3
+    },
+    "aggressive": {
+      "name": "激进交易",
+      "emoji": "⚡",
+      "total_value": 49091.57,
+      "cash": 30021.59,
+      "position_value": 19069.98,
+      "pnl": -908.43,
+      "return_pct": -1.82,
+      "positions": 4
+    },
+    "blueshrimp": {
+      "name": "蓝虾交易",
+      "emoji": "🦐",
+      "total_value": 49921.44,
+      "cash": 42999.24,
+      "position_value": 6922.2,
+      "pnl": -78.56,
+      "return_pct": -0.16,
+      "positions": 2
+    }
+  }
+}

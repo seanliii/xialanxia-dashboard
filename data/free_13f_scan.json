@@ -1,0 +1,367 @@
+{
+  "date": "2026-03-18",
+  "top_funds": [
+    {
+      "rank": 1,
+      "name": "Berkshire Hathaway",
+      "manager": "Warren Buffett",
+      "annual": "14.9%",
+      "winrate": "64.5%",
+      "cik": "0001067983",
+      "style": "value"
+    },
+    {
+      "rank": 2,
+      "name": "Viking Global Investors",
+      "manager": "Andreas Halvorsen",
+      "annual": "18.2%",
+      "winrate": "62.1%",
+      "cik": "0001103804",
+      "style": "long/short"
+    },
+    {
+      "rank": 3,
+      "name": "Lone Pine Capital",
+      "manager": "Steve Mandel",
+      "annual": "17.5%",
+      "winrate": "61.8%",
+      "cik": "0001061165",
+      "style": "long/short"
+    },
+    {
+      "rank": 4,
+      "name": "Renaissance Technologies",
+      "manager": "Jim Simons",
+      "annual": "22.4%",
+      "winrate": "64.7%",
+      "cik": "0001037389",
+      "style": "quant"
+    },
+    {
+      "rank": 5,
+      "name": "Duquesne Family Office",
+      "manager": "Stanley Druckenmiller",
+      "annual": "22.5%",
+      "winrate": "66.6%",
+      "cik": "0001536411",
+      "style": "macro+equity"
+    }
+  ],
+  "fund_details": [
+    {
+      "fund_name": "Berkshire Hathaway",
+      "manager": "Warren Buffett",
+      "filing_date": "2026-02-17",
+      "total_positions": 110,
+      "total_value_b": 274160.09,
+      "top_holdings": [
+        {
+          "name": "AMERICAN EXPRESS CO",
+          "value": 55145133598,
+          "shares": 0,
+          "cusip": "025816109",
+          "pct": 20.1,
+          "value_m": 55145133.6
+        },
+        {
+          "name": "APPLE INC",
+          "value": 21929537965,
+          "shares": 0,
+          "cusip": "037833100",
+          "pct": 8.0,
+          "value_m": 21929538.0
+        },
+        {
+          "name": "COCA COLA CO",
+          "value": 19765145984,
+          "shares": 0,
+          "cusip": "191216100",
+          "pct": 7.2,
+          "value_m": 19765146.0
+        },
+        {
+          "name": "BANK AMERICA CORP",
+          "value": 17094000000,
+          "shares": 0,
+          "cusip": "060505104",
+          "pct": 6.2,
+          "value_m": 17094000.0
+        },
+        {
+          "name": "APPLE INC",
+          "value": 16731076718,
+          "shares": 0,
+          "cusip": "037833100",
+          "pct": 6.1,
+          "value_m": 16731076.7
+        },
+        {
+          "name": "OCCIDENTAL PETE CORP",
+          "value": 10894391643,
+          "shares": 0,
+          "cusip": "674599105",
+          "pct": 4.0,
+          "value_m": 10894391.6
+        },
+        {
+          "name": "CHUBB LIMITED",
+          "value": 10689854998,
+          "shares": 0,
+          "cusip": "H1467J104",
+          "pct": 3.9,
+          "value_m": 10689855.0
+        },
+        {
+          "name": "APPLE INC",
+          "value": 9440066640,
+          "shares": 0,
+          "cusip": "037833100",
+          "pct": 3.4,
+          "value_m": 9440066.6
+        },
+        {
+          "name": "CHEVRON CORP NEW",
+          "value": 9385335405,
+          "shares": 0,
+          "cusip": "166764100",
+          "pct": 3.4,
+          "value_m": 9385335.4
+        },
+        {
+          "name": "KRAFT HEINZ CO",
+          "value": 7896644337,
+          "shares": 0,
+          "cusip": "500754106",
+          "pct": 2.9,
+          "value_m": 7896644.3
+        }
+      ]
+    }
+  ],
+  "consensus_picks": [
+    [
+      "APPLE INC",
+      [
+        {
+          "fund": "Berkshire Hathaway",
+          "manager": "Warren Buffett",
+          "pct": 8.0,
+          "value_m": 21929538.0
+        },
+        {
+          "fund": "Berkshire Hathaway",
+          "manager": "Warren Buffett",
+          "pct": 6.1,
+          "value_m": 16731076.7
+        },
+        {
+          "fund": "Berkshire Hathaway",
+          "manager": "Warren Buffett",
+          "pct": 3.4,
+          "value_m": 9440066.6
+        }
+      ]
+    ],
+    [
+      "AMERICAN EXPRESS CO",
+      [
+        {
+          "fund": "Berkshire Hathaway",
+          "manager": "Warren Buffett",
+          "pct": 20.1,
+          "value_m": 55145133.6
+        }
+      ]
+    ],
+    [
+      "COCA COLA CO",
+      [
+        {
+          "fund": "Berkshire Hathaway",
+          "manager": "Warren Buffett",
+          "pct": 7.2,
+          "value_m": 19765146.0
+        }
+      ]
+    ],
+    [
+      "BANK AMERICA CORP",
+      [
+        {
+          "fund": "Berkshire Hathaway",
+          "manager": "Warren Buffett",
+          "pct": 6.2,
+          "value_m": 17094000.0
+        }
+      ]
+    ],
+    [
+      "OCCIDENTAL PETE CORP",
+      [
+        {
+          "fund": "Berkshire Hathaway",
+          "manager": "Warren Buffett",
+          "pct": 4.0,
+          "value_m": 10894391.6
+        }
+      ]
+    ],
+    [
+      "CHUBB LIMITED",
+      [
+        {
+          "fund": "Berkshire Hathaway",
+          "manager": "Warren Buffett",
+          "pct": 3.9,
+          "value_m": 10689855.0
+        }
+      ]
+    ],
+    [
+      "CHEVRON CORP NEW",
+      [
+        {
+          "fund": "Berkshire Hathaway",
+          "manager": "Warren Buffett",
+          "pct": 3.4,
+          "value_m": 9385335.4
+        }
+      ]
+    ],
+    [
+      "KRAFT HEINZ CO",
+      [
+        {
+          "fund": "Berkshire Hathaway",
+          "manager": "Warren Buffett",
+          "pct": 2.9,
+          "value_m": 7896644.3
+        }
+      ]
+    ]
+  ],
+  "small_cap_top5": [
+    {
+      "ticker": "IREN",
+      "price": 42.96,
+      "chg": -1.92,
+      "target": 80.0,
+      "upside": 86.2,
+      "drawdown": -31.7,
+      "score": 60,
+      "action": "强烈买入",
+      "rating": "",
+      "n_analysts": 0
+    },
+    {
+      "ticker": "SOUN",
+      "price": 7.82,
+      "chg": 4.2,
+      "target": 14.5,
+      "upside": 85.4,
+      "drawdown": -28.3,
+      "score": 55,
+      "action": "买入",
+      "rating": "",
+      "n_analysts": 0
+    },
+    {
+      "ticker": "UPST",
+      "price": 27.83,
+      "chg": -0.93,
+      "target": 49.0,
+      "upside": 76.1,
+      "drawdown": -39.9,
+      "score": 60,
+      "action": "强烈买入",
+      "rating": "Hold",
+      "n_analysts": 20
+    },
+    {
+      "ticker": "SOFI",
+      "price": 17.37,
+      "chg": -1.98,
+      "target": 26.0,
+      "upside": 49.7,
+      "drawdown": -33.4,
+      "score": 45,
+      "action": "买入",
+      "rating": "Hold",
+      "n_analysts": 20
+    },
+    {
+      "ticker": "HIMS",
+      "price": 24.98,
+      "chg": 1.77,
+      "target": 23.0,
+      "upside": -7.9,
+      "drawdown": -18.2,
+      "score": 0,
+      "action": "关注",
+      "rating": "Hold",
+      "n_analysts": 0
+    }
+  ],
+  "small_cap_all": [
+    {
+      "ticker": "IREN",
+      "price": 42.96,
+      "chg": -1.92,
+      "target": 80.0,
+      "upside": 86.2,
+      "drawdown": -31.7,
+      "score": 60,
+      "action": "强烈买入",
+      "rating": "",
+      "n_analysts": 0
+    },
+    {
+      "ticker": "SOUN",
+      "price": 7.82,
+      "chg": 4.2,
+      "target": 14.5,
+      "upside": 85.4,
+      "drawdown": -28.3,
+      "score": 55,
+      "action": "买入",
+      "rating": "",
+      "n_analysts": 0
+    },
+    {
+      "ticker": "UPST",
+      "price": 27.83,
+      "chg": -0.93,
+      "target": 49.0,
+      "upside": 76.1,
+      "drawdown": -39.9,
+      "score": 60,
+      "action": "强烈买入",
+      "rating": "Hold",
+      "n_analysts": 20
+    },
+    {
+      "ticker": "SOFI",
+      "price": 17.37,
+      "chg": -1.98,
+      "target": 26.0,
+      "upside": 49.7,
+      "drawdown": -33.4,
+      "score": 45,
+      "action": "买入",
+      "rating": "Hold",
+      "n_analysts": 20
+    },
+    {
+      "ticker": "HIMS",
+      "price": 24.98,
+      "chg": 1.77,
+      "target": 23.0,
+      "upside": -7.9,
+      "drawdown": -18.2,
+      "score": 0,
+      "action": "关注",
+      "rating": "Hold",
+      "n_analysts": 0
+    }
+  ]
+}

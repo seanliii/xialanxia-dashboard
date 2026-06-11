@@ -1,0 +1,102 @@
+{
+  "scan_time": "2026-03-21 13:02",
+  "triggers_fired": [],
+  "stops_triggered": [],
+  "watchlist_approaching": [
+    {
+      "ticker": "TSM",
+      "account": "institutional",
+      "current": 329.12,
+      "trigger": 330.0,
+      "gap_pct": -0.3,
+      "priority": "S",
+      "status": "entered"
+    },
+    {
+      "ticker": "NVDA",
+      "account": "institutional",
+      "current": 172.785,
+      "trigger": 170.0,
+      "gap_pct": 1.6,
+      "priority": "B",
+      "status": "watch"
+    },
+    {
+      "ticker": "VST",
+      "account": "institutional",
+      "current": 146.32,
+      "trigger": 150.0,
+      "gap_pct": -2.5,
+      "priority": "A",
+      "status": "entered"
+    },
+    {
+      "ticker": "METC",
+      "account": "aggressive",
+      "current": 13.469,
+      "trigger": 13.0,
+      "gap_pct": 3.6,
+      "priority": "B",
+      "status": "watch"
+    },
+    {
+      "ticker": "SOFI",
+      "account": "institutional",
+      "current": 16.945,
+      "trigger": 16.0,
+      "gap_pct": 5.9,
+      "priority": "A",
+      "status": "limit_pending"
+    },
+    {
+      "ticker": "MLEC",
+      "account": "aggressive",
+      "current": 8.0,
+      "trigger": 7.5,
+      "gap_pct": 6.7,
+      "priority": "B",
+      "status": "watch"
+    },
+    {
+      "ticker": "CVNA",
+      "account": "institutional",
+      "current": 280.84,
+      "trigger": 310.0,
+      "gap_pct": -9.4,
+      "priority": "A",
+      "status": "entered"
+    }
+  ],
+  "portfolio_summary": {
+    "institutional": {
+      "name": "大机构",
+      "emoji": "🏦",
+      "total_value": 48903.72,
+      "cash": 13038.79,
+      "position_value": 35864.93,
+      "pnl": -1096.28,
+      "return_pct": -2.19,
+      "positions": 5
+    },
+    "aggressive": {
+      "name": "激进交易",
+      "emoji": "⚡",
+      "total_value": 48160.22,
+      "cash": 30021.59,
+      "position_value": 18138.63,
+      "pnl": -1839.78,
+      "return_pct": -3.68,
+      "positions": 4
+    },
+    "blueshrimp": {
+      "name": "蓝虾交易",
+      "emoji": "🦐",
+      "total_value": 49422.14,
+      "cash": 42999.24,
+      "position_value": 6422.9,
+      "pnl": -577.86,
+      "return_pct": -1.16,
+      "positions": 2
+    }
+  }
+}
