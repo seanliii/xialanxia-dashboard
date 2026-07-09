@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>飞书 + AI Agent 产品开发自动化流水线</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg-primary: #0a0e1a;
+  --bg-secondary: #111827;
+  --bg-card: #1a2235;
+  --bg-card-hover: #1e2a42;
+  --accent: #3b82f6;
+  --accent-glow: rgba(59, 130, 246, 0.3);
+  --accent-green: #10b981;
+  --accent-purple: #8b5cf6;
+  --accent-orange: #f59e0b;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --border: #1e293b;
+  --pipeline-line: #3b82f6;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  padding: 60px 20px 40px;
+  position: relative;
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.header h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 12px;
+}
+
+.header .subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.badge-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+}
+
+.badge.blue { border-color: rgba(59,130,246,0.4); color: #60a5fa; }
+.badge.green { border-color: rgba(16,185,129,0.4); color: #34d399; }
+.badge.purple { border-color: rgba(139,92,246,0.4); color: #a78bfa; }
+
+/* Pipeline Container */
+.pipeline-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Pipeline Flow */
+.pipeline-flow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  position: relative;
+  padding: 40px 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Connection line */
+.pipeline-flow::before {
+  content: '';
+  position: absolute;
+  top: 82px;
+  left: 40px;
+  right: 40px;
+  height: 3px;
+  background: linear-gradient(90deg, 
+    var(--pipeline-line) 0%, 
+    var(--accent-purple) 50%, 
+    var(--accent-green) 100%);
+  z-index: 0;
+  animation: lineFlow 3s linear infinite;
+  background-size: 200% 100%;
+}
+
+@keyframes lineFlow {
+  0% { background-position: 0% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Pipeline Node */
+.pipeline-node {
+  flex: 1;
+  min-width: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.node-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  background: var(--bg-card);
+  border: 2px solid var(--border);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.pipeline-node:hover .node-icon,
+.pipeline-node.active .node-icon {
+  border-color: var(--accent);
+  box-shadow: 0 0 20px var(--accent-glow), 0 4px 12px rgba(0,0,0,0.3);
+  transform: translateY(-4px);
+}
+
+.node-label {
+  margin-top: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-align: center;
+  transition: color 0.3s;
+}
+
+.pipeline-node:hover .node-label,
+.pipeline-node.active .node-label {
+  color: var(--text-primary);
+}
+
+.node-percent {
+  margin-top: 6px;
+  font-size: 0.75rem;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* Detail Panel */
+.detail-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
+  opacity: 0;
+  margin-top: 30px;
+  background: var(--bg-card);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+}
+
+.detail-panel.open {
+  max-height: 2000px;
+  opacity: 1;
+}
+
+.detail-content {
+  padding: 32px;
+}
+
+.detail-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.detail-header .icon-large {
+  font-size: 2rem;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+}
+
+.detail-header h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.detail-header .auto-level {
+  font-size: 0.85rem;
+  color: var(--accent-green);
+  font-weight: 600;
+}
+
+/* Progress bar */
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: var(--bg-secondary);
+  border-radius: 4px;
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-green));
+  transition: width 1s ease;
+}
+
+/* Info Grid */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 640px) {
+  .info-grid { grid-template-columns: 1fr; }
+}
+
+.info-box {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid var(--border);
+}
+
+.info-box h4 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.info-box ul {
+  list-style: none;
+  padding: 0;
+}
+
+.info-box li {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  padding: 4px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.info-box li::before {
+  content: '▸';
+  color: var(--accent);
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.feishu-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  background: rgba(59,130,246,0.1);
+  border: 1px solid rgba(59,130,246,0.3);
+  border-radius: 6px;
+  font-size: 0.78rem;
+  color: #60a5fa;
+  margin-top: 12px;
+}
+
+.time-saved {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: rgba(16,185,129,0.1);
+  border: 1px solid rgba(16,185,129,0.3);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: #34d399;
+  font-weight: 600;
+  margin-top: 12px;
+}
+
+/* Prompt Template */
+.prompt-section {
+  margin-top: 20px;
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+}
+
+.prompt-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: var(--accent-purple);
+  font-size: 0.9rem;
+  font-weight: 600;
+  user-select: none;
+}
+
+.prompt-toggle:hover { color: #a78bfa; }
+
+.prompt-toggle .arrow {
+  transition: transform 0.3s;
+  font-size: 0.7rem;
+}
+
+.prompt-toggle.open .arrow {
+  transform: rotate(90deg);
+}
+
+.prompt-code {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  margin-top: 12px;
+}
+
+.prompt-code.open {
+  max-height: 600px;
+}
+
+.prompt-code pre {
+  background: #0d1117;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: #c9d1d9;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* Team Comparison */
+.comparison-section {
+  max-width: 1200px;
+  margin: 60px auto 40px;
+  padding: 0 20px;
+}
+
+.comparison-section h2 {
+  text-align: center;
+  font-size: 1.6rem;
+  margin-bottom: 8px;
+}
+
+.comparison-section .subtitle {
+  text-align: center;
+  color: var(--text-secondary);
+  margin-bottom: 36px;
+  font-size: 0.95rem;
+}
+
+.comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .comparison-grid { grid-template-columns: 1fr; }
+}
+
+.comparison-card {
+  background: var(--bg-card);
+  border-radius: 16px;
+  padding: 28px;
+  border: 1px solid var(--border);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s, border-color 0.3s;
+}
+
+.comparison-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(59,130,246,0.3);
+}
+
+.comparison-card.highlight {
+  border-color: var(--accent-green);
+  box-shadow: 0 0 30px rgba(16,185,129,0.1);
+}
+
+.comparison-card.highlight::before {
+  content: '🔥 推荐';
+  position: absolute;
+  top: 12px; right: 12px;
+  font-size: 0.7rem;
+  background: rgba(16,185,129,0.2);
+  color: #34d399;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.comparison-card .card-icon {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+}
+
+.comparison-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.comparison-card .team-size {
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--accent), var(--accent-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 12px 0;
+}
+
+.comparison-card .duration {
+  font-size: 1.3rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.comparison-card .desc {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  border-top: 1px solid var(--border);
+  margin-top: 40px;
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .pipeline-flow {
+    flex-wrap: nowrap;
+    padding-bottom: 20px;
+  }
+  .pipeline-flow::before {
+    top: 68px;
+  }
+  .pipeline-node { min-width: 110px; }
+  .node-icon { width: 48px; height: 48px; font-size: 1.3rem; }
+  .header h1 { font-size: 1.8rem; }
+}
+
+@media (max-width: 640px) {
+  .pipeline-flow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+  .pipeline-flow::before {
+    top: 0;
+    bottom: 0;
+    left: 28px;
+    right: auto;
+    width: 3px;
+    height: auto;
+  }
+  .pipeline-node {
+    flex-direction: row;
+    gap: 16px;
+    padding: 12px 0;
+  }
+  .node-icon { width: 44px; height: 44px; font-size: 1.2rem; }
+  .node-label { margin-top: 0; text-align: left; }
+  .node-percent { margin-top: 0; margin-left: auto; }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.pipeline-node { animation: fadeIn 0.6s ease forwards; opacity: 0; }
+.pipeline-node:nth-child(1) { animation-delay: 0.1s; }
+.pipeline-node:nth-child(2) { animation-delay: 0.2s; }
+.pipeline-node:nth-child(3) { animation-delay: 0.3s; }
+.pipeline-node:nth-child(4) { animation-delay: 0.4s; }
+.pipeline-node:nth-child(5) { animation-delay: 0.5s; }
+.pipeline-node:nth-child(6) { animation-delay: 0.6s; }
+.pipeline-node:nth-child(7) { animation-delay: 0.7s; }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+  <h1>🚀 飞书 + AI Agent 产品开发自动化流水线</h1>
+  <p class="subtitle">用 OpenClaw + AI Agent 自动化产品开发全流程，从需求到上线，7个环节全覆盖</p>
+  <div class="badge-row">
+    <span class="badge blue">🤖 OpenClaw 驱动</span>
+    <span class="badge green">📋 飞书深度集成</span>
+    <span class="badge purple">⚡ 效率提升 10x</span>
+  </div>
+</header>
+
+<!-- Pipeline -->
+<section class="pipeline-container">
+  <div class="pipeline-flow" id="pipelineFlow">
+    <div class="pipeline-node" data-step="0" onclick="toggleStep(0)">
+      <div class="node-icon">📥</div>
+      <div class="node-label">需求收集</div>
+      <div class="node-percent">85%</div>
+    </div>
+    <div class="pipeline-node" data-step="1" onclick="toggleStep(1)">
+      <div class="node-icon">🔍</div>
+      <div class="node-label">竞品分析</div>
+      <div class="node-percent">90%</div>
+    </div>
+    <div class="pipeline-node" data-step="2" onclick="toggleStep(2)">
+      <div class="node-icon">📝</div>
+      <div class="node-label">PRD撰写</div>
+      <div class="node-percent">75%</div>
+    </div>
+    <div class="pipeline-node" data-step="3" onclick="toggleStep(3)">
+      <div class="node-icon">🎨</div>
+      <div class="node-label">UI设计</div>
+      <div class="node-percent">60%</div>
+    </div>
+    <div class="pipeline-node" data-step="4" onclick="toggleStep(4)">
+      <div class="node-icon">💻</div>
+      <div class="node-label">开发</div>
+      <div class="node-percent">70%</div>
+    </div>
+    <div class="pipeline-node" data-step="5" onclick="toggleStep(5)">
+      <div class="node-icon">🧪</div>
+      <div class="node-label">测试</div>
+      <div class="node-percent">80%</div>
+    </div>
+    <div class="pipeline-node" data-step="6" onclick="toggleStep(6)">
+      <div class="node-icon">🚀</div>
+      <div class="node-label">发布</div>
+      <div class="node-percent">90%</div>
+    </div>
+  </div>
+
+  <!-- Detail Panels -->
+  <div class="detail-panel" id="panel-0">
+    <div class="detail-content">
+      <div class="detail-header">
+        <div class="icon-large">📥</div>
+        <div>
+          <h2>需求收集</h2>
+          <div class="auto-level">自动化程度：85%</div>
+        </div>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:85%"></div></div>
+      <div class="info-grid">
+        <div class="info-box">
+          <h4>🤖 AI 自动化方式</h4>
+          <ul>
+            <li>Agent 自动监听飞书群聊，提取用户反馈中的需求关键词</li>
+            <li>通过 NLP 对客服工单、用户评论自动分类和优先级排序</li>
+            <li>自动生成需求卡片，写入飞书多维表格</li>
+            <li>周期性生成需求热力图，识别高频痛点</li>
+          </ul>
+        </div>
+        <div class="info-box">
+          <h4>👤 人工介入点</h4>
+          <ul>
+            <li>最终需求优先级决策（P0/P1/P2）</li>
+            <li>与业务方确认需求边界和验收标准</li>
+            <li>战略性需求的取舍判断</li>
+          </ul>
+        </div>
+      </div>
+      <div class="feishu-tag">📋 飞书集成：多维表格自动写入 + 机器人群内通知 + 飞书审批流触发</div>
+      <div class="time-saved">⏱ 节省时间：从 2周 → 2天（节省 80%）</div>
+      <div class="prompt-section">
+        <div class="prompt-toggle" onclick="togglePrompt(this)">
+          <span class="arrow">▶</span> 查看 Agent Prompt 模板
+        </div>
+        <div class="prompt-code">
+          <pre>你是一个产品需求分析 Agent。你的任务：
+
+1. 监听以下数据源：飞书群聊消息、客服工单系统、App Store 评论、用户反馈表单
+2. 对每条反馈执行以下分析：
+   - 提取核心需求（一句话描述）
+   - 分类：功能需求 / 体验优化 / Bug修复 / 性能问题
+   - 评估影响面：影响用户数、频次、严重程度（1-5分）
+   - 自动计算优先级得分 = 影响用户数 × 频次 × 严重程度
+3. 输出格式：写入飞书多维表格，字段包括：
+   [需求ID] [一句话描述] [分类] [来源] [优先级得分] [原始反馈链接]
+4. 每周五自动生成「本周需求热力图」，标注 Top10 高频需求
+5. 当检测到 P0 级需求时，立即通过飞书机器人 @产品负责人</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-panel" id="panel-1">
+    <div class="detail-content">
+      <div class="detail-header">
+        <div class="icon-large">🔍</div>
+        <div>
+          <h2>竞品分析</h2>
+          <div class="auto-level">自动化程度：90%</div>
+        </div>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:90%"></div></div>
+      <div class="info-grid">
+        <div class="info-box">
+          <h4>🤖 AI 自动化方式</h4>
+          <ul>
+            <li>Agent 定期爬取竞品产品更新日志、App Store 变更</li>
+            <li>自动对比功能矩阵，生成差异分析报告</li>
+            <li>监控竞品社交媒体和用户评价，提取用户情感变化</li>
+            <li>通过 Perplexity/搜索引擎聚合行业趋势</li>
+          </ul>
+        </div>
+        <div class="info-box">
+          <h4>👤 人工介入点</h4>
+          <ul>
+            <li>确定竞品监控范围（哪些是真正的竞品）</li>
+            <li>战略性差异化方向判断</li>
+            <li>对分析结论的商业解读</li>
+          </ul>
+        </div>
+      </div>
+      <div class="feishu-tag">📋 飞书集成：竞品分析报告自动写入飞书文档 + 多维表格追踪竞品动态 + 重大变更机器人通知</div>
+      <div class="time-saved">⏱ 节省时间：从 1周 → 4小时（节省 90%）</div>
+      <div class="prompt-section">
+        <div class="prompt-toggle" onclick="togglePrompt(this)">
+          <span class="arrow">▶</span> 查看 Agent Prompt 模板
+        </div>
+        <div class="prompt-code">
+          <pre>你是一个竞品分析 Agent。执行以下工作流：
+
+1. 监控竞品列表：[竞品A, 竞品B, 竞品C]
+2. 数据采集（每日执行）：
+   - 检查各竞品官网/博客的更新
+   - 爬取 App Store / Play Store 版本更新说明
+   - 搜索 Twitter/Reddit/ProductHunt 上的用户反馈
+   - 监控 Crunchbase/36Kr 融资动态
+3. 分析维度：
+   - 功能对比矩阵（我有/竞品有/都有/都没有）
+   - 定价策略变化
+   - 用户满意度趋势（NPS 变化）
+   - 技术栈选择（从招聘信息推断）
+4. 输出：
+   - 每周生成《竞品周报》写入飞书文档
+   - 发现重大变更时实时通知飞书群
+   - 月度生成功能差距分析，建议优先补齐项</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-panel" id="panel-2">
+    <div class="detail-content">
+      <div class="detail-header">
+        <div class="icon-large">📝</div>
+        <div>
+          <h2>PRD撰写</h2>
+          <div class="auto-level">自动化程度：75%</div>
+        </div>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:75%"></div></div>
+      <div class="info-grid">
+        <div class="info-box">
+          <h4>🤖 AI 自动化方式</h4>
+          <ul>
+            <li>基于需求卡片自动生成 PRD 初稿（含用户故事、功能描述、验收标准）</li>
+            <li>自动补充边界条件和异常流程</li>
+            <li>根据历史 PRD 风格保持文档一致性</li>
+            <li>自动生成流程图和状态机图</li>
+          </ul>
+        </div>
+        <div class="info-box">
+          <h4>👤 人工介入点</h4>
+          <ul>
+            <li>业务逻辑的最终确认和修正</li>
+            <li>跨团队依赖的协调和确认</li>
+            <li>产品策略和商业目标对齐</li>
+            <li>评审会议中的决策和妥协</li>
+          </ul>
+        </div>
+      </div>
+      <div class="feishu-tag">📋 飞书集成：PRD 自动创建为飞书文档 + 评审意见收集到评论区 + 审批流自动流转</div>
+      <div class="time-saved">⏱ 节省时间：从 5天 → 1天（节省 80%）</div>
+      <div class="prompt-section">
+        <div class="prompt-toggle" onclick="togglePrompt(this)">
+          <span class="arrow">▶</span> 查看 Agent Prompt 模板
+        </div>
+        <div class="prompt-code">
+          <pre>你是一个产品需求文档（PRD）撰写 Agent。
+
+输入：需求卡片（含一句话描述、分类、优先级、用户场景）
+输出：完整 PRD 文档，包含以下章节：
+
+## 1. 需求背景
+- 为什么做这个功能（数据支撑 + 用户痛点）
+- 预期收益指标（DAU提升/转化率/留存率）
+
+## 2. 用户故事
+- 按角色列出 User Story：As a [角色], I want [功能], so that [价值]
+## 3. 功能描述
+- 核心功能（Must Have）
+- 扩展功能（Nice to Have）
+- 排除范围（Out of Scope）
+
+## 4. 交互设计
+- 主流程文字描述
+- 异常处理说明
+
+## 5. 验收标准
+- 每个功能点的 AC（Acceptance Criteria）
+
+格式要求：Markdown，适合导入飞书文档。</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 4: UI 设计 -->
+    <div class="step-card" onclick="toggleCard(this)">
+      <div class="step-header">
+        <div class="step-icon">🎨</div>
+        <div class="step-info">
+          <div class="step-title">Step 4: UI 设计</div>
+          <div class="step-subtitle">MasterGo / Figma 出稿 → AI 生成设计规范</div>
+        </div>
+        <div class="step-meta">
+          <div class="ai-meter"><div class="ai-fill" style="width:50%"></div></div>
+          <span class="ai-label">AI 50%</span>
+          <span class="time-badge">节省 60%</span>
+        </div>
+      </div>
+      <div class="step-detail">
+        <div class="detail-content">
+          <p>设计师出线框稿，AI 自动生成：色彩规范、间距规范、组件命名规范，并同步到飞书文档。</p>
+          <ul>
+            <li>✅ 自动生成 Design Token 文档</li>
+            <li>✅ 组件命名统一为开发可用的格式</li>
+            <li>⚠️ 创意设计仍需人工完成</li>
+          </ul>
+        </div>
+        <div class="feishu-tag">📋 飞书集成：设计稿链接 + 规范文档 + 开发交接单</div>
+        <div class="time-saved">⏱ 节省时间：从 3天 → 1.5天（节省 50%）</div>
+      </div>
+    </div>
+
+    <!-- Step 5: 开发 -->
+    <div class="step-card" onclick="toggleCard(this)">
+      <div class="step-header">
+        <div class="step-icon">💻</div>
+        <div class="step-info">
+          <div class="step-title">Step 5: 开发实现</div>
+          <div class="step-subtitle">AI 代码生成 + 自动 Code Review</div>
+        </div>
+        <div class="step-meta">
+          <div class="ai-meter"><div class="ai-fill" style="width:70%"></div></div>
+          <span class="ai-label">AI 70%</span>
+          <span class="time-badge">节省 70%</span>
+        </div>
+      </div>
+      <div class="step-detail">
+        <div class="detail-content">
+          <p>Claude Code / Cursor 读取 PRD → 生成代码框架 → AI 自动 Review → 人工 merge。</p>
+        </div>
+        <div class="feishu-tag">📋 飞书集成：代码仓库链接 + Code Review 意见推送到飞书</div>
+        <div class="time-saved">⏱ 节省时间：从 10天 → 3天（节省 70%）</div>
+        <div class="prompt-section">
+          <div class="prompt-toggle" onclick="togglePrompt(this)">
+            <span class="arrow">▶</span> 查看 Agent Prompt 模板
+          </div>
+          <div class="prompt-code">
+            <pre>读取以下 PRD，生成对应的前端 React 组件代码：
+
+[粘贴PRD内容]
+
+要求：
+- TypeScript + React 18
+- 组件名与 PRD 中的功能名保持一致
+- 每个组件写 JSDoc 注释
+- 生成对应的 unit test 骨架</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 6: 测试 -->
+    <div class="step-card" onclick="toggleCard(this)">
+      <div class="step-header">
+        <div class="step-icon">🧪</div>
+        <div class="step-info">
+          <div class="step-title">Step 6: 测试验收</div>
+          <div class="step-subtitle">AI 生成测试用例 + 自动化回归</div>
+        </div>
+        <div class="step-meta">
+          <div class="ai-meter"><div class="ai-fill" style="width:80%"></div></div>
+          <span class="ai-label">AI 80%</span>
+          <span class="time-badge">节省 75%</span>
+        </div>
+      </div>
+      <div class="step-detail">
+        <div class="detail-content">
+          <p>AI 根据 PRD 中的 AC 自动生成测试用例，Playwright 跑自动化回归，结果推送飞书。</p>
+        </div>
+        <div class="feishu-tag">📋 飞书集成：测试报告自动发送到飞书群 + Bug 自动创建工单</div>
+        <div class="time-saved">⏱ 节省时间：从 5天 → 1天（节省 80%）</div>
+      </div>
+    </div>
+
+    <!-- Step 7: 发布 -->
+    <div class="step-card" onclick="toggleCard(this)">
+      <div class="step-header">
+        <div class="step-icon">🚀</div>
+        <div class="step-info">
+          <div class="step-title">Step 7: 发布上线</div>
+          <div class="step-subtitle">一键发布 + 自动发布公告</div>
+        </div>
+        <div class="step-meta">
+          <div class="ai-meter"><div class="ai-fill" style="width:90%"></div></div>
+          <span class="ai-label">AI 90%</span>
+          <span class="time-badge">节省 90%</span>
+        </div>
+      </div>
+      <div class="step-detail">
+        <div class="detail-content">
+          <p>CI/CD 自动部署 + AI 生成发布公告 + 用户通知 + 数据监控看板自动更新。</p>
+        </div>
+        <div class="feishu-tag">📋 飞书集成：发布通知推送全员 + 用户反馈收集到多维表格</div>
+        <div class="time-saved">⏱ 节省时间：从 1天 → 1小时（节省 90%）</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 对比表 -->
+  <div class="comparison">
+    <h2>📊 团队规模对比</h2>
+    <div class="compare-grid">
+      <div class="compare-card traditional">
+        <div class="compare-title">🏢 传统模式</div>
+        <div class="compare-value">10人团队</div>
+        <div class="compare-sub">3个月交付</div>
+        <div class="compare-cost">成本：~~$150K/项目~~</div>
+      </div>
+      <div class="compare-card ai-assisted">
+        <div class="compare-title">🤝 AI 辅助</div>
+        <div class="compare-value">3人团队</div>
+        <div class="compare-sub">1个月交付</div>
+        <div class="compare-cost">成本：$45K/项目（-70%）</div>
+      </div>
+      <div class="compare-card full-auto">
+        <div class="compare-title">🦐 全自动化</div>
+        <div class="compare-value">1人 + Agent</div>
+        <div class="compare-sub">2周交付</div>
+        <div class="compare-cost">成本：$15K/项目（-90%）</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta">
+    <h3>🦐 让虾帮你搭这条流水线</h3>
+    <p>把这个看板发给你的团队，讨论哪几步先自动化。<br>
+    通常建议从「需求收集」+「PRD撰写」开始，ROI 最高。</p>
+    <a href="https://www.meyo123.com/store/skills/ai-dev-pipeline" target="_blank">📦 安装 Skill</a>
+  </div>
+</div>
+
+<script>
+function toggleCard(card) {
+  const detail = card.querySelector('.step-detail');
+  if (!detail) return;
+  card.classList.toggle('expanded');
+}
+function togglePrompt(toggle) {
+  const code = toggle.nextElementSibling;
+  const arrow = toggle.querySelector('.arrow');
+  if (code.style.display === 'block') {
+    code.style.display = 'none';
+    arrow.textContent = '▶';
+  } else {
+    code.style.display = 'block';
+    arrow.textContent = '▼';
+  }
+  event.stopPropagation();
+}
+</script>
+</body>
+</html>

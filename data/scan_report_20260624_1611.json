@@ -1,0 +1,66 @@
+{
+  "scan_time": "2026-06-24 16:11",
+  "triggers_fired": [],
+  "stops_triggered": [],
+  "watchlist_approaching": [
+    {
+      "ticker": "PLTR",
+      "account": "blueshrimp",
+      "current": 116.7,
+      "trigger": 120.0,
+      "gap_pct": -2.7,
+      "priority": "A",
+      "status": "entered"
+    },
+    {
+      "ticker": "MLEC",
+      "account": "aggressive",
+      "current": 8.0,
+      "trigger": 7.5,
+      "gap_pct": 6.7,
+      "priority": "B",
+      "status": "entered"
+    },
+    {
+      "ticker": "SOFI",
+      "account": "institutional",
+      "current": 17.29,
+      "trigger": 16.0,
+      "gap_pct": 8.1,
+      "priority": "A",
+      "status": "entered"
+    }
+  ],
+  "portfolio_summary": {
+    "institutional": {
+      "name": "大机构",
+      "emoji": "🏦",
+      "total_value": 38911.48,
+      "cash": 13640.35,
+      "position_value": 25271.13,
+      "pnl": -11088.52,
+      "return_pct": -22.18,
+      "positions": 3
+    },
+    "aggressive": {
+      "name": "激进交易",
+      "emoji": "⚡",
+      "total_value": 49111.14,
+      "cash": 26329.88,
+      "position_value": 22781.26,
+      "pnl": -888.86,
+      "return_pct": -1.78,
+      "positions": 4
+    },
+    "blueshrimp": {
+      "name": "蓝虾交易",
+      "emoji": "🦐",
+      "total_value": 48309.67,
+      "cash": 34162.63,
+      "position_value": 14147.04,
+      "pnl": -1690.33,
+      "return_pct": -3.38,
+      "positions": 3
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "scan_time": "2026-04-04 16:03",
+  "triggers_fired": [],
+  "stops_triggered": [],
+  "watchlist_approaching": [
+    {
+      "ticker": "VST",
+      "account": "institutional",
+      "current": 151.18,
+      "trigger": 150.0,
+      "gap_pct": 0.8,
+      "priority": "A",
+      "status": "entered"
+    },
+    {
+      "ticker": "SOFI",
+      "account": "institutional",
+      "current": 15.85,
+      "trigger": 16.0,
+      "gap_pct": -0.9,
+      "priority": "A",
+      "status": "entered"
+    },
+    {
+      "ticker": "CVNA",
+      "account": "institutional",
+      "current": 313.66,
+      "trigger": 310.0,
+      "gap_pct": 1.2,
+      "priority": "A",
+      "status": "entered"
+    },
+    {
+      "ticker": "TSM",
+      "account": "institutional",
+      "current": 339.04,
+      "trigger": 330.0,
+      "gap_pct": 2.7,
+      "priority": "S",
+      "status": "entered"
+    },
+    {
+      "ticker": "NVDA",
+      "account": "institutional",
+      "current": 177.39,
+      "trigger": 170.0,
+      "gap_pct": 4.3,
+      "priority": "B",
+      "status": "watch"
+    },
+    {
+      "ticker": "MLEC",
+      "account": "aggressive",
+      "current": 6.82,
+      "trigger": 7.5,
+      "gap_pct": -9.1,
+      "priority": "B",
+      "status": "entered"
+    }
+  ],
+  "portfolio_summary": {
+    "institutional": {
+      "name": "大机构",
+      "emoji": "🏦",
+      "total_value": 46773.12,
+      "cash": 9117.56,
+      "position_value": 37655.56,
+      "pnl": -3226.88,
+      "return_pct": -6.45,
+      "positions": 5
+    },
+    "aggressive": {
+      "name": "激进交易",
+      "emoji": "⚡",
+      "total_value": 45341.46,
+      "cash": 24979.47,
+      "position_value": 20361.99,
+      "pnl": -4658.54,
+      "return_pct": -9.32,
+      "positions": 5
+    },
+    "blueshrimp": {
+      "name": "蓝虾交易",
+      "emoji": "🦐",
+      "total_value": 48862.32,
+      "cash": 42999.24,
+      "position_value": 5863.08,
+      "pnl": -1137.68,
+      "return_pct": -2.28,
+      "positions": 2
+    }
+  }
+}

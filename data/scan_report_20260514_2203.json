@@ -1,0 +1,96 @@
+{
+  "scan_time": "2026-05-14 22:03",
+  "triggers_fired": [
+    {
+      "ticker": "SOFI",
+      "account": "institutional",
+      "price": 15.36,
+      "trigger_price": 16.0,
+      "shares": 488,
+      "cost": 7495.68,
+      "company": "SoFi Technologies",
+      "target": 22.0,
+      "stop": 13.0
+    }
+  ],
+  "stops_triggered": [
+    {
+      "ticker": "CVNA",
+      "account": "institutional",
+      "exit_price": 73.3,
+      "stop_price": 260.0,
+      "pnl": -5442.75,
+      "pnl_pct": -74.81
+    }
+  ],
+  "watchlist_approaching": [
+    {
+      "ticker": "SOFI",
+      "account": "institutional",
+      "current": 15.36,
+      "trigger": 16.0,
+      "gap_pct": -4.0,
+      "priority": "A",
+      "status": "entered"
+    },
+    {
+      "ticker": "SOUN",
+      "account": "aggressive",
+      "current": 8.4,
+      "trigger": 8.0,
+      "gap_pct": 5.0,
+      "priority": "A",
+      "status": "entered"
+    },
+    {
+      "ticker": "VST",
+      "account": "institutional",
+      "current": 141.065,
+      "trigger": 150.0,
+      "gap_pct": -6.0,
+      "priority": "A",
+      "status": "entered"
+    },
+    {
+      "ticker": "PLTR",
+      "account": "blueshrimp",
+      "current": 131.815,
+      "trigger": 120.0,
+      "gap_pct": 9.8,
+      "priority": "A",
+      "status": "watch"
+    }
+  ],
+  "portfolio_summary": {
+    "institutional": {
+      "name": "大机构",
+      "emoji": "🏦",
+      "total_value": 45535.69,
+      "cash": 7375.61,
+      "position_value": 38160.08,
+      "pnl": -4464.31,
+      "return_pct": -8.93,
+      "positions": 5
+    },
+    "aggressive": {
+      "name": "激进交易",
+      "emoji": "⚡",
+      "total_value": 57146.87,
+      "cash": 26025.59,
+      "position_value": 31121.28,
+      "pnl": 7146.87,
+      "return_pct": 14.29,
+      "positions": 5
+    },
+    "blueshrimp": {
+      "name": "蓝虾交易",
+      "emoji": "🦐",
+      "total_value": 52770.32,
+      "cash": 42999.24,
+      "position_value": 9771.08,
+      "pnl": 2770.32,
+      "return_pct": 5.54,
+      "positions": 2
+    }
+  }
+}

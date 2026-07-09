@@ -24,6 +24,14 @@ Dashboard未更新 = 本次任务未完成
 import json, subprocess, os, sys, csv, io, time
 from datetime import datetime, date, timedelta
 
+# A股支持
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+try:
+    from eastmoney_ashare import get_ashare_price, get_ashare_batch, get_ashare_monitor
+    ASHARE_AVAILABLE = True
+except ImportError:
+    ASHARE_AVAILABLE = False
+
 AISA_KEY = "sk-d2n3PIPWBOc3VTgqHuqvtmTaSZ5JtolHBnUAaUrAZgTjst41"
 ACCOUNTS_FILE = "/root/.openclaw/workspace/portfolio/accounts/structure.json"
 WATCHLIST_FILE = "/root/.openclaw/workspace/portfolio/watchlist.json"
@@ -100,8 +108,41 @@ def get_price_tavily(ticker):
         pass
     return None
 
+def is_ashare(ticker):
+    """判断是否为 A 股代码（纯数字6位 或 sh/sz/bj 前缀）"""
+    t = ticker.strip().lower()
+    if t.startswith(('sh', 'sz', 'bj')):
+        return True
+    # 纯6位数字
+    import re as _re
+    if _re.match(r'^\d{6}$', t):
+        return True
+    return False
+
+
+def get_price_ashare(ticker):
+    """从新浪财经获取 A 股实时价格"""
+    if not ASHARE_AVAILABLE:
+        return None
+    data = get_ashare_price(ticker)
+    if data and data.get('price', 0) > 0:
+        return {
+            'price': data['price'],
+            'chg': round(data.get('change_pct', 0), 2),
+            'open': data.get('prev_close', data['price']),
+            'date': data.get('date', date.today().isoformat()),
+            'source': 'sina_ashare',
+            'name': data.get('name', ''),
+            'high': data.get('high', 0),
+            'low': data.get('low', 0),
+            'volume_wan': data.get('volume_wan', 0),
+            'amount_yi': data.get('amount_yi', 0),
+        }
+    return None
+
+
 def get_prices_batch(tickers):
-    """批量获取价格，带缓存"""
+    """批量获取价格，带缓存。自动识别 A 股 vs 美股分流。"""
     # 先加载缓存
     cache = {}
     try:
@@ -113,7 +154,46 @@ def get_prices_batch(tickers):
     today = date.today().isoformat()
     results = {}
     
-    for ticker in tickers:
+    # 分流：A 股 vs 美股
+    ashare_tickers = [t for t in tickers if is_ashare(t)]
+    us_tickers = [t for t in tickers if not is_ashare(t)]
+    
+    # A 股批量获取（新浪一次请求搞定）
+    if ashare_tickers and ASHARE_AVAILABLE:
+        # 先检查缓存
+        ashare_uncached = []
+        for t in ashare_tickers:
+            if t in cache and cache[t].get('date', '') == today:
+                results[t] = cache[t]
+            else:
+                ashare_uncached.append(t)
+        
+        if ashare_uncached:
+            batch = get_ashare_batch(ashare_uncached)
+            for code, data in batch.items():
+                # 找到对应的原始 ticker
+                matched_ticker = None
+                for t in ashare_uncached:
+                    pure = t.lower().replace('sh', '').replace('sz', '').replace('bj', '')
+                    if pure == code or t == code:
+                        matched_ticker = t
+                        break
+                if not matched_ticker:
+                    matched_ticker = code
+                
+                p = {
+                    'price': data['price'],
+                    'chg': round(data.get('change_pct', 0), 2),
+                    'open': data.get('prev_close', data['price']),
+                    'date': data.get('date', today),
+                    'source': 'sina_ashare',
+                    'name': data.get('name', ''),
+                }
+                results[matched_ticker] = p
+                cache[matched_ticker] = p
+    
+    # 美股逐只获取（Yahoo → Stooq → Tavily）
+    for ticker in us_tickers:
         # 缓存命中（当天数据）
         if ticker in cache and cache[ticker].get('date', '') == today:
             results[ticker] = cache[ticker]
@@ -315,8 +395,23 @@ def check_stop_losses(accounts_data, prices):
             
             current_price = price_data['price']
             
+            # ─── 脏价防护（2026-06-17 修复，防止 IMVT $0.23 / HBAN $0.09 类假止损）───
+            # 规则1: 价格低于止损价的50%，几乎不可能是真实行情，拒绝触发
+            # 规则2: 相比入场价跌超90%，极端异常，拒绝触发
+            # 规则3: 价格为0或负数，明显脏数据
+            entry_price = pos.get('entry_price', 0)
+            if current_price <= 0:
+                print(f"⚠️ 脏价防护: {ticker} price=${current_price} ≤ 0，拒绝触发止损，跳过")
+                continue
+            if current_price < stop_price * 0.5:
+                print(f"⚠️ 脏价防护: {ticker} price=${current_price} < stop×0.5(${stop_price*0.5})，疑似脏数据，拒绝触发止损")
+                continue
+            if entry_price > 0 and current_price < entry_price * 0.1:
+                print(f"⚠️ 脏价防护: {ticker} price=${current_price} < entry×0.1(${entry_price*0.1})，跌幅>90%疑似脏数据，拒绝触发止损")
+                continue
+            
             if current_price <= stop_price:
-                # 止损卖出
+                # 止损卖出（已通过脏价防护校验）
                 sell_value = round(current_price * pos['shares'], 2)
                 pnl = round(sell_value - pos['cost_basis'], 2)
                 pnl_pct = round((current_price - pos['entry_price']) / pos['entry_price'] * 100, 2)
@@ -589,6 +684,30 @@ if __name__ == "__main__":
     # 更新持仓价格
     update_positions_prices(accounts_data, prices)
     
+    # ─── 清理历史脏价 closed_positions 记录（2026-06-27 修复）───
+    # 回滚脏数据后，scanner 每次写回会保留旧的 closed 脏记录
+    # 自动移除 exit_price 触发脏价规则的 closed 记录
+    for acc_id, account in accounts_data['accounts'].items():
+        if 'closed_positions' not in account:
+            continue
+        clean_closed = []
+        for cp in account['closed_positions']:
+            ep = cp.get('exit_price', 0)
+            entry_p = cp.get('entry_price', 1)
+            stop_p = cp.get('stop_loss', 0)
+            is_dirty = False
+            if ep <= 0:
+                is_dirty = True
+            elif stop_p > 0 and ep < stop_p * 0.5:
+                is_dirty = True
+            elif entry_p > 0 and ep < entry_p * 0.1:
+                is_dirty = True
+            if is_dirty:
+                print(f"🧹 清理脏价closed记录: {cp.get('ticker')} exit@${ep} (stop=${stop_p}, entry=${entry_p}) [{acc_id}]")
+            else:
+                clean_closed.append(cp)
+        account['closed_positions'] = clean_closed
+
     # 检查止损
     print("\n🛑 检查止损...")
     stops_triggered = check_stop_losses(accounts_data, prices)

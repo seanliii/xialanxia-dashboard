@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agent Team Builder - 多Agent团队配置生成器</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .header {
+      text-align: center;
+      color: white;
+      padding: 40px 0;
+    }
+    .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+    .header p { opacity: 0.9; font-size: 1.1em; }
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    }
+    .form-group { margin-bottom: 24px; }
+    label { display: block; font-weight: 600; color: #333; margin-bottom: 8px; }
+    select, input {
+      width: 100%;
+      padding: 14px;
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
+      font-size: 16px;
+      transition: border-color 0.3s;
+    }
+    select:focus, input:focus { outline: none; border-color: #667eea; }
+    .btn {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(102,126,234,0.4); }
+    .result { display: none; }
+    .result.show { display: block; animation: fadeIn 0.5s; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .agent-card {
+      background: #f8f9ff;
+      border-left: 4px solid #667eea;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .agent-card h3 { color: #667eea; margin-bottom: 8px; }
+    .agent-card p { color: #555; line-height: 1.6; }
+    .tag {
+      display: inline-block;
+      padding: 4px 12px;
+      background: #667eea;
+      color: white;
+      border-radius: 20px;
+      font-size: 12px;
+      margin-right: 6px;
+      margin-top: 8px;
+    }
+    .footer {
+      text-align: center;
+      color: white;
+      opacity: 0.8;
+      padding: 20px 0;
+      font-size: 0.9em;
+    }
+    .copy-btn {
+      padding: 8px 16px;
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+    .copy-btn:hover { background: #5a6fd6; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🤖 Agent Team Builder</h1>
+      <p>基于 Brian Casel 多Agent团队架构，一键生成你的AI团队配置</p>
+    </div>
+
+    <div class="card">
+      <div class="form-group">
+        <label>选择你的业务类型</label>
+        <select id="businessType">
+          <option value="content">内容创作 / 自媒体</option>
+          <option value="ecommerce">电商 / 独立站</option>
+          <option value="consulting">咨询 / 服务</option>
+          <option value="saas">SaaS / 软件开发</option>
+          <option value="general">通用 / 全能型</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>团队规模（你一个人 = 1）</label>
+        <select id="teamSize">
+          <option value="1">1人（纯Solo）</option>
+          <option value="2-3">2-3人（小团队）</option>
+          <option value="4+">4人以上</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>预算级别（AI工具月费）</label>
+        <select id="budget">
+          <option value="low">$0-50（免费/低成本）</option>
+          <option value="mid">$50-200（标准）</option>
+          <option value="high">$200+（专业级）</option>
+        </select>
+      </div>
+      <button class="btn" onclick="generateTeam()">🚀 生成我的Agent团队</button>
+    </div>
+
+    <div class="card result" id="result">
+      <h2 style="margin-bottom: 20px; color: #333;">📋 你的专属Agent团队配置</h2>
+      <div id="teamOutput"></div>
+      <button class="copy-btn" onclick="copyConfig()">📋 复制完整配置</button>
+      <span id="copyMsg" style="color: #667eea; margin-left: 10px; font-size: 14px;"></span>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>Made with 🦐 by 小蓝虾 | 灵感来自 Brian Casel "My Multi-Agent Team with OpenClaw"</p>
+  </div>
+
+  <script>
+    const configs = {
+      content: {
+        agents: [
+          { name: '📝 Content Agent', role: '内容策划与创作', tasks: '选题挖掘、大纲生成、初稿撰写、多平台适配', tools: 'Claude/GPT-4, Perplexity, Notion AI', schedule: '每日 09:00-11:00' },
+          { name: '🔍 Research Agent', role: '竞品监测与热点追踪', tasks: '行业趋势分析、竞品内容监测、热点预警、数据整理', tools: 'Tavily, Google Alerts, Feedly', schedule: '每日 07:00-08:00' },
+          { name: '🎨 Visual Agent', role: '视觉设计与排版', tasks: '封面生成、配图制作、视频封面、品牌视觉统一', tools: 'Midjourney, Canva, DALL-E', schedule: '按需触发' },
+          { name: '📊 Analytics Agent', role: '数据复盘与优化', tasks: '阅读数据分析、互动率追踪、发布时间优化、A/B测试', tools: 'Google Analytics, 公众号后台, 新榜', schedule: '每日 20:00' }
+        ],
+        tip: '内容创作者的核心是"人味"——Agent做80%基础工作，你负责20%的灵魂注入和最终审核。'
+      },
+      ecommerce: {
+        agents: [
+          { name: '🛒 Product Agent', role: '选品与竞品分析', tasks: '市场趋势分析、竞品价格监控、选品推荐、库存预警', tools: 'Jungle Scout, Helium 10, Google Trends', schedule: '每日 10:00' },
+          { name: '✍️ Copy Agent', role: '产品文案与SEO', tasks: '标题优化、详情页撰写、关键词布局、多语言适配', tools: 'Claude, Jasper, ChatGPT', schedule: '新品上架前' },
+          { name: '📢 Ad Agent', role: '广告投放与优化', tasks: '广告素材生成、投放策略、ROI监控、预算调整', tools: 'Meta Ads, Google Ads, TikTok Ads', schedule: '持续监控' },
+          { name: '💬 CS Agent', role: '客服与售后', tasks: '自动回复、常见问题处理、售后跟进、满意度收集', tools: 'Intercom, Zendesk AI, ChatGPT API', schedule: '7×24' }
+        ],
+        tip: '电商Agent的关键是数据闭环——每个Agent的产出都要被Analytics Agent追踪，形成飞轮。'
+      },
+      consulting: {
+        agents: [
+          { name: '📋 Intake Agent', role: '客户需求采集', tasks: '问卷设计、需求初筛、资料收集、报价生成', tools: 'Typeform, Airtable, Claude', schedule: '客户咨询时' },
+          { name: '🔬 Research Agent', role: '行业调研与方案', tasks: '竞品分析、方法论整理、定制化方案框架、案例匹配', tools: 'Perplexity, ChatGPT, Notion', schedule: '项目启动时' },
+          { name: '📄 Deliverable Agent', role: '交付物生成', tasks: '报告撰写、PPT制作、数据分析可视化、方案细化', tools: 'Claude, Gamma, SlidesAI', schedule: '交付前3-5天' },
+          { name: '🤝 Follow-up Agent', role: '客户跟进与维护', tasks: '进度同步、满意度调研、续约提醒、增购推荐', tools: 'CRM AI, HubSpot, Zapier', schedule: '项目周期内' }
+        ],
+        tip: '咨询服务的护城河是行业know-how——Agent负责信息收集和框架，你负责洞察和判断。'
+      },
+      saas: {
+        agents: [
+          { name: '💻 Dev Agent', role: '代码开发与测试', tasks: '功能开发、代码审查、Bug修复、自动化测试', tools: 'Claude Code, GitHub Copilot, Cursor', schedule: 'Sprint周期' },
+          { name: '🐛 QA Agent', role: '质量保障', tasks: '测试用例生成、回归测试、性能监控、安全扫描', tools: 'Playwright, Jest, Snyk', schedule: '持续集成' },
+          { name: '📖 Docs Agent', role: '文档与知识库', tasks: 'API文档、用户手册、Changelog、FAQ维护', tools: 'Mintlify, Notion AI, Claude', schedule: '版本发布时' },
+          { name: '📈 Growth Agent', role: '增长与运营', tasks: '用户 onboarding、功能推广、数据看板、流失预警', tools: 'Amplitude, Mixpanel, Customer.io', schedule: '持续运营' }
+        ],
+        tip: 'SaaS团队推荐CLAUDE.md规则文件——为每个Agent定义清晰的上下文、输出格式和边界。'
+      },
+      general: {
+        agents: [
+          { name: '⚡ Chief of Staff', role: '任务调度与优先级', tasks: '日程管理、邮件筛选、会议记录、待办排序', tools: 'OpenClaw, Claude, Notion', schedule: '每日 08:00' },
+          { name: '🔍 Research Agent', role: '信息收集与调研', tasks: '行业报告、竞品动态、技术趋势、政策变化', tools: 'Perplexity, Tavily, Google Alerts', schedule: '每日 07:00' },
+          { name: '✍️ Content Agent', role: '内容生产与分发', tasks: '文章撰写、社媒更新、邮件通讯、SEO内容', tools: 'Claude, Buffer, Grammarly', schedule: '每日 10:00, 14:00' },
+          { name: '💰 Finance Agent', role: '财务与数据分析', tasks: '收支跟踪、发票管理、报表生成、预算预警', tools: 'QuickBooks, Excel AI, Claude', schedule: '每周一' }
+        ],
+        tip: '通用型团队推荐从Brian Casel的架构起步：1个调度中枢 + 3个专项Agent，用OpenClaw串联。'
+      }
+    };
+
+    function generateTeam() {
+      const type = document.getElementById('businessType').value;
+      const size = document.getElementById('teamSize').value;
+      const budget = document.getElementById('budget').value;
+      const config = configs[type];
+      
+      let html = `<p style="color: #667eea; font-weight: 600; margin-bottom: 16px;">${config.tip}</p>`;
+      
+      config.agents.forEach((agent, i) => {
+        html += `
+          <div class="agent-card">
+            <h3>${agent.name}</h3>
+            <p><strong>角色：</strong>${agent.role}</p>
+            <p><strong>核心任务：</strong>${agent.tasks}</p>
+            <p><strong>推荐工具：</strong>${agent.tools}</p>
+            <p><strong>执行节奏：</strong>${agent.schedule}</p>
+            <span class="tag">${size === '1' ? 'AI全托管' : size === '2-3' ? 'AI辅助' : 'AI+人工'}</span>
+            <span class="tag">${budget === 'low' ? '免费版' : budget === 'mid' ? '标准版' : '专业版'}</span>
+          </div>
+        `;
+      });
+      
+      html += `<div style="background: #fff3cd; border-radius: 10px; padding: 16px; margin-top: 20px;">
+        <strong>💡 实施建议：</strong>先启动1个核心Agent（通常是Research或Content），跑通工作流后再逐个添加。不要一次性启动全部4个。
+      </div>`;
+      
+      document.getElementById('teamOutput').innerHTML = html;
+      document.getElementById('result').classList.add('show');
+      document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function copyConfig() {
+      const text = document.getElementById('teamOutput').innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        document.getElementById('copyMsg').innerText = '✅ 已复制到剪贴板';
+        setTimeout(() => document.getElementById('copyMsg').innerText = '', 2000);
+      });
+    }
+  </script>
+</body>
+</html>

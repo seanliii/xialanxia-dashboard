@@ -4,12 +4,7 @@ Alpha 机会扫描器 — 免费版
 数据来源: Stooq（价格）+ SEC EDGAR（内部人买入）
 2026-03-19 重构：移除所有 AISA Financial API 调用
 """
-import os
-os.environ["https_proxy"] = "http://10.59.78.158:3128"
-os.environ["http_proxy"] = "http://10.59.78.158:3128"
-os.environ["HTTPS_PROXY"] = "http://10.59.78.158:3128"
-os.environ["HTTP_PROXY"] = "http://10.59.78.158:3128"
-import subprocess, json, csv, io, time
+import os, subprocess, json, csv, io, time
 from datetime import datetime, date, timedelta
 
 TICKERS = ["GME","HIMS","SNDX","NVTS","ALDX","SPCE","SOFI","RKLB","JOBY","ACHR"]
@@ -31,7 +26,50 @@ def get_price_stooq(ticker: str) -> dict:
         pass
     return {}
 
+def get_price_yahoo(ticker: str) -> dict:
+    """使用 Yahoo Finance v8 API 获取价格（回退数据源）"""
+    try:
+        r = subprocess.run(
+            ['curl', '-s', '--max-time', '8',
+             f'https://query1.finance.yahoo.com/v8/finance/chart/{ticker}?interval=1d&range=1d',
+             '-H', 'User-Agent: Mozilla/5.0'],
+            capture_output=True, text=True, timeout=10)
+        data = json.loads(r.stdout)
+        result = data.get('chart', {}).get('result', [None])[0]
+        if result:
+            meta = result.get('meta', {})
+            close = meta.get('regularMarketPrice', 0)
+            open_ = meta.get('previousClose', 0)
+            chg = (close - open_) / open_ * 100 if open_ else 0
+            return {'price': round(close, 2), 'chg': round(chg, 2)}
+    except:
+        pass
+    return {}
+
+
+def get_price(ticker: str) -> dict:
+    """尝试多个数据源获取价格"""
+    stooq = get_price_stooq(ticker)
+    if stooq:
+        return stooq
+    return get_price_yahoo(ticker)
+
+
 def get_insider_sec(ticker: str, days: int = 30) -> list:
+    """SEC EDGAR Form 4 内部人买入"""
+    try:
+        cutoff = (date.today() - timedelta(days=days)).isoformat()
+        r = subprocess.run(
+            ['curl', '-s', '--max-time', '10',
+             f'https://efts.sec.gov/LATEST/search-index?q=%22{ticker}%22&dateRange=custom'
+             f'&startdt={cutoff}&forms=4',
+             '-H', 'User-Agent: XiaLanXia/1.0 admin@example.com'],
+            capture_output=True, text=True, timeout=12)
+        data = json.loads(r.stdout)
+        return data.get('hits', {}).get('hits', [])[:5]
+    except:
+        return []
+
     """SEC EDGAR Form 4 内部人买入"""
     try:
         cutoff = (date.today() - timedelta(days=days)).isoformat()
@@ -50,7 +88,7 @@ def analyze(ticker):
     score = 0
     signals = []
 
-    snap = get_price_stooq(ticker)
+    snap = get_price(ticker)
     price = snap.get('price', 0)
     if not price:
         return None

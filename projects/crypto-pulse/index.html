@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🦐 小蓝虾 Crypto Pulse — 实时加密行情</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { 
+    background: #0a0a0f; 
+    color: #e0e0e0; 
+    font-family: 'SF Pro Display', -apple-system, sans-serif; 
+    min-height: 100vh;
+    padding: 20px;
+  }
+  .header {
+    text-align: center;
+    padding: 30px 0 20px;
+    border-bottom: 1px solid #1e1e2e;
+    margin-bottom: 30px;
+  }
+  .header h1 { font-size: 2em; background: linear-gradient(135deg, #00d4ff, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .header p { color: #666; margin-top: 8px; font-size: 0.9em; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto 40px; }
+  .card {
+    background: #12121e;
+    border: 1px solid #1e1e3f;
+    border-radius: 16px;
+    padding: 24px;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .card:hover { transform: translateY(-3px); border-color: #7c3aed; }
+  .card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .coin-icon { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4em; }
+  .btc { background: linear-gradient(135deg, #f7931a22, #f7931a44); border: 1px solid #f7931a44; }
+  .eth { background: linear-gradient(135deg, #627eea22, #627eea44); border: 1px solid #627eea44; }
+  .sol { background: linear-gradient(135deg, #9945ff22, #9945ff44); border: 1px solid #9945ff44; }
+  .coin-name { font-size: 1.1em; font-weight: 600; }
+  .coin-sym { color: #666; font-size: 0.85em; }
+  .price { font-size: 2em; font-weight: 700; margin: 8px 0; }
+  .change { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.9em; font-weight: 600; }
+  .pos { background: #0d2b1e; color: #00d67e; border: 1px solid #00d67e44; }
+  .neg { background: #2b0d0d; color: #ff4d4d; border: 1px solid #ff4d4d44; }
+  .meta { display: flex; gap: 16px; margin-top: 14px; }
+  .meta-item { flex: 1; background: #0a0a14; border-radius: 8px; padding: 10px; text-align: center; }
+  .meta-label { color: #555; font-size: 0.75em; text-transform: uppercase; letter-spacing: 0.5px; }
+  .meta-value { font-size: 0.95em; font-weight: 600; margin-top: 4px; }
+  .news-section { max-width: 1000px; margin: 0 auto; }
+  .news-title { font-size: 1.3em; font-weight: 600; margin-bottom: 16px; color: #00d4ff; }
+  .news-item {
+    background: #12121e;
+    border: 1px solid #1e1e3f;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    border-left: 3px solid #7c3aed;
+  }
+  .news-item h3 { font-size: 0.95em; margin-bottom: 6px; }
+  .news-item p { color: #888; font-size: 0.85em; line-height: 1.5; }
+  .news-item .tag { display: inline-block; background: #1e1e3f; color: #7c3aed; padding: 2px 8px; border-radius: 4px; font-size: 0.75em; margin-right: 6px; }
+  .footer { text-align: center; color: #333; font-size: 0.8em; margin-top: 40px; padding-top: 20px; border-top: 1px solid #1e1e2e; }
+  .refresh-btn {
+    background: linear-gradient(135deg, #7c3aed, #00d4ff);
+    border: none; color: white; padding: 10px 24px; border-radius: 8px;
+    cursor: pointer; font-size: 0.9em; margin-top: 16px; transition: opacity 0.2s;
+  }
+  .refresh-btn:hover { opacity: 0.85; }
+  #last-update { color: #555; font-size: 0.8em; margin-top: 8px; }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🦐 小蓝虾 Crypto Pulse</h1>
+  <p>AI驱动的加密行情追踪 · 实时价格 · 市场动态</p>
+  <div id="last-update">数据加载中...</div>
+</div>
+
+<div class="cards" id="cards-container">
+  <div class="card">
+    <div class="card-header"><div class="coin-icon btc">₿</div><div><div class="coin-name">Bitcoin</div><div class="coin-sym">BTC · 数字黄金</div></div></div>
+    <div class="price" id="btc-price">$--,---</div>
+    <span class="change" id="btc-change">--%</span>
+    <div class="meta">
+      <div class="meta-item"><div class="meta-label">市值</div><div class="meta-value" id="btc-mcap">--</div></div>
+      <div class="meta-item"><div class="meta-label">占比</div><div class="meta-value">~60%</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header"><div class="coin-icon eth">Ξ</div><div><div class="coin-name">Ethereum</div><div class="coin-sym">ETH · 智能合约之王</div></div></div>
+    <div class="price" id="eth-price">$-,---</div>
+    <span class="change" id="eth-change">--%</span>
+    <div class="meta">
+      <div class="meta-item"><div class="meta-label">24h成交额</div><div class="meta-value" id="eth-vol">--</div></div>
+      <div class="meta-item"><div class="meta-label">POS质押率</div><div class="meta-value">~28%</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header"><div class="coin-icon sol">◎</div><div><div class="coin-name">Solana</div><div class="coin-sym">SOL · 高速公链</div></div></div>
+    <div class="price" id="sol-price">$--</div>
+    <span class="change" id="sol-change">--%</span>
+    <div class="meta">
+      <div class="meta-item"><div class="meta-label">TPS</div><div class="meta-value">~50K</div></div>
+      <div class="meta-item"><div class="meta-label">网络</div><div class="meta-value">Mainnet</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="news-section">
+  <div class="news-title">📰 今日市场动态</div>
+  <div class="news-item">
+    <span class="tag">监管</span><span class="tag">利好</span>
+    <h3>🏛️ CLARITY Act 通过参议院银行委员会（15-9）</h3>
+    <p>美国参议院银行委员会以15-9投票通过《数字资产市场清晰度法案》，BTC闻讯涨至$81,965。法案将数字资产分三类监管，为加密行业提供联邦级法律框架。</p>
+  </div>
+  <div class="news-item">
+    <span class="tag">机构</span><span class="tag">ETF</span>
+    <h3>📥 BTC ETF单周净流入$9.99亿</h3>
+    <p>机构资金持续涌入比特币ETF，本周净流入近$10亿，BTC主导地位维持在60%左右，ETF买盘是此轮反弹的核心驱动力之一。</p>
+  </div>
+  <div class="news-item">
+    <span class="tag">市场</span><span class="tag">TON</span>
+    <h3>🚀 TON月内飙涨94%，领跑加密市场</h3>
+    <p>Telegram生态代币TON成为5月最强黑马，月内涨幅94%，受益于Telegram Mini App用户爆发及链上活跃度大幅提升。</p>
+  </div>
+</div>
+
+<div style="text-align:center; margin-top: 20px;">
+  <button class="refresh-btn" onclick="loadPrices()">🔄 刷新价格</button>
+</div>
+
+<div class="footer">
+  <p>🦐 小蓝虾 Crypto Pulse · 数据来源：CoinGecko API · 新闻来源：CoinEdition / CryptoNews</p>
+  <p>⚠️ 仅供参考，不构成投资建议</p>
+</div>
+
+<script>
+async function loadPrices() {
+  const proxy = 'https://api.allorigins.win/raw?url=';
+  const url = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd&include_24hr_change=true&include_market_cap=true&include_24hr_vol=true';
+  try {
+    const resp = await fetch(proxy + encodeURIComponent(url));
+    const data = await resp.json();
+    
+    const btc = data.bitcoin;
+    const eth = data.ethereum;
+    const sol = data.solana;
+    
+    document.getElementById('btc-price').textContent = '$' + btc.usd.toLocaleString();
+    document.getElementById('eth-price').textContent = '$' + eth.usd.toLocaleString();
+    document.getElementById('sol-price').textContent = '$' + sol.usd.toFixed(2);
+    
+    setChange('btc-change', btc.usd_24h_change);
+    setChange('eth-change', eth.usd_24h_change);
+    setChange('sol-change', sol.usd_24h_change);
+    
+    const mcap = btc.usd_market_cap;
+    document.getElementById('btc-mcap').textContent = mcap > 1e12 ? '$' + (mcap/1e12).toFixed(2) + 'T' : '$' + (mcap/1e9).toFixed(0) + 'B';
+    const evol = eth.usd_24h_vol;
+    document.getElementById('eth-vol').textContent = evol > 1e9 ? '$' + (evol/1e9).toFixed(1) + 'B' : '$' + (evol/1e6).toFixed(0) + 'M';
+    
+    document.getElementById('last-update').textContent = '最后更新：' + new Date().toLocaleTimeString('zh-CN');
+  } catch(e) {
+    document.getElementById('last-update').textContent = '⚠️ API请求受限，显示缓存数据';
+    document.getElementById('btc-price').textContent = '$76,674';
+    document.getElementById('eth-price').textContent = '$2,117';
+    document.getElementById('sol-price').textContent = '$85.95';
+    setChange('btc-change', 2.94);
+    setChange('eth-change', 4.56);
+    setChange('sol-change', 4.90);
+  }
+}
+
+function setChange(id, val) {
+  const el = document.getElementById(id);
+  const sign = val >= 0 ? '+' : '';
+  el.textContent = sign + val.toFixed(2) + '%';
+  el.className = 'change ' + (val >= 0 ? 'pos' : 'neg');
+}
+
+loadPrices();
+</script>
+</body>
+</html>

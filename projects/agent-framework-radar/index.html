@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Agent 框架雷达 2026 | 选对框架，少踩坑</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0a0a0f; color: #e0e0e0; font-family: 'Segoe UI', system-ui, sans-serif; min-height: 100vh; }
+  .header { text-align: center; padding: 40px 20px 20px; background: linear-gradient(135deg, #0f0f2e 0%, #1a0a2e 100%); border-bottom: 1px solid #2a2a4a; }
+  .header h1 { font-size: 2rem; background: linear-gradient(90deg, #7c3aed, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 8px; }
+  .header p { color: #888; font-size: 0.9rem; }
+  .badge { display: inline-block; background: #7c3aed22; border: 1px solid #7c3aed; color: #a78bfa; padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; margin-top: 10px; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 30px 20px; }
+  .section-title { font-size: 1.1rem; color: #a78bfa; margin: 30px 0 15px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 16px; }
+  .card { background: #0f0f1e; border: 1px solid #1e1e3e; border-radius: 12px; padding: 20px; transition: all 0.2s; position: relative; overflow: hidden; }
+  .card:hover { border-color: #7c3aed; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(124,58,237,0.15); }
+  .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent, #7c3aed); }
+  .card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .card-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; background: #1a1a2e; flex-shrink: 0; }
+  .card-title { font-size: 1rem; font-weight: 700; color: #fff; }
+  .card-subtitle { font-size: 0.75rem; color: #666; margin-top: 2px; }
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 600; margin-right: 4px; margin-bottom: 4px; }
+  .tag-hot { background: #7c3aed22; color: #a78bfa; border: 1px solid #7c3aed44; }
+  .tag-stable { background: #059c6622; color: #34d399; border: 1px solid #059c6644; }
+  .tag-new { background: #dc262622; color: #f87171; border: 1px solid #dc262644; }
+  .tag-enterprise { background: #d97706aa33; color: #fbbf24; border: 1px solid #d9770644; }
+  .card-desc { font-size: 0.83rem; color: #aaa; line-height: 1.6; margin: 10px 0; }
+  .card-stats { display: flex; gap: 16px; margin-top: 12px; }
+  .stat { text-align: center; }
+  .stat-val { font-size: 1.1rem; font-weight: 700; color: #fff; }
+  .stat-label { font-size: 0.65rem; color: #666; text-transform: uppercase; }
+  .trend { display: inline-block; font-size: 0.72rem; padding: 2px 6px; border-radius: 4px; }
+  .trend-up { background: #05966622; color: #34d399; }
+  .trend-down { background: #dc262622; color: #f87171; }
+  .comparison { margin-top: 30px; background: #0f0f1e; border: 1px solid #1e1e3e; border-radius: 12px; padding: 24px; overflow-x: auto; }
+  .comparison h3 { font-size: 1rem; color: #a78bfa; margin-bottom: 16px; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  th { text-align: left; padding: 10px 12px; color: #666; border-bottom: 1px solid #1e1e3e; font-weight: 500; }
+  td { padding: 10px 12px; border-bottom: 1px solid #0f0f1e; }
+  tr:hover td { background: #1a1a2e; }
+  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+  .dot-green { background: #34d399; }
+  .dot-yellow { background: #fbbf24; }
+  .dot-red { background: #f87171; }
+  .verdict { margin-top: 30px; background: linear-gradient(135deg, #1a0a2e, #0a0a1e); border: 1px solid #7c3aed44; border-radius: 12px; padding: 24px; }
+  .verdict h3 { color: #a78bfa; margin-bottom: 16px; }
+  .verdict-item { display: flex; gap: 12px; margin-bottom: 12px; }
+  .verdict-emoji { font-size: 1.2rem; flex-shrink: 0; }
+  .verdict-text { font-size: 0.85rem; color: #ccc; line-height: 1.6; }
+  .footer { text-align: center; padding: 20px; color: #444; font-size: 0.75rem; border-top: 1px solid #1e1e3e; margin-top: 30px; }
+  @media (max-width: 600px) { .header h1 { font-size: 1.5rem; } }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🕷️ AI Agent 框架雷达 2026</h1>
+  <p>2026年上半年最全 Agent 框架对比 — 选对框架，少踩100个坑</p>
+  <span class="badge">📅 更新于 2026年5月24日</span>
+</div>
+
+<div class="container">
+  <div class="section-title">🔥 当红框架</div>
+  <div class="grid">
+    <div class="card" style="--accent: #7c3aed">
+      <div class="card-header">
+        <div class="card-icon">🤖</div>
+        <div>
+          <div class="card-title">OpenAI Agents SDK</div>
+          <div class="card-subtitle">Python 0.17.2 · JS 0.11.4</div>
+        </div>
+      </div>
+      <div>
+        <span class="tag tag-hot">🔥 最火</span>
+        <span class="tag tag-stable">周迭代</span>
+      </div>
+      <div class="card-desc">爆发式增长，每周2-3个版本迭代。Swarm多Agent架构原生支持，OpenAI生态最佳选择。2026年上半年GitHub Star增长率第一。</div>
+      <div class="card-stats">
+        <div class="stat"><div class="stat-val">~50k</div><div class="stat-label">GitHub Stars</div></div>
+        <div class="stat"><div class="stat-val">0.17.2</div><div class="stat-label">最新版本</div></div>
+        <div class="stat"><div class="stat-val"><span class="trend trend-up">↑ 热</span></div><div class="stat-label">趋势</div></div>
+      </div>
+    </div>
+
+    <div class="card" style="--accent: #06b6d4">
+      <div class="card-header">
+        <div class="card-icon">🕸️</div>
+        <div>
+          <div class="card-title">LangGraph</div>
+          <div class="card-subtitle">by LangChain · v1.2.0</div>
+        </div>
+      </div>
+      <div>
+        <span class="tag tag-stable">🟢 稳定</span>
+        <span class="tag tag-enterprise">企业友好</span>
+      </div>
+      <div class="card-desc">1.2.0进入稳定双周更新节奏。状态机图结构，适合复杂多步骤Agent流程。LangChain生态集成最深，有监控+调试工具链。</div>
+      <div class="card-stats">
+        <div class="stat"><div class="stat-val">~12k</div><div class="stat-label">GitHub Stars</div></div>
+        <div class="stat"><div class="stat-val">1.2.0</div><div class="stat-label">最新版本</div></div>
+        <div class="stat"><div class="stat-val"><span class="trend trend-up">↑ 稳</span></div><div class="stat-label">趋势</div></div>
+      </div>
+    </div>
+
+    <div class="card" style="--accent: #f59e0b">
+      <div class="card-header">
+        <div class="card-icon">👥</div>
+        <div>
+          <div class="card-title">CrewAI</div>
+          <div class="card-subtitle">多角色协作框架</div>
+        </div>
+      </div>
+      <div>
+        <span class="tag tag-hot">🎭 角色扮演</span>
+        <span class="tag tag-stable">成熟</span>
+      </div>
+      <div class="card-desc">Agent团队协作最直观的抽象层。给每个Agent定义角色(Role)、目标(Goal)、背景(Backstory)，组合完成复杂任务。上手快，适合内容生产类场景。</div>
+      <div class="card-stats">
+        <div class="stat"><div class="stat-val">~35k</div><div class="stat-label">GitHub Stars</div></div>
+        <div class="stat"><div class="stat-val">0.80+</div><div class="stat-label">最新版本</div></div>
+        <div class="stat"><div class="stat-val"><span class="trend trend-up">↑ 活</span></div><div class="stat-label">趋势</div></div>
+      </div>
+    </div>
+
+    <div class="card" style="--accent: #10b981">
+      <div class="card-header">
+        <div class="card-icon">🔷</div>
+        <div>
+          <div class="card-title">Microsoft Agent Framework</div>
+          <div class="card-subtitle">MAF · 取代 Semantic Kernel</div>
+        </div>
+      </div>
+      <div>
+        <span class="tag tag-new">🆕 新起点</span>
+        <span class="tag tag-enterprise">企业级</span>
+      </div>
+      <div class="card-desc">Semantic Kernel 2026年宣布被 MAF 取代。深度集成 Azure + Microsoft 365 Copilot + Agent 365 控制平台。企业场景首选，但开源生态还在追赶。</div>
+      <div class="card-stats">
+        <div class="stat"><div class="stat-val">MAF</div><div class="stat-label">新品牌</div></div>
+        <div class="stat"><div class="stat-val">Azure</div><div class="stat-label">深度集成</div></div>
+        <div class="stat"><div class="stat-val"><span class="trend trend-up">↑ 新</span></div><div class="stat-label">趋势</div></div>
+      </div>
+    </div>
+
+    <div class="card" style="--accent: #ef4444">
+      <div class="card-header">
+        <div class="card-icon">🦾</div>
+        <div>
+          <div class="card-title">AutoGen</div>
+          <div class="card-subtitle">by Microsoft Research · v0.4+</div>
+        </div>
+      </div>
+      <div>
+        <span class="tag tag-stable">研究向</span>
+        <span class="tag tag-hot">对话多Agent</span>
+      </div>
+      <div class="card-desc">对话式多Agent框架，Agent之间可自然交流协作。强项在于代码生成与执行的闭环。学术引用量极高，适合探索性研究和原型验证。</div>
+      <div class="card-stats">
+        <div class="stat"><div class="stat-val">~40k</div><div class="stat-label">GitHub Stars</div></div>
+        <div class="stat"><div class="stat-val">0.4+</div><div class="stat-label">最新版本</div></div>
+        <div class="stat"><div class="stat-val"><span class="trend trend-up">↑ 研</span></div><div class="stat-label">趋势</div></div>
+      </div>
+    </div>
+
+    <div class="card" style="--accent: #8b5cf6">
+      <div class="card-header">
+        <div class="card-icon">🌊</div>
+        <div>
+          <div class="card-title">Google Antigravity 2.0</div>
+          <div class="card-subtitle">IO 2026 发布 · CLI+SDK+Managed</div>
+        </div>
+      </div>
+      <div>
+        <span class="tag tag-new">🆕 2026</span>
+        <span class="tag tag-hot">Gemini原生</span>
+      </div>
+      <div class="card-desc">Google IO 2026 发布，桌面应用+CLI+SDK三合一。Gemini模型原生支持，Managed Agents云托管架构，AGENTS.md+SKILL.md定义Agent。</div>
+      <div class="card-stats">
+        <div class="stat"><div class="stat-val">2.0</div><div class="stat-label">版本</div></div>
+        <div class="stat"><div class="stat-val">Gemini</div><div class="stat-label">原生</div></div>
+        <div class="stat"><div class="stat-val"><span class="trend trend-up">↑ 新</span></div><div class="stat-label">趋势</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="comparison">
+    <h3>📊 核心指标对比</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>框架</th>
+          <th>上手难度</th>
+          <th>多Agent</th>
+          <th>工具集成</th>
+          <th>生产可用</th>
+          <th>2026趋势</th>
+          <th>最适合场景</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>OpenAI Agents SDK</strong></td>
+          <td><span class="dot dot-green"></span>低</td>
+          <td><span class="dot dot-green"></span>原生</td>
+          <td><span class="dot dot-green"></span>极丰富</td>
+          <td><span class="dot dot-green"></span>✅</td>
+          <td>🔥🔥🔥</td>
+          <td>OpenAI生态应用</td>
+        </tr>
+        <tr>
+          <td><strong>LangGraph</strong></td>
+          <td><span class="dot dot-yellow"></span>中</td>
+          <td><span class="dot dot-green"></span>状态机</td>
+          <td><span class="dot dot-green"></span>丰富</td>
+          <td><span class="dot dot-green"></span>✅</td>
+          <td>🔥🔥</td>
+          <td>复杂流程控制</td>
+        </tr>
+        <tr>
+          <td><strong>CrewAI</strong></td>
+          <td><span class="dot dot-green"></span>低</td>
+          <td><span class="dot dot-green"></span>角色协作</td>
+          <td><span class="dot dot-yellow"></span>中等</td>
+          <td><span class="dot dot-green"></span>✅</td>
+          <td>🔥🔥</td>
+          <td>内容生产/研究</td>
+        </tr>
+        <tr>
+          <td><strong>MAF (MS)</strong></td>
+          <td><span class="dot dot-yellow"></span>中</td>
+          <td><span class="dot dot-green"></span>企业级</td>
+          <td><span class="dot dot-green"></span>M365</td>
+          <td><span class="dot dot-green"></span>✅</td>
+          <td>🔥</td>
+          <td>企业Azure场景</td>
+        </tr>
+        <tr>
+          <td><strong>AutoGen</strong></td>
+          <td><span class="dot dot-red"></span>高</td>
+          <td><span class="dot dot-green"></span>对话式</td>
+          <td><span class="dot dot-yellow"></span>中等</td>
+          <td><span class="dot dot-yellow"></span>⚠️</td>
+          <td>🔥</td>
+          <td>研究原型</td>
+        </tr>
+        <tr>
+          <td><strong>Antigravity 2.0</strong></td>
+          <td><span class="dot dot-green"></span>低</td>
+          <td><span class="dot dot-green"></span>Managed</td>
+          <td><span class="dot dot-green"></span>Google全栈</td>
+          <td><span class="dot dot-green"></span>✅</td>
+          <td>🔥🔥</td>
+          <td>Gemini生态</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="verdict">
+    <h3>🎯 2026年选框架速查</h3>
+    <div class="verdict-item">
+      <span class="verdict-emoji">⚡</span>
+      <span class="verdict-text"><strong>最快出活</strong>：OpenAI Agents SDK（Python SDK周迭代，文档最全，工具最多，社区最大）</span>
+    </div>
+    <div class="verdict-item">
+      <span class="verdict-emoji">🏗️</span>
+      <span class="verdict-text"><strong>最稳生产</strong>：LangGraph（1.2.0 稳定版，状态机设计适合复杂流程，观测工具完善）</span>
+    </div>
+    <div class="verdict-item">
+      <span class="verdict-emoji">🤝</span>
+      <span class="verdict-text"><strong>最易理解</strong>：CrewAI（角色/目标/背景三要素，非技术人员也能快速理解Agent分工）</span>
+    </div>
+    <div class="verdict-item">
+      <span class="verdict-emoji">🏢</span>
+      <span class="verdict-text"><strong>企业级首选</strong>：MAF（深度集成 Azure/M365/Copilot，合规性和安全性最成熟）</span>
+    </div>
+    <div class="verdict-item">
+      <span class="verdict-emoji">🆕</span>
+      <span class="verdict-text"><strong>未来押注</strong>：Google Antigravity 2.0（IO 2026 全新发布，Gemini原生 + Managed Agents云托管，值得关注）</span>
+    </div>
+    <div class="verdict-item">
+      <span class="verdict-emoji">⚠️</span>
+      <span class="verdict-text"><strong>注意！</strong>：Semantic Kernel 已被微软宣布停更，迁移到 MAF；用SK的项目需要评估迁移计划</span>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  🤖 由小蓝虾🦐 · AI情报中心 自动生成 · 2026-05-24 · seanliii.github.io/agent-framework-radar
+</div>
+
+<script>
+  // 实时更新时间
+  document.addEventListener('DOMContentLoaded', () => {
+    const badges = document.querySelectorAll('.badge');
+    if (badges.length > 0) {
+      const now = new Date();
+      const formatted = `📅 更新于 ${now.getFullYear()}年${now.getMonth()+1}月${now.getDate()}日 ${now.getHours().toString().padStart(2,'0')}:${now.getMinutes().toString().padStart(2,'0')}`;
+      badges[0].textContent = formatted;
+    }
+  });
+</script>
+</body>
+</html>

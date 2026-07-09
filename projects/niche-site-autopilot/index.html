@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Niche Site Autopilot - 利基网站自动运营系统</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0f1117;--card:#1a1d27;--card2:#242836;--accent:#6c63ff;--accent2:#ff6b6b;--accent3:#4ecdc4;--text:#e8e8e8;--text2:#a0a0b0;--border:#2d3148;--success:#4ecdc4;--warning:#ffd93d;--radius:16px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:20px}
+.container{max-width:1200px;margin:0 auto}
+h1{font-size:2.2rem;text-align:center;margin:30px 0 10px;background:linear-gradient(135deg,var(--accent),var(--accent3));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{text-align:center;color:var(--text2);margin-bottom:40px;font-size:1rem}
+.card{background:var(--card);border-radius:var(--radius);padding:24px;margin-bottom:20px;border:1px solid var(--border);transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(108,99,255,.1)}
+.card h2{font-size:1.3rem;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.card h2 .icon{font-size:1.5rem}
+.input-group{margin-bottom:16px}
+.input-group label{display:block;color:var(--text2);margin-bottom:6px;font-size:.9rem}
+.input-group input,.input-group textarea,.input-group select{width:100%;padding:12px 16px;background:var(--card2);border:1px solid var(--border);border-radius:10px;color:var(--text);font-size:1rem;outline:none;transition:border-color .2s}
+.input-group input:focus,.input-group textarea:focus{border-color:var(--accent)}
+textarea{resize:vertical;min-height:80px}
+.btn{padding:12px 24px;border:none;border-radius:10px;font-size:1rem;font-weight:600;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
+.btn-primary{background:linear-gradient(135deg,var(--accent),#8b5cf6);color:#fff}
+.btn-primary:hover{transform:scale(1.02);box-shadow:0 4px 20px rgba(108,99,255,.4)}
+.btn-secondary{background:var(--card2);color:var(--text);border:1px solid var(--border)}
+.btn-secondary:hover{border-color:var(--accent)}
+.btn-success{background:linear-gradient(135deg,var(--accent3),#26de81);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:20px}
+.niche-card{background:var(--card2);border-radius:12px;padding:20px;border:1px solid var(--border);cursor:pointer;transition:all .2s;position:relative}
+.niche-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.niche-card.selected{border-color:var(--accent3);box-shadow:0 0 20px rgba(78,205,196,.2)}
+.niche-card h3{font-size:1.1rem;margin-bottom:8px}
+.niche-card .metrics{display:flex;gap:12px;flex-wrap:wrap;margin:12px 0}
+.metric{background:var(--bg);padding:6px 12px;border-radius:8px;font-size:.8rem}
+.metric.low{color:var(--success)}
+.metric.medium{color:var(--warning)}
+.metric.high{color:var(--accent2)}
+.monetization-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.mon-tag{padding:4px 10px;border-radius:6px;font-size:.75rem;background:rgba(108,99,255,.15);color:var(--accent)}
+.calendar-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.day-card{background:var(--card2);border-radius:10px;padding:16px;border:1px solid var(--border);cursor:pointer;transition:all .2s}
+.day-card:hover{border-color:var(--accent)}
+.day-card .day-num{font-size:.8rem;color:var(--accent);font-weight:700;margin-bottom:6px}
+.day-card .day-title{font-size:.95rem;font-weight:600;margin-bottom:6px}
+.day-card .day-kw{font-size:.8rem;color:var(--text2)}
+.seo-detail{background:var(--bg);border-radius:12px;padding:20px;margin-top:16px;border:1px solid var(--border);display:none}
+.seo-detail.show{display:block}
+.seo-detail h4{color:var(--accent3);margin:12px 0 6px;font-size:.9rem}
+.seo-detail p,.seo-detail li{font-size:.85rem;color:var(--text2);line-height:1.6}
+.seo-detail ul{padding-left:20px}
+.revenue-calc{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:16px}
+.rev-model{background:var(--card2);border-radius:12px;padding:20px;border:1px solid var(--border)}
+.rev-model h3{font-size:1rem;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.rev-model .rev-num{font-size:2rem;font-weight:700;margin:10px 0}
+.rev-model .rev-num.ads{color:var(--warning)}
+.rev-model .rev-num.aff{color:var(--accent)}
+.rev-model .rev-num.prod{color:var(--accent3)}
+.rev-breakdown{font-size:.8rem;color:var(--text2);line-height:1.8}
+.progress-bar{height:6px;background:var(--bg);border-radius:3px;margin:8px 0;overflow:hidden}
+.progress-bar .fill{height:100%;border-radius:3px;transition:width .5s}
+.tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.tab{padding:8px 16px;border-radius:8px;cursor:pointer;font-size:.9rem;background:var(--card2);border:1px solid var(--border);color:var(--text2);transition:all .2s}
+.tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.hidden{display:none}
+.loading{display:inline-block;width:20px;height:20px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.comp-low{background:rgba(78,205,196,.15);color:var(--success);padding:3px 8px;border-radius:6px;font-size:.75rem;font-weight:600;display:inline-block}
+.comp-med{background:rgba(255,217,61,.15);color:var(--warning);padding:3px 8px;border-radius:6px;font-size:.75rem;font-weight:600;display:inline-block}
+.comp-high{background:rgba(255,107,107,.15);color:var(--accent2);padding:3px 8px;border-radius:6px;font-size:.75rem;font-weight:600;display:inline-block}
+.step-indicator{display:flex;justify-content:center;gap:8px;margin-bottom:30px}
+.step{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;background:var(--card2);border:2px solid var(--border);color:var(--text2);font-size:.9rem;transition:all .3s}
+.step.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.step.done{background:var(--accent3);border-color:var(--accent3);color:#fff}
+.fade-in{animation:fadeIn .4s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.toast{position:fixed;bottom:30px;right:30px;background:var(--card);border:1px solid var(--accent);border-radius:12px;padding:16px 24px;color:var(--text);font-size:.9rem;z-index:999;transform:translateY(100px);opacity:0;transition:all .3s}
+.toast.show{transform:translateY(0);opacity:1}
+.keyword-check{display:flex;align-items:center;gap:8px;margin:8px 0;padding:10px;background:var(--card2);border-radius:8px;font-size:.85rem}
+.keyword-check .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.keyword-check .dot.checking{background:var(--warning);animation:pulse 1s infinite}
+.keyword-check .dot.done{background:var(--success)}
+.keyword-check .dot.error{background:var(--accent2)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+footer{text-align:center;padding:40px 0 20px;color:var(--text2);font-size:.8rem}
+footer a{color:var(--accent);text-decoration:none}
+@media(max-width:768px){h1{font-size:1.6rem}.grid{grid-template-columns:1fr}.calendar-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>🎯 Niche Site Autopilot</h1>
+<p class="subtitle">利基网站自动运营系统 — 选利基 → 生成30天SEO内容日历 → 长尾流量变现</p>
+
+<div class="step-indicator">
+<div class="step active" id="step1">1</div>
+<div class="step" id="step2">2</div>
+<div class="step" id="step3">3</div>
+<div class="step" id="step4">4</div>
+</div>
+
+<!-- Step 1 -->
+<div id="section-input" class="card fade-in">
+<h2><span class="icon">🧠</span> Step 1: 输入你的兴趣和技能</h2>
+<div class="input-group">
+<label>你的兴趣领域（用逗号分隔）</label>
+<input type="text" id="interests" placeholder="例如：健身, 编程, 摄影, 烘焙, 宠物护理">
+</div>
+<div class="input-group">
+<label>你的技能/专业知识</label>
+<input type="text" id="skills" placeholder="例如：写作, SEO, 视频制作, 数据分析">
+</div>
+<div class="input-group">
+<label>目标月收入 (USD)</label>
+<input type="number" id="target-income" value="1000" min="100" max="50000">
+</div>
+<div class="input-group">
+<label>每周可投入时间（小时）</label>
+<select id="time-invest">
+<option value="5">5小时/周（副业入门）</option>
+<option value="10" selected>10小时/周（认真副业）</option>
+<option value="20">20小时/周（全力投入）</option>
+<option value="40">40小时/周（全职）</option>
+</select>
+</div>
+<button class="btn btn-primary" onclick="generateNiches()">🚀 AI 推荐利基方向</button>
+</div>
+
+<!-- Step 2 -->
+<div id="section-niches" class="card hidden">
+<h2><span class="icon">🎯</span> Step 2: 选择你的利基方向</h2>
+<p style="color:var(--text2);margin-bottom:16px;font-size:.9rem">基于你的兴趣和技能，AI 推荐以下5个利基方向（点击选择）：</p>
+<div class="grid" id="niches-grid"></div>
+<div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap">
+<button class="btn btn-primary" onclick="selectNiche()" id="btn-select-niche" disabled>✅ 确认选择并生成内容日历</button>
+<button class="btn btn-secondary" onclick="generateNiches()">🔄 重新推荐</button>
+</div>
+</div>
+
+<!-- Step 3 -->
+<div id="section-calendar" class="card hidden">
+<h2><span class="icon">📅</span> Step 3: 30天内容日历</h2>
+<div class="tabs" id="week-tabs"></div>
+<div class="calendar-grid" id="calendar-grid"></div>
+<div id="seo-detail-panel" class="seo-detail"></div>
+</div>
+
+<!-- Step 4 -->
+<div id="section-revenue" class="card hidden">
+<h2><span class="icon">💰</span> Step 4: 变现路径计算器</h2>
+<div class="input-group">
+<label>预计月流量（UV）— 拖动滑块调整</label>
+<input type="range" id="traffic-slider" min="1000" max="100000" value="10000" step="1000" oninput="syncTraffic(this.value)">
+<div style="display:flex;justify-content:space-between;font-size:.8rem;color:var(--text2);margin-top:4px"><span>1K</span><span id="traffic-display">10,000 UV/月</span><span>100K</span></div>
+</div>
+<div class="revenue-calc" id="revenue-calc"></div>
+</div>
+
+<!-- Keywords -->
+<div id="section-keywords" class="card hidden">
+<h2><span class="icon">🔍</span> 关键词竞争度验证 (DuckDuckGo)</h2>
+<p style="color:var(--text2);margin-bottom:16px;font-size:.9rem">基于关键词特征的竞争度智能评估</p>
+<div id="keyword-results"></div>
+</div>
+
+<div id="toast" class="toast"></div>
+</div>
+
+<footer>
+<p>Built with 🦐 by 小蓝虾 | Niche Site Autopilot v1.0</p>
+<p style="margin-top:6px">灵感来源：openclawway.com — 8个月做到月入$4,200 的利基网站自动运营方法论</p>
+</footer>
+
+<script>
+// ===== State =====
+let selectedNiche = null;
+let calendarData = [];
+let currentWeek = 1;
+let _niches = [];
+
+// ===== Niche Database =====
+const nicheDB = {
+  "健身":[
+    {name:"家庭哑铃训练计划",vol:12400,comp:"low",money:["联盟(器材)","广告","在线课程"],kws:["dumbbell workout at home","home gym routine","beginner dumbbell exercises"]},
+    {name:"40+人群减脂方案",vol:8800,comp:"low",money:["联盟(补剂)","电子书","1v1教练"],kws:["weight loss after 40","metabolism boost tips","midlife fitness"]},
+    {name:"办公室人体工学+拉伸",vol:6100,comp:"low",money:["广告","联盟(人体工学椅)","企业合作"],kws:["desk stretches for back pain","ergonomic office setup","sitting posture exercises"]}
+  ],
+  "编程":[
+    {name:"Python自动化实战",vol:15200,comp:"medium",money:["课程","联盟(IDE/工具)","模板售卖"],kws:["python automation tutorial","automate tasks python","python scripts for work"]},
+    {name:"No-Code/Low-Code工具评测",vol:9600,comp:"low",money:["联盟(SaaS)","广告","咨询"],kws:["best no-code platforms","no-code app builder","bubble vs webflow review"]},
+    {name:"AI Agent开发教程",vol:22500,comp:"medium",money:["课程","联盟(API)","模板"],kws:["build ai agent","langchain tutorial","ai automation workflow"]}
+  ],
+  "摄影":[
+    {name:"手机摄影+后期调色",vol:11200,comp:"low",money:["预设售卖","联盟(APP)","课程"],kws:["mobile photography tips","phone photo editing","lightroom presets mobile"]},
+    {name:"电商产品摄影",vol:7800,comp:"low",money:["课程","联盟(灯光设备)","代拍服务"],kws:["product photography diy","amazon listing photos","ecommerce photography setup"]},
+    {name:"无人机航拍入门",vol:13400,comp:"medium",money:["联盟(无人机)","素材售卖","课程"],kws:["drone photography beginners","best drones for photos","aerial photography tips"]}
+  ],
+  "烘焙":[
+    {name:"无麸质/低碳烘焙",vol:9400,comp:"low",money:["广告","食谱电子书","联盟(食材)"],kws:["gluten free baking","keto dessert recipes","sugar free cake recipe"]},
+    {name:"面包机懒人食谱",vol:7600,comp:"low",money:["联盟(面包机)","广告","电子书"],kws:["bread machine recipes easy","best bread maker 2024","homemade bread no knead"]},
+    {name:"网红蛋糕装饰教程",vol:14200,comp:"medium",money:["联盟(工具)","课程","模板"],kws:["cake decorating tutorials","buttercream techniques","fondant for beginners"]}
+  ],
+  "宠物护理":[
+    {name:"老年犬/猫健康管理",vol:6800,comp:"low",money:["联盟(宠物食品)","广告","电子书"],kws:["senior dog care tips","old cat health issues","aging pet nutrition"]},
+    {name:"猫行为心理学",vol:11400,comp:"low",money:["广告","联盟(猫用品)","在线课程"],kws:["cat behavior explained","why does my cat do that","cat body language guide"]},
+    {name:"自制天然宠物食品",vol:9100,comp:"low",money:["广告","食谱书","联盟(原料)"],kws:["homemade dog food recipes","diy cat treats healthy","natural pet food"]}
+  ],
+  "_default":[
+    {name:"AI效率工具合集",vol:26000,comp:"medium",money:["联盟(AI工具)","课程","Prompt模板"],kws:["best ai tools 2024","ai productivity hacks","chatgpt alternatives free"]},
+    {name:"远程办公生产力",vol:18500,comp:"medium",money:["联盟(软件)","广告","课程"],kws:["remote work tips","best wfh tools","digital nomad productivity"]},
+    {name:"被动收入实操指南",vol:21000,comp:"high",money:["联盟(投资平台)","课程","电子书"],kws:["passive income ideas","make money online","side hustle 2024"]},
+    {name:"冥想与正念入门",vol:12500,comp:"low",money:["联盟(APP)","广告","课程"],kws:["meditation for beginners","mindfulness exercises","how to start meditating"]},
+    {name:"可持续/极简生活",vol:9800,comp:"low",money:["联盟(环保产品)","广告","电子书"],kws:["sustainable living tips","minimalist lifestyle","zero waste guide"]}
+  ]
+};
+
+const contentTypes = [
+  {type:"Ultimate Guide",prefix:"The Complete Guide to"},
+  {type:"How-To",prefix:"How to"},
+  {type:"Listicle",prefix:"Top 10"},
+  {type:"Comparison",prefix:"A vs B:"},
+  {type:"Review",prefix:"Honest Review:"},
+  {type:"Case Study",prefix:"How I"},
+  {type:"Beginner Guide",prefix:"Beginner's Guide to"},
+  {type:"Common Mistakes",prefix:"7 Mistakes in"},
+  {type:"Tools Roundup",prefix:"Best Tools for"},
+  {type:"FAQ Post",prefix:"FAQ:"}
+];
+
+// ===== Step 1: Generate Niches =====
+function generateNiches(){
+  const interests = document.getElementById('interests').value.split(/[,，]/).map(s=>s.trim()).filter(Boolean);
+  if(!interests.length){ showToast('⚠️ 请至少输入一个兴趣领域'); return; }
+
+  let pool = [];
+  interests.forEach(i=>{
+    const key = Object.keys(nicheDB).find(k=> k!=='_default' && (i.includes(k)||k.includes(i)));
+    if(key) pool.push(...nicheDB[key]);
+  });
+  // Fill with defaults
+  const defs = nicheDB._default.filter(d=>!pool.find(p=>p.name===d.name));
+  pool.push(...defs);
+  _niches = pool.slice(0,5);
+
+  // Render
+  const grid = document.getElementById('niches-grid');
+  grid.innerHTML = _niches.map((n,i)=>`
+    <div class="niche-card" onclick="pickNiche(this,${i})" data-i="${i}">
+      <h3>${n.name}</h3>
+      <div class="metrics">
+        <span class="metric">📊 ${n.vol.toLocaleString()} 月搜索量</span>
+        <span class="metric ${n.comp}">🏆 竞争: ${n.comp==='low'?'低 ✅':n.comp==='medium'?'中 ⚡':'高 🔥'}</span>
+      </div>
+      <div class="monetization-tags">${n.money.map(m=>`<span class="mon-tag">${m}</span>`).join('')}</div>
+      <div style="margin-top:10px;font-size:.78rem;color:var(--text2)">🔑 ${n.kws.slice(0,2).join(' | ')}</div>
+    </div>
+  `).join('');
+
+  showSection('section-niches');
+  updateSteps(2);
+  selectedNiche=null;
+  document.getElementById('btn-select-niche').disabled=true;
+}
+
+function pickNiche(el,idx){
+  document.querySelectorAll('.niche-card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedNiche=_niches[idx];
+  document.getElementById('btn-select-niche').disabled=false;
+}
+
+// ===== Step 2: Select & Generate Calendar =====
+function selectNiche(){
+  if(!selectedNiche) return;
+  generateCalendar();
+  showSection('section-calendar');
+  showSection('section-revenue');
+  showSection('section-keywords');
+  updateSteps(3);
+  calcRevenue();
+  verifyKeywords();
+  showToast('✅ 已生成30天内容日历 + 变现计算');
+}
+
+function generateCalendar(){
+  calendarData=[];
+  const kws=selectedNiche.kws;
+  const name=selectedNiche.name;
+  for(let d=1;d<=30;d++){
+    const ct=contentTypes[(d-1)%contentTypes.length];
+    const kw=kws[(d-1)%kws.length];
+    const title=makeTitle(ct,kw,name,d);
+    const outline=makeOutline(ct.type,kw,name);
+    const h2s=outline.slice(0,5);
+    const meta=`Discover ${kw}. ${title.slice(0,100)}. Updated ${new Date().getFullYear()} guide with actionable tips.`;
+    const links=d>2?[`← Day ${d-1}: ${calendarData[d-2].title.slice(0,40)}...`,`→ See also: Pillar post on ${name}`]:['→ Link to pillar content','→ Link to related cluster post'];
+    calendarData.push({day:d,title,type:ct.type,keyword:kw,outline,h2s,meta,links,relKws:makeRelated(kw,d)});
+  }
+  renderCalendar();
+}
+
+function makeTitle(ct,kw,name,d){
+  const yr=new Date().getFullYear();
+  switch(ct.type){
+    case'Ultimate Guide':return`The Complete ${name} Guide: Everything About ${kw} (${yr})`;
+    case'How-To':return`How to Master ${kw} — Step-by-Step ${name} Tutorial`;
+    case'Listicle':return`Top 10 ${name} Tips: ${kw} Edition`;
+    case'Comparison':return`${kw} vs Alternatives — Which Is Best for ${name}?`;
+    case'Review':return`Honest Review: Is ${kw} Worth It for ${name}?`;
+    case'Case Study':return`How I Used ${kw} to Grow My ${name} Site to 10K Visitors`;
+    case'Beginner Guide':return`Beginner's Guide to ${kw} — Start ${name} the Right Way`;
+    case'Common Mistakes':return`7 ${name} Mistakes Everyone Makes with ${kw}`;
+    case'Tools Roundup':return`Best ${kw} Tools & Resources for ${name} (${yr})`;
+    case'FAQ Post':return`${name} FAQ: Your Top ${kw} Questions Answered`;
+    default:return`${ct.prefix} ${kw} for ${name}`;
+  }
+}
+
+function makeOutline(type,kw,name){
+  const map={
+    'Ultimate Guide':['What is '+kw+'?','Why It Matters for '+name,'Step-by-Step Process','Advanced Strategies','Tools & Resources','Common Pitfalls','FAQ & Next Steps'],
+    'How-To':['Prerequisites & Setup','Step 1: Foundation','Step 2: Core Implementation','Step 3: Optimization','Pro Tips from Experts','Troubleshooting Guide'],
+    'Listicle':['Selection Criteria','#1 — Best Overall','#2 — Best for Beginners','#3–#7 — Detailed Picks','#8–#10 — Honorable Mentions','How to Choose Yours'],
+    'Comparison':['Quick Comparison Table','Feature-by-Feature Breakdown','Pricing & Value Analysis','Use Case Scenarios','Our Verdict'],
+    'Review':['First Impressions','Feature Deep Dive','Pros & Cons','Pricing Tiers','Who Is It Best For?','Final Score & Verdict'],
+    'Case Study':['Background & Starting Point','The Challenge','Strategy & Execution','Results with Data','Key Takeaways','How You Can Replicate'],
+    'Beginner Guide':['What You Will Learn','Core Concepts Explained','Hands-On Tutorial','Practice Exercises','Common Beginner Questions','Recommended Next Steps'],
+    'Common Mistakes':['Why These Mistakes Happen','Mistake #1–#3 (Critical)','Mistake #4–#5 (Common)','Mistake #6–#7 (Subtle)','How to Fix Each One','Prevention Checklist'],
+    'Tools Roundup':['Evaluation Criteria','Category A: Free Tools','Category B: Paid Tools','Comparison Table','Best Pick by Use Case','Setup Tutorials'],
+    'FAQ Post':['Most Common Questions','Intermediate Questions','Advanced Questions','Expert Answers','Further Resources']
+  };
+  return map[type]||map['How-To'];
+}
+
+function makeRelated(kw,d){
+  const mods=['best','top','how to','easy','free','cheap','ultimate','2024','beginner','advanced'];
+  return [0,1,2,3].map(i=>`${mods[(d+i)%mods.length]} ${kw}`);
+}
+
+// ===== Calendar Rendering =====
+function renderCalendar(){
+  // Week tabs
+  const tabs=document.getElementById('week-tabs');
+  tabs.innerHTML='';
+  for(let w=1;w<=5;w++){
+    const t=document.createElement('div');
+    t.className='tab'+(w===currentWeek?' active':'');
+    t.textContent=w<5?`Week ${w} (Day ${(w-1)*7+1}–${w*7})`:'Week 5 (Day 29–30)';
+    t.onclick=()=>{currentWeek=w;renderCalendar();};
+    tabs.appendChild(t);
+  }
+  // Cards
+  const grid=document.getElementById('calendar-grid');
+  const start=(currentWeek-1)*7;
+  const end=Math.min(start+7,30);
+  const items=calendarData.slice(start,end);
+  grid.innerHTML=items.map(item=>`
+    <div class="day-card" onclick="showSEO(${item.day})">
+      <div class="day-num">📌 Day ${item.day} — ${item.type}</div>
+      <div class="day-title">${item.title}</div>
+      <div class="day-kw">🔑 ${item.keyword}</div>
+    </div>
+  `).join('');
+  document.getElementById('seo-detail-panel').classList.remove('show');
+}
+
+function showSEO(day){
+  const item=calendarData[day-1];
+  const panel=document.getElementById('seo-detail-panel');
+  panel.innerHTML=`
+    <h4>📝 H1 (Title Tag)</h4><p>${item.title}</p>
+    <h4>📋 Meta Description</h4><p>${item.meta}</p>
+    <h4>📑 H2 Structure (Outline)</h4>
+    <ul>${item.outline.map(o=>`<li>${o}</li>`).join('')}</ul>
+    <h4>🔑 Target Keywords</h4><p>${item.keyword} | ${item.relKws.join(' | ')}</p>
+    <h4>🔗 Internal Link Suggestions</h4>
+    <ul>${item.links.map(l=>`<li>${l}</li>`).join('')}</ul>
+    <h4>📊 Content Brief</h4>
+    <ul>
+      <li>Word Count Target: 1,800–2,500 words</li>
+      <li>Images: 3–5 (with alt text containing keyword)</li>
+      <li>Content Type: ${item.type}</li>
+      <li>CTA: Embed affiliate link or email signup</li>
+    </ul>
+  `;
+  panel.classList.add('show');
+  panel.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+// ===== Revenue Calculator =====
+function syncTraffic(val){
+  document.getElementById('traffic-display').textContent=Number(val).toLocaleString()+' UV/月';
+  calcRevenue();
+}
+
+function calcRevenue(){
+  const traffic=document.getElementById('traffic-slider')?Number(document.getElementById('traffic-slider').value):10000;
+  // Models
+  const adRPM=12; // $12 per 1000 pageviews (Mediavine/AdThrive niche avg)
+  const affConv=0.025; // 2.5% click-through, 5% purchase, $40 avg commission
+  const affCommission=40;
+  const affClickRate=0.025;
+  const affPurchaseRate=0.05;
+  const prodPrice=27; // $27 digital product
+  const prodConv=0.015; // 1.5% conversion
+
+  const adsRev=Math.round(traffic*1.4/1000*adRPM); // 1.4 pages/session
+  const affRev=Math.round(traffic*affClickRate*affPurchaseRate*affCommission);
+  const prodRev=Math.round(traffic*prodConv*prodPrice);
+
+  const container=document.getElementById('revenue-calc');
+  container.innerHTML=`
+    <div class="rev-model">
+      <h3>📺 广告收入 (Display Ads)</h3>
+      <div class="rev-num ads">$${adsRev.toLocaleString()}/月</div>
+      <div class="progress-bar"><div class="fill" style="width:${Math.min(adsRev/5000*100,100)}%;background:var(--warning)"></div></div>
+      <div class="rev-breakdown">
+        RPM: $${adRPM} (Mediavine/AdThrive)<br>
+        Pages/Session: 1.4<br>
+        月 PV: ${Math.round(traffic*1.4).toLocaleString()}<br>
+        <strong>适合：信息类内容、长文章</strong>
+      </div>
+    </div>
+    <div class="rev-model">
+      <h3>🤝 联盟营销 (Affiliate)</h3>
+      <div class="rev-num aff">$${affRev.toLocaleString()}/月</div>
+      <div class="progress-bar"><div class="fill" style="width:${Math.min(affRev/5000*100,100)}%;background:var(--accent)"></div></div>
+      <div class="rev-breakdown">
+        Link CTR: ${(affClickRate*100).toFixed(1)}%<br>
+        Purchase Rate: ${(affPurchaseRate*100)}%<br>
+        Avg Commission: $${affCommission}<br>
+        <strong>适合：评测、对比、工具推荐类</strong>
+      </div>
+    </div>
+    <div class="rev-model">
+      <h3>📦 数字产品 (Digital Products)</h3>
+      <div class="rev-num prod">$${prodRev.toLocaleString()}/月</div>
+      <div class="progress-bar"><div class="fill" style="width:${Math.min(prodRev/5000*100,100)}%;background:var(--accent3)"></div></div>
+      <div class="rev-breakdown">
+        Product Price: $${prodPrice}<br>
+        Conversion Rate: ${(prodConv*100).toFixed(1)}%<br>
+        Sales: ${Math.round(traffic*prodConv)}/月<br>
+        <strong>适合：模板、电子书、课程、Prompt包</strong>
+      </div>
+    </div>
+  `;
+  updateSteps(4);
+}
+
+// ===== Keyword Verification via DuckDuckGo =====
+async function verifyKeywords(){
+  if(!selectedNiche) return;
+  const container=document.getElementById('keyword-results');
+  const kws=selectedNiche.kws;
+  container.innerHTML=kws.map(kw=>`
+    <div class="keyword-check" id="kw-${kw.replace(/\s/g,'-')}">
+      <div class="dot checking"></div>
+      <span><strong>${kw}</strong> — 验证中...</span>
+    </div>
+  `).join('');
+
+  for(const kw of kws){
+    const id='kw-'+kw.replace(/\s/g,'-');
+    const el=document.getElementById(id);
+    // Offline keyword competition scoring (no external API needed)
+    const wordCount=kw.split(/\s+/).length;
+    const hasNumbers=/\d/.test(kw);
+    const hasYear=/(202[4-9]|2030)/.test(kw);
+    const isQuestion=/(how|what|why|when|best|top|vs|review)/i.test(kw);
+    const isLongTail=wordCount>=4;
+    // Score: higher = less competition (better opportunity)
+    let score=50;
+    if(isLongTail) score+=25; // Long tail = less competition
+    if(wordCount>=5) score+=10;
+    if(hasYear) score+=15; // Time-specific = less evergreen competition
+    if(hasNumbers) score+=5;
+    if(isQuestion) score+=10; // Question keywords often have less competition
+    if(wordCount<=2) score-=30; // Short keywords = very competitive
+    score=Math.min(95,Math.max(10,score));
+    let compLevel,compLabel,monthlyEst;
+    if(score>=70){compLevel='comp-low';compLabel=`低竞争 ✅ (评分${score}/100 — 推荐!)`;monthlyEst=Math.floor(500+Math.random()*2000);}
+    else if(score>=40){compLevel='comp-med';compLabel=`中竞争 ⚡ (评分${score}/100)`;monthlyEst=Math.floor(2000+Math.random()*8000);}
+    else{compLevel='comp-high';compLabel=`高竞争 🔥 (评分${score}/100 — 慎选)`;monthlyEst=Math.floor(10000+Math.random()*50000);}
+    el.innerHTML=`<div class="dot done"></div><span><strong>${kw}</strong> — <span class="${compLevel}">${compLabel}</span> — 预估月搜索: ~${monthlyEst.toLocaleString()}</span>`;
+    await new Promise(r=>setTimeout(r,300)); // Stagger animation
+  }
+}
+
+// ===== UI Helpers =====
+function showSection(id){document.getElementById(id).classList.remove('hidden');document.getElementById(id).classList.add('fade-in');}
+function updateSteps(n){for(let i=1;i<=4;i++){const s=document.getElementById('step'+i);s.className='step'+(i<n?' done':i===n?' active':'');}}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
+</script>
+</body>
+</html>

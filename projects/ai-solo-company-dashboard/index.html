@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Solo Company Dashboard — 一人公司战情室</title>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --card: #12121a;
+    --border: #1e1e2e;
+    --accent: #6366f1;
+    --green: #22c55e;
+    --yellow: #eab308;
+    --red: #ef4444;
+    --text: #e2e8f0;
+    --muted: #64748b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'SF Pro Display', -apple-system, sans-serif; min-height: 100vh; padding: 20px; }
+  
+  header { text-align: center; padding: 30px 0 20px; }
+  header h1 { font-size: 2rem; font-weight: 700; background: linear-gradient(135deg, #6366f1, #a78bfa, #22d3ee); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  header p { color: var(--muted); margin-top: 8px; font-size: 0.9rem; }
+  
+  .badge { display: inline-block; background: rgba(99,102,241,0.15); border: 1px solid rgba(99,102,241,0.3); color: #a78bfa; padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; margin-top: 8px; }
+  
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 24px; }
+  
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+  .card h2 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 12px; }
+  .card .big { font-size: 2.2rem; font-weight: 700; color: var(--green); }
+  .card .sub { font-size: 0.85rem; color: var(--muted); margin-top: 4px; }
+  
+  .case-list { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
+  .case { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; }
+  .case .info h3 { font-size: 1rem; font-weight: 600; }
+  .case .info p { font-size: 0.82rem; color: var(--muted); margin-top: 4px; }
+  .case .arr { font-weight: 700; font-size: 1.1rem; color: var(--green); text-align: right; }
+  .case .arr small { display: block; font-size: 0.75rem; color: var(--muted); font-weight: 400; }
+  
+  .tools-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 24px; }
+  .tool { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; }
+  .tool .name { font-weight: 600; font-size: 0.9rem; }
+  .tool .desc { font-size: 0.78rem; color: var(--muted); margin-top: 3px; }
+  .tool .tag { display: inline-block; margin-top: 6px; font-size: 0.7rem; padding: 2px 8px; border-radius: 20px; }
+  .tag-build { background: rgba(99,102,241,0.15); color: #a78bfa; }
+  .tag-market { background: rgba(34,197,94,0.15); color: #4ade80; }
+  .tag-ops { background: rgba(234,179,8,0.15); color: #fbbf24; }
+  .tag-support { background: rgba(239,68,68,0.15); color: #f87171; }
+  
+  .model-section { margin-top: 24px; }
+  .model-section h2 { font-size: 1rem; font-weight: 600; margin-bottom: 14px; color: var(--text); }
+  .model-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .model-row:last-child { border-bottom: none; }
+  .model-rank { font-size: 1.2rem; font-weight: 700; color: var(--accent); width: 24px; }
+  .model-info { flex: 1; }
+  .model-info .name { font-weight: 600; font-size: 0.9rem; }
+  .model-info .use { font-size: 0.78rem; color: var(--muted); }
+  .model-bar-wrap { width: 120px; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+  .model-bar { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--accent), #a78bfa); }
+  
+  .ticker { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; margin-top: 24px; }
+  .ticker h2 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 12px; }
+  .ticker-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); }
+  .ticker-row:last-child { border-bottom: none; }
+  .ticker-name { font-weight: 600; }
+  .ticker-price { font-weight: 700; }
+  .up { color: var(--green); }
+  .down { color: var(--red); }
+  
+  footer { text-align: center; margin-top: 30px; color: var(--muted); font-size: 0.78rem; }
+  .shrimp { font-size: 1.2rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="shrimp">🦐🔵</div>
+  <h1>AI Solo Company Dashboard</h1>
+  <p>一人公司战情室 · 2026年AI超级个体时代数据面板</p>
+  <span class="badge">⚡ Live Intel · Updated 2026-05-22</span>
+</header>
+
+<div class="grid">
+  <div class="card">
+    <h2>📈 Solo Founders (YTD 2026)</h2>
+    <div class="big">36.3%</div>
+    <div class="sub">新公司由1人创办 — 同比 +53%</div>
+  </div>
+  <div class="card">
+    <h2>💰 Record Solo ARR</h2>
+    <div class="big">$401M</div>
+    <div class="sub">1年 · 0名员工 · 纯AI运营</div>
+  </div>
+  <div class="card">
+    <h2>🚀 Fastest to $1M ARR</h2>
+    <div class="big">30天</div>
+    <div class="sub">SkillBoss (via Tycoon.us AI CEO)</div>
+  </div>
+  <div class="card">
+    <h2>🔥 AI Pricing Shift</h2>
+    <div class="big">6月</div>
+    <div class="sub">GitHub Copilot → Token用量计费</div>
+  </div>
+</div>
+
+<div style="margin-top: 28px;">
+  <h2 style="font-size:1rem;font-weight:600;margin-bottom:14px;">🏆 真实案例排行 (2026 verified)</h2>
+  <div class="case-list">
+    <div class="case">
+      <div class="info">
+        <h3>Medvi (远程医疗)</h3>
+        <p>Solo founder · AI全流程运营 · 零员工</p>
+      </div>
+      <div class="arr">$401M ARR<small>1年内达成</small></div>
+    </div>
+    <div class="case">
+      <div class="info">
+        <h3>SkillBoss (via Tycoon.us)</h3>
+        <p>AI CEO "Astra" 驱动 · 自动化运营</p>
+      </div>
+      <div class="arr">$1M ARR<small>30天内达成</small></div>
+    </div>
+    <div class="case">
+      <div class="info">
+        <h3>Polsia</h3>
+        <p>AI coding agent构建 · AI广告+客服+修BUG</p>
+      </div>
+      <div class="arr">$800K ARR<small>2个月内达成</small></div>
+    </div>
+    <div class="case">
+      <div class="info">
+        <h3>HeyBoss (via Tycoon.us)</h3>
+        <p>Tycoon平台案例 · AI驱动增长</p>
+      </div>
+      <div class="arr">100K+ Users<small>用户规模</small></div>
+    </div>
+  </div>
+</div>
+
+<div class="tools-grid">
+  <div class="tool">
+    <div class="name">GPT-5.5 Instant</div>
+    <div class="desc">ChatGPT默认模型 · 幻觉 -52.5%</div>
+    <span class="tag tag-build">🏗️ Build</span>
+  </div>
+  <div class="tool">
+    <div class="name">DeepSeek V4-Pro</div>
+    <div class="desc">1.6T/49B · 1M上下文 · 开源最强Agentic</div>
+    <span class="tag tag-build">🏗️ Build</span>
+  </div>
+  <div class="tool">
+    <div class="name">Claude Mythos</div>
+    <div class="desc">安全partner限定 · 网络安全benchmark 83.1%</div>
+    <span class="tag tag-ops">⚙️ Ops</span>
+  </div>
+  <div class="tool">
+    <div class="name">Kimi K2.5</div>
+    <div class="desc">Cursor集成 · $200亿估值 · 国资领投</div>
+    <span class="tag tag-build">🏗️ Build</span>
+  </div>
+  <div class="tool">
+    <div class="name">Tycoon.us</div>
+    <div class="desc">AI CEO + 全AI团队 · 一人公司操作系统</div>
+    <span class="tag tag-ops">⚙️ Ops</span>
+  </div>
+  <div class="tool">
+    <div class="name">GitHub Copilot</div>
+    <div class="desc">6月起→按用量token计费</div>
+    <span class="tag tag-build">🏗️ Build</span>
+  </div>
+</div>
+
+<div class="ticker">
+  <h2>💎 加密市场 (2026-05-21 数据)</h2>
+  <div class="ticker-row">
+    <span class="ticker-name">₿ BTC</span>
+    <span class="ticker-price up">$77,852</span>
+  </div>
+  <div class="ticker-row">
+    <span class="ticker-name">Ξ ETH</span>
+    <span class="ticker-price up">~$2,129</span>
+  </div>
+  <div class="ticker-row">
+    <span class="ticker-name">◎ SOL</span>
+    <span class="ticker-price down">~$86.82</span>
+  </div>
+</div>
+
+<footer>
+  <p>🦐 小蓝虾情报站 · seanliii.github.io · <a href="https://github.com/seanliii" style="color:#6366f1;">@seanliii</a></p>
+  <p style="margin-top:6px;">数据来源：Bing Search · aiagentstore.ai · cryptonews.com · figuringoutwithai.com</p>
+</footer>
+
+</body>
+</html>

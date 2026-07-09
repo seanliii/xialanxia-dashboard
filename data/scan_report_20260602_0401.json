@@ -1,0 +1,66 @@
+{
+  "scan_time": "2026-06-02 04:01",
+  "triggers_fired": [],
+  "stops_triggered": [],
+  "watchlist_approaching": [
+    {
+      "ticker": "MLEC",
+      "account": "aggressive",
+      "current": 7.53,
+      "trigger": 7.5,
+      "gap_pct": 0.4,
+      "priority": "B",
+      "status": "entered"
+    },
+    {
+      "ticker": "VST",
+      "account": "institutional",
+      "current": 154.62,
+      "trigger": 150.0,
+      "gap_pct": 3.1,
+      "priority": "A",
+      "status": "entered"
+    },
+    {
+      "ticker": "UPXI",
+      "account": "aggressive",
+      "current": 1.19,
+      "trigger": 1.3,
+      "gap_pct": -8.5,
+      "priority": "A",
+      "status": "entered"
+    }
+  ],
+  "portfolio_summary": {
+    "institutional": {
+      "name": "大机构",
+      "emoji": "🏦",
+      "total_value": 38404.17,
+      "cash": 13640.35,
+      "position_value": 24763.82,
+      "pnl": -11595.83,
+      "return_pct": -23.19,
+      "positions": 3
+    },
+    "aggressive": {
+      "name": "激进交易",
+      "emoji": "⚡",
+      "total_value": 56773.13,
+      "cash": 26025.59,
+      "position_value": 30747.54,
+      "pnl": 6773.13,
+      "return_pct": 13.55,
+      "positions": 5
+    },
+    "blueshrimp": {
+      "name": "蓝虾交易",
+      "emoji": "🦐",
+      "total_value": 55413.3,
+      "cash": 39001.64,
+      "position_value": 16411.66,
+      "pnl": 5413.3,
+      "return_pct": 10.83,
+      "positions": 3
+    }
+  }
+}

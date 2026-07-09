@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Workflow Remixer 🎛️ — 把3个AI工具拼成你的印钞机</title>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --card: #13131a;
+    --border: #2a2a3a;
+    --accent: #6c63ff;
+    --accent2: #ff6b6b;
+    --green: #00d4aa;
+    --text: #e8e8f0;
+    --muted: #8888aa;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Inter', -apple-system, sans-serif; min-height: 100vh; }
+  header { padding: 24px 20px; text-align: center; border-bottom: 1px solid var(--border); background: linear-gradient(180deg, #13131a 0%, var(--bg) 100%); }
+  header h1 { font-size: 2rem; font-weight: 800; background: linear-gradient(135deg, var(--accent), var(--green)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  header p { color: var(--muted); margin-top: 8px; font-size: 0.95rem; }
+  .tag { display: inline-block; background: var(--accent); color: white; font-size: 0.7rem; padding: 2px 8px; border-radius: 20px; margin-left: 8px; vertical-align: middle; }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 32px 16px; }
+
+  .builder { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 32px; }
+  .builder h2 { font-size: 1.1rem; color: var(--accent); margin-bottom: 16px; }
+  .steps { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .step { flex: 1; min-width: 160px; }
+  .step label { font-size: 0.75rem; color: var(--muted); display: block; margin-bottom: 6px; }
+  .step select { width: 100%; background: var(--bg); border: 1px solid var(--border); color: var(--text); padding: 10px 12px; border-radius: 8px; font-size: 0.9rem; cursor: pointer; }
+  .arrow { color: var(--accent); font-size: 1.5rem; padding-top: 20px; }
+  .generate-btn { width: 100%; margin-top: 16px; padding: 14px; background: linear-gradient(135deg, var(--accent), #9c67ff); color: white; border: none; border-radius: 10px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: opacity 0.2s; }
+  .generate-btn:hover { opacity: 0.85; }
+
+  .result { background: var(--bg); border: 1px solid var(--green); border-radius: 12px; padding: 20px; margin-top: 20px; display: none; }
+  .result h3 { color: var(--green); font-size: 1rem; margin-bottom: 12px; }
+  .result-step { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 12px; }
+  .result-step .num { background: var(--accent); color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0; }
+  .result-step .desc { font-size: 0.9rem; line-height: 1.5; }
+  .profit-badge { display: inline-block; background: rgba(0, 212, 170, 0.1); border: 1px solid var(--green); color: var(--green); padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-top: 12px; }
+
+  .workflows { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+  .workflow-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px; transition: border-color 0.2s; cursor: pointer; }
+  .workflow-card:hover { border-color: var(--accent); }
+  .workflow-card .wf-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+  .workflow-card h3 { font-size: 1rem; font-weight: 700; line-height: 1.4; flex: 1; }
+  .revenue { background: rgba(0, 212, 170, 0.1); border: 1px solid var(--green); color: var(--green); padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; white-space: nowrap; margin-left: 10px; }
+  .tools-chain { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+  .tool-chip { background: var(--bg); border: 1px solid var(--border); color: var(--muted); padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; }
+  .tool-chip + .tool-chip::before { content: "→"; margin-left: -2px; margin-right: 4px; color: var(--accent); font-size: 0.7rem; }
+  .wf-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
+  .section-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 16px; color: var(--text); }
+  .updated { font-size: 0.75rem; color: var(--muted); margin-top: 32px; text-align: center; }
+
+  .score { font-size: 0.7rem; background: rgba(108,99,255,0.1); border: 1px solid var(--accent); color: var(--accent); padding: 2px 8px; border-radius: 20px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>AI Workflow Remixer 🎛️</h1>
+  <p>把 3–4 个 AI 工具拼成你的印钞机 · 2026 最强创业思路来自 @gregisenberg</p>
+</header>
+<div class="container">
+
+  <div class="builder">
+    <h2>🔧 DIY 你的工作流</h2>
+    <div class="steps">
+      <div class="step">
+        <label>第一步：数据来源</label>
+        <select id="s1">
+          <option value="perplexity">Perplexity（实时搜索）</option>
+          <option value="twitter">Twitter/X（社媒监控）</option>
+          <option value="github">GitHub Trending</option>
+          <option value="openclaw">OpenClaw（本地 Agent）</option>
+          <option value="notion">Notion 数据库</option>
+        </select>
+      </div>
+      <div class="arrow">→</div>
+      <div class="step">
+        <label>第二步：AI 处理</label>
+        <select id="s2">
+          <option value="claude">Claude（分析+写作）</option>
+          <option value="gpt4">GPT-4.1（结构化提取）</option>
+          <option value="gemini">Gemini 2.5 Pro（多模态）</option>
+          <option value="kimi">Kimi K2（长文档）</option>
+        </select>
+      </div>
+      <div class="arrow">→</div>
+      <div class="step">
+        <label>第三步：输出/变现</label>
+        <select id="s3">
+          <option value="newsletter">Newsletter（付费订阅）</option>
+          <option value="dashboard">Dashboard SaaS</option>
+          <option value="client">客户报告（外包服务）</option>
+          <option value="social">社媒自动发布</option>
+          <option value="notion2">Notion 知识库</option>
+        </select>
+      </div>
+    </div>
+    <button class="generate-btn" onclick="generateWorkflow()">⚡ 生成我的工作流 SOP</button>
+    <div class="result" id="result">
+      <h3 id="result-title">✅ 你的工作流已生成</h3>
+      <div id="result-steps"></div>
+      <div class="profit-badge" id="profit-badge">💰 预估月收入：$500–2000</div>
+    </div>
+  </div>
+
+  <div class="section-title">🔥 已验证的赚钱 Workflow（2026）</div>
+  <div class="workflows" id="workflows-grid"></div>
+  <div class="updated" id="updated-time"></div>
+</div>
+
+<script>
+const WORKFLOWS = [
+  {
+    title: "AI 选题 → 爆款 Newsletter 流水线",
+    tools: ["Twitter/X", "Claude", "Beehiiv"],
+    revenue: "$2k–8k/月",
+    desc: "用 Twitter 监控行业热词 → Claude 生成 3000 字深度分析 → 发 Beehiiv 付费 Newsletter。已有人跑到 3000+ 付费订阅。",
+    score: 9
+  },
+  {
+    title: "竞品监控 SaaS（卖给 B 端）",
+    tools: ["Perplexity", "GPT-4.1", "Notion API"],
+    revenue: "$5k–15k/月",
+    desc: "每日自动抓竞品新闻/融资/产品更新 → AI 提炼关键变化 → 推送给付费企业客户。单客户 $500+/月。",
+    score: 9
+  },
+  {
+    title: "OpenClaw 多 Agent 索引 + 客服外包",
+    tools: ["OpenClaw", "Claude", "Slack/飞书"],
+    revenue: "$3k–10k/月",
+    desc: "给中小企业部署 OpenClaw 知识库 Agent → 接管 FAQ 客服 → 按坐席收费。Greg Isenberg 模式的典型落地。",
+    score: 10
+  },
+  {
+    title: "GitHub 趋势 → 技术周报 IP",
+    tools: ["GitHub Trending", "Kimi K2", "X/公众号"],
+    revenue: "$1k–5k/月",
+    desc: "自动抓 GitHub 每日热门项目 → Kimi 写中文深度点评 → 发技术 Newsletter/公众号，接广告或 Star 助推。",
+    score: 8
+  },
+  {
+    title: "FDA 新药速报 → Biotech 投资参考",
+    tools: ["Perplexity", "Claude", "Substack"],
+    revenue: "$2k–6k/月",
+    desc: "实时监控 FDA.gov 审批日历 → Claude 解读临床意义 → 付费 Substack。Biotech 投资圈付费意愿极高。",
+    score: 9
+  },
+  {
+    title: "AI 工具测评矩阵 → 联盟变现",
+    tools: ["Tavily", "GPT-4.1", "个人博客"],
+    revenue: "$3k–12k/月",
+    desc: "每周自动搜索新上线 AI 工具 → 生成结构化横评报告 → SEO 发布 + 联盟链接变现。高流量词 CPC $2+。",
+    score: 8
+  }
+];
+
+function renderWorkflows() {
+  const grid = document.getElementById('workflows-grid');
+  grid.innerHTML = WORKFLOWS.map(w => `
+    <div class="workflow-card">
+      <div class="wf-header">
+        <h3>${w.title}</h3>
+        <span class="revenue">${w.revenue}</span>
+      </div>
+      <div class="tools-chain">
+        ${w.tools.map(t => `<span class="tool-chip">${t}</span>`).join('')}
+      </div>
+      <p class="wf-desc">${w.desc}</p>
+      <div style="margin-top:10px"><span class="score">评分 ${w.score}/10</span></div>
+    </div>
+  `).join('');
+  document.getElementById('updated-time').textContent = `数据更新：2026-05-19 19:00 CST · 灵感来源: @gregisenberg (64万粉)`;
+}
+
+const WORKFLOW_SCRIPTS = {
+  "perplexity-claude-newsletter": {
+    title: "实时情报 → 付费 Newsletter",
+    steps: [
+      { n:1, t:"Perplexity 每日搜索行业关键词，获取最新动态（约 3–5 条高质量来源）" },
+      { n:2, t:"Claude 提炼摘要 + 生成 3000 字深度分析（含观点、影响、行动建议）" },
+      { n:3, t:"自动推送 Beehiiv/Substack，开通付费订阅（$10–29/月），目标 300 付费用户" }
+    ],
+    profit: "$500–3000/月"
+  },
+  "perplexity-claude-client": {
+    title: "竞品监控 → B 端客户报告",
+    steps: [
+      { n:1, t:"Perplexity 每日自动追踪指定竞品的新闻、融资、产品更新" },
+      { n:2, t:"Claude 提炼「关键变化 + 对客户的影响 + 建议行动」，生成结构化周报" },
+      { n:3, t:"发送给付费企业客户（$500–2000/月/家），服务 5–10 家可年入 $30k+" }
+    ],
+    profit: "$2000–10000/月"
+  },
+  "openclaw-claude-dashboard": {
+    title: "OpenClaw Agent 团队 → SaaS Dashboard",
+    steps: [
+      { n:1, t:"OpenClaw 运行多 Agent 团队：数据收集 Agent + 分析 Agent + 报告 Agent" },
+      { n:2, t:"Claude 作为主 Brain，协调各 Agent 分工，汇总结果到结构化 JSON" },
+      { n:3, t:"实时 Dashboard 展示数据（GitHub Pages 或 Vercel），向客户收取 SaaS 订阅费" }
+    ],
+    profit: "$3000–15000/月"
+  }
+};
+
+function generateWorkflow() {
+  const s1 = document.getElementById('s1').value;
+  const s2 = document.getElementById('s2').value;
+  const s3 = document.getElementById('s3').value;
+  
+  const key = `${s1}-${s2}-${s3}`;
+  const preset = WORKFLOW_SCRIPTS[key];
+  
+  const toolNames = {
+    perplexity: "Perplexity", twitter: "Twitter/X", github: "GitHub Trending",
+    openclaw: "OpenClaw", notion: "Notion",
+    claude: "Claude", gpt4: "GPT-4.1", gemini: "Gemini 2.5", kimi: "Kimi K2",
+    newsletter: "Newsletter 付费订阅", dashboard: "Dashboard SaaS",
+    client: "客户报告", social: "社媒自动发布", notion2: "Notion 知识库"
+  };
+  
+  const result = document.getElementById('result');
+  const stepsDiv = document.getElementById('result-steps');
+  const titleEl = document.getElementById('result-title');
+  const profitEl = document.getElementById('profit-badge');
+  
+  if (preset) {
+    titleEl.textContent = `✅ ${preset.title}`;
+    stepsDiv.innerHTML = preset.steps.map(s => `
+      <div class="result-step">
+        <div class="num">${s.n}</div>
+        <div class="desc">${s.t}</div>
+      </div>
+    `).join('');
+    profitEl.textContent = `💰 预估月收入：${preset.profit}`;
+  } else {
+    titleEl.textContent = `✅ 你的定制工作流：${toolNames[s1]} → ${toolNames[s2]} → ${toolNames[s3]}`;
+    stepsDiv.innerHTML = `
+      <div class="result-step"><div class="num">1</div><div class="desc">用 <strong>${toolNames[s1]}</strong> 自动化获取目标领域最新数据/内容（建议每日定时执行）</div></div>
+      <div class="result-step"><div class="num">2</div><div class="desc">通过 <strong>${toolNames[s2]}</strong> 处理原始数据：提炼关键洞察、生成结构化输出、删除噪音</div></div>
+      <div class="result-step"><div class="num">3</div><div class="desc">产出交付给 <strong>${toolNames[s3]}</strong>，通过订阅/广告/客户服务变现，建议先找 5 个种子付费用户验证</div></div>
+    `;
+    profitEl.textContent = `💰 预估月收入：$500–5000（取决于执行力）`;
+  }
+  
+  result.style.display = 'block';
+  result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+renderWorkflows();
+</script>
+</body>
+</html>

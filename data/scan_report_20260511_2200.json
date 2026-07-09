@@ -1,0 +1,66 @@
+{
+  "scan_time": "2026-05-11 22:00",
+  "triggers_fired": [],
+  "stops_triggered": [],
+  "watchlist_approaching": [
+    {
+      "ticker": "VST",
+      "account": "institutional",
+      "current": 147.72,
+      "trigger": 150.0,
+      "gap_pct": -1.5,
+      "priority": "A",
+      "status": "entered"
+    },
+    {
+      "ticker": "SOFI",
+      "account": "institutional",
+      "current": 15.75,
+      "trigger": 16.0,
+      "gap_pct": -1.6,
+      "priority": "A",
+      "status": "entered"
+    },
+    {
+      "ticker": "UPXI",
+      "account": "aggressive",
+      "current": 1.39,
+      "trigger": 1.3,
+      "gap_pct": 6.9,
+      "priority": "A",
+      "status": "entered"
+    }
+  ],
+  "portfolio_summary": {
+    "institutional": {
+      "name": "大机构",
+      "emoji": "🏦",
+      "total_value": 30908.25,
+      "cash": 15484.34,
+      "position_value": 15423.91,
+      "pnl": -19091.75,
+      "return_pct": -38.18,
+      "positions": 2
+    },
+    "aggressive": {
+      "name": "激进交易",
+      "emoji": "⚡",
+      "total_value": 41815.86,
+      "cash": 30064.65,
+      "position_value": 11751.21,
+      "pnl": -8184.14,
+      "return_pct": -16.37,
+      "positions": 2
+    },
+    "blueshrimp": {
+      "name": "蓝虾交易",
+      "emoji": "🦐",
+      "total_value": 53416.84,
+      "cash": 42999.24,
+      "position_value": 10417.6,
+      "pnl": 3416.84,
+      "return_pct": 6.83,
+      "positions": 2
+    }
+  }
+}

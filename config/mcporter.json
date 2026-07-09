@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "exa": {
+      "baseUrl": "https://mcp.exa.ai/mcp"
+    },
+    "xialanxia-kg": {
+      "command": "python3",
+      "args": ["/root/.openclaw/workspace/knowledge-graph-mcp/server.py"]
+    }
+  },
+  "imports": []
+}

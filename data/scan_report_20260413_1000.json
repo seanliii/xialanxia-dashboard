@@ -1,0 +1,93 @@
+{
+  "scan_time": "2026-04-13 10:00",
+  "triggers_fired": [],
+  "stops_triggered": [],
+  "watchlist_approaching": [
+    {
+      "ticker": "SOFI",
+      "account": "institutional",
+      "current": 16.22,
+      "trigger": 16.0,
+      "gap_pct": 1.4,
+      "priority": "A",
+      "status": "entered"
+    },
+    {
+      "ticker": "VST",
+      "account": "institutional",
+      "current": 154.73,
+      "trigger": 150.0,
+      "gap_pct": 3.2,
+      "priority": "A",
+      "status": "entered"
+    },
+    {
+      "ticker": "METC",
+      "account": "aggressive",
+      "current": 13.55,
+      "trigger": 13.0,
+      "gap_pct": 4.2,
+      "priority": "B",
+      "status": "watch"
+    },
+    {
+      "ticker": "MLEC",
+      "account": "aggressive",
+      "current": 7.11,
+      "trigger": 7.5,
+      "gap_pct": -5.2,
+      "priority": "B",
+      "status": "entered"
+    },
+    {
+      "ticker": "PLTR",
+      "account": "blueshrimp",
+      "current": 128.06,
+      "trigger": 120.0,
+      "gap_pct": 6.7,
+      "priority": "A",
+      "status": "watch"
+    },
+    {
+      "ticker": "CVNA",
+      "account": "institutional",
+      "current": 336.31,
+      "trigger": 310.0,
+      "gap_pct": 8.5,
+      "priority": "A",
+      "status": "entered"
+    }
+  ],
+  "portfolio_summary": {
+    "institutional": {
+      "name": "大机构",
+      "emoji": "🏦",
+      "total_value": 40486.33,
+      "cash": 9218.54,
+      "position_value": 31267.79,
+      "pnl": -9513.67,
+      "return_pct": -19.03,
+      "positions": 4
+    },
+    "aggressive": {
+      "name": "激进交易",
+      "emoji": "⚡",
+      "total_value": 45565.68,
+      "cash": 27728.43,
+      "position_value": 17837.25,
+      "pnl": -4434.32,
+      "return_pct": -8.87,
+      "positions": 4
+    },
+    "blueshrimp": {
+      "name": "蓝虾交易",
+      "emoji": "🦐",
+      "total_value": 49390.46,
+      "cash": 42999.24,
+      "position_value": 6391.22,
+      "pnl": -609.54,
+      "return_pct": -1.22,
+      "positions": 2
+    }
+  }
+}

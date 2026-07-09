@@ -1,0 +1,22 @@
+[
+  {"id":"01","name":"xianyu-auto-reply","title":"闲鱼自动回复接单虾","type":"赚钱","desc":"自动回复闲鱼买家询问，全天候接单，月均多接28笔"},
+  {"id":"02","name":"designer-quote-bot","title":"设计师报价合同虾","type":"赚钱","desc":"自动生成报价单和合同草稿，每单省2小时行政时间"},
+  {"id":"03","name":"lawyer-intake-filter","title":"律师咨询预筛选虾","type":"赚钱","desc":"自动过滤无效咨询，让付费客户翻倍"},
+  {"id":"04","name":"wechat-content-publisher","title":"公众号发布日历虾","type":"赚钱","desc":"一键排版发布，自动同步小红书，月多发4篇"},
+  {"id":"05","name":"ecom-product-research","title":"电商选品调研虾","type":"赚钱","desc":"自动分析竞品数据，选品成功率从30%提升到55%"},
+  {"id":"06","name":"course-qa-bot","title":"知识付费答疑虾","type":"赚钱","desc":"7x24小时学员答疑，复购率提升25%"},
+  {"id":"07","name":"community-manager","title":"私域社群运营虾","type":"赚钱","desc":"自动运营500人社群，活跃度从15%提升到40%"},
+  {"id":"08","name":"agency-proposal-bot","title":"代运营提案虾","type":"赚钱","desc":"自动生成定制提案，月均新签从1.25个提升到4.5个"},
+  {"id":"09","name":"message-triage","title":"消息批量处理虾","type":"干活","desc":"自动分类过滤消息，每日节省1.5小时"},
+  {"id":"10","name":"meeting-notes","title":"会议纪要自动生成虾","type":"干活","desc":"会后5分钟出标准纪要，准确率100%"},
+  {"id":"11","name":"competitor-monitor","title":"竞品监控日报虾","type":"干活","desc":"每日自动扫描竞品变化，次日即知"},
+  {"id":"12","name":"weekly-report","title":"周报自动生成虾","type":"干活","desc":"每天记一句话，周五5分钟出完整周报"},
+  {"id":"13","name":"code-review-assistant","title":"Code Review辅助虾","type":"干活","desc":"自动初审PR，低级错误漏审率降为0"},
+  {"id":"14","name":"data-report-automation","title":"数据报表自动化虾","type":"干活","desc":"每周自动跑数据，报表3小时缩到10分钟"},
+  {"id":"15","name":"task-reminder","title":"智能任务提醒虾","type":"干活","desc":"随口说一句就记住，漏事情接近0"},
+  {"id":"16","name":"travel-planner","title":"旅行规划虾","type":"乐乐","desc":"说出偏好，10分钟出完整行程，比自己研究还好"},
+  {"id":"17","name":"fitness-tracker","title":"健身打卡陪跑虾","type":"乐乐","desc":"轻松督促不唠叨，连续打卡2个月"},
+  {"id":"18","name":"family-budget","title":"家庭账本虾","type":"乐乐","desc":"说一句话就记账，坚持3个月发现隐藏消费"},
+  {"id":"19","name":"teammate-mode","title":"队友模式配置虾","type":"乐乐","desc":"从工具思维到队友思维，2小时配置，永久受益"},
+  {"id":"20","name":"showcase-copier","title":"全球案例拆解虾","type":"乐乐","desc":"5个全球OpenClaw真实案例，可直接复现"}
+]

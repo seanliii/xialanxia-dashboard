@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG-UI Agent Playground 🤖</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0f; color: #e0e0e0; min-height: 100vh; }
+  
+  .hero {
+    background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #0d1117 100%);
+    border-bottom: 1px solid #30363d;
+    padding: 40px 20px 30px;
+    text-align: center;
+  }
+  .hero h1 { font-size: 2rem; font-weight: 700; color: #f0f6fc; margin-bottom: 8px; }
+  .hero h1 span { color: #58a6ff; }
+  .hero p { color: #8b949e; font-size: 0.95rem; margin-bottom: 6px; }
+  .badge { display: inline-block; background: #1f6feb22; border: 1px solid #1f6feb; color: #58a6ff; padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; margin: 4px 3px; }
+  
+  .news-banner {
+    background: #161b22; border: 1px solid #21262d; margin: 20px auto; max-width: 800px; border-radius: 10px; padding: 14px 20px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .news-dot { width: 8px; height: 8px; background: #3fb950; border-radius: 50%; flex-shrink: 0; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  .news-text { font-size: 0.85rem; color: #8b949e; }
+  .news-text strong { color: #58a6ff; }
+  
+  .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+  
+  .config-card {
+    background: #161b22; border: 1px solid #30363d; border-radius: 12px; padding: 20px; margin-bottom: 20px;
+  }
+  .config-card h3 { color: #f0f6fc; font-size: 0.95rem; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  .config-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+  label { color: #8b949e; font-size: 0.8rem; display: block; margin-bottom: 4px; }
+  input, select, textarea {
+    background: #0d1117; border: 1px solid #30363d; color: #e0e0e0; border-radius: 6px;
+    padding: 8px 12px; font-size: 0.85rem; width: 100%; outline: none;
+    transition: border-color 0.2s;
+  }
+  input:focus, select:focus, textarea:focus { border-color: #58a6ff; }
+  .field-group { flex: 1; min-width: 200px; }
+  
+  .chat-area {
+    background: #161b22; border: 1px solid #30363d; border-radius: 12px; overflow: hidden; margin-bottom: 20px;
+  }
+  .chat-header {
+    padding: 12px 20px; background: #1c2128; border-bottom: 1px solid #30363d;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .chat-header .title { font-size: 0.9rem; color: #f0f6fc; display: flex; align-items: center; gap: 8px; }
+  .status-dot { width: 7px; height: 7px; border-radius: 50%; background: #3fb950; }
+  .status-dot.thinking { background: #f0883e; animation: pulse 1s infinite; }
+  .status-dot.error { background: #f85149; }
+  .chat-messages { height: 380px; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+  .chat-messages::-webkit-scrollbar { width: 4px; }
+  .chat-messages::-webkit-scrollbar-track { background: transparent; }
+  .chat-messages::-webkit-scrollbar-thumb { background: #30363d; border-radius: 2px; }
+  
+  .msg { max-width: 85%; padding: 10px 14px; border-radius: 10px; font-size: 0.88rem; line-height: 1.5; }
+  .msg.user { align-self: flex-end; background: #1f6feb; color: #fff; border-radius: 10px 10px 2px 10px; }
+  .msg.assistant { align-self: flex-start; background: #21262d; color: #e0e0e0; border-radius: 10px 10px 10px 2px; border: 1px solid #30363d; }
+  .msg.system { align-self: center; background: #161b22; color: #58a6ff; font-size: 0.78rem; padding: 5px 12px; border-radius: 20px; border: 1px solid #1f6feb33; }
+  .msg.thinking { align-self: flex-start; background: #161b22; color: #8b949e; font-size: 0.82rem; padding: 8px 14px; border-radius: 10px 10px 10px 2px; border: 1px solid #30363d; font-style: italic; }
+  
+  .chat-input-row { padding: 12px 16px; border-top: 1px solid #30363d; display: flex; gap: 10px; align-items: flex-end; }
+  .chat-input-row textarea { resize: none; height: 42px; max-height: 120px; flex: 1; border-radius: 8px; }
+  .send-btn {
+    background: #1f6feb; color: #fff; border: none; border-radius: 8px; padding: 10px 18px;
+    cursor: pointer; font-size: 0.85rem; font-weight: 600; transition: background 0.2s; flex-shrink: 0; height: 42px;
+  }
+  .send-btn:hover { background: #388bfd; }
+  .send-btn:disabled { background: #30363d; color: #8b949e; cursor: not-allowed; }
+  
+  .presets { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+  .preset-btn {
+    background: #21262d; border: 1px solid #30363d; color: #8b949e; padding: 4px 10px;
+    border-radius: 20px; font-size: 0.78rem; cursor: pointer; transition: all 0.2s;
+  }
+  .preset-btn:hover { border-color: #58a6ff; color: #58a6ff; }
+  
+  .protocol-viz {
+    background: #161b22; border: 1px solid #30363d; border-radius: 12px; padding: 20px; margin-bottom: 20px;
+  }
+  .protocol-viz h3 { color: #f0f6fc; font-size: 0.9rem; margin-bottom: 14px; }
+  .events-log { height: 120px; overflow-y: auto; font-family: monospace; font-size: 0.75rem; color: #8b949e; background: #0d1117; border-radius: 6px; padding: 10px; }
+  .event-line { margin-bottom: 3px; }
+  .event-line .ev-time { color: #3fb950; }
+  .event-line .ev-type { color: #f0883e; font-weight: bold; }
+  .event-line .ev-data { color: #79c0ff; }
+  
+  .footer { text-align: center; padding: 20px; color: #484f58; font-size: 0.8rem; }
+  .footer a { color: #58a6ff; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>🤖 <span>AG-UI</span> Agent Playground</h1>
+  <p>CopilotKit AG-UI 协议实验台 — 应用原生 AI Agent 对话嵌入演示</p>
+  <p style="margin-top:8px">
+    <span class="badge">AG-UI Protocol</span>
+    <span class="badge">App-Native Agents</span>
+    <span class="badge">CopilotKit $27M Series A</span>
+    <span class="badge">Google·Microsoft·Amazon adopted</span>
+  </p>
+</div>
+
+<div style="max-width:800px;margin:0 auto;padding:0 20px">
+  <div class="news-banner">
+    <div class="news-dot"></div>
+    <div class="news-text">
+      <strong>📰 最新动态：</strong> CopilotKit 完成 $27M A 轮融资（Glilot Capital + NFX + SignalFire 领投），Google/Microsoft/Amazon 已采纳其 AG-UI 协议。该协议定义了 Agent、用户和应用程序之间的实时同步规范，配合 MCP + A2A 形成三角协议体系 — <strong>2026.05.05</strong>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  
+  <!-- Config -->
+  <div class="config-card">
+    <h3>⚙️ Agent 配置</h3>
+    <div class="config-row">
+      <div class="field-group" style="flex:2">
+        <label>System Prompt（定义 Agent 角色）</label>
+        <textarea id="systemPrompt" rows="2" style="resize:none">你是一个专注于 AI Agent 和创业领域的智能助手。请用简洁、有洞察力的方式回答问题，适当引用最新的行业动态。</textarea>
+      </div>
+      <div class="field-group" style="flex:1">
+        <label>模型</label>
+        <select id="modelSelect">
+          <option value="gpt-4.1-mini">GPT-4.1 Mini（快）</option>
+          <option value="gpt-4.1" selected>GPT-4.1（推荐）</option>
+          <option value="claude-sonnet-4-6">Claude Sonnet 4.6</option>
+          <option value="gemini-2.5-pro">Gemini 2.5 Pro</option>
+        </select>
+      </div>
+    </div>
+    <div class="config-row">
+      <div class="field-group">
+        <label>API Key（AISA.one 兼容）</label>
+        <input type="password" id="apiKey" placeholder="sk-xxxx（留空使用演示模式）" />
+      </div>
+      <div class="field-group">
+        <label>AG-UI 事件流模式</label>
+        <select id="streamMode">
+          <option value="simulated">模拟流（演示）</option>
+          <option value="real">真实 SSE 流</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chat -->
+  <div class="chat-area">
+    <div class="chat-header">
+      <div class="title">
+        <div class="status-dot" id="statusDot"></div>
+        <span id="statusText">Agent 就绪</span>
+      </div>
+      <span style="font-size:0.78rem;color:#484f58">AG-UI Protocol v0.1</span>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="msg system">AG-UI 连接已建立 — 应用原生 Agent 模式</div>
+      <div class="msg assistant">👋 我是你的 AG-UI Agent！基于 CopilotKit 的 AG-UI 协议，我可以深度嵌入任何应用界面，实现实时状态同步和动态 UI 生成。<br><br>试着问我：AI Agent 创业机会、AG-UI vs MCP 区别、或者任何你好奇的话题 🚀</div>
+    </div>
+    <div style="padding: 8px 16px 0">
+      <div class="presets">
+        <span style="color:#484f58;font-size:0.78rem;align-self:center">快速提问：</span>
+        <button class="preset-btn" onclick="setPreset(this)">AG-UI 协议是什么？</button>
+        <button class="preset-btn" onclick="setPreset(this)">Sierra $15B 融资说明了什么？</button>
+        <button class="preset-btn" onclick="setPreset(this)">一人公司如何用 AI Agent 做到 $1M ARR？</button>
+        <button class="preset-btn" onclick="setPreset(this)">OpenClaw vs Claude Code 哪个更强？</button>
+        <button class="preset-btn" onclick="setPreset(this)">2026 AI Agent 创业最大机会在哪里？</button>
+      </div>
+    </div>
+    <div class="chat-input-row">
+      <textarea id="userInput" placeholder="输入消息，按 Enter 发送（Shift+Enter 换行）..." onkeydown="handleKey(event)"></textarea>
+      <button class="send-btn" id="sendBtn" onclick="sendMessage()">发送 ↑</button>
+    </div>
+  </div>
+
+  <!-- AG-UI Protocol Visualizer -->
+  <div class="protocol-viz">
+    <h3>📡 AG-UI 事件流（实时可视化）</h3>
+    <div class="events-log" id="eventsLog">
+      <div class="event-line"><span class="ev-time">[init]</span> <span class="ev-type">AGENT_READY</span> <span class="ev-data">{"status":"connected","protocol":"ag-ui-v0.1"}</span></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  复刻自 <a href="https://www.copilotkit.ai/ag-ui" target="_blank">CopilotKit AG-UI Protocol</a> · 
+  由 <strong>小蓝虾🦐</strong> 构建 · 
+  <a href="https://seanliii.github.io/agui-agent-playground/" target="_blank">在线预览</a>
+</div>
+
+<script>
+const messages = [];
+
+// AG-UI Event simulator
+function logEvent(type, data) {
+  const log = document.getElementById('eventsLog');
+  const now = new Date().toLocaleTimeString('zh-CN', {hour12:false});
+  const line = document.createElement('div');
+  line.className = 'event-line';
+  line.innerHTML = `<span class="ev-time">[${now}]</span> <span class="ev-type">${type}</span> <span class="ev-data">${JSON.stringify(data).substring(0,80)}</span>`;
+  log.appendChild(line);
+  log.scrollTop = log.scrollHeight;
+}
+
+function setStatus(state) {
+  const dot = document.getElementById('statusDot');
+  const txt = document.getElementById('statusText');
+  dot.className = 'status-dot' + (state==='thinking' ? ' thinking' : state==='error' ? ' error' : '');
+  txt.textContent = state==='thinking' ? 'Agent 思考中...' : state==='error' ? '连接异常' : 'Agent 就绪';
+}
+
+function addMsg(role, content) {
+  const container = document.getElementById('chatMessages');
+  const div = document.createElement('div');
+  div.className = `msg ${role}`;
+  div.textContent = content;
+  container.appendChild(div);
+  container.scrollTop = container.scrollHeight;
+  return div;
+}
+
+function setPreset(btn) {
+  document.getElementById('userInput').value = btn.textContent;
+}
+
+function handleKey(e) {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendMessage();
+  }
+}
+
+// AG-UI simulated responses (demo mode)
+const demoResponses = {
+  "ag-ui": "**AG-UI（Agent-User Interface）协议**是 CopilotKit 提出的开放标准，定义了 AI Agent 与应用界面之间的实时事件流通信规范。\n\n核心价值：\n🔄 **双向实时同步** — Agent 状态变化可以立即反映在 UI 上\n🧩 **应用原生嵌入** — 不是弹窗式聊天框，而是深度融入产品逻辑\n⚡ **与 MCP + A2A 互补** — MCP 管工具，A2A 管 Agent 间通信，AG-UI 管 Agent-用户交互\n\n2026年5月，Google、Microsoft、Amazon 已相继采纳此协议。",
+  "sierra": "**Sierra 的 $950M Series E（$15.8B 估值）**释放了几个重要信号：\n\n1️⃣ **企业 AI Agent 终于不是 POC** — 7 个季度做到 $150M ARR，Fortune 50 客户占近半\n2️⃣ **垂直化 > 通用化** — Sierra 专注保险、金融、零售场景，不做通用 Agent\n3️⃣ **Tiger Global + GV 同时押注** — 说明 Enterprise AI 已进入 infrastructure 级别资本关注\n\n底层逻辑：企业愿意为能处理真实业务（抵押贷款再融资、保险理赔）的 Agent 付大钱，而不是玩具级问答机器人。",
+  "一人": "**2026 年一人公司 $1M ARR 公式**：\n\n🛠️ **技术栈**：OpenClaw（自动化）+ Vercel（部署）+ Supabase（数据）\n💰 **商业模式**：Niche SaaS + AI 加持，锁定特定行业痛点\n🤖 **运营公式**：AI 写代码 → AI 做客服 → AI 做内容营销\n\n真实案例：Medvi（创新药 telehealth）0 员工 1 年 $401M ARR，Tycoon.us AI CEO Astra 30 天 $1M ARR。\n\n**关键洞察**：2026 年 36.3% 新公司由一人创办，比 2024 年增长 53%。超级个体时代已来。",
+  "openclaw": "**OpenClaw vs Claude Code 2026 对比**：\n\n⚡ **OpenClaw 优势**：工具链完整、技能市场丰富、长任务自主执行、跨平台 Agent\n🧠 **Claude Code 优势**：多文件重构质量更高、代码推理更深、follow-up 更少\n\n实测结论（Windows 11 24H2）：OpenClaw 更快产出 PR-ready 代码，Claude Code 在复杂重构场景胜出。\n\n📊 **生态指标**：OpenClaw 84 天突破 31.5 万 GitHub Stars，超越 React 十年记录，国内 15+ 大厂入场。",
+  "default": "这是个好问题！基于 AG-UI 协议的应用原生 Agent 模式，允许我实时感知应用状态并动态更新 UI。\n\n2026 年 AI Agent 创业的核心机会：\n\n🏆 **客户服务 Agent**：估值溢价 219x（行业均值 80x）\n🔧 **AI Agent 基础设施**：CopilotKit、工具链、安全沙箱\n💊 **垂直行业 Agent**：医疗、金融、法律\n🦾 **一人公司 OS**：AI 赋能超级个体\n\n最大机会在于：能让企业将现有工作流完全交给 Agent 自主执行的基础设施层。"
+};
+
+async function sendMessage() {
+  const input = document.getElementById('userInput');
+  const text = input.value.trim();
+  if (!text) return;
+  
+  input.value = '';
+  document.getElementById('sendBtn').disabled = true;
+  setStatus('thinking');
+  
+  // Add user message
+  addMsg('user', text);
+  messages.push({role:'user', content:text});
+  logEvent('USER_MESSAGE', {content: text.substring(0,30)+'...'});
+  
+  // Add thinking indicator
+  const thinkingDiv = addMsg('thinking', '⚡ AG-UI 事件流处理中...');
+  logEvent('AGENT_THINKING', {model: document.getElementById('modelSelect').value});
+  
+  const apiKey = document.getElementById('apiKey').value.trim();
+  const mode = document.getElementById('streamMode').value;
+  const systemPrompt = document.getElementById('systemPrompt').value;
+  const model = document.getElementById('modelSelect').value;
+  
+  // Small delay to simulate processing
+  await new Promise(r => setTimeout(r, 800));
+  
+  if (!apiKey || mode === 'simulated') {
+    // Demo mode
+    thinkingDiv.remove();
+    logEvent('AGENT_STREAM_START', {mode:'simulated'});
+    
+    const lowerText = text.toLowerCase();
+    let response = demoResponses.default;
+    if (lowerText.includes('ag-ui') || lowerText.includes('协议')) response = demoResponses['ag-ui'];
+    else if (lowerText.includes('sierra') || lowerText.includes('融资')) response = demoResponses['sierra'];
+    else if (lowerText.includes('一人') || lowerText.includes('solo') || lowerText.includes('arr')) response = demoResponses['一人'];
+    else if (lowerText.includes('openclaw') || lowerText.includes('claude code')) response = demoResponses['openclaw'];
+    
+    // Simulate streaming
+    const msgDiv = addMsg('assistant', '');
+    let i = 0;
+    const words = response.split('');
+    const interval = setInterval(() => {
+      if (i < words.length) {
+        msgDiv.textContent += words[i++];
+        document.getElementById('chatMessages').scrollTop = 99999;
+        if (i % 30 === 0) logEvent('AGENT_STREAM_CHUNK', {chars:i});
+      } else {
+        clearInterval(interval);
+        logEvent('AGENT_STREAM_END', {total_chars:i});
+        setStatus('ready');
+        document.getElementById('sendBtn').disabled = false;
+      }
+    }, 15);
+    messages.push({role:'assistant', content:response});
+    
+  } else {
+    // Real API call
+    try {
+      const resp = await fetch('https://api.aisa.one/v1/chat/completions', {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model, stream: true,
+          messages: [{role:'system',content:systemPrompt}, ...messages]
+        })
+      });
+      
+      thinkingDiv.remove();
+      const msgDiv = addMsg('assistant', '');
+      const reader = resp.body.getReader();
+      const decoder = new TextDecoder();
+      let fullText = '';
+      
+      logEvent('AGENT_STREAM_START', {model, streaming:true});
+      
+      while (true) {
+        const {done, value} = await reader.read();
+        if (done) break;
+        const chunk = decoder.decode(value);
+        const lines = chunk.split('\n').filter(l => l.startsWith('data:'));
+        for (const line of lines) {
+          try {
+            const data = JSON.parse(line.slice(5));
+            const delta = data.choices?.[0]?.delta?.content || '';
+            fullText += delta;
+            msgDiv.textContent = fullText;
+            document.getElementById('chatMessages').scrollTop = 99999;
+          } catch(e) {}
+        }
+      }
+      logEvent('AGENT_STREAM_END', {chars: fullText.length});
+      messages.push({role:'assistant', content:fullText});
+    } catch(e) {
+      thinkingDiv.remove();
+      addMsg('assistant', '⚠️ API 调用失败：' + e.message + '\n\n切换到演示模式，请清空 API Key 后重试。');
+      logEvent('AGENT_ERROR', {error: e.message});
+      setStatus('error');
+    } finally {
+      setStatus('ready');
+      document.getElementById('sendBtn').disabled = false;
+    }
+  }
+}
+</script>
+</body>
+</html>

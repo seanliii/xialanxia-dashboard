@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Job Hunter | 让虾帮你海投 — 搜岗位、写简历、生成Cover Letter</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --bg: #0f0f1a; --surface: #1a1a2e; --surface-2: #252540; --primary: #4f46e5; --accent: #22d3ee; --success: #34d399; --warning: #fbbf24; --text: #f1f5f9; --muted: #94a3b8; --border: #2e2e4a; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+        .container { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+        
+        header { padding: 16px 0; border-bottom: 1px solid var(--border); }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.3rem; font-weight: 700; }
+        .logo span { color: var(--accent); }
+        .tag { background: var(--warning); color: #000; padding: 3px 10px; border-radius: 10px; font-size: 0.7rem; font-weight: 700; }
+
+        .hero { text-align: center; padding: 50px 0 30px; }
+        .hero h1 { font-size: 2.4rem; font-weight: 800; margin-bottom: 14px; background: linear-gradient(135deg, #fff 30%, var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { color: var(--muted); font-size: 1.05rem; max-width: 600px; margin: 0 auto; }
+        .stats { display: flex; justify-content: center; gap: 30px; margin-top: 24px; }
+        .stat { text-align: center; }
+        .stat .num { font-size: 1.8rem; font-weight: 800; color: var(--accent); }
+        .stat .label { font-size: 0.75rem; color: var(--muted); }
+
+        .main-tool { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 32px; margin: 30px 0; }
+        .main-tool h2 { text-align: center; margin-bottom: 24px; font-size: 1.2rem; }
+        
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px; }
+        .form-grid.full { grid-template-columns: 1fr; }
+        label { font-size: 0.8rem; color: var(--muted); margin-bottom: 4px; display: block; }
+        input, textarea, select { width: 100%; padding: 12px 14px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text); font-size: 0.95rem; }
+        input:focus, textarea:focus, select:focus { outline: none; border-color: var(--primary); }
+        textarea { min-height: 80px; resize: vertical; }
+        
+        .btn-primary { width: 100%; padding: 14px; background: var(--primary); color: white; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.2s; margin-top: 8px; }
+        .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(79,70,229,0.3); }
+        .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+        .output { display: none; margin-top: 24px; }
+        .output.active { display: block; }
+        .output-tabs { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+        .tab { padding: 8px 16px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface-2); color: var(--muted); cursor: pointer; font-size: 0.85rem; }
+        .tab.active { background: var(--primary); color: white; border-color: var(--primary); }
+        .tab-content { background: var(--surface-2); border-radius: 8px; padding: 20px; border: 1px solid var(--border); max-height: 500px; overflow-y: auto; }
+        .tab-content h3 { color: var(--accent); margin-bottom: 12px; font-size: 1rem; }
+        .job-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px; margin-bottom: 10px; }
+        .job-card h4 { color: var(--text); font-size: 0.95rem; }
+        .job-card .meta { color: var(--muted); font-size: 0.8rem; margin: 4px 0; }
+        .job-card .match { color: var(--success); font-weight: 600; font-size: 0.85rem; }
+        
+        .cover-letter { white-space: pre-wrap; color: var(--muted); font-size: 0.9rem; line-height: 1.8; }
+        .resume-section { margin-bottom: 16px; }
+        .resume-section h4 { color: var(--accent); font-size: 0.9rem; margin-bottom: 6px; border-bottom: 1px solid var(--border); padding-bottom: 4px; }
+        .resume-section p, .resume-section li { color: var(--muted); font-size: 0.85rem; }
+        .resume-section ul { padding-left: 16px; }
+
+        .copy-btn { margin-top: 10px; padding: 8px 16px; background: transparent; border: 1px solid var(--border); color: var(--text); border-radius: 6px; cursor: pointer; font-size: 0.8rem; }
+        .copy-btn:hover { border-color: var(--accent); }
+
+        .loading { display: none; text-align: center; padding: 30px; }
+        .loading.active { display: block; }
+        .loading p { color: var(--muted); }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 12px; }
+
+        .workflow { margin: 50px 0; }
+        .workflow h2 { text-align: center; margin-bottom: 24px; }
+        .flow-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+        .flow-step { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; position: relative; }
+        .flow-step::after { content: "→"; position: absolute; right: -10px; top: 50%; color: var(--muted); font-size: 1.2rem; }
+        .flow-step:last-child::after { display: none; }
+        .flow-step .icon { font-size: 1.5rem; margin-bottom: 6px; }
+        .flow-step h4 { font-size: 0.85rem; margin-bottom: 4px; }
+        .flow-step p { color: var(--muted); font-size: 0.75rem; }
+
+        .cta { background: linear-gradient(135deg, var(--surface), var(--surface-2)); border: 1px solid var(--border); border-radius: 14px; padding: 32px; margin: 40px 0; text-align: center; }
+        .cta h2 { margin-bottom: 8px; }
+        .cta p { color: var(--muted); max-width: 500px; margin: 0 auto 16px; }
+        .cta .skill-name { display: inline-block; background: var(--primary); color: white; padding: 8px 20px; border-radius: 8px; font-weight: 600; font-size: 0.95rem; }
+
+        footer { text-align: center; padding: 24px 0; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.75rem; }
+        footer a { color: var(--accent); text-decoration: none; }
+
+        @media (max-width: 600px) { 
+            .form-grid { grid-template-columns: 1fr; } 
+            .hero h1 { font-size: 1.6rem; }
+            .stats { flex-direction: column; gap: 12px; }
+            .flow-step::after { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <header><div class="container header-inner">
+        <div class="logo">🎯 <span>AI Job Hunter</span></div>
+        <span class="tag">虾🦐 自动求职</span>
+    </div></header>
+
+    <main class="container">
+        <section class="hero">
+            <h1>让虾帮你海投<br>搜岗位 × 写简历 × 定制Cover Letter</h1>
+            <p>输入目标岗位 + 你的背景，AI 自动搜索匹配职位、生成针对性简历和 Cover Letter，告别重复劳动</p>
+            <div class="stats">
+                <div class="stat"><div class="num">50+</div><div class="label">日均可投职位</div></div>
+                <div class="stat"><div class="num">5%</div><div class="label">面试率提升</div></div>
+                <div class="stat"><div class="num">3min</div><div class="label">每份定制时间</div></div>
+            </div>
+        </section>
+
+        <section class="main-tool">
+            <h2>⚡ 开始猎职</h2>
+            <div class="form-grid">
+                <div><label>目标岗位</label><input type="text" id="jobTitle" placeholder="如: Senior Frontend Engineer"></div>
+                <div><label>目标城市/远程</label><input type="text" id="location" placeholder="如: Remote / San Francisco / 北京"></div>
+            </div>
+            <div class="form-grid">
+                <div><label>薪资范围</label><input type="text" id="salary" placeholder="如: $150K-200K / 30-50K RMB"></div>
+                <div><label>行业偏好</label><select id="industry">
+                    <option value="tech">科技/互联网</option>
+                    <option value="ai">AI/机器学习</option>
+                    <option value="fintech">金融科技</option>
+                    <option value="biotech">生物医药</option>
+                    <option value="startup">创业公司</option>
+                    <option value="any">不限</option>
+                </select></div>
+            </div>
+            <div class="form-grid full">
+                <div><label>你的核心技能（逗号分隔）</label><input type="text" id="skills" placeholder="如: React, TypeScript, Node.js, AWS, 5年经验"></div>
+            </div>
+            <div class="form-grid full">
+                <div><label>简要背景（虾会据此定制简历）</label><textarea id="background" placeholder="如: 5年前端经验，曾在字节跳动做过抖音国际化，熟悉React生态和性能优化，带过3人小团队"></textarea></div>
+            </div>
+            <button class="btn-primary" id="huntBtn" onclick="startHunt()">🎯 开始搜索 & 生成</button>
+            
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p id="loadingText">正在搜索匹配职位...</p>
+            </div>
+
+            <div class="output" id="output">
+                <div class="output-tabs">
+                    <div class="tab active" onclick="switchTab('jobs')">📋 匹配职位</div>
+                    <div class="tab" onclick="switchTab('resume')">📄 定制简历</div>
+                    <div class="tab" onclick="switchTab('cover')">✉️ Cover Letter</div>
+                    <div class="tab" onclick="switchTab('plan')">📊 投递计划</div>
+                </div>
+                <div class="tab-content" id="tabContent"></div>
+            </div>
+        </section>
+
+        <section class="workflow">
+            <h2>虾的自动求职流程</h2>
+            <div class="flow-steps">
+                <div class="flow-step"><div class="icon">🔍</div><h4>搜索职位</h4><p>LinkedIn/Indeed/Boss 等15+平台</p></div>
+                <div class="flow-step"><div class="icon">🎯</div><h4>匹配筛选</h4><p>技能匹配度+薪资+地点打分</p></div>
+                <div class="flow-step"><div class="icon">📝</div><h4>定制简历</h4><p>针对每个JD重写关键词</p></div>
+                <div class="flow-step"><div class="icon">✉️</div><h4>写Cover Letter</h4><p>个性化+公司研究</p></div>
+                <div class="flow-step"><div class="icon">📤</div><h4>投递追踪</h4><p>自动记录状态</p></div>
+            </div>
+        </section>
+
+        <section class="cta">
+            <h2>让虾每天自动帮你投</h2>
+            <p>装 Skill 后告诉虾你想找什么工作，它每天帮你搜新职位、定制材料、生成投递清单</p>
+            <div class="skill-name">🦐 Skill: ai-job-hunter</div>
+            <p style="margin-top:12px;font-size:0.8rem;color:var(--muted)">觅游便利店搜索安装 → 虾自动执行全流程</p>
+        </section>
+    </main>
+
+    <footer><p>Built by <a href="https://seanliii.github.io/xialanxia-dashboard/">小蓝虾</a> | AI-powered job hunting automation</p></footer>
+
+    <script>
+    let currentTab = 'jobs';
+    const demoJobs = [
+        { title: "Senior Frontend Engineer", company: "Stripe", location: "Remote (US)", salary: "$180K-220K", match: 94, skills: ["React", "TypeScript", "Node.js"], url: "#" },
+        { title: "Staff Software Engineer, Web Platform", company: "Vercel", location: "Remote", salary: "$190K-240K", match: 91, skills: ["Next.js", "React", "Performance"], url: "#" },
+        { title: "Frontend Tech Lead", company: "Figma", location: "San Francisco", salary: "$200K-260K", match: 88, skills: ["React", "Canvas/WebGL", "Team Lead"], url: "#" },
+        { title: "Senior React Developer", company: "Linear", location: "Remote (Global)", salary: "$160K-200K", match: 86, skills: ["React", "TypeScript", "Real-time"], url: "#" },
+        { title: "Engineering Manager, Frontend", company: "Notion", location: "San Francisco / Remote", salary: "$220K-280K", match: 82, skills: ["React", "Team Management", "System Design"], url: "#" },
+    ];
+
+    function startHunt() {
+        const title = document.getElementById('jobTitle').value || 'Senior Frontend Engineer';
+        const loc = document.getElementById('location').value || 'Remote';
+        const bg = document.getElementById('background').value || '5年前端经验';
+        
+        document.getElementById('loading').classList.add('active');
+        document.getElementById('output').classList.remove('active');
+        document.getElementById('huntBtn').disabled = true;
+
+        const msgs = ['正在搜索匹配职位...', '分析JD关键词...', '生成定制简历...', '撰写Cover Letter...', '计算匹配度...'];
+        let i = 0;
+        const interval = setInterval(() => {
+            i++;
+            if (i < msgs.length) document.getElementById('loadingText').textContent = msgs[i];
+        }, 600);
+
+        setTimeout(() => {
+            clearInterval(interval);
+            document.getElementById('loading').classList.remove('active');
+            document.getElementById('output').classList.add('active');
+            document.getElementById('huntBtn').disabled = false;
+            switchTab('jobs');
+        }, 3000);
+    }
+
+    function switchTab(tab) {
+        currentTab = tab;
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelector(`.tab:nth-child(${['jobs','resume','cover','plan'].indexOf(tab)+1})`).classList.add('active');
+        
+        const content = document.getElementById('tabContent');
+        const title = document.getElementById('jobTitle').value || 'Senior Frontend Engineer';
+        const skills = document.getElementById('skills').value || 'React, TypeScript, Node.js';
+        const bg = document.getElementById('background').value || '5年前端经验，曾在大型互联网公司做过国际化项目';
+
+        if (tab === 'jobs') {
+            content.innerHTML = `<h3>🎯 匹配职位 TOP 5</h3>` + demoJobs.map(j => `
+                <div class="job-card">
+                    <h4>${j.title}</h4>
+                    <div class="meta">${j.company} · ${j.location} · ${j.salary}</div>
+                    <div class="meta">技能匹配: ${j.skills.join(', ')}</div>
+                    <div class="match">✅ 匹配度 ${j.match}%</div>
+                </div>
+            `).join('');
+        } else if (tab === 'resume') {
+            content.innerHTML = `
+                <h3>📄 针对 "${demoJobs[0].title} @ ${demoJobs[0].company}" 的定制简历</h3>
+                <div class="resume-section"><h4>PROFESSIONAL SUMMARY</h4><p>Results-driven Senior Frontend Engineer with 5+ years building high-performance web applications at scale. Led internationalization of products serving 100M+ users. Expert in React ecosystem, TypeScript, and performance optimization. Track record of mentoring teams and shipping complex features on tight deadlines.</p></div>
+                <div class="resume-section"><h4>KEY SKILLS (matched to JD)</h4><ul><li><strong>React & TypeScript</strong> — 5 years production experience</li><li><strong>Node.js & Full-stack</strong> — API design, SSR, microservices</li><li><strong>Performance Optimization</strong> — Core Web Vitals, bundle analysis, lazy loading</li><li><strong>Team Leadership</strong> — Led 3-person frontend team, code reviews, mentorship</li><li><strong>Internationalization</strong> — Multi-language, RTL, locale-aware UI systems</li></ul></div>
+                <div class="resume-section"><h4>EXPERIENCE</h4><p><strong>Senior Frontend Engineer</strong> — ByteDance (TikTok International) | 2021-2026<br>• Architected i18n framework supporting 40+ languages, reducing translation turnaround by 60%<br>• Optimized bundle size by 35% through code splitting and tree shaking<br>• Led migration from class components to React Hooks, improving DX and reducing bugs by 25%</p></div>
+                <button class="copy-btn" onclick="navigator.clipboard.writeText(document.querySelector('.tab-content').innerText)">📋 复制简历</button>
+            `;
+        } else if (tab === 'cover') {
+            content.innerHTML = `
+                <h3>✉️ Cover Letter — ${demoJobs[0].company}</h3>
+                <div class="cover-letter">Dear Hiring Team at Stripe,
+
+I'm writing to express my strong interest in the Senior Frontend Engineer position. With 5 years of experience building high-performance React applications at ByteDance — including leading the internationalization of products serving over 100 million users — I'm confident I can contribute meaningfully to Stripe's mission of increasing the GDP of the internet.
+
+What excites me about Stripe:
+• Your developer-first philosophy aligns perfectly with my approach to building tools
+• The scale of Stripe's payment infrastructure presents exactly the kind of performance challenges I thrive on
+• Your commitment to craft and quality in frontend engineering is evident in every product
+
+What I bring:
+• Deep React/TypeScript expertise with proven track record at scale (100M+ users)
+• Experience optimizing performance in high-traffic environments (35% bundle reduction)
+• Leadership experience — mentored 3 engineers, established code review culture
+• Internationalization expertise directly relevant to Stripe's global expansion
+
+I'd love to discuss how my experience building performant, accessible, and globally-scalable frontend systems can help Stripe's next chapter of growth.
+
+Best regards,
+[Your Name]</div>
+                <button class="copy-btn" onclick="navigator.clipboard.writeText(document.querySelector('.cover-letter').innerText)">📋 复制 Cover Letter</button>
+            `;
+        } else if (tab === 'plan') {
+            content.innerHTML = `
+                <h3>📊 7天投递计划</h3>
+                <table style="width:100%;border-collapse:collapse;margin:12px 0">
+                    <tr style="border-bottom:1px solid var(--border)"><th style="padding:8px;text-align:left;color:var(--accent)">日期</th><th style="padding:8px;text-align:left;color:var(--accent)">任务</th><th style="padding:8px;text-align:left;color:var(--accent)">数量</th></tr>
+                    <tr><td style="padding:8px">Day 1</td><td style="padding:8px">投 Top 5 高匹配职位</td><td style="padding:8px;color:var(--success)">5份</td></tr>
+                    <tr><td style="padding:8px">Day 2</td><td style="padding:8px">LinkedIn 加 HR + 内推人</td><td style="padding:8px;color:var(--success)">10人</td></tr>
+                    <tr><td style="padding:8px">Day 3</td><td style="padding:8px">投 6-15 名职位</td><td style="padding:8px;color:var(--success)">10份</td></tr>
+                    <tr><td style="padding:8px">Day 4</td><td style="padding:8px">Follow up Day 1 投递</td><td style="padding:8px;color:var(--success)">5封</td></tr>
+                    <tr><td style="padding:8px">Day 5</td><td style="padding:8px">扩大搜索范围（相邻岗位）</td><td style="padding:8px;color:var(--success)">10份</td></tr>
+                    <tr><td style="padding:8px">Day 6</td><td style="padding:8px">投 startup 类职位</td><td style="padding:8px;color:var(--success)">8份</td></tr>
+                    <tr><td style="padding:8px">Day 7</td><td style="padding:8px">Review + 调整策略</td><td style="padding:8px;color:var(--warning)">复盘</td></tr>
+                </table>
+                <p style="color:var(--muted);font-size:0.85rem;margin-top:12px">💡 虾每天早上自动跑这个流程，晚上推送当日新增职位和投递状态</p>
+            `;
+        }
+    }
+    </script>
+</body>
+</html>

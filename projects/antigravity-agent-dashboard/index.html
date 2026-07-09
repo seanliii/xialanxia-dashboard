@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent Orchestration Dashboard | 多智能体编排看板</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0f; color: #e0e0f0; min-height: 100vh; }
+  .header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); padding: 24px 32px; border-bottom: 1px solid #2a2a4a; display: flex; align-items: center; gap: 16px; }
+  .logo { font-size: 28px; }
+  .header-text h1 { font-size: 20px; font-weight: 700; color: #7c83fd; }
+  .header-text p { font-size: 13px; color: #8888aa; margin-top: 2px; }
+  .badge { background: #7c83fd22; color: #7c83fd; border: 1px solid #7c83fd44; padding: 2px 10px; border-radius: 12px; font-size: 11px; margin-left: auto; }
+  .main { padding: 24px 32px; max-width: 1200px; margin: 0 auto; }
+  .controls { display: flex; gap: 12px; margin-bottom: 24px; align-items: center; flex-wrap: wrap; }
+  .input-wrap { flex: 1; min-width: 260px; }
+  input[type="text"], select { width: 100%; background: #1a1a2e; border: 1px solid #2a2a4a; color: #e0e0f0; padding: 10px 14px; border-radius: 8px; font-size: 14px; outline: none; transition: border-color 0.2s; }
+  input[type="text"]:focus, select:focus { border-color: #7c83fd; }
+  select { max-width: 160px; }
+  .btn { padding: 10px 20px; border: none; border-radius: 8px; font-size: 14px; cursor: pointer; font-weight: 600; transition: all 0.2s; white-space: nowrap; }
+  .btn-primary { background: #7c83fd; color: #fff; }
+  .btn-primary:hover { background: #6b72ec; transform: translateY(-1px); }
+  .btn-primary:active { transform: translateY(0); }
+  .btn-secondary { background: #1a1a2e; color: #7c83fd; border: 1px solid #7c83fd44; }
+  .btn-secondary:hover { background: #7c83fd11; }
+  .btn-danger { background: #ff444422; color: #ff6666; border: 1px solid #ff444444; }
+  .btn-danger:hover { background: #ff444433; }
+  .agents-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; margin-bottom: 28px; }
+  .agent-card { background: #1a1a2e; border: 1px solid #2a2a4a; border-radius: 12px; padding: 20px; position: relative; transition: all 0.3s; }
+  .agent-card:hover { border-color: #7c83fd55; transform: translateY(-2px); }
+  .agent-card.running { border-color: #4ade8055; animation: pulse-border 2s ease-in-out infinite; }
+  .agent-card.done { border-color: #60a5fa55; }
+  .agent-card.error { border-color: #ff666655; }
+  @keyframes pulse-border { 0%,100% { border-color: #4ade8044; } 50% { border-color: #4ade80aa; } }
+  .agent-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .agent-icon { font-size: 24px; }
+  .agent-name { font-size: 15px; font-weight: 700; color: #c0c0f0; }
+  .agent-type { font-size: 11px; color: #6666aa; margin-top: 1px; }
+  .status-dot { width: 8px; height: 8px; border-radius: 50%; margin-left: auto; flex-shrink: 0; }
+  .status-dot.idle { background: #555577; }
+  .status-dot.running { background: #4ade80; box-shadow: 0 0 8px #4ade80; animation: blink 1s ease-in-out infinite; }
+  .status-dot.done { background: #60a5fa; }
+  .status-dot.error { background: #ff6666; }
+  @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .agent-task { font-size: 13px; color: #9999bb; line-height: 1.5; margin-bottom: 12px; min-height: 40px; }
+  .progress-bar { height: 4px; background: #2a2a4a; border-radius: 2px; overflow: hidden; margin-bottom: 10px; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, #7c83fd, #4ade80); border-radius: 2px; transition: width 0.5s ease; }
+  .agent-meta { display: flex; justify-content: space-between; font-size: 11px; color: #555577; }
+  .agent-output { background: #0f0f1e; border: 1px solid #1a1a2e; border-radius: 8px; padding: 12px; font-family: 'Fira Code', monospace; font-size: 12px; color: #88ddaa; max-height: 100px; overflow-y: auto; margin-top: 10px; display: none; }
+  .agent-output.visible { display: block; }
+  .log-panel { background: #0f0f1e; border: 1px solid #2a2a4a; border-radius: 12px; padding: 20px; margin-bottom: 24px; }
+  .log-panel h3 { font-size: 14px; font-weight: 700; color: #7c83fd; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  .log-entries { max-height: 200px; overflow-y: auto; font-family: 'Fira Code', monospace; font-size: 12px; }
+  .log-entry { padding: 5px 0; border-bottom: 1px solid #1a1a2e; color: #8888aa; }
+  .log-entry .ts { color: #555577; margin-right: 8px; }
+  .log-entry .lvl-info { color: #60a5fa; }
+  .log-entry .lvl-success { color: #4ade80; }
+  .log-entry .lvl-warn { color: #fbbf24; }
+  .log-entry .lvl-error { color: #ff6666; }
+  .stats-row { display: flex; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
+  .stat-card { background: #1a1a2e; border: 1px solid #2a2a4a; border-radius: 10px; padding: 16px 20px; flex: 1; min-width: 120px; text-align: center; }
+  .stat-val { font-size: 28px; font-weight: 800; color: #7c83fd; }
+  .stat-label { font-size: 11px; color: #6666aa; margin-top: 4px; }
+  .section-title { font-size: 13px; font-weight: 700; color: #7c83fd; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-thumb { background: #2a2a4a; border-radius: 2px; }
+  .toast { position: fixed; bottom: 24px; right: 24px; background: #1a1a2e; border: 1px solid #7c83fd44; border-radius: 10px; padding: 14px 20px; color: #c0c0f0; font-size: 13px; transform: translateY(80px); opacity: 0; transition: all 0.3s; z-index: 999; }
+  .toast.show { transform: translateY(0); opacity: 1; }
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="logo">🤖</div>
+  <div class="header-text">
+    <h1>Agent Orchestration Dashboard</h1>
+    <p>多智能体编排看板 — 受 Google Antigravity 2.0 启发构建</p>
+  </div>
+  <span class="badge">LIVE</span>
+</div>
+
+<div class="main">
+  <!-- Stats -->
+  <div class="stats-row" id="statsRow">
+    <div class="stat-card"><div class="stat-val" id="statTotal">0</div><div class="stat-label">总 Agent 数</div></div>
+    <div class="stat-card"><div class="stat-val" id="statRunning" style="color:#4ade80">0</div><div class="stat-label">运行中</div></div>
+    <div class="stat-card"><div class="stat-val" id="statDone" style="color:#60a5fa">0</div><div class="stat-label">已完成</div></div>
+    <div class="stat-card"><div class="stat-val" id="statError" style="color:#ff6666">0</div><div class="stat-label">出错</div></div>
+    <div class="stat-card"><div class="stat-val" id="statTokens">0</div><div class="stat-label">消耗 Token</div></div>
+  </div>
+
+  <!-- Controls -->
+  <div class="controls">
+    <div class="input-wrap"><input type="text" id="taskInput" placeholder="输入任务描述，将派发给新 Agent..." /></div>
+    <select id="agentType">
+      <option value="coder">💻 Coder Agent</option>
+      <option value="researcher">🔍 Researcher Agent</option>
+      <option value="writer">✍️ Writer Agent</option>
+      <option value="analyst">📊 Analyst Agent</option>
+      <option value="tester">🧪 Tester Agent</option>
+    </select>
+    <button class="btn btn-primary" onclick="spawnAgent()">+ 派发 Agent</button>
+    <button class="btn btn-secondary" onclick="runAllParallel()">⚡ 并行全跑</button>
+    <button class="btn btn-danger" onclick="clearAll()">清空</button>
+  </div>
+
+  <!-- Presets -->
+  <div style="margin-bottom:20px; display:flex; gap:8px; flex-wrap:wrap;">
+    <span style="font-size:12px;color:#555577;align-self:center;">快速模板：</span>
+    <button class="btn btn-secondary" style="font-size:12px;padding:6px 12px;" onclick="preset('重构 auth.js 模块，提取 JWT 逻辑到独立服务', 'coder')">重构认证模块</button>
+    <button class="btn btn-secondary" style="font-size:12px;padding:6px 12px;" onclick="preset('搜索 2026 AI Agent 最佳实践报告，整理摘要', 'researcher')">AI Agent 调研</button>
+    <button class="btn btn-secondary" style="font-size:12px;padding:6px 12px;" onclick="preset('为 API 文档生成完整单元测试覆盖', 'tester')">生成单元测试</button>
+    <button class="btn btn-secondary" style="font-size:12px;padding:6px 12px;" onclick="preset('分析 Q1 用户留存数据，输出洞察报告', 'analyst')">留存数据分析</button>
+    <button class="btn btn-secondary" style="font-size:12px;padding:6px 12px;" onclick="preset('生成产品更新 Blog 文章草稿', 'writer')">生成 Blog</button>
+  </div>
+
+  <!-- Agents -->
+  <div class="section-title">活跃 Agents</div>
+  <div class="agents-grid" id="agentsGrid">
+    <div style="color:#555577;font-size:14px;padding:40px;text-align:center;grid-column:1/-1;">
+      🤖 暂无运行中的 Agent<br><span style="font-size:12px;margin-top:8px;display:block">点击「派发 Agent」或选择模板开始</span>
+    </div>
+  </div>
+
+  <!-- Log -->
+  <div class="log-panel">
+    <h3>📋 运行日志 <span style="font-size:11px;color:#555577;font-weight:400" id="logCount">(0 条)</span></h3>
+    <div class="log-entries" id="logEntries"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const AGENT_EMOJIS = { coder:'💻', researcher:'🔍', writer:'✍️', analyst:'📊', tester:'🧪' };
+const AGENT_LABELS = { coder:'Coder Agent', researcher:'Researcher Agent', writer:'Writer Agent', analyst:'Analyst Agent', tester:'Tester Agent' };
+const MOCK_OUTPUTS = {
+  coder: ["分析依赖树...", "提取核心逻辑...", "重构为模块化结构...", "运行 lint 检查...", "生成 diff 报告..."],
+  researcher: ["初始化搜索引擎连接...", "查询主题关键词...", "过滤高质量来源...", "提取关键数据点...", "合并汇总摘要..."],
+  writer: ["分析内容框架...", "生成段落草稿...", "优化表达结构...", "添加案例支撑...", "校对最终版本..."],
+  analyst: ["加载数据集...", "计算基础统计量...", "识别异常波动...", "生成可视化数据...", "输出洞察摘要..."],
+  tester: ["扫描代码路径...", "生成测试用例...", "模拟边界条件...", "运行断言验证...", "输出覆盖率报告..."]
+};
+
+let agents = [], logs = [], totalTokens = 0, aidCounter = 0;
+
+function ts() { return new Date().toLocaleTimeString('zh-CN', {hour:'2-digit',minute:'2-digit',second:'2-digit'}); }
+
+function addLog(msg, lvl='info') {
+  logs.unshift({ts: ts(), msg, lvl});
+  if (logs.length > 100) logs.pop();
+  renderLogs();
+}
+
+function renderLogs() {
+  const el = document.getElementById('logEntries');
+  el.innerHTML = logs.map(l => `<div class="log-entry"><span class="ts">${l.ts}</span><span class="lvl-${l.lvl}">[${l.lvl.toUpperCase()}]</span> ${l.msg}</div>`).join('');
+  document.getElementById('logCount').textContent = `(${logs.length} 条)`;
+}
+
+function updateStats() {
+  const total = agents.length;
+  const running = agents.filter(a => a.status === 'running').length;
+  const done = agents.filter(a => a.status === 'done').length;
+  const error = agents.filter(a => a.status === 'error').length;
+  document.getElementById('statTotal').textContent = total;
+  document.getElementById('statRunning').textContent = running;
+  document.getElementById('statDone').textContent = done;
+  document.getElementById('statError').textContent = error;
+  document.getElementById('statTokens').textContent = totalTokens.toLocaleString();
+}
+
+function renderAgents() {
+  const grid = document.getElementById('agentsGrid');
+  if (agents.length === 0) {
+    grid.innerHTML = '<div style="color:#555577;font-size:14px;padding:40px;text-align:center;grid-column:1/-1;">🤖 暂无运行中的 Agent<br><span style="font-size:12px;margin-top:8px;display:block">点击「派发 Agent」或选择模板开始</span></div>';
+    return;
+  }
+  grid.innerHTML = agents.map(a => `
+    <div class="agent-card ${a.status}" id="card-${a.id}">
+      <div class="agent-header">
+        <div class="agent-icon">${AGENT_EMOJIS[a.type]}</div>
+        <div>
+          <div class="agent-name">${AGENT_LABELS[a.type]} #${a.id}</div>
+          <div class="agent-type">${a.type} • 派发于 ${a.createdAt}</div>
+        </div>
+        <div class="status-dot ${a.status}"></div>
+      </div>
+      <div class="agent-task">${a.task}</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:${a.progress}%"></div></div>
+      <div class="agent-meta">
+        <span>进度 ${a.progress}%</span>
+        <span>${a.step}</span>
+        <span>${a.tokens} tokens</span>
+        <button onclick="toggleOutput(${a.id})" style="background:none;border:none;color:#7c83fd;cursor:pointer;font-size:11px;">日志 ▾</button>
+      </div>
+      <div class="agent-output" id="output-${a.id}">${a.outputLines.join('\n')}</div>
+    </div>
+  `).join('');
+  updateStats();
+}
+
+function toggleOutput(id) {
+  const el = document.getElementById('output-' + id);
+  el.classList.toggle('visible');
+}
+
+function spawnAgent(task, type) {
+  task = task || document.getElementById('taskInput').value.trim();
+  type = type || document.getElementById('agentType').value;
+  if (!task) { showToast('请输入任务描述！'); return; }
+  aidCounter++;
+  const agent = {
+    id: aidCounter, type, task, status: 'running', progress: 0,
+    createdAt: ts(), step: '初始化...', tokens: 0, outputLines: []
+  };
+  agents.unshift(agent);
+  addLog(`Agent #${aidCounter} (${AGENT_LABELS[type]}) 已派发 — "${task.slice(0,40)}..."`, 'info');
+  document.getElementById('taskInput').value = '';
+  renderAgents();
+  runAgentSimulation(agent);
+  showToast(`✅ Agent #${aidCounter} 已启动`);
+}
+
+function runAgentSimulation(agent) {
+  const steps = MOCK_OUTPUTS[agent.type];
+  let stepIdx = 0;
+  const interval = setInterval(() => {
+    if (stepIdx < steps.length) {
+      agent.progress = Math.round((stepIdx + 1) / steps.length * 100);
+      agent.step = steps[stepIdx];
+      const t = Math.floor(Math.random() * 300 + 100);
+      agent.tokens += t; totalTokens += t;
+      agent.outputLines.push(`[${ts()}] ${steps[stepIdx]}`);
+      addLog(`Agent #${agent.id}: ${steps[stepIdx]}`, 'info');
+      stepIdx++;
+      const outputEl = document.getElementById('output-' + agent.id);
+      if (outputEl) outputEl.textContent = agent.outputLines.join('\n');
+      renderAgents();
+    } else {
+      clearInterval(interval);
+      const success = Math.random() > 0.1;
+      agent.status = success ? 'done' : 'error';
+      agent.progress = success ? 100 : agent.progress;
+      agent.step = success ? '✅ 完成' : '❌ 出错';
+      addLog(`Agent #${agent.id} ${success ? '任务完成' : '任务失败'}`, success ? 'success' : 'error');
+      renderAgents();
+    }
+  }, 800 + Math.random() * 400);
+}
+
+function preset(task, type) {
+  document.getElementById('taskInput').value = task;
+  document.getElementById('agentType').value = type;
+}
+
+function runAllParallel() {
+  const tasks = [
+    { task: '重构核心模块，添加错误处理', type: 'coder' },
+    { task: '调研竞品功能差异，生成对比表', type: 'researcher' },
+    { task: '生成本周产品更新日志', type: 'writer' },
+    { task: '分析用户行为漏斗数据', type: 'analyst' }
+  ];
+  tasks.forEach((t, i) => {
+    setTimeout(() => spawnAgent(t.task, t.type), i * 200);
+  });
+  showToast('⚡ 4个 Agent 并行启动！');
+}
+
+function clearAll() {
+  agents = [];
+  addLog('已清空所有 Agent', 'warn');
+  renderAgents();
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// Init with a demo
+window.onload = () => {
+  addLog('系统就绪 — Agent 编排看板 v1.0', 'success');
+  addLog('受 Google Antigravity 2.0 架构启发构建', 'info');
+};
+</script>
+</body>
+</html>

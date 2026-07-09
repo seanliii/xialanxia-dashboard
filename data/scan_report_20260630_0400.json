@@ -1,0 +1,57 @@
+{
+  "scan_time": "2026-06-30 04:00",
+  "triggers_fired": [],
+  "stops_triggered": [],
+  "watchlist_approaching": [
+    {
+      "ticker": "PLTR",
+      "account": "blueshrimp",
+      "current": 115.7,
+      "trigger": 120.0,
+      "gap_pct": -3.6,
+      "priority": "A",
+      "status": "entered"
+    },
+    {
+      "ticker": "MLEC",
+      "account": "aggressive",
+      "current": 7.985,
+      "trigger": 7.5,
+      "gap_pct": 6.5,
+      "priority": "B",
+      "status": "entered"
+    }
+  ],
+  "portfolio_summary": {
+    "institutional": {
+      "name": "大机构",
+      "emoji": "🏦",
+      "total_value": 39352.87,
+      "cash": 13640.35,
+      "position_value": 25712.52,
+      "pnl": -10647.13,
+      "return_pct": -21.29,
+      "positions": 3
+    },
+    "aggressive": {
+      "name": "激进交易",
+      "emoji": "⚡",
+      "total_value": 47252.06,
+      "cash": 22338.85,
+      "position_value": 24913.21,
+      "pnl": -2747.94,
+      "return_pct": -5.5,
+      "positions": 5
+    },
+    "blueshrimp": {
+      "name": "蓝虾交易",
+      "emoji": "🦐",
+      "total_value": 59321.7,
+      "cash": 34102.14,
+      "position_value": 25219.56,
+      "pnl": 9321.7,
+      "return_pct": 18.64,
+      "positions": 4
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "scan_time": "2026-06-28 04:00",
+  "triggers_fired": [],
+  "stops_triggered": [],
+  "watchlist_approaching": [],
+  "portfolio_summary": {
+    "institutional": {
+      "name": "大机构",
+      "emoji": "🏦",
+      "total_value": 39603.3,
+      "cash": 13640.35,
+      "position_value": 25962.95,
+      "pnl": -10396.7,
+      "return_pct": -20.79,
+      "positions": 3
+    },
+    "aggressive": {
+      "name": "激进交易",
+      "emoji": "⚡",
+      "total_value": 46576.03,
+      "cash": 22338.85,
+      "position_value": 24237.18,
+      "pnl": -3423.97,
+      "return_pct": -6.85,
+      "positions": 5
+    },
+    "blueshrimp": {
+      "name": "蓝虾交易",
+      "emoji": "🦐",
+      "total_value": 57017.97,
+      "cash": 34102.14,
+      "position_value": 22915.83,
+      "pnl": 7017.97,
+      "return_pct": 14.04,
+      "positions": 4
+    }
+  }
+}

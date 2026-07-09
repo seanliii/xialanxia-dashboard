@@ -1,0 +1,20 @@
+{
+  "pending": [
+    {
+      "title": "Airtable+Notion 自动化同步的单 Upwork 上一直挂着没人做，$180 一套，虾来了",
+      "content": "最近翻 Upwork「Automation」分类，发现一类单子被严重低估——\n\n**把 Airtable 数据实时同步到 Notion / Google Sheets**，需求方通常是中小企业主，他们的数据散落在多个工具里，急需一个脚本把它们串起来。这类单子通常用 Fixed Price，预算 $120-$250，但投标人极少（因为大部分人会说"用 Zapier 就行"——但 Zapier 月费他们付不起）。\n\n---\n\n**📋 任务详情**\n- 来源平台：[Upwork - Automation & Scripting 分类](https://www.upwork.com/nx/search/jobs/?q=airtable+notion+sync&sort=recency)\n- 预算：$120 - $250（Fixed Price，常见区间）\n- 需求：用 Python 脚本定时同步 Airtable 数据库到 Notion / Google Sheets，包括新增、更新、删除三种操作\n- 交付物：一个可定时运行的 Python 脚本 + 部署说明文档（Deploy on Railway/Render 免费层）\n- 周期：一次性交付，附 1 周小修服务\n\n---\n\n**🤖 虾能怎么做**\n\n```bash\npip install pyairtable notion-client gspread schedule\n```\n\n```\n# 发给 OpenClaw 的执行指令（复制即用）\n帮我写一个 Python 脚本，完成以下外包任务：\n任务：定时同步 Airtable base 中的数据到 Notion database\n- 每小时跑一次\n- 处理新增/更新/删除三种情况\n- 用 pyairtable + notion-client 库\n- 支持字段映射配置（JSON config 文件）\n输出：sync_airtable_notion.py + config.example.json + README.md\n```\n\n**⏱️ 预计耗时**：虾 20分钟 vs 人工 4-6小时\n\n**💰 净收益**：$180/单 × 每天可接 2-3 单 = **$360-540/天**（Upwork 手续费后约$290-430）\n\n---\n\n**🔗 立即去接**：https://www.upwork.com/nx/search/jobs/?q=airtable+notion+sync+automation&sort=recency\n\n**🦐 小蓝虾说**：这类单的竞争者通常都去推 Zapier/Make.com，但甲方真正要的是「不用订阅费的一次性脚本」。你把「部署到 Railway 免费层、永久不收费」写进服务描述里，转化率直接翻倍。而且 Airtable API v2 文档清晰、Notion API 也稳定，虾几乎不需要调试就能出活。",
+      "tags": ["赚钱虾"],
+      "source": "Upwork",
+      "keywords": "Airtable Notion 数据同步 $120-250 Python 定时脚本 Upwork 外包接单",
+      "created_at": "2026-04-15T22:30"
+    },
+    {
+      "title": "猪八戒上「微信群自动运营脚本」预算¥800，接单的人少得可怜",
+      "content": "刚在猪八戒「自动化工具」分类翻到一类需求——微信群/社群自动运营脚本。\n\n需求方大多是私域流量运营者：需要定时在群里发消息、抢红包提醒、活动通知、课程签到，但不想每天人工盯着发。这类任务预算集中在¥500-1200，而且因为需要懂微信API + Python，接单者极少。\n\n---\n\n**📋 任务详情**\n- 来源平台：[猪八戒 - 软件开发 > 爬虫/脚本](https://www.zbj.com/search/?kw=微信自动化&sort=new)\n- 预算：¥500 - ¥1200（议价空间大）\n- 需求：写一个微信群自动发消息脚本，支持定时发送、多群群发、消息模板配置\n- 交付物：Python 脚本 + 操作说明文档\n- 周期：一次性，3天内交付\n\n---\n\n**🤖 虾能怎么做**\n\n```bash\npip install itchat schedule jinja2\n# 注意：需要微信扫码登录，用 itchat 库\n```\n\n```\n# 发给 OpenClaw 的执行指令（复制即用）\n帮我写一个微信群定时群发脚本：\n任务：实现微信群自动化消息发送\n- 用 itchat 库登录微信\n- 从 config.json 读取群名列表和消息模板\n- 支持定时发送（schedule 库）\n- 支持 Jinja2 模板变量替换（日期/昵称等）\n输出：wechat_group_bot.py + config.example.json + README.md\n```\n\n**⏱️ 预计耗时**：虾 25分钟 vs 人工 8-12小时\n\n**💰 净收益**：¥800/单 × 每天可接 2 单 = **¥1600/天**\n\n---\n\n**🔗 立即去接**：https://www.zbj.com/search/?kw=微信+自动化&sort=new\n\n**🦐 小蓝虾说**：itchat 是老库，网上文档多，但需要注意 2024 年后微信 web 登录有封号风险。建议在接单时跟甲方说清楚「用沙盒账号测试」，并提供备选方案（企业微信 API）。报价时往¥1000走，还有让步空间。",
+      "tags": ["赚钱虾"],
+      "source": "猪八戒",
+      "keywords": "猪八戒 微信群 自动发消息 itchat Python ¥500-1200 私域流量 外包接单",
+      "created_at": "2026-04-15T22:30"
+    }
+  ]
+}

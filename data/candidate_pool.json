@@ -1,0 +1,60 @@
+{
+  "updated": "2026-07-08",
+  "version": 7,
+  "products": [
+    {
+      "id": "openclaw-ecosystem-tracker",
+      "name": "OpenClaw生态进展追踪器",
+      "description": "追踪OpenClaw生态关键进展：原生移动App、技能工坊、Windows原生接入、RPA工作流等",
+      "category": "tracker",
+      "motivation": "tier1热点持续，生态追踪是主人核心兴趣方向，现有产品矩阵缺生态进展类追踪器",
+      "features": [
+        "进展分类：产品发布/功能更新/平台扩展/社区事件/商业化",
+        "时间线视图+卡片视图+表格视图",
+        "影响范围标签：移动端/桌面端/云端/协议/工具",
+        "详情弹窗：进展概述+关键信息+来源链接",
+        "搜索、筛选、统计面板"
+      ],
+      "data_source": "搜索发现(openclaw相关tier1词)+官方changelog",
+      "complexity": "MVP纯前端，数据内嵌，~12条初始记录",
+      "estimated_build_time": "25-30分钟",
+      "priority": 1
+    },
+    {
+      "id": "ai-agent-ecommerce-tracker",
+      "name": "AI Agent电商落地追踪器",
+      "description": "追踪AI Agent在电商/跨境电商领域的落地案例、工具和商业动态",
+      "category": "tracker",
+      "motivation": "AI Agent电商是7月新爆点赛道——虎嗅/36kr/中国日报密集报道，SeakerAI/AgentOn等新品涌现，现有产品矩阵缺电商方向",
+      "features": [
+        "案例卡片：企业/产品/场景/效果/时间线",
+        "分类：跨境电商/国内电商/品牌营销/智能客服/供应链",
+        "筛选+搜索+详情弹窗",
+        "统计面板：案例数/覆盖平台/效果分布"
+      ],
+      "data_source": "搜索发现(bocha 10/10命中，07-01~03当天内容)",
+      "complexity": "MVP纯前端，数据内嵌，~10条初始记录",
+      "estimated_build_time": "25分钟",
+      "priority": 2
+    },
+    {
+      "id": "ai-waic-live-tracker",
+      "name": "WAIC 2026 实时追踪器",
+      "description": "WAIC大会7月17-20日实时追踪——首发产品/论坛/参展企业动态更新",
+      "category": "tracker",
+      "motivation": "WAIC倒计时9天，预计7月10日起新闻高峰，现有ai-waic-preview为静态预览，缺实时追踪版本",
+      "features": [
+        "每日更新条目",
+        "首发产品追踪",
+        "论坛/演讲动态",
+        "参展企业亮点",
+        "时间线+搜索+筛选"
+      ],
+      "data_source": "搜索发现+大会官方信息",
+      "complexity": "MVP纯前端，数据内嵌，动态更新",
+      "estimated_build_time": "20分钟",
+      "priority": 3
+    }
+  ],
+  "notes": "mcp-server-hub 已构建并部署（2026-07-08 11:00）。候选池更新为3个产品。"
+}

@@ -111,3 +111,24 @@ Auth: Authorization: Bearer $AISA_API_KEY
 - Perplexity 要加 "model" 字段，否则报 400
 - Financial API 用 ?ticker=XXX 形式传参（GET）
 - Financial 数据来源：FMP（Financial Modeling Prep）
+
+### 全栈部署环境（2026-05-21 确认）
+
+**Supabase**
+- Project URL: https://hdbhcsyfdstvspzkfvvs.supabase.co
+- Anon/Public Key: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhkYmhjc3lmZHN0dnNwemtmdnZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYzMjQ2MDQsImV4cCI6MjA5MTkwMDYwNH0.HF_vLjcNrWZwGufYDM1kReJPd6pfKkzo3UI72tH5_j8
+- Service Role Key: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhkYmhjc3lmZHN0dnNwemtmdnZzIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3NjMyNDYwNCwiZXhwIjoyMDkxOTAwNjA0fQ.aQ6jie1t-EyTR5VFQFGNu8KtsGv-WN4oj17Ex2lkQe4
+- Dashboard Key: sb_publishable_GbwlDpyB9iuN_858wEcicw_b9Ch5cl5
+
+**Vercel**
+- Project: https://vercel.com/vortex528-5206s-projects
+
+**GitHub**
+- User: seanliii
+- Token: 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
+- Pages 格式: https://seanliii.github.io/<repo名>/
+
+**部署三件套用法**
+- 前端/静态 → GitHub Pages（免费，秒部署）
+- 全栈/API → Vercel Serverless + Supabase DB
+- 数据库/认证/存储 → Supabase

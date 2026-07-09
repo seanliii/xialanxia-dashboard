@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🦐 价格哨兵 - AI 价格监控工具</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { 
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #0a0e1a;
+    color: #e2e8f0;
+    min-height: 100vh;
+  }
+  .header {
+    background: linear-gradient(135deg, #1a1f35 0%, #0d1117 100%);
+    border-bottom: 1px solid #1e293b;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .header h1 { font-size: 22px; font-weight: 700; }
+  .header span { font-size: 28px; }
+  .subtitle { color: #64748b; font-size: 13px; margin-top: 2px; }
+  .container { max-width: 900px; margin: 0 auto; padding: 24px; }
+  .add-section {
+    background: #111827;
+    border: 1px solid #1e293b;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+  .add-section h2 { font-size: 16px; font-weight: 600; margin-bottom: 16px; color: #94a3b8; }
+  .input-row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .input-row input, .input-row select {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 10px 14px;
+    color: #e2e8f0;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .input-row input:focus { border-color: #3b82f6; }
+  .input-row input[type="text"] { flex: 2; min-width: 200px; }
+  .input-row input[type="number"] { width: 160px; }
+  .btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .btn-primary { background: #3b82f6; color: white; }
+  .btn-primary:hover { background: #2563eb; }
+  .btn-danger { background: #dc2626; color: white; padding: 6px 12px; font-size: 12px; }
+  .btn-danger:hover { background: #b91c1c; }
+  .btn-sim { background: #7c3aed; color: white; }
+  .btn-sim:hover { background: #6d28d9; }
+  .monitors-grid { display: grid; gap: 16px; }
+  .monitor-card {
+    background: #111827;
+    border: 1px solid #1e293b;
+    border-radius: 12px;
+    padding: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    transition: border-color 0.2s;
+  }
+  .monitor-card:hover { border-color: #334155; }
+  .monitor-card.alert { border-color: #22c55e; background: #0a1f11; }
+  .monitor-info h3 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .meta { color: #64748b; font-size: 12px; margin-top: 2px; }
+  .price-section { text-align: right; flex-shrink: 0; }
+  .current-price { font-size: 26px; font-weight: 700; color: #3b82f6; }
+  .current-price.dropped { color: #22c55e; }
+  .target-price { font-size: 13px; color: #64748b; margin-top: 2px; }
+  .status-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-top: 6px;
+  }
+  .badge-watching { background: #1e3a5f; color: #60a5fa; }
+  .badge-alert { background: #14532d; color: #4ade80; }
+  .empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #64748b;
+  }
+  .empty-state .icon { font-size: 48px; margin-bottom: 12px; }
+  .demo-btn {
+    background: #1e293b;
+    border: 1px dashed #334155;
+    border-radius: 8px;
+    padding: 10px 20px;
+    color: #94a3b8;
+    cursor: pointer;
+    font-size: 13px;
+    margin-top: 12px;
+    display: inline-block;
+  }
+  .demo-btn:hover { border-color: #3b82f6; color: #60a5fa; }
+  .stats-bar {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    background: #111827;
+    border: 1px solid #1e293b;
+    border-radius: 8px;
+    padding: 12px 18px;
+    flex: 1;
+    min-width: 100px;
+  }
+  .stat-num { font-size: 24px; font-weight: 700; color: #3b82f6; }
+  .stat-label { font-size: 12px; color: #64748b; margin-top: 2px; }
+  .alert-num { color: #22c55e; }
+  .toolbar { display: flex; gap: 10px; margin-bottom: 16px; align-items: center; }
+  .toolbar-label { color: #64748b; font-size: 13px; flex: 1; }
+  .notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #22c55e;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    display: none;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(34,197,94,0.4);
+  }
+  footer {
+    text-align: center;
+    padding: 24px;
+    color: #334155;
+    font-size: 12px;
+    border-top: 1px solid #1e293b;
+    margin-top: 40px;
+  }
+</style>
+</head>
+<body>
+<div class="header">
+  <span>🦐</span>
+  <div>
+    <h1>价格哨兵</h1>
+    <div class="subtitle">AI 驱动的价格监控 · 由 OpenClaw 小蓝虾构建 · 降价自动提醒</div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-num" id="totalCount">0</div>
+      <div class="stat-label">监控中</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num alert-num" id="alertCount">0</div>
+      <div class="stat-label">触发提醒</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num" id="checkCount">0</div>
+      <div class="stat-label">累计检查</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num" id="savedCount">¥0</div>
+      <div class="stat-label">预估省钱</div>
+    </div>
+  </div>
+
+  <div class="add-section">
+    <h2>➕ 添加监控目标</h2>
+    <div class="input-row">
+      <input type="text" id="itemName" placeholder="商品名称（如：iPhone 16 Pro 256G）" />
+      <input type="number" id="currentPriceInput" placeholder="当前价格（元）" step="1" />
+      <input type="number" id="targetPrice" placeholder="目标价格（元）" step="1" />
+      <button class="btn btn-primary" onclick="addMonitor()">开始监控</button>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <span class="toolbar-label" id="lastUpdate">等待检查...</span>
+    <button class="btn btn-sim" onclick="simulateCheck()">🔄 模拟价格波动</button>
+    <button class="demo-btn" onclick="loadDemoData()">📦 演示数据</button>
+  </div>
+
+  <div id="monitorsGrid" class="monitors-grid">
+    <div class="empty-state">
+      <div class="icon">🎯</div>
+      <div>还没有监控目标，添加第一个或加载演示数据</div><br>
+      <span class="demo-btn" onclick="loadDemoData()">📦 加载演示数据</span>
+    </div>
+  </div>
+</div>
+
+<div class="notification" id="notification"></div>
+
+<footer>🦐 价格哨兵 v1.0 · 由 OpenClaw 小蓝虾构建 · 数据存储在本地浏览器 · 点击"模拟价格波动"体验降价提醒</footer>
+
+<script>
+let monitors = JSON.parse(localStorage.getItem('priceMonitors_v2') || '[]');
+let checkCount = parseInt(localStorage.getItem('checkCount_v2') || '0');
+
+function saveData() {
+  localStorage.setItem('priceMonitors_v2', JSON.stringify(monitors));
+  localStorage.setItem('checkCount_v2', String(checkCount));
+}
+
+function showNotification(msg, color) {
+  const el = document.getElementById('notification');
+  el.textContent = msg;
+  el.style.background = color || '#22c55e';
+  el.style.display = 'block';
+  setTimeout(() => { el.style.display = 'none'; }, 3500);
+}
+
+function addMonitor() {
+  const name = document.getElementById('itemName').value.trim();
+  const target = parseFloat(document.getElementById('targetPrice').value);
+  const current = parseFloat(document.getElementById('currentPriceInput').value);
+  
+  if (!name || isNaN(target) || isNaN(current)) {
+    showNotification('⚠️ 请填写完整信息', '#f59e0b');
+    return;
+  }
+  if (target >= current) {
+    showNotification('💡 目标价应低于当前价', '#f59e0b');
+    return;
+  }
+  
+  monitors.push({
+    id: Date.now(),
+    name,
+    targetPrice: target,
+    currentPrice: current,
+    originalPrice: current,
+    addedAt: new Date().toLocaleDateString('zh-CN'),
+    lastCheck: new Date().toLocaleTimeString('zh-CN'),
+    checkTimes: 0,
+    alerted: false,
+    history: [current]
+  });
+  
+  saveData();
+  renderMonitors();
+  
+  document.getElementById('itemName').value = '';
+  document.getElementById('targetPrice').value = '';
+  document.getElementById('currentPriceInput').value = '';
+  
+  showNotification('✅ 开始监控：' + name);
+}
+
+function removeMonitor(id) {
+  monitors = monitors.filter(m => m.id !== id);
+  saveData();
+  renderMonitors();
+}
+
+function simulateCheck() {
+  if (monitors.length === 0) {
+    showNotification('先添加监控目标吧', '#64748b');
+    return;
+  }
+  
+  let newAlerts = [];
+  monitors.forEach(m => {
+    // 随机价格变化，偏向于降价（模拟电商促销）
+    const trend = Math.random() > 0.35 ? -1 : 1;
+    const changePct = Math.random() * 0.06;
+    m.currentPrice = Math.max(m.targetPrice * 0.8, m.currentPrice * (1 + trend * changePct));
+    m.currentPrice = Math.round(m.currentPrice);
+    m.lastCheck = new Date().toLocaleTimeString('zh-CN');
+    m.checkTimes++;
+    m.history = [...(m.history || [m.originalPrice]), m.currentPrice].slice(-10);
+    
+    if (m.currentPrice <= m.targetPrice && !m.alerted) {
+      m.alerted = true;
+      newAlerts.push(m.name);
+    }
+  });
+  
+  checkCount += monitors.length;
+  saveData();
+  renderMonitors();
+  
+  document.getElementById('lastUpdate').textContent = '最后检查: ' + new Date().toLocaleTimeString('zh-CN');
+  
+  if (newAlerts.length > 0) {
+    showNotification('🎉 降价提醒！' + newAlerts[0] + (newAlerts.length > 1 ? ' 等' + newAlerts.length + '件' : ''));
+  } else {
+    showNotification('🔄 价格已更新，暂未触发提醒', '#3b82f6');
+  }
+}
+
+function renderMonitors() {
+  const grid = document.getElementById('monitorsGrid');
+  const alertCount = monitors.filter(m => m.alerted).length;
+  const totalSaved = monitors.filter(m => m.alerted).reduce((s, m) => s + (m.originalPrice - m.currentPrice), 0);
+  
+  document.getElementById('totalCount').textContent = monitors.length;
+  document.getElementById('alertCount').textContent = alertCount;
+  document.getElementById('checkCount').textContent = checkCount;
+  document.getElementById('savedCount').textContent = totalSaved > 0 ? '¥' + Math.round(totalSaved) : '¥0';
+  
+  if (monitors.length === 0) {
+    grid.innerHTML = `<div class="empty-state">
+      <div class="icon">🎯</div>
+      <div>还没有监控目标</div><br>
+      <span class="demo-btn" onclick="loadDemoData()">📦 加载演示数据</span>
+    </div>`;
+    return;
+  }
+  
+  grid.innerHTML = monitors.map(m => {
+    const diff = m.currentPrice - m.targetPrice;
+    const pct = Math.round((m.currentPrice - (m.originalPrice || m.currentPrice)) / (m.originalPrice || m.currentPrice) * 100);
+    const isAlert = m.alerted;
+    const priceClass = isAlert ? 'dropped' : '';
+    return `
+    <div class="monitor-card ${isAlert ? 'alert' : ''}">
+      <div class="monitor-info">
+        <h3>${m.name}</h3>
+        <div class="meta">添加: ${m.addedAt} · 已检查 ${m.checkTimes} 次</div>
+        <div class="meta">最后更新: ${m.lastCheck}</div>
+        <span class="status-badge ${isAlert ? 'badge-alert' : 'badge-watching'}">
+          ${isAlert ? '🎉 已降至目标价！' : '👁 监控中...'}
+        </span>
+      </div>
+      <div class="price-section">
+        <div class="current-price ${priceClass}">¥${m.currentPrice.toLocaleString()}</div>
+        <div class="target-price">目标: ¥${m.targetPrice.toLocaleString()}</div>
+        <div class="target-price">${diff > 0 ? '还差 ¥' + Math.round(diff) : '已低于目标 ¥' + Math.abs(Math.round(diff))}</div>
+        <div style="margin-top:8px">
+          <button class="btn btn-danger" onclick="removeMonitor(${m.id})">删除</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function loadDemoData() {
+  monitors = [
+    { id: 1, name: 'MacBook Air M3 256G 午夜色', targetPrice: 7999, currentPrice: 8699, originalPrice: 8699, addedAt: '2026/5/10', lastCheck: '已更新', checkTimes: 47, alerted: false, history: [] },
+    { id: 2, name: 'iPhone 16 Pro 256G 黑色钛金属', targetPrice: 7499, currentPrice: 8999, originalPrice: 8999, addedAt: '2026/5/12', lastCheck: '已更新', checkTimes: 31, alerted: false, history: [] },
+    { id: 3, name: 'Sony WH-1000XM6 降噪耳机', targetPrice: 1599, currentPrice: 1499, originalPrice: 1999, addedAt: '2026/5/8', lastCheck: '已更新', checkTimes: 89, alerted: true, history: [] },
+    { id: 4, name: 'NVIDIA RTX 5080 显卡', targetPrice: 9999, currentPrice: 12800, originalPrice: 12800, addedAt: '2026/5/1', lastCheck: '已更新', checkTimes: 156, alerted: false, history: [] },
+  ];
+  checkCount = 323;
+  saveData();
+  renderMonitors();
+  showNotification('📦 演示数据已加载，点击「模拟价格波动」体验提醒');
+}
+
+// 自动加载已保存数据
+renderMonitors();
+if (monitors.length > 0) {
+  document.getElementById('lastUpdate').textContent = '数据已从本地恢复';
+}
+</script>
+</body>
+</html>

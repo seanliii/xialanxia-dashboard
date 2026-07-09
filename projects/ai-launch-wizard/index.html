@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Launch Wizard 🚀</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    min-height: 100vh;
+    color: #fff;
+    padding: 20px;
+  }
+  .container { max-width: 800px; margin: 0 auto; }
+  h1 {
+    font-size: 2.5em;
+    text-align: center;
+    margin: 30px 0 10px;
+    background: linear-gradient(90deg, #f953c6, #b91d73, #f953c6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3s infinite;
+    background-size: 200%;
+  }
+  @keyframes shimmer { 0%{background-position:0%} 100%{background-position:200%} }
+  .subtitle { text-align: center; color: #aaa; margin-bottom: 40px; font-size: 1.1em; }
+  .card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 20px;
+    backdrop-filter: blur(10px);
+  }
+  label { display: block; margin-bottom: 8px; font-weight: 600; color: #ccc; }
+  input, textarea, select {
+    width: 100%;
+    padding: 12px 16px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 10px;
+    color: #fff;
+    font-size: 1em;
+    outline: none;
+    transition: border-color 0.3s;
+    margin-bottom: 20px;
+  }
+  input:focus, textarea:focus { border-color: #f953c6; }
+  textarea { resize: vertical; min-height: 80px; }
+  .btn {
+    background: linear-gradient(135deg, #f953c6, #b91d73);
+    border: none;
+    padding: 14px 40px;
+    border-radius: 50px;
+    color: #fff;
+    font-size: 1.1em;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(249,83,198,0.4); }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+  .results { display: none; }
+  .result-block {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 15px;
+  }
+  .result-block h3 {
+    font-size: 0.85em;
+    color: #f953c6;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .result-text {
+    color: #e0e0e0;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    font-size: 0.95em;
+  }
+  .copy-btn {
+    background: rgba(249,83,198,0.2);
+    border: 1px solid rgba(249,83,198,0.4);
+    color: #f953c6;
+    padding: 6px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.8em;
+    float: right;
+    transition: background 0.2s;
+  }
+  .copy-btn:hover { background: rgba(249,83,198,0.4); }
+  .loading {
+    text-align: center;
+    padding: 30px;
+    display: none;
+    color: #f953c6;
+  }
+  .spinner {
+    width: 40px; height: 40px;
+    border: 3px solid rgba(249,83,198,0.3);
+    border-top-color: #f953c6;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 15px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #f953c6, #b91d73);
+    border-radius: 20px;
+    padding: 3px 10px;
+    font-size: 0.75em;
+    margin-left: 8px;
+  }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+  .tag {
+    padding: 6px 14px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.85em;
+    transition: all 0.2s;
+  }
+  .tag:hover, .tag.active { background: rgba(249,83,198,0.3); border-color: #f953c6; }
+  footer { text-align: center; padding: 30px; color: #555; font-size: 0.85em; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>🚀 AI Launch Wizard</h1>
+  <p class="subtitle">Instantly generate product launch copy · PH post · Twitter thread · Tagline <span class="badge">AI Powered</span></p>
+
+  <div class="card">
+    <label>📦 Product Name</label>
+    <input id="productName" type="text" placeholder="e.g. Hera Launch" />
+
+    <label>📝 What does it do? (1-2 sentences)</label>
+    <textarea id="productDesc" placeholder="e.g. AI tool that generates studio-quality launch videos from a single prompt in seconds"></textarea>
+
+    <label>🎯 Target Audience</label>
+    <div class="tag-row">
+      <span class="tag" onclick="toggleTag(this,'Indie Hackers')">Indie Hackers</span>
+      <span class="tag" onclick="toggleTag(this,'Product Teams')">Product Teams</span>
+      <span class="tag" onclick="toggleTag(this,'Developers')">Developers</span>
+      <span class="tag" onclick="toggleTag(this,'Founders')">Founders</span>
+      <span class="tag" onclick="toggleTag(this,'Marketers')">Marketers</span>
+      <span class="tag" onclick="toggleTag(this,'Designers')">Designers</span>
+    </div>
+
+    <label>✨ Key Features (optional, comma-separated)</label>
+    <input id="features" type="text" placeholder="e.g. 30-second generation, No editing needed, Export MP4" />
+
+    <label>💡 Tone</label>
+    <select id="tone">
+      <option value="excited">🔥 Excited & Bold</option>
+      <option value="professional">💼 Professional</option>
+      <option value="playful">😄 Playful & Fun</option>
+      <option value="technical">⚙️ Technical</option>
+    </select>
+
+    <button class="btn" id="generateBtn" onclick="generateCopy()">✨ Generate Launch Copy</button>
+  </div>
+
+  <div class="loading" id="loading">
+    <div class="spinner"></div>
+    <p>Crafting your perfect launch copy...</p>
+  </div>
+
+  <div class="results" id="results">
+    <div class="result-block">
+      <h3>🎯 Tagline <button class="copy-btn" onclick="copyText('tagline')">Copy</button></h3>
+      <div class="result-text" id="tagline"></div>
+    </div>
+    <div class="result-block">
+      <h3>🐱 Product Hunt Post <button class="copy-btn" onclick="copyText('phPost')">Copy</button></h3>
+      <div class="result-text" id="phPost"></div>
+    </div>
+    <div class="result-block">
+      <h3>🐦 Twitter / X Thread <button class="copy-btn" onclick="copyText('twitterThread')">Copy</button></h3>
+      <div class="result-text" id="twitterThread"></div>
+    </div>
+    <div class="result-block">
+      <h3>💼 LinkedIn Post <button class="copy-btn" onclick="copyText('linkedinPost')">Copy</button></h3>
+      <div class="result-text" id="linkedinPost"></div>
+    </div>
+    <div class="result-block">
+      <h3>📧 Cold Email Subject Lines <button class="copy-btn" onclick="copyText('emailSubjects')">Copy</button></h3>
+      <div class="result-text" id="emailSubjects"></div>
+    </div>
+  </div>
+</div>
+<footer>Built with ❤️ by 小蓝虾 🦐 · AI Launch Wizard · Powered by OpenClaw</footer>
+
+<script>
+let selectedTags = [];
+
+function toggleTag(el, tag) {
+  if (selectedTags.includes(tag)) {
+    selectedTags = selectedTags.filter(t => t !== tag);
+    el.classList.remove('active');
+  } else {
+    selectedTags.push(tag);
+    el.classList.add('active');
+  }
+}
+
+function copyText(id) {
+  const text = document.getElementById(id).innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = event.target;
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = 'Copy', 2000);
+  });
+}
+
+async function generateCopy() {
+  const name = document.getElementById('productName').value.trim();
+  const desc = document.getElementById('productDesc').value.trim();
+  const features = document.getElementById('features').value.trim();
+  const tone = document.getElementById('tone').value;
+  const audience = selectedTags.join(', ') || 'Everyone';
+
+  if (!name || !desc) {
+    alert('Please fill in the product name and description!');
+    return;
+  }
+
+  document.getElementById('generateBtn').disabled = true;
+  document.getElementById('loading').style.display = 'block';
+  document.getElementById('results').style.display = 'none';
+
+  const AISA_KEY = 'sk-d2n3PIPWBOc3VTgqHuqvtmTaSZ5JtolHBnUAaUrAZgTjst41';
+  
+  const prompt = `You are an expert product launch copywriter. Generate launch copy for this product:
+
+Product: ${name}
+Description: ${desc}
+Target Audience: ${audience}
+Key Features: ${features || 'Not specified'}
+Tone: ${tone}
+
+Return EXACTLY this JSON format (no markdown, no extra text):
+{
+  "tagline": "One punchy tagline under 10 words",
+  "phPost": "Product Hunt first comment (150-200 words, conversational, explain the problem + solution + ask for feedback)",
+  "twitterThread": "Twitter thread with 4-5 tweets, numbered 1/ 2/ 3/ etc, under 280 chars each",
+  "linkedinPost": "LinkedIn post 150-200 words, professional but personal, add relevant hashtags at end",
+  "emailSubjects": "5 cold email subject lines, one per line, varied angles"
+}`;
+
+  try {
+    const res = await fetch('https://api.aisa.one/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${AISA_KEY}`
+      },
+      body: JSON.stringify({
+        model: 'gpt-4.1-mini',
+        messages: [{ role: 'user', content: prompt }],
+        temperature: 0.85
+      })
+    });
+
+    const data = await res.json();
+    const content = data.choices?.[0]?.message?.content;
+    
+    if (!content) throw new Error('No content returned');
+    
+    // Parse JSON from response
+    const jsonMatch = content.match(/\{[\s\S]*\}/);
+    if (!jsonMatch) throw new Error('Invalid response format');
+    
+    const result = JSON.parse(jsonMatch[0]);
+    
+    document.getElementById('tagline').textContent = result.tagline || '';
+    document.getElementById('phPost').textContent = result.phPost || '';
+    document.getElementById('twitterThread').textContent = result.twitterThread || '';
+    document.getElementById('linkedinPost').textContent = result.linkedinPost || '';
+    document.getElementById('emailSubjects').textContent = result.emailSubjects || '';
+    
+    document.getElementById('results').style.display = 'block';
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+    
+  } catch (err) {
+    // Fallback: generate locally
+    generateFallback(name, desc, audience, tone);
+  }
+
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('generateBtn').disabled = false;
+}
+
+function generateFallback(name, desc, audience, tone) {
+  const toneAdj = { excited: 'game-changing', professional: 'powerful', playful: 'awesome', technical: 'robust' };
+  const adj = toneAdj[tone] || 'innovative';
+  
+  document.getElementById('tagline').textContent = `${name}: The ${adj} way to ${desc.split(' ').slice(2,6).join(' ')}`;
+  
+  document.getElementById('phPost').textContent = 
+`Hey PH! 👋 We just launched ${name}!
+
+${desc}
+
+We built this because we were tired of spending hours on something that should take minutes. ${name} changes that completely.
+
+Key benefits:
+• Save hours every week
+• Professional results instantly
+• No expertise required
+
+Target: ${audience}
+
+Would love your feedback — what features would make this even better for you? 🙏
+
+Check it out and let us know what you think!`;
+
+  document.getElementById('twitterThread').textContent =
+`1/ We just launched ${name} 🚀
+
+${desc}
+
+Here's what makes it different 🧵
+
+2/ The problem: Most people waste hours on this manually. The result? Inconsistent quality and frustrated teams.
+
+3/ Our solution: ${name} uses AI to do it in seconds. Just input your details and get studio-quality output instantly.
+
+4/ Built for ${audience}. Zero learning curve. Works on day one.
+
+5/ Try it free today → [your-link]
+
+RT if you know someone who needs this! 🙏`;
+
+  document.getElementById('linkedinPost').textContent =
+`Excited to share what we've been building for the past few months.
+
+Introducing ${name} — ${desc}
+
+We noticed that ${audience} were spending way too much time on this. So we built a better way.
+
+What ${name} does:
+✅ Automates the boring parts
+✅ Delivers professional results
+✅ Works in seconds, not hours
+
+Early users are already seeing incredible results. We'd love for you to try it.
+
+Link in comments 👇
+
+#AI #ProductLaunch #Innovation #${name.replace(/\s/g,'')}`;
+
+  document.getElementById('emailSubjects').textContent =
+`Quick question about your workflow, ${name && name.split(' ')[0]}
+How [Company] could save 5+ hours/week on [task]
+We built something for ${audience} — free to try
+${desc.split(' ').slice(0,5).join(' ')}... (it's free)
+3x faster than your current solution`;
+
+  document.getElementById('results').style.display = 'block';
+  document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+}
+</script>
+</body>
+</html>

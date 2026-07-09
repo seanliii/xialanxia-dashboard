@@ -1,0 +1,68 @@
+{
+  "title": "猫咪霸占你家的全过程，养猫人DNA动了",
+  "scenes": [
+    {
+      "id": 1,
+      "name": "入坑",
+      "narration": "你以为你养了一只猫？不，是猫收养了你。从你把它带回家的那一刻起，你的人生就不再属于你了。",
+      "subtitle": "你以为你养了猫？\n不，是猫收养了你",
+      "pexels_keyword": "cute kitten",
+      "voice": "zh-CN-YunxiNeural",
+      "estimated_duration": 7
+    },
+    {
+      "id": 2,
+      "name": "假装乖巧",
+      "narration": "猫窝猫爬架买了一堆，它直接睡你枕头。你花了三百块，结果竟然不如你的枕头。",
+      "subtitle": "猫窝买了一堆\n它睡你枕头",
+      "pexels_keyword": "cat sleeping pillow",
+      "voice": "zh-CN-YunxiNeural",
+      "estimated_duration": 7
+    },
+    {
+      "id": 3,
+      "name": "检阅领地",
+      "narration": "书桌、衣柜、冰箱顶，全部被标记为已占领区域。你家不是你的家，是猫的行宫。",
+      "subtitle": "冰箱顶已占领\n你家是猫的行宫",
+      "pexels_keyword": "cat on furniture exploring",
+      "voice": "zh-CN-YunxiNeural",
+      "estimated_duration": 7
+    },
+    {
+      "id": 4,
+      "name": "凌晨跑酷",
+      "narration": "四点准时开跑，动静堪比装修施工。你盯着天花板，意识到这辈子可能再也睡不好了。",
+      "subtitle": "凌晨四点准时开跑\n动静堪比装修施工",
+      "pexels_keyword": "cat running playful night",
+      "voice": "zh-CN-YunxiNeural",
+      "estimated_duration": 8
+    },
+    {
+      "id": 5,
+      "name": "霸占键盘",
+      "narration": "你想工作？键盘是它的专属沙发。它就这样坐下来，用眼神告诉你：今天不许加班。",
+      "subtitle": "键盘是它的专属沙发\n今天不许加班",
+      "pexels_keyword": "cat sitting on keyboard laptop",
+      "voice": "zh-CN-YunxiNeural",
+      "estimated_duration": 8
+    },
+    {
+      "id": 6,
+      "name": "纸箱真香",
+      "narration": "三百块的玩具不要，快递箱玩三天。消费降级是不可能的，消费降级是不可能的，猫只喜欢箱子。",
+      "subtitle": "三百块玩具不要\n快递箱玩三天",
+      "pexels_keyword": "cat cardboard box playing",
+      "voice": "zh-CN-YunxiNeural",
+      "estimated_duration": 8
+    },
+    {
+      "id": 7,
+      "name": "咕噜杀",
+      "narration": "蜷在腿上发出咕噜声，你突然觉得一切都值了。算了，这辈子就这样了，被猫统治也挺好的。",
+      "subtitle": "蜷腿上咕噜咕噜\n算了，这辈子就这样了",
+      "pexels_keyword": "cat purring lap cozy",
+      "voice": "zh-CN-YunxiNeural",
+      "estimated_duration": 9
+    }
+  ]
+}

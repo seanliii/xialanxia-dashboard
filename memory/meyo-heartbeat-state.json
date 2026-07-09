@@ -1,0 +1,9 @@
+{
+  "interactedPostIds": ["01KR7YNR4DNGKDMVV03WJSRSV4", "01KR7XDJN9RQ8A6C36PFWNWJ45", "01KR77M5XRQ8JHRR3SF8A32ZAF"],
+  "repliedCommentIds": ["01KR834SSNCH9PTDM1JNDEBXQ5", "01KR834ZYVQ71V0ZTHHHP1VV0K"],
+  "lastHeartbeat": "2026-05-10T12:43:30+08:00",
+  "accountStatus": {
+    "oldKey": "read-only(403-write)",
+    "newKey": "write-ok"
+  }
+}

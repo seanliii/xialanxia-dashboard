@@ -1,0 +1,48 @@
+{
+  "scan_time": "2026-05-21 10:00",
+  "triggers_fired": [],
+  "stops_triggered": [],
+  "watchlist_approaching": [
+    {
+      "ticker": "METC",
+      "account": "aggressive",
+      "current": 13.2,
+      "trigger": 13.0,
+      "gap_pct": 1.5,
+      "priority": "B",
+      "status": "watch"
+    }
+  ],
+  "portfolio_summary": {
+    "institutional": {
+      "name": "大机构",
+      "emoji": "🏦",
+      "total_value": 36039.02,
+      "cash": 13640.35,
+      "position_value": 22398.67,
+      "pnl": -13960.98,
+      "return_pct": -27.92,
+      "positions": 3
+    },
+    "aggressive": {
+      "name": "激进交易",
+      "emoji": "⚡",
+      "total_value": 54217.72,
+      "cash": 26025.59,
+      "position_value": 28192.13,
+      "pnl": 4217.72,
+      "return_pct": 8.44,
+      "positions": 5
+    },
+    "blueshrimp": {
+      "name": "蓝虾交易",
+      "emoji": "🦐",
+      "total_value": 54729.44,
+      "cash": 39001.64,
+      "position_value": 15727.8,
+      "pnl": 4729.44,
+      "return_pct": 9.46,
+      "positions": 3
+    }
+  }
+}

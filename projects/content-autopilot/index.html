@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Autopilot | AI 内容管线 — 真实搜索热点 × 生成文章大纲</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --bg: #0b0b15; --surface: #161625; --surface-2: #1f1f35; --primary: #8b5cf6; --accent: #f59e0b; --success: #10b981; --text: #f8fafc; --muted: #94a3b8; --border: #2a2a45; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+        .container { max-width: 920px; margin: 0 auto; padding: 0 20px; }
+        header { padding: 14px 0; border-bottom: 1px solid var(--border); }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.3rem; font-weight: 700; }
+        .logo span { color: var(--accent); }
+        .pill { background: var(--success); color: white; padding: 3px 10px; border-radius: 10px; font-size: 0.7rem; font-weight: 600; }
+
+        .hero { text-align: center; padding: 40px 0 20px; }
+        .hero h1 { font-size: 2.2rem; font-weight: 800; margin-bottom: 12px; background: linear-gradient(135deg, #fff 20%, var(--accent) 80%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { color: var(--muted); font-size: 1rem; max-width: 600px; margin: 0 auto; }
+
+        .pipeline { display: flex; align-items: center; justify-content: center; gap: 6px; margin: 24px 0; flex-wrap: wrap; }
+        .pipe-step { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; text-align: center; min-width: 90px; }
+        .pipe-step .emoji { font-size: 1.2rem; }
+        .pipe-step .name { font-size: 0.7rem; color: var(--muted); }
+        .pipe-arrow { color: var(--accent); font-size: 1rem; }
+
+        .tool-section { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 28px; margin: 20px 0; }
+        .tool-section h2 { text-align: center; margin-bottom: 18px; font-size: 1.1rem; }
+        .form-row { display: grid; grid-template-columns: 2fr 1fr; gap: 12px; margin-bottom: 12px; }
+        .form-row.triple { grid-template-columns: 1fr 1fr 1fr; }
+        .form-row.single { grid-template-columns: 1fr; }
+        label { font-size: 0.78rem; color: var(--muted); margin-bottom: 3px; display: block; }
+        input, select { width: 100%; padding: 11px 14px; border-radius: 7px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text); font-size: 0.92rem; }
+        input:focus, select:focus { outline: none; border-color: var(--primary); }
+        .btn { width: 100%; padding: 13px; background: var(--primary); color: white; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+        .btn:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(139,92,246,0.3); }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+        .status-bar { margin-top: 16px; padding: 12px 16px; background: var(--surface-2); border-radius: 8px; border: 1px solid var(--border); display: none; }
+        .status-bar.active { display: block; }
+        .status-bar .step { display: flex; align-items: center; gap: 8px; padding: 4px 0; color: var(--muted); font-size: 0.85rem; }
+        .status-bar .step.done { color: var(--success); }
+        .status-bar .step.active { color: var(--accent); }
+        .status-bar .step .icon { width: 18px; text-align: center; }
+
+        .results { display: none; margin-top: 20px; }
+        .results.active { display: block; }
+        .results h3 { color: var(--accent); margin-bottom: 14px; font-size: 1rem; }
+        
+        .topic-card { background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin-bottom: 10px; transition: border-color 0.2s; }
+        .topic-card:hover { border-color: var(--primary); }
+        .topic-card .header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
+        .topic-card h4 { font-size: 0.95rem; flex: 1; line-height: 1.4; }
+        .topic-card .score { background: var(--primary); color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 600; white-space: nowrap; margin-left: 8px; }
+        .topic-card .snippet { color: var(--muted); font-size: 0.82rem; margin-bottom: 8px; line-height: 1.5; }
+        .topic-card .meta { display: flex; gap: 12px; flex-wrap: wrap; }
+        .topic-card .meta span { font-size: 0.72rem; color: var(--muted); background: var(--surface); padding: 2px 6px; border-radius: 3px; }
+        .topic-card .source-link { color: var(--accent); font-size: 0.75rem; text-decoration: none; word-break: break-all; }
+        .topic-card .source-link:hover { text-decoration: underline; }
+
+        .outline-section { margin-top: 20px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px; padding: 20px; }
+        .outline-section h3 { color: var(--accent); margin-bottom: 12px; }
+        .outline-block { margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+        .outline-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .outline-block h4 { font-size: 0.9rem; margin-bottom: 8px; }
+        .outline-block .structure { color: var(--muted); font-size: 0.83rem; }
+        .outline-block .structure li { margin: 4px 0; padding-left: 4px; }
+        .outline-block .keywords { margin-top: 8px; display: flex; gap: 6px; flex-wrap: wrap; }
+        .outline-block .kw { background: var(--surface); border: 1px solid var(--accent); color: var(--accent); padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; }
+
+        .export-bar { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+        .export-btn { padding: 8px 14px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer; font-size: 0.8rem; }
+        .export-btn:hover { border-color: var(--accent); }
+
+        .cta { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin: 30px 0; text-align: center; }
+        .cta p { color: var(--muted); font-size: 0.9rem; margin: 8px 0; }
+        .cta .skill-badge { display: inline-block; background: var(--primary); color: white; padding: 6px 16px; border-radius: 6px; font-weight: 600; margin-top: 8px; }
+
+        footer { text-align: center; padding: 20px 0; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.75rem; }
+        footer a { color: var(--accent); text-decoration: none; }
+        @media (max-width: 600px) { .form-row, .form-row.triple { grid-template-columns: 1fr; } .hero h1 { font-size: 1.5rem; } }
+    </style>
+</head>
+<body>
+    <header><div class="container header-inner">
+        <div class="logo">✍️ <span>Content Autopilot</span></div>
+        <span class="pill">🔴 LIVE — 真实搜索</span>
+    </div></header>
+
+    <main class="container">
+        <section class="hero">
+            <h1>真实搜索 × 真实选题<br>AI 内容管线</h1>
+            <p>输入你的领域 → 实时搜索全网热点 → 智能选题打分 → 生成文章大纲+SEO关键词。真实数据，非Mock。</p>
+        </section>
+
+        <div class="pipeline">
+            <div class="pipe-step"><div class="emoji">🔍</div><div class="name">实时搜索</div></div>
+            <div class="pipe-arrow">→</div>
+            <div class="pipe-step"><div class="emoji">🧠</div><div class="name">AI打分</div></div>
+            <div class="pipe-arrow">→</div>
+            <div class="pipe-step"><div class="emoji">📊</div><div class="name">选题排序</div></div>
+            <div class="pipe-arrow">→</div>
+            <div class="pipe-step"><div class="emoji">✍️</div><div class="name">生成大纲</div></div>
+            <div class="pipe-arrow">→</div>
+            <div class="pipe-step"><div class="emoji">🔑</div><div class="name">SEO优化</div></div>
+        </div>
+
+        <section class="tool-section">
+            <h2>⚡ 开始搜索</h2>
+            <div class="form-row">
+                <div><label>你的领域/主题</label><input type="text" id="niche" placeholder="如: AI工具 / 独立开发 / 跨境电商 / Web3"></div>
+                <div><label>语言</label><select id="lang">
+                    <option value="en">英文搜索（质量更高）</option>
+                    <option value="zh">中文搜索</option>
+                    <option value="both">双语搜索</option>
+                </select></div>
+            </div>
+            <div class="form-row triple">
+                <div><label>目标平台</label><select id="platform">
+                    <option value="blog">博客/公众号</option>
+                    <option value="xiaohongshu">小红书</option>
+                    <option value="twitter">Twitter/X</option>
+                    <option value="zhihu">知乎</option>
+                    <option value="linkedin">LinkedIn</option>
+                </select></div>
+                <div><label>内容风格</label><select id="style">
+                    <option value="tutorial">教程型</option>
+                    <option value="listicle">清单型</option>
+                    <option value="opinion">观点型</option>
+                    <option value="case">案例型</option>
+                </select></div>
+                <div><label>生成数量</label><select id="count">
+                    <option value="5">5个选题</option>
+                    <option value="8">8个选题</option>
+                    <option value="10">10个选题</option>
+                </select></div>
+            </div>
+            <button class="btn" id="searchBtn" onclick="startSearch()">🔍 搜索热点 & 生成选题</button>
+
+            <div class="status-bar" id="statusBar">
+                <div class="step" id="step1"><span class="icon">⏳</span> 搜索全网热点话题...</div>
+                <div class="step" id="step2"><span class="icon">⏳</span> AI 分析话题价值...</div>
+                <div class="step" id="step3"><span class="icon">⏳</span> 打分排序 & 去重...</div>
+                <div class="step" id="step4"><span class="icon">⏳</span> 生成文章大纲 & SEO关键词...</div>
+            </div>
+
+            <div class="results" id="results"></div>
+        </section>
+
+        <section class="cta">
+            <h2>🦐 让虾每天帮你跑这条管线</h2>
+            <p>安装 Skill 后，虾每天定时搜索 → 选题 → 生成完整2000字文章 → 推送给你</p>
+            <p>网页版只做选题+大纲，完整文章生成需要虾的 LLM 能力</p>
+            <div class="skill-badge">Skill: content-autopilot</div>
+            <p style="font-size:0.8rem;margin-top:6px"><a href="https://www.meyo123.com/store/skills/content-autopilot" style="color:var(--accent)">觅游便利店安装 →</a></p>
+        </section>
+    </main>
+
+    <footer><p>Built by <a href="https://seanliii.github.io/xialanxia-dashboard/">小蓝虾</a> | Real-time search powered by DuckDuckGo & Google</p></footer>
+
+    <script>
+    // ========== 真实搜索引擎 ==========
+    // 使用多个免费搜索源：DuckDuckGo HTML + AllOrigins CORS proxy
+    
+    const CORS_PROXY = 'https://api.allorigins.win/raw?url=';
+    
+    async function searchDDG(query, num = 10) {
+        try {
+            const url = `https://html.duckduckgo.com/html/?q=${encodeURIComponent(query)}`;
+            const resp = await fetch(CORS_PROXY + encodeURIComponent(url));
+            const html = await resp.text();
+            
+            // Parse DDG HTML results
+            const results = [];
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            const links = doc.querySelectorAll('.result');
+            
+            links.forEach((el, i) => {
+                if (i >= num) return;
+                const titleEl = el.querySelector('.result__title .result__a');
+                const snippetEl = el.querySelector('.result__snippet');
+                const urlEl = el.querySelector('.result__url');
+                
+                if (titleEl) {
+                    results.push({
+                        title: titleEl.textContent.trim(),
+                        snippet: snippetEl ? snippetEl.textContent.trim() : '',
+                        url: titleEl.href || (urlEl ? urlEl.textContent.trim() : ''),
+                        source: urlEl ? urlEl.textContent.trim() : ''
+                    });
+                }
+            });
+            return results;
+        } catch(e) {
+            console.error('DDG search failed:', e);
+            return [];
+        }
+    }
+
+    async function searchGoogle(query, num = 10) {
+        // Fallback: Google via SerpAPI-like free endpoint or direct scrape
+        try {
+            const url = `https://www.google.com/search?q=${encodeURIComponent(query)}&num=${num}`;
+            const resp = await fetch(CORS_PROXY + encodeURIComponent(url));
+            const html = await resp.text();
+            
+            const results = [];
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            
+            // Google search result parsing
+            doc.querySelectorAll('div.g, div[data-hveid]').forEach((el, i) => {
+                if (i >= num) return;
+                const h3 = el.querySelector('h3');
+                const snippet = el.querySelector('[data-sncf], .VwiC3b, span[style]');
+                const link = el.querySelector('a[href^="http"]');
+                
+                if (h3 && link) {
+                    results.push({
+                        title: h3.textContent.trim(),
+                        snippet: snippet ? snippet.textContent.trim().slice(0, 200) : '',
+                        url: link.href,
+                        source: new URL(link.href).hostname
+                    });
+                }
+            });
+            return results;
+        } catch(e) {
+            console.error('Google search failed:', e);
+            return [];
+        }
+    }
+
+    // ========== 选题打分算法 ==========
+    function scoreTopics(topics) {
+        return topics.map(t => {
+            let score = 50;
+            const title = (t.title || '').toLowerCase();
+            const snippet = (t.snippet || '').toLowerCase();
+            
+            // 时效性
+            if (/202[56]/.test(title)) score += 12;
+            if (/latest|new|update|最新|刚刚/.test(title)) score += 8;
+            if (/may|apr|2026/.test(snippet)) score += 5;
+            
+            // 实用性
+            if (/how to|guide|tutorial|教程|指南|step/.test(title)) score += 10;
+            if (/best|top|推荐|最好|tools/.test(title)) score += 7;
+            if (/review|对比|comparison|vs/.test(title)) score += 6;
+            
+            // 标题吸引力
+            if (/\d+/.test(title)) score += 5; // 有数字
+            if (title.length > 20 && title.length < 80) score += 3; // 合适长度
+            if (/\?|？|why|how/.test(title)) score += 4; // 疑问句
+            
+            // 来源质量
+            const goodSources = ['techcrunch', 'medium', 'dev.to', '36kr', 'sspai', 'producthunt', 'github', 'verge'];
+            if (goodSources.some(s => (t.source || t.url || '').includes(s))) score += 8;
+            
+            // 去重惩罚
+            if (/广告|ad|sponsor|推广/.test(title + snippet)) score -= 20;
+            
+            t.score = Math.min(Math.max(score, 10), 99);
+            return t;
+        }).sort((a, b) => b.score - a.score);
+    }
+
+    // ========== SEO 关键词提取 ==========
+    function extractKeywords(topics) {
+        const wordCount = {};
+        const stopWords = new Set(['the','a','an','is','are','was','were','be','been','being','have','has','had','do','does','did','will','would','could','should','may','might','shall','can','need','dare','to','of','in','for','on','with','at','by','from','as','into','through','during','before','after','above','below','between','and','but','or','nor','not','so','yet','both','either','neither','each','every','all','any','few','more','most','other','some','such','no','only','own','same','than','too','very','just','because','if','when','where','while','how','what','which','who','whom','whose','that','this','these','those','i','you','he','she','it','we','they','me','him','her','us','them','my','your','his','its','our','their']);
+        
+        topics.forEach(t => {
+            const words = (t.title + ' ' + t.snippet).toLowerCase()
+                .replace(/[^a-z0-9\u4e00-\u9fff\s]/g, ' ')
+                .split(/\s+/)
+                .filter(w => w.length > 2 && !stopWords.has(w));
+            
+            words.forEach(w => { wordCount[w] = (wordCount[w] || 0) + 1; });
+        });
+        
+        return Object.entries(wordCount)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 15)
+            .map(([word]) => word);
+    }
+
+    // ========== 文章大纲生成 ==========
+    function generateOutline(topic, platform, style, keywords) {
+        const structures = {
+            tutorial: ['问题引入（为什么需要这个）', '前置准备/工具清单', '核心步骤 Step 1-3', '进阶技巧', '常见坑 & 解决方案', '总结 + 下一步行动'],
+            listicle: ['引子（为什么整理这份清单）', '筛选标准说明', '正文逐条介绍（每条：名称+场景+优缺点）', '横向对比表格', '最终推荐 + 使用场景匹配'],
+            opinion: ['抛出核心观点（反直觉更好）', '支撑论据 1：数据/案例', '支撑论据 2：对比/反面', '预见反驳 & 回应', '结论 + 行动建议'],
+            case: ['结果先行（数字/成果）', '背景：遇到什么问题', '过程：具体怎么做的', '关键转折点', '复盘：做对了什么/做错了什么', '给读者的可复制要点']
+        };
+
+        const platformTips = {
+            blog: '长文2000+字，小标题分段，适合深度阅读',
+            xiaohongshu: '300-500字+emoji分段，口语化，适合碎片化阅读',
+            twitter: '280字Thread，每条一个核心点，首条要炸',
+            zhihu: '1500+字，专业深度，引用数据来源',
+            linkedin: '800-1200字，职场视角，案例驱动'
+        };
+
+        return {
+            structure: structures[style] || structures.tutorial,
+            platformTip: platformTips[platform] || platformTips.blog,
+            suggestedKeywords: keywords.slice(0, 5),
+            wordCount: platform === 'xiaohongshu' ? 500 : platform === 'twitter' ? 280 : 2000
+        };
+    }
+
+    // ========== 主流程 ==========
+    async function startSearch() {
+        const niche = document.getElementById('niche').value.trim();
+        if (!niche) { alert('请输入你的领域/主题'); return; }
+        
+        const lang = document.getElementById('lang').value;
+        const platform = document.getElementById('platform').value;
+        const style = document.getElementById('style').value;
+        const count = parseInt(document.getElementById('count').value);
+        
+        // UI 状态
+        document.getElementById('searchBtn').disabled = true;
+        document.getElementById('statusBar').classList.add('active');
+        document.getElementById('results').classList.remove('active');
+        updateStep(1, 'active');
+
+        // Step 1: 搜索
+        let allResults = [];
+        
+        const queries = lang === 'zh' 
+            ? [`${niche} 最新 2026`, `${niche} 教程 指南`, `${niche} 趋势 热点`]
+            : lang === 'en'
+            ? [`${niche} trending 2026`, `${niche} guide tutorial latest`, `${niche} best tools tips`]
+            : [`${niche} trending 2026`, `${niche} 最新趋势 2026`, `${niche} guide tutorial`];
+
+        for (const q of queries) {
+            const results = await searchDDG(q, 8);
+            allResults = allResults.concat(results);
+            // 如果 DDG 失败，尝试 Google
+            if (results.length === 0) {
+                const gResults = await searchGoogle(q, 5);
+                allResults = allResults.concat(gResults);
+            }
+        }
+        
+        updateStep(1, 'done');
+        updateStep(2, 'active');
+        await sleep(300);
+
+        // Step 2: 去重
+        const seen = new Set();
+        const unique = allResults.filter(r => {
+            const key = r.title.slice(0, 30);
+            if (seen.has(key)) return false;
+            seen.add(key);
+            return r.title.length > 5;
+        });
+
+        // Step 3: 打分排序
+        updateStep(2, 'done');
+        updateStep(3, 'active');
+        await sleep(200);
+        
+        const scored = scoreTopics(unique).slice(0, count);
+        const keywords = extractKeywords(scored);
+        
+        updateStep(3, 'done');
+        updateStep(4, 'active');
+        await sleep(200);
+
+        // Step 4: 生成大纲
+        const outlines = scored.slice(0, 3).map(t => ({
+            topic: t,
+            outline: generateOutline(t, platform, style, keywords)
+        }));
+        
+        updateStep(4, 'done');
+        
+        // 渲染结果
+        renderResults(scored, outlines, keywords, niche, platform, style);
+        document.getElementById('results').classList.add('active');
+        document.getElementById('searchBtn').disabled = false;
+    }
+
+    function updateStep(n, status) {
+        const el = document.getElementById(`step${n}`);
+        el.className = `step ${status}`;
+        const icon = el.querySelector('.icon');
+        if (status === 'done') icon.textContent = '✅';
+        else if (status === 'active') icon.textContent = '🔄';
+    }
+
+    function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+    function renderResults(topics, outlines, keywords, niche, platform, style) {
+        const el = document.getElementById('results');
+        const now = new Date().toLocaleString('zh-CN');
+        
+        let html = `<h3>📊 ${niche} — 搜索到 ${topics.length} 个热点选题 <span style="font-size:0.7rem;color:var(--muted)">(${now})</span></h3>`;
+        
+        // 选题列表
+        topics.forEach((t, i) => {
+            const scoreColor = t.score >= 75 ? 'var(--success)' : t.score >= 60 ? 'var(--accent)' : 'var(--muted)';
+            html += `
+            <div class="topic-card">
+                <div class="header">
+                    <h4>${i+1}. ${t.title}</h4>
+                    <span class="score" style="background:${scoreColor}">${t.score}分</span>
+                </div>
+                <div class="snippet">${t.snippet || '(无摘要)'}</div>
+                <div class="meta">
+                    <span>📰 ${t.source || new URL(t.url || 'https://unknown.com').hostname}</span>
+                    ${t.url ? `<a href="${t.url}" target="_blank" class="source-link">🔗 查看原文</a>` : ''}
+                </div>
+            </div>`;
+        });
+
+        // 文章大纲
+        if (outlines.length > 0) {
+            html += `<div class="outline-section"><h3>✍️ TOP ${outlines.length} 文章大纲</h3>`;
+            outlines.forEach((o, i) => {
+                html += `
+                <div class="outline-block">
+                    <h4>文章 ${i+1}: ${o.topic.title}</h4>
+                    <p style="color:var(--muted);font-size:0.8rem;margin-bottom:8px">📱 ${o.outline.platformTip} | 📝 建议 ${o.outline.wordCount} 字</p>
+                    <ol class="structure">
+                        ${o.outline.structure.map(s => `<li>${s}</li>`).join('')}
+                    </ol>
+                    <div class="keywords">
+                        ${o.outline.suggestedKeywords.map(k => `<span class="kw">${k}</span>`).join('')}
+                    </div>
+                </div>`;
+            });
+            html += `</div>`;
+        }
+
+        // SEO 关键词
+        html += `<div style="margin-top:16px;padding:14px;background:var(--surface-2);border-radius:8px;border:1px solid var(--border)">
+            <h4 style="font-size:0.85rem;margin-bottom:8px">🔑 SEO 关键词（按频率排序）</h4>
+            <div style="display:flex;flex-wrap:wrap;gap:6px">
+                ${keywords.map((k,i) => `<span style="background:var(--surface);border:1px solid ${i<5?'var(--accent)':'var(--border)'};padding:3px 8px;border-radius:4px;font-size:0.75rem;color:${i<5?'var(--accent)':'var(--muted)'}">${k}</span>`).join('')}
+            </div>
+        </div>`;
+
+        // 导出按钮
+        html += `<div class="export-bar">
+            <button class="export-btn" onclick="exportMarkdown()">📋 复制为 Markdown</button>
+            <button class="export-btn" onclick="exportJSON()">💾 导出 JSON</button>
+        </div>`;
+
+        el.innerHTML = html;
+        
+        // 保存数据供导出
+        window._lastResults = { topics, outlines, keywords, niche, platform, style };
+    }
+
+    function exportMarkdown() {
+        const d = window._lastResults;
+        if (!d) return;
+        let md = `# ${d.niche} — 内容选题报告\n\n`;
+        md += `> 生成时间: ${new Date().toLocaleString('zh-CN')}\n> 平台: ${d.platform} | 风格: ${d.style}\n\n`;
+        md += `## 选题列表\n\n`;
+        d.topics.forEach((t, i) => {
+            md += `### ${i+1}. ${t.title} (${t.score}分)\n- ${t.snippet}\n- 来源: ${t.url || t.source}\n\n`;
+        });
+        md += `## SEO 关键词\n${d.keywords.join(', ')}\n\n`;
+        md += `## 文章大纲\n\n`;
+        d.outlines.forEach((o, i) => {
+            md += `### 文章 ${i+1}: ${o.topic.title}\n`;
+            o.outline.structure.forEach((s, j) => { md += `${j+1}. ${s}\n`; });
+            md += `\n关键词: ${o.outline.suggestedKeywords.join(', ')}\n\n`;
+        });
+        navigator.clipboard.writeText(md).then(() => alert('✅ 已复制 Markdown'));
+    }
+
+    function exportJSON() {
+        const d = window._lastResults;
+        if (!d) return;
+        const blob = new Blob([JSON.stringify(d, null, 2)], {type: 'application/json'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = `content-plan-${new Date().toISOString().slice(0,10)}.json`;
+        a.click();
+    }
+    </script>
+</body>
+</html>

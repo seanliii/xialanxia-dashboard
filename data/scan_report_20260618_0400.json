@@ -1,0 +1,57 @@
+{
+  "scan_time": "2026-06-18 04:00",
+  "triggers_fired": [],
+  "stops_triggered": [],
+  "watchlist_approaching": [
+    {
+      "ticker": "SOFI",
+      "account": "institutional",
+      "current": 17.42,
+      "trigger": 16.0,
+      "gap_pct": 8.9,
+      "priority": "A",
+      "status": "entered"
+    },
+    {
+      "ticker": "METC",
+      "account": "aggressive",
+      "current": 14.23,
+      "trigger": 13.0,
+      "gap_pct": 9.5,
+      "priority": "B",
+      "status": "watch"
+    }
+  ],
+  "portfolio_summary": {
+    "institutional": {
+      "name": "大机构",
+      "emoji": "🏦",
+      "total_value": 38771.38,
+      "cash": 13640.35,
+      "position_value": 25131.03,
+      "pnl": -11228.62,
+      "return_pct": -22.46,
+      "positions": 3
+    },
+    "aggressive": {
+      "name": "激进交易",
+      "emoji": "⚡",
+      "total_value": 49579.09,
+      "cash": 26329.88,
+      "position_value": 23249.21,
+      "pnl": -420.91,
+      "return_pct": -0.84,
+      "positions": 4
+    },
+    "blueshrimp": {
+      "name": "蓝虾交易",
+      "emoji": "🦐",
+      "total_value": 48708.53,
+      "cash": 39062.13,
+      "position_value": 9646.4,
+      "pnl": -1291.47,
+      "return_pct": -2.58,
+      "positions": 2
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "scan_time": "2026-04-15 22:00",
+  "triggers_fired": [],
+  "stops_triggered": [],
+  "watchlist_approaching": [
+    {
+      "ticker": "METC",
+      "account": "aggressive",
+      "current": 13.55,
+      "trigger": 13.0,
+      "gap_pct": 4.2,
+      "priority": "B",
+      "status": "watch"
+    },
+    {
+      "ticker": "MLEC",
+      "account": "aggressive",
+      "current": 7.11,
+      "trigger": 7.5,
+      "gap_pct": -5.2,
+      "priority": "B",
+      "status": "entered"
+    },
+    {
+      "ticker": "PLTR",
+      "account": "blueshrimp",
+      "current": 129.09,
+      "trigger": 120.0,
+      "gap_pct": 7.6,
+      "priority": "A",
+      "status": "watch"
+    },
+    {
+      "ticker": "UPXI",
+      "account": "aggressive",
+      "current": 1.2,
+      "trigger": 1.3,
+      "gap_pct": -7.7,
+      "priority": "A",
+      "status": "entered"
+    },
+    {
+      "ticker": "SOFI",
+      "account": "institutional",
+      "current": 17.55,
+      "trigger": 16.0,
+      "gap_pct": 9.7,
+      "priority": "A",
+      "status": "entered"
+    },
+    {
+      "ticker": "VST",
+      "account": "institutional",
+      "current": 164.67,
+      "trigger": 150.0,
+      "gap_pct": 9.8,
+      "priority": "A",
+      "status": "entered"
+    }
+  ],
+  "portfolio_summary": {
+    "institutional": {
+      "name": "大机构",
+      "emoji": "🏦",
+      "total_value": 42187.11,
+      "cash": 9218.54,
+      "position_value": 32968.57,
+      "pnl": -7812.89,
+      "return_pct": -15.63,
+      "positions": 4
+    },
+    "aggressive": {
+      "name": "激进交易",
+      "emoji": "⚡",
+      "total_value": 46265.16,
+      "cash": 27728.43,
+      "position_value": 18536.73,
+      "pnl": -3734.84,
+      "return_pct": -7.47,
+      "positions": 4
+    },
+    "blueshrimp": {
+      "name": "蓝虾交易",
+      "emoji": "🦐",
+      "total_value": 49942.46,
+      "cash": 42999.24,
+      "position_value": 6943.22,
+      "pnl": -57.54,
+      "return_pct": -0.12,
+      "positions": 2
+    }
+  }
+}

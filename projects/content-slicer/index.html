@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>内容切片分发器 | Content Slicer</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg-primary: #0d1117;
+  --bg-secondary: #161b22;
+  --bg-tertiary: #21262d;
+  --border: #30363d;
+  --text-primary: #e6edf3;
+  --text-secondary: #8b949e;
+  --accent: #58a6ff;
+  --accent-hover: #79c0ff;
+  --green: #3fb950;
+  --orange: #d29922;
+  --purple: #bc8cff;
+  --red: #f85149;
+  --pink: #f778ba;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.header h1 {
+  font-size: 2.2rem;
+  background: linear-gradient(135deg, var(--accent), var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
+}
+
+.header p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+/* Input Section */
+.input-section {
+  margin-bottom: 2rem;
+}
+
+.input-section label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.input-section .hint {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+}
+
+textarea {
+  width: 100%;
+  min-height: 220px;
+  padding: 1rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  resize: vertical;
+  transition: border-color 0.2s;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+textarea::placeholder {
+  color: var(--text-secondary);
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.btn-slice {
+  padding: 0.75rem 2rem;
+  background: linear-gradient(135deg, var(--accent), #1f6feb);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.2s;
+}
+
+.btn-slice:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(88, 166, 255, 0.3);
+}
+
+.btn-slice:active {
+  transform: translateY(0);
+}
+
+.btn-slice:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.word-count {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+/* Results */
+.results {
+  display: none;
+}
+
+.results.active {
+  display: block;
+}
+
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.results-header h2 {
+  font-size: 1.4rem;
+}
+
+/* Key Points */
+.key-points {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.key-points h3 {
+  margin-bottom: 1rem;
+  color: var(--accent);
+}
+
+.key-point-item {
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+}
+
+.key-point-item:last-child {
+  border-bottom: none;
+}
+
+.key-point-item .index {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-right: 0.75rem;
+}
+
+/* Platform Tabs */
+.platform-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.platform-tab {
+  padding: 0.5rem 1rem;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.platform-tab:hover {
+  border-color: var(--accent);
+  color: var(--text-primary);
+}
+
+.platform-tab.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* Content Cards */
+.content-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.content-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.25rem;
+  transition: border-color 0.2s;
+}
+
+.content-card:hover {
+  border-color: var(--accent);
+}
+
+.content-card .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.content-card .platform-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.badge-twitter { background: rgba(29,155,240,0.15); color: #1d9bf0; }
+.badge-xiaohongshu { background: rgba(255,45,85,0.15); color: #ff2d55; }
+.badge-linkedin { background: rgba(10,102,194,0.15); color: #0a66c2; }
+.badge-video { background: rgba(255,152,0,0.15); color: #ff9800; }
+
+.btn-copy {
+  padding: 0.3rem 0.7rem;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-copy:hover {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.btn-copy.copied {
+  border-color: var(--green);
+  color: var(--green);
+  background: rgba(63,185,80,0.1);
+}
+
+.content-card .card-body {
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  white-space: pre-wrap;
+  line-height: 1.7;
+}
+
+.content-card .char-count {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+/* Calendar */
+.calendar-section {
+  margin-top: 2.5rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.5rem;
+}
+
+.calendar-section h3 {
+  margin-bottom: 1rem;
+  color: var(--purple);
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 0.75rem;
+}
+
+.calendar-day {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.75rem;
+}
+
+.calendar-day .day-label {
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.calendar-day .day-items {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.calendar-day .day-item {
+  padding: 0.2rem 0;
+  border-bottom: 1px solid rgba(48,54,61,0.5);
+}
+
+.calendar-day .day-item:last-child {
+  border-bottom: none;
+}
+
+/* Stats */
+.stats-bar {
+  margin-top: 2.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.stat-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.25rem;
+  text-align: center;
+}
+
+.stat-card .stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--accent), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-card .stat-label {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+}
+
+/* Loading */
+.loading {
+  display: none;
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-secondary);
+}
+
+.loading.active {
+  display: block;
+}
+
+.loading .spinner {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-bottom: 0.75rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Footer */
+.footer {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container { padding: 1rem; }
+  .header h1 { font-size: 1.6rem; }
+  textarea { min-height: 160px; }
+  .calendar-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+  .stats-bar { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>🔪 内容切片分发器</h1>
+    <p>一段长内容 → 自动切片成多平台短内容 → 7天内容日历</p>
+  </div>
+
+  <div class="input-section">
+    <label for="sourceText">📝 粘贴你的长文本 / 播客转录稿 / 文章</label>
+    <div class="hint">支持中英文，建议 300 字以上效果更佳。纯前端处理，数据不上传。</div>
+    <textarea id="sourceText" placeholder="把你的长内容粘贴到这里...&#10;&#10;可以是：&#10;- 播客/视频转录稿&#10;- 博客文章&#10;- 会议记录&#10;- 演讲稿&#10;- 任何长文本"></textarea>
+  </div>
+
+  <div class="controls">
+    <button class="btn-slice" id="btnSlice" onclick="sliceContent()">⚡ 开始切片</button>
+    <span class="word-count" id="wordCount">0 字</span>
+  </div>
+
+  <div class="loading" id="loading">
+    <div class="spinner"></div>
+    <p>正在分析内容，提取核心观点...</p>
+  </div>
+
+  <div class="results" id="results">
+    <div class="results-header">
+      <h2>📦 切片结果</h2>
+    </div>
+
+    <!-- Key Points -->
+    <div class="key-points" id="keyPoints">
+      <h3>🎯 提取的核心观点</h3>
+      <div id="keyPointsList"></div>
+    </div>
+
+    <!-- Platform Tabs -->
+    <div class="platform-tabs" id="platformTabs">
+      <div class="platform-tab active" data-platform="all" onclick="filterPlatform('all')">全部</div>
+      <div class="platform-tab" data-platform="twitter" onclick="filterPlatform('twitter')">Twitter/X</div>
+      <div class="platform-tab" data-platform="xiaohongshu" onclick="filterPlatform('xiaohongshu')">小红书</div>
+      <div class="platform-tab" data-platform="linkedin" onclick="filterPlatform('linkedin')">LinkedIn</div>
+      <div class="platform-tab" data-platform="video" onclick="filterPlatform('video')">短视频脚本</div>
+    </div>
+
+    <!-- Content Grid -->
+    <div class="content-grid" id="contentGrid"></div>
+
+    <!-- Calendar -->
+    <div class="calendar-section" id="calendarSection">
+      <h3>📅 7天内容日历</h3>
+      <div class="calendar-grid" id="calendarGrid"></div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-bar" id="statsBar">
+      <div class="stat-card">
+        <div class="stat-value" id="statContent">0</div>
+        <div class="stat-label">生成内容条数</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="statPlatform">0</div>
+        <div class="stat-label">覆盖平台数</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="statHours">0</div>
+        <div class="stat-label">预计节省小时</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="statWords">0</div>
+        <div class="stat-label">生成总字数</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>🦐 小蓝虾出品 | 纯前端本地处理，无需API，数据不上传 | 基于 TF-IDF + 位置权重算法</p>
+  </div>
+</div>
+
+<script>
+// ============ NLP 工具函数 ============
+
+// 中文分句
+function splitSentences(text) {
+  // 按中英文句号、问号、感叹号分句
+  const raw = text.replace(/\r\n/g, '\n');
+  const sentences = [];
+  const pattern = /[^。！？!?\n]+[。！？!?\n]?/g;
+  let match;
+  while ((match = pattern.exec(raw)) !== null) {
+    const s = match[0].trim();
+    if (s.length > 5) sentences.push(s);
+  }
+  // 如果分句失败，按换行分
+  if (sentences.length < 3) {
+    return raw.split(/\n+/).filter(s => s.trim().length > 5).map(s => s.trim());
+  }
+  return sentences;
+}
+
+// 简易中文分词（基于前后向最大匹配 + 单字回退）
+function tokenize(text) {
+  // 移除标点
+  const clean = text.replace(/[^\u4e00-\u9fa5a-zA-Z0-9]/g, ' ');
+  // 英文单词直接拆
+  const tokens = [];
+  const parts = clean.split(/\s+/);
+  for (const part of parts) {
+    if (/^[a-zA-Z0-9]+$/.test(part)) {
+      tokens.push(part.toLowerCase());
+    } else {
+      // 中文按 2-gram 拆分
+      for (let i = 0; i < part.length - 1; i++) {
+        tokens.push(part.substring(i, i + 2));
+      }
+      // 也加单字
+      for (let i = 0; i < part.length; i++) {
+        tokens.push(part[i]);
+      }
+    }
+  }
+  return tokens.filter(t => t.length > 0);
+}
+
+// 停用词
+const STOPWORDS = new Set(['的', '了', '在', '是', '我', '有', '和', '就', '不', '人', '都', '一', '一个', '上', '也', '很', '到', '说', '要', '去', '你', '会', '着', '没有', '看', '好', '自己', '这', '他', '她', '它', '们', '那', '这个', '那个', '什么', '怎么', '可以', '因为', '所以', '但是', '如果', '还是', '或者', '而且', '虽然', '然后', '这样', '那样', '已经', '其实', '应该', '可能', '需要', '比较', '非常', '特别', 'the', 'a', 'an', 'is', 'are', 'was', 'were', 'be', 'been', 'being', 'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'could', 'should', 'may', 'might', 'shall', 'can', 'need', 'dare', 'to', 'of', 'in', 'for', 'on', 'with', 'at', 'by', 'from', 'as', 'into', 'through', 'during', 'before', 'after', 'above', 'below', 'between', 'and', 'but', 'or', 'nor', 'not', 'so', 'yet', 'both', 'either', 'neither', 'each', 'every', 'all', 'any', 'few', 'more', 'most', 'other', 'some', 'such', 'no', 'only', 'own', 'same', 'than', 'too', 'very', 'just', 'because', 'this', 'that', 'these', 'those', 'it', 'its']);
+
+// 计算 TF-IDF
+function computeTFIDF(sentences) {
+  const N = sentences.length;
+  const sentTokens = sentences.map(s => tokenize(s).filter(t => !STOPWORDS.has(t) && t.length > 1));
+  
+  // DF: 多少个句子包含该词
+  const df = {};
+  for (const tokens of sentTokens) {
+    const unique = new Set(tokens);
+    for (const t of unique) {
+      df[t] = (df[t] || 0) + 1;
+    }
+  }
+  
+  // 每个句子的 TF-IDF 分数
+  const scores = sentTokens.map((tokens, idx) => {
+    if (tokens.length === 0) return 0;
+    const tf = {};
+    for (const t of tokens) {
+      tf[t] = (tf[t] || 0) + 1;
+    }
+    let score = 0;
+    for (const [term, freq] of Object.entries(tf)) {
+      const tfidf = (freq / tokens.length) * Math.log((N + 1) / (df[term] + 1));
+      score += tfidf;
+    }
+    return score / tokens.length; // 归一化
+  });
+  
+  return scores;
+}
+
+// 位置权重：开头和结尾的句子更重要
+function positionWeight(idx, total) {
+  const relPos = idx / total;
+  if (relPos < 0.15) return 1.4; // 开头
+  if (relPos > 0.85) return 1.2; // 结尾
+  if (relPos < 0.3) return 1.1;  // 靠前
+  return 1.0;
+}
+
+// 句子长度权重：太短或太长都减分
+function lengthWeight(sentence) {
+  const len = sentence.length;
+  if (len < 15) return 0.5;
+  if (len > 200) return 0.7;
+  if (len >= 30 && len <= 120) return 1.3;
+  return 1.0;
+}
+
+// 提取关键观点
+function extractKeyPoints(text, count = 7) {
+  const sentences = splitSentences(text);
+  if (sentences.length <= count) return sentences;
+  
+  const tfidfScores = computeTFIDF(sentences);
+  
+  // 综合评分
+  const scored = sentences.map((s, i) => ({
+    sentence: s,
+    score: tfidfScores[i] * positionWeight(i, sentences.length) * lengthWeight(s),
+    index: i
+  }));
+  
+  // 排序取 TopN
+  scored.sort((a, b) => b.score - a.score);
+  
+  // 去重（相似度高的跳过）
+  const selected = [];
+  for (const item of scored) {
+    if (selected.length >= count) break;
+    // 简易去重：检查是否与已选的有高重叠
+    const dominated = selected.some(sel => {
+      const overlap = computeOverlap(sel.sentence, item.sentence);
+      return overlap > 0.6;
+    });
+    if (!dominated) {
+      selected.push(item);
+    }
+  }
+  
+  // 按原文顺序排列
+  selected.sort((a, b) => a.index - b.index);
+  return selected.map(s => s.sentence);
+}
+
+function computeOverlap(s1, s2) {
+  const t1 = new Set(tokenize(s1));
+  const t2 = new Set(tokenize(s2));
+  let common = 0;
+  for (const t of t1) {
+    if (t2.has(t)) common++;
+  }
+  return common / Math.max(t1.size, t2.size, 1);
+}
+
+// ============ 内容生成 ============
+
+// 提取关键词作为 hashtags
+function extractHashtags(text, count = 5) {
+  const tokens = tokenize(text).filter(t => !STOPWORDS.has(t) && t.length > 1);
+  const freq = {};
+  for (const t of tokens) {
+    freq[t] = (freq[t] || 0) + 1;
+  }
+  return Object.entries(freq)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, count)
+    .map(([word]) => word);
+}
+
+// 生成 Twitter 内容
+function generateTwitter(point, keywords) {
+  const hashtags = keywords.slice(0, 3).map(k => `#${k}`).join(' ');
+  let tweet = point;
+  // 确保不超过 280 字符
+  if (tweet.length + hashtags.length + 2 > 280) {
+    tweet = tweet.substring(0, 280 - hashtags.length - 5) + '...';
+  }
+  return `${tweet}\n\n${hashtags}`;
+}
+
+// 生成小红书内容
+function generateXiaohongshu(point, keywords, idx) {
+  const emojis = ['💡', '🔥', '✨', '📌', '🎯', '💪', '🚀', '⭐'];
+  const emoji = emojis[idx % emojis.length];
+  
+  // 标题：提取前15字 + emoji
+  let title = point.substring(0, 20).replace(/[。！？!?,，]/g, '');
+  title = `${emoji} ${title}`;
+  
+  // 正文展开
+  let body = point;
+  if (body.length < 50) {
+    body += '\n\n👆 这个观点值得深入思考，你觉得呢？';
+  }
+  
+  // 标签
+  const tags = keywords.slice(0, 5).map(k => `#${k}`).join(' ');
+  
+  return `【${title}】\n\n${body}\n\n---\n${tags}\n\n💬 你怎么看？评论区聊聊`;
+}
+
+// 生成 LinkedIn 内容
+function generateLinkedIn(point, keywords) {
+  const hook = point.substring(0, 50).replace(/[。！？]/g, '') + '...';
+  const body = `我最近深入思考了一个问题：\n\n${point}\n\n这对我们每个人的启发是什么？\n\n在我看来，关键在于：\n1️⃣ 认识到这个趋势的存在\n2️⃣ 理解其底层逻辑\n3️⃣ 在自己的领域找到应用方式\n\n${keywords.slice(0, 2).map(k => `#${k}`).join(' ')} #职业成长 #思考`;
+  return body;
+}
+
+// 生成短视频脚本
+function generateVideoScript(point, keywords) {
+  const hook = `⚡ Hook（前3秒）：\n"${point.substring(0, 30)}——你知道这意味着什么吗？"`;
+  const content = `\n\n📝 正文（20秒）：\n${point}\n\n这背后的逻辑是：大多数人还没有意识到这一点。而那些提前行动的人，已经在收获红利了。`;
+  const cta = `\n\n🎬 CTA（结尾7秒）：\n"如果这条内容对你有启发，点个关注，我会持续分享更多深度思考。"\n\n🎵 推荐配乐：轻快/紧迫感节奏\n⏱ 预计时长：30-45秒`;
+  return hook + content + cta;
+}
+
+// ============ UI 逻辑 ============
+
+let allContent = [];
+let currentPlatform = 'all';
+
+// 字数统计
+document.getElementById('sourceText').addEventListener('input', function() {
+  const count = this.value.length;
+  document.getElementById('wordCount').textContent = `${count} 字`;
+});
+
+// 主函数：切片
+function sliceContent() {
+  const text = document.getElementById('sourceText').value.trim();
+  if (!text) {
+    alert('请先粘贴内容！');
+    return;
+  }
+  if (text.length < 50) {
+    alert('内容太短了，建议至少 50 字以上。');
+    return;
+  }
+
+  // Show loading
+  document.getElementById('loading').classList.add('active');
+  document.getElementById('results').classList.remove('active');
+  document.getElementById('btnSlice').disabled = true;
+
+  // 模拟异步处理
+  setTimeout(() => {
+    processContent(text);
+    document.getElementById('loading').classList.remove('active');
+    document.getElementById('results').classList.add('active');
+    document.getElementById('btnSlice').disabled = false;
+  }, 800);
+}
+
+function processContent(text) {
+  // 1. 提取核心观点
+  const keyPoints = extractKeyPoints(text, 7);
+  const keywords = extractHashtags(text,

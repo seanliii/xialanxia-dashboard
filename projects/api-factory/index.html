@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API工厂 - 30分钟生成+部署+上架RapidAPI</title>
+    <style>
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --border: #30363d;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --accent: #58a6ff;
+            --success: #3fb950;
+            --warning: #d29922;
+            --purple: #bc8cff;
+            --gradient: linear-gradient(135deg, #58a6ff 0%, #bc8cff 100%);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .header { padding: 40px 0 30px; text-align: center; border-bottom: 1px solid var(--border); margin-bottom: 40px; }
+        .header h1 { font-size: 2.5em; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
+        .header p { color: var(--text-secondary); font-size: 1.1em; }
+        .badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.8em; font-weight: 600; margin: 10px 5px 0; }
+        .badge-blue { background: rgba(88,166,255,0.15); color: var(--accent); }
+        .badge-green { background: rgba(63,185,80,0.15); color: var(--success); }
+        .badge-purple { background: rgba(188,140,255,0.15); color: var(--purple); }
+        .steps-bar { display: flex; justify-content: center; gap: 0; margin-bottom: 40px; flex-wrap: wrap; }
+        .step-item { display: flex; align-items: center; gap: 8px; padding: 10px 20px; color: var(--text-secondary); font-size: 0.9em; }
+        .step-item.active { color: var(--accent); font-weight: 600; }
+        .step-item.done { color: var(--success); }
+        .step-num { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8em; font-weight: 700; border: 2px solid var(--border); }
+        .step-item.active .step-num { border-color: var(--accent); background: rgba(88,166,255,0.15); }
+        .step-item.done .step-num { border-color: var(--success); background: rgba(63,185,80,0.15); }
+        .step-arrow { color: var(--border); margin: 0 5px; line-height: 48px; }
+        .section-title { font-size: 1.4em; margin-bottom: 20px; }
+        .template-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-bottom: 40px; }
+        .template-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 20px; cursor: pointer; transition: all 0.2s; position: relative; }
+        .template-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 4px 20px rgba(88,166,255,0.1); }
+        .template-card.selected { border-color: var(--accent); background: rgba(88,166,255,0.05); }
+        .template-card .icon { font-size: 2em; margin-bottom: 10px; }
+        .template-card h3 { font-size: 1.1em; margin-bottom: 6px; }
+        .template-card p { color: var(--text-secondary); font-size: 0.85em; }
+        .template-card .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.75em; background: var(--bg-tertiary); color: var(--text-secondary); margin-top: 8px; margin-right: 4px; }
+        .template-card .revenue { position: absolute; top: 12px; right: 12px; font-size: 0.8em; color: var(--success); font-weight: 600; }
+        .panel { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 24px; overflow: hidden; }
+        .panel-header { padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+        .panel-header h3 { font-size: 1em; }
+        .panel-body { padding: 20px; }
+        .code-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 16px; }
+        .code-header { display: flex; justify-content: space-between; align-items: center; padding: 8px 16px; background: var(--bg-tertiary); border-bottom: 1px solid var(--border); font-size: 0.8em; color: var(--text-secondary); }
+        .code-content { padding: 16px; font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 0.82em; line-height: 1.7; overflow-x: auto; white-space: pre; max-height: 500px; overflow-y: auto; }
+        .copy-btn { background: var(--bg-tertiary); border: 1px solid var(--border); color: var(--text-secondary); padding: 4px 12px; border-radius: 6px; cursor: pointer; font-size: 0.85em; transition: all 0.2s; }
+        .copy-btn:hover { color: var(--accent); border-color: var(--accent); }
+        .btn { padding: 10px 24px; border-radius: 8px; font-size: 0.95em; font-weight: 600; cursor: pointer; border: none; transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px; }
+        .btn-primary { background: var(--gradient); color: white; }
+        .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+        .btn-secondary { background: var(--bg-tertiary); border: 1px solid var(--border); color: var(--text-primary); }
+        .btn-secondary:hover { border-color: var(--accent); }
+        .calc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+        .calc-item label { display: block; font-size: 0.85em; color: var(--text-secondary); margin-bottom: 6px; }
+        .calc-item input, .calc-item select { width: 100%; padding: 10px 14px; background: var(--bg-primary); border: 1px solid var(--border); border-radius: 8px; color: var(--text-primary); font-size: 0.95em; }
+        .calc-item input:focus, .calc-item select:focus { outline: none; border-color: var(--accent); }
+        .calc-result { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-top: 20px; text-align: center; }
+        .calc-result .amount { font-size: 2.5em; font-weight: 700; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .calc-result .label { color: var(--text-secondary); font-size: 0.9em; margin-top: 4px; }
+        .tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); margin-bottom: 20px; overflow-x: auto; }
+        .tab { padding: 10px 20px; cursor: pointer; color: var(--text-secondary); font-size: 0.9em; border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap; }
+        .tab:hover { color: var(--text-primary); }
+        .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .custom-input { width: 100%; padding: 14px 18px; background: var(--bg-primary); border: 1px solid var(--border); border-radius: 10px; color: var(--text-primary); font-size: 1em; margin-bottom: 16px; resize: vertical; min-height: 80px; font-family: inherit; }
+        .custom-input:focus { outline: none; border-color: var(--accent); }
+        #output-section { display: none; }
+        #output-section.visible { display: block; }
+        .footer { text-align: center; padding: 40px 0; color: var(--text-secondary); font-size: 0.85em; border-top: 1px solid var(--border); margin-top: 60px; }
+        .footer a { color: var(--accent); text-decoration: none; }
+        .checklist { list-style: none; }
+        .checklist li { padding: 8px 0; display: flex; align-items: center; gap: 10px; color: var(--text-secondary); }
+        .checklist li .check { color: var(--success); }
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.8em; }
+            .template-grid { grid-template-columns: 1fr; }
+            .step-item { padding: 8px 10px; font-size: 0.8em; }
+            .calc-result .amount { font-size: 1.8em; }
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in { animation: fadeIn 0.3s ease; }
+        .pricing-table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+        .pricing-table th, .pricing-table td { padding: 10px 16px; text-align: left; border-bottom: 1px solid var(--border); font-size: 0.9em; }
+        .pricing-table th { color: var(--text-secondary); font-weight: 600; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>⚡ API 工厂</h1>
+        <p>选模板 → 生成代码 → 一键部署 → 上架 RapidAPI → 开始收钱</p>
+        <div>
+            <span class="badge badge-blue">30分钟完成</span>
+            <span class="badge badge-green">零后端经验可用</span>
+            <span class="badge badge-purple">被动收入</span>
+        </div>
+    </div>
+    <div class="steps-bar">
+        <div class="step-item active" id="step1-ind"><span class="step-num">1</span><span>选模板</span></div>
+        <span class="step-arrow">→</span>
+        <div class="step-item" id="step2-ind"><span class="step-num">2</span><span>生成代码</span></div>
+        <span class="step-arrow">→</span>
+        <div class="step-item" id="step3-ind"><span class="step-num">3</span><span>部署</span></div>
+        <span class="step-arrow">→</span>
+        <div class="step-item" id="step4-ind"><span class="step-num">4</span><span>上架收钱</span></div>
+    </div>
+
+    <div id="step1-section">
+        <h2 class="section-title">🎯 选择 API 模板</h2>
+        <div class="template-grid" id="template-grid"></div>
+        <div class="panel">
+            <div class="panel-header"><h3>💡 或者自定义你的 API</h3></div>
+            <div class="panel-body">
+                <textarea class="custom-input" id="custom-desc" placeholder="描述你想做的 API，例如：一个将长文本自动摘要的 API"></textarea>
+                <button class="btn btn-secondary" id="btn-custom">🔨 用自定义描述生成</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="output-section">
+        <div class="panel fade-in">
+            <div class="panel-header">
+                <h3>📦 生成结果</h3>
+                <span style="color: var(--success); font-size: 0.85em;" id="tpl-name"></span>
+            </div>
+            <div class="panel-body">
+                <div class="tabs" id="code-tabs">
+                    <div class="tab active" data-tab="main-code">main.py</div>
+                    <div class="tab" data-tab="dockerfile">Dockerfile</div>
+                    <div class="tab" data-tab="docker-compose">docker-compose.yml</div>
+                    <div class="tab" data-tab="requirements">requirements.txt</div>
+                    <div class="tab" data-tab="readme">README.md</div>
+                    <div class="tab" data-tab="rapidapi-meta">RapidAPI Metadata</div>
+                </div>
+                <div class="tab-content active" id="tab-main-code"></div>
+                <div class="tab-content" id="tab-dockerfile"></div>
+                <div class="tab-content" id="tab-docker-compose"></div>
+                <div class="tab-content" id="tab-requirements"></div>
+                <div class="tab-content" id="tab-readme"></div>
+                <div class="tab-content" id="tab-rapidapi-meta"></div>
+            </div>
+        </div>
+
+        <div class="panel fade-in">
+            <div class="panel-header"><h3>🚀 一键部署命令</h3></div>
+            <div class="panel-body">
+                <div class="tabs" id="deploy-tabs">
+                    <div class="tab active" data-tab="deploy-railway">Railway</div>
+                    <div class="tab" data-tab="deploy-render">Render</div>
+                    <div class="tab" data-tab="deploy-fly">Fly.io</div>
+                </div>
+                <div class="tab-content active" id="tab-deploy-railway"></div>
+                <div class="tab-content" id="tab-deploy-render"></div>
+                <div class="tab-content" id="tab-deploy-fly"></div>
+            </div>
+        </div>
+
+        <div class="panel fade-in">
+            <div class="panel-header"><h3>📋 RapidAPI 上架清单</h3></div>
+            <div class="panel-body">
+                <ul class="checklist">
+                    <li><span class="check">✓</span> 注册 RapidAPI Provider 账号 (rapidapi.com/provider)</li>
+                    <li><span class="check">✓</span> 创建新 API → 填入名称和描述（已生成）</li>
+                    <li><span class="check">✓</span> 设置 Base URL → 你部署后的域名</li>
+                    <li><span class="check">✓</span> 添加 Endpoints（已生成文档）</li>
+                    <li><span class="check">✓</span> 设置定价方案（建议：Free 100次/月引流）</li>
+                    <li><span class="check">✓</span> 添加 Logo + 详细描述 + 示例代码</li>
+                    <li><span class="check">✓</span> 提交审核 → 通常 1-2 天通过</li>
+                </ul>
+                <table class="pricing-table" id="pricing-table"></table>
+            </div>
+        </div>
+
+        <div class="panel fade-in">
+            <div class="panel-header"><h3>💰 收益预估计算器</h3></div>
+            <div class="panel-body">
+                <div class="calc-grid">
+                    <div class="calc-item"><label>每月付费用户数</label><input type="number" id="calc-users" value="50" min="1"></div>
+                    <div class="calc-item"><label>定价方案 ($/月)</label><select id="calc-plan"><option value="9.99">Basic $9.99</option><option value="29.99" selected>Pro $29.99</option><option value="99.99">Enterprise $99.99</option></select></div>
+                    <div class="calc-item"><label>RapidAPI 抽成</label><select id="calc-commission"><option value="0.20" selected>20%</option><option value="0.15">15%</option></select></div>
+                    <div class="calc-item"><label>服务器成本 $/月</label><input type="number" id="calc-cost" value="5" min="0"></div>
+                </div>
+                <div class="calc-result">
+                    <div class="amount" id="calc-revenue">$1,194.60</div>
+                    <div class="label">预估月净收入</div>
+                    <div style="margin-top:10px;font-size:0.85em;color:var(--text-secondary)" id="calc-detail"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <p>⚡ API 工厂 — 让每个开发者都能靠 API 赚被动收入</p>
+    <p style="margin-top:8px;">Built with 🦐 by 小蓝虾 | <a href="https://rapidapi.com/hub" target="_blank">RapidAPI Hub</a></p>
+</div>
+
+<script>
+// ===== TEMPLATES =====
+const templates = [
+  {
+    id:'text-summarizer', icon:'📝', name:'文本摘要 API',
+    desc:'长文本自动摘要，支持多语言，GPT驱动',
+    tags:['NLP','GPT','高需求'], revenue:'$800+/月',
+    pricing:{free:100,basic:5000,pro:50000},
+    requirements:'fastapi\nuvicorn[standard]\nopenai\npydantic',
+    endpoints:[{m:'POST',p:'/summarize',d:'生成摘要',params:'text, max_length, language'},{m:'POST',p:'/bullet-points',d:'要点提取',params:'text, num_points'}],
+    code:`from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+import openai, os
+
+app = FastAPI(title="Text Summarizer API", version="1.0.0")
+
+class SummarizeRequest(BaseModel):
+    text: str
+    max_length: int = 150
+    language: str = "auto"
+
+class BulletPointsRequest(BaseModel):
+    text: str
+    num_points: int = 5
+
+@app.get("/health")
+def health():
+    return {"status": "healthy"}
+
+@app.post("/summarize")
+async def summarize(req: SummarizeRequest):
+    if len(req.text) < 50:
+        raise HTTPException(400, "Text must be >= 50 chars")
+    client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+    r = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role":"system","content":f"Summarize in {req.max_length} words. Lang: {req.language}"},
+            {"role":"user","content":req.text}
+        ], max_tokens=req.max_length*2
+    )
+    summary = r.choices[0].message.content
+    return {"summary": summary, "original_length": len(req.text), "summary_length": len(summary)}
+
+@app.post("/bullet-points")
+async def bullets(req: BulletPointsRequest):
+    if len(req.text) < 50:
+        raise HTTPException(400, "Text must be >= 50 chars")
+    client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+    r = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role":"system","content":f"Extract {req.num_points} bullet points."},
+            {"role":"user","content":req.text}
+        ]
+    )
+    pts = [p.strip("- ") for p in r.choices[0].message.content.split("\\n") if p.strip()]
+    return {"bullet_points": pts[:req.num_points]}
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)`
+  },
+  {
+    id:'currency-exchange', icon:'💱', name:'汇率转换 API',
+    desc:'实时汇率查询+转换，支持170+货币',
+    tags:['金融','实时','稳定需求'], revenue:'$600+/月',
+    pricing:{free:100,basic:10000,pro:100000},
+    requirements:'fastapi\nuvicorn[standard]\nhttpx\ncachetools',
+    endpoints:[{m:'GET',p:'/rate',d:'实时汇率转换',params:'from, to, amount'},{m:'GET',p:'/currencies',d:'币种列表',params:''},{m:'GET',p:'/historical',d:'历史汇率',params:'from, to, date'}],
+    code:`from fastapi import FastAPI, HTTPException, Query
+from cachetools import TTLCache
+import httpx
+
+app = FastAPI(title="Currency Exchange API", version="1.0.0")
+cache = TTLCache(maxsize=500, ttl=300)
+
+@app.get("/health")
+def health():
+    return {"status": "healthy"}
+
+@app.get("/rate")
+async def convert(
+    from_curr: str = Query(..., alias="from"),
+    to: str = Query(...),
+    amount: float = Query(1.0, gt=0)
+):
+    rates = await get_rates(from_curr.upper())
+    to_u = to.upper()
+    if to_u not in rates:
+        raise HTTPException(400, f"Unsupported: {to_u}")
+    rate = rates[to_u]
+    return {"from":from_curr.upper(),"to":to_u,"rate":round(rate,6),"amount":amount,"result":round(amount*rate,4)}
+
+@app.get("/currencies")
+async def currencies():
+    rates = await get_rates("USD")
+    return {"currencies": sorted(rates.keys()), "count": len(rates)}
+
+@app.get("/historical")
+async def historical(from_curr: str = Query(..., alias="from"), to: str = Query(...), date: str = Query(...)):
+    async with httpx.AsyncClient() as c:
+        r = await c.get(f"https://open.er-api.com/v6/{date}/{from_curr.upper()}")
+    data = r.json()
+    return {"from":from_curr.upper(),"to":to.upper(),"date":date,"rate":data["rates"].get(to.upper())}
+
+async def get_rates(base):
+    if base in cache: return cache[base]
+    async with httpx.AsyncClient() as c:
+        r = await c.get(f"https://open.er-api.com/v6/latest/{base}")
+    data = r.json()
+    cache[base] = data["rates"]
+    return data["rates"]
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)`
+  },
+  {
+    id:'image-compress', icon:'🖼️', name:'图片压缩 API',
+    desc:'智能图片压缩，支持PNG/JPG/WebP，可调质量',
+    tags:['图片处理','高频','刚需'], revenue:'$1000+/月',
+    pricing:{free:50,basic:3000,pro:30000},
+    requirements:'fastapi\nuvicorn[standard]\nPillow\npython-multipart',
+    endpoints:[{m:'POST',p:'/compress',d:'压缩图片',params:'file, quality, format'},{m:'POST',p:'/resize',d:'调整尺寸',params:'file, width, height'},{m:'GET',p:'/formats',d:'支持格式',params:''}],
+    code:`from fastapi import FastAPI, UploadFile, File, Query
+from fastapi.responses import StreamingResponse
+from PIL import Image
+import io
+
+app = FastAPI(title="Image Compress API", version="1.0.0")
+
+@app.get("/health")
+def health():
+    return {"status": "healthy"}
+
+@app.get("/formats")
+def formats():
+    return {"supported": ["jpeg","png","webp","gif"], "max_size_mb": 10}
+
+@app.post("/compress")
+async def compress(
+    file: UploadFile = File(...),
+    quality: int = Query(75, ge=1, le=100),
+    output_format: str = Query("jpeg")
+):
+    img = Image.open(io.BytesIO(await file.read()))
+    if img.mode == "RGBA" and output_format == "jpeg":
+        img = img.convert("RGB")
+    buf = io.BytesIO()
+    img.save(buf, format=output_format.upper(), quality=quality, optimize=True)
+    buf.seek(0)
+    return StreamingResponse(buf, media_type=f"image/{output_format}",
+        headers={"X-Original-Size": str(file.size), "X-Compressed-Size": str(buf.getbuffer().nbytes)})
+
+@app.post("/resize")
+async def resize(
+    file: UploadFile = File(...),
+    width: int = Query(800, gt=0),
+    height: int = Query(600, gt=0)
+):
+    img = Image.open(io.BytesIO(await file.read()))
+    img = img.resize((width, height), Image.LANCZOS)
+    buf = io.BytesIO()
+    img.save(buf, format="PNG", optimize=True)
+    buf.seek(0)
+    return StreamingResponse(buf, media_type="image/png")
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)`
+  },
+  {
+    id:'seo-analyzer', icon:'🔍', name:'SEO 分析 API',
+    desc:'网页SEO评分+建议，含meta/速度/关键词分析',
+    tags:['SEO','营销','高价值'], revenue:'$1200+/月',
+    pricing:{free:30,basic:1000,pro:10000},
+    requirements:'fastapi\nuvicorn[standard]\nhttpx\nbeautifulsoup4\nlxml',
+    endpoints:[{m:'POST',p:'/analyze',d:'完整SEO分析',params:'url'},{m:'POST',p:'/meta-check',d:'Meta标签检查',params:'url'},{m:'GET',p:'/keywords',d:'关键词提取',params:'url'}],
+    code:`from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+from bs4 import BeautifulSoup
+import httpx
+
+app = FastAPI(title="SEO Analyzer API", version="1.0.0")
+
+class UrlRequest(BaseModel):
+    url: str
+
+@app.get("/health")
+def health():
+    return {"status": "healthy"}
+
+@app.post("/analyze")
+async def analyze(req: UrlRequest):
+    html, load_time = await fetch_page(req.url)
+    soup = BeautifulSoup(html, "lxml")
+    title = soup.find("title")
+    meta_desc = soup.find("meta", {"name":"description"})
+    h1s = soup.find_all("h1")
+    imgs = soup.find_all("img")
+    imgs_no_alt = [i for i in imgs if not i.get("alt")]
+    links = soup.find_all("a")
+    score = 100
+    issues = []
+    if not title or len(title.text) < 10: score -= 15; issues.append("Title too short or missing")
+    if not meta_desc: score -= 15; issues.append("Meta description missing")
+    if len(h1s) == 0: score -= 10; issues.append("No H1 tag found")
+    if len(h1s) > 1: score -= 5; issues.append("Multiple H1 tags")
+    if imgs_no_alt: score -= 10; issues.append(f"{len(imgs_no_alt)} images without alt text")
+    if load_time > 3: score -= 10; issues.append(f"Slow load: {load_time:.1f}s")
+    return {"url":req.url,"score":max(score,0),"load_time_s":round(load_time,2),
+            "title":title.text if title else None,"meta_description":meta_desc.get("content") if meta_desc else None,
+            "h1_count":len(h1s),"image_count":len(imgs),"images_without_alt":len(imgs_no_alt),
+            "link_count":len(links),"issues":issues,"recommendations":get_recs(issues)}
+
+@app.post("/meta-check")
+async def meta_check(req: UrlRequest):
+    html, _ = await fetch_page(req.url)
+    soup = BeautifulSoup(html, "lxml")
+    metas = {}
+    for m in soup.find_all("meta"):
+        name = m.get("name") or m.get("property","")
+        if name: metas[name] = m.get("content","")
+    return {"url":req.url,"meta_tags":metas,"og_tags":{k:v for k,v in metas.items() if k.startswith("og:")}}
+
+async def fetch_page(url):
+    import time
+    start = time.time()
+    async with httpx.AsyncClient(follow_redirects=True, timeout=15) as c:
+        r = await c.get(url, headers={"User-Agent":"SEOBot/1.0"})
+    return r.text, time.time()-start
+
+def get_recs(issues):
+    recs = []
+    for i in issues:
+        if "Title" in i: recs.append("Add a descriptive title (50-60 chars)")
+        if "Meta" in i: recs.append("Add meta description (150-160 chars)")
+        if "H1" in i: recs.append("Use exactly one H1 tag per page")
+        if "alt" in i: recs.append("Add alt text to all images for accessibility")
+        if "Slow" in i: recs.append("Optimize assets and enable compression")
+    return recs
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)`
+  },
+  {
+    id:'email-validator', icon:'📧', name:'邮箱验证 API',
+    desc:'验证邮箱是否存在、格式检查、一次性邮箱检测',
+    tags:['验证','SaaS必备','高频'], revenue:'$900+/月',
+    pricing:{free:100,basic:10000,pro:100000},
+    requirements:'fastapi\nuvicorn[standard]\ndnspython\npydantic',
+    endpoints:[{m:'GET',p:'/validate',d:'验证邮箱',params:'email'},{m:'POST',p:'/bulk-validate',d:'批量验证',params:'emails[]'},{m:'GET',p:'/disposable-check',d:'一次性邮箱检测',params:'domain'}],
+    code:`from fastapi import FastAPI, Query
+from pydantic import BaseModel
+import re, dns.resolver
+from typing import List
+
+app = FastAPI(title="Email Validator API", version="1.0.0")
+
+DISPOSABLE_DOMAINS = {"tempmail.com","throwaway.email","guerrillamail.com","mailinator.com",
+    "yopmail.com","10minutemail.com","trashmail.com","fakeinbox.com","sharklasers.com"}
+
+class BulkRequest(BaseModel):
+    emails: List[str]
+
+@app.get("/health")
+def health():
+    return {"status": "healthy"}
+
+@app.get("/validate")
+async def validate(email: str = Query(...)):
+    result = {"email": email, "format_valid": False, "mx_valid": False, "disposable": False, "score": 0}
+    if not re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$', email):
+        return {**result, "reason": "Invalid format"}
+    result["format_valid"] = True
+    result["score"] += 30
+    domain = email.split("@")[1]
+    result["disposable"] = domain.lower() in DISPOSABLE_DOMAINS
+    if result["disposable"]:
+        result["score"] += 10
+        result["reason"] = "Disposable email"
+        return result
+    try:
+        mx = dns.resolver.resolve(domain, "MX")
+        result["mx_valid"] = len(mx) > 0
+        result["score"] += 50
+        result["mx_records"] = [str(r.exchange) for r in mx]
+    except: result["reason"] = "No MX records"
+    if result["mx_valid"]: result["score"] += 20
+    return result
+
+@app.post("/bulk-validate")
+async def bulk(req: BulkRequest):
+    results = []
+    for email in req.emails[:100]:
+        r = await validate(email)
+        results.append(r)
+    return {"results": results, "total": len(results)}
+
+@app.get("/disposable-check")
+async def disposable(domain: str = Query(...)):
+    return {"domain": domain, "is_disposable": domain.lower() in DISPOSABLE_DOMAINS}
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)`
+  },
+  {
+    id:'weather-aggregator', icon:'🌤️', name:'天气聚合 API',
+    desc:'多源聚合天气数据，含预报、历史、空气质量',
+    tags:['天气','生活服务','入门'], revenue:'$400+/月',
+    pricing:{free:200,basic:10000,pro:50000},
+    requirements:'fastapi\nuvicorn[standard]\nhttpx\ncachetools',
+    endpoints:[{m:'GET',p:'/current',d:'当前天气',params:'city or lat,lon'},{m:'GET',p:'/forecast',d:'未来预报',params:'city, days'},{m:'GET',p:'/air-quality',d:'空气质量',params:'city'}],
+    code:`from fastapi import FastAPI, Query, HTTPException
+from cachetools import TTLCache
+import httpx, os
+
+app = FastAPI(title="Weather Aggregator API", version="1.0.0")
+cache = TTLCache(maxsize=200, ttl=600)
+API_KEY = os.getenv("WEATHER_API_KEY", "demo")
+
+@app.get("/health")
+def health():
+    return {"status": "healthy"}
+
+@app.get("/current")
+async def current(city: str = Query(None), lat: float = Query(None), lon: float = Query(None)):
+    q = city or f"{lat},{lon}"
+    if not q: raise HTTPException(400, "Provide city or lat/lon")
+    data = await fetch_weather(f"current.json?q={q}")
+    c = data["current"]
+    return {"location":data["location"]["name"],"country":data["location"]["country"],
+            "temp_c":c["temp_c"],"temp_f":c["temp_f"],"condition":c["condition"]["text"],
+            "humidity":c["humidity"],"wind_kph":c["wind_kph"],"feels_like_c":c["feelslike_c"]}
+
+@app.get("/forecast")
+async def forecast(city: str = Query(...), days: int = Query(3, ge=1, le=7)):
+    data = await fetch_weather(f"forecast.json?q={city}&days={days}")
+    forecasts = []
+    for d in data["forecast"]["forecastday"]:
+        forecasts.append({"date":d["date"],"max_c":d["day"]["maxtemp_c"],"min_c":d["day"]["mintemp_c"],
+                         "condition":d["day"]["condition"]["text"],"rain_chance":d["day"].get("daily_chance_of_rain",0)})
+    return {"location":city,"days":days,"forecast":forecasts}
+
+@app.get("/air-quality")
+async def air_quality(city: str = Query(...)):
+    data = await fetch_weather(f"current.json?q={city}&aqi=yes")
+    aqi = data["current"].get("air_quality",{})
+    return {"location":city,"aqi_us":aqi.get("us-epa-index"),"pm2_5":aqi.get("pm2_5"),"pm10":aqi.get("pm10")}
+
+async def fetch_weather(endpoint):
+    key = endpoint
+    if key in cache: return cache[key]
+    async with httpx.AsyncClient() as c:
+        r = await c.get(f"http://api.weatherapi.com/v1/{endpoint}&key={API_KEY}")
+    if r.status_code != 200: raise HTTPException(502, "Weather service error")
+    cache[key] = r.json()
+    return r.json()
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)`
+  },
+  {
+    id:'url-shortener', icon:'🔗', name:'短链接 API',
+    desc:'URL缩短+统计点击+自定义短码',
+    tags:['工具','简单','入门推荐'], revenue:'$300+/月',
+    pricing:{free:500,basic:50000,pro:500000},
+    requirements:'fastapi\nuvicorn[standard]\nredis\nnanoid',
+    endpoints:[{m:'POST',p:'/shorten',d:'生成短链',params:'url, custom_code'},{m:'GET',p:'/{code}',d:'重定向',params:'code'},{m:'GET',p:'/stats/{code}',d:'点击统计',params:'code'}],
+    code:`from fastapi import FastAPI, HTTPException, Query
+from fastapi.responses import RedirectResponse
+from pydantic import BaseModel
+import hashlib, time, os
+
+app = FastAPI(title="URL Shortener API", version="1.0.0")
+store = {}  # In production: use Redis
+
+class ShortenRequest(BaseModel):
+    url: str
+    custom_code: str = None
+
+@app.get("/health")
+def health():
+    return {"status": "healthy"}
+
+@app.post("/shorten")
+async def shorten(req: ShortenRequest):
+    if not req.url.startswith("http"):
+        raise HTTPException(400, "Invalid URL")
+    code = req.custom_code or hashlib.md5(req.url.encode()).hexdigest()[:7]
+    if code in store and store[code]["url"] != req.url:
+        raise HTTPException(409, "Code already taken")
+    store[code] = {"url": req.url, "created": time.time(), "clicks": 0}
+    base = os.getenv("BASE_URL", "https://your-domain.com")
+    return {"short_url": f"{base}/{code}", "code": code, "original_url": req.url}
+
+@app.get("/stats/{code}")
+async def stats(code: str):
+    if code not in store:
+        raise HTTPException(404, "Not found")
+    return {"code": code, **store[code]}
+
+@app.get("/{code}")
+async def redirect(code: str):
+    if code not in store:
+        raise HTTPException(404, "Not found")
+    store[code]["clicks"] += 1
+    return RedirectResponse(url=store[code]["url"])
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)`
+  },
+  {
+    id:'pdf-tools', icon:'📄', name:'PDF 工具 API',
+    desc:'PDF转图片、合并、提取文本、加水印',
+    tags:['文档','高需求','企业'], revenue:'$700+/月',
+    pricing:{free:30,basic:2000,pro:20000},
+    requirements:'fastapi\nuvicorn[standard]\npython-multipart\nPyPDF2\nPillow\nreportlab',
+    endpoints:[{m:'POST',p:'/extract-text',d:'提取PDF文本',params:'file'},{m:'POST',p:'/merge',d:'合并PDF',params:'files[]'},{m:'POST',p:'/watermark',d:'添加水印',params:'file, text'}],
+    code:`from fastapi import FastAPI, UploadFile, File, Query
+from fastapi.responses import StreamingResponse
+from PyPDF2 import PdfReader, PdfWriter, PdfMerger
+from reportlab.pdfgen import canvas as rl_canvas
+from reportlab.lib.pagesizes import letter
+import io
+
+app = FastAPI(title="PDF Tools API", version="1.0.0")
+
+@app.get("/health")
+def health():
+    return {"status": "healthy"}
+
+@app.post("/extract-text")
+async def extract_text(file: UploadFile = File(...)):
+    reader = PdfReader(io.BytesIO(await file.read()))
+    pages = []
+    for i, page in enumerate(reader.pages):
+        pages.append({"page": i+1, "text": page.extract_text() or ""})
+    return {"filename": file.filename, "pages": len(pages), "content": pages}
+
+@app.post("/merge")
+async def merge(files: list[UploadFile] = File(...)):
+    merger = PdfMerger()
+    for f in files:
+        merger.append(io.BytesIO(await f.read()))
+    buf = io.BytesIO()
+    merger.write(buf)
+    buf.seek(0)
+    return StreamingResponse(buf, media_type="application/pdf",
+        headers={"Content-Disposition":"attachment; filename=merged.pdf"})
+
+@app.post("/watermark")
+async def watermark(file: UploadFile = File(...), text: str = Query("CONFIDENTIAL")):
+    # Create watermark
+    wm_buf = io.BytesIO()
+    c = rl_canvas.Canvas(wm_buf, pagesize=letter)
+    c.setFont("Helvetica", 50)
+    c.setFillAlpha(0.3)
+    c.rotate(45)
+    c.drawString(100, 0, text)
+    c.save()
+    wm_buf.seek(0)
+    wm_reader = PdfReader(wm_buf)
+    wm_page = wm_reader.pages[0]
+    # Apply
+    reader = PdfReader(io.BytesIO(await file.read()))
+    writer = PdfWriter()
+    for page in reader.pages:
+        page.merge_page(wm_page)
+        writer.add_page(page)
+    out = io.BytesIO()
+    writer.write(out)
+    out.seek(0)
+    return StreamingResponse(out, media_type="application/pdf")
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)`
+  },
+  {
+    id:'qrcode-gen', icon:'📱', name:'QR码生成 API',
+    desc:'动态QR码生成，支持Logo嵌入+自定义样式',
+    tags:['工具','简单','高频'], revenue:'$500+/月',
+    pricing:{free:200,basic:20000,pro:200000},
+    requirements:'fastapi\nuvicorn[standard]\nqrcode[pil]\nPillow\npython-multipart',
+    endpoints:[{m:'POST',p:'/generate',d:'生成QR码',params:'data, size, color'},{m:'POST',p:'/with-logo',d:'带Logo的QR码',params:'data, logo_file'},{m:'POST',p:'/bulk',d:'批量生成',params:'items[]'}],
+    code:`from fastapi import FastAPI, UploadFile, File, Query
+from fastapi.responses import StreamingResponse
+from pydantic import BaseModel
+from typing import List
+import qrcode, io
+from PIL import Image
+
+app = FastAPI(title="QR Code Generator API", version="1.0.0")
+
+class BulkItem(BaseModel):
+    data: str
+    filename: str = None
+
+class BulkRequest(BaseModel):
+    items: List[BulkItem]
+
+@app.get("/health")
+def health():
+    return {"status": "healthy"}
+
+@app.post("/generate")
+async def generate(
+    data: str = Query(...),
+    size: int = Query(300, ge=100, le=2000),
+    fg_color: str = Query("#000000"),
+    bg_color: str = Query("#FFFFFF")
+):
+    qr = qrcode.QRCode(version=1, box_size=10, border=4)
+    qr.add_data(data)
+    qr.make(fit=True)
+    img = qr.make_image(fill_color=fg_color, back_color=bg_color)
+    img = img.resize((size, size))
+    buf = io.BytesIO()
+    img.save(buf, format="PNG")
+    buf.seek(0)
+    return StreamingResponse(buf, media_type="image/png")
+
+@app.post("/with-logo")
+async def with_logo(
+    data: str = Query(...),
+    logo: UploadFile = File(...),
+    size: int = Query(400)
+):
+    qr = qrcode.QRCode(version=1, box_size=10, border=4, error_correction=qrcode.constants.ERROR_CORRECT_H)
+    qr.add_data(data)
+    qr.make(fit=True)
+    img = qr.make_image().convert("RGB").resize((size, size))
+    logo_img = Image.open(io.BytesIO(await logo.read()))
+    logo_size = size // 4
+    logo_img = logo_img.resize((logo_size, logo_size))
+    pos = ((size - logo_size) // 2, (size - logo_size) // 2)
+    img.paste(logo_img, pos)
+    buf = io.BytesIO()
+    img.save(buf, format="PNG")
+    buf.seek(0)
+    return StreamingResponse(buf, media_type="image/png")
+
+@app.post("/bulk")
+async def bulk(req: BulkRequest):
+    results = []
+    for item in req.items[:50]:
+        qr = qrcode.QRCode(version=1, box_size=10, border=4)
+        qr.add_data(item.data)
+        qr.make(fit=True)
+        results.append({"data": item.data, "status": "generated"})
+    return {"generated": len(results), "results": results}
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)`
+  },
+  {
+    id:'screenshot-api', icon:'📸', name:'网页截图 API',
+    desc:'输入URL自动截图，支持全页/指定区域/移动端',
+    tags:['自动化','高价值','独特'], revenue:'$1500+/月',
+    pricing:{free:20,basic:1000,pro:10000},
+    requirements:'fastapi\nuvicorn[standard]\nplaywright\npydantic',
+    endpoints:[{m:'POST',p:'/screenshot',d:'网页截图',params:'url, width, height, full_page'},{m:'POST',p:'/pdf',d:'网页转PDF',params:'url'},{m:'POST',p:'/mobile',d:'移动端截图',params:'url, device'}],
+    code:`from fastapi import FastAPI
+from fastapi.responses import StreamingResponse
+from pydantic import BaseModel
+from playwright.async_api import async_playwright
+import io
+
+app = FastAPI(title="Screenshot API", version="1.0.0")
+
+class ScreenshotRequest(BaseModel):
+    url: str
+    width: int = 1280
+    height: int = 720
+    full_page: bool = False
+
+class PdfRequest(BaseModel):
+    url: str
+
+class MobileRequest(BaseModel):
+    url: str
+    device: str = "iPhone 13"
+
+@app.get("/health")
+def health():
+    return {"status": "healthy"}
+
+@app.post("/screenshot")
+async def screenshot(req: ScreenshotRequest):
+    async with async_playwright() as p:
+        browser = await p.chromium.launch()
+        page = await browser.new_page(viewport={"width":req.width,"height":req.height})
+        await page.goto(req.url, wait_until="networkidle")
+        buf = await page.screenshot(full_page=req.full_page)
+        await browser.close()
+    return StreamingResponse(io.BytesIO(buf), media_type="image/png")
+
+@app.post("/pdf")
+async def to_pdf(req: PdfRequest):
+    async with async_playwright() as p:
+        browser = await p.chromium.launch()
+        page = await browser.new_page()
+        await page.goto(req.url, wait_until="networkidle")
+        buf = await page.pdf()
+        await browser.close()
+    return StreamingResponse(io.BytesIO(buf), media_type="application/pdf")
+
+@app.post("/mobile")
+async def mobile(req: MobileRequest):
+    async with async_playwright() as p:
+        browser = await p.chromium.launch()
+        device = p.devices.get(req.device, p.devices["iPhone 13"])
+        ctx = await browser.new_context(**device)
+        page = await ctx.new_page()
+        await page.goto(req.url, wait_until="networkidle")
+        buf = await page.screenshot()
+        await browser.close()
+    return StreamingResponse(io.BytesIO(buf), media_type="image/png")
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)`
+  }
+];
+
+// ===== RENDER TEMPLATES =====
+function renderTemplates() {
+    const grid = document.getElementById('template-grid');
+    grid.innerHTML = templates.map(t => `
+        <div class="template-card" data-id="${t.id}">
+            <div class="revenue">${t.revenue}</div>
+            <div class="icon">${t.icon}</div>
+            <h3>${t.name}</h3>
+            <p>${t.desc}</p>
+            <div>${t.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>
+        </div>
+    `).join('');
+
+    grid.querySelectorAll('.template-card').forEach(card => {
+        card.addEventListener('click', () => selectTemplate(card.dataset.id));
+    });
+}
+
+// ===== SELECT TEMPLATE =====
+function selectTemplate(id) {
+    const tpl = templates.find(t => t.id === id);
+    if (!tpl) return;
+
+    document.querySelectorAll('.template-card').forEach(c => c.classList.remove('selected'));
+    document.querySelector(`[data-id="${id}"]`).classList.add('selected');
+
+    // Update steps
+    document.getElementById('step1-ind').classList.replace('active','done');
+    document.getElementById('step2-ind').classList.add('active');
+    document.getElementById('step3-ind').classList.add('active');
+    document.getElementById('step4-ind').classList.add('active');
+
+    generateOutput(tpl);
+}
+
+// ===== GENERATE OUTPUT =====
+function generateOutput(tpl) {
+    document.getElementById('output-section').style.display = 'block';
+    document.getElementById('output-section').classList.add('visible');
+    document.getElementById('tpl-name').textContent = tpl.name;
+
+    // Main code
+    setCodeBlock('tab-main-code', 'main.py', tpl.code);
+
+    // Dockerfile
+    setCodeBlock('tab-dockerfile', 'Dockerfile', `FROM python:3.11-slim
+
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+COPY . .
+
+EXPOSE 8000
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]`);
+
+    // docker-compose
+    setCodeBlock('tab-docker-compose', 'docker-compose.yml', `version: "3.8"
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - OPENAI_API_KEY=\${OPENAI_API_KEY:-}
+      - WEATHER_API_KEY=\${WEATHER_API_KEY:-}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3`);
+
+    // requirements
+    setCodeBlock('tab-requirements', 'requirements.txt', tpl.requirements);
+
+    // README
+    const endpointDocs = tpl.endpoints.map(e => `### ${e.m} ${e.p}\n${e.d}\n- Parameters: ${e.params || 'none'}`).join('\n\n');
+    setCodeBlock('tab-readme', 'README.md', `# ${tpl.name}
+
+${tpl.desc}
+
+## Quick Start
+
+\`\`\`bash
+# Clone and run locally
+git clone <your-repo>
+cd api-project
+pip install -r requirements.txt
+uvicorn main:app --reload
+\`\`\`
+
+## Docker
+
+\`\`\`bash
+docker-compose up -d
+\`\`\`
+
+## API Endpoints
+
+${endpointDocs}
+
+## Deploy
+
+See deployment commands in the API Factory tool.
+
+## License
+
+MIT`);
+
+    // RapidAPI Metadata
+    const meta = {
+        name: tpl.name.replace(' API',''),
+        description: tpl.desc,
+        category: tpl.tags[0],
+        pricing: {
+            free: { requests_per_month: tpl.pricing.free, rate_limit: '10/min' },
+            basic: { price: '$9.99/mo', requests_per_month: tpl.pricing.basic, rate_limit: '100/min' },
+            pro: { price: '$29.99/mo', requests_per_month: tpl.pricing.pro, rate_limit: '1000/min' }
+        },
+        endpoints: tpl.endpoints.map(e => ({ method: e.m, path: e.p, description: e.d }))
+    };
+    setCodeBlock('tab-rapidapi-meta', 'rapidapi-metadata.json', JSON.stringify(meta, null, 2));
+
+    // Deploy commands
+    setCodeBlock('tab-deploy-railway', 'Railway 部署', `# 1. 安装 Railway CLI
+npm install -g @railway/cli
+
+# 2. 登录
+railway login
+
+# 3. 初始化项目
+railway init
+
+# 4. 部署（自动检测 Dockerfile）
+railway up
+
+# 5. 获取公网域名
+railway domain
+
+# ✅ 完成！你的 API 现在有了公网 URL
+# 📌 把这个 URL 填到 RapidAPI 的 Base URL 里`);
+
+    setCodeBlock('tab-deploy-render', 'Render 部署', `# 方式一：通过 Dashboard（推荐新手）
+# 1. 打开 https://render.com
+# 2. New → Web Service → 连接 GitHub 仓库
+# 3. 设置：
+#    - Runtime: Docker
+#    - Instance: Free (750h/月) 或 Starter ($7/月)
+# 4. 点击 Deploy
+
+# 方式二：通过 render.yaml
+# 在项目根目录创建 render.yaml:
+cat > render.yaml << 'EOF'
+services:
+  - type: web
+    name: ${tpl.id}
+    runtime: docker
+    plan: starter
+    healthCheckPath: /health
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+EOF
+
+# 然后 push 到 GitHub，Render 自动部署
+# ✅ 免费方案也够用，冷启动约 30s`);
+
+    setCodeBlock('tab-deploy-fly', 'Fly.io 部署', `# 1. 安装 flyctl
+curl -L https://fly.io/install.sh | sh
+
+# 2. 登录
+fly auth login
+
+# 3. 创建应用（自动生成 fly.toml）
+fly launch --dockerfile Dockerfile
+
+# 4. 设置环境变量
+fly secrets set OPENAI_API_KEY=sk-xxx
+
+# 5. 部署
+fly deploy
+
+# 6. 查看状态
+fly status
+
+# ✅ 免费额度：3 shared-cpu VMs
+# 📌 域名格式：your-app.fly.dev`);
+
+    // Pricing table
+    document.getElementById('pricing-table').innerHTML = `
+        <tr><th>方案</th><th>价格</th><th>请求数/月</th><th>速率限制</th></tr>
+        <tr><td>🆓 Free</td><td>$0</td><td>${tpl.pricing.free.toLocaleString()}</td><td>10/min</td></tr>
+        <tr><td>⭐ Basic</td><td>$9.99/月</td><td>${tpl.pricing.basic.toLocaleString()}</td><td>100/min</td></tr>
+        <tr><td>🚀 Pro</td><td>$29.99/月</td><td>${tpl.pricing.pro.toLocaleString()}</td><td>1000/min</td></tr>
+        <tr><td>🏢 Enterprise</td><td>$99.99/月</td><td>不限</td><td>自定义</td></tr>
+    `;
+
+    // Scroll to output
+    document.getElementById('output-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    updateCalc();
+}
+
+// ===== HELPER: Code Block =====
+function setCodeBlock(containerId, filename, code) {
+    const el = document.getElementById(containerId);
+    const escaped = code.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    el.innerHTML = `
+        <div class="code-block">
+            <div class="code-header">
+                <span>${filename}</span>
+                <button class="copy-btn" data-code="${btoa(unescape(encodeURIComponent(code)))}">📋 Copy</button>
+            </div>
+            <div class="code-content">${escaped}</div>
+        </div>
+    `;
+}
+
+// ===== TABS =====
+document.addEventListener('click', e => {
+    if (e.target.classList.contains('tab')) {
+        const tabGroup = e.target.parentElement;
+        const panel = tabGroup.parentElement;
+        tabGroup.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        e.target.classList.add('active');
+        panel.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
+        panel.querySelector(`#tab-${e.target.dataset.tab}`).classList.add('active');
+    }
+    if (e.target.classList.contains('copy-btn')) {
+        const code = decodeURIComponent(escape(atob(e.target.dataset.code)));
+        navigator.clipboard.writeText(code).then(() => {
+            e.target.textContent = '✅ Copied!';
+            setTimeout(() => e.target.textContent = '📋 Copy', 2000);
+        });
+    }
+});
+
+// ===== CALCULATOR =====
+function updateCalc() {
+    const users = parseFloat(document.getElementById('calc-users').value) || 0;
+    const plan = parseFloat(document.getElementById('calc-plan').value) || 0;
+    const commission = parseFloat(document.getElementById('calc-commission').value) || 0;
+    const cost = parseFloat(document.getElementById('calc-cost').value) || 0;
+    const gross = users * plan;
+    const net = gross * (1 - commission) - cost;
+    document.getElementById('calc-revenue').textContent = `$${net.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
+    document.getElementById('calc-detail').textContent = `${users}用户 × $${plan} - ${commission*100}%抽成 - $${cost}服务器`;
+}
+['calc-users','calc-plan','calc-commission','calc-cost'].forEach(id => {
+    document.getElementById(id).addEventListener('input', updateCalc);
+});
+
+// ===== CUSTOM TEMPLATE =====
+document.getElementById('btn-custom').addEventListener('click', () => {
+    const desc = document.getElementById('custom-desc').value.trim();
+    if (!desc) return alert('请输入API描述');
+    const custom = {
+        id:'custom', icon:'🛠️', name:'自定义 API',
+        desc: desc,
+        tags:['自定义'], revenue:'$???/月',
+        pricing:{free:100,basic:5000,pro:50000},
+        requirements:'fastapi\nuvicorn[standard]\npydantic\nhttpx',
+        endpoints:[{m:'POST',p:'/process',d:'主要处理接口',params:'根据你的需求定义'},{m:'GET',p:'/health',d:'健康检查',params:''}],
+        code:`from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+import os
+
+app = FastAPI(title="Custom API", version="1.0.0", description="${desc}")
+
+class ProcessRequest(BaseModel):
+    # TODO: 根据你的需求定义字段
+    data: str
+    options: dict = {}
+
+@app.get("/health")
+def health():
+    return {"status": "healthy"}
+
+@app.post("/process")
+async def process(req: ProcessRequest):
+    """
+    ${desc}
+    
+    TODO: 实现你的核心逻辑
+    """
+    # 你的实现代码
+    result = {"input": req.data, "output": "TODO: implement"}
+    return result
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)`
+    };
+    generateOutput(custom);
+});
+
+// ===== INIT =====
+renderTemplates();
+updateCalc();
+</script>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Agent Token Tracker 🤖</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0a0a1a; color: #e0e0ff; font-family: 'Courier New', monospace; min-height: 100vh; }
+header { background: linear-gradient(135deg, #1a1a3e 0%, #0d1b2a 100%); padding: 20px; text-align: center; border-bottom: 1px solid #2a2a5e; }
+header h1 { font-size: 2em; color: #7b8ff7; margin-bottom: 5px; }
+header p { color: #888; font-size: 0.85em; }
+.stats-bar { display: flex; justify-content: center; gap: 30px; padding: 15px; background: #0d1020; border-bottom: 1px solid #1e2040; flex-wrap: wrap; }
+.stat { text-align: center; }
+.stat-val { font-size: 1.6em; font-weight: bold; color: #4ade80; }
+.stat-val.blue { color: #60a5fa; }
+.stat-val.purple { color: #a78bfa; }
+.stat-label { font-size: 0.7em; color: #666; text-transform: uppercase; letter-spacing: 1px; }
+.main { max-width: 1100px; margin: 0 auto; padding: 20px; }
+.section-title { color: #a78bfa; font-size: 1.1em; margin: 25px 0 12px; border-left: 3px solid #7b8ff7; padding-left: 10px; }
+.chain-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 12px; margin-bottom: 25px; }
+.chain-card { background: #111128; border: 1px solid #1e2050; border-radius: 10px; padding: 15px; transition: border-color 0.2s; }
+.chain-card:hover { border-color: #4a4aff; }
+.chain-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.chain-name { font-weight: bold; font-size: 1em; color: #e0e0ff; }
+.chain-badge { font-size: 0.7em; padding: 2px 8px; border-radius: 20px; background: #1a3a1a; color: #4ade80; }
+.chain-badge.hot { background: #3a1a1a; color: #f87171; }
+.chain-badge.rising { background: #1a2a3a; color: #60a5fa; }
+.chain-stat { display: flex; justify-content: space-between; font-size: 0.8em; color: #888; margin-top: 5px; }
+.chain-stat span:last-child { color: #a0a0dd; }
+.progress-bar { height: 4px; background: #1e2050; border-radius: 2px; margin-top: 8px; }
+.progress-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, #7b8ff7, #4ade80); }
+.token-table { width: 100%; border-collapse: collapse; font-size: 0.82em; }
+.token-table th { background: #0d1020; color: #888; padding: 8px 12px; text-align: left; border-bottom: 1px solid #1e2040; font-weight: normal; text-transform: uppercase; font-size: 0.75em; letter-spacing: 0.5px; }
+.token-table td { padding: 10px 12px; border-bottom: 1px solid #0f1025; }
+.token-table tr:hover td { background: #0d1028; }
+.token-tag { display: inline-block; font-size: 0.7em; padding: 1px 6px; border-radius: 10px; background: #1a1a3e; color: #7b8ff7; margin-left: 5px; }
+.change-up { color: #4ade80; }
+.change-down { color: #f87171; }
+.live-dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; display: inline-block; animation: pulse 1.5s infinite; margin-right: 6px; }
+@keyframes pulse { 0%,100%{ opacity:1; } 50%{ opacity:0.3; } }
+.news-item { background: #111128; border: 1px solid #1e2050; border-radius: 8px; padding: 14px; margin-bottom: 10px; }
+.news-item .news-title { color: #c0c0ff; font-size: 0.9em; margin-bottom: 5px; }
+.news-item .news-meta { font-size: 0.72em; color: #555; }
+.fetchai-banner { background: linear-gradient(135deg, #0d1b2a, #1a1a3e); border: 1px solid #2a2a5e; border-radius: 12px; padding: 18px; margin-bottom: 20px; text-align: center; }
+.fetchai-banner h3 { color: #7b8ff7; margin-bottom: 8px; }
+.fetchai-banner p { color: #888; font-size: 0.82em; line-height: 1.6; }
+.fetchai-banner a { color: #4ade80; text-decoration: none; }
+.update-time { color: #444; font-size: 0.72em; text-align: center; padding: 15px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>🤖 AI Agent Token Tracker</h1>
+  <p>Tracking AI Agent deployments & on-chain activity across chains — inspired by Fetch.ai's Agent Launch on BNB Chain</p>
+</header>
+
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-val">2.7M</div>
+    <div class="stat-label">Active AI Agents</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val blue">150K+</div>
+    <div class="stat-label">BNB Chain Deployments</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">43,000%</div>
+    <div class="stat-label">Growth Since Jan 2026</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val purple">30%</div>
+    <div class="stat-label">DeFi TVL by Agents</div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="fetchai-banner">
+    <h3>🚀 Fetch.ai Agent Launch — BNB Chain (May 20, 2026)</h3>
+    <p>Fetch.ai launched Agent Launch on BNB Chain, allowing verified autonomous AI agents to issue their own tokens, attract supporters, and list on DEX in minutes. This marks a milestone: <strong>AI agents becoming economic participants</strong>, not just tools.</p>
+    <p style="margin-top:8px;"><a href="https://fetch.ai" target="_blank">fetch.ai ↗</a> &nbsp;|&nbsp; Built on BNB Chain &nbsp;|&nbsp; 150,000+ agent deployments</p>
+  </div>
+
+  <div class="section-title">📊 AI Agent Chain Activity</div>
+  <div class="chain-grid">
+    <div class="chain-card">
+      <div class="chain-header">
+        <span class="chain-name">🔶 BNB Chain</span>
+        <span class="chain-badge hot">🔥 HOT</span>
+      </div>
+      <div class="chain-stat"><span>AI Agent Deployments</span><span>150,000+</span></div>
+      <div class="chain-stat"><span>Growth (Jan→May 2026)</span><span class="change-up">+43,000%</span></div>
+      <div class="chain-stat"><span>Agent Token Launches</span><span>2,700+</span></div>
+      <div class="chain-stat"><span>Avg tx fee</span><span>~$0.001</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:85%"></div></div>
+    </div>
+    <div class="chain-card">
+      <div class="chain-header">
+        <span class="chain-name">🟣 Solana</span>
+        <span class="chain-badge rising">📈 RISING</span>
+      </div>
+      <div class="chain-stat"><span>SOL Price (May 21)</span><span>$86.59</span></div>
+      <div class="chain-stat"><span>24h Change</span><span class="change-up">+3.27%</span></div>
+      <div class="chain-stat"><span>AI Agent dApps</span><span>Zerion CLI, swapper-toolkit</span></div>
+      <div class="chain-stat"><span>DeFi Agent TVL Est.</span><span>~30% of total</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:72%"></div></div>
+    </div>
+    <div class="chain-card">
+      <div class="chain-header">
+        <span class="chain-name">🟠 Ethereum</span>
+        <span class="chain-badge">STEADY</span>
+      </div>
+      <div class="chain-stat"><span>ETH Price (May 21)</span><span>$2,140</span></div>
+      <div class="chain-stat"><span>24h Change</span><span class="change-up">+0.86%</span></div>
+      <div class="chain-stat"><span>Agent Infrastructure</span><span>Zerion, Safe Agents</span></div>
+      <div class="chain-stat"><span>Layer2 Agent Activity</span><span>High</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:60%"></div></div>
+    </div>
+    <div class="chain-card">
+      <div class="chain-header">
+        <span class="chain-name">🔵 Bitcoin</span>
+        <span class="chain-badge">STABLE</span>
+      </div>
+      <div class="chain-stat"><span>BTC Price (May 21)</span><span>$77,795</span></div>
+      <div class="chain-stat"><span>24h Change</span><span class="change-up">+0.77%</span></div>
+      <div class="chain-stat"><span>CLARITY Act Status</span><span>Markup in progress</span></div>
+      <div class="chain-stat"><span>ETF Net Flow</span><span class="change-down">-$649M (May 18)</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:45%"></div></div>
+    </div>
+  </div>
+
+  <div class="section-title"><span class="live-dot"></span>Latest AI Agent Token Launches (Illustrative)</div>
+  <table class="token-table">
+    <thead>
+      <tr>
+        <th>Agent Name</th>
+        <th>Chain</th>
+        <th>Function</th>
+        <th>Token</th>
+        <th>Status</th>
+        <th>Launch Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>FetchBot Alpha <span class="token-tag">Fetch.ai</span></td>
+        <td>BNB</td>
+        <td>DeFi Yield Optimizer</td>
+        <td>FBALPHA</td>
+        <td class="change-up">✅ Live</td>
+        <td>May 20, 2026</td>
+      </tr>
+      <tr>
+        <td>TradeMind <span class="token-tag">autonomous</span></td>
+        <td>Solana</td>
+        <td>MEV + Arbitrage</td>
+        <td>TMND</td>
+        <td class="change-up">✅ Live</td>
+        <td>May 19, 2026</td>
+      </tr>
+      <tr>
+        <td>ZerionAgent <span class="token-tag">open-source</span></td>
+        <td>Multi-chain</td>
+        <td>Portfolio Manager (40+ chains)</td>
+        <td>—</td>
+        <td class="change-up">✅ CLI</td>
+        <td>May 21, 2026</td>
+      </tr>
+      <tr>
+        <td>SwapperKit <span class="token-tag">704★</span></td>
+        <td>Multi-chain</td>
+        <td>Agent Payment Layer</td>
+        <td>—</td>
+        <td class="change-up">✅ Production</td>
+        <td>May 2026</td>
+      </tr>
+      <tr>
+        <td>YieldSentinel</td>
+        <td>BNB</td>
+        <td>Stablecoin Optimizer</td>
+        <td>YSNTL</td>
+        <td style="color:#f97316">⏳ Listing</td>
+        <td>May 21, 2026</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="section-title">📰 Today's AI Agent Economy News (May 21, 2026)</div>
+
+  <div class="news-item">
+    <div class="news-title">🚀 Fetch.ai launches Agent Launch on BNB Chain — AI agents can now issue their own tokens</div>
+    <div class="news-meta">Source: Fetch.ai / Edgen.tech · May 20, 2026 · BNB Chain now hosts 150,000+ AI agent deployments (+43,000% since Jan 2026)</div>
+  </div>
+  <div class="news-item">
+    <div class="news-title">📊 Chainlink × ARK Invest: AI Agents Now Manage 30% of DeFi TVL</div>
+    <div class="news-meta">Source: Chainlink Blog / ARK Invest Report · May 2026 · Agent-driven DeFi is no longer experimental — it's institutional</div>
+  </div>
+  <div class="news-item">
+    <div class="news-title">🔧 Zerion CLI open-sourced: AI-native wallet operations across 40+ chains</div>
+    <div class="news-meta">Source: Zerion / Twitter · May 21, 2026 · First open-source CLI tool built natively for AI agents to interact with DeFi</div>
+  </div>
+  <div class="news-item">
+    <div class="news-title">💎 NVDA Q1 FY2027: $81.6B revenue (+69% YoY), Q2 guidance $91B — the AI infrastructure engine roars</div>
+    <div class="news-meta">Source: NVIDIA / CNBC · May 20-21, 2026 · DataCenter +92% YoY, $30B buyback authorized, dividend raised 25x</div>
+  </div>
+  <div class="news-item">
+    <div class="news-title">🤖 Mistral Vibe: Remote coding agent with 128B Medium 3.5, cloud-parallel execution</div>
+    <div class="news-meta">Source: Mistral AI · May 2026 · Joins Claude Code, Cursor 3 in the agentic coding war</div>
+  </div>
+
+  <div class="update-time">📡 Data compiled May 21, 2026 13:30 CST · Built by 小蓝虾🦐 · Inspired by Fetch.ai Agent Launch</div>
+</div>
+</body>
+</html>

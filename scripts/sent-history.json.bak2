@@ -1,0 +1,263 @@
+{
+  "2026-05-31-14:00-深度推送": {
+    "sent_at": "2026-05-31T14:02:18.087508",
+    "topics": [
+      "Google I/O Gemini Spark",
+      "金蝶灵基企业AI OS",
+      "万兴剧厂AI漫剧",
+      "n8n变现",
+      "AI数字人副业",
+      "Vibe Coding"
+    ],
+    "crypto": {
+      "BTC": 73958,
+      "ETH": 2027,
+      "SOL": 82.91
+    }
+  },
+  "2026-06-03-15:00-好玩发现+复刻": {
+    "sent_at": "2026-06-03T15:07:07.332023",
+    "topics": [
+      "InfiPlot AI互动剧情游戏",
+      "RedNote-Insight小红书爆款雷达",
+      "cc-fleet Claude Code多模型",
+      "腾讯代号Craft AI游戏创作"
+    ],
+    "project_replicated": "infiplot-demo",
+    "deploy_url": "https://seanliii.github.io/infiplot-demo/",
+    "meyo_feed_id": "01KT64W7J824GS6FJWAF5PGQHS"
+  },
+  "2026-06-04-19:00-深度推送": {
+    "timestamp": "2026-06-04T19:02:47.905254",
+    "items": [
+      "BTC/ETH/SOL 行情大跌",
+      "AI Agent泡沫论 vs 淘金论两派对垒",
+      "OpenClaw 2026.4.5更新Memory Dreaming等",
+      "Brian Roemmele AI经济底层重写",
+      "Novo Nordisk CagriSema FDA NDA提交",
+      "AI语音Agent替代呼叫中心变现路径",
+      "Reddit AI Agent实战变现案例"
+    ]
+  },
+  "2026-06-05-19:00-深度推送": {
+    "sent_at": "2026-06-05T19:02:30.925828",
+    "topics": [
+      "加密行情 BTC/ETH/SOL",
+      "微软Build2026 MAI-Thinking-1 GitHub Copilot多Agent",
+      "Agent进入真实业务流程信号",
+      "Twitter: 停止造Agent观点",
+      "OpenClaw一人公司破局指南",
+      "Solo Founder AI Stack Pieter Levels",
+      "创新药 Roche giredestrant Gilead Hepcludex Sanofi venglustat",
+      "进化笔记：Agent作为流程基础设施"
+    ]
+  },
+  "2026-06-06-17:00-OpenClaw精选": {
+    "sent_at": "2026-06-06T17:05:00.098961",
+    "topics": [
+      "OpenClaw 2026.5.31-beta.3 Skill Workshop新特性",
+      "Reddit: 研究100人OpenClaw变现-3个共同规律",
+      "Reddit: 内容简报自动化-3分钟完成2小时工作",
+      "增长黑盒2000用户调研-企业AI部署差速矛盾",
+      "华西深研:OpenClaw本地大模型量化选股实战",
+      "AI出海支付堵塞-订阅制浪潮OpenClaw催化"
+    ]
+  },
+  "2026-06-12-12:00-深度推送": {
+    "items": [
+      "PhysicsX 300M Series C 2.4B valuation",
+      "Lassie a16z 35M healthcare AI agent",
+      "CagriSema Novo Nordisk FDA 2026",
+      "YC P2026 AI startups Wato Auxos flowscope",
+      "OpenClaw ranked #2 AI agent 2026",
+      "一人公司AI Agent OPC时代",
+      "2026AI融资全景解析"
+    ]
+  },
+  "2026-06-14-16:00-深度推送": true,
+  "2026-06-17-15:00-好玩发现+复刻": {
+    "sent_at": "2026-06-17T15:00:00",
+    "topics": [
+      "addyosmani/agent-skills 22k+ Star AI编程Agent生产级工程技能",
+      "2026年AI圈爆火产品盘点 Lovable ARR破1亿美元",
+      "FlowiseAI 5.4万Star 低代码AI平台",
+      "AIWebsite Cloner Template 一条命令克隆网站",
+      "Python AI开源神器Top10"
+    ],
+    "project_replicated": "agent-skills-showcase",
+    "deploy_url": "https://seanliii.github.io/agent-skills-showcase/"
+  },
+  "2026-06-18-16:00-深度推送": {
+    "sent_at": "2026-06-18T16:05:00",
+    "topics": [
+      "演语科技 Evoken 3亿美元B+轮 估值20亿美元",
+      "OPC一人公司狂潮 6月18日多号集中爆发",
+      "AI原点社区成立 聚焦AI原生企业",
+      "AiToEarn OPC内容变现全链路引擎",
+      "AI大模型融资超510亿 产业资本入局",
+      "Hark AI 7亿美元Series A 估值60亿美元",
+      "2026ASCO FDA新药审评路径",
+      "6月3款创新药有望获FDA批准",
+      "BTC ETH SOL 全线下挫"
+    ],
+    "crypto": {
+      "BTC": 64427,
+      "ETH": 1747,
+      "SOL": 71.69
+    }
+  },
+  "2026-06-20-16:00-深度推送": {
+    "sent_at": "2026-06-20T16:00:00",
+    "topics": [
+      "智谱GLM-5.2逼平Opus仅落后1个百分点",
+      "DeepSeek 510亿融资腾讯京东网易宁德时代参投",
+      "特朗普Anthropic政策翻转",
+      "谷歌微软联手推新协议围堵Anthropic/OpenAI",
+      "陈立武英特尔5-10年10倍战略",
+      "和铂医药胜诉安进获赔1.37亿+3倍惩罚性赔偿",
+      "Parabilis创全球最大生物科技IPO 6.7亿美元",
+      "礼邦医药11家基石投资者港股18A最强",
+      "迈威生物全球首款LILRB4/CD3双抗获FDA许可",
+      "诺和诺德涨4.6%获券商上调评级",
+      "AI Agent 52%企业已投产 TELUS 5.7万人每天用",
+      "OpenClaw GitHub星标35万 中国市场449亿",
+      "COMPUTEX 2026黄仁勋AI Agent时代全面到来"
+    ],
+    "crypto": {
+      "BTC": 63626,
+      "ETH": 1724,
+      "SOL": 71.49
+    },
+    "note": "端午假期推送，无可复刻案例"
+  },
+  "2026-06-26-13:30-Twitter情报": {
+    "sent_at": "2026-06-26T13:30:00",
+    "topics": [
+      "WPS AI会员套娃事件 SaaS定价信任危机",
+      "不懂技术靠AI赚钱 PM圈子拆解路径",
+      "AI独立开发者月入35万 真实案例",
+      "AI+软件深度落地 OPC成国家战略级赛道",
+      "AI应用层定价权转向平台",
+      "95% OPC创业项目被毙",
+      "AISA Twitter API 连续多日不可用 多引擎补位"
+    ],
+    "score": 8.2,
+    "note": "AISA Twitter API 不可用，用multi_engine+catclaw+wechat三路并行补位，命中6/24-26最新内容"
+  },
+  "2026-06-28-13:30-Twitter情报": {
+    "sent_at": "2026-06-28T13:30:00",
+    "topics": [
+      "OpenAI Codex占内部Token 99.8% 非技术员工用量暴增137倍",
+      "豆包2.1 Pro发布 Coding/Agent跨越质变点",
+      "字节90%代码AI写 但效率只涨60% 反常识真相",
+      "Gartner企业级AI Coding Agent魔力象限 阿里云Qoder入围",
+      "模型价格奔向零 DeepSeek V4降75% 腾讯云跟进",
+      "AI驱动科技裁员12万人 甲骨文裁2.1万 不为过冬为换血",
+      "SK海力士市值破万亿美元 HBM垄断58% 拟IPO募资294亿",
+      "AI Agent重构跨境电商 一人公司前程序员用Codex跑全链路",
+      "2026中国版Codex大乱斗 15款桌面Agent产品对比",
+      "AISA Twitter API持续不可用第12天"
+    ],
+    "note": "AISA Twitter API第12天不可用 多引擎+catclaw+微信三路并行补位"
+  },
+  "2026-06-28-17:00-Twitter情报": {
+    "sent_at": "2026-06-28T17:00:00",
+    "topics": [
+      "Coinbase全面采用中国AI模型GLM 5.2和Kimi 2",
+      "DeepSeek DSpark发布让AI不再挤牙膏",
+      "YC Demo Day 2026 AI Startup Formula质变",
+      "Getty Images与OpenAI合作盘前暴涨120%",
+      "美光科技跌6.69%科技股抛售潮",
+      "AI投资热潮遭重新审视芯片股重挫",
+      "Rambus大涨映射兆易创新涨120%",
+      "赵长鹏解读加密抛售潮AI分流资金"
+    ],
+    "score": 8.0,
+    "note": "AISA Twitter API第13天不可用，多引擎+catclaw+微信三路并行补位。Coinbase转向中国模型是最大新闻"
+  },
+  "2026-06-29-10:00-OpenClaw全网精选": {
+    "sent_at": "2026-06-29T10:15:00",
+    "topics": [
+      "Meta × WATI WhatsApp AI Agent弃购召回",
+      "OpenClaw Skill市场Top13平台全景",
+      "AI Agent记忆技术演进 Mem0/Letta/Graphiti",
+      "HermesAgent副业5方向",
+      "国产龙虾AI大战2026部署清单"
+    ],
+    "score": 6.5,
+    "note": "三路并行18个查询，最近2天干货密度一般，最高评分6.5/10，无可复刻案例。AISA Twitter API第15天不可用"
+  },
+  "2026-06-30-09:00-Twitter情报": {
+    "sent_at": "2026-06-30T09:00:00",
+    "topics": [
+      "三星2655万亿韩元半导体投资计划",
+      "中信证券AI研报：这轮AI更像电新周期",
+      "PM圈子：不懂技术靠AI赚钱",
+      "自由人AI：AI副业变现第7天",
+      "用OpenClaw月入2.5万策略"
+    ],
+    "note": "AISA Twitter API第16天不可用。多引擎+catclaw+微信三路并行，仅命中2条6月30日新内容（三星、中信证券），其余为6月20-25日内容。加密行情API同步不可用，引用6月20日历史数据。"
+  },
+  "2026-06-30-17:00-Twitter情报": {
+    "sent_at": "2026-06-30T17:00:00",
+    "topics": [
+      "华尔街资金再平衡：科技/AI板块资金轮动撤出",
+      "美股周一午盘：美伊停火提振但芯片股抛压限制涨幅",
+      "券商中国：AI板块大幅异动，英伟达黄仁勋相关消息",
+      "孙正义演讲：AI没泡沫，叫板马斯克太空数据中心没价值",
+      "灵晟超算2.19EFlops登顶全球TOP500，时隔九年再夺冠",
+      "DeepSeek V4峰谷定价机制，7月上线高峰期API翻倍",
+      "玻利维亚美元汇率崩溃，民众转向加密货币",
+      "AISA Twitter API第16天不可用"
+    ],
+    "score": 7.5,
+    "note": "AISA Twitter API第16天不可用。多引擎+catclaw+微信三路并行，命中6条6月29-30日最新内容。市场信号：资金从AI/科技股轮动撤出。"
+  },
+  "2026-07-01-16:00-深度推送": {
+    "sent_at": "2026-07-01T16:00:00",
+    "topics": [
+      "Etched AI chip $8B funding $50B valuation July 1",
+      "Higgsfield AI video $3-5B round $50B valuation June 30",
+      "OPC一人公司7月1日集中爆发 5篇公众号",
+      "Lumvoa FDA approved June 26 thyroid eye disease",
+      "Baxfendy FDA approved May 18 first aldosterone synthase inhibitor",
+      "2026年AI副业完全指南 June 30",
+      "三玖漫剧AI副业现状6个方向 June 29",
+      "BTC 58678 ETH 1576 SOL 74.7"
+    ],
+    "crypto": {
+      "BTC": 58678,
+      "ETH": 1576,
+      "SOL": 74.72
+    },
+    "score": 7.5,
+    "note": "三路并行搜索18个查询，命中7月1日新内容2条（Etched融资、OPC爆发）、6月30日2条（Higgsfield、AI副业指南）、6月29日1条（副业调研）、6月26日1条（Lumvova FDA）。无可复刻案例（融资事件+概念文章，无具体工具/项目）。"
+  },
+  "2026-07-02-13:30-Twitter情报": {
+    "sent_at": "2026-07-02T13:34:16.990192",
+    "topics": [
+      "火山引擎FORCE大会豆包2.1 Pro",
+      "字节豆包Seedance 2.5",
+      "豆包Agent升级日均180万亿Token",
+      "智源大会AI Coding/Agent/自进化",
+      "10岁小学生AI金奖游戏",
+      "独立开发者月入35万案例",
+      "WPS AI会员割韭菜争议",
+      "ProductHunt 6月AI榜单"
+    ],
+    "note": "Twitter API故障，改用catclaw+公众号搜索"
+  }
+}M_SPANID='0.106.1' ,
+  M_SPANID='0.106.2' "2026-07-03-10:00-OpenClaw全网精选": {
+    "sent_at": "2026-07-03T10:16:00",
+    "topics": [
+      "10大真实场景Agent实战营销 2026-07-02",
+      "明略科技Octo开源Agent互联网 首年营收超1亿",
+      "AI Agent开发实战指南 SegmentFault 2026-07-01",
+      "OpenClaw推手机应用 iOS免费安卓粗糙 2026-07-01"
+    ],
+    "score": 7,
+    "note": "三路并行13个查询，最近2天干货密度一般，仅2条≥7分。无可复刻案例。"
+  }
+M_SPANID='0.106.3' }
+M_SPANID='0.106.4' APPEND_EOF

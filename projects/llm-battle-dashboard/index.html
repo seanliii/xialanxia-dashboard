@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 模型实力对比 2026 | LLM Battle Dashboard</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #0a0a0f;
+    color: #e2e8f0;
+    min-height: 100vh;
+  }
+  header {
+    padding: 24px 32px;
+    border-bottom: 1px solid #1e293b;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(135deg, #0f172a, #1e1b4b);
+  }
+  header h1 { font-size: 1.4rem; font-weight: 700; color: #f8fafc; }
+  header .tag { font-size: 0.75rem; padding: 4px 10px; border-radius: 20px; background: #6366f1; color: white; }
+  .updated { font-size: 0.75rem; color: #64748b; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 28px 32px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .card {
+    background: #0f172a;
+    border: 1px solid #1e293b;
+    border-radius: 16px;
+    padding: 24px;
+    transition: border-color 0.2s;
+  }
+  .card:hover { border-color: #6366f1; }
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .model-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+  }
+  .model-name { font-size: 1.1rem; font-weight: 700; }
+  .model-version { font-size: 0.75rem; color: #64748b; margin-top: 2px; }
+
+  .scores { display: flex; flex-direction: column; gap: 10px; }
+  .score-row { display: flex; align-items: center; gap: 10px; }
+  .score-label { font-size: 0.75rem; color: #94a3b8; width: 90px; flex-shrink: 0; }
+  .score-bar-wrap { flex: 1; background: #1e293b; border-radius: 4px; height: 8px; overflow: hidden; }
+  .score-bar { height: 100%; border-radius: 4px; transition: width 1s ease; }
+  .score-val { font-size: 0.75rem; font-weight: 600; width: 36px; text-align: right; color: #e2e8f0; }
+
+  .tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 16px; }
+  .badge {
+    font-size: 0.68rem; padding: 3px 8px; border-radius: 10px;
+    background: #1e293b; color: #94a3b8;
+  }
+  .badge.hot { background: #7f1d1d; color: #fca5a5; }
+  .badge.best { background: #14532d; color: #86efac; }
+  .badge.cheap { background: #1c1917; color: #d6d3d1; border: 1px solid #44403c; }
+
+  /* Bottom legend */
+  .legend {
+    text-align: center;
+    padding: 20px;
+    color: #475569;
+    font-size: 0.75rem;
+  }
+
+  /* Summary table */
+  .summary-section {
+    max-width: 1400px;
+    margin: 0 auto 32px;
+    padding: 0 32px;
+  }
+  .summary-section h2 { font-size: 1rem; font-weight: 600; color: #94a3b8; margin-bottom: 14px; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  th { background: #0f172a; color: #64748b; font-weight: 600; padding: 10px 14px; text-align: left; border-bottom: 1px solid #1e293b; }
+  td { padding: 10px 14px; border-bottom: 1px solid #0f172a; }
+  tr:hover td { background: #0f172a; }
+  .winner { color: #86efac; font-weight: 700; }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>🥊 LLM Battle Dashboard 2026</h1>
+    <div class="updated" style="margin-top:4px">AI模型实力对比 · 数据截至 2026-05-20 · 持续更新</div>
+  </div>
+  <div class="tag">🦐 by 小蓝虾</div>
+</header>
+
+<div class="grid">
+
+  <!-- OpenAI GPT-5.5 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="model-icon" style="background:#10b981">🤖</div>
+      <div>
+        <div class="model-name">GPT-5.5</div>
+        <div class="model-version">OpenAI · 2026年4月</div>
+      </div>
+    </div>
+    <div class="scores">
+      <div class="score-row">
+        <span class="score-label">编码能力</span>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:96%;background:#10b981"></div></div>
+        <span class="score-val">96</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">数学推理</span>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:94%;background:#10b981"></div></div>
+        <span class="score-val">94</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">长上下文</span>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:88%;background:#10b981"></div></div>
+        <span class="score-val">88</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">中文能力</span>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:82%;background:#10b981"></div></div>
+        <span class="score-val">82</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">工具调用</span>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:92%;background:#10b981"></div></div>
+        <span class="score-val">92</span>
+      </div>
+    </div>
+    <div class="tags">
+      <span class="badge best">编码最强</span>
+      <span class="badge best">数学推理No.1</span>
+      <span class="badge hot">$20/月</span>
+    </div>
+  </div>
+
+  <!-- Anthropic Claude Opus 4.7 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="model-icon" style="background:#f97316">🎭</div>
+      <div>
+        <div class="model-name">Claude Opus 4.7</div>
+        <div class="model-version">Anthropic · 2026年4月</div>
+      </div>
+    </div>
+    <div class="scores">
+      <div class="score-row">
+        <span class="score-label">编码能力</span>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:89%;background:#f97316"></div></div>
+        <span class="score-val">89</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">数学推理</span>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:87%;background:#f97316"></div></div>
+        <span class="score-val">87</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">长上下文</span>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:98%;background:#f97316"></div></div>
+        <span class="score-val">98</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">中文能力</span>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:85%;background:#f97316"></div></div>
+        <span class="score-val">85</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">工具调用</span>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:91%;background:#f97316"></div></div>
+        <span class="score-val">91</span>
+      </div>
+    </div>
+    <div class="tags">
+      <span class="badge best">长文本No.1</span>
+      <span class="badge hot">体验有争议</span>
+    </div>
+  </div>
+
+  <!-- DeepSeek V4 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="model-icon" style="background:#3b82f6">🐋</div>
+      <div>
+        <div class="model-name">DeepSeek V4</div>
+        <div class="model-version">深度求索 · 2026年4月</div>
+      </div>
+    </div>
+    <div class="scores">
+      <div class="score-row">
+        <span class="score-label">编码能力</span>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:90%;background:#3b82f6"></div></div>
+        <span class="score-val">90</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">数学推理</span>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:92%;background:#3b82f6"></div></div>
+        <span class="score-val">92</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">长上下文</span>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:86%;background:#3b82f6"></div></div>
+        <span class="score-val">86</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">中文能力</span>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:99%;background:#3b82f6"></div></div>
+        <span class="score-val">99</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">工具调用</span>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:88%;background:#3b82f6"></div></div>
+        <span class="score-val">88</span>
+      </div>
+    </div>
+    <div class="tags">
+      <span class="badge best">中文No.1</span>
+      <span class="badge best">响应最快</span>
+      <span class="badge cheap">低价高配</span>
+    </div>
+  </div>
+
+  <!-- Google Gemini 3.1 Pro -->
+  <div class="card">
+    <div class="card-header">
+      <div class="model-icon" style="background:#a855f7">💎</div>
+      <div>
+        <div class="model-name">Gemini 3.1 Pro</div>
+        <div class="model-version">Google · 2026年Q1</div>
+      </div>
+    </div>
+    <div class="scores">
+      <div class="score-row">
+        <span class="score-label">编码能力</span>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:87%;background:#a855f7"></div></div>
+        <span class="score-val">87</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">数学推理</span>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:90%;background:#a855f7"></div></div>
+        <span class="score-val">90</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">长上下文</span>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:95%;background:#a855f7"></div></div>
+        <span class="score-val">95</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">中文能力</span>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:80%;background:#a855f7"></div></div>
+        <span class="score-val">80</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">多模态</span>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:97%;background:#a855f7"></div></div>
+        <span class="score-val">97</span>
+      </div>
+    </div>
+    <div class="tags">
+      <span class="badge best">多模态No.1</span>
+      <span class="badge best">超长Context</span>
+    </div>
+  </div>
+
+  <!-- Anthropic Mythos -->
+  <div class="card">
+    <div class="card-header">
+      <div class="model-icon" style="background:#ef4444">🛡️</div>
+      <div>
+        <div class="model-name">Claude Mythos</div>
+        <div class="model-version">Anthropic · 安全专项 · 2026年5月</div>
+      </div>
+    </div>
+    <div class="scores">
+      <div class="score-row">
+        <span class="score-label">安全分析</span>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:98%;background:#ef4444"></div></div>
+        <span class="score-val">98</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">漏洞扫描</span>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:96%;background:#ef4444"></div></div>
+        <span class="score-val">96</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">渗透报告</span>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:94%;background:#ef4444"></div></div>
+        <span class="score-val">94</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">代码安全</span>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:97%;background:#ef4444"></div></div>
+        <span class="score-val">97</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">通用能力</span>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:78%;background:#ef4444"></div></div>
+        <span class="score-val">78</span>
+      </div>
+    </div>
+    <div class="tags">
+      <span class="badge hot">网络安全专项</span>
+      <span class="badge best">防御侧突破</span>
+    </div>
+  </div>
+
+  <!-- AI Coding Cost Analysis -->
+  <div class="card">
+    <div class="card-header">
+      <div class="model-icon" style="background:#f59e0b">💸</div>
+      <div>
+        <div class="model-name">推理成本危机</div>
+        <div class="model-version">AI Coding 赛道 2026年警示</div>
+      </div>
+    </div>
+    <div style="margin-top:8px">
+      <div style="font-size:0.8rem;color:#94a3b8;margin-bottom:12px">Cursor/Lovable 等公司正面临 LLM 推理成本 20x 增长困境</div>
+      <div class="scores">
+        <div class="score-row">
+          <span class="score-label">Cursor ARR</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:100%;background:#f59e0b"></div></div>
+          <span class="score-val">$1B+</span>
+        </div>
+        <div class="score-row">
+          <span class="score-label">成本增速</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:100%;background:#ef4444"></div></div>
+          <span class="score-val">20x</span>
+        </div>
+        <div class="score-row">
+          <span class="score-label">预警级别</span>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:90%;background:#f97316"></div></div>
+          <span class="score-val">高</span>
+        </div>
+      </div>
+      <div class="tags" style="margin-top:16px">
+        <span class="badge hot">成本陷阱</span>
+        <span class="badge">赛道警示</span>
+        <span class="badge">CB Insights报告</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Summary Table -->
+<div class="summary-section">
+  <h2>📊 一句话点评对比</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>模型</th>
+        <th>最强项</th>
+        <th>最弱项</th>
+        <th>适合谁用</th>
+        <th>定价参考</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>GPT-5.5</strong></td>
+        <td class="winner">编码 + 数学</td>
+        <td>中文</td>
+        <td>开发者、研究员</td>
+        <td>~$20/月</td>
+      </tr>
+      <tr>
+        <td><strong>Claude Opus 4.7</strong></td>
+        <td class="winner">超长文档处理</td>
+        <td>体验争议</td>
+        <td>法律/金融文档</td>
+        <td>~$20/月</td>
+      </tr>
+      <tr>
+        <td><strong>DeepSeek V4</strong></td>
+        <td class="winner">中文 + 速度</td>
+        <td>工具调用</td>
+        <td>中文用户首选</td>
+        <td>极低（开源）</td>
+      </tr>
+      <tr>
+        <td><strong>Gemini 3.1 Pro</strong></td>
+        <td class="winner">多模态 + 长上下文</td>
+        <td>中文</td>
+        <td>多媒体内容创作</td>
+        <td>Google AI Pro</td>
+      </tr>
+      <tr>
+        <td><strong>Claude Mythos</strong></td>
+        <td class="winner">网络安全分析</td>
+        <td>通用任务</td>
+        <td>安全工程师</td>
+        <td>企业定制</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="legend">
+  数据来源：官方技术报告 + 社区跑分汇总 · 分数基于相对横向对比，非绝对评分 · 🦐 小蓝虾情报站 制作 · 2026-05-20
+</div>
+
+</body>
+</html>

@@ -1,0 +1,207 @@
+{
+  "scan_time": "2026-07-09T10:01:31.662188",
+  "movers_5d": [
+    {
+      "ticker": "ZCMD",
+      "price": 2.5,
+      "prev_close": 1.05,
+      "chg_1d": 13.64,
+      "chg_5d": 123.21,
+      "volume": 3575516,
+      "valid": true
+    },
+    {
+      "ticker": "STSS",
+      "price": 1.84,
+      "prev_close": 1.11,
+      "chg_1d": 65.77,
+      "chg_5d": 65.77,
+      "volume": 519426,
+      "valid": true
+    }
+  ],
+  "movers_1d": [],
+  "penny_movers": [],
+  "all_cheap_top20": [
+    {
+      "ticker": "ZCMD",
+      "price": 2.5,
+      "prev_close": 1.05,
+      "chg_1d": 13.64,
+      "chg_5d": 123.21,
+      "volume": 3575516,
+      "valid": true
+    },
+    {
+      "ticker": "STSS",
+      "price": 1.84,
+      "prev_close": 1.11,
+      "chg_1d": 65.77,
+      "chg_5d": 65.77,
+      "volume": 519426,
+      "valid": true
+    },
+    {
+      "ticker": "LUCY",
+      "price": 1.07,
+      "prev_close": 0.78,
+      "chg_1d": -15.75,
+      "chg_5d": 35.44,
+      "volume": 42865238,
+      "valid": true
+    },
+    {
+      "ticker": "SYRA",
+      "price": 0.702,
+      "prev_close": 0.638,
+      "chg_1d": -3.84,
+      "chg_5d": 29.76,
+      "volume": 3524,
+      "valid": true
+    },
+    {
+      "ticker": "MARK",
+      "price": 0.0015,
+      "prev_close": 0.0012,
+      "chg_1d": -0.0,
+      "chg_5d": 25.0,
+      "volume": 577,
+      "valid": true
+    },
+    {
+      "ticker": "PULM",
+      "price": 1.88,
+      "prev_close": 1.7,
+      "chg_1d": 8.67,
+      "chg_5d": 8.05,
+      "volume": 39063,
+      "valid": true
+    },
+    {
+      "ticker": "CERO",
+      "price": 0.0108,
+      "prev_close": 0.011,
+      "chg_1d": -1.82,
+      "chg_5d": 8.0,
+      "volume": 108948,
+      "valid": true
+    },
+    {
+      "ticker": "MATH",
+      "price": 1.0,
+      "prev_close": 0.965,
+      "chg_1d": 0.0,
+      "chg_5d": 7.53,
+      "volume": 39159,
+      "valid": true
+    },
+    {
+      "ticker": "LGMK",
+      "price": 0.61,
+      "prev_close": 0.57,
+      "chg_1d": -16.21,
+      "chg_5d": 7.02,
+      "volume": 53,
+      "valid": true
+    },
+    {
+      "ticker": "ENGN",
+      "price": 1.86,
+      "prev_close": 1.73,
+      "chg_1d": -3.12,
+      "chg_5d": 5.68,
+      "volume": 1521141,
+      "valid": true
+    },
+    {
+      "ticker": "NCPL",
+      "price": 0.554,
+      "prev_close": 0.536,
+      "chg_1d": -3.65,
+      "chg_5d": 4.73,
+      "volume": 241516,
+      "valid": true
+    },
+    {
+      "ticker": "PALI",
+      "price": 2.05,
+      "prev_close": 2.09,
+      "chg_1d": -1.44,
+      "chg_5d": 4.06,
+      "volume": 3270384,
+      "valid": true
+    },
+    {
+      "ticker": "INM",
+      "price": 1.65,
+      "prev_close": 1.55,
+      "chg_1d": -1.2,
+      "chg_5d": 3.77,
+      "volume": 23804,
+      "valid": true
+    },
+    {
+      "ticker": "INMB",
+      "price": 1.72,
+      "prev_close": 1.63,
+      "chg_1d": -1.15,
+      "chg_5d": 2.38,
+      "volume": 716203,
+      "valid": true
+    },
+    {
+      "ticker": "HOWL",
+      "price": 0.36,
+      "prev_close": 0.36,
+      "chg_1d": 4.65,
+      "chg_5d": 1.98,
+      "volume": 590803,
+      "valid": true
+    },
+    {
+      "ticker": "TRUG",
+      "price": 1.34,
+      "prev_close": 1.29,
+      "chg_1d": -4.96,
+      "chg_5d": 1.52,
+      "volume": 101938,
+      "valid": true
+    },
+    {
+      "ticker": "APVO",
+      "price": 4.5,
+      "prev_close": 4.44,
+      "chg_1d": -0.22,
+      "chg_5d": 1.12,
+      "volume": 1133353,
+      "valid": true
+    },
+    {
+      "ticker": "MGNX",
+      "price": 4.66,
+      "prev_close": 4.62,
+      "chg_1d": -1.89,
+      "chg_5d": 0.87,
+      "volume": 698336,
+      "valid": true
+    },
+    {
+      "ticker": "PRZO",
+      "price": 0.5059,
+      "prev_close": 0.486,
+      "chg_1d": -1.77,
+      "chg_5d": 0.38,
+      "volume": 241668,
+      "valid": true
+    },
+    {
+      "ticker": "PRZO",
+      "price": 0.5059,
+      "prev_close": 0.486,
+      "chg_1d": -1.77,
+      "chg_5d": 0.38,
+      "volume": 241668,
+      "valid": true
+    }
+  ]
+}

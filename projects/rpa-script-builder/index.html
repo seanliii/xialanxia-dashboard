@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🦐 RPA 录制回放模拟器 - Script Builder</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg-primary: #0d1117;
+  --bg-secondary: #161b22;
+  --bg-tertiary: #21262d;
+  --border: #30363d;
+  --text-primary: #e6edf3;
+  --text-secondary: #8b949e;
+  --accent: #58a6ff;
+  --accent-hover: #79c0ff;
+  --green: #3fb950;
+  --orange: #d29922;
+  --red: #f85149;
+  --purple: #bc8cff;
+  --code-bg: #0d1117;
+  --code-keyword: #ff7b72;
+  --code-string: #a5d6ff;
+  --code-func: #d2a8ff;
+  --code-comment: #8b949e;
+  --code-number: #79c0ff;
+  --code-class: #ffa657;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
+/* Header */
+.header {
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header h1 {
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header h1 span { font-size: 24px; }
+
+.header-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.badge {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 4px 10px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* Main Layout */
+.main {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  height: calc(100vh - 53px);
+}
+
+/* Left Panel */
+.left-panel {
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.panel-header {
+  padding: 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.panel-header h2 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+}
+
+.tab {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  font-size: 13px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+}
+
+.tab:hover { color: var(--text-primary); }
+.tab.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* Steps List */
+.steps-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+}
+
+.step-item {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  cursor: grab;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.step-item:hover {
+  border-color: var(--accent);
+}
+
+.step-item.dragging {
+  opacity: 0.5;
+  transform: scale(0.98);
+}
+
+.step-item.drag-over {
+  border-color: var(--green);
+  background: rgba(63, 185, 80, 0.05);
+}
+
+.step-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.step-type {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(88, 166, 255, 0.15);
+  color: var(--accent);
+}
+
+.step-type.navigate { background: rgba(63, 185, 80, 0.15); color: var(--green); }
+.step-type.click { background: rgba(210, 169, 34, 0.15); color: var(--orange); }
+.step-type.type { background: rgba(188, 140, 255, 0.15); color: var(--purple); }
+.step-type.wait { background: rgba(139, 148, 158, 0.15); color: var(--text-secondary); }
+.step-type.screenshot { background: rgba(248, 81, 73, 0.15); color: var(--red); }
+.step-type.extract { background: rgba(255, 166, 87, 0.15); color: var(--code-class); }
+
+.step-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.step-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: all 0.15s;
+}
+
+.step-btn:hover { color: var(--text-primary); background: var(--bg-secondary); }
+.step-btn.delete:hover { color: var(--red); }
+
+.step-detail {
+  font-size: 12px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Add Step Section */
+.add-step-section {
+  border-top: 1px solid var(--border);
+  padding: 12px;
+}
+
+.add-step-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.add-btn {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: center;
+}
+
+.add-btn:hover {
+  border-color: var(--accent);
+  background: rgba(88, 166, 255, 0.08);
+}
+
+/* Templates */
+.templates-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+  display: none;
+}
+
+.template-item {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.template-item:hover {
+  border-color: var(--accent);
+  background: rgba(88, 166, 255, 0.05);
+}
+
+.template-name {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.template-desc {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+/* Right Panel - Code */
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.code-header {
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-secondary);
+}
+
+.code-header h3 {
+  font-size: 13px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.code-header h3::before {
+  content: '🐍';
+}
+
+.copy-btn {
+  background: var(--green);
+  color: #000;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.copy-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+.copy-btn:active { transform: translateY(0); }
+
+.code-container {
+  flex: 1;
+  overflow: auto;
+  padding: 20px;
+  background: var(--code-bg);
+}
+
+.code-block {
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  white-space: pre;
+  tab-size: 4;
+}
+
+/* Syntax Highlighting */
+.kw { color: var(--code-keyword); }
+.str { color: var(--code-string); }
+.func { color: var(--code-func); }
+.cmt { color: var(--code-comment); font-style: italic; }
+.num { color: var(--code-number); }
+.cls { color: var(--code-class); }
+.op { color: var(--code-keyword); }
+.dec { color: var(--code-class); }
+
+/* Install Banner */
+.install-banner {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+  padding: 10px 20px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.install-banner code {
+  background: var(--bg-tertiary);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: monospace;
+  color: var(--green);
+}
+
+/* Modal */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-overlay.active { display: flex; }
+
+.modal {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  width: 380px;
+  max-width: 90vw;
+}
+
+.modal h3 {
+  margin-bottom: 16px;
+  font-size: 16px;
+}
+
+.modal-field {
+  margin-bottom: 12px;
+}
+
+.modal-field label {
+  display: block;
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.modal-field input, .modal-field select {
+  width: 100%;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 12px;
+  color: var(--text-primary);
+  font-size: 13px;
+  outline: none;
+}
+
+.modal-field input:focus, .modal-field select:focus {
+  border-color: var(--accent);
+}
+
+.modal-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+.btn-cancel {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-confirm {
+  background: var(--accent);
+  border: none;
+  color: #000;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--green);
+  color: #000;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.3s;
+  z-index: 2000;
+}
+
+.toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-secondary);
+}
+
+.empty-state .emoji { font-size: 40px; margin-bottom: 12px; }
+.empty-state p { font-size: 13px; line-height: 1.5; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--bg-tertiary); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--border); }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .main { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; }
+  .left-panel { border-right: none; border-bottom: 1px solid var(--border); }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1><span>🦐</span> RPA Script Builder</h1>
+  <div class="header-actions">
+    <span class="badge">Playwright Python</span>
+    <span class="badge">零 Token 回放</span>
+  </div>
+</div>
+
+<div class="main">
+  <!-- Left Panel -->
+  <div class="left-panel">
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab('steps')">📝 录制步骤</div>
+      <div class="tab" onclick="switchTab('templates')">📦 模板库</div>
+    </div>
+
+    <div class="steps-container" id="stepsContainer">
+      <div class="empty-state" id="emptyState">
+        <div class="emoji">🎬</div>
+        <p>开始录制你的自动化流程<br>点击下方按钮添加操作步骤</p>
+      </div>
+    </div>
+
+    <div class="templates-container" id="templatesContainer">
+      <div class="template-item" onclick="loadTemplate('login')">
+        <div class="template-name">🔐 登录网站并签到</div>
+        <div class="template-desc">打开网站 → 输入账密 → 点击登录 → 签到</div>
+      </div>
+      <div class="template-item" onclick="loadTemplate('download')">
+        <div class="template-name">📥 批量下载文件</div>
+        <div class="template-desc">遍历列表 → 点击下载链接 → 等待完成</div>
+      </div>
+      <div class="template-item" onclick="loadTemplate('form')">
+        <div class="template-name">📋 表单自动填写</div>
+        <div class="template-desc">打开表单 → 填写各字段 → 提交</div>
+      </div>
+      <div class="template-item" onclick="loadTemplate('price')">
+        <div class="template-name">💰 价格监控并截图</div>
+        <div class="template-desc">打开商品页 → 提取价格 → 截图保存</div>
+      </div>
+      <div class="template-item" onclick="loadTemplate('social')">
+        <div class="template-name">📱 社媒自动发帖</div>
+        <div class="template-desc">打开平台 → 点击发帖 → 输入内容 → 发布</div>
+      </div>
+    </div>
+
+    <div class="add-step-section">
+      <div class="add-step-grid">
+        <div class="add-btn" onclick="openModal('navigate')">🌐 打开URL</div>
+        <div class="add-btn" onclick="openModal('click')">🖱️ 点击元素</div>
+        <div class="add-btn" onclick="openModal('type')">⌨️ 输入文本</div>
+        <div class="add-btn" onclick="openModal('wait')">⏱️ 等待</div>
+        <div class="add-btn" onclick="openModal('screenshot')">📸 截图</div>
+        <div class="add-btn" onclick="openModal('extract')">📄 提取文本</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Panel -->
+  <div class="right-panel">
+    <div class="code-header">
+      <h3>生成的 Playwright 脚本</h3>
+      <button class="copy-btn" onclick="copyCode()">📋 复制脚本</button>
+    </div>
+    <div class="code-container">
+      <div class="code-block" id="codeBlock"></div>
+    </div>
+    <div class="install-banner">
+      💡 安装依赖：<code>pip install playwright && playwright install</code>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" onclick="event.stopPropagation()">
+    <h3 id="modalTitle">添加步骤</h3>
+    <div id="modalFields"></div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">取消</button>
+      <button class="btn-confirm" onclick="confirmStep()">添加</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+// State
+let steps = [];
+let currentStepType = '';
+let draggedItem = null;
+
+// Templates
+const templates = {
+  login: [
+    { type: 'navigate', url: 'https://example.com/login' },
+    { type: 'type', selector: '#username', text: 'your_username' },
+    { type: 'type', selector: '#password', text: 'your_password' },
+    { type: 'click', selector: 'button[type="submit"]' },
+    { type: 'wait', duration: 2000 },
+    { type: 'click', selector: '.checkin-btn' },
+    { type: 'screenshot', filename: 'checkin_success.png' },
+  ],
+  download: [
+    { type: 'navigate', url: 'https://example.com/files' },
+    { type: 'wait', duration: 1000 },
+    { type: 'click', selector: '.download-link:nth-child(1)' },
+    { type: 'wait', duration: 2000 },
+    { type: 'click', selector: '.download-link:nth-child(2)' },
+    { type: 'wait', duration: 2000 },
+    { type: 'click', selector: '.download-link:nth-child(3)' },
+    { type: 'screenshot', filename: 'downloads_complete.png' },
+  ],
+  form: [
+    { type: 'navigate', url: 'https://example.com/form' },
+    { type: 'type', selector: '#name', text: '张三' },
+    { type: 'type', selector: '#email', text: 'zhangsan@example.com' },
+    { type: 'type', selector: '#phone', text: '13800138000' },
+    { type: 'type', selector: '#message', text: '这是自动填写的内容' },
+    { type: 'click', selector: 'button[type="submit"]' },
+    { type: 'wait', duration: 1000 },
+    { type: 'screenshot', filename: 'form_submitted.png' },
+  ],
+  price: [
+    { type: 'navigate', url: 'https://example.com/product/12345' },
+    { type: 'wait', duration: 2000 },
+    { type: 'extract', selector: '.price-current', variable: 'current_price' },
+    { type: 'screenshot', filename: 'price_monitor.png' },
+  ],
+  social: [
+    { type: 'navigate', url: 'https://example.com/compose' },
+    { type: 'wait', duration: 1000 },
+    { type: 'click', selector: '.new-post-btn' },
+    { type: 'type', selector: '.post-textarea', text: '今天的自动发帖内容 #automation' },
+    { type: 'wait', duration: 500 },
+    { type: 'click', selector: '.publish-btn' },
+    { type: 'wait', duration: 2000 },
+    { type: 'screenshot', filename: 'post_published.png' },
+  ],
+};
+
+// Modal field configs
+const fieldConfigs = {
+  navigate: [
+    { key: 'url', label: 'URL 地址', placeholder: 'https://example.com' }
+  ],
+  click: [
+    { key: 'selector', label: 'CSS 选择器', placeholder: '#submit-btn 或 .my-class' }
+  ],
+  type: [
+    { key: 'selector', label: 'CSS 选择器', placeholder: '#input-field' },
+    { key: 'text', label: '输入内容', placeholder: '要输入的文本' }
+  ],
+  wait: [
+    { key: 'duration', label: '等待时间 (ms)', placeholder: '1000', type: 'number' }
+  ],
+  screenshot: [
+    { key: 'filename', label: '文件名', placeholder: 'screenshot.png' }
+  ],
+  extract: [
+    { key: 'selector', label: 'CSS 选择器', placeholder: '.price-text' },
+    { key: 'variable', label: '变量名', placeholder: 'extracted_text' }
+  ],
+};
+
+const typeLabels = {
+  navigate: '打开URL',
+  click: '点击',
+  type: '输入',
+  wait: '等待',
+  screenshot: '截图',
+  extract: '提取',
+};
+
+// Tab switching
+function switchTab(tab) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  if (tab === 'steps') {
+    document.querySelectorAll('.tab')[0].classList.add('active');
+    document.getElementById('stepsContainer').style.display = '';
+    document.getElementById('templatesContainer').style.display = 'none';
+  } else {
+    document.querySelectorAll('.tab')[1].classList.add('active');
+    document.getElementById('stepsContainer').style.display = 'none';
+    document.getElementById('templatesContainer').style.display = '';
+  }
+}
+
+// Modal
+function openModal(type) {
+  currentStepType = type;
+  document.getElementById('modalTitle').textContent = '添加：' + typeLabels[type];
+  const fieldsHTML = fieldConfigs[type].map(f =>
+    `<div class="modal-field">
+      <label>${f.label}</label>
+      <input id="field_${f.key}" type="${f.type || 'text'}" placeholder="${f.placeholder}">
+    </div>`
+  ).join('');
+  document.getElementById('modalFields').innerHTML = fieldsHTML;
+  document.getElementById('modalOverlay').classList.add('active');
+  setTimeout(() => document.querySelector('.modal input')?.focus(), 100);
+}
+
+function closeModal(e) {
+  if (e && e.target !== document.getElementById('modalOverlay')) return;
+  document.getElementById('modalOverlay').classList.remove('active');
+}
+
+function confirmStep() {
+  const step = { type: currentStepType };
+  fieldConfigs[currentStepType].forEach(f => {
+    const val = document.getElementById('field_' + f.key).value.trim();
+    if (val) step[f.key] = f.type === 'number' ? parseInt(val) : val;
+  });
+  // Validate
+  const required = fieldConfigs[currentStepType][0].key;
+  if (!step[required]) {
+    showToast('⚠️ 请填写必填字段', true);
+    return;
+  }
+  steps.push(step);
+  closeModal();
+  renderSteps();
+  generateCode();
+}
+
+// Load template
+function loadTemplate(name) {
+  steps = JSON.parse(JSON.stringify(templates[name]));
+  switchTab('steps');
+  renderSteps();
+  generateCode();
+  showToast('✅ 模板已加载');
+}
+
+// Render steps
+function renderSteps() {
+  const container = document.getElementById('stepsContainer');
+  const empty = document.getElementById('emptyState');
+  
+  if (steps.length === 0) {
+    container.innerHTML = '';
+    container.appendChild(empty);
+    empty.style.display = '';
+    return;
+  }
+  
+  empty.style.display = 'none';
+  container.innerHTML = steps.map((step, i) => `
+    <div class="step-item" draggable="true" data-index="${i}"
+         ondragstart="dragStart(event, ${i})"
+         ondragover="dragOver(event)"
+         ondragenter="dragEnter(event)"
+         ondragleave="dragLeave(event)"
+         ondrop="drop(event, ${i})"
+         ondragend="dragEnd()">
+      <div class="step-header">
+        <span class="step-type ${step.type}">${typeLabels[step.type]}</span>
+        <div class="step-actions">
+          <button class="step-btn" onclick="moveStep(${i}, -1)" title="上移">↑</button>
+          <button class="step-btn" onclick="moveStep(${i}, 1)" title="下移">↓</button>
+          <button class="step-btn delete" onclick="deleteStep(${i})" title="删除">✕</button>
+        </div>
+      </div>
+      <div class="step-detail">${getStepDetail(step)}</div>
+    </div>
+  `).join('');
+}
+
+function getStepDetail(step) {
+  switch(step.type) {
+    case 'navigate': return step.url || '';
+    case 'click': return step.selector || '';
+    case 'type': return `${step.selector} → "${step.text}"`;
+    case 'wait': return `${step.duration || 1000}ms`;
+    case 'screenshot': return step.filename || 'screenshot.png';
+    case 'extract': return `${step.selector} → ${step.variable || 'text'}`;
+    default: return '';
+  }
+}
+
+// Step actions
+function moveStep(index, direction) {
+  const newIndex = index + direction;
+  if (newIndex < 0 || newIndex >= steps.length) return;
+  [steps[index], steps[newIndex]] = [steps[newIndex], steps[index]];
+  renderSteps();
+  generateCode();
+}
+
+function deleteStep(index) {
+  steps.splice(index, 1);
+  renderSteps();
+  generateCode();
+}
+
+// Drag and Drop
+function dragStart(e, index) {
+  draggedItem = index;
+  e.currentTarget.classList.add('dragging');
+  e.dataTransfer.effectAllowed = 'move';
+}
+
+function dragOver(e) { e.preventDefault(); }
+
+function dragEnter(e) {
+  e.preventDefault();
+  e.currentTarget.classList.add('drag-over');
+}
+
+function dragLeave(e) {
+  e.currentTarget.classList.remove('drag-over');
+}
+
+function drop(e, index) {
+  e.preventDefault();
+  e.currentTarget.classList.remove('drag-over');
+  if (draggedItem === null || draggedItem === index) return;
+  const item = steps.splice(draggedItem, 1)[0];
+  steps.splice(index, 0, item);
+  renderSteps();
+  generateCode();
+}
+
+function dragEnd() {
+  draggedItem = null;
+  document.querySelectorAll('.step-item').forEach(el => {
+    el.classList.remove('dragging', 'drag-over');
+  });
+}
+
+// Code Generation
+function generateCode() {
+  const codeBlock = document.getElementById('codeBlock');
+  
+  if (steps.length === 0) {
+    codeBlock.innerHTML = highlight(`# 🦐 RPA Script Builder - 生成的 Playwright 脚本
+# 添加操作步骤后，代码会实时生成在这里
+#
+# 安装依赖:
+#   pip install playwright
+#   playwright install
+#
+# 运行脚本:
+#   python script.py`);
+    return;
+  }
+
+  let scriptLines = [
+    "from playwright.sync_api import sync_playwright",
+    "import time",
+    "",
+    "def run(playwright):",
+    "    browser = playwright.chromium.launch(headless=False)",
+    "    context = browser.new_context()",
+    "    page = context.new_page()",
+    ""
+  ];
+
+  steps.forEach((step, i) => {
+    scriptLines.push(`    # Step ${i+1}: ${step.type}`);
+    switch(step.type) {
+      case 'open':
+        scriptLines.push(`    page.goto("${step.url || 'https://example.com'}")`);
+        break;
+      case 'click':
+        scriptLines.push(`    page.click("${step.selector || 'button'}")`);
+        break;
+      case 'type':
+        scriptLines.push(`    page.fill("${step.selector || 'input'}", "${step.text || ''}")`);
+        break;
+      case 'wait':
+        scriptLines.push(`    time.sleep(${step.seconds || 1})`);
+        break;
+      case 'screenshot':
+        scriptLines.push(`    page.screenshot(path="${step.filename || 'screenshot.png'}")`);
+        break;
+      case 'extract':
+        scriptLines.push(`    text = page.text_content("${step.selector || 'body'}")`);
+        scriptLines.push(`    print(text)`);
+        break;
+    }
+    scriptLines.push("");
+  });
+
+  scriptLines.push("    browser.close()");
+  scriptLines.push("");
+  scriptLines.push("with sync_playwright() as playwright:");
+  scriptLines.push("    run(playwright)");
+
+  codeBlock.innerHTML = highlight(scriptLines.join("\n"));
+}
+
+function highlight(code) {
+  return code
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/(#[^\n]*)/g, '<span style="color:#6a9955">$1</span>')
+    .replace(/\b(from|import|def|with|as|return|True|False|None)\b/g, '<span style="color:#569cd6">$1</span>')
+    .replace(/(".*?")/g, '<span style="color:#ce9178">$1</span>');
+}
+
+function copyCode() {
+  const code = document.getElementById('codeBlock').innerText;
+  navigator.clipboard.writeText(code).then(() => {
+    const btn = document.querySelector('.copy-btn');
+    btn.textContent = '✅ 已复制！';
+    setTimeout(() => btn.textContent = '📋 复制代码', 2000);
+  });
+}
+
+function loadTemplate(name) {
+  const templates = {
+    signin: [
+      {type:'open', url:'https://example.com/login'},
+      {type:'type', selector:'#username', text:'your_username'},
+      {type:'type', selector:'#password', text:'your_password'},
+      {type:'click', selector:'button[type=submit]'},
+      {type:'screenshot', filename:'login_done.png'}
+    ],
+    download: [
+      {type:'open', url:'https://example.com/files'},
+      {type:'click', selector:'.download-btn'},
+      {type:'wait', seconds:2},
+      {type:'screenshot', filename:'download_done.png'}
+    ],
+    form: [
+      {type:'open', url:'https://example.com/form'},
+      {type:'type', selector:'#name', text:'张三'},
+      {type:'type', selector:'#email', text:'test@example.com'},
+      {type:'click', selector:'button[type=submit]'},
+      {type:'extract', selector:'.success-msg'}
+    ],
+    monitor: [
+      {type:'open', url:'https://example.com/product'},
+      {type:'extract', selector:'.price'},
+      {type:'screenshot', filename:'price_monitor.png'}
+    ],
+    post: [
+      {type:'open', url:'https://example.com/compose'},
+      {type:'type', selector:'textarea', text:'今天的内容...'},
+      {type:'click', selector:'.post-btn'},
+      {type:'screenshot', filename:'posted.png'}
+    ]
+  };
+  if (templates[name]) {
+    steps = templates[name];
+    renderSteps();
+    generateCode();
+  }
+}
+
+// Init
+generateCode();
+</script>
+</body>
+</html>

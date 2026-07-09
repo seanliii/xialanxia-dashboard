@@ -1,0 +1,44 @@
+{
+  "_meta": {
+    "strategy": "暴涨后等回踩再建仓 + 限价等待信号触发建仓",
+    "description": "曾经单日/单周涨2x+的股票，等回落50-70%后建仓，等待二次上涨。价格进入target_entry区间时自动建仓。",
+    "sweet_zone_min": -70,
+    "sweet_zone_max": -50,
+    "stop_loss_from_entry": -30,
+    "auto_scan_cron": "北京时间 10/16/22/04点",
+    "auto_trigger_rule": "当 current_price <= trigger_price 且 auto_trigger=true 时，自动向对应账户建仓",
+    "trigger_modes": {
+      "pullback_entry": "回调入场：current_price <= trigger_price 时触发（适合从高点回调的票）",
+      "breakout_above": "突破入场：current_price >= trigger_price 时触发（适合低价股反弹突破）"
+    }
+  },
+  "aggressive": [
+    {
+      "ticker": "EXAMPLE",
+      "company": "示例公司 — 行业描述",
+      "sector": "行业",
+      "spike_record": "历史暴涨记录",
+      "peak_price": 100.0,
+      "peak_date": "2025",
+      "current_price": 0,
+      "from_peak_pct": -90,
+      "trigger_price": 5.0,
+      "target_entry": 4.5,
+      "target_exit": 20.0,
+      "stop_loss": 3.0,
+      "narrative": "买入逻辑描述",
+      "risk": "风险描述",
+      "priority": "A",
+      "status": "watch",
+      "auto_trigger": true,
+      "trigger_mode": "pullback_entry",
+      "position_pct": 0.10,
+      "added_date": "2026-01-01",
+      "reason": "信号来源+为什么值得跟",
+      "account": "aggressive",
+      "signal_source": "信号来源描述"
+    }
+  ],
+  "institutional": [],
+  "blueshrimp": []
+}

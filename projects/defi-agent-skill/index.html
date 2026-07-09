@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🦐 DeFi Agent — 小蓝虾链上助手</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    min-height: 100vh;
+    color: #e0e0e0;
+    padding: 20px;
+  }
+  .container { max-width: 800px; margin: 0 auto; }
+  header { text-align: center; padding: 30px 0 20px; }
+  header h1 { font-size: 2.2em; color: #7eb8f7; }
+  header p { color: #aaa; margin-top: 8px; font-size: 0.95em; }
+  
+  .price-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px;
+    margin: 24px 0;
+  }
+  .price-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 14px;
+    padding: 18px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    transition: transform 0.2s;
+  }
+  .price-card:hover { transform: translateY(-3px); }
+  .price-card .symbol { font-size: 1.6em; margin-bottom: 6px; }
+  .price-card .price { font-size: 1.3em; font-weight: 700; color: #fff; }
+  .price-card .change { font-size: 0.85em; margin-top: 4px; }
+  .up { color: #4ade80; }
+  .down { color: #f87171; }
+  
+  .chat-box {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 20px;
+    margin: 20px 0;
+  }
+  .chat-box h3 { color: #7eb8f7; margin-bottom: 14px; font-size: 1em; }
+  .quick-btns { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+  .quick-btn {
+    background: rgba(126,184,247,0.15);
+    border: 1px solid rgba(126,184,247,0.3);
+    color: #7eb8f7;
+    padding: 7px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.85em;
+    transition: all 0.2s;
+  }
+  .quick-btn:hover { background: rgba(126,184,247,0.3); }
+  
+  .input-row { display: flex; gap: 10px; }
+  .input-row input {
+    flex: 1;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #fff;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 0.95em;
+    outline: none;
+  }
+  .input-row input:focus { border-color: #7eb8f7; }
+  .input-row button {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.95em;
+    transition: opacity 0.2s;
+  }
+  .input-row button:hover { opacity: 0.85; }
+  
+  #result {
+    margin-top: 16px;
+    background: rgba(0,0,0,0.25);
+    border-radius: 10px;
+    padding: 16px;
+    min-height: 60px;
+    white-space: pre-wrap;
+    font-size: 0.9em;
+    line-height: 1.7;
+    display: none;
+  }
+  #result.show { display: block; }
+  
+  .trending-section { margin: 20px 0; }
+  .trending-section h3 { color: #f59e0b; margin-bottom: 12px; }
+  .trending-list { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+    gap: 10px; 
+  }
+  .trending-item {
+    background: rgba(245,158,11,0.08);
+    border: 1px solid rgba(245,158,11,0.2);
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 0.88em;
+  }
+  .trending-item .rank { color: #f59e0b; font-size: 0.8em; }
+  .trending-item .name { font-weight: 600; margin: 3px 0; }
+  
+  .footer { text-align: center; color: #666; font-size: 0.8em; padding: 30px 0 10px; }
+  .footer a { color: #7eb8f7; text-decoration: none; }
+  
+  .loading { animation: pulse 1.2s infinite; opacity: 0.6; }
+  @keyframes pulse { 0%,100%{opacity:0.6} 50%{opacity:1} }
+  
+  .badge { 
+    display: inline-block; 
+    background: rgba(74,222,128,0.15); 
+    border: 1px solid rgba(74,222,128,0.3); 
+    color: #4ade80; 
+    padding: 2px 8px; 
+    border-radius: 6px; 
+    font-size: 0.75em; 
+    margin-left: 6px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>🦐 DeFi Agent</h1>
+    <p>小蓝虾链上助手 · 实时价格 · 钱包查询 · 趋势分析 <span class="badge">LIVE</span></p>
+  </header>
+  
+  <div class="price-grid" id="priceGrid">
+    <div class="price-card"><div class="symbol">₿</div><div class="price">加载中…</div><div class="change">BTC</div></div>
+    <div class="price-card"><div class="symbol">Ξ</div><div class="price">加载中…</div><div class="change">ETH</div></div>
+    <div class="price-card"><div class="symbol">◎</div><div class="price">加载中…</div><div class="change">SOL</div></div>
+    <div class="price-card"><div class="symbol">🔶</div><div class="price">加载中…</div><div class="change">BNB</div></div>
+  </div>
+  
+  <div class="chat-box">
+    <h3>🤖 问 DeFi Agent（自然语言）</h3>
+    <div class="quick-btns">
+      <button class="quick-btn" onclick="ask('今日热门币种')">🔥 今日热门</button>
+      <button class="quick-btn" onclick="ask('以太坊 gas 费')">⛽ Gas 费</button>
+      <button class="quick-btn" onclick="ask('比特币价格')">₿ BTC 价格</button>
+      <button class="quick-btn" onclick="ask('所有主流币价格')">📊 全部价格</button>
+    </div>
+    <div class="input-row">
+      <input type="text" id="queryInput" placeholder="例：BTC 现在多少钱？ 或输入 0x 钱包地址" 
+             onkeydown="if(event.key==='Enter') ask()" />
+      <button onclick="ask()">问 TA</button>
+    </div>
+    <div id="result"></div>
+  </div>
+  
+  <div class="trending-section">
+    <h3>🔥 今日热门 (CoinGecko Trending)</h3>
+    <div class="trending-list" id="trendingList">
+      <div style="color:#666">加载中…</div>
+    </div>
+  </div>
+  
+  <div class="footer">
+    数据来源：CoinGecko · Etherscan · 实时更新<br>
+    由 <a href="https://openclaw.ai" target="_blank">🦐 小蓝虾 × OpenClaw</a> 驱动 · 
+    <a href="https://github.com/seanliii/defi-agent-skill" target="_blank">GitHub</a>
+  </div>
+</div>
+
+<script>
+const COINGECKO = 'https://api.coingecko.com/api/v3';
+
+async function loadPrices() {
+  try {
+    const r = await fetch(`${COINGECKO}/simple/price?ids=bitcoin,ethereum,solana,binancecoin&vs_currencies=usd&include_24hr_change=true`);
+    const d = await r.json();
+    const cards = document.querySelectorAll('.price-card');
+    const coins = [
+      { id: 'bitcoin', sym: '₿', name: 'BTC' },
+      { id: 'ethereum', sym: 'Ξ', name: 'ETH' },
+      { id: 'solana', sym: '◎', name: 'SOL' },
+      { id: 'binancecoin', sym: '🔶', name: 'BNB' },
+    ];
+    coins.forEach((c, i) => {
+      const info = d[c.id] || {};
+      const price = info.usd || 0;
+      const chg = info.usd_24h_change || 0;
+      const up = chg >= 0;
+      cards[i].innerHTML = `
+        <div class="symbol">${c.sym}</div>
+        <div class="price">$${price.toLocaleString('en', {maximumFractionDigits: 2})}</div>
+        <div class="change ${up ? 'up' : 'down'}">${up ? '▲' : '▼'} ${Math.abs(chg).toFixed(2)}% — ${c.name}</div>
+      `;
+    });
+  } catch(e) {
+    console.error('Price load failed', e);
+  }
+}
+
+async function loadTrending() {
+  try {
+    const r = await fetch(`${COINGECKO}/search/trending`);
+    const d = await r.json();
+    const coins = (d.coins || []).slice(0, 8);
+    const el = document.getElementById('trendingList');
+    el.innerHTML = coins.map((item, i) => {
+      const c = item.item || {};
+      return `<div class="trending-item">
+        <div class="rank">#${i+1} 趋势</div>
+        <div class="name">${c.name || '?'} (${c.symbol || '?'})</div>
+        <div style="color:#888;font-size:0.82em">市值排名 #${c.market_cap_rank || '?'}</div>
+      </div>`;
+    }).join('');
+  } catch(e) {
+    document.getElementById('trendingList').innerHTML = '<div style="color:#888">趋势数据加载失败</div>';
+  }
+}
+
+async function ask(q) {
+  const input = document.getElementById('queryInput');
+  const query = q || input.value.trim();
+  if (!query) return;
+  if (!q) input.value = '';
+  
+  const result = document.getElementById('result');
+  result.className = 'loading show';
+  result.textContent = '🦐 思考中…';
+  
+  const lq = query.toLowerCase();
+  let response = '';
+  
+  try {
+    // 钱包地址查询
+    const addrMatch = query.match(/0x[a-fA-F0-9]{40}/);
+    if (addrMatch) {
+      const addr = addrMatch[0];
+      const r = await fetch(`https://api.etherscan.io/api?module=account&action=balance&address=${addr}&tag=latest&apikey=YourApiKeyToken`);
+      const d = await r.json();
+      if (d.status === '1') {
+        const eth = parseInt(d.result) / 1e18;
+        response = `💰 ETH 余额\n地址: ${addr.slice(0,6)}...${addr.slice(-4)}\n余额: ${eth.toFixed(6)} ETH\n\n🔗 查看: https://etherscan.io/address/${addr}`;
+      } else {
+        response = '❌ 余额查询失败，请检查地址格式';
+      }
+    }
+    // 价格查询
+    else if (lq.includes('价格') || lq.includes('price') || lq.includes('多少钱') || lq.includes('行情') || ['btc','eth','sol','bnb','比特币','以太坊'].some(k => lq.includes(k))) {
+      const ids = [];
+      if (lq.includes('btc') || lq.includes('比特币') || lq.includes('bitcoin') || lq.includes('全部') || lq.includes('主流')) ids.push('bitcoin');
+      if (lq.includes('eth') || lq.includes('以太坊') || lq.includes('ethereum') || lq.includes('全部') || lq.includes('主流')) ids.push('ethereum');
+      if (lq.includes('sol') || lq.includes('solana') || lq.includes('全部') || lq.includes('主流')) ids.push('solana');
+      if (lq.includes('bnb') || lq.includes('全部') || lq.includes('主流')) ids.push('binancecoin');
+      if (ids.length === 0) ids.push('bitcoin','ethereum','solana','binancecoin');
+      
+      const r = await fetch(`${COINGECKO}/simple/price?ids=${ids.join(',')}&vs_currencies=usd&include_24hr_change=true&include_market_cap=true`);
+      const d = await r.json();
+      const labels = {bitcoin:'₿ BTC', ethereum:'Ξ ETH', solana:'◎ SOL', binancecoin:'🔶 BNB'};
+      response = '📊 实时价格\n\n' + ids.map(id => {
+        const info = d[id] || {};
+        const p = info.usd || 0;
+        const c = info.usd_24h_change || 0;
+        const mc = info.usd_market_cap || 0;
+        return `${c>=0?'🟢':'🔴'} ${labels[id]}: $${p.toLocaleString()}  ${c>=0?'+':''}${c.toFixed(2)}%  市值$${(mc/1e9).toFixed(1)}B`;
+      }).join('\n');
+    }
+    // Gas 费
+    else if (lq.includes('gas') || lq.includes('手续费') || lq.includes('矿工费')) {
+      response = '⛽ 以太坊 Gas 参考\n\n🐢 慢速 (>3min): ~5 Gwei\n🚶 标准 (1-3min): ~8 Gwei\n🚀 快速 (<30s): ~12 Gwei\n\n🔗 实时查看: https://etherscan.io/gastracker';
+    }
+    // 热门
+    else if (lq.includes('热门') || lq.includes('trending') || lq.includes('今日')) {
+      const r = await fetch(`${COINGECKO}/search/trending`);
+      const d = await r.json();
+      const coins = (d.coins || []).slice(0, 7);
+      response = '🔥 今日热门 (CoinGecko Trending)\n\n' + coins.map((item, i) => {
+        const c = item.item || {};
+        return `${i+1}. ${c.name} (${c.symbol}) — 市值排名 #${c.market_cap_rank || '?'}`;
+      }).join('\n');
+      // 刷新趋势列表
+      loadTrending();
+    }
+    else {
+      response = '🦐 我能帮你：\n• 查 BTC/ETH/SOL 等价格\n• 查以太坊钱包余额（粘贴 0x... 地址）\n• 查今日热门币种\n• 查 Gas 手续费\n\n试试上面的快捷按钮！';
+    }
+  } catch(e) {
+    response = `❌ 请求失败: ${e.message}\n\n（可能是网络问题，请刷新重试）`;
+  }
+  
+  result.className = 'show';
+  result.textContent = response;
+}
+
+// 初始化
+loadPrices();
+loadTrending();
+// 每60秒自动刷新价格
+setInterval(loadPrices, 60000);
+</script>
+</body>
+</html>

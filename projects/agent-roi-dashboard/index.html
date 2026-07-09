@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🦐 OpenClaw Agent ROI 仪表板 — 量化你的 AI 副业收益</title>
+<style>
+:root {
+  --bg: #0a0e1a;
+  --card: #111827;
+  --card2: #1a2235;
+  --accent: #6366f1;
+  --accent2: #22d3ee;
+  --green: #10b981;
+  --red: #ef4444;
+  --yellow: #f59e0b;
+  --text: #e2e8f0;
+  --muted: #64748b;
+  --border: #1e2d3d;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; min-height: 100vh; }
+
+header {
+  background: linear-gradient(135deg, #111827 0%, #0a0e1a 60%);
+  border-bottom: 1px solid var(--border);
+  padding: 24px 32px;
+  display: flex; align-items: center; gap: 16px;
+}
+.logo-wrap { font-size: 40px; filter: drop-shadow(0 0 12px #6366f188); }
+.header-text h1 { font-size: 22px; font-weight: 800; background: linear-gradient(90deg, #6366f1, #22d3ee); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.header-text p { font-size: 13px; color: var(--muted); margin-top: 4px; }
+.badge { margin-left: auto; background: #6366f122; border: 1px solid #6366f144; color: #818cf8; font-size: 12px; padding: 4px 12px; border-radius: 20px; }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
+
+/* KPI 行 */
+.kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
+.kpi-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+.kpi-card:hover { transform: translateY(-2px); }
+.kpi-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+}
+.kpi-card.green::before { background: var(--green); }
+.kpi-card.blue::before { background: var(--accent); }
+.kpi-card.cyan::before { background: var(--accent2); }
+.kpi-card.yellow::before { background: var(--yellow); }
+.kpi-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+.kpi-value { font-size: 28px; font-weight: 800; }
+.kpi-value.green { color: var(--green); }
+.kpi-value.blue { color: var(--accent); }
+.kpi-value.cyan { color: var(--accent2); }
+.kpi-value.yellow { color: var(--yellow); }
+.kpi-sub { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+/* 主内容网格 */
+.main-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+
+.section-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+.section-title .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+
+/* 案例列表 */
+.cases-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+}
+.case-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.15s;
+  border-radius: 8px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+.case-item:last-child { border-bottom: none; }
+.case-item:hover { background: var(--card2); }
+.case-icon { font-size: 28px; flex-shrink: 0; }
+.case-info { flex: 1; }
+.case-name { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+.case-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+.case-badge {
+  flex-shrink: 0;
+  font-size: 13px; font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+.case-badge.high { background: #10b98120; color: #10b981; border: 1px solid #10b98144; }
+.case-badge.mid { background: #f59e0b20; color: #f59e0b; border: 1px solid #f59e0b44; }
+.case-badge.starter { background: #6366f120; color: #818cf8; border: 1px solid #6366f144; }
+
+/* ROI 计算器 */
+.calc-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+}
+.calc-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.calc-row label { font-size: 13px; color: var(--muted); }
+.calc-row input[type=range] {
+  width: 160px; accent-color: var(--accent);
+  height: 4px; cursor: pointer;
+}
+.calc-row .val { font-size: 15px; font-weight: 700; color: var(--accent2); min-width: 60px; text-align: right; }
+.calc-result {
+  background: linear-gradient(135deg, #6366f115, #22d3ee10);
+  border: 1px solid #6366f133;
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+  margin-top: 8px;
+}
+.calc-result .result-val { font-size: 36px; font-weight: 900; color: var(--green); }
+.calc-result .result-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+/* 真实案例 timeline */
+.timeline-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+}
+.timeline-item { display: flex; gap: 16px; padding: 12px 0; position: relative; }
+.timeline-item:not(:last-child)::after {
+  content: ''; position: absolute;
+  left: 17px; top: 44px; bottom: 0; width: 2px;
+  background: var(--border);
+}
+.tl-dot {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--card2);
+  border: 2px solid var(--accent);
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+  z-index: 1;
+}
+.tl-content { flex: 1; }
+.tl-title { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+.tl-meta { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+.tl-earn { font-size: 14px; font-weight: 700; color: var(--green); }
+
+/* 进化点 */
+.evolution-card {
+  background: linear-gradient(135deg, #6366f115 0%, #22d3ee08 100%);
+  border: 1px solid #6366f144;
+  border-radius: 12px;
+  padding: 20px 24px;
+  display: flex; align-items: flex-start; gap: 16px;
+  margin-bottom: 24px;
+}
+.evo-icon { font-size: 32px; flex-shrink: 0; }
+.evo-title { font-size: 16px; font-weight: 700; color: #818cf8; margin-bottom: 8px; }
+.evo-text { font-size: 13px; color: var(--text); line-height: 1.7; }
+.evo-action {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--accent); color: white;
+  border: none; border-radius: 8px;
+  padding: 8px 16px; font-size: 13px; font-weight: 600;
+  cursor: pointer; margin-top: 12px;
+  transition: opacity 0.2s;
+  text-decoration: none;
+}
+.evo-action:hover { opacity: 0.85; }
+
+/* 底部说明 */
+footer { text-align: center; padding: 24px; color: var(--muted); font-size: 12px; border-top: 1px solid var(--border); margin-top: 16px; }
+
+@media (max-width: 768px) {
+  .kpi-row { grid-template-columns: repeat(2, 1fr); }
+  .main-grid { grid-template-columns: 1fr; }
+  .calc-row input[type=range] { width: 100px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-wrap">🦐</div>
+  <div class="header-text">
+    <h1>OpenClaw Agent ROI 仪表板</h1>
+    <p>量化 AI 自动化的真实价值 · 基于全网真实案例数据</p>
+  </div>
+  <div class="badge">📅 2026年5月 更新</div>
+</header>
+
+<div class="container">
+
+  <!-- KPI 行 -->
+  <div class="kpi-row">
+    <div class="kpi-card green">
+      <div class="kpi-label">🌍 全网案例最高月收入</div>
+      <div class="kpi-value green">$4,200</div>
+      <div class="kpi-sub">Skill销售 + 客户项目 + 利基站</div>
+    </div>
+    <div class="kpi-card blue">
+      <div class="kpi-label">⚡ 最快变现案例</div>
+      <div class="kpi-value blue">5天$700</div>
+      <div class="kpi-sub">Mark Savant · 内容自动化 + 50万播放</div>
+    </div>
+    <div class="kpi-card cyan">
+      <div class="kpi-label">🏠 普通人平均月收</div>
+      <div class="kpi-value cyan">¥3,000+</div>
+      <div class="kpi-sub">掘金博主 · 价格监控+内容同步自动化</div>
+    </div>
+    <div class="kpi-card yellow">
+      <div class="kpi-label">📈 开发者变现占比</div>
+      <div class="kpi-value yellow">67%</div>
+      <div class="kpi-sub">第一个月即可产生稳定收入</div>
+    </div>
+  </div>
+
+  <!-- 进化点 banner -->
+  <div class="evolution-card">
+    <div class="evo-icon">🔥</div>
+    <div>
+      <div class="evo-title">🦐 今日进化点 — RPA录制回放是今天最值得立刻复刻的玩法</div>
+      <div class="evo-text">
+        <strong>openclaw-rpa</strong>（next4.ai 开源）解决了 AI 驱动浏览器的两大痛点：幻觉 + Token 高耗。
+        核心思路：<strong>用模型录制一次 → 生成纯 Playwright .py 脚本 → 之后回放零 Token 成本</strong>。
+        适合批量接单场景（抢票、数据采集、表单提交），每单 ¥50-300，完全可自动化。
+        今日可立刻行动：fork 这个 repo → 找一个重复性操作场景 → 录制 → 打包成服务。
+      </div>
+      <a class="evo-action" href="https://github.com/laziobird/openclaw-rpa" target="_blank">🚀 查看 openclaw-rpa 源码</a>
+    </div>
+  </div>
+
+  <div class="main-grid">
+    <!-- 左：变现场景案例 -->
+    <div class="cases-card">
+      <div class="section-title"><span class="dot"></span>🔥 已验证的变现场景（全网精选）</div>
+
+      <div class="case-item">
+        <div class="case-icon">🤖</div>
+        <div class="case-info">
+          <div class="case-name">RPA 录制回放 · 浏览器自动化接单</div>
+          <div class="case-desc">录制一次操作 → 生成 Playwright 脚本 → 永久回放零 Token。接表单提交/数据采集单，每单 ¥50-300。</div>
+        </div>
+        <div class="case-badge high">高 ROI</div>
+      </div>
+
+      <div class="case-item">
+        <div class="case-icon">📦</div>
+        <div class="case-info">
+          <div class="case-name">Skill 打包销售 · ClawHub 被动收入</div>
+          <div class="case-desc">把自己的 workflow 打包为 Skill 上架，每次安装可计费。月均 $800-1200，完全被动。</div>
+        </div>
+        <div class="case-badge high">高 ROI</div>
+      </div>
+
+      <div class="case-item">
+        <div class="case-icon">📊</div>
+        <div class="case-info">
+          <div class="case-name">商品价格监控 + 竞品追踪 Agent</div>
+          <div class="case-desc">Cron 每小时抓价格 → AI 分析异常 → 推送报告。已有案例月赚 ¥3000+，0人工干预。</div>
+        </div>
+        <div class="case-badge mid">中 ROI</div>
+      </div>
+
+      <div class="case-item">
+        <div class="case-icon">🎬</div>
+        <div class="case-info">
+          <div class="case-name">内容自动化 · YouTube 多平台分发</div>
+          <div class="case-desc">5天 50 万播放，$700 MRR。OpenClaw + Cron 自动生成选题/改写/分发到各平台。</div>
+        </div>
+        <div class="case-badge mid">中 ROI</div>
+      </div>
+
+      <div class="case-item">
+        <div class="case-icon">🚀</div>
+        <div class="case-info">
+          <div class="case-name">代部署 + 模板销售 · 新手首选</div>
+          <div class="case-desc">帮客户部署 OpenClaw + 配置 API，每单 ¥200-500，无需代码，靠教程文档即可接单。</div>
+        </div>
+        <div class="case-badge starter">入门</div>
+      </div>
+    </div>
+
+    <!-- 右：ROI 计算器 -->
+    <div class="calc-card">
+      <div class="section-title"><span class="dot"></span>💰 副业 ROI 计算器</div>
+
+      <div class="calc-row">
+        <label>⏱ 每天节省时间（小时）</label>
+        <input type="range" id="timePerDay" min="0.5" max="8" step="0.5" value="3">
+        <div class="val" id="timePerDayVal">3h</div>
+      </div>
+
+      <div class="calc-row">
+        <label>💴 时薪（元/小时）</label>
+        <input type="range" id="hourlyRate" min="30" max="500" step="10" value="100">
+        <div class="val" id="hourlyRateVal">¥100</div>
+      </div>
+
+      <div class="calc-row">
+        <label>📅 每月工作天数</label>
+        <input type="range" id="workDays" min="10" max="30" step="1" value="22">
+        <div class="val" id="workDaysVal">22天</div>
+      </div>
+
+      <div class="calc-row">
+        <label>🤖 自动化执行效率</label>
+        <input type="range" id="efficiency" min="50" max="100" step="5" value="80">
+        <div class="val" id="efficiencyVal">80%</div>
+      </div>
+
+      <div class="calc-result">
+        <div class="result-label">每月节省/等价收益</div>
+        <div class="result-val" id="roiResult">¥5,280</div>
+        <div class="result-label" id="roiBreakdown">3h × ¥100 × 22天 × 80% = ¥5,280/月</div>
+        <div style="margin-top:12px; font-size:12px; color:#6366f1; font-weight:600;" id="roiTip">
+          🎯 相当于每月多工作 52.8 小时，或者每小时额外赚 ¥<span id="perHourBonus">100</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 真实案例 timeline -->
+  <div class="main-grid">
+    <div class="timeline-card">
+      <div class="section-title"><span class="dot"></span>📅 全网真实案例时间线</div>
+
+      <div class="timeline-item">
+        <div class="tl-dot">🎬</div>
+        <div class="tl-content">
+          <div class="tl-title">Mark Savant · 内容自动化</div>
+          <div class="tl-meta">2026年2月 · YouTube 博主</div>
+          <div class="tl-earn">5天 $700 MRR + 50万播放</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-dot">💻</div>
+        <div class="tl-content">
+          <div class="tl-title">openclawway.com 博主 · 多元化变现</div>
+          <div class="tl-meta">2026年3月 · Skill + 客户项目 + 利基站</div>
+          <div class="tl-earn">月收 $4,200（第8个月）</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-dot">📊</div>
+        <div class="tl-content">
+          <div class="tl-title">掘金博主 · 价格监控+内容同步</div>
+          <div class="tl-meta">2026年3月 · 三个副业项目自动化</div>
+          <div class="tl-earn">月被动收入 ¥3,000+</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-dot">🤖</div>
+        <div class="tl-content">
+          <div class="tl-title">next4.ai · OpenClaw RPA 开源</div>
+          <div class="tl-meta">2026年4月 · V2EX + GitHub</div>
+          <div class="tl-earn">录制回放消除幻觉 + 零 Token 成本</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-dot">🚀</div>
+        <div class="tl-content">
+          <div class="tl-title">小蓝虾 · ROI 仪表板</div>
+          <div class="tl-meta">2026年5月 · 今日复刻</div>
+          <div class="tl-earn">量化每个人的 Agent 价值</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 快速行动指南 -->
+    <div class="cases-card">
+      <div class="section-title"><span class="dot"></span>⚡ 立刻能做的 3 件事</div>
+
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div style="background:var(--card2);border-radius:10px;padding:16px;">
+          <div style="font-size:14px;font-weight:700;color:#10b981;margin-bottom:8px;">1️⃣ fork openclaw-rpa（今天）</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.6;">
+            <code style="color:#22d3ee;font-size:11px;">github.com/laziobird/openclaw-rpa</code><br>
+            找一个你每天重复操作的网页任务 → 录制 → 生成 .py 脚本 → 在 V2EX/掘金发帖吸引接单
+          </div>
+        </div>
+
+        <div style="background:var(--card2);border-radius:10px;padding:16px;">
+          <div style="font-size:14px;font-weight:700;color:#6366f1;margin-bottom:8px;">2️⃣ 搭价格监控 Agent（本周）</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.6;">
+            OpenClaw Cron + catclaw-search → 每小时抓目标关键词的价格变动<br>
+            → 发大象/微信群 → 帮电商朋友省时间 → 收月费 ¥200-500/客户
+          </div>
+        </div>
+
+        <div style="background:var(--card2);border-radius:10px;padding:16px;">
+          <div style="font-size:14px;font-weight:700;color:#f59e0b;margin-bottom:8px;">3️⃣ 打包 Skill 上架（本月）</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.6;">
+            把已验证的 workflow 写成 SKILL.md → 打包 zip → 上架觅游<br>
+            每次安装 = 被动收入，月均 $300-800 完全可期
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  🦐 小蓝虾 · OpenClaw Agent ROI 仪表板 · 数据来源：全网真实案例 · 2026年5月 · seanliii.github.io
+</footer>
+
+<script>
+function calc() {
+  const t = parseFloat(document.getElementById('timePerDay').value);
+  const r = parseFloat(document.getElementById('hourlyRate').value);
+  const d = parseFloat(document.getElementById('workDays').value);
+  const e = parseFloat(document.getElementById('efficiency').value) / 100;
+  const monthly = t * r * d * e;
+  document.getElementById('roiResult').textContent = '¥' + monthly.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  document.getElementById('roiBreakdown').textContent = `${t}h × ¥${r} × ${d}天 × ${(e*100).toFixed(0)}% = ¥${monthly.toFixed(0)}/月`;
+  document.getElementById('perHourBonus').textContent = r;
+  document.getElementById('timePerDayVal').textContent = t + 'h';
+  document.getElementById('hourlyRateVal').textContent = '¥' + r;
+  document.getElementById('workDaysVal').textContent = d + '天';
+  document.getElementById('efficiencyVal').textContent = (e*100).toFixed(0) + '%';
+}
+document.querySelectorAll('input[type=range]').forEach(el => el.addEventListener('input', calc));
+calc();
+</script>
+</body>
+</html>

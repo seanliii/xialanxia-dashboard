@@ -1,0 +1,335 @@
+{
+  "version": 47,
+  "updated": "2026-07-08",
+  "tier1_always": [
+    "美团 LongCat-2.0 开源 国产算力 万亿参数 2026年7月",
+    "openclaw赚钱案例 2026年7月",
+    "MCP server 最新用法 2026年7月",
+    "openclaw skill marketplace revenue 2026年7月",
+    "AI创业一人公司变现案例 2026年7月",
+    "openclaw RPA workflow automation 2026年7月",
+    "Multi-Agent 商业化落地 2026年7月",
+    "openclaw cron 自主 Agent 定时任务 2026年7月",
+    "openclaw content engine 自动推送 2026年7月",
+    "一人公司 OPC AI工具 2026年7月",
+    "AI Agent 一人公司 SaaS 变现 2026 月收入",
+    "Claude Sonnet 5 智能体 Agent Anthropic 2026年7月",
+    "Claude Science AI科研 Anthropic 2026年7月",
+    "WAIC 2026 世界人工智能大会 7月17日 上海 首发产品",
+    "Gemini 3.5 Pro 发布 谷歌 2026年7月",
+    "Anthropic 澳大利亚 数据中心 1.4GW 150亿美元 2026年7月",
+    "OpenAI IPO S-1 万亿估值 上市 2026年7月",
+    "中国创新药 FIC 出海 license-out 2026年7月",
+    "Kimi K3 月暗 发布 2.5万亿参数 2026年7月",
+    "腾讯混元 Hy3 正式版 开源 2026年7月",
+    "Claude Sonnet 5 遭投诉 用户欺诈 2026年7月",
+    "DeepSeek V4 正式版 发布 2026年7月"
+  ],
+  "tier2_rotate": [
+    "agent monetization",
+    "vercel supabase template",
+    "AI coding agent revenue",
+    "GLP-1 clinical trial",
+    "CAR-T FDA",
+    "content automation tool",
+    "AI lead generation",
+    "Claude Code 自动化工作流",
+    "OpenClaw skill marketplace revenue",
+    "ClawHub skills marketplace 2026",
+    "AI one-person company MRR",
+    "agentic coding startup ARR",
+    "MCP server 商业化变现 2026",
+    "AI一人公司ARR增长案例",
+    "RPA Agent 一人公司接单 2026",
+    "AI Agent Token成本优化 Prompt Caching 2026",
+    "AI agent 多智能体编排 成本控制 2026",
+    "AI Agent 企业级落地 千亿产值 2026",
+    "GEO生成式引擎优化 AI搜索时代 2026",
+    "AI Agent 工程化落地 小团队生存 2026",
+    "openclaw cron 自主Agent 变现案例 2026",
+    "AI Agent 企业级规模化落地 元年 2026",
+    "OPC 一人公司 AI 月收入 创业 2026",
+    "弹幕游戏 AI 一人公司 年入百万 2026",
+    "AI Agent 内容自动化 2026 收入",
+    "OpenClaw 白皮书 AI Agent 自主进化 2026",
+    "devin ai alternative",
+    "windsurf",
+    "AI scraper no-code",
+    "agent-to-agent protocol",
+    "AI数字人带货",
+    "AI复活服务",
+    "AI代写服务",
+    "Product Hunt top AI tools 2026",
+    "GitHub trending AI agent 2026",
+    "AI agent 企业级落地 ROI 2026",
+    "MCP A2A协议对比 2026",
+    "openclaw cron 自主Agent案例 2026",
+    "AI副业定价策略 2026",
+    "AI Agent newsletter automation Supabase 2026",
+    "multi-agent harness engineering 工业化落地 2026",
+    "openclaw skill recorder meyo发帖 开源 2026",
+    "AI创业 2026年7月 一人公司",
+    "Anthropic IPO 上市 估值 2026年7月",
+    "AI Agent 创业 独立开发者 2026年7月 收入",
+    "openclaw 2026年7月 新功能 案例",
+    {
+      "query": "AI Agent 赚钱 副业 自动化 2026年7月 收入",
+      "engine": "bocha-search",
+      "added": "2026-06-20",
+      "note": "07-08验证：bocha 7/10含7月内容，但tencent更精准"
+    },
+    {
+      "query": "AI Agent 一人公司 月收入 真实案例 2026年7月",
+      "engine": "tencent-search",
+      "added": "2026-07-08",
+      "note": "07-08实验：tencent 3/10当天+7/10 7月内容，比'赚钱 副业'更精准，含CSDN/QQ新闻真实案例"
+    },
+    {
+      "query": "AI Agent 定价策略 订阅模式 收费 2026年7月",
+      "engine": "tencent-search",
+      "added": "2026-06-19",
+      "note": "持续有效"
+    },
+    {
+      "query": "PonyTail AI开源 GitHub trending Claude Code 2026年7月",
+      "engine": "quark-search",
+      "added": "2026-06-19",
+      "note": "持续有效"
+    },
+    {
+      "query": "GPT-5.6 发布 OpenAI 2026年7月",
+      "engine": "bocha-search",
+      "added": "2026-06-21",
+      "note": "衰减期但OpenAI IPO热度回归"
+    },
+    {
+      "query": "GitHub Skills 生态 MCP 标准 2026年7月",
+      "engine": "tencent-search",
+      "added": "2026-06-23",
+      "note": "持续有效"
+    },
+    {
+      "query": "字节 原动力大会 豆包 2026年7月",
+      "engine": "bocha-search",
+      "added": "2026-06-24",
+      "note": "持续有效"
+    },
+    {
+      "query": "Seedance 2.0 字节 视频生成 收入 2026年7月",
+      "engine": "bocha-search",
+      "added": "2026-06-24",
+      "note": "持续有效"
+    },
+    {
+      "query": "kimi k2 月暗 开源 2026年7月",
+      "engine": "bocha-search",
+      "added": "2026-06-23",
+      "note": "07-07升级：Kimi K3确认7月发布，2.5万亿参数比DS V4还大，bocha 10/10当天内容"
+    },
+    {
+      "query": "AI 药物研发 临床 突破 2026年7月",
+      "engine": "bocha-search",
+      "added": "2026-06-25",
+      "note": "持续有效"
+    },
+    {
+      "query": "Claude Sonnet 5 发布 定价 Anthropic 2026年7月",
+      "engine": "tencent-search",
+      "added": "2026-07-01",
+      "note": "持续有效"
+    },
+    {
+      "query": "Claude Science AI科研 自动化 蛋白质 2026年7月",
+      "engine": "tencent-search",
+      "added": "2026-07-01",
+      "note": "07-07验证：tencent 10/10命中，07-01当天内容+07-07新发现J-space论文"
+    },
+    {
+      "query": "中国创新药 FDA批准 2026年7月",
+      "engine": "baidu-search-v2",
+      "added": "2026-07-01",
+      "note": "07-07验证：创新药翻身行情持续，百度10/10，07-03~06当天内容"
+    },
+    {
+      "query": "天工AI ARR 昆仑万维 收入 2026年7月",
+      "engine": "bocha-search",
+      "added": "2026-07-02",
+      "note": "持续有效"
+    },
+    {
+      "query": "Anthropic 自研芯片 三星 2nm IPO 2026年7月",
+      "engine": "tencent-search",
+      "added": "2026-07-03",
+      "note": "07-07验证：已进化为'澳大利亚数据中心'线索，原芯片词仍有效但非核心"
+    },
+    {
+      "query": "英矽智能 武田制药 6亿美元 AI制药 2026年7月",
+      "engine": "baidu-search-v2",
+      "added": "2026-07-03",
+      "note": "持续有效"
+    },
+    {
+      "query": "Together AI 融资 8亿美元 开源推理 2026年7月",
+      "engine": "bocha-search",
+      "added": "2026-07-04",
+      "note": "持续有效"
+    },
+    {
+      "query": "可灵AI 融资 30亿美元 快手 IPO 2026年7月",
+      "engine": "tencent-search",
+      "added": "2026-07-04",
+      "note": "持续有效"
+    },
+    {
+      "query": "AI Agent 替代SaaS 一人公司 企业 2026年7月",
+      "engine": "bocha-search",
+      "added": "2026-07-04",
+      "note": "持续有效"
+    },
+    {
+      "query": "AI OPC 一人公司 全球共创节 报告 2026年7月",
+      "engine": "bocha-search",
+      "added": "2026-07-05",
+      "note": "07-07验证：新华网/腾讯/头条当天内容，社会热点持续"
+    },
+    {
+      "query": "千问 豆包 AI Agent 下线 暂停服务 2026年7月",
+      "engine": "tencent-search",
+      "added": "2026-07-05",
+      "note": "07-07验证：07-04~07当天内容，07-15暂停日临近持续追踪"
+    },
+    {
+      "query": "OpenAI IPO S-1 万亿估值 上市 2026年7月",
+      "engine": "bocha-search",
+      "added": "2026-07-06",
+      "note": "07-07验证：bocha 10/10，07-05/06当天内容爆炸级覆盖，新浪/虎嗅/投资界/头条/格隆汇"
+    },
+    {
+      "query": "Gemini 3.5 Pro 7月17日 发布 前端 碾压 2026年7月",
+      "engine": "tencent-search",
+      "added": "2026-07-06",
+      "note": "07-07验证：tencent 10/10，07-06 19:56当天+07-07 15:16新文章，07-17=WAIC同日"
+    },
+    {
+      "query": "Anthropic 澳大利亚 数据中心 1.4GW 150亿美元 2026年7月",
+      "engine": "bocha-search",
+      "added": "2026-07-06",
+      "note": "07-07验证：bocha 10/10，07-05/06当天内容，IT之家/财联社/东方财富全覆盖"
+    },
+    {
+      "query": "中国创新药 翻身 出海 license-out 2026年7月",
+      "engine": "baidu-search-v2",
+      "added": "2026-07-06",
+      "note": "07-07验证：baidu 10/10，07-03~06当天内容，ETF涨5%+出海997亿美元；07-08升级：baidu 10/10含07-08当天新浪财经/百家号"
+    },
+    {
+      "query": "Kimi K3 月暗 发布 2.5万亿参数 2026年7月",
+      "engine": "bocha-search",
+      "added": "2026-07-07",
+      "note": "07-07新爆点！Kimi K3确认7月发布，2.5万亿参数比DeepSeek V4还大，bocha 10/10当天内容"
+    }
+  ],
+  "dead_words": [
+    "biotech FDA approval this week",
+    "hermes agent",
+    "cursor vs codex",
+    "solo agent startup MRR 2026 side project",
+    "录制优先 RPA AI agent Token优化 2026",
+    "AI SaaS bootstrap",
+    "crypto AI agent",
+    "AI Agent 工程化落地 小团队生存 2026",
+    "AI自主创业 2026年6月 产品发布",
+    "Claude agent workflow 一人公司 2026年6月 月收入",
+    "GPT-5.5 Codex 融合 OpenAI 2026年6月",
+    "Gemini 2.5 Ultra Google AI 2026年6月（tencent 5/10，含2025旧稿，Ultra未发布）",
+    "Dify 开源 AI Agent 平台 2026年6月（tencent全为2025旧稿）",
+    "OpenAI o3 Pro Agent模式 2026年6月（quark 10/10但全旧稿，无06-20新内容）",
+    "微信 AI Agent 腾讯 Q4 全面公测 2026年6月",
+    "Claude Fable 5 发布 Anthropic 2026年6月（13天无新稿，热点消退）",
+    "小米 MiMo Code 开源 AI 编程 2026年6月（14天无新稿，热点已过）",
+    "华为盘古大模型4.0 2026年6月（bocha 0/10，仅返回2023-2025旧内容）",
+    "AI搜索 Perplexity 融资 商业化 2026年6月（bocha最新06-09，21天无新内容）",
+    "OpenClaw 智能家居 全屋智能 光亚展 2026年6月",
+    "微软 Build 2026 Copilot Agent 新功能（大会已结束）",
+    "Claude Opus 4.8 多Agent 编排 2026年6月（模型已发布>1月）",
+    "openclaw（无年月，返回大量教程旧内容）",
+    "claude code（无年月，返回旧内容）",
+    "codex agent（无年月，返回旧内容）",
+    "ai agent money（英文无年月，返回旧内容）",
+    "openclaw earn（英文无年月，返回旧内容）",
+    "FDA approval biotech（无年月，返回旧内容）",
+    "solo founder AI（无年月，返回旧内容）",
+    "one person startup AI（无年月，返回旧内容）",
+    "insider buying microcap（未验证，金融词库）",
+    "DAA daily active agents 李彦宏 AI 2026（无新稿）",
+    "content engine 内容引擎 自动化发布 2026（无年月，返回旧内容）",
+    "OpenClaw 原生移动App iOS Android 2026年7月（无验证，推测词）",
+    "Anthropic 自研芯片 三星 2nm AI芯片 2026年7月（已进化为数据中心线索）",
+    "WAIC 2026 倒计时 首发产品（quark 10/10全6月内容，7月8日无新稿，进入开幕前静默期）"
+  ],
+  "user_interests": [
+    "openclaw全球案例",
+    "AI Agent生态",
+    "创新药biotech",
+    "美股科技医药",
+    "有趣应用开源项目",
+    "赚钱方式"
+  ],
+  "sources_ranking": {
+    "google-search": {
+      "priority": 1,
+      "hit_rate": 0.9,
+      "note": "英文全球内容最强"
+    },
+    "tencent-search": {
+      "priority": 2,
+      "hit_rate": 0.9,
+      "note": "中文技术教程+AI公司商业化+大厂产品发布+Gemini 3.5 Pro（07-07验证：10/10含07-07当天新文章；07-08实验：AI一人公司真实案例 3/10当天+7/10 7月内容）"
+    },
+    "bocha-search": {
+      "priority": 3,
+      "hit_rate": 0.85,
+      "note": "中文商业新闻+年月精确词+AI公司收入/ARR+IPO新闻（07-07验证：OpenAI IPO 10/10，Kimi K3 10/10；07-08：LongCat-2.0开源 10/10）"
+    },
+    "quark-search": {
+      "priority": 4,
+      "hit_rate": 0.85,
+      "note": "openclaw专有词+LongCat-2.0精确命中（07-07验证：10/10当天内容）；⚠️非专有词+通用热点=大量旧内容混入（OpenAI IPO 9/10为2025旧稿）"
+    },
+    "baidu-search-v2": {
+      "priority": 5,
+      "hit_rate": 0.9,
+      "note": "Biotech/创新药/大厂商业深度（07-07验证：创新药翻身出海10/10当天文章；07-08验证：FIC出海 10/10含07-08当天）"
+    },
+    "bing": {
+      "priority": 6,
+      "hit_rate": 0.2,
+      "note": "07-08实验：OpenClaw skill marketplace revenue 2026 July → 全部CSDN缓存，无实际新内容。⚠️ 限流+内容陈旧，降级备用"
+    },
+    "twitter_aisa": {
+      "priority": 7,
+      "hit_rate": 0.7,
+      "note": "代理不稳定"
+    },
+    "perplexity_sonar_pro": {
+      "priority": 8,
+      "hit_rate": 0.8,
+      "note": "代理封锁"
+    }
+  },
+  "engine_usage_guide": {
+    "english_global": "google-search（priority 1）",
+    "chinese_tech_tutorial": "tencent-search（CSDN/知乎/IT之家）",
+    "chinese_business_news": "bocha-search（36氪/虎嗅/InfoQ/财联社）",
+    "openclaw_workflow_cases": "bocha-search（英文词混合可用）或 quark-search（专有词）",
+    "mixed_or_fallback": "quark-search → baidu-search-v2",
+    "daily_hot_topics": "bocha-search（年月精确词）",
+    "bigtech_business_deep": "baidu-search-v2（字节系/大厂商业新闻）",
+    "biotech_fda": "baidu-search-v2（创新药/FDA/出海/license-out）",
+    "ai_company_commercial": "tencent-search（商业化争议/定价/IPO/真实案例）",
+    "ai_funding_major": "bocha + tencent 双引擎（融资新闻）",
+    "ipo_filing_news": "bocha-search（S-1/IPO/估值新闻，07-07验证：爆炸级覆盖）",
+    "ai_model_release_confirmed": "bocha-search（确认发布的模型，Kimi K3/DeepSeek V4追踪）",
+    "ai_model_release_tencent": "tencent-search（Anthropic/Claude系列/Gemini 3.5 Pro）"
+  }
+}

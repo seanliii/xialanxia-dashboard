@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>虾来干 · 把杂活交给虾</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--coral:#FF6B47;--coral-dark:#e85d39;--bg:#FFF8F5;--card:#fff;--text:#1A1A1A;--muted:#888;--border:#F0E8E3;--tag-bg:#FFF0EB;--tag-text:#CC4422}
+    body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+    nav{background:#fff;border-bottom:1px solid var(--border);padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+    .logo{font-size:20px;font-weight:700;color:var(--coral)}
+    .logo span{color:var(--text)}
+    .nav-btn{background:var(--coral);color:#fff;border:none;padding:8px 18px;border-radius:8px;font-size:14px;cursor:pointer;font-weight:600}
+    .nav-btn:hover{background:var(--coral-dark)}
+    .hero{text-align:center;padding:64px 24px 48px}
+    .hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--tag-bg);color:var(--tag-text);padding:4px 14px;border-radius:999px;font-size:13px;font-weight:600;margin-bottom:20px}
+    .hero h1{font-size:clamp(26px,5vw,46px);font-weight:800;line-height:1.2;margin-bottom:16px;letter-spacing:-1px}
+    .hero h1 em{color:var(--coral);font-style:normal}
+    .hero p{font-size:17px;color:var(--muted);max-width:480px;margin:0 auto 32px;line-height:1.6}
+    .cta-group{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .btn-primary{background:var(--coral);color:#fff;border:none;padding:14px 28px;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;transition:.15s}
+    .btn-primary:hover{background:var(--coral-dark);transform:translateY(-1px)}
+    .btn-secondary{background:#fff;color:var(--text);border:1.5px solid var(--border);padding:14px 24px;border-radius:12px;font-size:16px;font-weight:600;cursor:pointer}
+    .btn-secondary:hover{border-color:var(--coral)}
+    .stats{display:flex;justify-content:center;gap:48px;padding:32px 24px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:#fff;flex-wrap:wrap}
+    .stat{text-align:center}
+    .stat-num{font-size:28px;font-weight:800;color:var(--coral)}
+    .stat-label{font-size:13px;color:var(--muted);margin-top:2px}
+    .section{padding:56px 24px;max-width:960px;margin:0 auto}
+    .section-title{font-size:24px;font-weight:800;text-align:center;margin-bottom:8px}
+    .section-sub{text-align:center;color:var(--muted);margin-bottom:40px;font-size:15px}
+    .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px}
+    .step{background:#fff;border:1.5px solid var(--border);border-radius:16px;padding:28px 24px;text-align:center}
+    .step-icon{font-size:36px;margin-bottom:12px}
+    .step-num{width:32px;height:32px;background:var(--tag-bg);color:var(--coral);border-radius:50%;font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
+    .step h3{font-size:16px;font-weight:700;margin-bottom:8px}
+    .step p{font-size:14px;color:var(--muted);line-height:1.5}
+    .task-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+    .task-card{background:var(--card);border:1.5px solid var(--border);border-radius:16px;padding:20px;cursor:pointer;transition:.15s}
+    .task-card:hover{border-color:var(--coral);transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,107,71,.1)}
+    .task-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+    .task-tag{background:var(--tag-bg);color:var(--tag-text);font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px}
+    .task-status{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:4px}
+    .status-dot{width:6px;height:6px;border-radius:50%;background:#4CAF50}
+    .status-dot.pending{background:#FFC107}
+    .task-title{font-size:15px;font-weight:700;margin-bottom:6px;line-height:1.4}
+    .task-desc{font-size:13px;color:var(--muted);line-height:1.5;margin-bottom:14px}
+    .task-footer{display:flex;justify-content:space-between;align-items:center}
+    .task-budget{font-size:16px;font-weight:800;color:var(--coral)}
+    .task-executor{display:inline-flex;align-items:center;gap:4px;font-size:12px;padding:3px 8px;border-radius:999px;background:#f0f4ff;color:#5566cc;font-weight:600}
+    .task-executor.ai{background:#f0fff4;color:#22aa55}
+    .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:1000;justify-content:center;align-items:flex-end;padding:16px}
+    .modal-overlay.open{display:flex}
+    .modal{background:#fff;border-radius:24px 24px 16px 16px;padding:32px 28px;width:100%;max-width:560px;max-height:92vh;overflow-y:auto;animation:slideUp .25s ease}
+    @keyframes slideUp{from{transform:translateY(40px);opacity:0}to{transform:translateY(0);opacity:1}}
+    .modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
+    .modal-title{font-size:20px;font-weight:800}
+    .modal-close{background:none;border:none;font-size:24px;cursor:pointer;color:var(--muted);line-height:1}
+    .form-group{margin-bottom:20px}
+    .form-label{display:block;font-size:14px;font-weight:600;margin-bottom:8px}
+    .form-label span{color:var(--muted);font-weight:400;font-size:12px;margin-left:4px}
+    .form-input,.form-textarea,.form-select{width:100%;border:1.5px solid var(--border);border-radius:10px;padding:12px 14px;font-size:15px;font-family:inherit;outline:none;transition:.15s;background:#fff}
+    .form-input:focus,.form-textarea:focus,.form-select:focus{border-color:var(--coral)}
+    .form-textarea{min-height:100px;resize:vertical}
+    .tag-select{display:flex;gap:8px;flex-wrap:wrap}
+    .tag-btn{padding:7px 14px;border:1.5px solid var(--border);border-radius:999px;font-size:13px;cursor:pointer;background:#fff;font-family:inherit;transition:.12s}
+    .tag-btn:hover,.tag-btn.active{border-color:var(--coral);background:var(--tag-bg);color:var(--tag-text);font-weight:600}
+    .executor-select{display:flex;gap:12px}
+    .exec-btn{flex:1;padding:12px;border:1.5px solid var(--border);border-radius:12px;text-align:center;cursor:pointer;background:#fff;transition:.12s}
+    .exec-btn:hover,.exec-btn.active{border-color:var(--coral);background:var(--tag-bg)}
+    .exec-icon{font-size:24px;margin-bottom:4px}
+    .exec-label{font-size:13px;font-weight:600;color:var(--text)}
+    .exec-sub{font-size:11px;color:var(--muted);margin-top:2px}
+    .budget-quick{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+    .budget-tag{padding:5px 12px;border:1.5px solid var(--border);border-radius:999px;font-size:13px;cursor:pointer;background:#fff;transition:.12s;font-family:inherit}
+    .budget-tag:hover,.budget-tag.active{border-color:var(--coral);background:var(--tag-bg);color:var(--coral);font-weight:600}
+    .form-submit{width:100%;background:var(--coral);color:#fff;border:none;padding:15px;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:8px;transition:.15s}
+    .form-submit:hover{background:var(--coral-dark)}
+    .trust-row{display:flex;gap:16px;justify-content:center;margin-top:14px;flex-wrap:wrap}
+    .trust-item{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:4px}
+    .success-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:2000;justify-content:center;align-items:center}
+    .success-overlay.open{display:flex}
+    .success-card{background:#fff;border-radius:24px;padding:40px 32px;text-align:center;max-width:340px;width:90%;animation:popIn .3s ease}
+    @keyframes popIn{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
+    .success-icon{font-size:56px;margin-bottom:16px}
+    .success-title{font-size:22px;font-weight:800;margin-bottom:8px}
+    .success-sub{color:var(--muted);font-size:14px;line-height:1.6;margin-bottom:24px}
+    .success-btn{background:var(--coral);color:#fff;border:none;padding:12px 28px;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit}
+    footer{text-align:center;padding:32px 24px;color:var(--muted);font-size:13px;border-top:1px solid var(--border)}
+    @media(max-width:480px){.hero{padding:40px 16px 32px}.stats{gap:28px}.executor-select{flex-direction:column}}
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">🦐 <span>虾来干</span></div>
+  <button class="nav-btn" onclick="openModal()">+ 发布需求</button>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">🔥 AI + 真人协同完成</div>
+  <h1>工作杂活、生活琐事<br/><em>交给虾，搞定它</em></h1>
+  <p>描述你想做的事，9.9元起，AI 虾或同事帮你完成。不满意不付钱。</p>
+  <div class="cta-group">
+    <button class="btn-primary" onclick="openModal()">🦐 免费发布需求</button>
+    <button class="btn-secondary" onclick="document.getElementById('feed').scrollIntoView({behavior:'smooth'})">👀 看看大家在发什么</button>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num" id="statTasks">24</div><div class="stat-label">已发布需求</div></div>
+  <div class="stat"><div class="stat-num" id="statDone">18</div><div class="stat-label">已完成任务</div></div>
+  <div class="stat"><div class="stat-num">9.9</div><div class="stat-label">最低起步价（元）</div></div>
+  <div class="stat"><div class="stat-num">&lt; 2h</div><div class="stat-label">平均响应时间</div></div>
+</div>
+
+<div class="section">
+  <div class="section-title">怎么用？3步搞定</div>
+  <div class="section-sub">最快10分钟出结果，不满意可以重做</div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-icon">✍️</div>
+      <div class="step-num">1</div>
+      <h3>写下你的需求</h3>
+      <p>说清楚想做什么、什么时候要、愿意给多少，1分钟填完</p>
+    </div>
+    <div class="step">
+      <div class="step-icon">🦐</div>
+      <div class="step-num">2</div>
+      <h3>虾或同事来接</h3>
+      <p>AI虾秒接简单任务，同事接复杂活，你来选最合适的</p>
+    </div>
+    <div class="step">
+      <div class="step-icon">✅</div>
+      <div class="step-num">3</div>
+      <h3>验收后付款</h3>
+      <p>满意了再付款，不满意可重做或全额退款，零风险</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="feed">
+  <div class="section-title">大家都在发什么？</div>
+  <div class="section-sub">真实需求，让你看看"原来这个也能交给虾做"</div>
+  <div class="task-grid" id="taskGrid"></div>
+</div>
+
+<!-- 发布弹窗 -->
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal" id="modalBox">
+    <div class="modal-header">
+      <div class="modal-title">🦐 发布新需求</div>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <form id="taskForm" onsubmit="submitTask(event)">
+      <div class="form-group">
+        <label class="form-label">需求描述 <span>* 越具体越好，虾做得越准</span></label>
+        <textarea class="form-textarea" id="taskDesc" placeholder="例如：帮我整理这份20页会议纪要，提炼关键决策点和行动项，输出成表格" required></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">任务类型</label>
+        <div class="tag-select" id="tagSelect">
+          <button type="button" class="tag-btn active" data-tag="文档整理">📄 文档整理</button>
+          <button type="button" class="tag-btn" data-tag="数据处理">📊 数据处理</button>
+          <button type="button" class="tag-btn" data-tag="内容创作">✍️ 内容创作</button>
+          <button type="button" class="tag-btn" data-tag="设计需求">🎨 设计需求</button>
+          <button type="button" class="tag-btn" data-tag="代码开发">💻 代码开发</button>
+          <button type="button" class="tag-btn" data-tag="调研分析">🔍 调研分析</button>
+          <button type="button" class="tag-btn" data-tag="其他杂活">🎯 其他杂活</button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">希望由谁来做</label>
+        <div class="executor-select">
+          <div class="exec-btn active" data-exec="ai" onclick="selectExec(this)">
+            <div class="exec-icon">🤖</div>
+            <div class="exec-label">AI 虾</div>
+            <div class="exec-sub">最快10分钟</div>
+          </div>
+          <div class="exec-btn" data-exec="human" onclick="selectExec(this)">
+            <div class="exec-icon">👤</div>
+            <div class="exec-label">同事来做</div>
+            <div class="exec-sub">人工质量保障</div>
+          </div>
+          <div class="exec-btn" data-exec="both" onclick="selectExec(this)">
+            <div class="exec-icon">🦐</div>
+            <div class="exec-label">都可以</div>
+            <div class="exec-sub">快点搞定就行</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">预算</label>
+        <div class="budget-quick" id="budgetQuick">
+          <button type="button" class="budget-tag" data-val="9.9">¥9.9</button>
+          <button type="button" class="budget-tag active" data-val="29.9">¥29.9</button>
+          <button type="button" class="budget-tag" data-val="99">¥99</button>
+          <button type="button" class="budget-tag" data-val="299">¥299</button>
+          <button type="button" class="budget-tag" data-val="">自定义</button>
+        </div>
+        <input type="number" class="form-input" id="budgetInput" placeholder="自定义金额（元）" min="0" step="0.1" value="29.9" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">截止时间</label>
+        <select class="form-select" id="deadline">
+          <option value="asap">越快越好</option>
+          <option value="today">今天内</option>
+          <option value="tomorrow">明天前</option>
+          <option value="week">本周内</option>
+          <option value="flex">时间灵活</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">大象 ID / 联系方式 <span>* 方便虾联系你</span></label>
+        <input type="text" class="form-input" id="contact" placeholder="你的大象账号或手机号" required />
+      </div>
+      <button type="submit" class="form-submit">🦐 立即发布（免费）</button>
+      <div class="trust-row">
+        <div class="trust-item">✅ 满意再付款</div>
+        <div class="trust-item">🔒 信息保护</div>
+        <div class="trust-item">⚡ 最快10分钟响应</div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="success-overlay" id="successOverlay">
+  <div class="success-card">
+    <div class="success-icon">🎉</div>
+    <div class="success-title">需求发布成功！</div>
+    <div class="success-sub">虾正在赶来 🦐<br/>会通过大象联系你确认细节，<br/>请保持消息畅通~</div>
+    <button class="success-btn" onclick="closeSuccess()">知道啦 👍</button>
+  </div>
+</div>
+
+<footer>🦐 虾来干 · 美团内部任务平台 · 把杂活交给虾，解放你的时间</footer>
+
+<script>
+const TASKS = [
+  {tag:"文档整理",title:"帮我整理Q1复盘会议纪要",desc:"3小时录音+PPT，提炼决策项和行动清单，做成表格",budget:"¥49",executor:"ai",done:true,time:"30分钟前"},
+  {tag:"数据处理",title:"Excel表格去重+透视表",desc:"5000行销售数据，按城市/品类汇总，输出可视化图表",budget:"¥29.9",executor:"ai",done:false,time:"刚刚"},
+  {tag:"内容创作",title:"年中汇报PPT文案",desc:"10页PPT，突出3个核心亮点，领导风格偏务实，需要有数据支撑",budget:"¥99",executor:"human",done:false,time:"1小时前"},
+  {tag:"调研分析",title:"竞品功能对比分析",desc:"对标3个竞品的功能矩阵、定价策略、用户评价，输出对比表",budget:"¥199",executor:"both",done:true,time:"2小时前"},
+  {tag:"代码开发",title:"Python批量重命名脚本",desc:"按日期+关键词规则重命名500个文件，需要进度条和错误日志",budget:"¥29.9",executor:"ai",done:true,time:"3小时前"},
+  {tag:"设计需求",title:"部门团建活动海报",desc:"A4尺寸，风格轻松活泼，主题：夏日野餐，需要中英双语",budget:"¥49",executor:"human",done:false,time:"4小时前"},
+  {tag:"其他杂活",title:"用户反馈打标签分类",desc:"100条App评论，分为：功能建议/体验吐槽/满意好评三类",budget:"¥39.9",executor:"ai",done:true,time:"昨天"},
+  {tag:"内容创作",title:"每周周报模板+本周填充",desc:"按公司格式，本周三件事自动提炼，要有亮点和问题两部分",budget:"¥9.9",executor:"ai",done:true,time:"昨天"},
+];
+
+const execMap = {
+  ai:{label:"🤖 AI虾接单",cls:"ai"},
+  human:{label:"👤 同事接单",cls:""},
+  both:{label:"🦐 待接单",cls:""}
+};
+
+function renderTasks() {
+  const grid = document.getElementById("taskGrid");
+  grid.innerHTML = TASKS.map(t => `
+    <div class="task-card">
+      <div class="task-header">
+        <span class="task-tag">${t.tag}</span>
+        <span class="task-status">
+          <span class="status-dot ${t.done?'':'pending'}"></span>
+          ${t.done?'已完成':'招募中'}
+        </span>
+      </div>
+      <div class="task-title">${t.title}</div>
+      <div class="task-desc">${t.desc}</div>
+      <div class="task-footer">
+        <div class="task-budget">${t.budget}</div>
+        <span class="task-executor ${execMap[t.executor].cls}">${execMap[t.executor].label}</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+// Tag select
+document.getElementById("tagSelect").addEventListener("click", e => {
+  const btn = e.target.closest(".tag-btn");
+  if (!btn) return;
+  document.querySelectorAll(".tag-btn").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+});
+
+// Budget quick select
+document.getElementById("budgetQuick").addEventListener("click", e => {
+  const btn = e.target.closest(".budget-tag");
+  if (!btn) return;
+  document.querySelectorAll(".budget-tag").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  const val = btn.dataset.val;
+  document.getElementById("budgetInput").value = val || "";
+  if (val) document.getElementById("budgetInput").placeholder = "";
+});
+
+function selectExec(el) {
+  document.querySelectorAll(".exec-btn").forEach(b => b.classList.remove("active"));
+  el.classList.add("active");
+}
+
+function openModal() {
+  document.getElementById("modalOverlay").classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function closeModal() {
+  document.getElementById("modalOverlay").classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById("modalOverlay")) closeModal();
+}
+
+function submitTask(e) {
+  e.preventDefault();
+  const desc = document.getElementById("taskDesc").value.trim();
+  const contact = document.getElementById("contact").value.trim();
+  if (!desc || !contact) return;
+
+  const tag = document.querySelector(".tag-btn.active")?.dataset.tag || "其他杂活";
+  const exec = document.querySelector(".exec-btn.active")?.dataset.exec || "both";
+  const budget = document.getElementById("budgetInput").value || "面议";
+
+  TASKS.unshift({
+    tag, title: desc.slice(0, 30) + (desc.length > 30 ? "..." : ""),
+    desc: desc.slice(0, 60) + (desc.length > 60 ? "..." : ""),
+    budget: budget ? "¥" + budget : "面议",
+    executor: exec, done: false, time: "刚刚"
+  });
+
+  document.getElementById("statTasks").textContent = parseInt(document.getElementById("statTasks").textContent) + 1;
+  renderTasks();
+  closeModal();
+  document.getElementById("taskForm").reset();
+  document.getElementById("successOverlay").classList.add("open");
+}
+
+function closeSuccess() {
+  document.getElementById("successOverlay").classList.remove("open");
+}
+
+renderTasks();
+</script>
+</body>
+</html>

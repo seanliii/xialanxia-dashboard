@@ -1,0 +1,16 @@
+{
+  "scan_time": "2026-07-07T10:01:24.746264",
+  "total_signals": 1,
+  "signals": [
+    {
+      "ticker": "SISI",
+      "price": 0.252,
+      "five_day_gain": 12500.0,
+      "market_cap_m": 0,
+      "volume": 0,
+      "avg_volume": 0,
+      "volume_ratio": 0,
+      "signal": "\ud83d\ude80 5\u65e5\u66b4\u6da8 +12500% | \ud83d\udc8e \u5c0f\u76d8\u5f02\u52a8(\u5e02\u503c$0.0M)"
+    }
+  ]
+}

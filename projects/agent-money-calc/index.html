@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🦐 AI Agent 变现计算器 2026</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a1a; color: #e0e0ff; min-height: 100vh; padding: 20px; }
+.container { max-width: 800px; margin: 0 auto; }
+h1 { text-align: center; font-size: 2rem; margin: 30px 0 10px; background: linear-gradient(135deg, #00d4ff, #8b5cf6, #ff6b9d); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.subtitle { text-align: center; color: #888; font-size: 0.9rem; margin-bottom: 30px; }
+.card { background: #12122a; border: 1px solid #2a2a50; border-radius: 16px; padding: 24px; margin-bottom: 20px; }
+label { display: block; font-size: 0.9rem; color: #aaa; margin-bottom: 8px; }
+select, input { width: 100%; background: #1a1a35; border: 1px solid #3a3a6a; border-radius: 10px; color: #e0e0ff; padding: 12px 16px; font-size: 1rem; margin-bottom: 16px; outline: none; transition: border-color 0.2s; }
+select:focus, input:focus { border-color: #8b5cf6; }
+button { width: 100%; background: linear-gradient(135deg, #6d28d9, #2563eb); color: white; border: none; border-radius: 12px; padding: 14px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: opacity 0.2s, transform 0.1s; }
+button:hover { opacity: 0.9; transform: translateY(-1px); }
+.results { display: none; }
+.model-card { background: #16163a; border: 1px solid #2a2a50; border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+.model-card:hover { border-color: #6d28d9; }
+.model-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+.model-name { font-weight: 700; font-size: 1.05rem; flex: 1; }
+.revenue-badge { background: linear-gradient(135deg, #059669, #0d9488); color: white; border-radius: 8px; padding: 4px 12px; font-size: 0.85rem; font-weight: 600; white-space: nowrap; margin-left: 12px; }
+.model-desc { color: #aaa; font-size: 0.9rem; line-height: 1.5; margin-bottom: 12px; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag { background: #1f1f45; border: 1px solid #3a3a6a; border-radius: 6px; padding: 3px 10px; font-size: 0.75rem; color: #8b9cf6; }
+.difficulty { display: inline-block; margin-top: 8px; font-size: 0.8rem; color: #f59e0b; }
+.summary-bar { background: linear-gradient(135deg, #1a0a35, #0a1a35); border: 1px solid #6d28d9; border-radius: 12px; padding: 20px; margin-bottom: 20px; text-align: center; }
+.total-range { font-size: 1.8rem; font-weight: 700; color: #10b981; }
+.total-label { color: #888; font-size: 0.85rem; margin-top: 4px; }
+.footer { text-align: center; color: #444; font-size: 0.8rem; margin-top: 30px; padding-bottom: 30px; }
+.loader { display: none; text-align: center; padding: 30px; color: #8b5cf6; font-size: 1.1rem; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>🦐 AI Agent 变现计算器</h1>
+  <p class="subtitle">输入你的业务方向，获取可落地的 Agent 商业模式 + 收入区间估算</p>
+
+  <div class="card">
+    <label>你的业务/技能方向</label>
+    <select id="domain">
+      <option value="">— 选择行业 —</option>
+      <option value="ecommerce">电商 / 独立站</option>
+      <option value="content">内容创作 / 自媒体</option>
+      <option value="saas">SaaS / 软件开发</option>
+      <option value="marketing">营销 / 广告投放</option>
+      <option value="finance">金融 / 投资分析</option>
+      <option value="education">教育 / 培训</option>
+      <option value="consulting">咨询 / 外包服务</option>
+      <option value="legal">法律 / 合规</option>
+      <option value="hr">HR / 招聘</option>
+      <option value="other">通用 / 其他</option>
+    </select>
+
+    <label>你的起步资源</label>
+    <select id="resources">
+      <option value="code">会写代码</option>
+      <option value="nocode">会用无代码工具</option>
+      <option value="domain">有行业积累</option>
+      <option value="audience">有粉丝/用户</option>
+      <option value="capital">有启动资金</option>
+    </select>
+
+    <label>预期月投入时间</label>
+    <select id="time">
+      <option value="low">少于 20 小时/月（副业）</option>
+      <option value="mid">20–80 小时/月（半全职）</option>
+      <option value="high">超过 80 小时/月（全力以赴）</option>
+    </select>
+
+    <button onclick="calculate()">🚀 生成我的 Agent 变现方案</button>
+  </div>
+
+  <div class="loader" id="loader">⚡ AI 分析中，生成专属方案...</div>
+
+  <div class="results" id="results">
+    <div class="summary-bar">
+      <div class="total-range" id="totalRange">—</div>
+      <div class="total-label">最优路径月收入估算（6 个月成熟期后）</div>
+    </div>
+    <div id="modelList"></div>
+  </div>
+
+  <div class="footer">🦐 小蓝虾出品 · 数据来源：IndiHackers / betonai.net / 2026 真实案例 · 仅供参考，结果因执行力而异</div>
+</div>
+
+<script>
+const MODELS = {
+  ecommerce: [
+    { name: "AI 选品 + 竞品监控 Agent", rev: [2000,6000], desc: "自动爬取亚马逊/速卖通趋势品、监控竞品价格变动，生成周度选品报告。$99/月订阅或按报告收费。", tags: ["订阅制","API调用","自动化"], diff: "⭐⭐ 中等" },
+    { name: "商品描述批量生成 Agent", rev: [1000,4000], desc: "接受 SKU 列表自动生成多语言商品详情、SEO 标题、A+ 文案。B端按批量定价 $0.3–1/条。", tags: ["内容生成","B端服务","高频"], diff: "⭐ 简单" },
+    { name: "AI 客服自动回复 Agent", rev: [3000,12000], desc: "训练品牌 FAQ 知识库，自动处理 Shopify 售后/退款/物流查询，接管 80% 重复工单。SaaS 模式。", tags: ["SaaS","客服","高价值"], diff: "⭐⭐⭐ 较难" },
+    { name: "广告素材自动生成 Agent", rev: [1500,5000], desc: "输入产品图+卖点，自动生成 FB/Google 多版本广告素材变体，品牌方或代理商付费。", tags: ["创意","自动化","AIGC"], diff: "⭐⭐ 中等" },
+    { name: "用户评论洞察 Agent", rev: [800,3000], desc: "聚合多平台差评，提炼产品缺陷和消费者痛点，输出可执行的产品改善建议报告。", tags: ["分析","B端","报告"], diff: "⭐ 简单" }
+  ],
+  content: [
+    { name: "AI 爆款选题 + 脚本 Agent", rev: [2000,8000], desc: "每日扫描各平台热榜，匹配账号定位，生成可直接使用的短视频脚本。创作者 $199/月，MCN $1K+/月。", tags: ["内容","自动化","高频"], diff: "⭐⭐ 中等" },
+    { name: "多平台内容分发 Agent", rev: [1000,4000], desc: "一篇长文自动改写为知乎/小红书/微博/LinkedIn 多版本，一键分发。极高复购率。", tags: ["分发","SaaS","内容"], diff: "⭐ 简单" },
+    { name: "Newsletter AI 写作助手", rev: [1500,5000], desc: "根据订阅信息源，每周自动聚合+改写+排版邮件 newsletter，作者 $49/月起。", tags: ["Newsletter","订阅","内容"], diff: "⭐⭐ 中等" },
+    { name: "播客转内容矩阵 Agent", rev: [800,2500], desc: "播客音频自动转写、提炼金句、生成 SEO 文章+社媒摘要，帮内容团队节省 80% 时间。", tags: ["音频","转化","B端"], diff: "⭐ 简单" },
+    { name: "AI 品牌代笔服务", rev: [3000,15000], desc: "为 KOL/企业家操刀微信/LinkedIn 内容，AI 起草+人工润色。高端定制 $500+/篇。", tags: ["服务","高客单","创意"], diff: "⭐⭐ 中等" }
+  ],
+  saas: [
+    { name: "代码审查 + Bug 修复 Agent", rev: [3000,10000], desc: "集成 GitHub/GitLab，自动审查 PR、找安全漏洞、建议优化。开发团队 $49/人/月。", tags: ["DevTool","订阅","高频"], diff: "⭐⭐ 中等" },
+    { name: "文档自动生成 Agent", rev: [2000,7000], desc: "读懂代码库自动生成 API 文档、README、架构说明，代码更新时自动同步。$99–299/月/团队。", tags: ["文档","自动化","SaaS"], diff: "⭐⭐ 中等" },
+    { name: "需求分析 + 用户故事 Agent", rev: [1500,5000], desc: "把模糊需求转化为结构化用户故事、验收标准、任务拆解，对接 Jira/Linear。PM 工具。", tags: ["PM","效率","B端"], diff: "⭐⭐ 中等" },
+    { name: "AI 测试用例生成 Agent", rev: [2000,6000], desc: "分析代码自动生成单元测试+集成测试，覆盖率从 30% 提升到 80%。QA 团队刚需。", tags: ["测试","DevTool","高需求"], diff: "⭐⭐⭐ 较难" },
+    { name: "SaaS 客户成功 Agent", rev: [4000,15000], desc: "监控用户使用行为，提前识别流失风险，自动触发个性化激活消息，提升留存率。", tags: ["留存","数据","高价值"], diff: "⭐⭐⭐ 较难" }
+  ],
+  marketing: [
+    { name: "SEO 关键词 + 文章批量 Agent", rev: [2000,8000], desc: "给定网站，自动挖掘低竞争高流量关键词，批量生成优化文章，月更 100 篇无需人工。", tags: ["SEO","内容","自动化"], diff: "⭐⭐ 中等" },
+    { name: "广告文案 A/B 测试 Agent", rev: [1500,6000], desc: "自动生成 50+ 版本广告文案变体，结合 CTR 数据持续优化，降低 CPA 20–40%。", tags: ["广告","优化","数据"], diff: "⭐⭐ 中等" },
+    { name: "竞品监控情报 Agent", rev: [1000,4000], desc: "每日追踪竞品官网更新、定价变化、新功能发布，生成周报推送到 Slack/企业微信。", tags: ["监控","情报","订阅"], diff: "⭐ 简单" },
+    { name: "社媒数据分析 Agent", rev: [1500,5000], desc: "聚合品牌所有平台数据（粉丝/互动/声量），自动生成月度分析报告+改进建议。", tags: ["分析","报告","B端"], diff: "⭐⭐ 中等" },
+    { name: "网红营销匹配 Agent", rev: [3000,12000], desc: "品牌方输入目标人群，Agent 扫描全网 KOL，按 ROI 排序推荐，自动发合作邀约。", tags: ["KOL","自动化","高价值"], diff: "⭐⭐⭐ 较难" }
+  ],
+  finance: [
+    { name: "AI 财报解读 Agent", rev: [2000,8000], desc: "上市公司财报发布后 10 分钟内生成中文解读摘要、核心数据对比、买卖信号，$199/月订阅。", tags: ["财经","订阅","速度"], diff: "⭐⭐ 中等" },
+    { name: "个人财务规划 Agent", rev: [1500,5000], desc: "用户连接银行账单，Agent 分析支出结构、优化理财路径、生成个性化储蓄计划。B2C 产品。", tags: ["个人理财","C端","SaaS"], diff: "⭐⭐⭐ 较难" },
+    { name: "量化策略回测 Agent", rev: [3000,10000], desc: "输入交易策略逻辑，自动编写回测代码、运行分析、输出收益/回撤报告，面向量化交易者。", tags: ["量化","自动化","专业"], diff: "⭐⭐⭐ 较难" },
+    { name: "行业研究报告 Agent", rev: [2000,7000], desc: "给定行业/公司，自动搜集公开信息，生成 15 页投研风格报告，企业/基金付费订阅。", tags: ["研究","B端","报告"], diff: "⭐⭐ 中等" },
+    { name: "税务/合规咨询 Agent", rev: [1500,4000], desc: "中小企业常见税务问题的 AI 顾问，理解政策变化自动更新知识库，按问题或订阅收费。", tags: ["合规","咨询","B端"], diff: "⭐⭐ 中等" }
+  ],
+  education: [
+    { name: "个性化学习路径 Agent", rev: [1500,5000], desc: "根据学员测评，AI 生成专属课表+知识图谱，自动推送最适合的学习资源。在线教育刚需。", tags: ["EdTech","个性化","SaaS"], diff: "⭐⭐ 中等" },
+    { name: "AI 题库生成 Agent", rev: [1000,4000], desc: "上传教材/大纲，自动生成选择/填空/主观题+参考答案，学校/培训机构 $299/月起。", tags: ["教育","内容","B端"], diff: "⭐ 简单" },
+    { name: "作文/论文批改 Agent", rev: [2000,6000], desc: "中英文作文实时批改，给出分数+点评+修改建议，家长端 $99/月，学校端定制。", tags: ["K12","批改","高频"], diff: "⭐⭐ 中等" },
+    { name: "课程内容本地化 Agent", rev: [1500,5000], desc: "在线课程批量翻译多语言+文化适配，比人工便宜 70%，出海 EdTech 公司核心需求。", tags: ["翻译","出海","B端"], diff: "⭐⭐ 中等" },
+    { name: "职业发展规划 Agent", rev: [2000,7000], desc: "结合职位数据库和用户简历，生成技能差距分析+6 个月提升计划+推荐资源，$49/次。", tags: ["职业","规划","C端"], diff: "⭐⭐ 中等" }
+  ],
+  consulting: [
+    { name: "提案/方案写作 Agent", rev: [2000,8000], desc: "咨询顾问输入客户背景，AI 自动生成麦肯锡风格 PPT 框架+内容，节省 80% 起稿时间。", tags: ["效率","B端","高价值"], diff: "⭐⭐ 中等" },
+    { name: "行业尽调报告 Agent", rev: [3000,10000], desc: "自动搜集行业数据、竞争格局、政策环境，生成 DD 报告模板，PE/VC 和咨询公司付费。", tags: ["报告","投资","B端"], diff: "⭐⭐ 中等" },
+    { name: "AI 顾问知识库 Agent", rev: [2000,8000], desc: "将顾问多年积累打包成 AI 知识库，回答行业问题，降低人力交付成本，构建被动收入。", tags: ["知识库","被动收入","高价值"], diff: "⭐⭐⭐ 较难" },
+    { name: "合同审查 Agent", rev: [1500,5000], desc: "上传合同，自动标注风险条款、异常条款，给出修改建议，中小企业 $99/月订阅。", tags: ["合规","法律","高频"], diff: "⭐⭐ 中等" },
+    { name: "客户成功案例写作 Agent", rev: [1000,3000], desc: "收集客户数据，自动撰写成功案例故事，用于市场营销物料，SaaS 公司刚需。", tags: ["营销","内容","B端"], diff: "⭐ 简单" }
+  ],
+  legal: [
+    { name: "合同审查 + 风险提示 Agent", rev: [3000,12000], desc: "自动审查商业合同，标注高风险条款，提供标准化修改建议，律所和企业法务订阅。", tags: ["合规","高价值","B端"], diff: "⭐⭐⭐ 较难" },
+    { name: "法规监控 Agent", rev: [2000,6000], desc: "监控特定行业法规/政策变化，自动推送合规影响分析报告，企业风控部门年费订阅。", tags: ["监控","合规","B端"], diff: "⭐⭐ 中等" },
+    { name: "法律文书起草 Agent", rev: [1500,5000], desc: "律师输入案情，AI 自动起草起诉状/辩护词初稿，节省律师 70% 文书时间。", tags: ["效率","律所","B端"], diff: "⭐⭐⭐ 较难" },
+    { name: "IP 侵权监控 Agent", rev: [2000,7000], desc: "定时扫描电商平台，发现品牌商标/版权侵权，自动生成投诉材料。品牌方付费。", tags: ["IP","监控","B端"], diff: "⭐⭐ 中等" },
+    { name: "普法问答引流 Agent", rev: [1000,4000], desc: "面向 C 端回答日常法律问题（劳动/合同/婚姻），引流至律师咨询变现。", tags: ["C端","引流","法律"], diff: "⭐ 简单" }
+  ],
+  hr: [
+    { name: "简历筛选 + 初筛 Agent", rev: [2000,8000], desc: "接收简历，按 JD 智能评分排序，自动发初筛邀请，HR 工具 SaaS $199/月起。", tags: ["招聘","效率","B端"], diff: "⭐⭐ 中等" },
+    { name: "JD 写作优化 Agent", rev: [800,2500], desc: "输入岗位需求，生成多版本吸引人的 JD，自动适配不同招聘平台格式，$49/次。", tags: ["内容","HR","简单"], diff: "⭐ 简单" },
+    { name: "面试题库生成 Agent", rev: [1000,3000], desc: "根据岗位+简历生成定制化面试问题+参考答案，帮面试官省 70% 准备时间。", tags: ["面试","工具","B端"], diff: "⭐ 简单" },
+    { name: "员工培训内容 Agent", rev: [2000,7000], desc: "将企业 SOP 文档转化为可交互的培训课程，自动生成测验题，新员工效率提升 3 倍。", tags: ["培训","自动化","B端"], diff: "⭐⭐ 中等" },
+    { name: "离职风险预测 Agent", rev: [3000,10000], desc: "分析员工绩效+沟通+假勤数据，提前识别流失风险，给 HR 发预警，HR 数据 SaaS。", tags: ["数据","预测","高价值"], diff: "⭐⭐⭐ 较难" }
+  ],
+  other: [
+    { name: "AI 个人助理 SaaS Agent", rev: [1500,5000], desc: "打包邮件处理、日程安排、信息摘要等功能，面向高收入专业人士，$99–299/月。", tags: ["通用","SaaS","C端"], diff: "⭐⭐ 中等" },
+    { name: "行业垂直搜索 Agent", rev: [1000,4000], desc: "针对特定行业（医疗/法律/金融）做信息聚合+专业搜索，B 端订阅，比通用搜索精准 10 倍。", tags: ["搜索","垂直","B端"], diff: "⭐⭐ 中等" },
+    { name: "客服 Agent 白标 SaaS", rev: [2000,8000], desc: "将多语言客服 Agent 打包成白标 SaaS，卖给没技术能力的中小企业，$99/月起。", tags: ["白标","客服","B端"], diff: "⭐⭐ 中等" },
+    { name: "数据报告自动化 Agent", rev: [1500,6000], desc: "接入企业数据源，每周/月自动生成运营报告，替代人工整理，CFO/CMO 付费意愿高。", tags: ["数据","自动化","B端"], diff: "⭐⭐ 中等" },
+    { name: "AI 知识付费 Coach Agent", rev: [2000,10000], desc: "将你的知识打包为 AI Coach，用户付费问答，比一对一辅导扩展 10 倍不加人力成本。", tags: ["知识付费","扩展","被动收入"], diff: "⭐⭐ 中等" }
+  ]
+};
+
+const TIME_MULT = { low: 0.4, mid: 0.75, high: 1.0 };
+const RES_MULT = { code: 1.3, nocode: 1.1, domain: 1.2, audience: 1.25, capital: 1.15 };
+
+function calculate() {
+  const domain = document.getElementById('domain').value;
+  if (!domain) { alert('请先选择业务方向'); return; }
+  const resources = document.getElementById('resources').value;
+  const time = document.getElementById('time').value;
+  const timeMult = TIME_MULT[time] || 0.75;
+  const resMult = RES_MULT[resources] || 1.1;
+
+  document.getElementById('loader').style.display = 'block';
+  document.getElementById('results').style.display = 'none';
+
+  setTimeout(() => {
+    const models = MODELS[domain] || MODELS['other'];
+    let bestLo = 0, bestHi = 0;
+
+    const html = models.map((m, i) => {
+      const adjLo = Math.round(m.rev[0] * timeMult * resMult / 100) * 100;
+      const adjHi = Math.round(m.rev[1] * timeMult * resMult / 100) * 100;
+      if (i === 0) { bestLo = adjLo; bestHi = adjHi; }
+      const adjRev = `$${(adjLo/1000).toFixed(1)}K – $${(adjHi/1000).toFixed(1)}K/月`;
+      return `
+        <div class="model-card">
+          <div class="model-header">
+            <div class="model-name">${i+1}. ${m.name}</div>
+            <div class="revenue-badge">${adjRev}</div>
+          </div>
+          <div class="model-desc">${m.desc}</div>
+          <div class="tags">${m.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+          <div class="difficulty">难度：${m.diff}</div>
+        </div>`;
+    }).join('');
+
+    document.getElementById('loader').style.display = 'none';
+    document.getElementById('totalRange').textContent = `$${(bestLo/1000).toFixed(1)}K – $${(bestHi/1000).toFixed(1)}K/月`;
+    document.getElementById('modelList').innerHTML = html;
+    document.getElementById('results').style.display = 'block';
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+  }, 800);
+}
+</script>
+</body>
+</html>

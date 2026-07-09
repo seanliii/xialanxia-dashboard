@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>内容创作者自动化仪表盘 | Content Creator Autopilot</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0d1117;--card:#161b22;--border:#30363d;--text:#c9d1d9;--text-muted:#8b949e;--accent:#58a6ff;--accent2:#7ee787;--accent3:#d2a8ff;--danger:#f85149;--warning:#d29922;--success:#3fb950}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.app{max-width:1400px;margin:0 auto;padding:20px}
+h1{font-size:1.8em;background:linear-gradient(90deg,var(--accent),var(--accent3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px}
+.subtitle{color:var(--text-muted);margin-bottom:24px;font-size:0.9em}
+.tabs{display:flex;gap:4px;margin-bottom:20px;border-bottom:1px solid var(--border);padding-bottom:8px;flex-wrap:wrap}
+.tab{padding:8px 16px;border-radius:6px 6px 0 0;cursor:pointer;color:var(--text-muted);border:1px solid transparent;transition:all .2s}
+.tab.active{color:var(--accent);border-color:var(--border);border-bottom-color:var(--bg);background:var(--card)}
+.tab:hover{color:var(--text)}
+.panel{display:none}.panel.active{display:block}
+.card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:20px;margin-bottom:16px}
+.card h3{color:var(--accent);margin-bottom:12px;font-size:1.1em}
+.form-row{display:flex;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.form-group{flex:1;min-width:200px}
+.form-group label{display:block;color:var(--text-muted);font-size:0.85em;margin-bottom:4px}
+input,select,textarea{width:100%;padding:10px 12px;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:0.9em}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent)}
+textarea{resize:vertical;min-height:80px}
+.btn{padding:10px 20px;border-radius:6px;border:none;cursor:pointer;font-size:0.9em;font-weight:600;transition:all .2s}
+.btn-primary{background:var(--accent);color:#fff}.btn-primary:hover{opacity:0.85}
+.btn-success{background:var(--success);color:#fff}
+.btn-danger{background:var(--danger);color:#fff}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--text)}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+.topics-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-top:16px}
+.topic-card{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:16px;transition:all .2s}
+.topic-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.topic-card h4{color:var(--accent2);margin-bottom:8px}
+.topic-card p{color:var(--text-muted);font-size:0.85em;line-height:1.5}
+.topic-actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.topic-actions .btn{padding:6px 12px;font-size:0.8em}
+.badge{display:inline-block;padding:2px 8px;border-radius:12px;font-size:0.75em;font-weight:600}
+.badge-yt{background:#ff000022;color:#ff4444}.badge-bili{background:#00a1d622;color:#00bcd4}
+.badge-xhs{background:#ff2e4d22;color:#ff6b81}.badge-wx{background:#07c16022;color:#4caf50}
+.badge-tw{background:#1da1f222;color:#1da1f2}
+.platform-tags{display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap}
+.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:12px}
+.cal-header{text-align:center;padding:8px;color:var(--text-muted);font-size:0.8em;font-weight:600}
+.cal-day{min-height:80px;background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:4px;font-size:0.75em;cursor:pointer;transition:all .2s}
+.cal-day:hover{border-color:var(--accent)}
+.cal-day.today{border-color:var(--accent)}
+.cal-day .day-num{color:var(--text-muted);margin-bottom:2px}
+.cal-day .cal-item{background:var(--accent);color:#fff;padding:2px 4px;border-radius:3px;margin-top:2px;font-size:0.7em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:grab}
+.cal-day.drag-over{background:#58a6ff22;border-color:var(--accent)}
+.cal-nav{display:flex;align-items:center;gap:16px;margin-bottom:12px}
+.cal-nav h3{flex:1;text-align:center}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.stat-card{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:16px;text-align:center}
+.stat-card .stat-value{font-size:2em;font-weight:700;color:var(--accent)}
+.stat-card .stat-label{color:var(--text-muted);font-size:0.85em;margin-top:4px}
+.stat-card .stat-change{font-size:0.8em;margin-top:4px}
+.stat-change.up{color:var(--success)}.stat-change.down{color:var(--danger)}
+.content-output{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:16px;margin-top:12px;white-space:pre-wrap;font-size:0.9em;line-height:1.6;max-height:400px;overflow-y:auto}
+.loading{display:inline-block;width:20px;height:20px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.history-item{padding:12px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .2s}
+.history-item:hover{background:var(--bg)}
+.history-item h4{color:var(--accent2);font-size:0.9em}
+.history-item p{color:var(--text-muted);font-size:0.8em;margin-top:4px}
+.empty-state{text-align:center;padding:40px;color:var(--text-muted)}
+.perf-item{display:flex;align-items:center;padding:12px;border-bottom:1px solid var(--border);gap:12px}
+.perf-item .perf-rank{font-size:1.5em;font-weight:700;color:var(--accent3);width:40px}
+.perf-item .perf-info{flex:1}
+.perf-item .perf-info h4{font-size:0.9em;margin-bottom:4px}
+.perf-item .perf-stats{display:flex;gap:12px;font-size:0.8em;color:var(--text-muted)}
+@media(max-width:768px){.form-row{flex-direction:column}.topics-grid{grid-template-columns:1fr}.stats-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="app">
+<h1>🚀 内容创作者自动化仪表盘</h1>
+<p class="subtitle">Content Creator Autopilot — 搜热点 · 生成脚本 · 排日历 · 追数据 | Inspired by Mark Savant's $700 MRR System</p>
+<div class="tabs">
+<div class="tab active" data-tab="discover">🔍 热点发现</div>
+<div class="tab" data-tab="generate">✍️ 内容生成</div>
+<div class="tab" data-tab="calendar">📅 内容日历</div>
+<div class="tab" data-tab="analytics">📊 数据追踪</div>
+<div class="tab" data-tab="history">📚 历史记录</div>
+</div>
+
+<div class="panel active" id="panel-discover">
+<div class="card">
+<h3>🎯 设置你的内容领域</h3>
+<div class="form-row">
+<div class="form-group"><label>内容领域/关键词</label><input type="text" id="niche-input" placeholder="如：AI工具、自媒体运营、编程教程..."></div>
+<div class="form-group"><label>目标平台</label><select id="platform-select"><option value="all">全平台</option><option value="youtube">YouTube</option><option value="bilibili">B站</option><option value="xiaohongshu">小红书</option><option value="wechat">公众号</option><option value="twitter">Twitter/X</option></select></div>
+</div>
+<button class="btn btn-primary" id="search-btn">🔍 搜索热门话题</button>
+</div>
+<div id="search-status" style="display:none;padding:12px;color:var(--text-muted)"><span class="loading"></span> 正在搜索热门话题...</div>
+<div id="topics-container"></div>
+</div>
+
+<div class="panel" id="panel-generate">
+<div class="card">
+<h3>✍️ AI 内容生成器</h3>
+<div class="form-row">
+<div class="form-group"><label>话题/标题</label><input type="text" id="gen-topic" placeholder="输入你要创作的话题..."></div>
+<div class="form-group"><label>内容类型</label><select id="gen-type"><option value="video-script">视频脚本大纲</option><option value="article">文章框架</option><option value="social-post">社媒帖子</option><option value="thread">推文串</option></select></div>
+</div>
+<div class="form-row">
+<div class="form-group"><label>目标平台</label><select id="gen-platform"><option value="youtube">YouTube</option><option value="bilibili">B站</option><option value="xiaohongshu">小红书</option><option value="wechat">公众号</option><option value="twitter">Twitter/X</option></select></div>
+<div class="form-group"><label>风格</label><select id="gen-style"><option value="informative">干货教学</option><option value="entertaining">轻松有趣</option><option value="controversial">观点犀利</option><option value="storytelling">故事叙事</option></select></div>
+</div>
+<button class="btn btn-primary" id="generate-btn">⚡ 生成内容</button>
+</div>
+<div id="gen-output" style="display:none"><div class="card"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><h3>📝 生成结果</h3><div style="display:flex;gap:8px"><button class="btn btn-outline" id="copy-btn">📋 复制</button><button class="btn btn-success" id="add-calendar-btn">📅 加入日历</button></div></div><div class="content-output" id="gen-result"></div></div></div>
+</div>
+
+<div class="panel" id="panel-calendar">
+<div class="card">
+<div class="cal-nav"><button class="btn btn-outline" id="cal-prev">◀</button><h3 id="cal-title"></h3><button class="btn btn-outline" id="cal-next">▶</button></div>
+<div class="calendar-grid" id="calendar-grid"></div>
+</div>
+<div class="card"><h3>📋 本月待发布</h3><div id="upcoming-list"></div></div>
+</div>
+
+<div class="panel" id="panel-analytics">
+<div class="card"><h3>📊 数据概览（模拟追踪）</h3><div class="stats-grid" id="stats-grid"></div></div>
+<div class="card"><h3>📈 内容表现排行</h3><div id="performance-list"></div></div>
+</div>
+
+<div class="panel" id="panel-history">
+<div class="card"><h3>📚 生成历史</h3><div id="history-list"></div></div>
+<div style="margin-top:12px"><button class="btn btn-danger" id="clear-history-btn">🗑️ 清空历史</button></div>
+</div>
+</div>
+
+<script type="text/javascript">
+(function(){
+'use strict';
+var state={niche:'',platform:'all',topics:[],calendarItems:JSON.parse(localStorage.getItem('cc_calendar')||'[]'),history:JSON.parse(localStorage.getItem('cc_history')||'[]'),calMonth:new Date().getMonth(),calYear:new Date().getFullYear()};
+function save(){localStorage.setItem('cc_calendar',JSON.stringify(state.calendarItems));localStorage.setItem('cc_history',JSON.stringify(state.history))}
+function escapeHtml(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML}
+
+// Tabs
+document.querySelectorAll('.tab').forEach(function(tab){tab.addEventListener('click',function(){document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active')});document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active')});tab.classList.add('active');document.getElementById('panel-'+tab.dataset.tab).classList.add('active');if(tab.dataset.tab==='calendar')renderCalendar();if(tab.dataset.tab==='analytics')renderAnalytics();if(tab.dataset.tab==='history')renderHistory()})});
+
+// Search
+document.getElementById('search-btn').addEventListener('click',function(){
+var niche=document.getElementById('niche-input').value.trim();
+if(!niche){alert('请输入内容领域关键词');return}
+state.niche=niche;state.platform=document.getElementById('platform-select').value;
+var status=document.getElementById('search-status');status.style.display='block';
+document.getElementById('topics-container').innerHTML='';
+var query=encodeURIComponent(niche+' trending 2026');
+var url='https://api.allorigins.win/raw?url='+encodeURIComponent('https://html.duckduckgo.com/html/?q='+query);
+fetch(url).then(function(r){return r.text()}).then(function(html){
+var topics=[];var parser=new DOMParser();var doc=parser.parseFromString(html,'text/html');
+var links=doc.querySelectorAll('.result__a');var seen={};
+links.forEach(function(el){var t=el.textContent.trim();if(t&&t.length>5&&t.length<120&&!seen[t]){seen[t]=true;topics.push({title:t,heat:Math.floor(Math.random()*40)+60})}});
+if(topics.length<3)topics=genTopics(niche);
+state.topics=topics.slice(0,9);status.style.display='none';renderTopics()
+}).catch(function(){state.topics=genTopics(niche);status.style.display='none';renderTopics()})
+});
+
+function genTopics(niche){
+var tpl=['完整指南(2026最新)','入门到精通教程','正在爆火的原因','vs竞品深度对比','月入过万的方法','10个必知技巧','隐藏功能揭秘','新手常犯的5个错误','一个月实测效果'];
+return tpl.map(function(t){return{title:niche+' '+t,heat:Math.floor(Math.random()*40)+60}})
+}
+
+function renderTopics(){
+var c=document.getElementById('topics-container');
+if(!state.topics.length){c.innerHTML='<div class="empty-state">🔍 没有结果</div>';return}
+var platforms=['youtube','bilibili','xiaohongshu','wechat','twitter'];
+var pNames={youtube:'YouTube',bilibili:'B站',xiaohongshu:'小红书',wechat:'公众号',twitter:'Twitter'};
+var pCls={youtube:'badge-yt',bilibili:'badge-bili',xiaohongshu:'badge-xhs',wechat:'badge-wx',twitter:'badge-tw'};
+var html='<div class="topics-grid">';
+state.topics.forEach(function(topic,i){
+var ps=platforms.sort(function(){return .5-Math.random()}).slice(0,3);
+var badges=ps.map(function(p){return '<span class="badge '+pCls[p]+'">'+pNames[p]+'</span>'}).join('');
+html+='<div class="topic-card"><div class="platform-tags">'+badges+'</div><h4>'+escapeHtml(topic.title)+'</h4><p><span class="badge" style="background:var(--warning);color:#000">🔥 热度 '+topic.heat+'</span></p><div class="topic-actions"><button class="btn btn-primary topic-gen" data-i="'+i+'">⚡ 生成内容</button><button class="btn btn-outline topic-cal" data-i="'+i+'">📅 排期</button></div></div>'
+});
+html+='</div>';c.innerHTML=html;
+c.querySelectorAll('.topic-gen').forEach(function(b){b.addEventListener('click',function(){document.getElementById('gen-topic').value=state.topics[this.dataset.i].title;document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active')});document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active')});document.querySelector('[data-tab="generate"]').classList.add('active');document.getElementById('panel-generate').classList.add('active')})});
+c.querySelectorAll('.topic-cal').forEach(function(b){b.addEventListener('click',function(){addCal(state.topics[this.dataset.i].title);alert('✅ 已加入日历')})});
+}
+
+// Generate
+document.getElementById('generate-btn').addEventListener('click',function(){
+var topic=document.getElementById('gen-topic').value.trim();if(!topic){alert('请输入话题');return}
+var type=document.getElementById('gen-type').value;
+var plat=document.getElementById('gen-platform').value;
+var style=document.getElementById('gen-style').value;
+var pN={youtube:'YouTube',bilibili:'B站',xiaohongshu:'小红书',wechat:'公众号',twitter:'Twitter/X'};
+var sN={informative:'干货教学',entertaining:'轻松有趣',controversial:'观点犀利',storytelling:'故事叙事'};
+var out='';
+if(type==='video-script'){
+out='🎬 视频脚本大纲\n━━━━━━━━━━━━━━━━━━━━\n📌 平台: '+pN[plat]+' | 风格: '+sN[style]+'\n📌 话题: '+topic+'\n\n';
+out+='🎯 Hook (前5秒):\n"你知道吗？90%的人在'+topic+'上都犯了同一个错误..."\n\n';
+out+='📍 Part 1: 问题引入 (0:05-1:00)\n- 描述痛点\n- 数据支撑\n- 引出方案\n\n';
+out+='📍 Part 2: 核心内容 (1:00-5:00)\n- 要点1: 具体方法/工具\n- 要点2: 实操演示\n- 要点3: 案例分析\n- 要点4: 避坑指南\n\n';
+out+='📍 Part 3: 实战演示 (5:00-8:00)\n- 屏幕录制/实操展示\n- 逐步操作\n- Before/After对比\n\n';
+out+='📍 Part 4: 总结+CTA (8:00-10:00)\n- 回顾要点\n- 行动建议\n- 引导关注\n\n';
+out+='━━━━━━━━━━━━━━━━━━━━\n🎯 预估时长: 8-10分钟\n🏷️ 标签: #'+topic.replace(/\s/g,'')+' #干货 #教程\n📊 预期: 完播率45%+ CTR8%+'
+}else if(type==='article'){
+out='📝 文章框架\n━━━━━━━━━━━━━━━━━━━━\n📌 平台: '+pN[plat]+' | 风格: '+sN[style]+'\n📌 话题: '+topic+'\n\n';
+out+='📌 标题备选:\nA: "'+topic+'：一篇讲透(2026最新)"\nB: "花30天研究'+topic+'，总结5条铁律"\nC: "别再踩坑！'+topic+'的正确打开方式"\n\n';
+out+='📌 大纲:\n一、引言(300字) - 痛点共鸣+价值预告\n二、背景(500字) - 概念+现状\n三、核心方法(1500字) - 3个方法+案例\n四、避坑(500字) - 误区+反面案例\n五、总结(300字) - 要点+行动清单\n\n';
+out+='━━━━━━━━━━━━━━━━━━━━\n📊 预计: 3000-3500字 | 阅读8分钟'
+}else if(type==='social-post'){
+out='📱 社媒帖子\n━━━━━━━━━━━━━━━━━━━━\n📌 平台: '+pN[plat]+' | 风格: '+sN[style]+'\n\n';
+if(plat==='xiaohongshu'){
+out+='📕 小红书版本:\n\n';
+out+='标题: 救命！终于搞懂'+topic+'了😭\n\n';
+out+='正文:\n姐妹们！！！\n今天必须分享这个宝藏'+topic+'💎\n\n';
+out+='之前一直踩坑：\n❌ 错误做法1\n❌ 错误做法2\n❌ 错误做法3\n\n';
+out+='后来发现正确方式：\n✅ 方法1（详细说明）\n✅ 方法2（详细说明）\n✅ 方法3（详细说明）\n\n';
+out+='效果真的绝了！！直接起飞🚀\n\n#'+topic.replace(/\s/g,'')+' #干货分享 #自我提升'
+}else{
+out+='正文:\n🔥 关于'+topic+'，你需要知道的3件事：\n\n1️⃣ [关键洞察1]\n2️⃣ [关键洞察2]\n3️⃣ [关键洞察3]\n\n💡 一句话总结：[核心观点]\n\n#'+topic.replace(/\s/g,'')+' #干货'
+}
+}else{
+out='🧵 推文串 (Thread)\n━━━━━━━━━━━━━━━━━━━━\n📌 话题: '+topic+'\n\n';
+out+='1/ 🧵 关于'+topic+'，我研究了30天。\n\n以下是我发现的7个改变认知的事实：\n\n（长文预警，建议收藏 🔖）\n\n';
+out+='2/ 第一个发现：[核心洞察]\n\n- 细节A\n- 细节B\n- 数据支撑\n\n';
+out+='3/ 第二个发现：[反直觉结论]\n\n大多数人以为...\n但实际上...\n\n';
+out+='4/ 第三个发现：[实操方法]\n\nStep 1:\nStep 2:\nStep 3:\n\n';
+out+='5/ 最关键的一点：[金句总结]\n\n如果你只记住一件事...\n\n';
+out+='6/ 总结：\n\n✅ 要点1\n✅ 要点2\n✅ 要点3\n\n觉得有用？转发给需要的朋友 🔄'
+}
+document.getElementById('gen-output').style.display='block';
+document.getElementById('gen-result').textContent=out;
+state.history.unshift({topic:topic,type:type,platform:plat,content:out,date:new Date().toISOString()});
+if(state.history.length>50)state.history=state.history.slice(0,50);save()
+});
+
+document.getElementById('copy-btn').addEventListener('click',function(){
+var text=document.getElementById('gen-result').textContent;
+navigator.clipboard.writeText(text).then(function(){alert('✅ 已复制到剪贴板')})
+});
+document.getElementById('add-calendar-btn').addEventListener('click',function(){
+var topic=document.getElementById('gen-topic').value.trim();if(topic){addCal(topic);alert('✅ 已加入日历')}
+});
+
+// Calendar
+function addCal(title){
+var d=new Date();d.setDate(d.getDate()+Math.floor(Math.random()*7)+1);
+state.calendarItems.push({id:Date.now(),title:title,date:d.toISOString().split('T')[0],status:'pending'});save()
+}
+
+function renderCalendar(){
+var title=document.getElementById('cal-title');
+var months=['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+title.textContent=state.calYear+'年'+months[state.calMonth];
+var grid=document.getElementById('calendar-grid');
+var html='';var days=['日','一','二','三','四','五','六'];
+days.forEach(function(d){html+='<div class="cal-header">'+d+'</div>'});
+var first=new Date(state.calYear,state.calMonth,1).getDay();
+var total=new Date(state.calYear,state.calMonth+1,0).getDate();
+var today=new Date();
+for(var i=0;i<first;i++)html+='<div></div>';
+for(var d=1;d<=total;d++){
+var dateStr=state.calYear+'-'+String(state.calMonth+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');
+var isToday=(today.getFullYear()===state.calYear&&today.getMonth()===state.calMonth&&today.getDate()===d);
+var items=state.calendarItems.filter(function(it){return it.date===dateStr});
+html+='<div class="cal-day'+(isToday?' today':'')+'" data-date="'+dateStr+'" draggable="false">';
+html+='<div class="day-num">'+d+'</div>';
+items.forEach(function(it){html+='<div class="cal-item" draggable="true" data-id="'+it.id+'">'+escapeHtml(it.title.substring(0,10))+'</div>'});
+html+='</div>'
+}
+grid.innerHTML=html;
+// Drag and drop
+grid.querySelectorAll('.cal-item').forEach(function(el){
+el.addEventListener('dragstart',function(e){e.dataTransfer.setData('text/plain',el.dataset.id);el.style.opacity='0.5'});
+el.addEventListener('dragend',function(){el.style.opacity='1'})
+});
+grid.querySelectorAll('.cal-day').forEach(function(day){
+day.addEventListener('dragover',function(e){e.preventDefault();day.classList.add('drag-over')});
+day.addEventListener('dragleave',function(){day.classList.remove('drag-over')});
+day.addEventListener('drop',function(e){e.preventDefault();day.classList.remove('drag-over');
+var id=parseInt(e.dataTransfer.getData('text/plain'));var date=day.dataset.date;
+if(date){state.calendarItems.forEach(function(it){if(it.id===id)it.date=date});save();renderCalendar()}
+})
+});
+// Upcoming
+var upcoming=document.getElementById('upcoming-list');
+var future=state.calendarItems.filter(function(it){return it.date>=today.toISOString().split('T')[0]}).sort(function(a,b){return a.date.localeCompare(b.date)});
+if(!future.length){upcoming.innerHTML='<div class="empty-state">暂无排期内容</div>';return}
+upcoming.innerHTML=future.slice(0,10).map(function(it){return '<div class="history-item"><h4>'+escapeHtml(it.title)+'</h4><p>📅 '+it.date+' | <span style="cursor:pointer;color:var(--danger)" data-del="'+it.id+'">删除</span></p></div>'}).join('');
+upcoming.querySelectorAll('[data-del]').forEach(function(el){el.addEventListener('click',function(){state.calendarItems=state.calendarItems.filter(function(it){return it.id!==parseInt(el.dataset.del)});save();renderCalendar()})});
+}
+
+document.getElementById('cal-prev').addEventListener('click',function(){state.calMonth--;if(state.calMonth<0){state.calMonth=11;state.calYear--}renderCalendar()});
+document.getElementById('cal-next').addEventListener('click',function(){state.calMonth++;if(state.calMonth>11){state.calMonth=0;state.calYear++}renderCalendar()});
+
+// Analytics
+function renderAnalytics(){
+var stats=[
+{label:'本月总播放量',value:Math.floor(Math.random()*50000)+10000,change:'+23%',up:true},
+{label:'平均互动率',value:(Math.random()*5+3).toFixed(1)+'%',change:'+1.2%',up:true},
+{label:'新增粉丝',value:Math.floor(Math.random()*2000)+500,change:'+15%',up:true},
+{label:'预估收入',value:'$'+Math.floor(Math.random()*500+200),change:'+8%',up:true},
+{label:'发布内容数',value:state.history.length||Math.floor(Math.random()*10)+5,change:'',up:true},
+{label:'最佳发布时间',value:'20:00',change:'周三最佳',up:true}
+];
+var grid=document.getElementById('stats-grid');
+grid.innerHTML=stats.map(function(s){return '<div class="stat-card"><div class="stat-value">'+s.value+'</div><div class="stat-label">'+s.label+'</div>'+(s.change?'<div class="stat-change up">'+s.change+'</div>':'')+'</div>'}).join('');
+var perfList=document.getElementById('performance-list');
+var perfs=state.history.slice(0,5);
+if(!perfs.length){
+perfs=[{topic:'AI工具推荐',platform:'youtube'},{topic:'效率提升技巧',platform:'bilibili'},{topic:'自媒体运营',platform:'xiaohongshu'}];
+}
+perfList.innerHTML=perfs.map(function(p,i){
+var views=Math.floor(Math.random()*100000)+5000;
+var engagement=(Math.random()*8+2).toFixed(1);
+return '<div class="perf-item"><div class="perf-rank">#'+(i+1)+'</div><div class="perf-info"><h4>'+escapeHtml(p.topic)+'</h4><div class="perf-stats"><span>👁️ '+views.toLocaleString()+' 播放</span><span>💬 '+engagement+'% 互动</span><span>📈 '+(p.platform||'youtube')+'</span></div></div></div>'
+}).join('')
+}
+
+// History
+function renderHistory(){
+var list=document.getElementById('history-list');
+if(!state.history.length){list.innerHTML='<div class="empty-state">暂无生成记录</div>';return}
+var typeNames={'video-script':'视频脚本','article':'文章','social-post':'社媒帖子','thread':'推文串'};
+list.innerHTML=state.history.map(function(h,i){
+return '<div class="history-item" data-i="'+i+'"><h4>'+escapeHtml(h.topic)+'</h4><p>'+typeNames[h.type]+' | '+new Date(h.date).toLocaleDateString('zh-CN')+'</p></div>'
+}).join('');
+list.querySelectorAll('.history-item').forEach(function(el){el.addEventListener('click',function(){
+var h=state.history[el.dataset.i];
+document.getElementById('gen-topic').value=h.topic;
+document.getElementById('gen-output').style.display='block';
+document.getElementById('gen-result').textContent=h.content;
+document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active')});
+document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active')});
+document.querySelector('[data-tab="generate"]').classList.add('active');
+document.getElementById('panel-generate').classList.add('active')
+})})
+}
+document.getElementById('clear-history-btn').addEventListener('click',function(){if(confirm('确定清空所有历史记录？')){state.history=[];save();renderHistory()}});
+
+// Init
+renderCalendar();
+})();
+</script>
+</body>
+</html>

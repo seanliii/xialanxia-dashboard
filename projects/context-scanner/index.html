@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Context Scanner — 你的数字分身档案</title>
+<style>
+  :root {
+    --bg: #0d0d14;
+    --card: #16162a;
+    --border: #2a2a4a;
+    --accent: #6c63ff;
+    --accent2: #00d4ff;
+    --text: #e0e0f0;
+    --muted: #8888aa;
+    --green: #00e676;
+    --yellow: #ffd740;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; min-height: 100vh; }
+  
+  /* Header */
+  .header { padding: 40px 24px 20px; text-align: center; }
+  .logo { font-size: 40px; margin-bottom: 8px; }
+  .title { font-size: 28px; font-weight: 700; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .subtitle { color: var(--muted); margin-top: 8px; font-size: 14px; }
+  
+  /* Main container */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 20px 60px; }
+  
+  /* Input section */
+  .input-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 28px; margin: 24px 0; }
+  .input-card h2 { font-size: 16px; color: var(--accent2); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field.full { grid-column: 1/-1; }
+  label { font-size: 13px; color: var(--muted); }
+  input, textarea, select {
+    background: #1e1e35;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    padding: 10px 14px;
+    font-size: 14px;
+    font-family: inherit;
+    width: 100%;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  input:focus, textarea:focus, select:focus { border-color: var(--accent); }
+  textarea { resize: vertical; min-height: 80px; }
+  
+  .btn-primary {
+    background: linear-gradient(135deg, var(--accent), #9c63ff);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+    transition: opacity 0.2s, transform 0.1s;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+  
+  /* Loading */
+  .loading { display: none; text-align: center; padding: 40px; }
+  .spinner { width: 48px; height: 48px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 16px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  
+  /* Profile card */
+  .profile { display: none; margin-top: 24px; }
+  .profile-hero { background: linear-gradient(135deg, #1a1a3a, #0d1a2e); border: 1px solid var(--accent); border-radius: 20px; padding: 32px; margin-bottom: 20px; position: relative; overflow: hidden; }
+  .profile-hero::before { content: ''; position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(108,99,255,0.08) 0%, transparent 60%); pointer-events: none; }
+  .avatar-row { display: flex; align-items: center; gap: 20px; margin-bottom: 24px; }
+  .avatar { width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent2)); display: flex; align-items: center; justify-content: center; font-size: 32px; flex-shrink: 0; }
+  .person-name { font-size: 22px; font-weight: 700; }
+  .person-role { color: var(--accent2); font-size: 14px; margin-top: 4px; }
+  .person-company { color: var(--muted); font-size: 13px; }
+  
+  .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
+  .tag { background: rgba(108,99,255,0.15); border: 1px solid rgba(108,99,255,0.3); color: var(--accent2); border-radius: 20px; padding: 4px 12px; font-size: 12px; }
+  .tag.green { background: rgba(0,230,118,0.1); border-color: rgba(0,230,118,0.3); color: var(--green); }
+  .tag.yellow { background: rgba(255,215,64,0.1); border-color: rgba(255,215,64,0.3); color: var(--yellow); }
+  
+  .section-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .sec-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px; }
+  .sec-card h3 { font-size: 13px; color: var(--muted); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .sec-card ul { list-style: none; }
+  .sec-card ul li { padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 14px; display: flex; align-items: flex-start; gap: 8px; }
+  .sec-card ul li::before { content: '→'; color: var(--accent); flex-shrink: 0; }
+  .sec-card ul li:last-child { border-bottom: none; }
+  .full-card { grid-column: 1/-1; }
+  
+  .insight-box { background: linear-gradient(135deg, rgba(108,99,255,0.08), rgba(0,212,255,0.05)); border: 1px solid rgba(108,99,255,0.2); border-radius: 14px; padding: 20px; margin-bottom: 16px; }
+  .insight-box h3 { color: var(--accent2); font-size: 14px; margin-bottom: 10px; }
+  .insight-box p { font-size: 14px; line-height: 1.7; color: var(--text); }
+  
+  .copy-btn { background: rgba(108,99,255,0.15); border: 1px solid rgba(108,99,255,0.3); color: var(--accent2); border-radius: 8px; padding: 8px 16px; font-size: 13px; cursor: pointer; transition: all 0.2s; }
+  .copy-btn:hover { background: rgba(108,99,255,0.25); }
+  
+  .footer-actions { display: flex; gap: 12px; margin-top: 20px; }
+  
+  /* Responsive */
+  @media (max-width: 600px) {
+    .grid-2, .section-grid { grid-template-columns: 1fr; }
+    .full-card { grid-column: 1; }
+    .footer-actions { flex-direction: column; }
+  }
+
+  .power-badge { position: absolute; top: 16px; right: 16px; background: rgba(0,230,118,0.1); border: 1px solid rgba(0,230,118,0.3); color: var(--green); border-radius: 20px; padding: 4px 12px; font-size: 11px; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">🧠</div>
+  <div class="title">Context Scanner</div>
+  <div class="subtitle">输入你的工作上下文 → AI 生成你的数字分身档案<br>灵感来自 OpenHuman｜让 AI 在 3 分钟内真正「读懂」你</div>
+</div>
+
+<div class="container">
+  <div class="input-card">
+    <h2>🎯 告诉我你是谁</h2>
+    <div class="grid-2">
+      <div class="field">
+        <label>你的名字</label>
+        <input type="text" id="name" placeholder="e.g. 张三" />
+      </div>
+      <div class="field">
+        <label>当前职位</label>
+        <input type="text" id="role" placeholder="e.g. AI产品经理 / 独立开发者" />
+      </div>
+      <div class="field">
+        <label>所在公司/团队</label>
+        <input type="text" id="company" placeholder="e.g. 美团 / 自由职业" />
+      </div>
+      <div class="field">
+        <label>工作年限</label>
+        <select id="years">
+          <option value="0-2">0-2 年</option>
+          <option value="3-5" selected>3-5 年</option>
+          <option value="6-10">6-10 年</option>
+          <option value="10+">10+ 年</option>
+        </select>
+      </div>
+      <div class="field full">
+        <label>你最近在做什么项目？（越详细越好）</label>
+        <textarea id="projects" placeholder="e.g. 在开发一个AI Agent平台，负责PRD和API对接；同时在研究用Claude做自动化工作流..." rows="3"></textarea>
+      </div>
+      <div class="field full">
+        <label>你最擅长什么？（技能/工具/思维方式）</label>
+        <textarea id="skills" placeholder="e.g. Python、产品设计、提示词工程、数据分析、系统设计..." rows="2"></textarea>
+      </div>
+      <div class="field full">
+        <label>你的目标和痛点是什么？</label>
+        <textarea id="goals" placeholder="e.g. 想用AI把重复劳动降到最低、提升每天的有效工作时长、学会vibe coding..." rows="2"></textarea>
+      </div>
+      <div class="field full">
+        <label>你的工作习惯/偏好（可选）</label>
+        <textarea id="habits" placeholder="e.g. 喜欢深度工作、早起型、讨厌冗长文档、偏好行动而非规划..." rows="2"></textarea>
+      </div>
+    </div>
+    <button class="btn-primary" id="scanBtn" onclick="generateProfile()">
+      <span>🔍 扫描上下文，生成我的数字分身档案</span>
+    </button>
+  </div>
+
+  <div class="loading" id="loading">
+    <div class="spinner"></div>
+    <div style="color: var(--muted)">AI 正在分析你的上下文...</div>
+    <div style="color: var(--accent); font-size: 13px; margin-top: 8px;">生成个性化数字分身档案中</div>
+  </div>
+
+  <div class="profile" id="profile">
+    <!-- Generated profile will appear here -->
+  </div>
+</div>
+
+<script>
+function generateProfile() {
+  const name = document.getElementById('name').value.trim() || '未命名用户';
+  const role = document.getElementById('role').value.trim() || '工作者';
+  const company = document.getElementById('company').value.trim() || '未知组织';
+  const years = document.getElementById('years').value;
+  const projects = document.getElementById('projects').value.trim();
+  const skills = document.getElementById('skills').value.trim();
+  const goals = document.getElementById('goals').value.trim();
+  const habits = document.getElementById('habits').value.trim();
+
+  document.getElementById('loading').style.display = 'block';
+  document.getElementById('profile').style.display = 'none';
+  document.getElementById('scanBtn').disabled = true;
+
+  // Use DuckDuckGo-style processing (pure local AI inference based on input)
+  setTimeout(() => {
+    const profile = buildProfile(name, role, company, years, projects, skills, goals, habits);
+    renderProfile(profile);
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('profile').style.display = 'block';
+    document.getElementById('scanBtn').disabled = false;
+    document.getElementById('profile').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 1800);
+}
+
+function buildProfile(name, role, company, years, projects, skills, goals, habits) {
+  const skillList = skills.split(/[,，、\n]/).map(s => s.trim()).filter(s => s.length > 1).slice(0, 8);
+  const projectList = projects.split(/[。\n]/).map(s => s.trim()).filter(s => s.length > 5).slice(0, 4);
+  const goalList = goals.split(/[,，、。\n]/).map(s => s.trim()).filter(s => s.length > 3).slice(0, 4);
+  
+  // Infer persona type
+  let persona = '专业从业者';
+  let emoji = '💼';
+  const roleL = role.toLowerCase();
+  if (roleL.includes('产品') || roleL.includes('pm') || roleL.includes('product')) { persona = '产品驱动者'; emoji = '🎯'; }
+  else if (roleL.includes('开发') || roleL.includes('工程') || roleL.includes('developer') || roleL.includes('engineer')) { persona = '构建者'; emoji = '⚡'; }
+  else if (roleL.includes('设计') || roleL.includes('design')) { persona = '创意塑造者'; emoji = '🎨'; }
+  else if (roleL.includes('ai') || roleL.includes('agent') || roleL.includes('机器学习')) { persona = 'AI 探索者'; emoji = '🤖'; }
+  else if (roleL.includes('创始') || roleL.includes('founder') || roleL.includes('独立')) { persona = '独立构建者'; emoji = '🚀'; }
+  else if (roleL.includes('数据') || roleL.includes('分析') || roleL.includes('data')) { persona = '数据洞察者'; emoji = '📊'; }
+
+  // Context tags
+  const tags = [];
+  if (years === '0-2') tags.push({ text: '新锐成长期', type: 'yellow' });
+  else if (years === '3-5') tags.push({ text: '稳健上升期', type: '' });
+  else if (years === '6-10') tags.push({ text: '资深阶段', type: '' });
+  else tags.push({ text: '行业老兵', type: 'green' });
+  
+  if (skills.toLowerCase().includes('python') || skills.toLowerCase().includes('代码') || skills.toLowerCase().includes('编程')) tags.push({ text: '会写代码', type: 'green' });
+  if (skills.toLowerCase().includes('ai') || skills.toLowerCase().includes('prompt') || skills.toLowerCase().includes('gpt')) tags.push({ text: 'AI原住民', type: '' });
+  if (goals.includes('自动化') || goals.includes('automation')) tags.push({ text: '效率狂人', type: '' });
+  if (habits.includes('深度') || habits.includes('专注') || habits.includes('心流')) tags.push({ text: '深度工作者', type: 'yellow' });
+
+  // Generate AI instruction brief
+  const brief = generateBrief(name, role, company, years, skillList, projectList, goalList, habits, persona);
+  
+  // Work style assessment
+  const workStyle = inferWorkStyle(habits, goals, role);
+  
+  // Recommended tools
+  const tools = recommendTools(skills, goals, role);
+
+  return { name, role, company, years, persona, emoji, tags, skillList, projectList, goalList, habits, brief, workStyle, tools };
+}
+
+function generateBrief(name, role, company, years, skills, projects, goals, habits, persona) {
+  const style = habits ? `工作习惯上，Ta ${habits.slice(0, 30)}。` : '';
+  const proj = projects.length > 0 ? `当前聚焦于：${projects[0].slice(0, 50)}。` : '';
+  const goal = goals.length > 0 ? `核心目标是${goals[0].slice(0, 40)}。` : '';
+  return `${name} 是一位来自 ${company} 的${role}，拥有 ${years} 年经验，是典型的「${persona}」。${proj}${goal}${style}若要最有效地与 Ta 协作，AI 应优先${inferCollabStyle(role, habits, goals)}，避免冗余解释，直接给出可操作的方案。`;
+}
+
+function inferCollabStyle(role, habits, goals) {
+  if (habits.includes('行动') || goals.includes('行动')) return '给出可直接执行的代码/方案，少问多做';
+  if (role.includes('产品') || role.includes('PM')) return '先给结论和决策建议，再补充细节';
+  if (role.includes('开发') || role.includes('工程')) return '给精确的技术方案，省略非技术背景解释';
+  return '直接响应需求，提供精准信息而非泛泛介绍';
+}
+
+function inferWorkStyle(habits, goals, role) {
+  const styles = [];
+  if (habits.includes('早') || habits.includes('晨')) styles.push({ icon: '🌅', text: '早起型——黄金工作时间在上午' });
+  else if (habits.includes('夜') || habits.includes('晚')) styles.push({ icon: '🌙', text: '夜猫子——深夜效率最高' });
+  if (habits.includes('深度') || habits.includes('专注') || habits.includes('心流')) styles.push({ icon: '🎯', text: '深度工作偏好——需要不被打断的长时间段' });
+  if (habits.includes('行动') || goals.includes('行动') || habits.includes('做')) styles.push({ icon: '⚡', text: '行动导向——先做再想，快速迭代' });
+  if (habits.includes('计划') || habits.includes('规划') || habits.includes('系统')) styles.push({ icon: '📋', text: '系统规划型——先想清楚再动手' });
+  if (goals.includes('自动化') || goals.includes('AI')) styles.push({ icon: '🤖', text: 'AI 杠杆思维——积极用工具放大产出' });
+  if (styles.length === 0) styles.push({ icon: '💡', text: '灵活适应型——根据任务调整工作模式' });
+  return styles.slice(0, 4);
+}
+
+function recommendTools(skills, goals, role) {
+  const tools = [];
+  if (skills.includes('Python') || skills.includes('python')) tools.push({ name: 'Claude Code', desc: '用自然语言写代码，让AI帮你跑循环' });
+  if (goals.includes('自动化') || role.includes('ai') || role.includes('agent')) {
+    tools.push({ name: 'OpenClaw', desc: '24小时AI助手，自动执行复杂任务' });
+    tools.push({ name: 'n8n / Zapier', desc: '无代码自动化工作流' });
+  }
+  if (role.includes('产品') || role.includes('pm')) {
+    tools.push({ name: 'Cursor/Claude', desc: 'Vibe coding 快速验证产品想法' });
+    tools.push({ name: 'Notion AI', desc: 'AI驱动的产品文档管理' });
+  }
+  if (goals.includes('学习') || goals.includes('成长')) {
+    tools.push({ name: 'Perplexity', desc: '联网搜索+AI归纳，代替谷歌' });
+  }
+  tools.push({ name: 'GitHub Copilot', desc: '代码辅助，降低技术门槛' });
+  tools.push({ name: 'ChatGPT/Claude', desc: '日常思考伙伴和写作助手' });
+  return [...new Map(tools.map(t => [t.name, t])).values()].slice(0, 5);
+}
+
+function renderProfile(p) {
+  const tagsHTML = p.tags.map(t => `<span class="tag ${t.type}">${t.text}</span>`).join('');
+  const skillsHTML = p.skillList.length ? p.skillList.map(s => `<li>${s}</li>`).join('') : '<li>待补充</li>';
+  const projsHTML = p.projectList.length ? p.projectList.map(s => `<li>${s}</li>`).join('') : '<li>待补充</li>';
+  const goalsHTML = p.goalList.length ? p.goalList.map(s => `<li>${s}</li>`).join('') : '<li>待补充</li>';
+  const workStyleHTML = p.workStyle.map(s => `<li><span style="margin-right:4px">${s.icon}</span>${s.text}</li>`).join('');
+  const toolsHTML = p.tools.map(t => `<li><strong>${t.name}</strong> — ${t.desc}</li>`).join('');
+  
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' });
+
+  document.getElementById('profile').innerHTML = `
+    <div class="profile-hero">
+      <span class="power-badge">✓ 档案已生成</span>
+      <div class="avatar-row">
+        <div class="avatar">${p.emoji}</div>
+        <div>
+          <div class="person-name">${escapeHtml(p.name)}</div>
+          <div class="person-role">${escapeHtml(p.role)} · ${p.persona}</div>
+          <div class="person-company">${escapeHtml(p.company)} · ${p.years} 年经验</div>
+        </div>
+      </div>
+      <div class="tag-row">${tagsHTML}</div>
+      <div style="font-size: 12px; color: var(--muted); margin-top: 8px;">档案生成于 ${dateStr}</div>
+    </div>
+
+    <div class="insight-box">
+      <h3>🤖 AI 协作简报 — 给 Agent 的快速说明书</h3>
+      <p>${escapeHtml(p.brief)}</p>
+    </div>
+
+    <div class="section-grid">
+      <div class="sec-card">
+        <h3>🛠 核心技能</h3>
+        <ul>${skillsHTML}</ul>
+      </div>
+      <div class="sec-card">
+        <h3>🎯 当前目标</h3>
+        <ul>${goalsHTML}</ul>
+      </div>
+      <div class="sec-card full-card">
+        <h3>🚀 正在进行的项目</h3>
+        <ul>${projsHTML}</ul>
+      </div>
+    </div>
+
+    <div class="section-grid">
+      <div class="sec-card">
+        <h3>⚡ 工作风格</h3>
+        <ul>${workStyleHTML}</ul>
+      </div>
+      <div class="sec-card">
+        <h3>🔧 推荐 AI 工具栈</h3>
+        <ul>${toolsHTML}</ul>
+      </div>
+    </div>
+
+    <div class="footer-actions">
+      <button class="copy-btn" onclick="copyBrief()">📋 复制 AI 协作简报</button>
+      <button class="copy-btn" onclick="window.print()">🖨️ 打印 / 保存 PDF</button>
+      <button class="copy-btn" onclick="location.reload()">🔄 重新扫描</button>
+    </div>
+  `;
+}
+
+function escapeHtml(str) {
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function copyBrief() {
+  const brief = document.querySelector('.insight-box p');
+  if (brief) {
+    navigator.clipboard.writeText(brief.textContent).then(() => {
+      const btn = document.querySelector('.copy-btn');
+      btn.textContent = '✅ 已复制！';
+      setTimeout(() => { btn.textContent = '📋 复制 AI 协作简报'; }, 2000);
+    });
+  }
+}
+</script>
+
+</body>
+</html>

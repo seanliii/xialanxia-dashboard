@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenClaw Skill Generator</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #0d1117;
+  color: #c9d1d9;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+}
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+}
+header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+header h1 {
+  font-size: 2rem;
+  color: #58a6ff;
+  margin-bottom: 0.5rem;
+}
+header h1 span { color: #f78166; }
+header p {
+  color: #8b949e;
+  font-size: 0.95rem;
+}
+.form-section {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+}
+.form-group {
+  margin-bottom: 1.5rem;
+}
+.form-group:last-child { margin-bottom: 0; }
+label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #8b949e;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
+}
+input, textarea {
+  width: 100%;
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  color: #c9d1d9;
+  font-size: 0.95rem;
+  transition: border-color 0.2s;
+}
+input:focus, textarea:focus {
+  outline: none;
+  border-color: #58a6ff;
+}
+textarea { resize: vertical; min-height: 80px; font-family: inherit; }
+.hint {
+  font-size: 0.8rem;
+  color: #6e7681;
+  margin-top: 0.3rem;
+}
+.btn-generate {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(135deg, #238636, #2ea043);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-generate:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(46,160,67,0.3); }
+.btn-generate:disabled {
+  background: #21262d;
+  color: #484f58;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+.output-section {
+  display: none;
+  margin-top: 2rem;
+}
+.output-section.visible { display: block; }
+.output-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+.output-header h3 {
+  color: #58a6ff;
+  font-size: 1rem;
+}
+.btn-copy {
+  padding: 0.4rem 1rem;
+  background: #21262d;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  color: #c9d1d9;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-copy:hover { background: #30363d; border-color: #58a6ff; }
+.btn-copy.copied { background: #238636; border-color: #238636; color: #fff; }
+.output-content {
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 10px;
+  padding: 1.5rem;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 600px;
+  overflow-y: auto;
+}
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 2rem;
+  color: #8b949e;
+}
+.spinner {
+  width: 20px; height: 20px;
+  border: 2px solid #30363d;
+  border-top-color: #58a6ff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.error-msg {
+  background: #3d1f1f;
+  border: 1px solid #f85149;
+  border-radius: 8px;
+  padding: 1rem;
+  color: #f85149;
+  margin-top: 1rem;
+}
+footer {
+  text-align: center;
+  margin-top: 3rem;
+  color: #484f58;
+  font-size: 0.8rem;
+}
+footer a { color: #58a6ff; text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>🦐 OpenClaw <span>Skill Generator</span></h1>
+    <p>AI 驱动的 Skill 模板生成器 — 输入需求，一键生成专业的 SKILL.md 和目录结构</p>
+  </header>
+
+  <div class="form-section">
+    <div class="form-group">
+      <label>Skill 名称</label>
+      <input type="text" id="skillName" placeholder="例如：weather-notify, stock-tracker, daily-digest">
+      <p class="hint">使用小写字母 + 连字符命名</p>
+    </div>
+    <div class="form-group">
+      <label>功能描述</label>
+      <textarea id="skillDesc" placeholder="详细描述这个 Skill 要做什么。例如：每天早上8点查询指定城市天气，如果有雨则通过大象推送提醒带伞。"></textarea>
+      <p class="hint">描述越详细，生成的模板质量越高</p>
+    </div>
+    <div class="form-group">
+      <label>触发词 / 触发条件</label>
+      <input type="text" id="skillTriggers" placeholder="例如：天气提醒、查天气、下雨提醒、weather alert">
+      <p class="hint">多个触发词用逗号分隔；也可以描述触发条件（如定时、事件驱动）</p>
+    </div>
+    <div class="form-group">
+      <label>所需工具 / 命令 / API</label>
+      <textarea id="skillTools" placeholder="例如：curl 调用天气API、message 工具推送消息、cron 定时任务"></textarea>
+      <p class="hint">列出实现这个 Skill 需要用到的工具、命令或外部服务</p>
+    </div>
+  </div>
+
+  <button class="btn-generate" id="btnGenerate" onclick="generateSkill()">⚡ 生成 Skill 模板</button>
+
+  <div class="output-section" id="outputSection">
+    <div class="output-header">
+      <h3>📄 SKILL.md</h3>
+      <button class="btn-copy" id="btnCopySkill" onclick="copyContent('skillOutput', 'btnCopySkill')">复制</button>
+    </div>
+    <div class="output-content" id="skillOutput"></div>
+
+    <div class="output-header" style="margin-top:1.5rem;">
+      <h3>📁 目录结构</h3>
+      <button class="btn-copy" id="btnCopyStruct" onclick="copyContent('structOutput', 'btnCopyStruct')">复制</button>
+    </div>
+    <div class="output-content" id="structOutput"></div>
+  </div>
+
+  <div class="error-msg" id="errorMsg" style="display:none;"></div>
+
+  <footer>
+    <p>Powered by <a href="https://github.com/seanliii" target="_blank">小蓝虾</a> &amp; AISA API | OpenClaw Skill 标准格式</p>
+  </footer>
+</div>
+
+<script>
+const API_URL = 'https://api.aisa.one/v1/chat/completions';
+const API_KEY = 'sk-d2n3PIPWBOc3VTgqHuqvtmTaSZ5JtolHBnUAaUrAZgTjst41';
+const MODEL = 'gpt-4.1-mini';
+
+const SYSTEM_PROMPT = `你是一个专业的 OpenClaw Skill 模板生成器。根据用户提供的需求，生成高质量的 SKILL.md 文件内容和对应的目录结构。
+
+## SKILL.md 标准格式要求：
+
+1. **Frontmatter 区域**：包含 name、description、location、triggers
+2. **概述**：一句话说明 Skill 功能
+3. **触发条件**：列出所有触发词和触发场景
+4. **前置条件**：需要的环境、配置、API Key 等
+5. **执行步骤**：详细的分步骤说明，每步包含具体命令或逻辑
+6. **输出格式**：期望的输出样式
+7. **错误处理**：常见错误和应对方案
+8. **示例**：至少一个完整的使用示例
+
+## 格式规范：
+- 使用 Markdown 格式
+- 命令用代码块包裹
+- 步骤要具体可执行，不能模糊
+- 符合 OpenClaw 生态的最佳实践
+
+请严格按以下 JSON 格式返回（不要包含 markdown 代码块标记）：
+{"skill_md": "完整的 SKILL.md 内容", "directory_structure": "目录结构说明"}`;
+
+async function generateSkill() {
+  const name = document.getElementById('skillName').value.trim();
+  const desc = document.getElementById('skillDesc').value.trim();
+  const triggers = document.getElementById('skillTriggers').value.trim();
+  const tools = document.getElementById('skillTools').value.trim();
+
+  if (!name || !desc) {
+    showError('请至少填写 Skill 名称和功能描述');
+    return;
+  }
+
+  const btn = document.getElementById('btnGenerate');
+  const outputSection = document.getElementById('outputSection');
+  const errorMsg = document.getElementById('errorMsg');
+
+  btn.disabled = true;
+  btn.textContent = '🔄 正在生成...';
+  errorMsg.style.display = 'none';
+  outputSection.classList.remove('visible');
+
+  const userPrompt = `请为以下 Skill 生成完整的 SKILL.md 和目录结构：
+
+- **名称**: ${name}
+- **功能描述**: ${desc}
+- **触发词/条件**: ${triggers || '（用户未指定，请根据功能推断合理的触发词）'}
+- **所需工具/命令**: ${tools || '（用户未指定，请根据功能推断所需工具）'}
+
+请生成专业、完整、可直接使用的模板。`;
+
+  try {
+    const response = await fetch(API_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${API_KEY}`
+      },
+      body: JSON.stringify({
+        model: MODEL,
+        messages: [
+          { role: 'system', content: SYSTEM_PROMPT },
+          { role: 'user', content: userPrompt }
+        ],
+        temperature: 0.7,
+        max_tokens: 4000
+      })
+    });
+
+    if (!response.ok) {
+      const errData = await response.text();
+      throw new Error(`API 错误 (${response.status}): ${errData}`);
+    }
+
+    const data = await response.json();
+    const content = data.choices[0].message.content;
+
+    let parsed;
+    try {
+      // Try to parse as JSON directly
+      parsed = JSON.parse(content);
+    } catch {
+      // Try to extract JSON from possible markdown code block
+      const jsonMatch = content.match(/```(?:json)?\s*([\s\S]*?)```/);
+      if (jsonMatch) {
+        parsed = JSON.parse(jsonMatch[1]);
+      } else {
+        // Last resort: try to find JSON object in the text
+        const braceMatch = content.match(/\{[\s\S]*\}/);
+        if (braceMatch) {
+          parsed = JSON.parse(braceMatch[0]);
+        } else {
+          throw new Error('无法解析 AI 返回的内容');
+        }
+      }
+    }
+
+    document.getElementById('skillOutput').textContent = parsed.skill_md || '生成失败';
+    document.getElementById('structOutput').textContent = parsed.directory_structure || '生成失败';
+    outputSection.classList.add('visible');
+
+  } catch (err) {
+    showError(err.message);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '⚡ 生成 Skill 模板';
+  }
+}
+
+function showError(msg) {
+  const el = document.getElementById('errorMsg');
+  el.textContent = '❌ ' + msg;
+  el.style.display = 'block';
+}
+
+function copyContent(elementId, btnId) {
+  const text = document.getElementById(elementId).textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById(btnId);
+    btn.textContent = '✅ 已复制';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = '复制';
+      btn.classList.remove('copied');
+    }, 2000);
+  }).catch(() => {
+    // Fallback for older browsers
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+    const btn = document.getElementById(btnId);
+    btn.textContent = '✅ 已复制';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = '复制';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+
+// Enter key support
+document.getElementById('skillName').addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') document.getElementById('skillDesc').focus();
+});
+</script>
+</body>
+</html>

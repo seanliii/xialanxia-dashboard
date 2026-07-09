@@ -1,0 +1,403 @@
+{
+  "meta": {
+    "created": "2026-05-14T11:24:46.388144",
+    "entity_count": 39,
+    "relation_count": 10,
+    "version": "1.0",
+    "description": "小蓝虾知识图谱：技能、项目、API、规则、概念的结构化知识"
+  },
+  "entities": [
+    {
+      "id": "skill:meyo",
+      "name": "meyo",
+      "type": "skill",
+      "description": "version: 1.0.1",
+      "properties": {
+        "path": "/root/.openclaw/skills/meyo"
+      }
+    },
+    {
+      "id": "skill:self-improving-agent",
+      "name": "self-improving-agent",
+      "type": "skill",
+      "description": "name: self-improvement",
+      "properties": {
+        "path": "/root/.openclaw/skills/self-improving-agent"
+      }
+    },
+    {
+      "id": "skill:find-skills",
+      "name": "find-skills",
+      "type": "skill",
+      "description": "name: find-skills",
+      "properties": {
+        "path": "/root/.openclaw/skills/find-skills"
+      }
+    },
+    {
+      "id": "skill:agent-reach",
+      "name": "agent-reach",
+      "type": "skill",
+      "description": "name: agent-reach",
+      "properties": {
+        "path": "/root/.openclaw/skills/agent-reach"
+      }
+    },
+    {
+      "id": "skill:mirror-starter",
+      "name": "mirror-starter",
+      "type": "skill",
+      "description": "name: mirror-starter",
+      "properties": {
+        "path": "/root/.openclaw/skills/mirror-starter"
+      }
+    },
+    {
+      "id": "skill:gstack-openclaw-office-hours",
+      "name": "gstack-openclaw-office-hours",
+      "type": "skill",
+      "description": "name: gstack-openclaw-office-hours",
+      "properties": {
+        "path": "/root/.openclaw/skills/gstack-openclaw-office-hours"
+      }
+    },
+    {
+      "id": "skill:bi-query-dashboard",
+      "name": "bi-query-dashboard",
+      "type": "skill",
+      "description": "name: bi-query-dashboard",
+      "properties": {
+        "path": "/root/.openclaw/skills/bi-query-dashboard"
+      }
+    },
+    {
+      "id": "skill:llm-wiki-clawhub",
+      "name": "llm-wiki-clawhub",
+      "type": "skill",
+      "description": "name: llm-wiki-clawhub",
+      "properties": {
+        "path": "/root/.openclaw/skills/llm-wiki-clawhub"
+      }
+    },
+    {
+      "id": "skill:meyo-test",
+      "name": "meyo-test",
+      "type": "skill",
+      "description": "name: meyo-test",
+      "properties": {
+        "path": "/root/.openclaw/skills/meyo-test"
+      }
+    },
+    {
+      "id": "skill:bi-data-query-chat",
+      "name": "bi-data-query-chat",
+      "type": "skill",
+      "description": "name: bi-data-query-chat",
+      "properties": {
+        "path": "/root/.openclaw/skills/bi-data-query-chat"
+      }
+    },
+    {
+      "id": "skill:gstack-openclaw-retro",
+      "name": "gstack-openclaw-retro",
+      "type": "skill",
+      "description": "name: gstack-openclaw-retro",
+      "properties": {
+        "path": "/root/.openclaw/skills/gstack-openclaw-retro"
+      }
+    },
+    {
+      "id": "skill:friday-searchtools-cli",
+      "name": "friday-searchtools-cli",
+      "type": "skill",
+      "description": "name: friday-searchtools-cli",
+      "properties": {
+        "path": "/root/.openclaw/skills/friday-searchtools-cli"
+      }
+    },
+    {
+      "id": "skill:bi-query-sql",
+      "name": "bi-query-sql",
+      "type": "skill",
+      "description": "name: bi-query-sql",
+      "properties": {
+        "path": "/root/.openclaw/skills/bi-query-sql"
+      }
+    },
+    {
+      "id": "skill:gstack-openclaw-ceo-review",
+      "name": "gstack-openclaw-ceo-review",
+      "type": "skill",
+      "description": "name: gstack-openclaw-ceo-review",
+      "properties": {
+        "path": "/root/.openclaw/skills/gstack-openclaw-ceo-review"
+      }
+    },
+    {
+      "id": "skill:gstack-openclaw-investigate",
+      "name": "gstack-openclaw-investigate",
+      "type": "skill",
+      "description": "name: gstack-openclaw-investigate",
+      "properties": {
+        "path": "/root/.openclaw/skills/gstack-openclaw-investigate"
+      }
+    },
+    {
+      "id": "skill:friday-unisearch",
+      "name": "friday-unisearch",
+      "type": "skill",
+      "description": "name: friday-unisearch",
+      "properties": {
+        "path": "/root/.openclaw/skills/friday-unisearch"
+      }
+    },
+    {
+      "id": "api:aisa-api",
+      "name": "aisa-api",
+      "type": "api",
+      "description": "AISA API（ai agent数据接口平台）",
+      "properties": {}
+    },
+    {
+      "id": "api:twitter-api",
+      "name": "twitter-api",
+      "type": "api",
+      "description": "Twitter搜索/用户/趋势API（via AISA）",
+      "properties": {}
+    },
+    {
+      "id": "api:perplexity-api",
+      "name": "perplexity-api",
+      "type": "api",
+      "description": "Perplexity Sonar联网搜索API",
+      "properties": {}
+    },
+    {
+      "id": "api:stooq",
+      "name": "stooq",
+      "type": "api",
+      "description": "Stooq免费股票价格数据源",
+      "properties": {}
+    },
+    {
+      "id": "api:yahoo-finance",
+      "name": "yahoo-finance",
+      "type": "api",
+      "description": "Yahoo Finance股票实时价格API",
+      "properties": {}
+    },
+    {
+      "id": "api:tavily",
+      "name": "tavily",
+      "type": "api",
+      "description": "Tavily搜索API（备用价格来源）",
+      "properties": {}
+    },
+    {
+      "id": "api:sec-edgar",
+      "name": "sec-edgar",
+      "type": "api",
+      "description": "SEC EDGAR内部人买入数据（免费）",
+      "properties": {}
+    },
+    {
+      "id": "platform:meyo-public",
+      "name": "meyo-public",
+      "type": "platform",
+      "description": "觅游社区公开环境（meyo123.com）",
+      "properties": {}
+    },
+    {
+      "id": "platform:meyo-internal",
+      "name": "meyo-internal",
+      "type": "platform",
+      "description": "觅游社区内网环境",
+      "properties": {}
+    },
+    {
+      "id": "platform:citadel",
+      "name": "citadel",
+      "type": "platform",
+      "description": "美团学城知识库平台",
+      "properties": {}
+    },
+    {
+      "id": "platform:daxiang",
+      "name": "daxiang",
+      "type": "platform",
+      "description": "美团大象即时通讯平台",
+      "properties": {}
+    },
+    {
+      "id": "platform:github-pages",
+      "name": "github-pages",
+      "type": "platform",
+      "description": "Dashboard外链（GitHub Pages）",
+      "properties": {}
+    },
+    {
+      "id": "project:portfolio-scanner",
+      "name": "portfolio_scanner",
+      "type": "project",
+      "description": "三账户模拟盘自动化扫描系统",
+      "properties": {
+        "file": "scripts/portfolio_scanner.py"
+      }
+    },
+    {
+      "id": "project:dashboard",
+      "name": "xialanxia-dashboard",
+      "type": "project",
+      "description": "持仓Dashboard（GitHub Pages外链）",
+      "properties": {
+        "url": "https://seanliii.github.io/xialanxia-dashboard/"
+      }
+    },
+    {
+      "id": "project:meyo-heartbeat",
+      "name": "meyo-heartbeat",
+      "type": "project",
+      "description": "觅游社区心跳任务（12:37/21:23）",
+      "properties": {
+        "cron": "12:37,21:23"
+      }
+    },
+    {
+      "id": "project:memory-compressor",
+      "name": "memory_compressor",
+      "type": "project",
+      "description": "每日22:00记忆压缩脚本",
+      "properties": {
+        "file": "scripts/memory_compressor.py"
+      }
+    },
+    {
+      "id": "project:batch-poster",
+      "name": "meyo_batch_post",
+      "type": "project",
+      "description": "觅游批量发帖工具",
+      "properties": {
+        "file": "scripts/meyo_batch_post.py"
+      }
+    },
+    {
+      "id": "concept:insider-buying",
+      "name": "内部人买入信号",
+      "type": "concept",
+      "description": "CEO/CFO等高管主动在公开市场买入股票，通过SEC Form 4披露，是小蓝虾核心选股信号",
+      "properties": {
+        "signal_strength": "high",
+        "source": "SEC EDGAR"
+      }
+    },
+    {
+      "id": "concept:stop-loss",
+      "name": "止损铁律",
+      "type": "concept",
+      "description": "持仓价格跌破预设止损价时立即平仓，不看看再说，系统自动执行",
+      "properties": {
+        "rule": "触发即执行，不等待"
+      }
+    },
+    {
+      "id": "concept:binary-event",
+      "name": "二元事件风险",
+      "type": "concept",
+      "description": "FDA审批/财报等结果非0即1的事件，仓位上限1%，内部人买入信号在此类事件前失效",
+      "properties": {
+        "max_position": "1%",
+        "lesson": "ALDX -70.7%"
+      }
+    },
+    {
+      "id": "concept:three-tier-fallback",
+      "name": "三层降级策略",
+      "type": "concept",
+      "description": "价格获取：Yahoo Finance（主）→ Stooq（curl备用）→ Tavily（正则兜底），确保价格可靠性",
+      "properties": {
+        "pattern": "Yahoo→Stooq→Tavily"
+      }
+    },
+    {
+      "id": "concept:mcp-server",
+      "name": "MCP服务器",
+      "type": "concept",
+      "description": "Model Context Protocol服务器，让AI Agent通过标准协议调用工具和查询知识",
+      "properties": {
+        "framework": "FastMCP",
+        "version": "2.12.5"
+      }
+    },
+    {
+      "id": "concept:knowledge-graph",
+      "name": "知识图谱",
+      "type": "concept",
+      "description": "用节点（实体）和边（关系）表示知识结构，支持语义搜索和关系查询",
+      "properties": {
+        "library": "networkx"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "from": "project:portfolio-scanner",
+      "to": "api:stooq",
+      "type": "uses",
+      "label": "获取股价"
+    },
+    {
+      "from": "project:portfolio-scanner",
+      "to": "api:yahoo-finance",
+      "type": "uses",
+      "label": "主力价格源"
+    },
+    {
+      "from": "project:portfolio-scanner",
+      "to": "api:tavily",
+      "type": "uses",
+      "label": "备用价格源"
+    },
+    {
+      "from": "project:portfolio-scanner",
+      "to": "api:sec-edgar",
+      "type": "uses",
+      "label": "内部人买入信号"
+    },
+    {
+      "from": "project:portfolio-scanner",
+      "to": "project:dashboard",
+      "type": "updates",
+      "label": "扫描后推送Dashboard"
+    },
+    {
+      "from": "project:meyo-heartbeat",
+      "to": "platform:meyo-public",
+      "type": "posts_to",
+      "label": "发帖/点赞/评论"
+    },
+    {
+      "from": "project:meyo-heartbeat",
+      "to": "project:batch-poster",
+      "type": "calls",
+      "label": "调用发帖工具"
+    },
+    {
+      "from": "project:memory-compressor",
+      "to": "platform:citadel",
+      "type": "syncs_to",
+      "label": "日报同步到学城"
+    },
+    {
+      "from": "api:aisa-api",
+      "to": "api:twitter-api",
+      "type": "includes",
+      "label": "包含Twitter搜索"
+    },
+    {
+      "from": "api:aisa-api",
+      "to": "api:perplexity-api",
+      "type": "includes",
+      "label": "包含Perplexity"
+    }
+  ]
+}

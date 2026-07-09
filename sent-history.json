@@ -1,0 +1,231 @@
+[
+  {
+    "title": "小蓝虾10点深度推送 | 7月9日",
+    "date": "2026-07-09",
+    "type": "deep-intel-10am",
+    "source": "multi_engine×3 + catclaw-search×5 + wechat_search×5 + Tavily×4 + CoinGecko",
+    "items": [
+      "BTC 1,970 -1.50% | ETH ,733.76 -1.10% | SOL 7.63 -1.52%",
+      "97%企业已部署AI Agent, 80%应用嵌入至少一个Agent, B Agentic AI融资",
+      "Agent Sales转化率提升至70%, 企业收入增长7-25%",
+      "AI RaaS模式利润放大25-50倍: 从卖工具到卖结果",
+      "OpenClaw July 2026: iOS修复/Gateway语音/cron timeout修复(稳定版更新)",
+      "公众号7/9: 柔性制造+AI一人公司 / 一人公司AI就是合伙人 / 数据人搭建数字团队",
+      "公众号7/8: OPC一人公司AI时代路径",
+      "AI自动化变现实录: 47份×6800元=被动收入稳定2万+",
+      "Novartis Fabhalta (iptacopan) FDA加速批准: 首个补体抑制剂IgAN, 蛋白尿降低44%",
+      "7/11 Novo Nordisk Mim8 (denecimig) PDUFA — 血友病A双特异性抗体",
+      "7/17 Celcuity Gedatolisib PDUFA — 乳腺癌PI3K/mTOR抑制剂",
+      "🔍 本轮无可复刻案例(无明确单人代码MVP项目)",
+      "进化笔记: 97%企业部署=Agent从实验变基础设施; AI RaaS利润25-50倍=卖结果>卖工具; 一人公司+AI Agent三方向验证; Fabhalta补体通路成肾病新靶点"
+    ]
+  },
+  {
+    "title": "小蓝虾10点深度推送 | 7月9日",
+    "date": "2026-07-09",
+    "type": "deep-intel-10am",
+    "source": "multi_engine×3 + catclaw-search×5 + wechat_search×5",
+    "items": [
+      "满帮集团AI Agent重构货运最强大脑(7/9): 供需两端高效匹配+全链路风险管控，三年内平台全部核心功能AI化覆盖，开放算法能力给中小物流企业",
+      "学了100个AI工具还是赚不到钱——你缺的不是技能，是「AI一人公司成事框架」(7/8 微信公众号): AI工作流=自动化赚钱系统，先做验证再自动化",
+      "用AI做副业是不是真的？很多人搞错了方向(7/8 微信公众号): 核心不是追热点工具，而是找到付费场景",
+      "AI吃播月入10万(7/5-6·新浪财经): 林默依托Google Veo3/可灵/Seedance批量生产虚拟吃播，零食材成本24小时连轴——AI内容新形态",
+      "🔍 本轮无可复刻案例(搜索结果以企业级案例、趋势分析、通用方法论为主，无明确单人代码MVP项目)",
+      "进化笔记：满帮案例=垂直行业AI Agent标杆，从单点替代→系统重构；AI副业核心认知再确认：工具≠生意，找到付费场景>堆砌工具数量；AI吃播月入10万 vs 全AI员工公司月入15万 vs 独立开发者90%月入<K=收入分布极不均匀，关键变量是执行力+差异化定位+系统思维"
+    ]
+  },
+  {
+    "title": "小蓝虾13:30 Twitter情报 | 7月8日",
+    "date": "2026-07-08",
+    "type": "twitter-intel-1330",
+    "source": "Twitter(API不可用)+multi_engine×4 + catclaw-search",
+    "items": [
+      "零一万物发布一号位决策AI：老板AI/销冠AI/投资官AI，覆盖企业财报改善三类关键决策，万策平台承载，李开复：AI应影响企业经营结果",
+      "鸿海精密6月营收同比+52.11%，AI服务器拉货需求核心引擎，Q2营收2.51万亿新台币(+39.83%)，上半年4.64万亿创历年同期新高",
+      "德适iMedLoop™医疗影像数据平台7/4发布：全国25万影像医生每天1小时标注完成全部3000+检测项目需1200年→iMedImage®基座模型工业化",
+      "2026年AI初创Series A生存率仅23%：PitchBook+CB Insights，1842家AI原生公司仅423家完成A轮，87%技术尽调通过但PMF失败",
+      "2026上半年全球AI融资5100亿美元创新高，美国占88%(3190亿)，中国330亿。OpenAI+Anthropic+xAI+Waymo四笔占全球Q1 VC的65%",
+      "AICodingAgent实战测评(7/8)：从Cursor换到Claude Code，Agent擅长已知模式编码不擅长架构设计，提示语要详细分步骤用CLAUDE.md",
+      "虎嗅/淘宝闪购邓立山《可复制的AI Coding全栈实战》：分层状态机架构(Tool Registry→State Manager→Orchestrator)替代单次长Prompt，Gemini 3.1 Pro 47分钟完成预估8小时运维重构",
+      "进化笔记：零一万物AI嵌入C-Suite决策层=从工具到生产力的标志；鸿海+52%说明AI服务器需求真实刚性；德适1200年→工业化=数据标注是垂直AI最深铲子；23%A轮生存率=技术理想主义向商业现实投降；Coding Agent从Demo进入Production，状态机架构比Prompt工程更关键"
+    ]
+  },
+  {
+    "title": "小蓝虾12点深度推送 | 7月8日",
+    "date": "2026-07-08",
+    "type": "deep-intel-12pm",
+    "source": "multi_engine×3 + catclaw-search×5 + wechat_search×5 + Tavily×4 + CoinGecko",
+    "items": [
+      "BTC $62,717 -0.65% | ETH $1,750 -1.13% | SOL $78.65 -2.89%",
+      "拆解25笔超5000万A轮融资：AI最聪明的钱押注三个方向——垂直行业AI、AI Agent基础设施、硬件+AI(7/8 新浪财经)",
+      "Jensen Huang GTC 2026确认OpenClaw战略：NemoClaw企业版+OpenShell runtime，'Every software company needs an OpenClaw strategy'(Twitter)",
+      "AI Agent Q3融资开局：7/4假期周仅3笔$37M，但6月末Trase $107M/Sail Research $80M/8090 $135M已设背景(7/6 gravity.fast)",
+      "YC S2026 AI Agent创业潮确认：screenpipe/TrustAI/Robocurve/RealPact等2-6人团队，Agent=新一代公司架构",
+      "Even Realities智能眼镜$150M Pre-Series B，估值$10亿，前Apple工程师创立(7/6 techstartups)",
+      "Bespoke Labs $40M Series A：AI Agent模拟训练基础设施，Wing VC领投",
+      "AI智能体10种变现方式：定制开发(3000-10万/单)、Coze插件(头部调用量几千万)、自建收费模块、嵌入业务流程(订阅制/按次/增值)",
+      "一人AI公司两方向：软件开发(Vibe编程效率10倍)+个人IP(内容创作)，核心不是工具是找到付费场景",
+      "Atacicept (Trutakna) FDA加速获批7/7：首个靶向BAFF/APRIL的IgA肾病疗法，蛋白尿降低46%(P<.0001)",
+      "Novo Nordisk Mim8 (denecimig) 7/11 Phase 3数据读出：首款皮下注射双特异性抗体，血友病A",
+      "Corcept Relacorilant 7/11 PDUFA：铂耐药卵巢癌，口服糖皮质激素受体拮抗剂",
+      "🔍 本轮无可复刻案例(搜索结果以融资新闻、行业分析、运营型案例为主，无明确单人代码MVP项目)",
+      "进化笔记：NVIDIA GTC确认AI从训练到推理范式转移，OpenClaw被定位为基础设施；卖铲人模式持续验证(帮搭OpenClaw月入$12K)；2026H1全球VC$5100亿AI占70%资本密度极高；Agent training infra是新赛道；Atacicept获批=IgA肾病里程碑；YC S2026大量2-6人AI agent团队→单人+AI=团队正从口号变成YC标准商业模式"
+    ]
+  },
+  {
+    "title": "小蓝虾10点深度推送 | 7月8日",
+    "date": "2026-07-08",
+    "type": "deep-intel-10am",
+    "source": "multi_engine×3 + catclaw-search×5 + wechat_search×5",
+    "items": [
+      "深圳老板卖巴掌大电脑年销13亿——OpenClaw预装GMKtec Claw卖断货，卖的是用AI的梯子(7/8 163.com)",
+      "2026 OpenClaw商业变现全拆解：FelixCraftAI周入4万/Polymarket套利15天52.9万/卖铲人月营收7-12K/无人公司月入8200(7/8 什么值得买)",
+      "小鹅通2026年AI Agent转型：内嵌型Agent标杆——AI贯穿获客运营转化培训分析全链路(7/6 中国经济新闻网)",
+      "🔍 本轮无可复刻案例(硬件/平台型/文章汇总为主，无明确单人代码MVP项目)",
+      "进化笔记：梯子生意最稳/Agent不是入口是骨髓/执行力压缩→门槛下降→单人可行/关键不是工具是找到付费场景"
+    ]
+  },
+  {
+    "title": "小蓝虾10点深度推送 | 7月7日",
+    "date": "2026-07-07",
+    "type": "deep-intel-10am",
+    "source": "multi_engine×3 + catclaw-search×5 + wechat_search×5 + Tavily×4 + CoinGecko",
+    "items": [
+      "BTC $63,567 +0.09% | ETH $1,782 -0.15% | SOL $81.57 +0.24%",
+      "美图2026影像节:Agent Teams体系直接交付商业成果——Picchi修图Agent内置5个专业Agent分工协作，从'学工具'到'要成果'转型(7月初)",
+      "腾讯香港峰会7/6:Hermes Agent成企业主角，企业评估从'技术能力'转向'经营结果'——AI Agent商用拐点确认",
+      "中国AI Agent互联互通7项国家标准6/26发布:70+企业参与起草、100+企业签署联合倡议、北京海淀先行试点",
+      "2026 AI Agent框架选型指南:OpenClaw/Hermes/AutoGen/CrewAI横向对比，OpenClaw在本地执行和多通道支持领先(5.0分)",
+      "AI副业变现实测:4个自动化玩法——AI内容矩阵日更200条+自动发布，GPT-4o/Claude/Cursor+n8n/Dify工具链(6/13 CSDN)",
+      "AI自动化被动收入实录:一个人用Agent每月多赚2万——监控竞品价格+自动生成营销内容+自动处理售后，单价6800元卖了47份",
+      "5条真正赚钱的AI副业路:内容代写/绘图/虚拟电商/选品/SaaS——核心不是工具数量而是把工具变成具体问题的解决方案",
+      "Atacicept IgAN肾病 7/7 PDUFA决定日——FDA优先审评BLA，若获批将成为IgA肾病里程碑治疗选择",
+      "Celcuity Gedatolisib乳腺癌 7/17 PDUFA——股价自披露晚期数据以来暴涨近700%，PI3K/mTOR抑制剂",
+      "Novo Nordisk CagriSema减重20.4%数据提交NDA——双靶点GLP-1，每周一次注射，3,400+成人入组REDEFINE 1",
+      "Orforglipron: Eli Lilly首个非肽类口服小分子GLP-1进入III期——无需注射、无饮食限制，GLP-1赛道里程碑",
+      "FDA 2026已批准21款新药，Q3 5款重磅待审——Atacicept(7/7)/Gedatolisib(7/17)/Camizestrant(7/23)/Centanafadine(7/24)/Viatris肾上腺素鼻喷雾(7/29)",
+      "2026年新独角兽近90家:AI芯片(Positron $10亿/Recursive Intelligence $40亿/AI半导体工具链Nominal $20亿)+AI Agent基础设施(Trase $107M/Warp $60M)",
+      "🔍 本轮无可复刻案例(搜索结果无明确可执行MVP项目)",
+      "进化笔记:AI Agent从'工具交付'转向'成果交付'——美图Picchi/小鹅通内嵌型/迈富时平台型三路线验证；中国Agent国标落地=生态互通加速；被动收入核心=发现重复痛点+用AI干掉它；GLP-1口服化是颠覆性创新；近90新独角兽AI占主导"
+    ]
+  },
+  {
+    "title": "小蓝虾12点深度推送 | 7月7日",
+    "date": "2026-07-07",
+    "type": "deep-intel-12pm",
+    "source": "multi_engine×3 + catclaw-search×5 + wechat_search×5 + Tavily×4 + CoinGecko",
+    "items": [
+      "BTC $63,119 -0.15% | ETH $1,769.54 -0.40% | SOL $80.99 +0.43%",
+      "可灵AI分拆融资30亿美元(7/2公告持续发酵):全球视频大模型最大融资额，腾讯/阿里/百度/CPE源峰等参投，光源资本独家FA，150亿投前→180亿投后估值，投资人1个月内完成决策",
+      "Together AI 8亿美元C轮(7/4):估值83亿美元，年预订额超11亿，AI基础设施与云服务提供商",
+      "Shield AI $15亿Series G(近期):估值$127亿一年涨140%，国防AI+自主飞行系统，总融资包$22.5亿",
+      "MGX $490亿AI新基金(7/1):阿布扎比AI投资公司，全球最大AI专项基金之一，覆盖seed到growth stage",
+      "全AI员工公司真实盈利数据(7/6):深圳1人+16个AI智能体，无实体办公室，月入15万利润率75%；但全国1200万轻创业体成功率<5%，超一半月入<7000，算力成本占运营成本一半以上",
+      "AI RaaS模式利润放大25-50倍(7/5):从卖工具到卖结果，矿山运输案例——无人驾驶套件利润200万→人力外包1200万→AI RaaS利润5000万-1亿",
+      "AI工程师无CS学位$100K-$150K路径(6/30 X @cyrilXBT):Python/SQL/Git/REST APIs/LLM集成/Embeddings/RAG/Agent框架/Claude Code，需建3个portfolio项目(RAG app/真实Agent/全栈AI产品)",
+      "AI写歌2个月赚18万(7/2):程序员杨平，AI生成歌曲→上传汽水音乐/网易云/QQ音乐→播放分成，汽水音乐千次播放约2元最高，网易云有AI歌曲专属激励金",
+      "32岁程序员转型AI配音师月入1.5万(7/6):全球配音市场2025年393亿元预计2032年844亿元，AI批量短视频配音(40%)+AI+真人混合服务(35%)+游戏AI语音包(25%)三线收入",
+      "独立开发者2026搞钱指南(6/30):6条路+真实收入数据，平均收入是普通创业者2.3倍但90%月入不到$1K，核心壁垒是执行力+差异化定位而非技术",
+      "🔍 本轮无可复刻案例(搜索结果以平台级产品和运营型案例为主，无明确单人代码MVP项目；AI写歌/配音等属于工具使用+运营型，无需代码开发)",
+      "进化笔记:可灵AI分拆=视频生成赛道资本化加速，腾讯阿里百度集体押注说明产业资本共识形成；全AI员工公司月入15万vs成功率<5%的残酷现实说明'工具≠生意'，关键不是工具数量而是找到付费场景；AI RaaS模式揭示'卖结果比卖工具利润高25-50倍'，从'工具交付'转向'成果交付'是核心趋势；AI写歌/配音证明内容创作类AI变现门槛已极低，但头部效应明显，普通人需要找到差异化定位；独立开发者数据说明'平均收入2.3倍'是幸存者偏差，90%月入<$1K的真相是执行力壁垒远大于技术壁垒"
+    ]
+  },
+  {
+    "title": "小蓝虾14点深度推送 | 7月7日",
+    "date": "2026-07-07",
+    "type": "deep-intel-14pm",
+    "source": "multi_engine×3 + catclaw-search×5 + wechat_search×5 + Tavily×4 + CoinGecko",
+    "items": [
+      "BTC $63,096 +0.05% | ETH $1,769 -0.20% | SOL $81.07 +0.81%",
+      "支付宝AI开放平台正式上线(7/7):商家零代码/低代码接入'阿宝'，肯德基/蜜雪冰城/瑞幸/高德等首批接入——超级App AI生态化战略落地",
+      "阿里云千问云(qianwenai.com)发布:为Agent而生的AI产品官网，聚合Qwen/GLM/Kimi/DeepSeek/Wan等150+模型API——模型层'水电煤化'加速",
+      "湖北首个交通行业AI大模型'荆楚·行'发布(6/30):31.8亿条公路数据+70P算力+83个业务智能体，病害识别0.1mm级——垂直行业大模型标杆",
+      "MWC上海:高通发布飞龙AI300推理加速器+软通动力发布天机AIOS三位一体架构——端侧AI竞争白热化",
+      "影目INMO×王嘉尔'Magic AI Glasses'首批预定5万台——AI+AR眼镜从极客走向大众消费，4年增长290倍",
+      "漫枢产品发布会:国内首个AI爆款漫短剧创作平台——AI剧本助手+情绪分镜库+角色一致性引擎，从工具效率到精品工业化生产",
+      "AI吃播月入10万(7/5-6·新浪财经):林默依托Google Veo3/可灵/Seedance批量生产虚拟吃播，零食材成本24小时连轴——AI内容新形态",
+      "AI训练师转型(7/7·新浪财经):林语婷32岁化工毕业转行AI训练师，月薪8000→13000，2026年AI岗位数量同比增8.7倍",
+      "Twitter:Trase $107M+Warp $60M融资，AI agent基础设施加速——资本从demo流向系统级部署",
+      "Twitter:FeltSense AI agents克隆数十个YC W2026 startups——融资$5.1M，流程:爬社交→生成想法→AI agent执行→批量构建",
+      "Twitter:OpenClaw creator Peter Steinberger确认YC Startup School 2026演讲，现加入OpenAI——开源346k+ stars→大厂收编→反哺生态",
+      "Biotech:Novo Nordisk Mim8(denecimig)7/11 Phase 3数据读出——首款皮下注射双特异性抗体，模拟FVIIIa治疗血友病A",
+      "Biotech:Corcept Relacorilant 7/11 PDUFA——铂耐药卵巢癌，优先审评",
+      "🔍 本轮无可复刻案例(搜索结果以平台级产品和运营型案例为主，无明确单人代码MVP项目)",
+      "进化笔记:支付宝开放AI平台='超级App让别人用AI'，与微信/抖音形成三足鼎立；千问云150+模型聚合=模型层水电煤化，差异化在应用层；AI吃播月入10万 vs AI训练师月薪1.3万=两条路径：内容投机(窗口期短)vs技能积累(壁垒深)；FeltSense克隆YC=AI agent终极恐怖：替代一个公司，但个人创业者一人+AI=一个团队；OpenClaw creator去OpenAI=开源经典路径，短期利好长期关注治理"
+    ]
+  },
+  {
+    "title": "小蓝虾17点Twitter情报 | 7月7日",
+    "date": "2026-07-07",
+    "type": "twitter-intel-17pm",
+    "source": "Twitter + multi_engine + wechat_search + CoinGecko",
+    "items": [
+      "BTC $63,028 +0.30% | ETH $1,769 +0.28% | SOL $81.25 +1.09%",
+      "道指创历史新高53056点，纳指涨1.12%，标普涨0.72%",
+      "芯片股全面反弹：AMD涨6.6%，西部数据涨7%，台积电涨4%",
+      "英伟达回应Kyber架构延迟传闻：产品路线图依然完整",
+      "三星计划DRAM涨价20%，SK海力士本周五登陆纳斯达克（募资最高290亿美元）",
+      "量子策略建议撤出美股七巨头，押注中国AI应用股",
+      "阿里整合悟空+MuleRun+QoderWork，钉钉CEO统一负责企业AI生产力",
+      "微软Scout基于OpenClaw架构发布自主Agent，Work IQ为核心能力",
+      "华为云发布Agentic Infra系列：AICS灵衢智算集群+AMS记忆存储+CCE通智调度",
+      "字节跳动Coze 3.0上线：支持多人多Agent协作+行业技能包"
+    ]
+  },
+  {
+    "title": "小蓝虾15点好玩发现+复刻 | 7月7日",
+    "date": "2026-07-07",
+    "type": "fun-recreate-15pm",
+    "source": "multi_engine×3 + catclaw-search×5 + wechat_search×5",
+    "items": [
+      "Deep Code (7/6): 专为DeepSeek-V4优化的开源AI编程助手，1632 Stars，支持Agent Skills/MCP/深度思考/推理强度控制，npm install -g @vegamo/deepcode-cli即可安装",
+      "OpenMontage (7/4): 15.4k Stars AI全自动视频制作系统，52工具模块+12条流水线+400+技能，让Claude Code/Cursor直接变成视频工作室——凤凰网信源",
+      "AI朝廷 (3/11): GitHub趣味项目boluobobo-ai-court-tutorial，用AI模拟朝廷——微信公众号'小萨频道'",
+      "AI Website Cloner (3/29): 一条命令克隆整个网站，用AI代理自动完成——微信公众号'尧字节'",
+      "🦐 复刻完成: Deep Code 配置向导 https://seanliii.github.io/deepcode-config-wizard/ — 一键生成settings.json+Skills+MCP配置，8个预设Skills+权限控制+复制下载",
+      "评分: 8/10 (⭐⭐⭐⭐ 趣味性/⭐⭐⭐⭐⭐ 复刻完成度)"
+    ]
+  },
+  {
+    "title": "小蓝虾15点好玩发现+复刻 | 7月8日",
+    "date": "2026-07-08",
+    "type": "fun-recreate-15pm",
+    "source": "multi_engine×3 + catclaw-search×5 + wechat_search×5",
+    "items": [
+      "Google DESIGN.md (7/7): 登顶GitHub Trending，单日新增1475★，用YAML frontmatter描述设计token，用Markdown描述设计意图，让AI编程助手能结构化读懂设计系统——Google Labs开源",
+      "VibeVoice (7/7): 微软开源，一夜登顶GitHub Trending，5万★MIT，ICLR 2026 Oral，90分钟多语言语音合成——微信公众号'数媒小百科'",
+      "OpenHuman (近期): 离线个人AI，23k Stars，单日1600+星标——GitHub Trending连续霸榜",
+      "Penpot (近期): 52K Stars，开源Figma，AI直接读设计稿——163.com信源",
+      "career-ops (6/10): 51,912 Stars，AI驱动的求职系统，基于Claude Code——头条信源",
+      "DeerFlow 2.0 (3/23): 字节开源，登顶GitHub Trending，2.1万★，从深度研究框架到Super Agent运行时基础设施——微信公众号'提拉米苏的AI驿站'",
+      "Trending AI (近期): 用AI快速读懂GitHub Trending项目，Compose Multiplatform双端，Gemini/DeepSeek接入——GitHub开源自荐",
+      "AI Website Cloner (3/29): 一条命令克隆整个网站，用AI代理自动完成——微信公众号'尧字节'",
+      "🦐 复刻完成: DESIGN.md Generator https://seanliii.github.io/design-md-generator/ — 可视化设计系统文档生成器，10色token+间距/圆角/断点+实时预览+三格式导出(DESIGN.md/CSS/JSON)",
+      "评分: 7.5/10 (⭐⭐⭐⭐ 趣味性/⭐⭐⭐⭐⭐ 复刻完成度)"
+    ]
+  },
+  {
+    "title": "小蓝虾19点深度推送 | 7月8日",
+    "date": "2026-07-08",
+    "type": "deep-intel-19pm",
+    "source": "multi_engine×3 + catclaw-search×5 + Tavily×4 + CoinGecko",
+    "items": [
+      "BTC $62,090 -1.58% | ETH $1,737 -1.91% | SOL $77.24 -4.54%",
+      "Microsoft 2026 AI趋势报告：AI agents将加入劳动力大军并获新安全保障，7大趋势指引全年方向",
+      "Google AI agent trends 2025：员工从执行者变Agent编排者，Agent成为企业数字装配线，客服转向管家式体验",
+      "Compoze Labs：2026 Agent Transition——Agent teams成标准操作程序，软件成本 plummeting，周期时间 collapse",
+      "2026年被广泛认定为AI Agent元年：MCP月下载9700万+，LangGraph占多Agent编排90%+，62%企业已部署",
+      "AI独立开发5个真实案例个个月入过万(7/8)：B2B数据工具月入3.5万/Chrome插件1.8万/视频翻译2.4万/SaaS 4.5万/API服务3.2万美金——Cursor开发时间压缩60-80%",
+      "AI工具出海赚美金：一个人月入30万(7/7)——头像生成器$30K/翻译工具$15K/图片放大$40K，五种变现模式从一次性到订阅到API",
+      "2026年人人都在用AI搞钱但几乎没人有系统(7/4)：零散战术→系统架构，先验证需求再自动化，不能反过来",
+      "OpenClaw v2026.4.7发布：Memory-Wiki结构化记忆、webhook-driven TaskFlows、Arcee AI/Gemma 4新模型、音乐视频编辑增强",
+      "Mercury被称2026最重要agent release：解决OpenClaw/Hermes的可预测性问题，控制+权限+自主性终于统一",
+      "OpenClaw creator Peter Steinberger加入OpenAI：开源346k+ stars→YC Startup School 2026演讲→大厂收编",
+      "Orca-T (Tregzi) FDA已批准(7/6)：血液恶性肿瘤细胞疗法，1年无中重度cGvHD生存率78% vs 传统38%",
+      "7月5款待审：Atacicept IgA肾病(7/7)/Gedatolisib乳腺癌(7/17)/Rivoceranib肝癌(7/23)/Centanafadine ADHD(7/24)/Viatris肾上腺素鼻喷雾(7/29)",
+      "中国创新药FIC元年：2026H1批准55款新药，7款国产FIC，占比从不足2%跃升至13%，6月22日四款全球首创集中获批",
+      "🔍 本轮无可复刻案例(文章汇总/趋势分析型内容为主，无明确开源代码MVP项目；Google DESIGN.md/VibeVoice等已在15点推送覆盖)",
+      "进化笔记：Microsoft+Google双双确认Agent workforce是2026主旋律；独立开发案例验证Cursor+Vibe编程单人可行但收入分布极不均匀(90%月入<$1K)；系统先于自动化是2026副业核心认知；Mercury=OpenClaw+Hermes的孩子，控制层补齐；Orca-T获批=细胞疗法里程碑；中国FIC 13%占比=从跟随到局部领跑；AI全球真实收入1100亿美元但勉强跨过折旧门槛"
+    ]
+  }
+]

@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>人格蒸馏机 🧪 — 把任何人蒸馏成AI卡片</title>
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --card: #111827;
+    --border: #1e2d4a;
+    --accent: #3b82f6;
+    --accent2: #8b5cf6;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --success: #10b981;
+    --glow: rgba(59, 130, 246, 0.3);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 24px 16px;
+  }
+
+  .container { max-width: 720px; margin: 0 auto; }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .header .emoji { font-size: 56px; display: block; margin-bottom: 12px; filter: drop-shadow(0 0 20px var(--accent)); }
+  .header h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+  }
+  .header p { color: var(--muted); font-size: 0.95rem; line-height: 1.6; }
+
+  /* Card */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 10px;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 16px;
+    color: var(--text);
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  input[type="text"]:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--glow); }
+
+  textarea {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    color: var(--text);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    outline: none;
+    resize: vertical;
+    min-height: 180px;
+    transition: border-color 0.2s;
+    font-family: inherit;
+  }
+  textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--glow); }
+  textarea::placeholder { color: var(--muted); }
+
+  .examples {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .example-btn {
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 0.8rem;
+    color: var(--accent);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .example-btn:hover { background: rgba(59, 130, 246, 0.2); }
+
+  .btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: white;
+    box-shadow: 0 4px 20px rgba(59,130,246,0.4);
+  }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 25px rgba(59,130,246,0.5); }
+  .btn-primary:active { transform: translateY(0); }
+  .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+  /* Result Card */
+  .result-section { display: none; }
+  .result-section.show { display: block; }
+
+  .persona-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .persona-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -30%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(139,92,246,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .persona-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .persona-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    flex-shrink: 0;
+  }
+  .persona-name { font-size: 1.4rem; font-weight: 800; }
+  .persona-tagline { color: var(--muted); font-size: 0.9rem; margin-top: 4px; font-style: italic; }
+
+  .traits-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  @media (max-width: 480px) { .traits-grid { grid-template-columns: 1fr; } }
+
+  .trait-item {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 14px;
+  }
+  .trait-label {
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+  }
+  .trait-value {
+    font-size: 0.9rem;
+    color: var(--text);
+    line-height: 1.4;
+  }
+  .trait-emoji { margin-right: 4px; }
+
+  .quirks-section { margin-bottom: 20px; }
+  .quirks-section h3 {
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 10px;
+  }
+  .quirk-tag {
+    display: inline-block;
+    background: rgba(139,92,246,0.15);
+    border: 1px solid rgba(139,92,246,0.3);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 0.82rem;
+    color: #c4b5fd;
+    margin: 3px;
+  }
+
+  .quote-section {
+    background: rgba(59,130,246,0.07);
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
+    padding: 12px 16px;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: #93c5fd;
+    margin-bottom: 20px;
+  }
+
+  .skill-preview {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 20px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.82rem;
+    color: #94a3b8;
+    white-space: pre-wrap;
+    overflow-x: auto;
+  }
+  .skill-preview .comment { color: #64748b; }
+  .skill-preview .key { color: #7dd3fc; }
+  .skill-preview .value { color: #86efac; }
+
+  .action-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .btn-secondary {
+    flex: 1;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 12px;
+    transition: all 0.2s;
+    min-width: 120px;
+  }
+  .btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: var(--accent); }
+
+  /* Loading */
+  .loading-state {
+    display: none;
+    text-align: center;
+    padding: 40px 20px;
+  }
+  .loading-state.show { display: block; }
+  .spinner {
+    width: 48px;
+    height: 48px;
+    border: 3px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 16px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-steps { color: var(--muted); font-size: 0.9rem; }
+  .loading-step { opacity: 0; transition: opacity 0.5s; }
+  .loading-step.active { opacity: 1; color: var(--accent); }
+
+  /* Error */
+  .error-msg {
+    background: rgba(239,68,68,0.1);
+    border: 1px solid rgba(239,68,68,0.3);
+    border-radius: 10px;
+    padding: 12px 16px;
+    color: #f87171;
+    font-size: 0.9rem;
+    margin-top: 12px;
+    display: none;
+  }
+  .error-msg.show { display: block; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    margin-top: 40px;
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+  .footer a { color: var(--accent); text-decoration: none; }
+
+  /* Toast */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--success);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s;
+    z-index: 100;
+    pointer-events: none;
+  }
+  .toast.show { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <span class="emoji">🧪</span>
+    <h1>人格蒸馏机</h1>
+    <p>粘贴任何人的聊天记录、文字片段或描述<br>AI 在 30 秒内提炼出 TA 的「人格 DNA 卡片」</p>
+  </div>
+
+  <!-- Input Section -->
+  <div class="card">
+    <label>✍️ 被蒸馏的人叫什么</label>
+    <input type="text" id="personName" placeholder="小明 / 张总 / 我前任 / 匿名" maxlength="30" style="margin-bottom: 20px;">
+
+    <label>📋 粘贴 TA 说过的话 / 聊天记录 / 你对 TA 的描述</label>
+    <textarea id="inputText" placeholder="可以是：
+• 微信/飞书聊天截图文字
+• TA 写的邮件/文档片段
+• 你对 TA 的主观描述
+• 上述混合，越多越准
+
+示例：
+&quot;今天会议他说了一句——这个需求不是不能做，是先做了也没用。然后就走了。&quot;
+&quot;他发消息从来不用标点，但每次都能说到点上。&quot;"></textarea>
+
+    <div class="examples">
+      <span style="color: var(--muted); font-size: 0.8rem; align-self: center;">示例素材：</span>
+      <button class="example-btn" onclick="fillExample('boss')">👔 甩锅型领导</button>
+      <button class="example-btn" onclick="fillExample('nerd')">🤓 技术型同事</button>
+      <button class="example-btn" onclick="fillExample('friend')">🎭 话唠朋友</button>
+    </div>
+  </div>
+
+  <button class="btn btn-primary" id="distillBtn" onclick="startDistill()">
+    🧪 开始蒸馏 · 生成人格卡片
+  </button>
+
+  <div class="error-msg" id="errorMsg"></div>
+
+  <!-- Loading -->
+  <div class="loading-state" id="loadingState">
+    <div class="spinner"></div>
+    <div class="loading-steps">
+      <div class="loading-step" id="step1">🔍 解析语言模式...</div>
+      <div class="loading-step" id="step2">🧬 提取性格基因...</div>
+      <div class="loading-step" id="step3">📊 建立人格模型...</div>
+      <div class="loading-step" id="step4">✨ 生成专属卡片...</div>
+    </div>
+  </div>
+
+  <!-- Result -->
+  <div class="result-section" id="resultSection">
+    <div class="persona-card" id="personaCard">
+      <div class="persona-header">
+        <div class="persona-avatar" id="cardEmoji">🧠</div>
+        <div>
+          <div class="persona-name" id="cardName">—</div>
+          <div class="persona-tagline" id="cardTagline">—</div>
+        </div>
+      </div>
+
+      <div class="traits-grid" id="traitsGrid"></div>
+
+      <div class="quirks-section">
+        <h3>💬 标志性习惯 & 口头禅</h3>
+        <div id="quirksContainer"></div>
+      </div>
+
+      <div class="quote-section" id="cardQuote"></div>
+
+      <div class="skill-preview" id="skillPreview"></div>
+    </div>
+
+    <div class="action-row" style="margin-top: 16px;">
+      <button class="btn-secondary" onclick="copySkill()">📋 复制 .skill 文件</button>
+      <button class="btn-secondary" onclick="downloadCard()">⬇️ 下载卡片</button>
+      <button class="btn-secondary" onclick="resetForm()">🔄 再蒸馏一个</button>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>灵感来自 <a href="https://github.com/titanwings/colleague-skill" target="_blank">colleague.skill</a> (⭐18.6k) · 由 <strong>小蓝虾🦐🔵</strong> 复刻</p>
+    <p style="margin-top: 4px;">人格卡片仅供娱乐，请理性看待 AI 生成内容</p>
+  </div>
+</div>
+
+<div class="toast" id="toast">✅ 已复制到剪贴板</div>
+
+<script>
+const AISA_KEY = 'sk-d2n3PIPWBOc3VTgqHuqvtmTaSZ5JtolHBnUAaUrAZgTjst41';
+const API_URL = 'https://api.aisa.one/v1/chat/completions';
+
+const EXAMPLES = {
+  boss: {
+    name: '张总',
+    text: `张总开会从不带电脑，但能记住每个人上次说的话。
+他最常说的一句话是："这个事情谁来负责？"然后看着你。
+每次项目延期他都说"我早就知道会这样"，但从来不说他早知道是什么。
+发消息只发关键词，比如"明天""确定了吗""记得同步"。
+从不夸人，但你做对了他会转发你的文档给更多人看。`
+  },
+  nerd: {
+    name: '小李',
+    text: `小李是后端工程师，说话前会先想三秒。
+"这个我需要看一下实现"是他的口头禅。
+他永远知道某个库的版本有什么breaking change。
+从不在消息里加emoji，但下班后游戏里非常话痨。
+他说"应该可以"意味着他还没研究，说"可以"意味着他已经测过了。
+写文档比写代码认真，代码注释只写为什么，不写是什么。`
+  },
+  friend: {
+    name: '阿杰',
+    text: `阿杰是我大学同学，现在在北京做产品经理。
+他发消息永远一次发5条，每条只有3个字。
+"哦""对对对""就是啊""哈哈哈""我也觉得"是他的基础套餐。
+但一旦聊到他感兴趣的事（主要是二次元和街头球），能聊三个小时不停。
+从不主动约人但永远是最先到的那个。
+他给建议的方式是问问题，从来不直接说你应该怎样。`
+  }
+};
+
+function fillExample(type) {
+  const ex = EXAMPLES[type];
+  document.getElementById('personName').value = ex.name;
+  document.getElementById('inputText').value = ex.text;
+}
+
+let currentSkillContent = '';
+
+async function startDistill() {
+  const name = document.getElementById('personName').value.trim() || '未命名';
+  const text = document.getElementById('inputText').value.trim();
+
+  if (!text || text.length < 20) {
+    showError('请至少输入 20 个字的描述或聊天记录');
+    return;
+  }
+
+  hideError();
+  setLoading(true);
+  document.getElementById('resultSection').classList.remove('show');
+  document.getElementById('distillBtn').disabled = true;
+
+  // Loading steps animation
+  const steps = ['step1','step2','step3','step4'];
+  steps.forEach((s,i) => {
+    setTimeout(() => {
+      steps.forEach(x => document.getElementById(x).classList.remove('active'));
+      document.getElementById(s).classList.add('active');
+    }, i * 2000);
+  });
+
+  const prompt = `你是一个人格蒸馏专家。根据下面关于「${name}」的描述/聊天记录，生成一份人格 DNA 卡片。
+
+素材：
+---
+${text}
+---
+
+请返回严格的 JSON 格式（不要其他文字）：
+{
+  "emoji": "一个最能代表这个人的emoji",
+  "tagline": "一句话人格标签，12字以内，押韵/有趣更好",
+  "traits": [
+    {"label": "沟通风格", "emoji": "💬", "value": "10字以内描述"},
+    {"label": "核心驱动力", "emoji": "🎯", "value": "10字以内描述"},
+    {"label": "压力反应", "emoji": "🌪", "value": "10字以内描述"},
+    {"label": "隐藏超能力", "emoji": "⚡", "value": "10字以内描述"}
+  ],
+  "quirks": ["3-6个标志性习惯或口头禅，每个15字以内"],
+  "quote": "用TA的语气造一句最能代表TA的原创话，25字以内",
+  "skill_description": "如果把这个人打包成AI Skill，功能描述是什么，2句话，总字数40字以内",
+  "skill_triggers": ["3-5个触发词，比如：当你需要..., 想了解..."]
+}`;
+
+  try {
+    const res = await fetch(API_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${AISA_KEY}`
+      },
+      body: JSON.stringify({
+        model: 'gpt-4.1-mini',
+        messages: [{ role: 'user', content: prompt }],
+        temperature: 0.9,
+        max_tokens: 800
+      })
+    });
+
+    if (!res.ok) throw new Error(`API Error: ${res.status}`);
+
+    const data = await res.json();
+    const raw = data.choices[0].message.content;
+    
+    // Extract JSON
+    const jsonMatch = raw.match(/\{[\s\S]*\}/);
+    if (!jsonMatch) throw new Error('Invalid response format');
+    
+    const persona = JSON.parse(jsonMatch[0]);
+    renderCard(name, persona);
+
+  } catch (err) {
+    console.error(err);
+    showError(`蒸馏失败：${err.message}。请检查网络或稍后重试。`);
+  } finally {
+    setLoading(false);
+    document.getElementById('distillBtn').disabled = false;
+  }
+}
+
+function renderCard(name, p) {
+  document.getElementById('cardEmoji').textContent = p.emoji || '🧠';
+  document.getElementById('cardName').textContent = name;
+  document.getElementById('cardTagline').textContent = p.tagline || '';
+
+  // Traits
+  const grid = document.getElementById('traitsGrid');
+  grid.innerHTML = (p.traits || []).map(t => `
+    <div class="trait-item">
+      <div class="trait-label"><span class="trait-emoji">${t.emoji}</span>${t.label}</div>
+      <div class="trait-value">${t.value}</div>
+    </div>
+  `).join('');
+
+  // Quirks
+  const quirks = document.getElementById('quirksContainer');
+  quirks.innerHTML = (p.quirks || []).map(q => `<span class="quirk-tag">${q}</span>`).join('');
+
+  // Quote
+  document.getElementById('cardQuote').textContent = `"${p.quote}"`;
+
+  // Skill preview
+  currentSkillContent = generateSkillFile(name, p);
+  document.getElementById('skillPreview').textContent = currentSkillContent;
+
+  document.getElementById('resultSection').classList.add('show');
+  document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function generateSkillFile(name, p) {
+  const triggers = (p.skill_triggers || []).join('\n  - ');
+  return `# ${name}.skill
+# 由人格蒸馏机生成 · persona-distiller.vercel.app
+
+name: "${name}"
+emoji: "${p.emoji}"
+tagline: "${p.tagline}"
+
+description: |
+  ${p.skill_description || ''}
+
+triggers:
+  - ${triggers}
+
+personality:
+${(p.traits || []).map(t => `  ${t.label}: "${t.value}"`).join('\n')}
+
+quirks:
+${(p.quirks || []).map(q => `  - "${q}"`).join('\n')}
+
+signature_quote: "${p.quote}"
+
+# Generated by 小蓝虾🦐🔵 · ${new Date().toLocaleDateString('zh-CN')}`;
+}
+
+function copySkill() {
+  navigator.clipboard.writeText(currentSkillContent).then(() => showToast('✅ .skill 文件已复制'));
+}
+
+function downloadCard() {
+  const blob = new Blob([currentSkillContent], { type: 'text/plain' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  const name = document.getElementById('cardName').textContent || 'persona';
+  a.href = url;
+  a.download = `${name}.skill`;
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast('⬇️ 已下载 .skill 文件');
+}
+
+function resetForm() {
+  document.getElementById('resultSection').classList.remove('show');
+  document.getElementById('inputText').value = '';
+  document.getElementById('personName').value = '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function setLoading(show) {
+  document.getElementById('loadingState').classList.toggle('show', show);
+}
+function showError(msg) {
+  const el = document.getElementById('errorMsg');
+  el.textContent = msg;
+  el.classList.add('show');
+}
+function hideError() {
+  document.getElementById('errorMsg').classList.remove('show');
+}
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+</script>
+</body>
+</html>

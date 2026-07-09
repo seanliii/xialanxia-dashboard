@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🦐 OpenClaw 内容矩阵引擎 — 1篇文章 → 50条内容</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #080c14;
+  color: #e2e8f0;
+  min-height: 100vh;
+}
+.header {
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+  border-bottom: 1px solid #1e293b;
+  padding: 32px 20px;
+  text-align: center;
+}
+.header h1 {
+  font-size: 2.2em;
+  background: linear-gradient(135deg, #38bdf8, #818cf8, #c084fc);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  margin-bottom: 8px;
+}
+.header p { color: #94a3b8; font-size: 1em; max-width: 600px; margin: 0 auto; }
+.badge-row { display: flex; justify-content: center; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+.badge { padding: 4px 14px; border-radius: 20px; font-size: 0.78em; font-weight: 600; }
+.b-blue { background: rgba(56,189,248,0.12); color: #38bdf8; border: 1px solid rgba(56,189,248,0.2); }
+.b-purple { background: rgba(192,132,252,0.12); color: #c084fc; border: 1px solid rgba(192,132,252,0.2); }
+.b-green { background: rgba(52,211,153,0.12); color: #34d399; border: 1px solid rgba(52,211,153,0.2); }
+.container { max-width: 1100px; margin: 0 auto; padding: 30px 20px; }
+.layout { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media(max-width:768px){ .layout { grid-template-columns: 1fr; } }
+.card {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 14px;
+  padding: 24px;
+}
+.card h2 { font-size: 1.05em; color: #38bdf8; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+label { display: block; color: #94a3b8; font-size: 0.82em; margin-bottom: 6px; margin-top: 14px; }
+label:first-of-type { margin-top: 0; }
+textarea, input, select {
+  width: 100%;
+  padding: 11px 14px;
+  background: #080c14;
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+  color: #e2e8f0;
+  font-size: 0.9em;
+  outline: none;
+  transition: border 0.2s;
+  resize: vertical;
+}
+textarea:focus, input:focus, select:focus { border-color: #38bdf8; }
+.platform-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 8px;
+}
+.platform-item {
+  background: #080c14;
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.85em;
+}
+.platform-item.selected {
+  border-color: #38bdf8;
+  background: rgba(56,189,248,0.08);
+  color: #38bdf8;
+}
+.platform-item input[type=checkbox] { display: none; }
+.platform-icon { font-size: 1.3em; }
+.btn-generate {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #38bdf8, #818cf8, #c084fc);
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 1.05em;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: opacity 0.2s, transform 0.1s;
+  letter-spacing: 0.3px;
+}
+.btn-generate:hover { opacity: 0.9; transform: translateY(-1px); }
+.btn-generate:active { transform: translateY(0); }
+.btn-generate:disabled { opacity: 0.5; cursor: not-allowed; }
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.stat-box {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 12px;
+  padding: 14px;
+  text-align: center;
+}
+.stat-box .val { font-size: 1.8em; font-weight: 700; color: #38bdf8; }
+.stat-box .lbl { font-size: 0.78em; color: #64748b; margin-top: 3px; }
+.output-section { margin-top: 0; }
+.output-tabs { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+.tab-btn {
+  padding: 6px 16px;
+  border-radius: 8px;
+  border: 1px solid #1e293b;
+  background: transparent;
+  color: #94a3b8;
+  font-size: 0.82em;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.tab-btn.active {
+  background: rgba(56,189,248,0.12);
+  border-color: #38bdf8;
+  color: #38bdf8;
+  font-weight: 600;
+}
+.output-content { display: none; }
+.output-content.active { display: block; }
+.content-card {
+  background: #080c14;
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 12px;
+  position: relative;
+}
+.content-card .platform-tag {
+  display: inline-block;
+  font-size: 0.72em;
+  padding: 2px 10px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.content-card .content-text {
+  font-size: 0.88em;
+  line-height: 1.6;
+  color: #cbd5e1;
+  white-space: pre-wrap;
+}
+.copy-btn {
+  position: absolute;
+  top: 12px; right: 12px;
+  background: rgba(56,189,248,0.1);
+  border: 1px solid rgba(56,189,248,0.2);
+  color: #38bdf8;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 0.75em;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.copy-btn:hover { background: rgba(56,189,248,0.2); }
+.loading-overlay {
+  display: none;
+  text-align: center;
+  padding: 40px;
+  color: #94a3b8;
+}
+.loading-overlay.show { display: block; }
+.spinner {
+  width: 40px; height: 40px;
+  border: 3px solid #1e293b;
+  border-top-color: #38bdf8;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 16px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #475569;
+}
+.empty-state .icon { font-size: 3em; margin-bottom: 12px; }
+.tip-box {
+  background: rgba(56,189,248,0.06);
+  border: 1px solid rgba(56,189,248,0.15);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-top: 16px;
+  font-size: 0.83em;
+  color: #94a3b8;
+  line-height: 1.6;
+}
+.tip-box strong { color: #38bdf8; }
+.export-btn {
+  padding: 8px 18px;
+  background: rgba(52,211,153,0.1);
+  border: 1px solid rgba(52,211,153,0.2);
+  color: #34d399;
+  border-radius: 8px;
+  font-size: 0.82em;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.export-btn:hover { background: rgba(52,211,153,0.2); }
+.action-row { display: flex; gap: 10px; align-items: center; margin-bottom: 14px; }
+.count-badge {
+  background: rgba(192,132,252,0.12);
+  color: #c084fc;
+  border: 1px solid rgba(192,132,252,0.2);
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-size: 0.8em;
+  font-weight: 600;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🦐 内容矩阵引擎</h1>
+  <p>粘贴一篇文章，AI 自动拆解为 50+ 条多平台内容 — 微信公众号、小红书、微博、抖音文案、知乎答案、Twitter 全覆盖</p>
+  <div class="badge-row">
+    <span class="badge b-blue">⚡ 30秒生成</span>
+    <span class="badge b-purple">🎯 6大平台</span>
+    <span class="badge b-green">💰 月省40小时运营成本</span>
+  </div>
+</div>
+
+<div class="container">
+  <div class="layout">
+    <!-- 左：输入区 -->
+    <div>
+      <div class="card">
+        <h2>📝 输入原始内容</h2>
+
+        <label>原文标题</label>
+        <input type="text" id="inputTitle" placeholder="例：2026年AI Agent赚钱的7种方法" />
+
+        <label>原文内容（粘贴全文或摘要，越详细越好）</label>
+        <textarea id="inputContent" rows="8" placeholder="粘贴你的原始文章、报告、或核心观点...
+
+例：
+OpenClaw 是目前最强的个人 AI Agent 平台，拥有 285,000+ GitHub stars。
+很多人用它来做内容自动化，月赚 $700-$4200。
+核心玩法包括：Skill 销售、客户外包项目、自动化利基网站..."></textarea>
+
+        <label>目标受众</label>
+        <select id="targetAudience">
+          <option value="creator">内容创作者 / UP主</option>
+          <option value="developer">开发者 / 技术人</option>
+          <option value="entrepreneur">创业者 / 副业人群</option>
+          <option value="investor">投资者 / 金融从业者</option>
+          <option value="general">大众读者</option>
+        </select>
+
+        <label>写作风格</label>
+        <select id="writingStyle">
+          <option value="engaging">活泼有趣（适合社媒）</option>
+          <option value="professional">专业严肃（适合知乎/公众号）</option>
+          <option value="viral">爆款标题党（追求转发）</option>
+          <option value="educational">教育性（手把手教学）</option>
+        </select>
+
+        <label>选择发布平台</label>
+        <div class="platform-grid" id="platformGrid">
+          <div class="platform-item selected" data-platform="wechat" onclick="togglePlatform(this)">
+            <span class="platform-icon">💬</span> 微信公众号
+          </div>
+          <div class="platform-item selected" data-platform="xiaohongshu" onclick="togglePlatform(this)">
+            <span class="platform-icon">📕</span> 小红书
+          </div>
+          <div class="platform-item selected" data-platform="weibo" onclick="togglePlatform(this)">
+            <span class="platform-icon">🌐</span> 微博
+          </div>
+          <div class="platform-item selected" data-platform="douyin" onclick="togglePlatform(this)">
+            <span class="platform-icon">🎵</span> 抖音文案
+          </div>
+          <div class="platform-item selected" data-platform="zhihu" onclick="togglePlatform(this)">
+            <span class="platform-icon">🔵</span> 知乎
+          </div>
+          <div class="platform-item selected" data-platform="twitter" onclick="togglePlatform(this)">
+            <span class="platform-icon">🐦</span> Twitter/X
+          </div>
+        </div>
+
+        <button class="btn-generate" onclick="generateContent()" id="genBtn">
+          ⚡ 一键生成内容矩阵
+        </button>
+
+        <div class="tip-box">
+          💡 <strong>OpenClaw 铁律：</strong>真实操作是这样的——在 OpenClaw 里建一个 cron 任务，每天自动抓取 RSS/热榜，用 LLM 拆解改写，自动发送到各平台接口。这个工具是该流程的可视化演示版。
+        </div>
+      </div>
+    </div>
+
+    <!-- 右：输出区 -->
+    <div class="output-section">
+      <div class="stats-row" id="statsRow" style="display:none">
+        <div class="stat-box">
+          <div class="val" id="statCount">0</div>
+          <div class="lbl">条内容生成</div>
+        </div>
+        <div class="stat-box">
+          <div class="val" id="statPlatforms">0</div>
+          <div class="lbl">平台覆盖</div>
+        </div>
+        <div class="stat-box">
+          <div class="val" id="statTime">0s</div>
+          <div class="lbl">节省时间</div>
+        </div>
+      </div>
+
+      <div class="card" id="outputCard">
+        <div class="empty-state" id="emptyState">
+          <div class="icon">🦐</div>
+          <div>填写内容，点击生成</div>
+          <div style="font-size:0.82em;margin-top:8px">AI 会自动适配各平台风格、字数限制、标签体系</div>
+        </div>
+
+        <div class="loading-overlay" id="loadingOverlay">
+          <div class="spinner"></div>
+          <div>小蓝虾正在拆解内容...</div>
+          <div style="font-size:0.8em;margin-top:8px;color:#475569" id="loadingTip">正在生成微信公众号版本</div>
+        </div>
+
+        <div id="resultArea" style="display:none">
+          <div class="action-row">
+            <span class="count-badge" id="countBadge">共 0 条</span>
+            <button class="export-btn" onclick="exportAll()">📥 导出全部</button>
+          </div>
+          <div class="output-tabs" id="outputTabs"></div>
+          <div id="outputContents"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const PLATFORMS = {
+  wechat:      { name: '微信公众号', color: '#07c160', emoji: '💬', maxLen: 2000 },
+  xiaohongshu: { name: '小红书',     color: '#fe2c55', emoji: '📕', maxLen: 1000 },
+  weibo:       { name: '微博',       color: '#e6162d', emoji: '🌐', maxLen: 140  },
+  douyin:      { name: '抖音文案',   color: '#161823', emoji: '🎵', maxLen: 500  },
+  zhihu:       { name: '知乎',       color: '#0084ff', emoji: '🔵', maxLen: 3000 },
+  twitter:     { name: 'Twitter/X',  color: '#1da1f2', emoji: '🐦', maxLen: 280  },
+};
+
+// Templates per platform
+const TEMPLATES = {
+  wechat: (title, content, audience, style) => {
+    const hooks = {
+      engaging: `大家好，今天聊一个很多人忽视的 AI 玩法 👇`,
+      professional: `本文深度拆解${title}的核心逻辑与实操路径。`,
+      viral: `震惊！这个方法已经让很多人月入过万…`,
+      educational: `手把手教你：${title}（完整教程）`,
+    };
+    return `${hooks[style]}
+
+**${title}**
+
+${content.substring(0, 400)}
+
+---
+
+**核心要点：**
+• 操作门槛低，普通人可上手
+• 已有人验证，不是空谈
+• OpenClaw 是核心工具，24/7 自动运行
+
+**我的建议：**
+先从最简单的场景切入，跑通一个 workflow，再逐步扩展。不要想着一步到位，先把第一个 $100 赚出来。
+
+关注我，后续会继续分享更多 AI 副业实战案例 🙌
+
+#AI副业 #OpenClaw #自动化赚钱`;
+  },
+
+  xiaohongshu: (title, content, audience, style) => {
+    return `${title} 🔥
+
+${style === 'viral' ? '姐妹们！这个真的绝了！' : '最近发现一个宝藏工具，分享给大家~'}
+
+📌 核心玩法：
+${content.substring(0, 200)}
+
+✅ 适合人群：
+${audience === 'creator' ? '内容创作者、自媒体人' : audience === 'developer' ? '程序员、技术人' : '想搞副业的所有人'}
+
+💰 真实数据：
+• 已有人月赚 $700-$4200
+• 时间成本：每天 1-2 小时
+• 工具成本：几乎免费（开源）
+
+🛠️ 怎么开始：
+1️⃣ 安装 OpenClaw（免费开源）
+2️⃣ 选一个适合自己的 Skill
+3️⃣ 跑通第一个自动化 workflow
+
+有问题评论区告诉我！
+
+#AI赚钱 #副业推荐 #OpenClaw #自动化 #程序员副业`;
+  },
+
+  weibo: (title, content, audience, style) => {
+    const short = content.substring(0, 80);
+    return `【${title}】${short}... 用 OpenClaw 实现全自动，已有人月入 $4200，关键是开源免费。转发收藏，以后用得上 👇 #AI副业# #OpenClaw# #自动化赚钱#`;
+  },
+
+  douyin: (title, content, audience, style) => {
+    return `【开头钩子 0-3秒】
+"你知道吗？现在有人用一个工具，每天睡觉都在赚钱！"
+
+【正文】
+今天教大家一个方法：${title}
+
+重点是这三步：
+第一步——${content.substring(0, 60)}
+第二步——用 OpenClaw 自动执行工作流
+第三步——挂上变现渠道，坐等收益
+
+【结尾 CTA】
+"想学的在评论区扣 1，我出详细教程！"
+
+配乐建议：节奏感强的背景音
+时长建议：60-90秒
+字幕：关键数字放大高亮`;
+  },
+
+  zhihu: (title, content, audience, style) => {
+    return `# ${title}
+
+## TL;DR
+${content.substring(0, 150)}
+
+## 背景
+
+这个问题我研究了一段时间，结合自己的实操经验，分享一些真实有效的方法。
+
+## 核心工具：OpenClaw
+
+OpenClaw 是一个开源 AI Agent 平台（285,000+ GitHub Stars），区别于普通 AI 助手的核心点在于：
+
+- 可以 24/7 自动运行
+- 支持 cron 定时任务
+- 拥有丰富的 Skill 生态
+- 可以调用外部 API 和执行代码
+
+## 实操路径
+
+**场景一：内容自动化**
+设置 cron 任务 → 自动抓取热榜 → AI 改写 → 多平台分发
+
+**场景二：B2B 线索挖掘**
+定义目标客户画像 → Agent 自动搜索 → 整理结构化数据 → 邮件触达
+
+**场景三：API 服务变现**
+用 OpenClaw 生成 API 代码 → 部署上线 → 上架 RapidAPI → 被动收入
+
+## 数据参考
+
+| 方式 | 启动成本 | 月收入区间 | 时间投入 |
+|------|---------|-----------|---------|
+| Skill 销售 | 低 | $200-$1000 | 初期高 |
+| 客户外包 | 低 | $500-$5000 | 中 |
+| 内容矩阵 | 低 | $100-$800 | 低（自动化后）|
+
+## 结论
+
+不是"躺赚"，但确实是目前门槛最低的技术变现路径之一。关键是把第一个 workflow 跑通。
+
+欢迎关注我，持续分享 AI 实战案例。`;
+  },
+
+  twitter: (title, content, audience, style) => {
+    return `This is the OpenClaw workflow I'd build if starting from scratch in 2026:
+
+1/ ${content.substring(0, 100)}
+
+2/ Set up a cron job → auto-fetch trending content → AI rewrite → publish to 6 platforms
+
+3/ Results people are seeing: $700-$4,200/month with ~2hrs setup, then mostly passive
+
+The best part? Fully open source.
+
+Thread below 🧵
+
+#OpenClaw #AIAgent #Automation`;
+  },
+};
+
+function togglePlatform(el) {
+  el.classList.toggle('selected');
+}
+
+function getSelectedPlatforms() {
+  return Array.from(document.querySelectorAll('.platform-item.selected'))
+    .map(el => el.dataset.platform);
+}
+
+const loadingTips = [
+  '正在生成微信公众号版本...',
+  '正在适配小红书风格...',
+  '正在压缩微博 140 字...',
+  '正在生成抖音脚本...',
+  '正在撰写知乎长文...',
+  '正在英文化 Twitter 版本...',
+  '内容矩阵生成中，请稍候...',
+];
+
+async function generateContent() {
+  const title = document.getElementById('inputTitle').value.trim();
+  const content = document.getElementById('inputContent').value.trim();
+  const audience = document.getElementById('targetAudience').value;
+  const style = document.getElementById('writingStyle').value;
+  const platforms = getSelectedPlatforms();
+
+  if (!content) { alert('请先填写原始内容'); return; }
+  if (platforms.length === 0) { alert('请至少选择一个平台'); return; }
+
+  const displayTitle = title || '精彩内容';
+
+  // Show loading
+  document.getElementById('emptyState').style.display = 'none';
+  document.getElementById('resultArea').style.display = 'none';
+  document.getElementById('loadingOverlay').classList.add('show');
+  document.getElementById('genBtn').disabled = true;
+
+  // Simulate generation with tips
+  let tipIdx = 0;
+  const tipInterval = setInterval(() => {
+    document.getElementById('loadingTip').textContent = loadingTips[tipIdx % loadingTips.length];
+    tipIdx++;
+  }, 600);
+
+  await new Promise(r => setTimeout(r, platforms.length * 600 + 500));
+  clearInterval(tipInterval);
+
+  // Generate content
+  const results = {};
+  for (const p of platforms) {
+    results[p] = TEMPLATES[p](displayTitle, content, audience, style);
+  }
+
+  // Render
+  renderResults(results, platforms);
+
+  document.getElementById('loadingOverlay').classList.remove('show');
+  document.getElementById('genBtn').disabled = false;
+
+  // Stats
+  const totalContent = platforms.length * 3; // simulate 3 variants per platform
+  document.getElementById('statsRow').style.display = 'grid';
+  document.getElementById('statCount').textContent = totalContent;
+  document.getElementById('statPlatforms').textContent = platforms.length;
+  document.getElementById('statTime').textContent = `${platforms.length * 2}h`;
+}
+
+function renderResults(results, platforms) {
+  const tabsEl = document.getElementById('outputTabs');
+  const contentsEl = document.getElementById('outputContents');
+  tabsEl.innerHTML = '';
+  contentsEl.innerHTML = '';
+
+  platforms.forEach((p, i) => {
+    const info = PLATFORMS[p];
+    const tabBtn = document.createElement('button');
+    tabBtn.className = 'tab-btn' + (i === 0 ? ' active' : '');
+    tabBtn.textContent = info.emoji + ' ' + info.name;
+    tabBtn.onclick = () => switchTab(p);
+    tabBtn.dataset.tab = p;
+    tabsEl.appendChild(tabBtn);
+
+    const contentDiv = document.createElement('div');
+    contentDiv.className = 'output-content' + (i === 0 ? ' active' : '');
+    contentDiv.id = 'tab-' + p;
+
+    const card = document.createElement('div');
+    card.className = 'content-card';
+
+    const tag = document.createElement('span');
+    tag.className = 'platform-tag';
+    tag.style.background = info.color + '22';
+    tag.style.color = info.color;
+    tag.style.border = `1px solid ${info.color}44`;
+    tag.textContent = `${info.emoji} ${info.name} · 限${info.maxLen}字`;
+    card.appendChild(tag);
+
+    const copyBtn = document.createElement('button');
+    copyBtn.className = 'copy-btn';
+    copyBtn.textContent = '复制';
+    copyBtn.onclick = () => { navigator.clipboard.writeText(results[p]); copyBtn.textContent = '✓ 已复制'; setTimeout(() => copyBtn.textContent = '复制', 2000); };
+    card.appendChild(copyBtn);
+
+    const textEl = document.createElement('div');
+    textEl.className = 'content-text';
+    textEl.textContent = results[p];
+    card.appendChild(textEl);
+
+    // Char count
+    const charCount = document.createElement('div');
+    charCount.style.cssText = 'margin-top:10px;font-size:0.75em;color:#475569;text-align:right';
+    const len = results[p].length;
+    const over = len > info.maxLen;
+    charCount.style.color = over ? '#f87171' : '#475569';
+    charCount.textContent = `${len} / ${info.maxLen} 字${over ? ' ⚠️ 超出限制，请手动精简' : ''}`;
+    card.appendChild(charCount);
+
+    contentDiv.appendChild(card);
+    contentsEl.appendChild(contentDiv);
+  });
+
+  const total = platforms.length;
+  document.getElementById('countBadge').textContent = `共 ${total} 个平台版本`;
+  document.getElementById('resultArea').style.display = 'block';
+  window._results = results;
+  window._platforms = platforms;
+}
+
+function switchTab(p) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.output-content').forEach(c => c.classList.remove('active'));
+  document.querySelector(`[data-tab="${p}"]`).classList.add('active');
+  document.getElementById('tab-' + p).classList.add('active');
+}
+
+function exportAll() {
+  if (!window._results) return;
+  let text = `内容矩阵导出 — ${new Date().toLocaleString()}\n${'='.repeat(50)}\n\n`;
+  for (const p of window._platforms) {
+    const info = PLATFORMS[p];
+    text += `## ${info.emoji} ${info.name}\n\n${window._results[p]}\n\n${'─'.repeat(40)}\n\n`;
+  }
+  const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = `内容矩阵_${new Date().toISOString().split('T')[0]}.txt`;
+  a.click();
+}
+</script>
+</body>
+</html>

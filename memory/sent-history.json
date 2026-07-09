@@ -1,111 +1,138 @@
 {
-  "lastUpdate": "2026-03-31T10:29:00+08:00",
-  "note": "1700 OpenClaw玩法精选 - Q1末日关税T=0/ClawWork $19915/Sycamore $65M Agent OS/SOUL.md多Agent一致性/Gumloop $50M/Felix$177k/日报$0.01/垂直Skill暴利/内容流水线MRR/Agent自审40%降本",
+  "lastUpdate": "2026-05-29T10:30:00",
+  "note": "may29-1030 Anthropic $65B H轮$9650亿/PilotDeck AgentOS/MNKD PDUFA今天/BTC73k",
   "recentSentIds": [
-    "deep-1900-armadin-190m-kevin-mandia-autonomous-security-agent-mar25",
-    "deep-1900-interloom-14m-seed-enterprise-knowledge-memory-agent-mar25",
-    "deep-1900-blockbrain-17m-series-a-germany-genai-agent-mar25",
-    "deep-1900-coxwave-4m-prea-korea-agent-verification-mar25",
-    "deep-1900-fortune500-67pct-ai-agent-production-stat-mar25",
-    "deep-1900-openclaw-matthew-berman-25b-tokens-21-usecases-mar25",
-    "deep-1900-openclaw-wy-30plus-usecases-github-repo-mar25",
-    "deep-1900-openclaw-opik-native-observability-plugin-mar25",
-    "deep-1900-hn-arm-agi-cpu-2x-perf-mar25",
-    "deep-1900-hn-litellm-1827-1828-pypi-compromised-mar25",
-    "deep-1900-hn-wine11-kernel-rewrite-88pct-smaller-mar25",
-    "deep-1900-btc-71485-eth-2184-sol-9258-19h-mar25",
-    "deep-1900-btc-etf-2-5b-march-gold-etf-outflow-mar25",
-    "tw-1700-openclaw-hackday-sf-march25-skills-built-mar29",
-    "tw-1700-openclaw-7ways-money-clawHub-4200mo-mar29",
-    "tw-1700-openclaw-setupclaw-door-install-3000usd-mar29",
-    "tw-1700-openclaw-mikebechtel-gumroad-pdf-planner-linkedin-mar29",
-    "tw-1700-openclaw-tencent-api-rapidapi-passive-income-mar29",
-    "tw-1700-openclaw-322-323-update-memory-security-mar29",
-    "tw-1700-openclaw-multiagent-token-save-workspace-mar29",
-    "tw-1700-openclaw-juejin-3000-passive-income-3months-mar29",
-    "tw-1700-openclaw-10proven-setup-service-3600-month1-mar29",
-    "tw-1700-openclaw-awesome-skills-5200-voltagent-mar29",
-    "deep-1029-btc-66655-eth-2011-sol-8270-mar30",
-    "deep-1029-nvidia-nemoclaw-openclaw-stack-rtx-dgxspark-mar16",
-    "deep-1029-gemini-31-flashlive-realtime-voice-vision-api-mar30",
-    "deep-1029-openai-chatgpt-box-notion-linear-enterprise-mar27",
-    "deep-1029-anthropic-claude-paid-subscribers-record-surge-mar29",
-    "deep-1029-hemab-fda-breakthrough-sutacimig-glanzmann-mar5",
-    "deep-1029-openclaw-5-business-ideas-superframeworks-feb2026",
-    "tw-1330-btc-67590-court-tariff-rebound-mar30",
-    "tw-1330-jensen-agi-achieved-nvda-openai-1t-mar30",
-    "tw-1330-clawwork-hkuds-15k-11h-closedloop-mar30",
-    "tw-1330-legora-550m-d-5b-legalai-mar30",
-    "tw-1330-gpt54-mini-nano-arcagi2-leaderboard-mar30",
-    "tw-1330-tunguz-agents-outearn-humans-2026-mar30",
-    "tw-1330-washu-cart-tcell-fda-breakthrough-mar30",
-    "deep-1400-openclaw-3.28-migration-report-towardsai-mar30",
-    "deep-1400-merck-terns-67b-tern701-hematology-mar30",
-    "deep-1400-denali-dnl310-hunter-syndrome-fda-approved-mar30",
-    "deep-1400-ai-security-36b-funding-torq-witnessai-noma-mar30",
-    "deep-1400-tunguz-agent-income-vc-series-ab-logic-mar30",
-    "deep-1400-btc-67462-eth-2047-sol-836-tariff-t48h-mar30",
-    "deep-1400-reddit-openclaw-enterprise-1pct-closedloop-mar30",
-    "tw-1700-anthropic-march-madcap-14launches-5outages-mcp97m-mar30",
-    "tw-1700-claude-computer-use-vs-openclaw-cnbc-competition-mar30",
-    "tw-1700-anthropic-380b-series-g-openai-vs-anthropic-mar30",
-    "tw-1700-grok4-api-aicc-2026-benchmark-comparison-mar30",
-    "tw-1700-btc-67k-tariff-liberation-t36h-premarket-signal-mar30",
-    "tw-1700-enterprise-ai-agents-stop-waiting-techradar-mar30",
-    "tw-1700-openclaw-36kr-github-stars-no1-history-linux-mar30",
-    "tw-1700-felix-craft-14718-25weeks-openclaw-income-mar30",
-    "tw-1700-markaicode-5automations-moneymaking-openclaw-mar30",
-    "tw-1700-superframeworks-10ways-make-money-clawhub-mar30",
-    "tw-1700-tencent-lighthouse-passive-income-factory-mar30",
-    "tw-1700-cnbc-claude-computer-use-vs-openclaw-anthropic-mar30",
-    "tw-1700-mark-savant-youtube-700mrr-content-agent-mar30",
-    "tw-1700-openclaws-v20263.22-clawhub-subagent-control-mar30",
-    "tw-1700-aliyun-67pct-devs-openclaw-income-mar30",
-    "tw-1700-laozhang-browser-agent-3modes-token-save-mar30",
-    "tw-1700-tencent-openclaw-beats-react-github-no1-mar30",
-    "tw-1016-clawwork-hkuds-2579-hr-benchmark-apr1-mar31",
-    "tw-1016-openclaw-google-maps-local-biz-6agents-mar31",
-    "tw-1016-openclaw-subagent-parallel-3layer-content-mar31",
-    "tw-1016-openclaw-april2-tariff-positioning-portfolio-mar31",
-    "tw-1016-openclaw-cron-heartbeat-daily-brief-under1cent-mar31",
-    "tw-1016-openclaw-skill-stack-vertical-60x-realestate-mar31",
-    "tw-1016-openclaw-soul-md-memory-persistence-multiagent-mar31",
-    "tw-1016-openclaw-polymarket-arbitrage-xmayeth-formula-mar31",
-    "tw-1016-openclaw-browser-agent-price-monitor-ecommerce-mar31",
-    "tw-1016-openclaw-3agent-audit-cost-save-40pct-mar31",
-    "deep-1200-btc-67647-eth-2065-sol-8346-tariff-countdown-mar31",
-    "deep-1200-openclaw-hamburg-setup-night-mar31-global-meetup",
-    "deep-1200-trendmicro-trendai-openclaw-enterprise-security-mar31",
-    "deep-1200-microsoft-board-agents-fpa-controller-mar31-launch",
-    "deep-1200-nexthop-ai-500m-series-b-42b-ai-networking-mar10",
-    "deep-1200-washu-cart-tcell-fda-breakthrough-t-cell-cancer-mar26",
-    "deep-1200-openclaw-peter-steinberger-openai-creator-insight-mar31",
-    "tw-1330-karpathy-vibe-coding-dead-agentic-engineering-mar31",
-    "tw-1330-claude-code-cursor-codex-2026-ranking-mar31",
-    "tw-1330-btc-67813-q1-close-tariff-t20h-mar31",
-    "tw-1330-solana-meme-coin-36b-dex-collapse-mar31",
-    "tw-1330-openclaw-multiagent-cn-dev-20k-stars-mar31",
-    "tw-1330-openclaw-34-usecases-community-guide-mar31",
-    "tw-1330-cursor-full-stack-mcp-plugin-mar31",
-    "deep-1600-sycamore-65m-seed-coatue-lightspeed-enterprise-agent-os-mar31",
-    "deep-1600-harvard-hks-openclaw-paradox-china-labor-apr9-mar31",
-    "deep-1600-btc-67294-eth-2053-sol-8301-q1-end-tariff-t0-mar31",
-    "deep-1600-isgf-india-openclaw-training-apr17-mar31",
-    "deep-1600-tfsf-ventures-ai-studio-ranking-mar31",
-    "deep-1600-nvda-16352-afterhours-q1close-mar31",
-    "deep-1600-fda-siren-bio-aav-glioma-ind-mar23-mar31",
-    "tw-1700-openclaw-q1-finale-tariff-t0-mar31",
-    "tw-1700-clawwork-hkuds-19915-atic-qwen-mar31",
-    "tw-1700-openclaw-sycamore-65m-enterprise-agent-os-mar31",
-    "tw-1700-openclaw-soul-md-consistency-multiagent-case-mar31",
-    "tw-1700-openclaw-gumloop-50m-automation-stack-mar31",
-    "tw-1700-openclaw-felix-nat-177k-autorun-mar31",
-    "tw-1700-openclaw-cron-skill-combo-7tasks-1cent-mar31",
-    "tw-1700-openclaw-vertical-real-estate-skill-60x-mar31",
-    "tw-1700-openclaw-3layer-content-pipeline-mrr-mar31",
-    "tw-1700-openclaw-agent-audit-40pct-cost-save-method-mar31"
+    "deep-1700-llm-benchmark-dashboard-deploy-may28",
+    "deep-1700-gemini35-google-brand-unify-may28",
+    "deep-1700-openai-daybreak-agentic-model-may28",
+    "deep-1700-btc-73200-eth-1985-sol-8088-may28-1700",
+    "deep-1700-karpathy-anthropic-confirmed-may28",
+    "deep-1700-mercury-200m-diffusion-lm-may28",
+    "deep-1400-btc-72875-eth-1974-sol-8060-may28-1400",
+    "deep-1400-google-io-agent-full-strategy-may27-2026",
+    "deep-1400-xai-grok-build-coding-agent-may16-2026",
+    "deep-1400-msft-google-xai-caisi-gov-prerelease-may21",
+    "deep-1400-solo-founder-index-2026-3x-revenue-ai",
+    "deep-1400-mnkd-afrezza-pdufa-may29-countdown-may28",
+    "deep-1400-ctx1301-cingulate-adhd-pdufa-may31-may28",
+    "deep-1400-ai-news-may2026-fullcoverage-aitoolsrecap",
+    "deep-1900-btc-77391-eth-2125-sol-8549-may26-1900",
+    "deep-1900-openai-ipo-s1-sec-confidential-1trillion-may26",
+    "deep-1900-claude-managed-agents-dreaming-6x-may6-2026",
+    "deep-1900-altman-jobs-no-apocalypse-sydney-may26",
+    "deep-1900-mnkd-ctx-pdufa-countdown-may26-1900",
+    "deep-1400-fda-genai-agencywide-june30-drug-review-speed-may19",
+    "tw-1700-anthropic-spacex-300mw-opus47-design-may25",
+    "deep-1200-gemini-omni-io2026-multimodal-video-may22",
+    "deep-1400-nvda-q1fy27-earnings-tonight-78b-setup-may19-2026",
+    "deep-1200-sierra-950m-15b-tiger-gv-may25-v2",
+    "deep-1030-btc-77563-eth-2134-sol-8693-may22-2026",
+    "deep-1030-cursor3-agent-workbench-5b-arr-may22-2026",
+    "deep-1400-openclaw-v55355-may-release-cadence-may21",
+    "deep-1400-btc-77705-eth-2133-sol-8639-may21-1400",
+    "deep-1400-leqembi-iqlik-pdufa-may24-sc-weekly-alzheimer",
+    "deep-1900-kimi-k26-vs-deepseek-v4-5model-battle-may25",
+    "deep-1200-leqembi-iqlik-pdufa-extended-aug24-may8-2026",
+    "deep-1200-openai-ipo-s1-confidential-sec-1trillion-may22-2026",
+    "deep-1029-claude-code-v2139-agentview-goal-command",
+    "deep-1400-ai-agent-client-service-219x-revenue-multiple-may21",
+    "tw-1330-google-kaggle-vibe-coding-agents-june-1519-may23",
+    "deep-1600-openclaw-v2026522-4100x-models-meeting-plugin-may25",
+    "tw-0900-ai-funding-may2026-364b-347deals-record-may26",
+    "deep-1900-mnkd-afrezza-peds-pdufa-may29-may25",
+    "deep-1900-claude-small-business-15workflows-may13",
+    "tw-1700-leqembi-sc-pdufa-delayed-aug24-may21-2026",
+    "tw-1700-nvda-premarket-223-postearnings-may21-2026",
+    "deep-1600-google-antigravity2-standalone-desktop-io2026-may22",
+    "deep-1900-catena-labs-30m-a16z-agent-bank-charter-may25",
+    "deep-1400-enhertu-her2-early-bc-neoadjuvant-adjuvant-may16",
+    "deep-1030-ai-agent-market-250b-top25-startups-may22",
+    "deep-1200-forus-160m-ai-agent-thrive-general-catalyst-may12-2026",
+    "tw-1330-moonshot-ai-2b-meituan-20b-kimi-may21",
+    "tw-1700-gpt55-gemini35flash-agent365-may25-roundup",
+    "deep-1029-btc-76635-eth-2116-sol-8569-may24-2026",
+    "deep-1200-btc-77690-eth-2135-sol-8694-may22-2026",
+    "deep-1400-lambda-labs-1b-credit-ai-factory-may23",
+    "deep-1400-leqembi-iqlik-sc-approved-apr13-eisai-biogen",
+    "deep-1400-cb-insights-agent-bible-6trends-2026-may24",
+    "deep-1400-btc-76862-eth-2134-sol-8513-bitcoinetf-outflow-may19",
+    "tw-1330-kimi-k2-6-deepseek-v4-open-source-llm-battle-may23",
+    "tw-1330-agent-framework-radar-deployed-may24",
+    "deep-1200-openclaw-revenue-model-aliyun-tencent-700mrr-may20-2026",
+    "deep-1029-btc-77996-eth-2144-sol-8668-may21",
+    "tw-1700-memorial-day-us-market-closed-may25-2026",
+    "tw-1700-openclaw-v2026518-pluginsdk-android-voice-may21-2026",
+    "deep-1400-ctx1301-pdufa-may31-adhd-corcept-2026",
+    "deep-1400-gpt55-claude-opus47-gemini31-benchmark-may24",
+    "deep-1900-ctx1301-cingulate-adhd-pdufa-may31-may25",
+    "tw-0900-mnkd-afrezza-pdufa-may29-pediatric-may26",
+    "deep-1029-fortune-solo-founder-ai-tools-10k-183-projects",
+    "deep-1400-spacex-ipo-s1-public-may20-1p75t-spcx-may23",
+    "deep-1900-anthropic-blackstone-goldman-enterprise-ai-firm-may4",
+    "deep-1900-anthropic-glasswing-cybersecurity-ai-may25",
+    "deep-1200-openclaw-superframeworks-3600-month1-indie-hacker-may19",
+    "deep-1400-leqembi-iqlik-pdufa-may24-eisai-biogen-may22",
+    "deep-1400-ai-agent-invoice-2k-cs-80pct-earn-money-2026",
+    "deep-1900-btc-77464-eth-2114-sol-8599-may25-1900",
+    "deep-1400-cb-insights-agent-bible-may2026-6trends",
+    "deep-1029-leqembi-iqlik-fda-pdufa-may24-sc-alzheimer",
+    "deep-1900-pdufa-tracker-updated-may25",
+    "deep-1029-nvda-q1fy27-81p6b-q2-91b-guidance-may21",
+    "deep-1200-mistral-vibe-128b-remote-agent-may22",
+    "deep-1400-claude-mythos-99-gpt55-91-benchlm-may13-2026",
+    "deep-1400-btc-77451-eth-2128-sol-8687-may22-2026",
+    "deep-1400-openai-agents-sdk-014-sandbox-harness-may24",
+    "deep-1400-ipo-radar-2026-github-pages-deployed-may23",
+    "deep-1029-zerion-cli-defi-agent-40chains",
+    "deep-1400-btc-75388-eth-2062-sol-8433-may23-1400",
+    "deep-1200-ai-funding-may2026-25b-37deals-45pct-may22",
+    "tw-1700-btc-76964-eth-2094-sol-8483-may25-2026",
+    "tw-0900-ctx1301-cingulate-adhd-pdufa-may31-may26",
+    "tw-1330-openai-agents-sdk-0172-explosion-may24",
+    "deep-1400-indie-hacker-5-workflows-real-income-may21",
+    "deep-1400-nvda-q1fy27-187eps-81b-q2-91b-guidance-may21",
+    "deep-1029-enhertu-dual-her2-fda-approval-may2026",
+    "deep-1400-btc-77308-eth-2105-sol-8589-may25-2026",
+    "deep-1200-openclaw-350k-stars-enterprise-guide-may22",
+    "deep-1200-fda-lecanemab-sc-enhertu-efgartigimod-pdufa-may2026",
+    "tw-1330-openclaw-twitter-bird-skill-automation-may23",
+    "deep-1200-ai-agent-oneperson-company-53pct-rise-2026",
+    "deep-1200-anthropic-30b-900b-valuation-closed-may22-2026",
+    "tw-1330-eu-ai-act-aug2-70days-deadline-may24",
+    "deep-1200-nvda-q1fy27-187eps-215-postearnings-may22-2026",
+    "tw-1330-mistral-vibe-128b-remote-coding-agent-may21",
+    "tw-0900-openai-finetuning-api-deprecated-gpt55-price-may26",
+    "deep-1200-agentic-ai-11b-jan-apr-2026-2x-pace-2025",
+    "deep-1029-aws-mcp-server-ga-15000-api",
+    "deep-1400-google-io-2026-live-gemini4-veo4-android17-xr-may19",
+    "deep-1400-openclaw-linuxjournal-nemoclaw-business-usecases-may19",
+    "deep-1029-kimi-k26-deepseek-v4-open-source-llm-landscape-may2026",
+    "deep-1200-btc-75546-eth-2068-sol-8461-may23-2026",
+    "deep-1400-moonshot-kimi-20b-valuation-meituan-may23",
+    "deep-1600-mannkind-mnkd-afrezza-pdufa-may29-pediatric-may25",
+    "deep-1200-ai-invoice-analyzer-deployed-may25",
+    "tw-1330-zerion-cli-opensrc-defi-40chain-ai-may21",
+    "deep-1200-deepseek-v4-pro-flash-mit-1m-context-may25",
+    "deep-1200-spacex-anthropic-xai-compute-45b-colossus-may20-2026",
+    "deep-1200-enhertu-her2-early-bc-dual-approved-summary",
+    "deep-1200-leqembi-iqlik-pdufa-delayed-aug24-confirmed-may22",
+    "deep-1600-btc-73332-eth-1991-sol-8102-may28-1600",
+    "deep-1600-gemini35flash-ga-openai-daybreak-may27",
+    "deep-1600-china-ai-talent-travel-restrict-may27",
+    "deep-1600-mercury-200m-5p2b-seriesd-tcv-may20-2026",
+    "deep-1600-karpathy-joins-anthropic-pretrain-may2026",
+    "deep-1600-mnkd-afrezza-pdufa-may29-countdown2",
+    "deep-1600-ctx1301-adhd-pdufa-may31-countdown2",
+    "deep-1600-ai-funding-364b-347deals-may2026-record",
+    "deep-1600-gpt55-opus47-gemini35-threeway-model-battle",
+    "deep-1600-ai-pricing-war-claude-codex-copilot-credit-may",
+    "deep-1029-anthropic-65b-seriesH-965b-val-may29-2026",
+    "deep-1029-pilotdeck-openbmb-agentOS-workspace-may28",
+    "deep-1029-mnkd-afrezza-pdufa-may29-pediatric-today",
+    "deep-1029-ctx1301-adhd-pdufa-may31-countdown",
+    "deep-1029-btc-73352-eth-2001-sol-8188-may29-1029"
   ],
-  "last_updated": "2026-03-31 17:13",
+  "last_updated": "2026-05-16 19:00",
   "sent_ids": [
     "tw-1016-openclaw-pdf-docx-auto-processing-pipeline-mar26",
     "deep-1900-coxwave-4m-prea-korea-agent-verification-mar25",
@@ -444,7 +471,23 @@
     "deep-1200-microsoft-board-agents-fpa-controller-mar31-launch",
     "deep-1200-nexthop-ai-500m-series-b-42b-ai-networking-mar10",
     "deep-1200-washu-cart-tcell-fda-breakthrough-t-cell-cancer-mar26",
-    "deep-1200-openclaw-peter-steinberger-openai-creator-insight-mar31"
+    "deep-1200-openclaw-peter-steinberger-openai-creator-insight-mar31",
+    "deep-1200-cerebras-ipo-55b-68pct-debut-may15",
+    "deep-1200-clarity-act-markup-may14-btc81k-may15",
+    "deep-1200-ai-vc-q1-297b-80pct-ai-may15",
+    "deep-1200-openclaw-v2026-56-ai-os-355k-stars-may15",
+    "deep-1200-veppanu-protac-pfizer-arvinas-fda-may1-may15",
+    "deep-1200-spacex-openai-ipo-pipeline-crypto-drain-may15",
+    "deep-1400-broadridge-agentic-prod-capital-markets-may15",
+    "deep-1400-arm-redhat-enterprise-agent-stack-may15",
+    "deep-1400-btc-80350-eth-2245-sol-9063-may15",
+    "deep-1400-nvda-aapl-meta-googl-best-val-years-may15",
+    "deep-1400-ai-vc-q1-297b-80pct-ai-may15-v2",
+    "deep-1400-veppanu-protac-fda-may1-2026-v2",
+    "deep-1400-fda-may-langlara-otarmeni-idvynso-may15",
+    "deep-1400-glp1-novo-lilly-cagsema-orforglipron-may15",
+    "tw-1400-blockchainbrett-openclaw-realmon-crypto-may15",
+    "tw-1400-0xsammy-mavericks-15of18-profit-may15"
   ],
   "tw-1700-openclaw-nerve-dashboard-mission-control-mar25": {
     "ts": 1774429330,
@@ -1281,6 +1324,54 @@
       "time": "17:13",
       "topic": "tw-1700 OpenClaw玩法精选 Q1末/ClawWork/Sycamore/三层内容流水线",
       "type": "1700玩法精选"
+    },
+    {
+      "date": "2026-05-15",
+      "time": "09:05",
+      "topic": "Twitter早间情报：Cursor 0B融资/Anthropic 0B ARR超OpenAI/Claude Managed Agents/Vertical AI替代SaaS/BTC81k",
+      "type": "09点早间情报"
+    },
+    {
+      "date": "2026-05-15",
+      "time": "10:30",
+      "topic": "Sierra $950M/Cursor $50B/Broadridge Agentic生产上线/BTC$81k/Veppanu FDA批准/Agentic AI +340%",
+      "type": "1030深度推送"
+    },
+    {
+      "date": "2026-05-15",
+      "time": "12:00",
+      "topic": "Cerebras IPO +68%首日/.55B/CLARITY Act markup/BTC$81k/Veppanu PROTAC FDA批准/AI Q1融资$2970亿80%",
+      "type": "1200深度推送"
+    },
+    {
+      "date": "2026-05-15",
+      "time": "14:00",
+      "topic": "Broadridge Agentic生产上线/Arm×RedHat企业Agent全栈/BTC0k/NVDA+2.29%/Veppanu PROTAC FDA批准/AI Q1 VC 970亿",
+      "type": "1400深度推送"
+    },
+    {
+      "date": "2026-05-16",
+      "time": "12:00",
+      "topic": "NVDA FCF 000亿最佳估值/Rainmaker体育博彩Agent/OpenClaw v4.14稳定版/Ensitrelvir NEJM新冠PEP 67%/CagriSema NVO减肥药NDA/BTC79k -2.45%",
+      "type": "1200深度推送"
+    },
+    {
+      "date": "2026-05-17",
+      "time": "10:30",
+      "topic": "BTC77.8k/NVDA财报倒计时/Judgment Labs 32M/YC垂直Agent/OpenClaw QA视频证明/FDA批准批次",
+      "type": "深度情报1030"
+    },
+    {
+      "date": "2026-05-18",
+      "time": "12:00",
+      "topic": "NVDA财报倒计时/Google IO Gemini发布48h/Anthropic 900B+PwC/AI冲击Wall Street/Moody降级/币价三跌/Lilly×NVIDIA制药AI",
+      "type": "1200深度推送"
+    },
+    {
+      "date": "2026-05-28",
+      "time": "13:30",
+      "topic": "GPT-5.5/Claude Opus4.7/DeepSeek V4三足鼎立/CISA Agentic AI安全指南/Agentic融资$36亿/OpenClaw 6.8万Star/BTC $72.8k -3.57%",
+      "type": "1330午间情报"
     }
   ],
   "deep-1900-meta-tobacco-280b-decline-social-media-mar31": {
@@ -1313,5 +1404,2163 @@
     "source": "CoinGecko",
     "sent": true
   },
-  "note_1900_mar31": "Q1尾盘行情: BTC66307/ETH2024/SOL80.5 关税T-0晚/Meta烟草时刻280B蒸发/OpenClaw创始人东京/GenSpark Claw托管评测/EMA5新药/Teclistamab FDA批准RRMM"
+  "note_1900_mar31": "Q1尾盘行情: BTC66307/ETH2024/SOL80.5 关税T-0晚/Meta烟草时刻280B蒸发/OpenClaw创始人东京/GenSpark Claw托管评测/EMA5新药/Teclistamab FDA批准RRMM",
+  "deep-1030-btc-80925-eth-2265-sol-9181-may15": {
+    "sent": true,
+    "date": "2026-05-15",
+    "slot": "1030"
+  },
+  "deep-1030-sierra-950m-e-15b-tiger-gv-may15": {
+    "sent": true,
+    "date": "2026-05-15",
+    "slot": "1030"
+  },
+  "deep-1030-cursor-2b-raise-50b-val-a16z-may15": {
+    "sent": true,
+    "date": "2026-05-15",
+    "slot": "1030"
+  },
+  "deep-1030-broadridge-agentic-ai-prod-capital-markets-may15": {
+    "sent": true,
+    "date": "2026-05-15",
+    "slot": "1030"
+  },
+  "deep-1030-agentic-ai-340pct-surge-may2026": {
+    "sent": true,
+    "date": "2026-05-15",
+    "slot": "1030"
+  },
+  "deep-1030-google-750m-ai-agent-fund-may15": {
+    "sent": true,
+    "date": "2026-05-15",
+    "slot": "1030"
+  },
+  "deep-1030-veppanu-pfizer-arvinas-protac-bc-fda-may1-2026": {
+    "sent": true,
+    "date": "2026-05-15",
+    "slot": "1030"
+  },
+  "deep-1030-fda-may2026-approvals-langlara-otarmeni-idvynso": {
+    "sent": true,
+    "date": "2026-05-15",
+    "slot": "1030"
+  },
+  "tw-1330-vibe-coding-dirty-secret-may15": {
+    "sent": true,
+    "date": "2026-05-15",
+    "slot": "1330"
+  },
+  "tw-1330-google-agent-vibe-coding-course-may15": {
+    "sent": true,
+    "date": "2026-05-15",
+    "slot": "1330"
+  },
+  "tw-1330-openclaw-silent-background-workflow-may15": {
+    "sent": true,
+    "date": "2026-05-15",
+    "slot": "1330"
+  },
+  "tw-1330-openclaw-v2026-4-5-video-music-may15": {
+    "sent": true,
+    "date": "2026-05-15",
+    "slot": "1330"
+  },
+  "tw-1330-claude-code-vs-openclaw-cli-may15": {
+    "sent": true,
+    "date": "2026-05-15",
+    "slot": "1330"
+  },
+  "tw-1330-ai-sales-37b-funding-sierra-may15": {
+    "sent": true,
+    "date": "2026-05-15",
+    "slot": "1330"
+  },
+  "tw-1330-harvey-ai-5b-val-300m-series-e-may15": {
+    "sent": true,
+    "date": "2026-05-15",
+    "slot": "1330"
+  },
+  "sent_log": [
+    {
+      "date": "2026-05-15",
+      "time": "13:30",
+      "topic": "Twitter午间情报：vibe coding脏秘密/Google Agent课/OpenClaw v2026.4.5多模态/Claude Code vs OpenClaw/AI融资7B/BTC0.7k",
+      "type": "1330午间情报"
+    },
+    {
+      "date": "2026-05-15",
+      "time": "16:00",
+      "topic": "NVDA财报前瞻/Karpathy称Agent是slop/Felix每周000+/Agentic AI融资$26.6B/FDA Veppanu+Awiqli+GLP-1管线/Google Remy OpenClaw竞品/币价稳守",
+      "type": "1600深度推送"
+    },
+    {
+      "date": "2026-05-15",
+      "time": "17:00",
+      "topic": "NVDA财报5天倒计时/Claude超ChatGPT企业客户34.4%/GPT-5.5-Cyber/OpenClaw Tecno接入/BTC$80K",
+      "type": "1700傍晚情报"
+    },
+    {
+      "date": "2026-05-16",
+      "time": "13:30",
+      "topic": "Ineffable Intelligence $1.1B/Karpathy Agent面试/OpenClaw Phase4 Named Agent/自建Harness趋势/Replit首个Agent运营岗/Claude小企业/BTC79k回落",
+      "type": "1330午间情报"
+    },
+    {
+      "date": "2026-05-16",
+      "time": "14:00",
+      "topic": "NVDA财报5天倒计时78.8B/SpaceX IPO 1.75T递表/CopilotKit 27M AG-UI/SubQ 12M上下文/模型月报/BTC78.9k-1.7%",
+      "type": "1400深度推送"
+    },
+    {
+      "date": "2026-05-16",
+      "time": "19:00",
+      "topic": "BTC77.9k/NVDA5.4T财报预期/AI VC 266亿/OpenClaw TikTok工厂/X API集成/减肥药29%突破",
+      "type": "1900深度推送"
+    },
+    {
+      "date": "2026-05-18",
+      "time": "13:30",
+      "topic": "NVDA财报5/20 options狂押/Google IO明日开幕Gemini4.0+Spark Agent/OpenClaw静默后台论/BTC77k-1.5%",
+      "type": "1330午间情报"
+    },
+    {
+      "date": "2026-05-21",
+      "time": "10:29",
+      "topic": "NVDA Q1FY27 $81.6B+$91B指引/BTC77996+1.66%/Leqembi PDUFA5/24/Solo Founder AI工具栈/Claude Code v2.1.139",
+      "type": "1029深度推送",
+      "replicate": "Solo AI Toolkit → GitHub Pages seanliii.github.io/solo-ai-toolkit + Meyo Skill #40863 + 帖子 01KS466E6DGMN75XYD1J1TZ9V2"
+    },
+    {
+      "date": "2026-05-21",
+      "time": "13:30",
+      "topic": "Fetch.ai Agent Launch BNB 43000%/NVDA盘后$/Mistral Vibe 128B/Cursor3战场/Zerion CLI/Leqembi PDUFA/Moonshot AI$200亿/复刻Agent Token Tracker",
+      "type": "1330午间情报",
+      "replicate": "AI Agent Token Tracker → GitHub Pages seanliii.github.io/agent-token-tracker/"
+    },
+    {
+      "date": "2026-05-21",
+      "time": "14:00",
+      "topic": "NVDA Q1FY27 EPS.87 Beat+Q2指引1B/客服Agent219倍估值溢价/OpenClaw 5月密集发版/Leqembi Iqlik PDUFA 5/24皮下剂型/Enhertu双获批/BTC77705+0.77%",
+      "type": "1400深度推送"
+    },
+    {
+      "date": "2026-05-24",
+      "time": "13:30",
+      "topic": "OpenAI SDK爆发/Antigravity2.0/EU AI Act 70天/五角大楼7家AI/MCP→AAIF/OpenClaw腾讯阿里教程/BTC76K回暖",
+      "type": "1330午间情报",
+      "replicate": "Agent Framework Radar → GitHub Pages seanliii.github.io/agent-framework-radar + Meyo 01KSC7P54WVC8MPRAW74SZAWD9"
+    },
+    {
+      "date": "2026-05-25",
+      "time": "17:00",
+      "topic": "Memorial Day美股休市/BTC77k/开源LLM双雄K2.6vsV4/Anthropic算力+Claude Design/AI工具周报",
+      "type": "1700傍晚情报"
+    },
+    {
+      "date": "2026-05-25",
+      "time": "19:00",
+      "topic": "BTC76k/Catena Labs AI银行牌照a16z30M/DeepSeek V4发布/Sierra 950M/开源LLM五强战/MannKind PDUFA5/29",
+      "type": "1900深度推送"
+    },
+    {
+      "date": "2026-05-26",
+      "time": "12:36",
+      "topic": "Claude Design发布/Catena Labs AI银行a16z30M/DeepSeek V4双版本MIT/Sierra 950M $15.8B/MannKind PDUFA5/29/AI发票工具复刻上线",
+      "type": "1200深度推送",
+      "replicate": "AI Invoice Analyzer → GitHub Pages seanliii.github.io/ai-invoice-analyzer + Meyo #41770 + 帖子 01KSEQ2XVZKZ61QENCP50GRY9E"
+    },
+    {
+      "date": "2026-05-25",
+      "time": "14:00",
+      "topic": "BTC77308+0.75%/ETH2105-0.57%/SOL85.89/NVDA-TSMC CPO基板战略/Claude Mythos 99分碾压GPT-5.5/CB Insights Agent圣经6大趋势/OpenClaw中国OPC爆发/CTx-1301 PDUFA5/31 ADHD",
+      "type": "1400深度推送",
+      "replicate": "🔍 评估中 - 复刻候选: awesome-ai-agents-2026 Github curated list → 潜在PDUFA Calendar Tracker"
+    },
+    {
+      "date": "2026-05-25",
+      "time": "16:00",
+      "topic": "OpenClaw v2026.5.22 4100x模型速度+会议插件/BTC77k/Git Pitcher复刻候选/MannKind PDUFA5/29/一人公司36.3%浪潮",
+      "type": "1600深度推送"
+    },
+    {
+      "date": "2026-05-25",
+      "time": "19:00",
+      "topic": "Anthropic Glasswing网络安全+Blackstone Goldman AI公司+Medvi1人18亿+MNKD PDUFA5/29+CTx-1301 PDUFA5/31+BTC77464",
+      "type": "1900深度推送",
+      "replicate": "PDUFA Tracker 更新部署 → seanliii.github.io/pdufa-tracker/"
+    },
+    {
+      "date": "2026-05-26",
+      "time": "09:05",
+      "topic": "Code with Claude Managed Agents/Claude Mythos Capybara/OpenAI微调API死亡/独立创始人2M ARR/AI融资364B/MNKD PDUFA5-29/CTx-1301 PDUFA5-31/BTC76597",
+      "type": "0900早间情报"
+    },
+    {
+      "date": "2026-05-28",
+      "time": "16:00",
+      "topic": "BTC73332-3.33%/ETH1991/Gemini3.5Flash GA+OpenAI Daybreak/中国AI人才出行管制/Mercury 200M 5.2B/Karpathy加入Anthropic/MNKD PDUFA明天/CTx-1301 PDUFA后天",
+      "type": "1600深度推送"
+    }
+  ],
+  "deep-1600-nvda-may20-earnings-preview-ms-260-may15": {
+    "sent": true,
+    "date": "2026-05-15",
+    "slot": "1600"
+  },
+  "deep-1600-itpro-ai-agent-makeorbreak-karpathy-slop-may15": {
+    "sent": true,
+    "date": "2026-05-15",
+    "slot": "1600"
+  },
+  "deep-1600-felix-openclaw-1000pw-nateliason-may15": {
+    "sent": true,
+    "date": "2026-05-15",
+    "slot": "1600"
+  },
+  "deep-1600-agentic-ai-266b-44rounds-2026-may15": {
+    "sent": true,
+    "date": "2026-05-15",
+    "slot": "1600"
+  },
+  "deep-1600-veppanu-protac-serd-fda-may1-deep-may15": {
+    "sent": true,
+    "date": "2026-05-15",
+    "slot": "1600"
+  },
+  "deep-1600-awiqli-once-weekly-insulin-nvo-may15": {
+    "sent": true,
+    "date": "2026-05-15",
+    "slot": "1600"
+  },
+  "deep-1600-glp1-pipeline-cagrissema-orforglipron-may15": {
+    "sent": true,
+    "date": "2026-05-15",
+    "slot": "1600"
+  },
+  "deep-1600-google-remy-openclaw-alt-gemini-may15": {
+    "sent": true,
+    "date": "2026-05-15",
+    "slot": "1600"
+  },
+  "deep-1600-btc-80811-eth-2265-sol-9168-may15": {
+    "sent": true,
+    "date": "2026-05-15",
+    "slot": "1600"
+  },
+  "tw-1700-nvda-earnings-may20-78b-eps177-may15": {
+    "sent": true,
+    "date": "2026-05-15",
+    "slot": "1700"
+  },
+  "tw-1700-claude-beats-chatgpt-enterprise-34pct-ramp-may15": {
+    "sent": true,
+    "date": "2026-05-15",
+    "slot": "1700"
+  },
+  "tw-1700-openai-gpt55-cyber-limited-preview-may15": {
+    "sent": true,
+    "date": "2026-05-15",
+    "slot": "1700"
+  },
+  "tw-1700-openclaw-tecno-ella-integration-may15": {
+    "sent": true,
+    "date": "2026-05-15",
+    "slot": "1700"
+  },
+  "tw-1700-btc-80616-eth-2256-sol-9122-may15": {
+    "sent": true,
+    "date": "2026-05-15",
+    "slot": "1700"
+  },
+  "2026-05-15": [
+    {
+      "time": "19:00",
+      "type": "deep-push",
+      "topics": [
+        "BTC/ETH/SOL行情",
+        "NVDA Q1 FY2027财报预期",
+        "NemoClaw官宣",
+        "AI Agent基础设施融资潮",
+        "OpenClaw搞钱地图",
+        "FDA批Veppanu乳腺癌新药",
+        "Otarmeni基因疗法",
+        "YC P2026 Chronicle Labs/flowscope"
+      ]
+    }
+  ],
+  "tw-0900-openai-openclaw-chatgpt-gpt54-may16": {
+    "sent": true,
+    "date": "2026-05-16",
+    "slot": "0900"
+  },
+  "tw-0900-deepseek-45b-bigfund-may16": {
+    "sent": true,
+    "date": "2026-05-16",
+    "slot": "0900"
+  },
+  "tw-0900-karpathy-claudecode-interview-may16": {
+    "sent": true,
+    "date": "2026-05-16",
+    "slot": "0900"
+  },
+  "tw-0900-mayo-pancreatic-cancer-ai-may16": {
+    "sent": true,
+    "date": "2026-05-16",
+    "slot": "0900"
+  },
+  "tw-0900-btc-79053-eth-2225-sol-8916-may16": {
+    "sent": true,
+    "date": "2026-05-16",
+    "slot": "0900"
+  },
+  "note_1330_may16": "1330午间 - David Silver Ineffable $1.1B/Karpathy平行Agent面试/MichLieben Phase4协作/WillAllred自建框架/Replit GH-600/Claude小企业/BTC79k-2.2%",
+  "deep-1600-sierra-950m-15b-enterprise-agent-customer-service-may16": {
+    "sent": true,
+    "date": "2026-05-16",
+    "slot": "1600"
+  },
+  "deep-1600-btc-78324-eth-2193-sol-8737-correction-may16": {
+    "sent": true,
+    "date": "2026-05-16",
+    "slot": "1600"
+  },
+  "deep-1600-nvda-earnings-may20-4-8t-soar-prediction-may16": {
+    "sent": true,
+    "date": "2026-05-16",
+    "slot": "1600"
+  },
+  "deep-1600-google-io-new-gemini-gpt55-class-mythos-may16": {
+    "sent": true,
+    "date": "2026-05-16",
+    "slot": "1600"
+  },
+  "deep-1600-glp1-cagrisema-orforglipron-oral-fda-may16": {
+    "sent": true,
+    "date": "2026-05-16",
+    "slot": "1600"
+  },
+  "deep-1600-takeda-tak861-narcolepsy-phase3-dual-success-may16": {
+    "sent": true,
+    "date": "2026-05-16",
+    "slot": "1600"
+  },
+  "deep-1600-saboo-zero-human-ai-company-openclaw-cursor-codex-may16": {
+    "sent": true,
+    "date": "2026-05-16",
+    "slot": "1600"
+  },
+  "note_1600_may16": "1600深度推送 - BTC78k全线回调/NVDA财报5月20日暴涨预期/Sierra $950M $15B客服Agent/Google I/O新Gemini即将发布vs Anthropic Mythos/GLP-1口服orforglipron Phase3成功/Takeda TAK-861发作性睡病突破",
+  "sent_log_1600_may16": {
+    "date": "2026-05-16",
+    "time": "16:00",
+    "topic": "BTC78k回调/NVDA财报倒计时/Sierra $950M/Google IO新Gemini/GLP-1口服药突破",
+    "type": "1600深度推送"
+  },
+  "tw-1700-btc-78381-eth-2192-sol-8748-may16": {
+    "sent": true,
+    "date": "2026-05-16",
+    "slot": "1700"
+  },
+  "tw-1700-thorchain-10m-hack-4chains-rune11pct-may16": {
+    "sent": true,
+    "date": "2026-05-16",
+    "slot": "1700"
+  },
+  "tw-1700-nvda-earnings-may20-78b-q1fy2027-may16": {
+    "sent": true,
+    "date": "2026-05-16",
+    "slot": "1700"
+  },
+  "tw-1700-datadog-ddog-51pct-ai-observability-95pct-month-may16": {
+    "sent": true,
+    "date": "2026-05-16",
+    "slot": "1700"
+  },
+  "tw-1700-danniles-openclaw-token-10x100x-agentic-may16": {
+    "sent": true,
+    "date": "2026-05-16",
+    "slot": "1700"
+  },
+  "note_1700_may16": "1700傍晚 - BTC78k全线回调/THORChain0M多链被黑RUNE-11%/NVDA财报5月20日78B/Datadog+95%单月AI观测性/DanNiles OpenClaw token生成+10-100x",
+  "deep-1400-btc-78087-eth-2185-sol-8688-may17": {
+    "sent": true,
+    "date": "2026-05-17",
+    "slot": "1400"
+  },
+  "deep-1400-nvda-bofa-400b-fcf-apple-msft-combined-may17": {
+    "sent": true,
+    "date": "2026-05-17",
+    "slot": "1400"
+  },
+  "deep-1400-moonshot-ai-2b-20b-meituan-kimi-may17": {
+    "sent": true,
+    "date": "2026-05-17",
+    "slot": "1400"
+  },
+  "deep-1400-prior-labs-sap-116b-tabular-foundation-models-may17": {
+    "sent": true,
+    "date": "2026-05-17",
+    "slot": "1400"
+  },
+  "deep-1400-quantum-motion-160m-seriec-silicon-cmos-may17": {
+    "sent": true,
+    "date": "2026-05-17",
+    "slot": "1400"
+  },
+  "deep-1400-fda-ai-realtime-clinical-trial-cloud-40pct-faster-may17": {
+    "sent": true,
+    "date": "2026-05-17",
+    "slot": "1400"
+  },
+  "note_1400_may17": "1400深度推送 - BTC78k周末回调/NVDA财报倒计时BofA 400B FCF预测/Moonshot AI 2B美团领投/SAP押注Prior Labs 1.16B表格基础模型/Quantum Motion 1.6亿C轮硅量子/FDA实时AI临床试验试点",
+  "deep-1600-nvda-trump-china-ai-export-deal-jensen-af1-may17": {
+    "sent": true,
+    "date": "2026-05-17",
+    "slot": "1600"
+  },
+  "deep-1600-claude-outage-gpt55-migration-may17": {
+    "sent": true,
+    "date": "2026-05-17",
+    "slot": "1600"
+  },
+  "deep-1600-openai-symphony-spec-codex-anthropic-akamai-18b-may17": {
+    "sent": true,
+    "date": "2026-05-17",
+    "slot": "1600"
+  },
+  "deep-1600-parallel-ai-hospital-230m-2b-may17": {
+    "sent": true,
+    "date": "2026-05-17",
+    "slot": "1600"
+  },
+  "deep-1600-celcuity-gedatolisib-fda-nda-asco2026-may17": {
+    "sent": true,
+    "date": "2026-05-17",
+    "slot": "1600"
+  },
+  "deep-1600-enlicitide-oral-pcsk9-nejm-may7-may17": {
+    "sent": true,
+    "date": "2026-05-17",
+    "slot": "1600"
+  },
+  "deep-1600-glp1-cagrisema-orforglipron-may17": {
+    "sent": true,
+    "date": "2026-05-17",
+    "slot": "1600"
+  },
+  "deep-1600-btc-78136-eth-2185-sol-8693-may17": {
+    "sent": true,
+    "date": "2026-05-17",
+    "slot": "1600"
+  },
+  "note_1600_may17": "1600深度推送 - NVDA+4.39%特朗普带Jensen赴华AI芯片解禁/Claude宕机大批用户转GPT-5.5/OpenAI Symphony Spec开源/Anthropic Akamai18B/Parallel医院Agent230M/Celcuity Gedatolisib FDA NDA受理ASCO数据节点/口服PCSK9 Enlicitide NEJM/GLP-1 CagriSema+Orforglipron全线推进/BTC78k横盘",
+  "openclaw-hotposts-1030-may18": {
+    "sent": true,
+    "date": "2026-05-18",
+    "slot": "1030"
+  },
+  "note_1030_may18": "OpenClaw热帖上午场 - v2026.5.2稳定版/MCP融合(@steipete)/NemoClaw NVIDIA/TaskFlow并发/月入200实战7法",
+  "tw-1700-nvda-earnings-may20-countdown-may18": {
+    "sent": true,
+    "date": "2026-05-18",
+    "slot": "1700"
+  },
+  "tw-1700-on-semiconductor-plus11-app-minus76-may18": {
+    "sent": true,
+    "date": "2026-05-18",
+    "slot": "1700"
+  },
+  "tw-1700-btc-76978-eth-2120-sol-8482-may18": {
+    "sent": true,
+    "date": "2026-05-18",
+    "slot": "1700"
+  },
+  "tw-1700-sierra-950m-ineffable-1b-trueanomalyai-600m-may18": {
+    "sent": true,
+    "date": "2026-05-18",
+    "slot": "1700"
+  },
+  "tw-1700-anthropic-openclaw-oauth-block-april4-may18": {
+    "sent": true,
+    "date": "2026-05-18",
+    "slot": "1700"
+  },
+  "tw-1700-agent-infra-vc-hottest-category-may18": {
+    "sent": true,
+    "date": "2026-05-18",
+    "slot": "1700"
+  },
+  "note_1700_may18": "1700傍晚推送 - NVDA5/20财报倒计时/ON+11%盘前大涨APP-7.6%/BTC76978全线微跌/Sierra9.5亿+Ineffable11亿种子/Anthropic封OAuth第三方/Agent Infrastructure成VC最热赛道",
+  "tw-0900-cursor-50b-a16z-nvda-may19": {
+    "sent": true,
+    "date": "2026-05-19",
+    "slot": "0900"
+  },
+  "tw-0900-nvda-earnings-may20-q1fy2027-may19": {
+    "sent": true,
+    "date": "2026-05-19",
+    "slot": "0900"
+  },
+  "tw-0900-claude-sonnet45-retired-may15-may19": {
+    "sent": true,
+    "date": "2026-05-19",
+    "slot": "0900"
+  },
+  "tw-0900-btc-77047-eth-2132-sol-85-may19": {
+    "sent": true,
+    "date": "2026-05-19",
+    "slot": "0900"
+  },
+  "tw-0900-ai-coding-agent-2026-codex-windsurf-cursor-may19": {
+    "sent": true,
+    "date": "2026-05-19",
+    "slot": "0900"
+  },
+  "note_0900_may19": "早间推送 - Cursor0B融资/NVDA财报5/20倒计时/Claude Sonnet 4.5已退役/BTC77k/AI编码工具竞争白热化",
+  "tw-1330-google-io-2026-gemini4-veo4-keynote-may19": {
+    "sent": true,
+    "date": "2026-05-19",
+    "slot": "1330"
+  },
+  "tw-1330-nvda-q1fy27-earnings-tomorrow-may20-may19": {
+    "sent": true,
+    "date": "2026-05-19",
+    "slot": "1330"
+  },
+  "tw-1330-btc-76735-eth-2128-sol-8476-may19-1330": {
+    "sent": true,
+    "date": "2026-05-19",
+    "slot": "1330"
+  },
+  "tw-1330-windsurf-dual-agent-planner-executor-may19": {
+    "sent": true,
+    "date": "2026-05-19",
+    "slot": "1330"
+  },
+  "tw-1330-ai-agent-startup-funding-may2026-yc-p2026": {
+    "sent": true,
+    "date": "2026-05-19",
+    "slot": "1330"
+  },
+  "tw-1330-macbook-64gb-agent-local-inference-may19": {
+    "sent": true,
+    "date": "2026-05-19",
+    "slot": "1330"
+  },
+  "tw-1330-google-5day-agents-vibecoding-course-jun15-may19": {
+    "sent": true,
+    "date": "2026-05-19",
+    "slot": "1330"
+  },
+  "note_1330_may19": "1330午间 - Google IO 2026 开幕Gemini4+Veo4; NVDA明日财报78B; BTC76735横盘; Windsurf双Agent架构; YC P2026 AI Agent浪潮; Google 5天Agent课6/15",
+  "tw-1600-nvda-q1fy27-tomorrow-analyst-278-may19": {
+    "sent": true,
+    "date": "2026-05-19",
+    "slot": "1600"
+  },
+  "tw-1600-btc-77164-eth-2140-sol-8544-may19-1600": {
+    "sent": true,
+    "date": "2026-05-19",
+    "slot": "1600"
+  },
+  "tw-1600-xai-grok-build-beta-terminal-may14-may19": {
+    "sent": true,
+    "date": "2026-05-19",
+    "slot": "1600"
+  },
+  "tw-1600-openclaw-1person-1m-company-leverage-may19": {
+    "sent": true,
+    "date": "2026-05-19",
+    "slot": "1600"
+  },
+  "tw-1600-fda-beqalzi-sonrotoclax-mcl-may13-may19": {
+    "sent": true,
+    "date": "2026-05-19",
+    "slot": "1600"
+  },
+  "tw-1600-googleio-androidshow-googlebook-android17-may19": {
+    "sent": true,
+    "date": "2026-05-19",
+    "slot": "1600"
+  },
+  "note_1600_may19": "1600深度推送 - NVDA明日财报/BTC77k/xAI Grok Build Beta上线/OpenClaw一人百万公司/FDA批Beqalzi淋巴瘤/Google IO AndroidShow Googlebook",
+  "tw-1900-nvda-q1fy27-earnings-tonight-may20-may19": {
+    "sent": true,
+    "date": "2026-05-19",
+    "slot": "1900"
+  },
+  "tw-1900-btc-76999-eth-2117-sol-8469-may19-1900": {
+    "sent": true,
+    "date": "2026-05-19",
+    "slot": "1900"
+  },
+  "tw-1900-veppanu-fda-protac-breast-cancer-may1-2026": {
+    "sent": true,
+    "date": "2026-05-19",
+    "slot": "1900"
+  },
+  "tw-1900-gregisenberg-remix-3ai-tools-startup-2026": {
+    "sent": true,
+    "date": "2026-05-19",
+    "slot": "1900"
+  },
+  "tw-1900-ksimback-openclaw-multiagent-solopreneur": {
+    "sent": true,
+    "date": "2026-05-19",
+    "slot": "1900"
+  },
+  "tw-1900-lecanemab-sc-fda-review-alzheimer-may2026": {
+    "sent": true,
+    "date": "2026-05-19",
+    "slot": "1900"
+  },
+  "note_1900_may19": "1900深度 - NVDA明晚财报(预期$1.48 EPS/$67B收入)/BTC77k横盘/Veppanu首个PROTAC FDA批准/Greg Isenberg Remix创业论/KSimback OpenClaw多Agent/案例复刻:AI Workflow Remixer(GitHub部署待解锁)",
+  "tw-0900-nvda-q1fy27-earnings-today-may20": {
+    "sent": true,
+    "date": "2026-05-20",
+    "slot": "0900"
+  },
+  "tw-0900-bretton-ai-75m-series-b-aml-kyc": {
+    "sent": true,
+    "date": "2026-05-20",
+    "slot": "0900"
+  },
+  "tw-0900-manus-100m-arr-meta-2b-china-blocked": {
+    "sent": true,
+    "date": "2026-05-20",
+    "slot": "0900"
+  },
+  "tw-0900-apple-xcode-claude-codex-agentic": {
+    "sent": true,
+    "date": "2026-05-20",
+    "slot": "0900"
+  },
+  "tw-0900-karpathy-claude-code-hiring-2026": {
+    "sent": true,
+    "date": "2026-05-20",
+    "slot": "0900"
+  },
+  "note_0900_may20": "NVDA今日财报(预期8.8B收入/.77EPS)/Bretton AI $75M B轮AML合规Agent/Manus $100M ARR被Meta $20亿收购中国叫停/Apple Xcode 26.3集成Claude+Codex/Karpathy招聘标准:用Claude Code造大项目",
+  "tw-1030-btc-76743-eth-2111-sol-8428-may20-1030": {
+    "sent": true,
+    "date": "2026-05-20",
+    "slot": "1030"
+  },
+  "tw-1030-nvda-earnings-today-afterclose-q1fy27": {
+    "sent": true,
+    "date": "2026-05-20",
+    "slot": "1030"
+  },
+  "tw-1030-google-antigravity2-multiagent-cli-sdk-io2026": {
+    "sent": true,
+    "date": "2026-05-20",
+    "slot": "1030"
+  },
+  "tw-1030-crypto-clarityact-btc80k-ton94pct-may2026": {
+    "sent": true,
+    "date": "2026-05-20",
+    "slot": "1030"
+  },
+  "tw-1030-beone-taiho-arvinas-fda-oncology-may2026": {
+    "sent": true,
+    "date": "2026-05-20",
+    "slot": "1030"
+  },
+  "tw-1030-veppanu-protac-first-approved-breast-cancer": {
+    "sent": true,
+    "date": "2026-05-20",
+    "slot": "1030"
+  },
+  "note_1030_may20": "1030深度推送 - BTC76.7k/ETH2111/NVDA今日收盘后财报/Google Antigravity2.0多Agent并行/CLARITY Act推进/Arvinas Veppanu首个PROTAC获批/复刻:多Agent编排看板(meyo skill#40645)",
+  "tw-1330-aws-mcp-server-ga-15000-api-may2026": {
+    "sent": true,
+    "date": "2026-05-20",
+    "slot": "1330"
+  },
+  "tw-1330-solo-founder-index-2026-3x-revenue-ai": {
+    "sent": true,
+    "date": "2026-05-20",
+    "slot": "1330"
+  },
+  "tw-1330-btc-77k-etf-outflow-649m-may18-2026": {
+    "sent": true,
+    "date": "2026-05-20",
+    "slot": "1330"
+  },
+  "tw-1330-nvda-q1fy27-earnings-tonight-78b-consensus": {
+    "sent": true,
+    "date": "2026-05-20",
+    "slot": "1330"
+  },
+  "tw-1330-mcp-roadmap-2026-enterprise-agent2agent": {
+    "sent": true,
+    "date": "2026-05-20",
+    "slot": "1330"
+  },
+  "tw-1330-vibe-coding-agentic-harness-engineering-2026": {
+    "sent": true,
+    "date": "2026-05-20",
+    "slot": "1330"
+  },
+  "note_1330_may20": "1330午间情报 - NVDA今日收盘后财报预期$78B/AWS MCP Server GA 15000+ API/Solo Founder Index 2026 AI用户收入3x/BTC77k ETF流出/Vibe→Agentic→Harness Engineering演进/复刻:Solo Founder Revenue Dashboard(GitHub Pages部署+Meyo Skill #40752+帖子发布)",
+  "tw-1700-nvda-earnings-tonight-q1fy2027-78b-may20": {
+    "sent": true,
+    "date": "2026-05-20",
+    "slot": "1700"
+  },
+  "tw-1700-openclaw-v2026518-plugin-sdk-android-voice": {
+    "sent": true,
+    "date": "2026-05-20",
+    "slot": "1700"
+  },
+  "tw-1700-llm-battle-gpt55-claude-deepseek-v4-comparison": {
+    "sent": true,
+    "date": "2026-05-20",
+    "slot": "1700"
+  },
+  "tw-1700-btc-77k-eth-2129-sol-849-premarket": {
+    "sent": true,
+    "date": "2026-05-20",
+    "slot": "1700"
+  },
+  "tw-1700-us-stocks-down-may19-waiting-nvda-catalyst": {
+    "sent": true,
+    "date": "2026-05-20",
+    "slot": "1700"
+  },
+  "tw-1700-claude-mythos-security-model-anthropic": {
+    "sent": true,
+    "date": "2026-05-20",
+    "slot": "1700"
+  },
+  "note_1700_may20": "1700傍晚情报 - NVDA今晚财报决战$78B预期/OpenClaw v2026.5.18插件SDK上线/GPT-5.5 vs DeepSeek V4 vs Claude Opus 4.7三足鼎立/BTC77k/美股前日全线收跌/复刻:LLM Battle Dashboard(GitHub Pages seanliii.github.io/llm-battle-dashboard)",
+  "tw-1900-nvda-q1fy27-earnings-tonight-79b-may20-2026": {
+    "sent": true,
+    "date": "2026-05-20",
+    "slot": "1900",
+    "topic": "NVDA Q1FY27财报今晚9B预期/BofA 20目标/91.3%胜率"
+  },
+  "tw-1900-google-io-gemini-omni-video-multimodal-detail-may20": {
+    "sent": true,
+    "date": "2026-05-20",
+    "slot": "1900",
+    "topic": "Gemini Omni全模态视频生成/Project Astra正式上线/Android XR眼镜/Aluminium OS"
+  },
+  "tw-1900-google-antigravity20-sdk-cli-agent-may20": {
+    "sent": true,
+    "date": "2026-05-20",
+    "slot": "1900",
+    "topic": "Antigravity 2.0桌面应用+CLI+SDK Agent优先架构"
+  },
+  "tw-1900-arvinas-veppanu-protac-approved-breast-cancer-may20": {
+    "sent": true,
+    "date": "2026-05-20",
+    "slot": "1900",
+    "topic": "Arvinas Veppanu首个PROTAC获FDA批准乳腺癌/蛋白降解疗法里程碑"
+  },
+  "tw-1900-btc-77440-eth-2128-sol-8491-may20-1900": {
+    "sent": true,
+    "date": "2026-05-20",
+    "slot": "1900",
+    "topic": "BTC7440+0.59%/ETH128+0.53%/SOL4.91+0.30%"
+  },
+  "note_1900_may20": "NVDA财报今晚9B预期91.3%历史胜率/Google IO Gemini Omni全模态视频Agent/Project Astra上线/Aluminium OS取代ChromeOS/Antigravity2.0 SDK/Arvinas Veppanu PROTAC首获FDA批准",
+  "tw-0900-nvda-q1fy27-81b-record-may21": {
+    "sent": true,
+    "date": "2026-05-21",
+    "slot": "0900",
+    "topic": "NVDA Q1FY27 1.6B炸裂/DataCenter5.2B +92%YoY/0B回购/股息25倍"
+  },
+  "tw-0900-claude-code-v2139-agent-view-goal-may21": {
+    "sent": true,
+    "date": "2026-05-21",
+    "slot": "0900",
+    "topic": "Claude Code v2.1.139 Agent View + /goal命令 任务完成率6x"
+  },
+  "tw-0900-zerion-cli-ai-agent-crypto-may21": {
+    "sent": true,
+    "date": "2026-05-21",
+    "slot": "0900",
+    "topic": "Zerion CLI开源 AI Agent原生操作加密钱包40+链"
+  },
+  "tw-0900-defi-agent-30pct-tvl-chainlink-ark-may21": {
+    "sent": true,
+    "date": "2026-05-21",
+    "slot": "0900",
+    "topic": "AI Agent管理30% DeFi TVL Chainlink×ArkInvest报告"
+  },
+  "tw-0900-swapper-toolkit-openclaw-defi-may21": {
+    "sent": true,
+    "date": "2026-05-21",
+    "slot": "0900",
+    "topic": "swapper-toolkit DeFi payment layer for AI agents 704stars OpenClaw支持"
+  },
+  "tw-0900-indiehacker-ai-agent-5k50k-workflows-may21": {
+    "sent": true,
+    "date": "2026-05-21",
+    "slot": "0900",
+    "topic": "独立开发者AI Agent月入K-50K IndieHackers真实数据"
+  },
+  "note_0900_may21": "NVDA Q1FY27 1.6B炸裂超预期/Claude Code v2.1.139 Agent View+goal命令/Zerion CLI AI原生操作加密钱包/DeFi TVL 30%被Agent管理/swapper-toolkit OpenClaw兼容/复刻：Zerion CLI x OpenClaw DeFi Skill",
+  "tw-1200-nvda-223-q1fy27-may21": {
+    "sent": true,
+    "date": "2026-05-21",
+    "slot": "1200",
+    "topic": "NVDA Q1FY27 $44.1B营收/盘内$223.47/BofA目标$320/盘后$220区间"
+  },
+  "tw-1200-mistral-vibe-remote-agents-128b-may21": {
+    "sent": true,
+    "date": "2026-05-21",
+    "slot": "1200",
+    "topic": "Mistral Vibe 远程编程Agent上线 128B Medium 3.5云端并行执行"
+  },
+  "tw-1200-cursor3-unified-workspace-may21": {
+    "sent": true,
+    "date": "2026-05-21",
+    "slot": "1200",
+    "topic": "Cursor 3发布统一Agent工作区直怼Claude Code/Codex"
+  },
+  "tw-1200-enhertu-fda-dual-her2-early-bc-may21": {
+    "sent": true,
+    "date": "2026-05-21",
+    "slot": "1200",
+    "topic": "Enhertu FDA双适应症获批 HER2+早期乳腺癌新辅助/辅助治疗"
+  },
+  "tw-1200-btc-77998-eth-2143-sol-8675-may21-1200": {
+    "sent": true,
+    "date": "2026-05-21",
+    "slot": "1200",
+    "topic": "BTC77998+1.75%/ETH2143+1.61%/SOL86.75+3.27%"
+  },
+  "tw-1200-earnings-intel-tool-deployed-may21": {
+    "sent": true,
+    "date": "2026-05-21",
+    "slot": "1200",
+    "topic": "复刻案例：EarningsIntel AI财报速读工具上线 https://seanliii.github.io/earnings-intel/"
+  },
+  "note_1200_may21": "NVDA $223盘内财报后小涨/Mistral Vibe远程Agent云端并行/Cursor 3统一工作区/Enhertu FDA双获批/BTC+1.75%ETH+1.61%SOL+3.27%/复刻EarningsIntel财报速读工具上线",
+  "note_1330_may21": "1330午间情报 - Fetch.ai Agent Launch BNB链43000%增长/NVDA盘后BofA目标320/Mistral Vibe远程Agent/Cursor3×Claude Code战场/Zerion CLI 40链AI原生/Leqembi PDUFA524→824/Moonshot AI 200亿美团领投/复刻:Agent Token Tracker GitHub Pages",
+  "tw-1600-gemini-spark-247-agent-io2026-may21": {
+    "sent": true,
+    "date": "2026-05-21",
+    "slot": "1600",
+    "topic": "Gemini Spark 24/7个人Agent Gmail集成 Google IO 2026"
+  },
+  "tw-1600-antigravity2-cli-sdk-io2026-may21": {
+    "sent": true,
+    "date": "2026-05-21",
+    "slot": "1600",
+    "topic": "Antigravity 2.0 CLI+SDK+Managed Agents 开发者Agent平台"
+  },
+  "tw-1600-gemini-omni-35-flash-may21": {
+    "sent": true,
+    "date": "2026-05-21",
+    "slot": "1600",
+    "topic": "Gemini Omni+3.5 Flash 视频任意输出 Agentic优化模型"
+  },
+  "tw-1600-vyvgart-fda-all-gmg-argenx-may21": {
+    "sent": true,
+    "date": "2026-05-21",
+    "slot": "1600",
+    "topic": "Vyvgart FDA扩标全成人gMG argenx 5月11日获批"
+  },
+  "tw-1600-btc-77801-eth-2134-sol-8660-may21-1600": {
+    "sent": true,
+    "date": "2026-05-21",
+    "slot": "1600",
+    "topic": "BTC77801+0.78%/ETH2134+0.30%/SOL86.60+2.28%"
+  },
+  "tw-1600-agent-io-radar-deployed-may21": {
+    "sent": true,
+    "date": "2026-05-21",
+    "slot": "1600",
+    "topic": "复刻案例：Agent I/O Radar Google IO 2026 Agent全景追踪页上线 https://seanliii.github.io/agent-io-radar/"
+  },
+  "note_1600_may21": "Gemini Spark永远在线个人Agent/Antigravity 2.0完整开发生态/Vyvgart扩标全成人gMG/BTC稳/复刻Agent I/O Radar导航页",
+  "tw-1900-nvda-fy2027q1-81b-may21": {
+    "sent": true,
+    "date": "2026-05-21",
+    "slot": "1900",
+    "topic": "NVDA FY2027 Q1财报 营收1.6B +85% YoY 数据中心5.1B"
+  },
+  "tw-1900-gemini-managed-agents-agentsmd-may21": {
+    "sent": true,
+    "date": "2026-05-21",
+    "slot": "1900",
+    "topic": "Google Gemini Managed Agents 支持AGENTS.md+SKILL.md定义云端Agent"
+  },
+  "tw-1900-btc-77160-eth-2112-sol-8574-may21-1900": {
+    "sent": true,
+    "date": "2026-05-21",
+    "slot": "1900",
+    "topic": "BTC77160-0.36%/ETH2112-0.76%/SOL85.74+1.02%"
+  },
+  "tw-1900-gemini-agent-builder-deployed-may21": {
+    "sent": true,
+    "date": "2026-05-21",
+    "slot": "1900",
+    "topic": "复刻案例：Gemini Agent Builder AGENTS.md在线生成器上线 https://seanliii.github.io/gemini-agent-builder/"
+  },
+  "note_1900_may21": "NVDA FY2027 Q1财报超预期1.6B+85%/Gemini Managed Agents AGENTS.md架构/BTC小跌/ETH小跌/SOL稳/复刻Gemini Agent Builder上线",
+  "tw-0900-karpathy-anthropic-pretrain-may22": {
+    "sent": true,
+    "date": "2026-05-22",
+    "slot": "0900",
+    "topic": "Karpathy 5月19日官宣加入Anthropic预训练部门 重大人才流动"
+  },
+  "tw-0900-anthropic-stainless-300m-may22": {
+    "sent": true,
+    "date": "2026-05-22",
+    "slot": "0900",
+    "topic": "Anthropic 00M收购Stainless SDK开发者工具初创 掐断OpenAI/Google工具链"
+  },
+  "tw-0900-openhuman-github-trending-may22": {
+    "sent": true,
+    "date": "2026-05-22",
+    "slot": "0900",
+    "topic": "OpenHuman 登顶GitHub Trending 开源桌面AI Agent 先读懂你再干活"
+  },
+  "tw-0900-addyosmani-agent-skills-may22": {
+    "sent": true,
+    "date": "2026-05-22",
+    "slot": "0900",
+    "topic": "addyosmani/agent-skills GitHub月榜第一 AI Agent Skill标准化框架"
+  },
+  "tw-0900-ai-vc-q1-297b-may22": {
+    "sent": true,
+    "date": "2026-05-22",
+    "slot": "0900",
+    "topic": "Q1 2026 AI融资970亿创纪录 OpenAI/Anthropic/xAI/Waymo占VC总量2/3"
+  },
+  "tw-0900-btc-77269-eth-2126-sol-8675-may22": {
+    "sent": true,
+    "date": "2026-05-22",
+    "slot": "0900",
+    "topic": "BTC77269-0.81%/ETH2126-0.79%/SOL86.75+0.23%"
+  },
+  "tw-0900-context-scanner-deployed-may22": {
+    "sent": true,
+    "date": "2026-05-22",
+    "slot": "0900",
+    "topic": "复刻案例：Context Scanner 数字分身档案生成器 上线 https://seanliii.github.io/context-scanner/"
+  },
+  "note_0900_may22": "Karpathy加入Anthropic/Stainless 00M收购/OpenHuman登顶GitHub/AI Q1融资创纪录970亿/复刻Context Scanner上线",
+  "tw-1330-gemini-managed-agents-single-api-may22": {
+    "sent": true,
+    "date": "2026-05-22",
+    "slot": "1330",
+    "topic": "Gemini Managed Agents单次API调用spin up完整隔离Agent 开发者革命"
+  },
+  "tw-1330-agentic-coding-harness-engineering-may22": {
+    "sent": true,
+    "date": "2026-05-22",
+    "slot": "1330",
+    "topic": "Agentic Coding=Harness Engineering 3名工程师零手写代码构建百万行产品"
+  },
+  "tw-1330-factory-ai-15b-coding-agent-may22": {
+    "sent": true,
+    "date": "2026-05-22",
+    "slot": "1330",
+    "topic": "Factory AI $1.5B估值 AI coding agent企业市场领跑"
+  },
+  "tw-1330-sol-98-rejection-15pct-drop-may22": {
+    "sent": true,
+    "date": "2026-05-22",
+    "slot": "1330",
+    "topic": "SOL $98阻力位拒绝下跌15% 链上活跃度疲软"
+  },
+  "tw-1330-btc-77510-eth-2129-sol-8682-may22-1330": {
+    "sent": true,
+    "date": "2026-05-22",
+    "slot": "1330",
+    "topic": "BTC77510-0.40%/ETH2129-0.48%/SOL86.82+0.28%"
+  },
+  "tw-1330-openclaw-tencent-aliyun-skills-may22": {
+    "sent": true,
+    "date": "2026-05-22",
+    "slot": "1330",
+    "topic": "OpenClaw Skills 腾讯云/阿里云部署教程爆火 技能生态加速落地企业场景"
+  },
+  "tw-1330-ai-oss-radar-deployed-may22": {
+    "sent": true,
+    "date": "2026-05-22",
+    "slot": "1330",
+    "topic": "复刻案例：AI OSS Radar GitHub Trending AI热榜追踪页上线 https://seanliii.github.io/ai-oss-radar/"
+  },
+  "note_1330_may22": "Gemini Managed Agents单API调用/Agentic Coding工业化/Factory AI$1.5B/SOL$98阻力回调/OpenClaw生态爆发/复刻AI OSS Radar上线",
+  "tw-1700-gpt55-instant-chatgpt-default-may22": {
+    "sent": true,
+    "date": "2026-05-22",
+    "slot": "1700",
+    "topic": "GPT-5.5 Instant成ChatGPT默认模型 幻觉-52.5%"
+  },
+  "tw-1700-kimi-20b-meituan-longzhu-may22": {
+    "sent": true,
+    "date": "2026-05-22",
+    "slot": "1700",
+    "topic": "Kimi0亿融资收官 美团龙珠领投 估值00亿"
+  },
+  "tw-1700-deepseek-v4-1m-context-agent-may22": {
+    "sent": true,
+    "date": "2026-05-22",
+    "slot": "1700",
+    "topic": "DeepSeek V4开源最强Agentic Coding 1M上下文 V4已是deepseek内部默认编码模型"
+  },
+  "tw-1700-ai-pricing-shift-token-usage-may22": {
+    "sent": true,
+    "date": "2026-05-22",
+    "slot": "1700",
+    "topic": "AI行业订阅→用量计费大迁移 GitHub Copilot 6月起token计费"
+  },
+  "tw-1700-tycoon-us-ai-ceo-1m-arr-may22": {
+    "sent": true,
+    "date": "2026-05-22",
+    "slot": "1700",
+    "topic": "Tycoon.us AI CEO Astra 30天M ARR 一人公司操作系统"
+  },
+  "tw-1700-solo-founder-401m-arr-medvi-may22": {
+    "sent": true,
+    "date": "2026-05-22",
+    "slot": "1700",
+    "topic": "Solo founder Medvi 0员工1年01M ARR 纯AI运营创新药telehealth"
+  },
+  "tw-1700-clone-ai-solo-dashboard-deployed-may22": {
+    "sent": true,
+    "date": "2026-05-22",
+    "slot": "1700",
+    "topic": "复刻案例：AI Solo Company Dashboard 一人公司战情室 https://seanliii.github.io/ai-solo-company-dashboard/"
+  },
+  "note_1700_may22": "GPT5.5Instant默认/Kimi00亿估值/DeepSeek V4开源最强/AI计费大迁移/Tycoon一人公司OS/Medvi01M/复刻战情室上线",
+  "tw-1900-btc-77223-eth-2120-sol-8689-may22-1900": {
+    "sent": true,
+    "date": "2026-05-22",
+    "slot": "1900",
+    "topic": "BTC77223+0.08%/ETH2120+0.38%/SOL86.89+1.26%"
+  },
+  "tw-1900-sierra-950m-15b-enterprise-agent-may22": {
+    "sent": true,
+    "date": "2026-05-22",
+    "slot": "1900",
+    "topic": "Sierra $950M Series E $15.8B 估值 Bret Taylor $150M ARR 7季度 Fortune50占半壁"
+  },
+  "tw-1900-copilotkit-27m-agui-google-msft-amazon-may22": {
+    "sent": true,
+    "date": "2026-05-22",
+    "slot": "1900",
+    "topic": "CopilotKit $27M A轮 AG-UI协议 Google/Microsoft/Amazon采纳 应用原生Agent"
+  },
+  "tw-1900-btc-2.57t-bullish-crossover-may22": {
+    "sent": true,
+    "date": "2026-05-22",
+    "slot": "1900",
+    "topic": "加密总市值$2.57T BTC看涨交叉信号近形成 $2.60T为关键决策位"
+  },
+  "tw-1900-nvidia-nemoclaw-openclaw-security-may22": {
+    "sent": true,
+    "date": "2026-05-22",
+    "slot": "1900",
+    "topic": "NVIDIA NemoClaw OpenClaw安全沙箱 一键部署隐私护栏本地Nemotron模型"
+  },
+  "tw-1900-solo-founder-ai-36pct-new-company-may22": {
+    "sent": true,
+    "date": "2026-05-22",
+    "slot": "1900",
+    "topic": "36.3%新公司由一人创办 AI Agent驱动一人公司革命 独立创始人比例+53%"
+  },
+  "tw-1900-agui-playground-deployed-may22": {
+    "sent": true,
+    "date": "2026-05-22",
+    "slot": "1900",
+    "topic": "复刻案例：AG-UI Agent Playground CopilotKit协议演示 https://seanliii.github.io/agui-agent-playground/"
+  },
+  "note_1900_may22": "Sierra$950M$15.8B/CopilotKit$27M+AG-UI三角协议/BTC$2.60T决策位/NemoClaw安全沙箱/一人公司革命+53%/复刻AG-UI Playground",
+  "tw-0900-claude-code-auto-mode-may23": {
+    "sent": true,
+    "date": "2026-05-23",
+    "slot": "0900",
+    "topic": "Claude Code Auto Mode / MCP LinuxFoundation / Runlayer11M安全"
+  },
+  "tw-0900-cn-llm-5月融资狂潮-may23": {
+    "sent": true,
+    "date": "2026-05-23",
+    "slot": "0900",
+    "topic": "Kimi0B/阶跃星辰5B/DeepSeek首轮50B估值"
+  },
+  "tw-0900-solopreneur-AI-stack-cost-may23": {
+    "sent": true,
+    "date": "2026-05-23",
+    "slot": "0900",
+    "topic": "Solo founder AI Stack 3-05/mo 一人公司革命"
+  },
+  "tw-0900-ai-solostack-calc-deployed-may23": {
+    "sent": true,
+    "date": "2026-05-23",
+    "slot": "0900",
+    "topic": "复刻案例：AI Solo Stack Calculator https://seanliii.github.io/ai-solostack-calc/"
+  },
+  "note_0900_may23": "ClaudeCodeAutoMode/MCPLinuxFoundation/Runlayer1M/Kimi0亿/阶跃星辰5亿/DeepSeek50亿估值/一人公司栈3-05/复刻AI成本计算器",
+  "tw-1030-btc-75401-eth-2063-sol-8422-may23-1030": {
+    "sent": true,
+    "date": "2026-05-23",
+    "slot": "1030",
+    "topic": "BTC$75401-2.8%/ETH$2063-3.3%/SOL$84.22-3.1% Fed新主席Warsh通胀6%压力"
+  },
+  "tw-1030-exaforce-125m-ai-soc-exabots-may23": {
+    "sent": true,
+    "date": "2026-05-23",
+    "slot": "1030",
+    "topic": "Exaforce $125M Series B AI-SOC Exabots自主安全Agent 估值725M"
+  },
+  "tw-1030-intel-amd-cpu-renaissance-ai-agent-may23": {
+    "sent": true,
+    "date": "2026-05-23",
+    "slot": "1030",
+    "topic": "Intel+AMD CPU复兴AI Agent时代 Intel涨200% DCAI+22% Apple芯片协议"
+  },
+  "tw-1030-lly-foundayo-orforglipron-fda-may23": {
+    "sent": true,
+    "date": "2026-05-23",
+    "slot": "1030",
+    "topic": "Eli Lilly Foundayo orforglipron FDA批准 首款口服GLP-1减肥药无需空腹"
+  },
+  "tw-1030-ai-soc-threat-radar-deployed-may23": {
+    "sent": true,
+    "date": "2026-05-23",
+    "slot": "1030",
+    "topic": "复刻案例：AI SOC Threat Radar 2026 https://seanliii.github.io/ai-soc-threat-radar/"
+  },
+  "note_1030_may23": "BTC75K破位/Exaforce125M-AI打黑客/Intel+AMD-CPU复兴/LLY口服GLP-1FDA批/复刻AI安全雷达上线",
+  "tw-1600-btc-74502-eth-2025-sol-8201-may23-1600": {
+    "sent": true,
+    "date": "2026-05-23",
+    "slot": "1600",
+    "topic": "BTC4502-3.65%/ETH025-4.76%/SOL2.01-5.61% 美债降级+PPI6%+70M清仓"
+  },
+  "tw-1600-openai-ipo-s1-850b-1t-may23": {
+    "sent": true,
+    "date": "2026-05-23",
+    "slot": "1600",
+    "topic": "OpenAI S-1机密申请 50B-T估值 GS+MS承销 ARR 5B 亏损运营 Sep2026上市"
+  },
+  "tw-1600-sierra-950m-series-c-enterprise-ai-may23": {
+    "sent": true,
+    "date": "2026-05-23",
+    "slot": "1600",
+    "topic": "Sierra 50M C轮 Enterprise AI CX 单周AgenticAI融资.1B"
+  },
+  "tw-1600-anthropic-first-profit-may23": {
+    "sent": true,
+    "date": "2026-05-23",
+    "slot": "1600",
+    "topic": "Anthropic首次盈利 Claude4.6 vs OpenAI亏损IPO"
+  },
+  "tw-1600-biontech-bnt122-phase3-melanoma-may23": {
+    "sent": true,
+    "date": "2026-05-23",
+    "slot": "1600",
+    "topic": "BioNTech BNT122新抗原疫苗 FDA突破性疗法 三期黑色素瘤+NSCLC"
+  },
+  "tw-1600-crypto-macro-dashboard-deployed-may23": {
+    "sent": true,
+    "date": "2026-05-23",
+    "slot": "1600",
+    "topic": "复刻案例：Crypto Macro Dashboard https://seanliii.github.io/crypto-macro-dashboard/"
+  },
+  "note_1600_may23": "BTC/ETH/SOL全破位/美债Aa1+PPI6%/OpenAIPO S-1机密申请T/Sierra950M/Anthropic盈利/BioNTech三期/复刻宏观面板上线",
+  "tw-1700-sp500-dow-8week-memorial-day-may23": {
+    "sent": true,
+    "date": "2026-05-23",
+    "slot": "1700",
+    "topic": "S&P500八连涨+道指ATH50579 Memorial Day周末美股关闭等待NVDA财报"
+  },
+  "tw-1700-nvda-earnings-may28-preview": {
+    "sent": true,
+    "date": "2026-05-23",
+    "slot": "1700",
+    "topic": "NVDA Q1FY2027财报5月28日盘后 预期EPS$0.94 Revenue$43.1B 分红+10%"
+  },
+  "tw-1700-karpathy-anthropic-gemini35flash-googleio": {
+    "sent": true,
+    "date": "2026-05-23",
+    "slot": "1700",
+    "topic": "Karpathy加入Anthropic/Gemini3.5Flash发布/xAI推Grok Skills/Google I/O Managed Agents"
+  },
+  "tw-1700-btc-74593-eth-2028-sol-82-may23-1700": {
+    "sent": true,
+    "date": "2026-05-23",
+    "slot": "1700",
+    "topic": "BTC$74593-3.4%/ETH$2028-4.4%/SOL$82.0-5.8% PPI6%+Warsh加息预期"
+  },
+  "tw-1700-cme-btc-nasdaq-crypto-futures-june8": {
+    "sent": true,
+    "date": "2026-05-23",
+    "slot": "1700",
+    "topic": "CME比特币+纳斯达克加密指数期货6月8日上线 IBIT+科技股合并暴露"
+  },
+  "tw-1700-nvda-earnings-dashboard-deployed-may23": {
+    "sent": true,
+    "date": "2026-05-23",
+    "slot": "1700",
+    "topic": "复刻案例：NVDA Q1FY2027 Earnings Dashboard https://seanliii.github.io/nvda-earnings-dashboard/"
+  },
+  "note_1700_may23": "S&P500八连涨/道指ATH50579/NVDA5月28财报/Karpathy→Anthropic/Gemini3.5Flash/BTC74K/CME加密期货6月8/复刻NVDA财报面板上线",
+  "tw-1900-koreai-artemis-agent-platform-may23": {
+    "sent": true,
+    "date": "2026-05-23",
+    "slot": "1900",
+    "topic": "Kore.ai Artemis Agent Platform — 5月21日发布，ABL压缩Agent交付从月到天"
+  },
+  "tw-1900-notion-developer-platform-35-cli-workers-may23": {
+    "sent": true,
+    "date": "2026-05-23",
+    "slot": "1900",
+    "topic": "Notion Developer Platform 3.5 — CLI+Workers+外部Agent连接，Notion变AI工作流枢纽"
+  },
+  "tw-1900-q1-2026-venture-188b-openai-anthropic-xai-waymo-may23": {
+    "sent": true,
+    "date": "2026-05-23",
+    "slot": "1900",
+    "topic": "Q1 2026风投记录：OpenAI/Anthropic/xAI/Waymo合计880亿，占全球65%"
+  },
+  "tw-1900-ai-coding-agent-cursor-8parallel-claude-code-swe80-may23": {
+    "sent": true,
+    "date": "2026-05-23",
+    "slot": "1900",
+    "topic": "AI编程Agent战局：Cursor 8并行Agent/Claude Code SWE-bench 80.8%/Windsurf 5/月"
+  },
+  "tw-1900-lly-foundayo-oral-glp1-fda-approved-april2026-may23": {
+    "sent": true,
+    "date": "2026-05-23",
+    "slot": "1900",
+    "topic": "Eli Lilly Foundayo (orforglipron) — 全球首个口服GLP-1减肥药，4月1日FDA批准"
+  },
+  "tw-1900-btc-74634-eth-2029-sol-8216-moody-aa1-may23": {
+    "sent": true,
+    "date": "2026-05-23",
+    "slot": "1900",
+    "topic": "BTC4,634/-3.35% ETH,029/-4.3% SOL2.16/-5.5% Moody降级Aa1+PPI压制"
+  },
+  "tw-1900-notion-agent-hub-deployed-may23": {
+    "sent": true,
+    "date": "2026-05-23",
+    "slot": "1900",
+    "topic": "复刻案例：Notion Agent Hub https://seanliii.github.io/notion-agent-hub/"
+  },
+  "note_1900_may23": "Kore.ai Artemis/Notion开发者平台3.5/Q1风投880亿/AI编程Agent战局/Foundayo口服GLP-1/BTC74K/复刻Notion-Agent-Hub上线",
+  "tw-0900-nvidia-vera-cpu-agent-delivery-anthropic-openai-may24": {
+    "sent": true,
+    "date": "2026-05-24",
+    "slot": "0900",
+    "topic": "NVIDIA Vera CPU（Agent专用）5月15日发货至Anthropic/OpenAI/SpaceXAI/Oracle"
+  },
+  "tw-0900-pentagon-ai-deals-7companies-classified-networks-may24": {
+    "sent": true,
+    "date": "2026-05-24",
+    "slot": "0900",
+    "topic": "五角大楼与Google/Microsoft/AWS/NVIDIA/OpenAI/SpaceX/Reflection签AI协议，接入军事机密网络"
+  },
+  "tw-0900-mcp-linux-foundation-aaif-anthropic-openai-block-may24": {
+    "sent": true,
+    "date": "2026-05-24",
+    "slot": "0900",
+    "topic": "MCP协议捐献Linux Foundation成立AAIF，Anthropic+OpenAI+Block联合创立"
+  },
+  "tw-0900-ai-startup-may2026-funding-37deals-25b-may24": {
+    "sent": true,
+    "date": "2026-05-24",
+    "slot": "0900",
+    "topic": "2026年5月AI融资37笔/$250亿，头部垄断：OpenAI $1220亿/Anthropic $300亿/xAI $200亿（Q1）"
+  },
+  "tw-0900-eu-ai-act-aug2-2026-deadline-highrisk-compliance-may24": {
+    "sent": true,
+    "date": "2026-05-24",
+    "slot": "0900",
+    "topic": "EU AI Act高风险AI合规大限2026年8月2日，罚款最高€1500万/全球营收3%"
+  },
+  "tw-0900-btc-76751-eth-2118-sol-8586-recovery-may24": {
+    "sent": true,
+    "date": "2026-05-24",
+    "slot": "0900",
+    "topic": "BTC $76,751(+1.81%) / ETH $2,118(+2.51%) / SOL $85.86(+1.59%) 三者回暖"
+  },
+  "tw-0900-eu-ai-compliance-tracker-meyo-may24": {
+    "sent": true,
+    "date": "2026-05-24",
+    "slot": "0900",
+    "topic": "复刻案例：EU AI Act Compliance Tracker — meyo帖子01KSBRK1ZH3JAVJZQYN9Z10ZM5"
+  },
+  "note_0900_may24": "NVIDIA Vera CPU交付/五角大楼7家AI协议/MCP→Linux Foundation/5月AI融资$250亿/EU AI Act 70天大限/BTC76K回暖/复刻EU合规追踪器meyo发布",
+  "tw-1200-nvda-q1-record-revenue-81b-may24": {
+    "sent": true,
+    "date": "2026-05-24",
+    "slot": "1200",
+    "topic": "NVDA Q1 FY2027营收$81.6亿创纪录，同比+85%，数据中心AI基建驱动"
+  },
+  "tw-1200-gemini-spark-24h-agent-launch-may24": {
+    "sent": true,
+    "date": "2026-05-24",
+    "slot": "1200",
+    "topic": "Google发布Gemini Spark 24/7 AI Agent，深度整合Gmail，TechCrunch 5/19"
+  },
+  "tw-1200-datroway-fda-tnbc-approval-daiichi-may24": {
+    "sent": true,
+    "date": "2026-05-24",
+    "slot": "1200",
+    "topic": "FDA批准Datroway(第一三共+AZ)用于不可切除/转移性TNBC一线治疗 2026-05-22"
+  },
+  "tw-1200-metaplanet-bitcoin-137m-capital-raise-may24": {
+    "sent": true,
+    "date": "2026-05-24",
+    "slot": "1200",
+    "topic": "Metaplanet融资$1.37亿买BTC还债，日本版MicroStrategy"
+  },
+  "tw-1200-ai-agent-income-tracker-clone-may24": {
+    "sent": true,
+    "date": "2026-05-24",
+    "slot": "1200",
+    "topic": "复刻案例：AI Agent赚钱模式追踪器 https://seanliii.github.io/ai-agent-income-tracker/"
+  },
+  "note_1200_may24": "NVDA Q1$81.6B+85%/Gemini Spark 24h Agent/Datroway TNBC FDA/Metaplanet$137M BTC/AI Agent赚钱模式追踪器meyo上线",
+  "tw-1330-openai-agents-sdk-0172-explosion-may24": {
+    "sent": true,
+    "date": "2026-05-24",
+    "slot": "1330"
+  },
+  "tw-1330-google-antigravity20-managed-agents-full-may24": {
+    "sent": true,
+    "date": "2026-05-24",
+    "slot": "1330"
+  },
+  "tw-1330-eu-ai-act-aug2-70days-deadline-may24": {
+    "sent": true,
+    "date": "2026-05-24",
+    "slot": "1330"
+  },
+  "tw-1330-pentagon-7aicompanies-military-deal-may24": {
+    "sent": true,
+    "date": "2026-05-24",
+    "slot": "1330"
+  },
+  "tw-1330-mcp-linux-foundation-aaif-anthropic-openai-may24": {
+    "sent": true,
+    "date": "2026-05-24",
+    "slot": "1330"
+  },
+  "tw-1330-openclaw-skills-tencent-aliyun-tutorial-surge-may24": {
+    "sent": true,
+    "date": "2026-05-24",
+    "slot": "1330"
+  },
+  "tw-1330-btc-76615-eth-2113-sol-856-recovery-may24": {
+    "sent": true,
+    "date": "2026-05-24",
+    "slot": "1330"
+  },
+  "tw-1330-agent-framework-radar-deployed-may24": {
+    "sent": true,
+    "date": "2026-05-24",
+    "slot": "1330"
+  },
+  "note_1330_may24": "1330午间情报 - OpenAI SDK爆发0.17.2/Antigravity2.0完整落地/EU AI Act 70天大限/五角大楼7家AI协议/MCP→Linux Foundation AAIF/OpenClaw腾讯阿里云教程爆火/BTC76K回暖/复刻Agent框架雷达GitHub Pages",
+  "tw-1600-clarity-act-btc-82k-senate-may24": {
+    "sent": true,
+    "date": "2026-05-24",
+    "slot": "1600",
+    "topic": "CLARITY Act通过参议院委员会15-9，BTC涨至$81,965"
+  },
+  "tw-1600-btc-etf-999m-inflow-may24": {
+    "sent": true,
+    "date": "2026-05-24",
+    "slot": "1600",
+    "topic": "BTC ETF单周净流入$9.99亿机构买盘"
+  },
+  "tw-1600-ton-94pct-surge-may24": {
+    "sent": true,
+    "date": "2026-05-24",
+    "slot": "1600",
+    "topic": "TON月内飙涨94%，Telegram生态链上爆发"
+  },
+  "tw-1600-google-managed-agents-preview-may24": {
+    "sent": true,
+    "date": "2026-05-24",
+    "slot": "1600",
+    "topic": "Google Managed Agents Gemini API公测上线 5/20"
+  },
+  "tw-1600-gemini-35-flash-spark-google-io-may24": {
+    "sent": true,
+    "date": "2026-05-24",
+    "slot": "1600",
+    "topic": "Google I/O Gemini 3.5+Gemini Spark 24h Agent CNBC 5/19"
+  },
+  "tw-1600-mercury-200m-seriesd-52b-may24": {
+    "sent": true,
+    "date": "2026-05-24",
+    "slot": "1600",
+    "topic": "Mercury $2亿D轮$52亿估值，TCV领投a16z/Sequoia跟投 5/20"
+  },
+  "tw-1600-crypto-pulse-clone-github-pages-may24": {
+    "sent": true,
+    "date": "2026-05-24",
+    "slot": "1600",
+    "topic": "复刻案例：小蓝虾Crypto Pulse https://seanliii.github.io/crypto-pulse/"
+  },
+  "note_1600_may24": "CLARITY Act 15-9通过参议院委员会BTC$82K/BTC ETF周净流入$10亿/TON+94%/Google Managed Agents公测/Gemini3.5+Spark/Mercury$200M D轮/Crypto Pulse仪表板部署",
+  "tw-1600-btc-76943-eth-2093-sol-8480-memday-may25": {
+    "sent": true,
+    "date": "2026-05-25",
+    "slot": "1600",
+    "topic": "BTC6943/ETH093/SOL4.8 Memorial Day美股休市"
+  },
+  "tw-1600-grok-agent-mode-may25": {
+    "sent": true,
+    "date": "2026-05-25",
+    "slot": "1600",
+    "topic": "Grok Imagine Agent Mode xAI多步骤自主任务"
+  },
+  "tw-1600-microsoft-agent365-may25": {
+    "sent": true,
+    "date": "2026-05-25",
+    "slot": "1600",
+    "topic": "Microsoft Agent 365深度融入Office企业Agent"
+  },
+  "tw-1600-claude-sonnet-48-may25": {
+    "sent": true,
+    "date": "2026-05-25",
+    "slot": "1600",
+    "topic": "Claude Sonnet 4.8 agentic coding提升"
+  },
+  "tw-1600-enhertu-fda-her2-earlybreast-may25": {
+    "sent": true,
+    "date": "2026-05-25",
+    "slot": "1600",
+    "topic": "FDA批准Enhertu两个HER2阳性早期乳腺癌新适应症 5/15"
+  },
+  "tw-1600-ai-vc-q1-2026-297billion-may25": {
+    "sent": true,
+    "date": "2026-05-25",
+    "slot": "1600",
+    "topic": "Q1 2026 AI VC融资970亿OpenAI/Anthropic/xAI/Waymo"
+  },
+  "note_1600_may25": "BTC7K窄幅震荡美股休市/Grok Agent Mode/MS Agent 365/Sonnet4.8/Gemini Spark公测/Enhertu FDA HER2早期乳腺癌双适应症/AI Q1融资970亿",
+  "tw-0900-claude-code-goal-agent-view-may25": {
+    "sent": true,
+    "date": "2026-05-25",
+    "slot": "0900",
+    "topic": "Claude Code 2.1.139 Agent全景视图+/goal命令 多日自主运行"
+  },
+  "tw-0900-openai-ipo-1trillion-may25": {
+    "sent": true,
+    "date": "2026-05-25",
+    "slot": "0900",
+    "topic": "OpenAI IPO机密文件SEC年化$250亿目标估值$1万亿"
+  },
+  "tw-0900-anthropic-q2-profit-may25": {
+    "sent": true,
+    "date": "2026-05-25",
+    "slot": "0900",
+    "topic": "Anthropic Q2 2026营收$109亿首次Operating Profit$5.59亿"
+  },
+  "tw-0900-gemini35flash-289token-may25": {
+    "sent": true,
+    "date": "2026-05-25",
+    "slot": "0900",
+    "topic": "Google IO Gemini3.5 Flash 289tokens/秒超越Gemini3.1 Pro"
+  },
+  "tw-0900-ai-agent-5workflows-money-may25": {
+    "sent": true,
+    "date": "2026-05-25",
+    "slot": "0900",
+    "topic": "IndiHacker 5个真实赚钱AI Agent工作流 复利工作流模型"
+  },
+  "tw-0900-aicontent-factory-deploy-may25": {
+    "sent": true,
+    "date": "2026-05-25",
+    "slot": "0900",
+    "topic": "复刻案例：AI内容工厂 https://seanliii.github.io/ai-content-factory/"
+  },
+  "note_0900_may25": "0900情报：OpenAI IPO/$1T估值/Anthropic Q2首盈利/Gemini3.5 Flash 289tokens/s/Claude Code /goal命令/5个赚钱Agent工作流/复刻AI内容工厂上线",
+  "items": [
+    {
+      "id": "2026-05-25-1330",
+      "time": "2026-05-25T13:30:00+08:00",
+      "type": "twitter-intel",
+      "summary": "OpenAI IPO S-1秘密提交 | Anthropic收购Stainless SDK工具 | Google I/O Gemini全面Agent化 | 5月AI融资25B | Agentic Coding工业化 | BTC 77310"
+    }
+  ],
+  "tw-1700-google-antigravity2-managed-agents-may25": {
+    "sent": true,
+    "date": "2026-05-25",
+    "slot": "1700",
+    "topic": "Google Antigravity 2.0 + Managed Agents in Gemini API 开发者开放"
+  },
+  "tw-1700-gemini35flash-4x-faster-may25": {
+    "sent": true,
+    "date": "2026-05-25",
+    "slot": "1700",
+    "topic": "Gemini 3.5 Flash 4倍速超越3.1 Pro agentic workflow"
+  },
+  "tw-1700-claude-code-plugin-marketplace-may25": {
+    "sent": true,
+    "date": "2026-05-25",
+    "slot": "1700",
+    "topic": "Claude Code Plugin Marketplace官方上线 @claude-plugins-official"
+  },
+  "tw-1700-gpt55-instant-default-chatgpt-may25": {
+    "sent": true,
+    "date": "2026-05-25",
+    "slot": "1700",
+    "topic": "GPT-5.5 Instant ChatGPT新默认模型 完全重预训练"
+  },
+  "tw-1700-btc-77351-memday-holiday-may25": {
+    "sent": true,
+    "date": "2026-05-25",
+    "slot": "1700",
+    "topic": "BTC77351 ETH2114 SOL86 Memorial Day休市窄幅整理"
+  },
+  "note_1700_may25": "17点情报：Google Antigravity2.0+Managed Agents/Gemini3.5 Flash 4倍速/Claude Code Plugin市场/GPT-5.5 Instant新默认/BTC77K休市横盘",
+  "tw-1600-nvda-q1fy2027-81b-record-may26": {
+    "sent": true,
+    "date": "2026-05-26",
+    "slot": "1600",
+    "topic": "NVDA Q1 FY2027 营收816亿创历史新高 同比+85% 800亿回购"
+  },
+  "tw-1600-datroway-fda-tnbc-may26": {
+    "sent": true,
+    "date": "2026-05-26",
+    "slot": "1600",
+    "topic": "Datroway FDA批准三阴性乳腺癌一线 Daiichi Sankyo×AstraZeneca 第三适应症"
+  },
+  "tw-1600-forsy-agent-trace-marketplace-may26": {
+    "sent": true,
+    "date": "2026-05-26",
+    "slot": "1600",
+    "topic": "Forsy ProductHunt 5/23 捕获售卖AI Agent工作流训练数据 复刻AgentTrace Market上线"
+  },
+  "tw-1600-googl-9pct-ai-cloud-may26": {
+    "sent": true,
+    "date": "2026-05-26",
+    "slot": "1600",
+    "topic": "GOOGL单日+9.96% 云+AI共振 逼近Nvidia市值"
+  },
+  "tw-1600-btc76k-eth2093-sol84-may26": {
+    "sent": true,
+    "date": "2026-05-26",
+    "slot": "1600",
+    "topic": "BTC76637 ETH2093 SOL84 三大币小幅下跌窄幅震荡"
+  },
+  "tw-1600-clone-agent-trace-market-deploy-may26": {
+    "sent": true,
+    "date": "2026-05-26",
+    "slot": "1600",
+    "topic": "复刻案例：AgentTrace Market https://seanliii.github.io/agent-trace-market/"
+  },
+  "note_1600_may26": "NVDA 816亿季报+85%/Datroway FDA TNBC获批/Forsy复刻AgentTrace Market上线/GOOGL+9.96%/BTC76K震荡/Tavily配额耗尽切换catclaw-search",
+  "tw-1700-nvda-postearnings-googl-rally-may26": {
+    "sent": true,
+    "date": "2026-05-26",
+    "slot": "1700",
+    "topic": "NVDA财报后股价走势+GOOGL市值追逐Nvidia/BTC76K震荡"
+  },
+  "tw-1700-cloudflare-layoff-ai-600pct-may26": {
+    "sent": true,
+    "date": "2026-05-26",
+    "slot": "1700",
+    "topic": "Cloudflare裁员20%内部AI使用量600%三个月/科技裁员潮AI驱动"
+  },
+  "tw-1700-google-io-gemini35-antigravity-spark-may26": {
+    "sent": true,
+    "date": "2026-05-26",
+    "slot": "1700",
+    "topic": "Google IO 2026 Gemini3.5 Flash+Antigravity2.0+Spark个人Agent"
+  },
+  "tw-1700-awesomeaiagents2026-github-mainstreamed-may26": {
+    "sent": true,
+    "date": "2026-05-26",
+    "slot": "1700",
+    "topic": "GitHub awesome-ai-agents-2026: MCP/A2A协议+coding agents主流化"
+  },
+  "tw-1700-aiflash-no-major-model-may26": {
+    "sent": true,
+    "date": "2026-05-26",
+    "slot": "1700",
+    "topic": "aiflashreport: 5/26近48小时无重大前沿模型发布"
+  },
+  "note_1700_may26": "17点情报：NVDA财报消化/GOOGL市值逼近/Cloudflare裁员600%AI使用增长/Google IO Gemini3.5+Antigravity2.0+Spark/GitHub AI agents主流化/BTC-0.87%横盘",
+  "tw-0900-claude-design-ai-agent-deploy-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "0900",
+    "topic": "Claude Design上线/AI Agent生产部署拐点/PH基础设施爆发/AI订阅重构00档"
+  },
+  "tw-0900-btc75862-eth2075-sol83-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "0900",
+    "topic": "BTC75862 ETH2075 SOL83 三币小幅下跌震荡"
+  },
+  "note_0900_may27": "Tavily配额耗尽切catclaw-search/AISA被代理拦截/Claude Design视觉赛道/AI Agent生产拐点/IndieHackers workflow复利模型/AI订阅重构5月战火",
+  "tw-1030-openai-ipo-s1-1trillion-sep26-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1030",
+    "topic": "OpenAI机密S-1递交 Goldman+MS承销 目标9月上市万亿估值"
+  },
+  "tw-1030-grokbuild-xai-8subagent-planmode-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1030",
+    "topic": "Grok Build xAI 5月14日公测 8sub-agent并行 Plan Mode 00/月"
+  },
+  "tw-1030-may2026-ai-model-explosion-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1030",
+    "topic": "May2026 AI模型爆发盘点 Gemini3.5/Composer2.5/DeepSeek V4/Qwen3.7"
+  },
+  "tw-1030-lly-foundayo-glp1-pill-fda-apr1-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1030",
+    "topic": "LLY Foundayo orforglipron口服GLP-1 FDA批准4月1日 减重口服时代拐点"
+  },
+  "tw-1030-btc75685-eth2069-sol83-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1030",
+    "topic": "BTC75685 ETH2069 SOL83 三大币小幅回调横盘"
+  },
+  "tw-1030-clone-coding-agent-compare-deploy-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1030",
+    "topic": "复刻案例：AI Coding Agent对比站 https://seanliii.github.io/coding-agent-compare/"
+  },
+  "note_1030_may27": "OpenAI IPO S-1递交$1T/Grok Build 8并行/May2026模型爆发/LLY口服GLP-1 Foundayo/BTC75K横盘/复刻coding-agent-compare上线",
+  "tw-1200-btc75555-eth2067-sol8349-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1200",
+    "topic": "BTC75555 ETH2067 SOL8349 小幅回调震荡"
+  },
+  "tw-1200-nvda-5t2-global-top-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1200",
+    "topic": "NVDA市值5.2T全球第一 AI算力垄断 Q1融资97B"
+  },
+  "tw-1200-ph-agent-infra-kilo-shadow-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1200",
+    "topic": "PH周报Agent基础设施爆发 Kilo Code v7 00万 Shadow 2.0"
+  },
+  "tw-1200-indiehacker-5workflow-57b-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1200",
+    "topic": "IndieHacker 5种赚钱AI工作流 创作者经济7.1B 复合增长"
+  },
+  "tw-1200-fda-oncology-adc-2026-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1200",
+    "topic": "FDA 2026肿瘤/罕见病主导 ADC扩适应症浪潮持续"
+  },
+  "tw-1200-clone-ai-workflow-hub-deploy-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1200",
+    "topic": "复刻案例：AI Workflow Hub https://seanliii.github.io/ai-workflow-hub/"
+  },
+  "note_1200_may27": "Tavily配额耗尽/catclaw-search RPM限制/BTC75K箱体震荡/NVDA5.2T全球第一/Agent基础设施PH爆发/IndieHacker5工作流复刻可视化站上线/FDA肿瘤ADC持续",
+  "tw-1330-anthropic-code-with-claude-5features-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1330",
+    "topic": "Anthropic Code with Claude 2026大会 5大Agent特性 Dreams/Outcomes/SpaceX算力"
+  },
+  "tw-1330-bain-100b-agentic-saas-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1330",
+    "topic": "Bain报告Agentic AI打开SaaS $100B新机会 5月7日"
+  },
+  "tw-1330-github-claude-skills-halfboard-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1330",
+    "topic": "GitHub 5月榜Claude Skills+AI Agent占半壁 hermes-agent 155.8k stars"
+  },
+  "tw-1330-solo-founder-microsaas-1m-arr-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1330",
+    "topic": "7个solo founder AI micro-SaaS跑出$1M+ ARR 36%新公司一人创办"
+  },
+  "tw-1330-btc75570-eth2073-sol8365-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1330",
+    "topic": "BTC75570 ETH2073 SOL8365 三币同步小幅回调横盘震荡"
+  },
+  "tw-1330-clone-microsaas-validator-deploy-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1330",
+    "topic": "复刻案例：Micro-SaaS Idea Validator https://seanliii.github.io/microsaas-validator/"
+  },
+  "note_1330_may27": "Tavily配额耗尽/catclaw-search可用/Anthropic5大Agent能力+SpaceX算力/Bain$100B SaaS机会/GitHub Skills霸榜/Solo Founder$1M ARR/BTC75K横盘/复刻microsaas-validator上线",
+  "tw-1400-nvda-81b-q1fy2027-85pct-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1400",
+    "topic": "NVDA Q1 FY2027财报 营收81.6B同比+85% EPS超预期 Blackwell驱动"
+  },
+  "tw-1400-btc75611-eth2074-sol8377-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1400",
+    "topic": "BTC75611 ETH2074 SOL8377 三币横盘回调"
+  },
+  "tw-1400-pdufa-q2-bat2506-biib-bmy-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1400",
+    "topic": "Q2 PDUFA日历 BAT2506/BIIB Lecanemab皮下/BMY deucravacitinib"
+  },
+  "tw-1400-agent-cleo-basedash-cbinsights6trend-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1400",
+    "topic": "Agent Cleo团队协调/Basedash Analytics/CBInsights 2026六大Agent趋势"
+  },
+  "tw-1400-clone-pdufa-tracker-deploy-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1400",
+    "topic": "复刻案例：PDUFA 2026 FDA审批日历 https://seanliii.github.io/pdufa-tracker/"
+  },
+  "note_1400_may27": "NVDA Q1 FY2027破8万亿营收/BTC75K横盘/PDUFA Q2日历复刻上线/Agent Cleo Basedash/CBInsights Agent6大趋势",
+  "tw-1600-wired-ai-agent-chaos-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1600",
+    "topic": "Wired长文：AI Agent让科技世界陷入混乱 Claude Code戒友会"
+  },
+  "tw-1600-youtube-mcp-github-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1600",
+    "topic": "YouTube MCP - AI Agent搜索YouTube transcript工具 GitHub开源"
+  },
+  "tw-1600-cloudflare-flagship-feature-flag-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1600",
+    "topic": "Cloudflare Flagship Feature Flag服务上线 开发者基础设施布局"
+  },
+  "tw-1600-polymarket-kalshi-spain-blocked-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1600",
+    "topic": "西班牙封锁Polymarket Kalshi预测市场 赌博许可证 Reuters"
+  },
+  "tw-1600-btc75869-eth2081-sol84-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1600",
+    "topic": "BTC75869 ETH2081 SOL84 三币小幅回调震荡"
+  },
+  "tw-1600-clone-youtube-research-agent-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1600",
+    "topic": "复刻案例：YouTube Research Agent https://seanliii.github.io/youtube-research-agent/"
+  },
+  "note_1600_may27": "Wired长文AI Agent混乱/YouTube MCP工具/Cloudflare Flagship/西班牙封Polymarket/BTC75K横盘/YouTube Research Agent复刻上线",
+  "tw-1700-spacex-ipo-spcx-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1700",
+    "topic": "SpaceX IPO S-1递交/SPCX/估值1.75~2万亿/募资750-800亿"
+  },
+  "tw-1700-openai-ipo-filing-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1700",
+    "topic": "OpenAI秘密递表IPO/9月上市/估值8520亿→1万亿/高盛摩根士丹利承销"
+  },
+  "tw-1700-china-ai-talent-travel-ban-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1700",
+    "topic": "中国限制阿里DeepSeek顶级AI人才出境/Bloomberg/TrendForce"
+  },
+  "tw-1700-nvda-q1-fy2027-816b-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1700",
+    "topic": "NVDA Q1营收816亿/Q2指引910亿/股息0.25/回购800亿"
+  },
+  "tw-1700-btc75755-eth2082-sol8381-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1700",
+    "topic": "BTC75755 ETH2082 SOL8381 三币回调横盘"
+  },
+  "note_1700_may27": "SpaceX IPO SPCX 6月12日挂牌/OpenAI 9月IPO/中国AI人才出境管控/NVDA Q2指引910亿/加密横盘",
+  "tw-1900-sierra-950m-agent-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1900",
+    "topic": "Sierra融资9.5亿/企业AI Agent/估值150亿/Tiger Global GV领投"
+  },
+  "tw-1900-copilotkit-27m-blitzy-200m-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1900",
+    "topic": "CopilotKit Series A 2700万/Blitzy 2亿/AI Agent基础设施融资潮"
+  },
+  "tw-1900-grok-build-beta-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1900",
+    "topic": "Grok Build 5月Beta上线/xAI编码Agent/ACP兼容/MCP/grok-build-0.1"
+  },
+  "tw-1900-ntra-signatera-fdaapproval-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1900",
+    "topic": "Natera NTRA Signatera CDx FDA批准/膀胱癌MRD伴随诊断/免疫治疗决策"
+  },
+  "tw-1900-btc75801-eth2076-sol83-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1900",
+    "topic": "BTC75801 ETH2076 SOL83 三币小幅回调 -2%"
+  },
+  "tw-1900-clone-agent-money-calc-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1900",
+    "topic": "复刻案例：AI Agent变现计算器 https://seanliii.github.io/agent-money-calc/"
+  },
+  "note_1900_may27": "Sierra 9.5亿/CopilotKit 2700万/Blitzy 2亿/Grok Build Beta/NTRA Signatera FDA批准/AI Agent赚钱5模型/BTC横盘/复刻变现计算器",
+  "tw-1907-mu-trillion-samsung-2nm-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1907",
+    "topic": "MU破万亿UBS目标1625/Enhertu双适应症FDA批准/Samsung 2nm良率60%/Agent 365 GA"
+  },
+  "tw-1907-enhertu-fda-her2-early-bc-may27": {
+    "sent": true,
+    "date": "2026-05-27",
+    "slot": "1907",
+    "topic": "Enhertu T-DXd FDA批准HER2+早期乳腺癌新辅助+辅助双适应症"
+  },
+  "note_1907_may27": "MU万亿俱乐部UBS1625/Enhertu早期乳腺癌双批准/Leqembi延期至826/Samsung2nm60%/Agent365 GA $15/月/FlowMarket复刻Backlog",
+  "tw-0900-kpmg-claude-276k-may28": {
+    "sent": true,
+    "date": "2026-05-28",
+    "slot": "0900",
+    "topic": "KPMG部署Claude给27.6万员工/138国/史上最大企业AI落地"
+  },
+  "tw-0900-openai-40b-consulting-may28": {
+    "sent": true,
+    "date": "2026-05-28",
+    "slot": "0900",
+    "topic": "OpenAI 40亿企业AI咨询服务上线/抢KPMG埃森哲市场"
+  },
+  "tw-0900-gemini-spark-24h-agent-may28": {
+    "sent": true,
+    "date": "2026-05-28",
+    "slot": "0900",
+    "topic": "Google Gemini Spark 24h自主Agent/Antigravity 2.0/深度接入Google全生态"
+  },
+  "tw-0900-openclaw-319k-star-github-may28": {
+    "sent": true,
+    "date": "2026-05-28",
+    "slot": "0900",
+    "topic": "OpenClaw 31.9万Star超越Linux/2026最热开源AI项目"
+  },
+  "tw-0900-q1-2026-ai-funding-297b-may28": {
+    "sent": true,
+    "date": "2026-05-28",
+    "slot": "0900",
+    "topic": "Q1 2026融资纪录2970亿/AI吃掉1880亿/OpenAI Anthropic xAI Waymo占2/3"
+  },
+  "tw-0900-btc74446-eth2025-sol8257-may28": {
+    "sent": true,
+    "date": "2026-05-28",
+    "slot": "0900",
+    "topic": "BTC74446 ETH2025 SOL82.57 三币同步回调约-2%"
+  },
+  "note_0900_may28": "KPMG27万员工Claude/OpenAI40亿咨询/Gemini Spark 24h Agent/OpenClaw319k Star/Q1融资2970亿/三币回调-2%",
+  "deep-1030-openai-ipo-852b-sec-s1-may28": {
+    "sent": true,
+    "date": "2026-05-28",
+    "slot": "1030",
+    "topic": "OpenAI秘密递表S-1/估值8520亿/9月IPO目标"
+  },
+  "deep-1030-anthropic-q2-10.9b-first-profit-may28": {
+    "sent": true,
+    "date": "2026-05-28",
+    "slot": "1030",
+    "topic": "Anthropic Q2营收109亿/首次季度盈利5.59亿/提前两年"
+  },
+  "deep-1030-anthropic-spacex-45b-compute-may28": {
+    "sent": true,
+    "date": "2026-05-28",
+    "slot": "1030",
+    "topic": "Anthropic x SpaceX 450亿算力协议/12.5亿每月到2029"
+  },
+  "deep-1030-openai-codex-locked-use-mac-may28": {
+    "sent": true,
+    "date": "2026-05-28",
+    "slot": "1030",
+    "topic": "OpenAI Codex Locked Use锁屏后继续执行桌面Agent"
+  },
+  "deep-1030-cursor-50-60b-valuation-2-3b-arr-may28": {
+    "sent": true,
+    "date": "2026-05-28",
+    "slot": "1030",
+    "topic": "Cursor估值50-60亿/年化营收2-3B/AI编码独角兽"
+  },
+  "deep-1030-btc74094-eth2013-sol82-may28": {
+    "sent": true,
+    "date": "2026-05-28",
+    "slot": "1030",
+    "topic": "BTC74094 ETH2013 SOL82 三币同步回调-2%"
+  },
+  "deep-1030-clone-ai-ipo-tracker-may28": {
+    "sent": true,
+    "date": "2026-05-28",
+    "slot": "1030",
+    "topic": "复刻案例：AI独角兽IPO追踪器 https://seanliii.github.io/ai-ipo-tracker/"
+  },
+  "note_1030_may28": "OpenAI递表8520亿/Anthropic首盈利109亿/SpaceX算力450亿/Codex锁屏继续/Cursor 60亿/三币回调-2%/复刻IPO追踪器",
+  "deep-1200-btc73089-eth1977-sol80-may28": {
+    "sent": true,
+    "date": "2026-05-28",
+    "slot": "1200",
+    "topic": "BTC73089 ETH1977 SOL80 三币同步跌-3-4%"
+  },
+  "deep-1200-nvda-q4fy26-68b-73pct-may28": {
+    "sent": true,
+    "date": "2026-05-28",
+    "slot": "1200",
+    "topic": "NVDA Q4 FY2026营收68.1B同比+73% 数据中心62.3B"
+  },
+  "deep-1200-gemini35flash-google-io-may28": {
+    "sent": true,
+    "date": "2026-05-28",
+    "slot": "1200",
+    "topic": "Google I/O Gemini 3.5 Flash全面开放 15项基准11项超Pro 成本降40%"
+  },
+  "deep-1200-ai-ghostwriter-workflow-may28": {
+    "sent": true,
+    "date": "2026-05-28",
+    "slot": "1200",
+    "topic": "AI代笔工作流月收18k案例/复刻AI代笔工坊 https://seanliii.github.io/ai-ghostwriter/"
+  },
+  "deep-1200-biotech-fda-72-approvals-may28": {
+    "sent": true,
+    "date": "2026-05-28",
+    "slot": "1200",
+    "topic": "FDA&EMA 4-5月批准72新药 覆盖肿瘤罕见病免疫神经"
+  },
+  "note_1200_may28": "BTC73089跌-3%/NVDA Q4 68B+73%/Gemini3.5Flash发布/AI代笔月18k案例/复刻ai-ghostwriter",
+  "deep-1900-bytedance-700b-capex-doubao-may28": {
+    "sent": true,
+    "date": "2026-05-28",
+    "slot": "1900",
+    "topic": "字节跳动2026年AI资本开支拟$700亿/豆包3亿月活/高通芯片备用"
+  },
+  "deep-1900-qwen37max-agent-benchmark-may28": {
+    "sent": true,
+    "date": "2026-05-28",
+    "slot": "1900",
+    "topic": "阿里Qwen3.7-Max 5月20日发布/Arena超Kimi/DSv4-Pro/Agent专项SOTA"
+  },
+  "deep-1900-btc73296-eth1988-sol8073-may28": {
+    "sent": true,
+    "date": "2026-05-28",
+    "slot": "1900",
+    "topic": "BTC73296 ETH1988 SOL80.73 三币全天承压/ETH失守2000"
+  },
+  "deep-1900-ai-model-arena-clone-may28": {
+    "sent": true,
+    "date": "2026-05-28",
+    "slot": "1900",
+    "topic": "复刻案例：AI模型战力排行榜 https://seanliii.github.io/ai-model-arena/"
+  },
+  "deep-1900-solo-founder-10k-100k-mrr-may28": {
+    "sent": true,
+    "date": "2026-05-28",
+    "slot": "1900",
+    "topic": "一人公司Agent经济/$10K-$100K MRR无员工/独立创始人比例+53%"
+  },
+  "note_1900_may28": "字节700亿AI资本/Qwen3.7Max超越/三币ETH失守2000/一人公司Agent革命/复刻AI模型排行榜",
+  "morning-0900-may29-anthropic-agent-sdk-billing": {
+    "sent": true,
+    "date": "2026-05-29",
+    "slot": "0900",
+    "topic": "Anthropic 6月15日Agent SDK双桶计费/DeepSeek V4-Pro SWE-bench 80.6% 成本1/30/Solo founder AI替代团队"
+  },
+  "morning-0900-may29-deepseek-v4-pro-benchmark": {
+    "sent": true,
+    "date": "2026-05-29",
+    "slot": "0900",
+    "topic": "DeepSeek V4-Pro 80.6% SWE-bench开源霸主 $0.435/M tokens"
+  },
+  "morning-0900-may29-claude-cowork-persistent-thread": {
+    "sent": true,
+    "date": "2026-05-29",
+    "slot": "0900",
+    "topic": "Claude Cowork持久Agent线程上线 Pro/Max订阅"
+  },
+  "morning-0900-may29-ai-agent-solo-founder-fortune": {
+    "sent": true,
+    "date": "2026-05-29",
+    "slot": "0900",
+    "topic": "Fortune实锤：Solo Founder用AI替代团队/AI Agent市场$109亿2026"
+  },
+  "note_0900_may29": "Anthropic Agent SDK双桶计费6月15/DeepSeek V4-Pro开源王炸/Claude Cowork持久线程/solo founder AI替代团队",
+  "deep-1200-btc73196-eth2000-sol8151-may29": {
+    "sent": true,
+    "date": "2026-05-29",
+    "slot": "1200",
+    "topic": "BTC73196+0.1% ETH2000重夺整数关口+1% SOL81.51+0.8%"
+  },
+  "deep-1200-nvidia-150b-taiwan-may29": {
+    "sent": true,
+    "date": "2026-05-29",
+    "slot": "1200",
+    "topic": "NVDA宣布台湾年投150亿美元 Jensen Huang称台湾为AI革命震中"
+  },
+  "deep-1200-anthropic-stainless-300m-may29": {
+    "sent": true,
+    "date": "2026-05-29",
+    "slot": "1200",
+    "topic": "Anthropic 3亿美元收购Stainless SDK自动生成工具 截断OpenAI/Google工具链"
+  },
+  "deep-1200-ai-startup-funding-130b-2026-may29": {
+    "sent": true,
+    "date": "2026-05-29",
+    "slot": "1200",
+    "topic": "2026 AI融资破1300亿美元 超大轮主导 Agent赛道爆发"
+  },
+  "deep-1200-ai-sdk-generator-clone-may29": {
+    "sent": true,
+    "date": "2026-05-29",
+    "slot": "1200",
+    "topic": "复刻案例：AI SDK Generator https://seanliii.github.io/ai-sdk-generator/"
+  },
+  "note_1200_may29": "BTC73196 ETH重夺2000/NVDA台湾150亿/Anthropic收购Stainless/AI融资1300亿/复刻SDK生成器",
+  "afternoon-1330-vibe-coding-92pct-stat-may29": {
+    "sent": true,
+    "date": "2026-05-29",
+    "slot": "1330",
+    "topic": "Vibe Coding 2026：92%美国开发者日用AI编程 41%代码AI生成"
+  },
+  "afternoon-1330-kilo-code-8m-seed-may29": {
+    "sent": true,
+    "date": "2026-05-29",
+    "slot": "1330",
+    "topic": "Kilo Code前GitLab CEO领衔 $8M种子轮 开源AI编程Agent最快增长"
+  },
+  "afternoon-1330-google-cloud-750m-agent-may29": {
+    "sent": true,
+    "date": "2026-05-29",
+    "slot": "1330",
+    "topic": "Google Cloud承诺7.5亿美元加速合作伙伴Agentic AI开发"
+  },
+  "afternoon-1330-shadow-2-realtime-meeting-may29": {
+    "sent": true,
+    "date": "2026-05-29",
+    "slot": "1330",
+    "topic": "Shadow 2.0 PH大爆：会中实时AI wingman 从会后清理升级到会中执行"
+  },
+  "afternoon-1330-pku-agentic-coding-report-may29": {
+    "sent": true,
+    "date": "2026-05-29",
+    "slot": "1330",
+    "topic": "北大AI肖睿团队报告：Agentic Coding从Vibe Coding到超级个体进化路径"
+  },
+  "afternoon-1330-ai-may-funding-37deals-25b-may29": {
+    "sent": true,
+    "date": "2026-05-29",
+    "slot": "1330",
+    "topic": "5月AI融资37笔260亿美元 占全部融资45%"
+  },
+  "afternoon-1330-meeting-wingman-clone-may29": {
+    "sent": true,
+    "date": "2026-05-29",
+    "slot": "1330",
+    "topic": "复刻案例：Meeting Wingman https://seanliii.github.io/meeting-wingman/"
+  },
+  "note_1330_may29": "Vibe Coding 92%渗透率/Kilo Code $8M/Google Cloud 7.5亿/Shadow 2.0 PH火/北大Agentic Coding报告/复刻会议AI wingman",
+  "afternoon-1400-sierra-15b-950m-may29": {
+    "sent": true,
+    "date": "2026-05-29",
+    "slot": "1400",
+    "topic": "Sierra AI $15.8B $950M融资 企业客服Agent"
+  },
+  "afternoon-1400-enhertu-fda-dual-approval-may29": {
+    "sent": true,
+    "date": "2026-05-29",
+    "slot": "1400",
+    "topic": "Enhertu FDA双获批 HER2阳性早期乳腺癌 ADC里程碑"
+  },
+  "afternoon-1400-model-4-giants-gpt55-claude-deepseek-may29": {
+    "sent": true,
+    "date": "2026-05-29",
+    "slot": "1400",
+    "topic": "GPT-5.5/Claude Opus 4.7/DeepSeek V4/Gemini 3.1四强并起"
+  },
+  "afternoon-1400-cx-agent-builder-clone-may29": {
+    "sent": true,
+    "date": "2026-05-29",
+    "slot": "1400",
+    "topic": "复刻案例：CX Agent Builder https://seanliii.github.io/cx-agent-builder/"
+  },
+  "note_1400_may29": "BTC73558/ETH2010站稳/Sierra15.8B企业客服/Enhertu双获批ADC里程碑/四大模型并起/复刻CX-Agent-Builder",
+  "afternoon-1600-claude-opus-48-agentic-may29": {
+    "sent": true,
+    "date": "2026-05-29",
+    "slot": "1600",
+    "topic": "Claude Opus 4.8发布：SWE-bench 69.2%/Honesty 4x/Dynamic Workflows调度数百subagents"
+  },
+  "afternoon-1600-cognition-devin-26b-1b-may29": {
+    "sent": true,
+    "date": "2026-05-29",
+    "slot": "1600",
+    "topic": "Cognition Devin $26B估值/$1B融资/ARR $492M"
+  },
+  "afternoon-1600-openclaw-personal-automation-may29": {
+    "sent": true,
+    "date": "2026-05-29",
+    "slot": "1600",
+    "topic": "个人自动化野蛮生长 OpenClaw+ClaudeCode接入消息界面 Mark Savant $700MRR"
+  },
+  "note_1600_may29": "ClaudeOpus4.8炸场-43天迭代-Dynamic Workflows/Cognition$26B/个人自动化野蛮生长/BTC73373/ETH2004/SOL82",
+  "evening-1700-anthropic-900b-tops-openai-may29": {
+    "sent": true,
+    "date": "2026-05-29",
+    "slot": "1700",
+    "topic": "Anthropic 000亿估值超越OpenAI 成全球最贵私人AI公司"
+  },
+  "evening-1700-ai-coding-wars-may29": {
+    "sent": true,
+    "date": "2026-05-29",
+    "slot": "1700",
+    "topic": "Claude Opus 4.8/Google Antigravity 2.0/Gemini 3.5 Flash/Codex Mobile AI编程战争白热化"
+  },
+  "evening-1700-btc73540-eth2003-sol82-may29": {
+    "sent": true,
+    "date": "2026-05-29",
+    "slot": "1700",
+    "topic": "BTC73540/ETH2003/SOL82 三绿美股开盘前"
+  },
+  "note_1700_may29": "Anthropic000亿超OpenAI/Claude Opus4.8 88.6%SWE/Antigravity2.0/Gemini3.5Flash/Codex手机/BTC73540"
 }

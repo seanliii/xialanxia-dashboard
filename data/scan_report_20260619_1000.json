@@ -1,0 +1,57 @@
+{
+  "scan_time": "2026-06-19 10:00",
+  "triggers_fired": [],
+  "stops_triggered": [],
+  "watchlist_approaching": [
+    {
+      "ticker": "PLTR",
+      "account": "blueshrimp",
+      "current": 128.48,
+      "trigger": 120.0,
+      "gap_pct": 7.1,
+      "priority": "A",
+      "status": "watch"
+    },
+    {
+      "ticker": "VST",
+      "account": "institutional",
+      "current": 163.72,
+      "trigger": 150.0,
+      "gap_pct": 9.1,
+      "priority": "A",
+      "status": "entered"
+    }
+  ],
+  "portfolio_summary": {
+    "institutional": {
+      "name": "大机构",
+      "emoji": "🏦",
+      "total_value": 39035.93,
+      "cash": 13640.35,
+      "position_value": 25395.58,
+      "pnl": -10964.07,
+      "return_pct": -21.93,
+      "positions": 3
+    },
+    "aggressive": {
+      "name": "激进交易",
+      "emoji": "⚡",
+      "total_value": 49656.89,
+      "cash": 26329.88,
+      "position_value": 23327.01,
+      "pnl": -343.11,
+      "return_pct": -0.69,
+      "positions": 4
+    },
+    "blueshrimp": {
+      "name": "蓝虾交易",
+      "emoji": "🦐",
+      "total_value": 48985.98,
+      "cash": 39062.13,
+      "position_value": 9923.85,
+      "pnl": -1014.02,
+      "return_pct": -2.03,
+      "positions": 2
+    }
+  }
+}

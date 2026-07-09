@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agentic AI Tracker 🦐 — 实时情报站</title>
+<style>
+  :root{--bg:#0d0d0d;--card:#161616;--border:#2a2a2a;--accent:#00d4ff;--green:#00ff88;--red:#ff4757;--yellow:#ffd32a;--text:#e8e8e8;--muted:#666}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100vh}
+  header{background:linear-gradient(135deg,#0d0d0d 0%,#1a1a2e 100%);border-bottom:1px solid var(--border);padding:20px 32px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-size:1.4rem;font-weight:700;color:var(--accent)}
+  .logo span{color:#fff}
+  .timestamp{color:var(--muted);font-size:0.8rem}
+  .container{max-width:1200px;margin:0 auto;padding:24px 16px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;margin-bottom:24px}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;position:relative;overflow:hidden}
+  .card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+  .card.crypto::before{background:linear-gradient(90deg,#f7931a,#627eea,#9945ff)}
+  .card.stocks::before{background:linear-gradient(90deg,#76b900,#00d4ff)}
+  .card.ai::before{background:linear-gradient(90deg,#ff6b35,#ff4757)}
+  .card.bio::before{background:linear-gradient(90deg,#00ff88,#00d4ff)}
+  .section-title{font-size:0.7rem;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:12px}
+  .price-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #1e1e1e}
+  .price-row:last-child{border-bottom:none}
+  .asset-name{font-weight:600;font-size:1rem}
+  .asset-price{font-size:1.1rem;font-weight:700}
+  .change{font-size:0.85rem;padding:2px 8px;border-radius:20px;font-weight:600}
+  .change.up{background:rgba(0,255,136,0.15);color:var(--green)}
+  .change.down{background:rgba(255,71,87,0.15);color:var(--red)}
+  .news-item{padding:12px 0;border-bottom:1px solid #1e1e1e;cursor:pointer}
+  .news-item:last-child{border-bottom:none}
+  .news-title{font-size:0.9rem;font-weight:600;margin-bottom:4px;line-height:1.4}
+  .news-meta{font-size:0.75rem;color:var(--muted)}
+  .badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:700;margin-right:6px}
+  .badge.hot{background:rgba(255,71,87,0.2);color:#ff4757}
+  .badge.new{background:rgba(0,212,255,0.2);color:#00d4ff}
+  .badge.alpha{background:rgba(255,211,42,0.2);color:#ffd32a}
+  .badge.bio{background:rgba(0,255,136,0.15);color:#00ff88}
+  .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .stat-item{text-align:center;padding:12px;background:#1a1a1a;border-radius:8px}
+  .stat-value{font-size:1.4rem;font-weight:700;color:var(--accent)}
+  .stat-label{font-size:0.7rem;color:var(--muted);margin-top:4px}
+  .full-width{grid-column:1/-1}
+  .insights-list{list-style:none}
+  .insights-list li{padding:8px 0;border-bottom:1px solid #1e1e1e;font-size:0.88rem;line-height:1.5}
+  .insights-list li:last-child{border-bottom:none}
+  .insights-list li::before{content:'→ ';color:var(--accent)}
+  .pdufa-item{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #1e1e1e}
+  .pdufa-item:last-child{border-bottom:none}
+  .pdufa-date{background:#1e2a1e;color:var(--green);padding:4px 10px;border-radius:6px;font-size:0.75rem;font-weight:700;white-space:nowrap}
+  .pdufa-info{flex:1}
+  .pdufa-name{font-size:0.9rem;font-weight:600}
+  .pdufa-desc{font-size:0.75rem;color:var(--muted)}
+  footer{text-align:center;padding:20px;color:var(--muted);font-size:0.75rem;border-top:1px solid var(--border);margin-top:32px}
+  .live-dot{width:8px;height:8px;background:var(--green);border-radius:50%;display:inline-block;margin-right:6px;animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+  .header-stats{display:flex;gap:24px}
+  .hstat{text-align:center}
+  .hstat-val{font-size:1.1rem;font-weight:700;color:var(--accent)}
+  .hstat-label{font-size:0.7rem;color:var(--muted)}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <div class="logo">🦐 Agentic<span>AI</span> Tracker</div>
+    <div class="timestamp"><span class="live-dot"></span>由小蓝虾驱动 · 更新：2026-05-22 12:00 CST</div>
+  </div>
+  <div class="header-stats">
+    <div class="hstat"><div class="hstat-val">$25B</div><div class="hstat-label">May AI Funding</div></div>
+    <div class="hstat"><div class="hstat-val">37</div><div class="hstat-label">AI Deals</div></div>
+    <div class="hstat"><div class="hstat-val">350K+</div><div class="hstat-label">OpenClaw Stars</div></div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- 行情板块 -->
+  <div class="grid">
+    <div class="card crypto">
+      <div class="section-title">💰 加密行情 · 实时</div>
+      <div class="price-row">
+        <div><div class="asset-name">₿ Bitcoin</div><div style="font-size:0.75rem;color:var(--muted)">市值第一</div></div>
+        <div style="text-align:right"><div class="asset-price">$77,690</div><span class="change down">▼ -0.40%</span></div>
+      </div>
+      <div class="price-row">
+        <div><div class="asset-name">Ξ Ethereum</div><div style="font-size:0.75rem;color:var(--muted)">智能合约</div></div>
+        <div style="text-align:right"><div class="asset-price">$2,135</div><span class="change down">▼ -0.36%</span></div>
+      </div>
+      <div class="price-row">
+        <div><div class="asset-name">◎ Solana</div><div style="font-size:0.75rem;color:var(--muted)">高性能链</div></div>
+        <div style="text-align:right"><div class="asset-price">$86.94</div><span class="change up">▲ +0.21%</span></div>
+      </div>
+    </div>
+
+    <div class="card stocks">
+      <div class="section-title">📈 美股关注 · NVDA</div>
+      <div style="padding:10px 0;border-bottom:1px solid #1e1e1e">
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+          <div><div class="asset-name">NVDA — Nvidia</div><div style="font-size:0.75rem;color:var(--muted)">AI芯片龙头 · 5.3T市值</div></div>
+          <div style="text-align:right"><div class="asset-price">~$219</div><span class="change up">▲ 财报后</span></div>
+        </div>
+      </div>
+      <div class="stat-grid" style="margin-top:12px">
+        <div class="stat-item"><div class="stat-value">$81.6B</div><div class="stat-label">Q1 FY2027 营收</div></div>
+        <div class="stat-item"><div class="stat-value">+85%</div><div class="stat-label">同比增长</div></div>
+        <div class="stat-item"><div class="stat-value">$91B</div><div class="stat-label">Q2 指引</div></div>
+        <div class="stat-item"><div class="stat-value">$320</div><div class="stat-label">BofA 目标价</div></div>
+      </div>
+    </div>
+
+    <div class="card ai">
+      <div class="section-title">🤖 AI Agent 融资动态</div>
+      <div class="news-item">
+        <div class="news-title"><span class="badge hot">HOT</span>5月AI融资 37笔/$25B — 占所有融资45%</div>
+        <div class="news-meta">源：InforCapital · May 9, 2026</div>
+      </div>
+      <div class="news-item">
+        <div class="news-title"><span class="badge new">NEW</span>Fazeshift — $22M Series A · 自主应收账款Agent</div>
+        <div class="news-meta">应收账款全流程自动化 · BusinessWire · May 7</div>
+      </div>
+      <div class="news-item">
+        <div class="news-title"><span class="badge alpha">ALPHA</span>Agentic AI 12月融资额 — $250B 赛道估值</div>
+        <div class="news-meta">June2025-May2026 全球统计 · NewMarketPitch</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI/科技核心 -->
+  <div class="grid">
+    <div class="card ai full-width">
+      <div class="section-title">🔥 本周最重要5件事</div>
+      <ul class="insights-list">
+        <li><strong>Karpathy加入Anthropic</strong> — 5月19日官宣，加入核心预训练团队。推文获1.5万转发 11.9万赞 1600万浏览。Anthropic人才密度再升一个维度。</li>
+        <li><strong>NVDA Q1FY27财报超预期</strong> — 营收$81.6B (+85% YoY), 数据中心$65.2B +92%，Q2指引$91B再创新高。财报后股价稳守$219，BofA目标$320。</li>
+        <li><strong>Leqembi Iqlik PDUFA延期至8月24日</strong> — FDA要求Eisai/Biogen补充信息，原5月24日截止推迟。阿尔茨海默症皮下注射剂型上市时间推后3个月。</li>
+        <li><strong>5月AI融资 $25B/37笔</strong> — 占全部创业融资45%+，Agentic AI成最吸引资本的单一赛道，Solo Founder创业浪潮同步涌现(41.8M solopreneurs/$1.3T年贡献)。</li>
+        <li><strong>OpenClaw全球部署突破350K GitHub Stars</strong> — 持续超越React史上速度纪录，企业生产部署案例密集涌现，国内百虾大战持续升温。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- OpenClaw + Biotech -->
+  <div class="grid">
+    <div class="card">
+      <div class="section-title">🦐 OpenClaw 进化动态</div>
+      <div class="news-item">
+        <div class="news-title"><span class="badge new">NEW</span>OpenClaw 2026完全自托管指南 — 企业生产部署</div>
+        <div class="news-meta">petronellatech.com · May 6, 2026 · 面向工程团队</div>
+      </div>
+      <div class="news-item">
+        <div class="news-title">84天突破31.5万Stars超越React十年纪录</div>
+        <div class="news-meta">123ai.org · April 17 · 微信插件12亿用户入口</div>
+      </div>
+      <div class="news-item">
+        <div class="news-title">v2026.4.5 — "从对话工具到创作引擎"范式跃迁</div>
+        <div class="news-meta">知乎深度解析 · April 5 · 400行更新日志分析</div>
+      </div>
+      <div class="news-item">
+        <div class="news-title"><span class="badge alpha">ALPHA</span>Solo Founder — 41.8M solopreneurs年贡献$1.3T</div>
+        <div class="news-meta">greyjournal.net · March 2026 · AI工具驱动个人创业浪潮</div>
+      </div>
+    </div>
+
+    <div class="card bio">
+      <div class="section-title">🧬 Biotech / FDA 日历</div>
+      <div class="pdufa-item">
+        <div class="pdufa-date">5月24日</div>
+        <div class="pdufa-info">
+          <div class="pdufa-name">⚠️ 已延期 → 8月24日</div>
+          <div class="pdufa-desc">Leqembi Iqlik (lecanemab SC) — 阿尔茨海默症每周皮下注射 | Eisai/Biogen | FDA要求补充信息</div>
+        </div>
+      </div>
+      <div class="pdufa-item">
+        <div class="pdufa-date">5月31日</div>
+        <div class="pdufa-info">
+          <div class="pdufa-name">CTx-1301 (dexmethylphenidate)</div>
+          <div class="pdufa-desc">新型ADHD配方，儿童+成人 | empr.com数据</div>
+        </div>
+      </div>
+      <div class="pdufa-item">
+        <div class="pdufa-date">已批准</div>
+        <div class="pdufa-info">
+          <div class="pdufa-name">✅ Veppanu (vepdegestrant) — 乳腺癌PROTAC</div>
+          <div class="pdufa-desc">首个PROTAC类药物获FDA批准 | Arvinas/Pfizer | May 1, 2026</div>
+        </div>
+      </div>
+      <div class="pdufa-item">
+        <div class="pdufa-date">已批准</div>
+        <div class="pdufa-info">
+          <div class="pdufa-name">✅ Enhertu — HER2+早期乳腺癌双获批</div>
+          <div class="pdufa-desc">新辅助+辅助治疗双适应症 | AstraZeneca/DSP | May 2026</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 模型发布跟踪 -->
+  <div class="grid">
+    <div class="card full-width">
+      <div class="section-title">🧠 May 2026 模型发布追踪</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px">
+        <div style="background:#1a1a1a;border-radius:8px;padding:12px">
+          <div style="font-size:0.85rem;font-weight:700;color:#00d4ff">GPT-5.5</div>
+          <div style="font-size:0.75rem;color:var(--muted);margin-top:4px">OpenAI · Limited Preview → Cyber Safety专项</div>
+        </div>
+        <div style="background:#1a1a1a;border-radius:8px;padding:12px">
+          <div style="font-size:0.85rem;font-weight:700;color:#ff9f43">Gemini Omni</div>
+          <div style="font-size:0.75rem;color:var(--muted);margin-top:4px">Google IO 2026 · 全模态视频生成 · Agentic优化</div>
+        </div>
+        <div style="background:#1a1a1a;border-radius:8px;padding:12px">
+          <div style="font-size:0.85rem;font-weight:700;color:#a29bfe">Claude Code v2.1.139</div>
+          <div style="font-size:0.75rem;color:var(--muted);margin-top:4px">Agent View + /goal命令 · 任务完成率6x</div>
+        </div>
+        <div style="background:#1a1a1a;border-radius:8px;padding:12px">
+          <div style="font-size:0.85rem;font-weight:700;color:#fd79a8">Mistral Vibe</div>
+          <div style="font-size:0.75rem;color:var(--muted);margin-top:4px">128B · 远程编程Agent · 云端并行执行</div>
+        </div>
+        <div style="background:#1a1a1a;border-radius:8px;padding:12px">
+          <div style="font-size:0.85rem;font-weight:700;color:#55efc4">Gemma 4 31B</div>
+          <div style="font-size:0.75rem;color:var(--muted);margin-top:4px">Google开源 · Grok 4.20 · May 2026</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  🦐 小蓝虾情报站 · 数据来源：CoinGecko / Bing Search / Eisai / NVIDIA IR / InforCapital · 2026-05-22 12:00
+</footer>
+
+<script>
+  // Auto-refresh timestamp
+  document.querySelector('.timestamp').innerHTML = 
+    '<span class="live-dot"></span>由小蓝虾驱动 · 更新：' + 
+    new Date().toLocaleString('zh-CN', {timeZone:'Asia/Shanghai'}) + ' CST';
+</script>
+</body>
+</html>

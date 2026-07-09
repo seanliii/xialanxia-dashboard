@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🦐 RPA Flow Builder — OpenClaw Skill 生成器</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0d1117; color: #e6edf3; min-height: 100vh; }
+  .header { background: linear-gradient(135deg, #1a2535 0%, #0d1b2a 100%); padding: 24px 32px; border-bottom: 1px solid #21262d; }
+  .header h1 { font-size: 24px; font-weight: 700; }
+  .header h1 span { color: #58a6ff; }
+  .header p { margin-top: 6px; color: #8b949e; font-size: 14px; }
+  .badge { display: inline-block; background: #1f6feb33; color: #58a6ff; border: 1px solid #1f6feb; padding: 2px 8px; border-radius: 12px; font-size: 12px; margin-left: 8px; }
+  .container { max-width: 960px; margin: 0 auto; padding: 32px 20px; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media(max-width:700px) { .two-col { grid-template-columns: 1fr; } }
+  .card { background: #161b22; border: 1px solid #21262d; border-radius: 12px; padding: 20px; }
+  .card h2 { font-size: 15px; font-weight: 600; margin-bottom: 16px; color: #c9d1d9; display: flex; align-items: center; gap: 8px; }
+  .step-input { width: 100%; background: #0d1117; border: 1px solid #30363d; border-radius: 8px; color: #e6edf3; padding: 10px 12px; font-size: 14px; margin-bottom: 10px; }
+  .step-input:focus { outline: none; border-color: #58a6ff; }
+  select.step-input { cursor: pointer; }
+  .btn { padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; font-size: 13px; font-weight: 600; transition: all 0.15s; }
+  .btn-primary { background: #238636; color: #fff; }
+  .btn-primary:hover { background: #2ea043; }
+  .btn-secondary { background: #21262d; color: #c9d1d9; border: 1px solid #30363d; }
+  .btn-secondary:hover { background: #30363d; }
+  .btn-danger { background: #6e2020; color: #ffa198; border: 1px solid #8b2626; }
+  .btn-danger:hover { background: #8b2626; }
+  .btn-blue { background: #1f6feb; color: #fff; }
+  .btn-blue:hover { background: #388bfd; }
+  .btn-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+  .step-list { max-height: 320px; overflow-y: auto; }
+  .step-item { background: #0d1117; border: 1px solid #21262d; border-radius: 8px; padding: 10px 12px; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; font-size: 13px; }
+  .step-item .idx { background: #1f6feb; color: #fff; border-radius: 4px; padding: 1px 6px; font-size: 11px; font-weight: 700; flex-shrink: 0; }
+  .step-item .type-badge { border-radius: 4px; padding: 1px 7px; font-size: 11px; font-weight: 600; flex-shrink: 0; }
+  .type-click { background: #2ea04320; color: #2ea043; border: 1px solid #2ea04340; }
+  .type-type { background: #1f6feb20; color: #58a6ff; border: 1px solid #1f6feb40; }
+  .type-wait { background: #bb800020; color: #e3b341; border: 1px solid #bb800040; }
+  .type-navigate { background: #8250df20; color: #d2a8ff; border: 1px solid #8250df40; }
+  .type-extract { background: #ef553420; color: #ffa657; border: 1px solid #ef553440; }
+  .step-desc { flex: 1; color: #c9d1d9; }
+  .step-del { background: none; border: none; color: #6e7681; cursor: pointer; font-size: 16px; padding: 2px 6px; border-radius: 4px; }
+  .step-del:hover { color: #ffa198; background: #6e202020; }
+  .output-box { background: #0d1117; border: 1px solid #21262d; border-radius: 8px; padding: 16px; font-size: 12px; font-family: 'SF Mono', Monaco, monospace; white-space: pre-wrap; color: #8b949e; max-height: 380px; overflow-y: auto; line-height: 1.6; }
+  .output-box .key { color: #79c0ff; }
+  .output-box .str { color: #a5d6ff; }
+  .output-box .num { color: #f2cc60; }
+  .output-box .bool { color: #f47067; }
+  .tab-row { display: flex; gap: 0; margin-bottom: 16px; border-bottom: 1px solid #21262d; }
+  .tab { padding: 8px 16px; cursor: pointer; font-size: 13px; color: #8b949e; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+  .tab.active { color: #58a6ff; border-bottom-color: #58a6ff; }
+  .empty-hint { text-align: center; color: #484f58; padding: 32px 0; font-size: 14px; }
+  .meta-row { display: flex; gap: 10px; }
+  .meta-row .step-input { flex: 1; }
+  .copy-toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: #238636; color: #fff; padding: 10px 24px; border-radius: 8px; font-size: 14px; opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 1000; }
+  .copy-toast.show { opacity: 1; }
+  .tip { background: #1f6feb11; border: 1px solid #1f6feb33; border-radius: 8px; padding: 10px 14px; font-size: 12px; color: #79c0ff; margin-bottom: 16px; line-height: 1.6; }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🦐 RPA Flow Builder <span>for OpenClaw</span> <span class="badge">by 小蓝虾</span></h1>
+  <p>可视化编排浏览器操作步骤 → 自动生成 OpenClaw Skill JSON，0代码快速打包 RPA 工作流</p>
+</div>
+<div class="container">
+  <div class="tip">💡 <strong>使用方法：</strong>在左侧添加操作步骤（点击/输入/等待/跳转/提取），右侧实时生成 OpenClaw Skill JSON。复制 JSON 后粘贴到你的 OpenClaw 配置，或导出为 .skill 文件上传到觅游 Skill 广场。</div>
+  <div class="two-col">
+    <!-- 左：编排 -->
+    <div>
+      <div class="card" style="margin-bottom:18px">
+        <h2>⚙️ Skill 基本信息</h2>
+        <input class="step-input" id="skillName" placeholder="Skill 名称（如：掘金自动收藏）" oninput="renderOutput()">
+        <input class="step-input" id="skillDesc" placeholder="描述（如：自动收藏掘金文章并发到大象）" oninput="renderOutput()">
+        <div class="meta-row">
+          <input class="step-input" id="targetUrl" placeholder="起始 URL（如 https://juejin.cn）" oninput="renderOutput()">
+        </div>
+      </div>
+      <div class="card">
+        <h2>➕ 添加操作步骤</h2>
+        <select class="step-input" id="stepType" onchange="onTypeChange()">
+          <option value="navigate">🌐 navigate — 跳转到 URL</option>
+          <option value="click">🖱️ click — 点击元素</option>
+          <option value="type">⌨️ type — 输入文字</option>
+          <option value="wait">⏳ wait — 等待元素出现</option>
+          <option value="extract">📋 extract — 提取内容</option>
+        </select>
+        <input class="step-input" id="stepTarget" placeholder="选择器 / URL / 等待条件（如 .btn-like）">
+        <input class="step-input" id="stepValue" placeholder="输入值（type 步骤填写要输入的文字，其他可留空）">
+        <input class="step-input" id="stepDesc" placeholder="备注（可选，说明这步在做什么）">
+        <div class="btn-row">
+          <button class="btn btn-primary" onclick="addStep()">+ 添加步骤</button>
+          <button class="btn btn-secondary" onclick="clearSteps()">🗑️ 清空</button>
+          <button class="btn btn-secondary" onclick="loadExample()">📦 载入示例</button>
+        </div>
+      </div>
+      <div class="card" style="margin-top:18px">
+        <h2>📋 步骤列表 <span style="font-size:12px;color:#484f58;font-weight:400" id="stepCount"></span></h2>
+        <div class="step-list" id="stepList"><div class="empty-hint">还没有步骤，点击「添加步骤」开始编排</div></div>
+      </div>
+    </div>
+    <!-- 右：输出 -->
+    <div>
+      <div class="card">
+        <h2>📤 生成 OpenClaw Skill JSON</h2>
+        <div class="tab-row">
+          <div class="tab active" id="tab-skill" onclick="switchTab('skill')">Skill JSON</div>
+          <div class="tab" id="tab-readme" onclick="switchTab('readme')">README / 说明文档</div>
+          <div class="tab" id="tab-prompt" onclick="switchTab('prompt')">触发 Prompt</div>
+        </div>
+        <div id="out-skill"><pre class="output-box" id="outputBox"></pre></div>
+        <div id="out-readme" style="display:none"><pre class="output-box" id="readmeBox"></pre></div>
+        <div id="out-prompt" style="display:none"><pre class="output-box" id="promptBox"></pre></div>
+        <div class="btn-row" style="margin-top:14px">
+          <button class="btn btn-blue" onclick="copyOutput()">📋 复制 JSON</button>
+          <button class="btn btn-secondary" onclick="downloadSkill()">⬇️ 下载 .json</button>
+          <button class="btn btn-secondary" onclick="copyReadme()">📄 复制 README</button>
+        </div>
+      </div>
+      <div class="card" style="margin-top:18px">
+        <h2>🚀 快速上传到觅游 Skill 广场</h2>
+        <p style="font-size:13px;color:#8b949e;margin-bottom:12px">填入你的 Bearer Token 后，一键打包并上传当前 Skill：</p>
+        <input class="step-input" id="bearerToken" placeholder="sk_meyo_xxxxxxxxxxxxxxxx" type="password">
+        <div class="btn-row">
+          <button class="btn btn-primary" onclick="uploadSkill()">🦐 上传到觅游广场</button>
+        </div>
+        <div id="uploadStatus" style="margin-top:10px;font-size:13px;color:#8b949e"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="copy-toast" id="toast">✅ 已复制到剪贴板</div>
+<script>
+let steps = [];
+let currentTab = 'skill';
+
+function onTypeChange() {
+  const t = document.getElementById('stepType').value;
+  const target = document.getElementById('stepTarget');
+  const val = document.getElementById('stepValue');
+  if (t === 'navigate') { target.placeholder = '目标 URL（如 https://juejin.cn/recommended）'; val.placeholder = '（留空）'; }
+  else if (t === 'click') { target.placeholder = 'CSS选择器（如 .btn-like, #submit）'; val.placeholder = '（留空）'; }
+  else if (t === 'type') { target.placeholder = 'CSS选择器（如 input[name=q]）'; val.placeholder = '要输入的文字'; }
+  else if (t === 'wait') { target.placeholder = 'CSS选择器或文字（等待它出现后继续）'; val.placeholder = '超时毫秒（默认5000）'; }
+  else if (t === 'extract') { target.placeholder = 'CSS选择器（如 .article-title）'; val.placeholder = '提取字段名（如 title）'; }
+}
+
+function addStep() {
+  const type = document.getElementById('stepType').value;
+  const target = document.getElementById('stepTarget').value.trim();
+  const value = document.getElementById('stepValue').value.trim();
+  const desc = document.getElementById('stepDesc').value.trim();
+  if (!target) { alert('请填写选择器或目标 URL'); return; }
+  steps.push({ type, target, value, desc });
+  document.getElementById('stepTarget').value = '';
+  document.getElementById('stepValue').value = '';
+  document.getElementById('stepDesc').value = '';
+  renderSteps();
+  renderOutput();
+}
+
+function deleteStep(i) {
+  steps.splice(i, 1);
+  renderSteps();
+  renderOutput();
+}
+
+function clearSteps() {
+  if (steps.length && !confirm('确定清空所有步骤？')) return;
+  steps = [];
+  renderSteps();
+  renderOutput();
+}
+
+function loadExample() {
+  document.getElementById('skillName').value = '掘金热门文章自动收藏';
+  document.getElementById('skillDesc').value = '自动打开掘金首页，收藏今日热门文章，并提取标题发送通知';
+  document.getElementById('targetUrl').value = 'https://juejin.cn/recommended';
+  steps = [
+    { type: 'navigate', target: 'https://juejin.cn/recommended', value: '', desc: '打开掘金推荐页' },
+    { type: 'wait', target: '.article-item', value: '5000', desc: '等待文章列表加载' },
+    { type: 'extract', target: '.article-item .title', value: 'articleTitles', desc: '提取所有文章标题' },
+    { type: 'click', target: '.article-item:first-child .title', value: '', desc: '点击第一篇文章' },
+    { type: 'wait', target: '.article-title', value: '3000', desc: '等待文章页加载' },
+    { type: 'click', target: '.action-like-btn, .book-mark-btn', value: '', desc: '点击收藏按钮' },
+  ];
+  renderSteps();
+  renderOutput();
+}
+
+function renderSteps() {
+  const list = document.getElementById('stepList');
+  const count = document.getElementById('stepCount');
+  count.textContent = steps.length ? `(${steps.length} 步)` : '';
+  if (!steps.length) { list.innerHTML = '<div class="empty-hint">还没有步骤，点击「添加步骤」开始编排</div>'; return; }
+  list.innerHTML = steps.map((s, i) => `
+    <div class="step-item">
+      <span class="idx">${i+1}</span>
+      <span class="type-badge type-${s.type}">${s.type}</span>
+      <span class="step-desc">${s.desc || s.target}${s.value ? ' → ' + s.value : ''}</span>
+      <button class="step-del" onclick="deleteStep(${i})" title="删除">×</button>
+    </div>
+  `).join('');
+}
+
+function buildSkillJson() {
+  const name = document.getElementById('skillName').value || 'my-rpa-skill';
+  const desc = document.getElementById('skillDesc').value || '由 RPA Flow Builder 生成的 OpenClaw Skill';
+  const url = document.getElementById('targetUrl').value || '';
+  return {
+    name, version: '1.0.0', description: desc,
+    author: '小蓝虾 RPA Flow Builder',
+    created: new Date().toISOString().slice(0,10),
+    trigger: `执行 ${name}`,
+    config: { startUrl: url, headless: true, timeout: 30000 },
+    steps: steps.map((s, i) => ({
+      step: i + 1, type: s.type, target: s.target,
+      ...(s.value ? { value: s.value } : {}),
+      ...(s.desc ? { description: s.desc } : {})
+    })),
+    openclaw_prompt: `你是一个浏览器自动化 Agent。请按照以下步骤执行网页操作：\n${steps.map((s,i) => `${i+1}. [${s.type}] ${s.target}${s.value?' → '+s.value:''}${s.desc?' ('+s.desc+')':''}`).join('\n')}\n执行完毕后，汇报操作结果。`
+  };
+}
+
+function syntaxHighlight(json) {
+  return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function(m) {
+    let cls = 'num';
+    if (/^"/.test(m)) { cls = /:$/.test(m) ? 'key' : 'str'; }
+    else if (/true|false/.test(m)) { cls = 'bool'; }
+    return `<span class="${cls}">${m}</span>`;
+  });
+}
+
+function renderOutput() {
+  const j = buildSkillJson();
+  const raw = JSON.stringify(j, null, 2);
+  document.getElementById('outputBox').innerHTML = syntaxHighlight(raw);
+  // readme
+  const name = j.name;
+  const desc = j.description;
+  const readme = `# ${name}\n\n> ${desc}\n\n**作者：** 小蓝虾 RPA Flow Builder\n**版本：** ${j.version}\n**创建日期：** ${j.created}\n\n## 使用方法\n\n1. 将此 Skill 安装到你的 OpenClaw\n2. 在聊天中输入：\`${j.trigger}\`\n3. Agent 将自动启动浏览器并执行以下步骤：\n\n## 步骤说明\n\n${(j.steps||[]).map(s=>`${s.step}. **[${s.type}]** \`${s.target}\`${s.value?' → '+s.value:''}${s.description?' — '+s.description:''}`).join('\n')}\n\n## 配置\n\n| 参数 | 值 |\n|------|----|\n| 起始 URL | \`${j.config.startUrl||'(未设置)'}\` |\n| 超时 | ${j.config.timeout}ms |\n| 无头模式 | ${j.config.headless} |\n\n---\n*由 [🦐 RPA Flow Builder](https://seanliii.github.io/rpa-flow-builder/) 生成*`;
+  document.getElementById('readmeBox').textContent = readme;
+  // prompt
+  document.getElementById('promptBox').textContent = j.openclaw_prompt;
+}
+
+function switchTab(t) {
+  currentTab = t;
+  ['skill','readme','prompt'].forEach(x => {
+    document.getElementById('tab-'+x).className = 'tab' + (x===t?' active':'');
+    document.getElementById('out-'+x).style.display = x===t?'block':'none';
+  });
+}
+
+function showToast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg || '✅ 已复制到剪贴板';
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 2200);
+}
+
+function copyOutput() {
+  navigator.clipboard.writeText(JSON.stringify(buildSkillJson(), null, 2)).then(() => showToast('✅ JSON 已复制'));
+}
+function copyReadme() {
+  navigator.clipboard.writeText(document.getElementById('readmeBox').textContent).then(() => showToast('✅ README 已复制'));
+}
+function downloadSkill() {
+  const j = buildSkillJson();
+  const blob = new Blob([JSON.stringify(j, null, 2)], {type:'application/json'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = (j.name||'skill').replace(/\s+/g,'-') + '.json'; a.click();
+}
+
+async function uploadSkill() {
+  const token = document.getElementById('bearerToken').value.trim();
+  const status = document.getElementById('uploadStatus');
+  if (!token) { status.textContent = '❌ 请先填写 Bearer Token'; return; }
+  const j = buildSkillJson();
+  status.textContent = '🔄 上传中...';
+  try {
+    const res = await fetch('https://www.meyo123.com/api/v1/skills', {
+      method: 'PUT',
+      headers: { 'Authorization': 'Bearer ' + token, 'X-Catclaw-Request': 'true', 'X-Request-Source': 'CatClaw', 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: j.name, description: j.description, tags: ['rpa', '自动化'], visibility: 'public', skill: j })
+    });
+    const data = await res.json().catch(()=>({error:'解析失败'}));
+    if (res.ok) { status.innerHTML = '✅ 上传成功！<a href="https://www.meyo123.com" target="_blank" style="color:#58a6ff">前往觅游广场查看</a>'; }
+    else { status.textContent = '❌ 上传失败：' + (data.message || data.error || res.status); }
+  } catch(e) { status.textContent = '❌ 网络错误：' + e.message; }
+}
+
+// init
+onTypeChange();
+renderOutput();
+</script>
+</body>
+</html>

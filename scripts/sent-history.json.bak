@@ -1,0 +1,328 @@
+{
+  "2026-05-31-14:00-深度推送": {
+    "sent_at": "2026-05-31T14:02:18.087508",
+    "topics": [
+      "Google I/O Gemini Spark",
+      "金蝶灵基企业AI OS",
+      "万兴剧厂AI漫剧",
+      "n8n变现",
+      "AI数字人副业",
+      "Vibe Coding"
+    ],
+    "crypto": {
+      "BTC": 73958,
+      "ETH": 2027,
+      "SOL": 82.91
+    }
+  },
+  "2026-06-03-15:00-好玩发现+复刻": {
+    "sent_at": "2026-06-03T15:07:07.332023",
+    "topics": [
+      "InfiPlot AI互动剧情游戏",
+      "RedNote-Insight小红书爆款雷达",
+      "cc-fleet Claude Code多模型",
+      "腾讯代号Craft AI游戏创作"
+    ],
+    "project_replicated": "infiplot-demo",
+    "deploy_url": "https://seanliii.github.io/infiplot-demo/",
+    "meyo_feed_id": "01KT64W7J824GS6FJWAF5PGQHS"
+  },
+  "2026-06-04-19:00-深度推送": {
+    "timestamp": "2026-06-04T19:02:47.905254",
+    "items": [
+      "BTC/ETH/SOL 行情大跌",
+      "AI Agent泡沫论 vs 淘金论两派对垒",
+      "OpenClaw 2026.4.5更新Memory Dreaming等",
+      "Brian Roemmele AI经济底层重写",
+      "Novo Nordisk CagriSema FDA NDA提交",
+      "AI语音Agent替代呼叫中心变现路径",
+      "Reddit AI Agent实战变现案例"
+    ]
+  },
+  "2026-06-05-19:00-深度推送": {
+    "sent_at": "2026-06-05T19:02:30.925828",
+    "topics": [
+      "加密行情 BTC/ETH/SOL",
+      "微软Build2026 MAI-Thinking-1 GitHub Copilot多Agent",
+      "Agent进入真实业务流程信号",
+      "Twitter: 停止造Agent观点",
+      "OpenClaw一人公司破局指南",
+      "Solo Founder AI Stack Pieter Levels",
+      "创新药 Roche giredestrant Gilead Hepcludex Sanofi venglustat",
+      "进化笔记：Agent作为流程基础设施"
+    ]
+  },
+  "2026-06-06-17:00-OpenClaw精选": {
+    "sent_at": "2026-06-06T17:05:00.098961",
+    "topics": [
+      "OpenClaw 2026.5.31-beta.3 Skill Workshop新特性",
+      "Reddit: 研究100人OpenClaw变现-3个共同规律",
+      "Reddit: 内容简报自动化-3分钟完成2小时工作",
+      "增长黑盒2000用户调研-企业AI部署差速矛盾",
+      "华西深研:OpenClaw本地大模型量化选股实战",
+      "AI出海支付堵塞-订阅制浪潮OpenClaw催化"
+    ]
+  },
+  "2026-06-12-12:00-深度推送": {
+    "items": [
+      "PhysicsX 300M Series C 2.4B valuation",
+      "Lassie a16z 35M healthcare AI agent",
+      "CagriSema Novo Nordisk FDA 2026",
+      "YC P2026 AI startups Wato Auxos flowscope",
+      "OpenClaw ranked #2 AI agent 2026",
+      "一人公司AI Agent OPC时代",
+      "2026AI融资全景解析"
+    ]
+  },
+  "2026-06-14-16:00-深度推送": true,
+  "2026-06-17-15:00-好玩发现+复刻": {
+    "sent_at": "2026-06-17T15:00:00",
+    "topics": [
+      "addyosmani/agent-skills 22k+ Star AI编程Agent生产级工程技能",
+      "2026年AI圈爆火产品盘点 Lovable ARR破1亿美元",
+      "FlowiseAI 5.4万Star 低代码AI平台",
+      "AIWebsite Cloner Template 一条命令克隆网站",
+      "Python AI开源神器Top10"
+    ],
+    "project_replicated": "agent-skills-showcase",
+    "deploy_url": "https://seanliii.github.io/agent-skills-showcase/"
+  },
+  "2026-06-18-16:00-深度推送": {
+    "sent_at": "2026-06-18T16:05:00",
+    "topics": [
+      "演语科技 Evoken 3亿美元B+轮 估值20亿美元",
+      "OPC一人公司狂潮 6月18日多号集中爆发",
+      "AI原点社区成立 聚焦AI原生企业",
+      "AiToEarn OPC内容变现全链路引擎",
+      "AI大模型融资超510亿 产业资本入局",
+      "Hark AI 7亿美元Series A 估值60亿美元",
+      "2026ASCO FDA新药审评路径",
+      "6月3款创新药有望获FDA批准",
+      "BTC ETH SOL 全线下挫"
+    ],
+    "crypto": {
+      "BTC": 64427,
+      "ETH": 1747,
+      "SOL": 71.69
+    }
+  },
+  "2026-06-20-16:00-深度推送": {
+    "sent_at": "2026-06-20T16:00:00",
+    "topics": [
+      "智谱GLM-5.2逼平Opus仅落后1个百分点",
+      "DeepSeek 510亿融资腾讯京东网易宁德时代参投",
+      "特朗普Anthropic政策翻转",
+      "谷歌微软联手推新协议围堵Anthropic/OpenAI",
+      "陈立武英特尔5-10年10倍战略",
+      "和铂医药胜诉安进获赔1.37亿+3倍惩罚性赔偿",
+      "Parabilis创全球最大生物科技IPO 6.7亿美元",
+      "礼邦医药11家基石投资者港股18A最强",
+      "迈威生物全球首款LILRB4/CD3双抗获FDA许可",
+      "诺和诺德涨4.6%获券商上调评级",
+      "AI Agent 52%企业已投产 TELUS 5.7万人每天用",
+      "OpenClaw GitHub星标35万 中国市场449亿",
+      "COMPUTEX 2026黄仁勋AI Agent时代全面到来"
+    ],
+    "crypto": {
+      "BTC": 63626,
+      "ETH": 1724,
+      "SOL": 71.49
+    },
+    "note": "端午假期推送，无可复刻案例"
+  },
+  "2026-06-22-17:00-Twitter情报": {
+    "sent_at": "2026-06-22T17:00:00",
+    "topics": [
+      "西部数据/希捷科技盘前上涨，大摩警告硬盘短缺持续到2028年",
+      "纳斯达克100指数成分股调整，4只AI赛道股调入",
+      "SpaceX计划发行200亿美元债券，股价盘中一度暴跌超10%",
+      "HIVE Digital与Bell AI Fabric签署2.2亿美元GPU云服务协议",
+      "慧与科技(HPE)升级AI专用网络设备，西门子能源成关键客户",
+      "2026年过半，AI智能体正在悄悄接管手机和电脑",
+      "微信AI助手小微灰度上线，支持对话操作微信功能",
+      "中央网信办开设涉AI应用乱象举报专区",
+      "公安部网安局公布AI生成虚假视频典型案例",
+      "中信证券研报：美股AI面对高利率具有持续韧性"
+    ],
+    "crypto": {
+      "BTC": 64096,
+      "ETH": 1746,
+      "SOL": 73.82
+    },
+    "note": "AISA Twitter API不可用，用多引擎搜索+公众号+Catclaw补位"
+  }
+    {
+      "title": "月之暗面Kimi第三轮融资20亿美元估值300亿",
+      "date": "2026-06-15"
+    },
+    {
+      "title": "Anthropic估值9650亿超越OpenAI完成650亿H轮",
+      "date": "2026-06-15"
+    },
+    {
+      "title": "AniShort AI短剧平台近亿元融资刷新赛道纪录",
+      "date": "2026-06-15"
+    },
+    {
+      "title": "中国AI微短剧产业1200亿超票房全球首个AI视频量产案例",
+      "date": "2026-06-15"
+    },
+    {
+      "title": "独立开发者4个AI小工具月入12万实战拆解",
+      "date": "2026-06-15"
+    },
+    {
+      "title": "Agentic List 2026 120家企业级AI Agent公司榜单",
+      "date": "2026-06-15"
+    },
+    {
+      "title": "FDA June 2026 oncology decisions expected",
+      "date": "2026-06-15"
+    },
+    {
+      "title": "2026 AI融资Q1全球2555亿美元中国763亿",
+      "date": "2026-06-15"
+    },
+    {
+      "title": "DeepSeek首轮融资70亿美元腾讯宁德时代领投",
+      "date": "2026-06-16T12:00:52.133463"
+    },
+    {
+      "title": "Anthropic首家盈利AI实验室Q2营收109亿",
+      "date": "2026-06-16T12:00:52.133488"
+    },
+    {
+      "title": "Vibe Coding市场47亿美元Cursor年收入20亿",
+      "date": "2026-06-16T12:00:52.133491"
+    },
+    {
+      "title": "OpenClaw AI副业8种变现方式2026",
+      "date": "2026-06-16T12:00:52.133494"
+    },
+    {
+      "title": "YC S2026 AI Agent创业潮RealPact/Korso",
+      "date": "2026-06-16T12:00:52.133496"
+    },
+    {
+      "title": "一人公司vibe coding 35天月入3万美元",
+      "date": "2026-06-16T12:00:52.133497"
+    },
+    {
+      "title": "FDA June 2026肿瘤药决策窗口",
+      "date": "2026-06-16T12:00:52.133499"
+    },
+    {
+      "title": "Peter Diamandis尼日利亚小孩+AI能打败Google",
+      "date": "2026-06-16T12:00:52.133501"
+    },
+    {
+      "title": "gregisenberg AI agent 30个观察MCP是新购买者",
+      "date": "2026-06-16T12:00:52.133503"
+    },
+    {
+      "title": "Factory企业AI编程Agent融资2.2亿Series C",
+      "date": "2026-06-16T12:00:52.133504"
+    },
+    {
+      "title": "AI Agent 框架实战横评：通义灵码、OpenClaw、Hermes 三框架深度对比",
+      "date": "2026-06-20"
+    }
+  ],
+  "2026-06-15-14:00-深度推送": {
+    "sent_at": "2026-06-15T14:00:00",
+    "topics": [
+      "Anthropic秘密提交S-1 IPO最早10月上市",
+      "Microsoft Scout 永远在线私人AI Agent",
+      "WWDC2026苹果Siri大改版融入Gemini",
+      "AbbVie DECNUPAZ FDA获批超罕见血癌首个ADC",
+      "Anthropic Claude Code帮公司赚3290亿",
+      "OpenClaw Summer Builder Bootcamp 2026开营",
+      "X帖: 2026最佳AI Stack曝光",
+      "2026程序员6条AI独立开发路径月入3万"
+    ]
+  },
+  "2026-06-17-09:00-早间情报": {
+    "sent_at": "2026-06-17T09:05:00",
+    "topics": [
+      "普通人AI Agent零代码赚钱4种方法",
+      "AI Agent流水线赚钱方法论",
+      "零技术靠AI接项目变现",
+      "企业级Agent从能用到生产级差距",
+      "Hermes v0.13.0部署教程",
+      "26年AI产业链稀缺榜"
+    ],
+    "note": "Twitter API / AISA Financial / CoinGecko 全部不可用，搜索基础设施大面积故障"
+  },
+  "2026-06-21-09:00-早间情报": {
+    "sent_at": "2026-06-21T09:05:00",
+    "topics": [
+      "BTC/ETH/SOL 全线上行",
+      "谷歌AI Agent trends 2026: 52%企业投产 角色转变",
+      "CB Insights 2026 AI Agent六大趋势",
+      "拆解独立开发者4个AI小工具月入12万",
+      "不懂技术也能靠AI接项目 PM圈子",
+      "Vibe Coding月入$20K方法论",
+      "不用写代码4种AI Agent赚零花钱方法",
+      "AionUi: OpenClaw/Hermes Agent的Cowork平台",
+      "Twitter API 连接故障 全网精选补位"
+    ],
+    "crypto": {
+      "BTC": 64227,
+      "ETH": 1735,
+      "SOL": 73.11
+    },
+    "note": "AISA Twitter API不可用，用多引擎搜索+公众号补位"
+  },
+  "2026-06-21-14:00-深度推送": {
+    "sent_at": "2026-06-21T14:00:00",
+    "topics": [
+      "WAIC 2026倒计时300+AI产品全球首发",
+      "OpenAI Codex Record & Replay自动复刻Skill",
+      "华为DevEco Code HarmonyOS Agentic开发工具",
+      "吉宏股份Giikin AI+ AI原生组织变革",
+      "PM圈子不懂技术靠AI接项目",
+      "20家Biotech抢滩2026首秀商业化",
+      "AI从交付功能到交付成果范式迁移"
+    ],
+    "crypto": {
+      "BTC": 64182,
+      "ETH": 1731,
+      "SOL": 72.98
+    },
+    "note": "无可复刻案例"
+  },
+  "2026-06-22-10:00-深度推送": {
+    "sent_at": "2026-06-22T10:30:00",
+    "topics": [
+      "工信部新政AI单兵作战写进文件",
+      "勇哥聊好书：文科生靠AI开一人公司承接几十万项目",
+      "浅风拾语：AI一人公司泡沫到底在哪",
+      "AI+OPC：一人公司搭AI内容运营员工",
+      "Naoma AI：2026年7种AI赚钱方法数据排名",
+      "腾讯新闻：豆包收费后12个垂直领域商业模式复盘",
+      "36氪：OpenAI与Anthropic双雄打擂台",
+      "CSDN：12个AI变现案例"
+    ],
+    "crypto": {
+      "BTC": 64472,
+      "ETH": 1740,
+      "SOL": 74.08
+    },
+    "note": "无可复刻案例，Tavily API超额，用多引擎+公众号补位"
+  },
+  "2026-06-23-15:00-好玩发现+复刻": {
+    "sent_at": "2026-06-23T15:00:00",
+    "topics": [
+      "OpenHuman 23k Star 离线个人AI",
+      "Shannon AI渗透测试员",
+      "DeerFlow 2.0 字节超级AI员工",
+      "OpenMontage 智能体视频制作",
+      "AIWebsite Cloner 一键克隆网站",
+      "Index-TTS 本地语音复刻",
+      "AIStarter AI项目管理平台"
+    ],
+    "project_replicated": "ai-trending-radar",
+    "deploy_url": "https://seanliii.github.io/ai-trending-radar/",
+    "note": "Meyo API 456 WAF拦截，需手动补发"
+  }
+}

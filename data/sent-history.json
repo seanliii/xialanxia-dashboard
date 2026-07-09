@@ -1,0 +1,717 @@
+[
+  {
+    "sent": [
+      {
+        "title": "Anthropic估值超越OpenAI，H轮$650亿融资投后$9650亿",
+        "date": "2026-05-30",
+        "push": "16:00"
+      },
+      {
+        "title": "Agent化的OS：Google/微软/华为三路围攻底盘之战",
+        "date": "2026-05-27",
+        "push": "16:00"
+      },
+      {
+        "title": "中国AI Q1融资1100亿：Kimi/阶跃/DeepSeek三国杀",
+        "date": "2026-05-30",
+        "push": "16:00"
+      },
+      {
+        "title": "深圳八大区OPC政策：单人AI创业千万补贴",
+        "date": "2026-05-28",
+        "push": "16:00"
+      },
+      {
+        "title": "万兴剧厂AI漫剧：1人1天1部剧，周增速63%",
+        "date": "2026-05-21",
+        "push": "16:00"
+      },
+      {
+        "title": "戴尔+32.76%历史新高，美国防部97亿大单+AI服务器需求",
+        "date": "2026-05-31"
+      },
+      {
+        "title": "三星×OpenAI定制芯片研发停滞，战略分歧致NPU项目搁置",
+        "date": "2026-05-31"
+      },
+      {
+        "title": "The Bot Company用Airbnb当机器人实验室，房东起诉",
+        "date": "2026-05-31"
+      },
+      {
+        "title": "中国AI调用量2.11倍美国，GPT-5.5全量上线",
+        "date": "2026-05-31"
+      },
+      {
+        "title": "九章四号光量子计算机：3050光子，算力比超算快15倍",
+        "date": "2026-05-31"
+      },
+      "Workday Agent基础设施：MCP+Developer Agent+Agent Passport",
+      "Google I/O 2026：Search变AI Agent，200国放量",
+      "2026年1-5月全球AI融资大扫描：OpenAI 1220亿/Anthropic 9650亿估值",
+      "AI博主护城河危机：离AI越近护城河越浅",
+      "10个OpenClaw印钞Agent场景：Market Research/Podcast/Expert租赁",
+      "吉利德全球首款丁肝新药FDA获批",
+      "瑞初医药RC017：FDA首批中国原创抗衰老药临床",
+      {
+        "title": "OpenAI SuperApp：ChatGPT+Codex+Atlas合并，Brockman统领单一Agent平台",
+        "date": "2026-06-06"
+      },
+      {
+        "title": "Google I/O：Gemini 3.5 Flash+Spark 24/7个人Agent，月活9亿",
+        "date": "2026-06-06"
+      },
+      {
+        "title": "OpenClaw v2026.6.2-beta.1 发布",
+        "date": "2026-06-06"
+      },
+      {
+        "title": "AI绘画副业2026真相：60%月入不足800，5大仍能赚赛道",
+        "date": "2026-06-06"
+      },
+      {
+        "title": "独立开发者Marc Lou 25产品矩阵年入103万美元",
+        "date": "2026-06-06"
+      },
+      {
+        "title": "Anthropic秘密递交IPO申报材料，估值$965B，与OpenAI/SpaceX三方竞速上市",
+        "date": "2026-06-06"
+      },
+      {
+        "title": "DeepSeek首轮融资约74亿美元，估值$52-59B，腾讯/CATL入局",
+        "date": "2026-06-06"
+      },
+      {
+        "title": "Medvi ZPC案例：1人+AI $2万创业→年入$4亿→估值18亿美元",
+        "date": "2026-06-06"
+      },
+      {
+        "title": "FDA 2026Q2创新药密集审批：vepdegestrant乳腺癌/Baxfendy高血压等",
+        "date": "2026-06-06"
+      },
+      {
+        "title": "AI进临床2026全景：SaMD进入FDA/CE/NMPA三地注册轨道",
+        "date": "2026-06-06"
+      },
+      {
+        "title": "Claude Fable 5正式发布：Mythos级公开版，史上最强模型+网络防御专属版",
+        "date": "2026-06-12",
+        "push": "19:00"
+      },
+      {
+        "title": "微信AI生态正式开放：美团/京东/携程/滴滴首批内测，腾讯单日涨5%",
+        "date": "2026-06-12",
+        "push": "19:00"
+      },
+      {
+        "title": "NVIDIA SkillSpector：开源AI Agent Skill安全扫描器，64漏洞模式检测",
+        "date": "2026-06-12",
+        "push": "19:00"
+      },
+      {
+        "title": "OpenClaw 24/7 Agent团队实战：6个Agent运转全生活，新雇员而非工具",
+        "date": "2026-06-12",
+        "push": "19:00"
+      },
+      {
+        "title": "FDA 6月创新药密集：Ensitrelvir新冠预防/Cytisinicline戒烟新药即将获批",
+        "date": "2026-06-12",
+        "push": "19:00"
+      },
+      {
+        "title": "COMPUTEX 2026：AI Agent时代全面到来，芯片巨头达成新共识",
+        "date": "2026-06-12",
+        "push": "19:00"
+      },
+      {
+        "title": "微信支付AI专属卡上线Mac端WorkBuddy",
+        "date": "2026-06-20",
+        "push": "14:00"
+      },
+      {
+        "title": "字节Seedance 2.0 Mini视频生成模型单秒成本降一半",
+        "date": "2026-06-20",
+        "push": "14:00"
+      },
+      {
+        "title": "阿里QoderWork桌面AI助理上线意识功能",
+        "date": "2026-06-20",
+        "push": "14:00"
+      },
+      {
+        "title": "2026美图影像节发布8款AI产品月付费用户超160万",
+        "date": "2026-06-20",
+        "push": "14:00"
+      },
+      {
+        "title": "WAIC 2026世界人工智能大会300+款AI产品全球首发",
+        "date": "2026-06-20",
+        "push": "14:00"
+      },
+      {
+        "title": "失业后用AI做工具月入5000",
+        "date": "2026-06-20",
+        "push": "14:00"
+      },
+      {
+        "title": "小孙AI产品手记把产品经理方法论做成AI可调用的skills",
+        "date": "2026-06-20",
+        "push": "14:00"
+      },
+      {
+        "title": "创始人手册构建AI原生创业公司",
+        "date": "2026-06-20",
+        "push": "14:00"
+      },
+      {
+        "title": "Cytisinicline PDUFA今日到期6月20日",
+        "date": "2026-06-20",
+        "push": "14:00"
+      },
+      {
+        "title": "身边有人靠养龙虾（OpenClaw）赚到钱了吗？",
+        "date": "2026-06-23",
+        "push": "10:00"
+      },
+      {
+        "title": "HermesAgent 接入大模型全面指南",
+        "date": "2026-06-23",
+        "push": "10:00"
+      },
+      {
+        "title": "京东×腾讯AI Agent深度合作：供应链+入口资源对接",
+        "date": "2026-06-23",
+        "push": "14:00"
+      },
+      {
+        "title": "微信AI生态开发者指引发布：从「内测」进入「开放落地」",
+        "date": "2026-06-23",
+        "push": "14:00"
+      },
+      {
+        "title": "LinkFoxAI跨境电商产品发布：选品到内容生成全链路",
+        "date": "2026-06-23",
+        "push": "14:00"
+      },
+      {
+        "title": "2026年五款全球首创药物获批：first-in-class密集期",
+        "date": "2026-06-23",
+        "push": "14:00"
+      },
+      {
+        "title": "我用AI写了一个完整SaaS产品：Prompt模板+架构清单开源",
+        "date": "2026-06-23",
+        "push": "14:00"
+      },
+      {
+        "title": "WPS被骂上热搜：买了会员还要买AI",
+        "date": "2026-06-26",
+        "push": "14:00"
+      },
+      {
+        "title": "Sand.ai 3个月两轮融资超1亿美元，宿华/王慧文等一线机构投资",
+        "date": "2026-06-27",
+        "push": "16:00"
+      },
+      {
+        "title": "Sail Research $8000万融资，KPCB领投，长周期AI Agent基础设施",
+        "date": "2026-06-27",
+        "push": "16:00"
+      },
+      {
+        "title": "Patronus AI $5000万B轮，前Meta研究员打造智能体压力测试",
+        "date": "2026-06-27",
+        "push": "16:00"
+      },
+      {
+        "title": "海珠区最高500万支持AI一人公司",
+        "date": "2026-06-27",
+        "push": "16:00"
+      },
+      {
+        "title": "网商银行报告：1.9亿小微AI一人公司潮，1元AI成本替代72元人力",
+        "date": "2026-06-27",
+        "push": "16:00"
+      },
+      {
+        "title": "Mirendil $2亿种子轮0产品估值$10亿，老黄领投Anthropic前员工",
+        "date": "2026-06-27",
+        "push": "16:00"
+      },
+      {
+        "title": "卜拉格科技数亿美元种子轮，前阿里千问负责人林俊旸创办",
+        "date": "2026-06-27",
+        "push": "16:00"
+      },
+      {
+        "title": "95后AI创业曾8个月发不出工资，靠直播电商翻盘",
+        "date": "2026-06-27",
+        "push": "16:00"
+      },
+      {
+        "title": "7月6款创新药迎FDA审批：Orca-T(Tregzi)今日获批，细胞疗法里程碑",
+        "date": "2026-07-01",
+        "push": "14:00"
+      },
+      {
+        "title": "BIO 2026落幕：美国创新药直面中国竞争，BIO CEO要求国家安全级别应对",
+        "date": "2026-07-01",
+        "push": "14:00"
+      },
+      {
+        "title": "Parabilis Medicines全球最大Biotech IPO 6.7亿美元，首日涨58%",
+        "date": "2026-07-01",
+        "push": "14:00"
+      },
+      {
+        "title": "Riley Brown用OpenClaw运营1100万美元生意YouTube深度教学26万播放",
+        "date": "2026-07-01",
+        "push": "14:00"
+      },
+      {
+        "title": "OpenClaw生态5个盈利商业模式：ClawHub技能月入100-1000美元",
+        "date": "2026-07-01",
+        "push": "14:00"
+      },
+      {
+        "title": "智能体互联国标50家企业试点：百虾大战格局清晰化12.3万个Agent",
+        "date": "2026-07-01",
+        "push": "14:00"
+      },
+      {
+        "title": "DeepSeek V4正式版官宣7月上线",
+        "date": "2026-07-01",
+        "push": "14:00"
+      },
+      {
+        "title": "AgnesAI推出Pavo免费AI视频创作工具对标Runway",
+        "date": "2026-07-01",
+        "push": "14:00"
+      },
+      {
+        "title": "神策数据SensorsAI发布AIGrowth Team企业级AI增长方案",
+        "date": "2026-07-01",
+        "push": "14:00"
+      },
+      {
+        "title": "独立开发者月入35K美元自救样本：哭了4年后的翻盘",
+        "date": "2026-07-01",
+        "push": "14:00"
+      },
+      {
+        "title": "独立开发者2026搞钱指南6条路真实收入数据",
+        "date": "2026-07-01",
+        "push": "14:00"
+      },
+      {
+        "title": "小米Miclaw进展追踪：MiMo Claw正式版发布，澎湃OS 4.0七八月合体",
+        "date": "2026-07-01",
+        "push": "14:00"
+      },
+      {
+        "title": "Lumvoa甲状腺眼病生物制剂6月26日FDA获批",
+        "date": "2026-07-01",
+        "push": "14:00"
+      }
+    ],
+    "last_updated": "2026-07-08T10:30:00+08:00",
+    "items": [
+      "SpaceX总裁暗示合并可能：特斯拉或迎整合契机",
+      "AI中美G2格局：中等强国插不进脚",
+      "Archetype 1亿美元募资战略拓展",
+      "Naval喊单ZEC暴涨隐私叙事",
+      "Solana退潮与BSC强势崛起",
+      "2026AI Agent从能聊天到会干活整机厂商订单爆发",
+      "2026过半AI十大发展趋势",
+      "Hermes Agent vs OpenClaw对比分析",
+      "独立开发者4个AI小工具月入12万",
+      "不融资靠B2C App月入5万美金独立开发者",
+      "0626morning",
+      "OpenClaw Prompt Injection攻击：邮件触发代码执行+数据泄露(CVE-2026-25253)",
+      "Cytisinicline FDA PDUFA 6月20日到期：20年首个戒烟新药",
+      "一人公司2026实战：Pieter Levels年入M+，AI Agent复制可行性",
+      "Agentic AI企业ROI：88%早期采用者获正回报，TELUS每次交互省40分钟",
+      "AI副业2026真相调研：7%月入超1万，47%月入不足500元",
+      "OpenClaw设置服务月入2000案例：服务>工具的黄金分割",
+      "Mastercard Agent Pay For Machines AP4M June 2026",
+      "钉钉CEO陈航卸任437天 92年陈宇森接棒",
+      "Apple WWDC 2026 Siri AI iOS 27 CoreAI Gemini",
+      "Ensitrelvir PDUFA 6月16日到期新冠预防药",
+      "Olezarsen Priority Review 6月30日到期高甘油三酯",
+      "Google Search IO 2026 Agent Booking 200 Countries",
+      "OpenClaw Context Studios生产级134 MCP工具",
+      "以色列独立开发者Maor Shlomo 1人AI工具8000万美元被收购",
+      "Ensitrelvir FDA已获批 首个口服新冠暴露后预防药XOCOVA",
+      "Tibo Louis-Lucas 5个AI产品月入1M+独立创始人全攻略",
+      "OpenClaw 10大赚钱Agent案例2026全景",
+      "微软Build2026 MAI自研模型+GitHub Copilot多Agent协作",
+      "一人独角兽Dario预测2026年底70%-80%概率成真",
+      "Anthropic 650亿Series H估值965亿全球第一私人AI公司",
+      "ACHV Cytisinicline FDA决策6月20日首个戒烟口服新药",
+      "微信支付AI专属卡上线Mac端WorkBuddy",
+      "字节Seedance 2.0 Mini视频生成模型单秒成本降一半",
+      "阿里QoderWork桌面AI助理上线意识功能",
+      "2026美图影像节发布8款AI产品月付费用户超160万",
+      "WAIC 2026世界人工智能大会300+款AI产品全球首发",
+      "失业后用AI做工具月入5000",
+      "小孙AI产品手记把产品经理方法论做成AI可调用的skills",
+      "创始人手册构建AI原生创业公司",
+      "Cytisinicline PDUFA今日到期6月20日",
+      "身边有人靠养龙虾（OpenClaw）赚到钱了吗？",
+      "HermesAgent 接入大模型全面指南",
+      "京东×腾讯AI Agent深度合作：供应链+入口资源对接",
+      "微信AI生态开发者指引发布：从「内测」进入「开放落地」",
+      "LinkFoxAI跨境电商产品发布：选品到内容生成全链路",
+      "2026年五款全球首创药物获批：first-in-class密集期",
+      "我用AI写了一个完整SaaS产品：Prompt模板+架构清单开源",
+      "WPS被骂上热搜：买了会员还要买AI",
+      "Sand.ai 3个月两轮融资超1亿美元，宿华/王慧文等一线机构投资",
+      "Sail Research $8000万融资，KPCB领投，长周期AI Agent基础设施",
+      "Patronus AI $5000万B轮，前Meta研究员打造智能体压力测试",
+      "海珠区最高500万支持AI一人公司",
+      "网商银行报告：1.9亿小微AI一人公司潮，1元AI成本替代72元人力",
+      "Mirendil $2亿种子轮0产品估值$10亿，老黄领投Anthropic前员工",
+      "卜拉格科技数亿美元种子轮，前阿里千问负责人林俊旸创办",
+      "95后AI创业曾8个月发不出工资，靠直播电商翻盘",
+      "7月6款创新药迎FDA审批：Orca-T(Tregzi)今日获批，细胞疗法里程碑",
+      "BIO 2026落幕：美国创新药直面中国竞争，BIO CEO要求国家安全级别应对",
+      "Parabilis Medicines全球最大Biotech IPO 6.7亿美元，首日涨58%",
+      "Riley Brown用OpenClaw运营1100万美元生意YouTube深度教学26万播放",
+      "OpenClaw生态5个盈利商业模式：ClawHub技能月入100-1000美元",
+      "智能体互联国标50家企业试点：百虾大战格局清晰化12.3万个Agent",
+      "DeepSeek V4正式版官宣7月上线",
+      "AgnesAI推出Pavo免费AI视频创作工具对标Runway",
+      "神策数据SensorsAI发布AIGrowth Team企业级AI增长方案",
+      "独立开发者月入35K美元自救样本：哭了4年后的翻盘",
+      "独立开发者2026搞钱指南6条路真实收入数据",
+      "小米Miclaw进展追踪：MiMo Claw正式版发布，澎湃OS 4.0七八月合体",
+      {
+        "title": "13个AI当CEO：普林斯顿500天模拟，只有3个赚到钱",
+        "date": "2026-07-04",
+        "push": "10:00"
+      },
+      {
+        "title": "一人公司2.0：AI帮你干活，你只拍板",
+        "date": "2026-07-04",
+        "push": "10:00"
+      },
+      {
+        "title": "从零搭建24小时在线一人公司：基于OpenClaw的AI自动化全栈落地指南",
+        "date": "2026-07-04",
+        "push": "10:00"
+      },
+      {
+        "title": "Claude Fable 5恢复全球访问，Anthropic解除限制",
+        "date": "2026-07-04",
+        "push": "10:00"
+      },
+      {
+        "title": "FDA Q2 2026创新药密集审批：9款新药获批",
+        "date": "2026-07-04",
+        "push": "10:00"
+      },
+      {
+        "title": "Atacicept PDUFA 7月7日，IgA肾病新疗法",
+        "date": "2026-07-04",
+        "push": "10:00"
+      },
+      {
+        "title": "ACTI发布Gemini驱动Agentic Keyboard for iOS",
+        "date": "2026-07-04",
+        "push": "10:00"
+      },
+      {
+        "title": "第一批AI一人公司，现在活得怎么样",
+        "date": "2026-07-04",
+        "push": "10:00"
+      },
+      "2026中国AI智能体大会杭州落幕：自进化Agent元年，无自进化能力=老古董",
+      "OpenAI Codex半年用户增长5倍，内部97.9%员工使用，基本替代ChatGPT",
+      "美图上影像节Agent Teams交付成果：Picchi内置5个专业Agent，开拍月活300万",
+      "程序员杨平AI写歌2个月赚18万，汽水音乐每千次播放约2元",
+      "卖AI提示词TikTok月销1000+单，7美元/单=月入7000美元",
+      "AI虚拟电商4个月卖6.5万，每天2-3小时，上班族完全兼顾",
+      "AI副业月入过万3个真实案例：宝妈写作1.2万/程序员解说8000+/大学生绘画过万",
+      "国金证券：AI收入天花板=人类工资池，美国1.45万亿美元已暴露于AI冲击",
+      "Orca-T细胞疗法FDA获批，Parabilis Medicines IPO首日涨58%",
+      "Atacicept PDUFA 7月7日，IgA肾病新疗法"
+    ],
+    "pushes": [
+      {
+        "title": "Mastercard Agent Pay For Machines AP4M June 2026",
+        "date": "2026-06-16",
+        "push": "14:00"
+      },
+      {
+        "title": "钉钉CEO陈航卸任437天 92年陈宇森接棒",
+        "date": "2026-06-16",
+        "push": "14:00"
+      },
+      {
+        "title": "Apple WWDC 2026 Siri AI iOS 27 CoreAI Gemini",
+        "date": "2026-06-16",
+        "push": "14:00"
+      },
+      {
+        "title": "Ensitrelvir PDUFA 6月16日到期新冠预防药",
+        "date": "2026-06-16",
+        "push": "14:00"
+      },
+      {
+        "title": "Olezarsen Priority Review 6月30日到期高甘油三酯",
+        "date": "2026-06-16",
+        "push": "14:00"
+      },
+      {
+        "title": "Google Search IO 2026 Agent Booking 200 Countries",
+        "date": "2026-06-16",
+        "push": "14:00"
+      },
+      {
+        "title": "OpenClaw Context Studios生产级134 MCP工具",
+        "date": "2026-06-16",
+        "push": "14:00"
+      },
+      {
+        "title": "以色列独立开发者Maor Shlomo 1人AI工具8000万美元被收购",
+        "date": "2026-06-16",
+        "push": "14:00"
+      },
+      {
+        "title": "Ensitrelvir FDA已获批 首个口服新冠暴露后预防药XOCOVA",
+        "date": "2026-06-16",
+        "push": "19:00"
+      },
+      {
+        "title": "Tibo Louis-Lucas 5个AI产品月入1M+独立创始人全攻略",
+        "date": "2026-06-16",
+        "push": "19:00"
+      },
+      {
+        "title": "OpenClaw 10大赚钱Agent案例2026全景",
+        "date": "2026-06-16",
+        "push": "19:00"
+      },
+      {
+        "title": "微软Build2026 MAI自研模型+GitHub Copilot多Agent协作",
+        "date": "2026-06-16",
+        "push": "19:00"
+      },
+      {
+        "title": "一人独角兽Dario预测2026年底70%-80%概率成真",
+        "date": "2026-06-16",
+        "push": "19:00"
+      },
+      {
+        "title": "Anthropic 650亿Series H估值965亿全球第一私人AI公司",
+        "date": "2026-06-16",
+        "push": "19:00"
+      },
+      {
+        "title": "ACHV Cytisinicline FDA决策6月20日首个戒烟口服新药",
+        "date": "2026-06-16",
+        "push": "19:00"
+      },
+      {
+        "title": "微信支付AI专属卡上线Mac端WorkBuddy",
+        "date": "2026-06-20",
+        "push": "14:00"
+      },
+      {
+        "title": "字节Seedance 2.0 Mini视频生成模型单秒成本降一半",
+        "date": "2026-06-20",
+        "push": "14:00"
+      },
+      {
+        "title": "阿里QoderWork桌面AI助理上线意识功能",
+        "date": "2026-06-20",
+        "push": "14:00"
+      },
+      {
+        "title": "2026美图影像节发布8款AI产品月付费用户超160万",
+        "date": "2026-06-20",
+        "push": "14:00"
+      },
+      {
+        "title": "WAIC 2026世界人工智能大会300+款AI产品全球首发",
+        "date": "2026-06-20",
+        "push": "14:00"
+      },
+      {
+        "title": "失业后用AI做工具月入5000",
+        "date": "2026-06-20",
+        "push": "14:00"
+      },
+      {
+        "title": "小孙AI产品手记把产品经理方法论做成AI可调用的skills",
+        "date": "2026-06-20",
+        "push": "14:00"
+      },
+      {
+        "title": "创始人手册构建AI原生创业公司",
+        "date": "2026-06-20",
+        "push": "14:00"
+      },
+      {
+        "title": "Cytisinicline PDUFA今日到期6月20日",
+        "date": "2026-06-20",
+        "push": "14:00"
+      },
+      {
+        "title": "身边有人靠养龙虾（OpenClaw）赚到钱了吗？",
+        "date": "2026-06-23",
+        "push": "10:00"
+      },
+      {
+        "title": "HermesAgent 接入大模型全面指南",
+        "date": "2026-06-23",
+        "push": "10:00"
+      },
+      {
+        "title": "京东×腾讯AI Agent深度合作：供应链+入口资源对接",
+        "date": "2026-06-23",
+        "push": "14:00"
+      },
+      {
+        "title": "微信AI生态开发者指引发布：从「内测」进入「开放落地」",
+        "date": "2026-06-23",
+        "push": "14:00"
+      },
+      {
+        "title": "LinkFoxAI跨境电商产品发布：选品到内容生成全链路",
+        "date": "2026-06-23",
+        "push": "14:00"
+      },
+      {
+        "title": "2026年五款全球首创药物获批：first-in-class密集期",
+        "date": "2026-06-23",
+        "push": "14:00"
+      },
+      {
+        "title": "我用AI写了一个完整SaaS产品：Prompt模板+架构清单开源",
+        "date": "2026-06-23",
+        "push": "14:00"
+      },
+      {
+        "title": "WPS被骂上热搜：买了会员还要买AI",
+        "date": "2026-06-26",
+        "push": "14:00"
+      },
+      {
+        "title": "Sand.ai 3个月两轮融资超1亿美元，宿华/王慧文等一线机构投资",
+        "date": "2026-06-27",
+        "push": "16:00"
+      },
+      {
+        "title": "Sail Research $8000万融资，KPCB领投，长周期AI Agent基础设施",
+        "date": "2026-06-27",
+        "push": "16:00"
+      },
+      {
+        "title": "Patronus AI $5000万B轮，前Meta研究员打造智能体压力测试",
+        "date": "2026-06-27",
+        "push": "16:00"
+      },
+      {
+        "title": "海珠区最高500万支持AI一人公司",
+        "date": "2026-06-27",
+        "push": "16:00"
+      },
+      {
+        "title": "网商银行报告：1.9亿小微AI一人公司潮，1元AI成本替代72元人力",
+        "date": "2026-06-27",
+        "push": "16:00"
+      },
+      {
+        "title": "Mirendil $2亿种子轮0产品估值$10亿，老黄领投Anthropic前员工",
+        "date": "2026-06-27",
+        "push": "16:00"
+      },
+      {
+        "title": "卜拉格科技数亿美元种子轮，前阿里千问负责人林俊旸创办",
+        "date": "2026-06-27",
+        "push": "16:00"
+      },
+      {
+        "title": "95后AI创业曾8个月发不出工资，靠直播电商翻盘",
+        "date": "2026-06-27",
+        "push": "16:00"
+      },
+      {
+        "title": "7月6款创新药迎FDA审批：Orca-T(Tregzi)今日获批，细胞疗法里程碑",
+        "date": "2026-07-01",
+        "push": "14:00"
+      },
+      {
+        "title": "BIO 2026落幕：美国创新药直面中国竞争，BIO CEO要求国家安全级别应对",
+        "date": "2026-07-01",
+        "push": "14:00"
+      },
+      {
+        "title": "Parabilis Medicines全球最大Biotech IPO 6.7亿美元，首日涨58%",
+        "date": "2026-07-01",
+        "push": "14:00"
+      },
+      {
+        "title": "Riley Brown用OpenClaw运营1100万美元生意YouTube深度教学26万播放",
+        "date": "2026-07-01",
+        "push": "14:00"
+      },
+      {
+        "title": "OpenClaw生态5个盈利商业模式：ClawHub技能月入100-1000美元",
+        "date": "2026-07-01",
+        "push": "14:00"
+      },
+      {
+        "title": "智能体互联国标50家企业试点：百虾大战格局清晰化12.3万个Agent",
+        "date": "2026-07-01",
+        "push": "14:00"
+      },
+      {
+        "title": "DeepSeek V4正式版官宣7月上线",
+        "date": "2026-07-01",
+        "push": "14:00"
+      },
+      {
+        "title": "AgnesAI推出Pavo免费AI视频创作工具对标Runway",
+        "date": "2026-07-01",
+        "push": "14:00"
+      },
+      {
+        "title": "神策数据SensorsAI发布AIGrowth Team企业级AI增长方案",
+        "date": "2026-07-01",
+        "push": "14:00"
+      },
+      {
+        "title": "独立开发者月入35K美元自救样本：哭了4年后的翻盘",
+        "date": "2026-07-01",
+        "push": "14:00"
+      },
+      {
+        "title": "独立开发者2026搞钱指南6条路真实收入数据",
+        "date": "2026-07-01",
+        "push": "14:00"
+      },
+      {
+        "title": "小米Miclaw进展追踪：MiMo Claw正式版发布，澎湃OS 4.0七八月合体",
+        "date": "2026-07-01",
+        "push": "14:00"
+      },
+      {
+        "title": "Lumvoa甲状腺眼病生物制剂6月26日FDA获批",
+        "date": "2026-07-01",
+        "push": "14:00"
+      }
+    ]
+  },
+  {
+    "title": "想学大佬网站设计但不会写代码——用AI Website Cloner一键反向工程任意网站，20.7k星实战复刻+部署全流程",
+    "type": "replicate",
+    "source": "JCodesMore/ai-website-cloner-template",
+    "stars": 20782,
+    "deployed_url": "https://seanliii.github.io/ai-site-cloner/",
+    "meyo_feedId": "01KW1C7C66VHHF8389QE1GSZNW",
+    "timestamp": "2026-06-26T15:10:53.152852",
+    "channel": "daxiang"
+  }
+]

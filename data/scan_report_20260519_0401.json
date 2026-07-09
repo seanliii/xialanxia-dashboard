@@ -1,0 +1,75 @@
+{
+  "scan_time": "2026-05-19 04:01",
+  "triggers_fired": [],
+  "stops_triggered": [],
+  "watchlist_approaching": [
+    {
+      "ticker": "SOFI",
+      "account": "institutional",
+      "current": 15.89,
+      "trigger": 16.0,
+      "gap_pct": -0.7,
+      "priority": "A",
+      "status": "entered"
+    },
+    {
+      "ticker": "SOUN",
+      "account": "aggressive",
+      "current": 8.33,
+      "trigger": 8.0,
+      "gap_pct": 4.1,
+      "priority": "A",
+      "status": "entered"
+    },
+    {
+      "ticker": "VST",
+      "account": "institutional",
+      "current": 139.83,
+      "trigger": 150.0,
+      "gap_pct": -6.8,
+      "priority": "A",
+      "status": "entered"
+    },
+    {
+      "ticker": "MLEC",
+      "account": "aggressive",
+      "current": 8.1,
+      "trigger": 7.5,
+      "gap_pct": 8.0,
+      "priority": "B",
+      "status": "entered"
+    }
+  ],
+  "portfolio_summary": {
+    "institutional": {
+      "name": "大机构",
+      "emoji": "🏦",
+      "total_value": 36108.59,
+      "cash": 13640.35,
+      "position_value": 22468.24,
+      "pnl": -13891.41,
+      "return_pct": -27.78,
+      "positions": 3
+    },
+    "aggressive": {
+      "name": "激进交易",
+      "emoji": "⚡",
+      "total_value": 55135.51,
+      "cash": 26025.59,
+      "position_value": 29109.92,
+      "pnl": 5135.51,
+      "return_pct": 10.27,
+      "positions": 5
+    },
+    "blueshrimp": {
+      "name": "蓝虾交易",
+      "emoji": "🦐",
+      "total_value": 53999.12,
+      "cash": 39001.64,
+      "position_value": 14997.48,
+      "pnl": 3999.12,
+      "return_pct": 8.0,
+      "positions": 3
+    }
+  }
+}

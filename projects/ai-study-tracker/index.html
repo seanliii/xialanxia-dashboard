@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🧠 AI Study Tracker - 让学习上瘾</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { 
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    min-height: 100vh;
+    color: #fff;
+    padding: 20px;
+  }
+  .header { text-align: center; padding: 40px 0 30px; }
+  .header h1 { font-size: 2.5rem; font-weight: 800; }
+  .header h1 span { color: #a78bfa; }
+  .header p { color: #9ca3af; margin-top: 8px; font-size: 1rem; }
+  
+  .stats-grid { 
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px; max-width: 600px; margin: 0 auto 30px;
+  }
+  .stat-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px; padding: 20px; text-align: center;
+    backdrop-filter: blur(10px);
+  }
+  .stat-card .num { font-size: 2rem; font-weight: 800; color: #a78bfa; }
+  .stat-card .label { font-size: 0.75rem; color: #9ca3af; margin-top: 4px; }
+  
+  .card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px; padding: 24px;
+    max-width: 600px; margin: 0 auto 20px;
+    backdrop-filter: blur(10px);
+  }
+  .card h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  
+  input, textarea {
+    width: 100%; padding: 12px 16px; border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.05);
+    color: #fff; font-size: 0.95rem; outline: none;
+    transition: border-color 0.2s;
+  }
+  input:focus, textarea:focus { border-color: #a78bfa; }
+  textarea { height: 80px; resize: none; }
+  
+  .btn {
+    padding: 12px 24px; border-radius: 12px; border: none;
+    font-size: 0.95rem; font-weight: 600; cursor: pointer;
+    transition: all 0.2s; width: 100%; margin-top: 12px;
+  }
+  .btn-primary { background: linear-gradient(135deg, #7c3aed, #4f46e5); color: #fff; }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(124,58,237,0.4); }
+  .btn-success { background: linear-gradient(135deg, #059669, #10b981); color: #fff; }
+  
+  .task-list { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+  .task-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 16px; border-radius: 12px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: all 0.2s; cursor: pointer;
+  }
+  .task-item:hover { background: rgba(255,255,255,0.1); }
+  .task-item.done { opacity: 0.5; text-decoration: line-through; }
+  .task-check {
+    width: 22px; height: 22px; border-radius: 6px;
+    border: 2px solid #a78bfa; display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-size: 13px;
+  }
+  .task-item.done .task-check { background: #a78bfa; }
+  .task-text { flex: 1; font-size: 0.9rem; }
+  .task-xp { font-size: 0.8rem; color: #a78bfa; font-weight: 700; }
+  
+  .progress-bar {
+    height: 8px; border-radius: 4px;
+    background: rgba(255,255,255,0.1);
+    overflow: hidden; margin-top: 10px;
+  }
+  .progress-fill {
+    height: 100%; border-radius: 4px;
+    background: linear-gradient(90deg, #7c3aed, #a78bfa);
+    transition: width 0.5s ease;
+  }
+  
+  .level-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: linear-gradient(135deg, #7c3aed, #4f46e5);
+    padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .ai-tip {
+    background: linear-gradient(135deg, rgba(124,58,237,0.2), rgba(79,70,229,0.2));
+    border: 1px solid rgba(124,58,237,0.4);
+    border-radius: 12px; padding: 14px 16px;
+    font-size: 0.85rem; line-height: 1.6; color: #c4b5fd;
+    margin-top: 14px;
+  }
+  .ai-tip::before { content: '🤖 AI提示：'; font-weight: 700; display: block; margin-bottom: 4px; color: #a78bfa; }
+
+  .streak { display: flex; gap: 6px; margin-top: 10px; }
+  .streak-dot {
+    width: 28px; height: 28px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; font-weight: 700;
+  }
+  .streak-dot.active { background: linear-gradient(135deg, #7c3aed, #a78bfa); }
+  .streak-dot.inactive { background: rgba(255,255,255,0.1); color: #6b7280; }
+
+  .toast {
+    position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px);
+    background: #7c3aed; color: #fff; padding: 12px 24px; border-radius: 40px;
+    font-weight: 600; font-size: 0.9rem; transition: transform 0.3s;
+    z-index: 999; white-space: nowrap;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  .footer { text-align: center; color: #4b5563; font-size: 0.75rem; margin-top: 30px; padding-bottom: 30px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🧠 <span>AI Study</span> Tracker</h1>
+  <p>让学习变得像游戏一样上瘾 · 灵感来自 Gizmo $22M A轮</p>
+</div>
+
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="num" id="totalXP">0</div>
+    <div class="label">总经验值 XP</div>
+  </div>
+  <div class="stat-card">
+    <div class="num" id="todayTasks">0</div>
+    <div class="label">今日完成</div>
+  </div>
+  <div class="stat-card">
+    <div class="num" id="streakDays">0</div>
+    <div class="label">连续天数 🔥</div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>⚡ 今日学习任务</h2>
+  <div class="level-badge" id="levelBadge">🌱 等级 Lv.1</div>
+  <div class="progress-bar">
+    <div class="progress-fill" id="xpBar" style="width:0%"></div>
+  </div>
+  <p style="font-size:0.75rem;color:#9ca3af;margin-top:6px;" id="xpProgress">0 / 100 XP → 升级</p>
+  
+  <div class="task-list" id="taskList"></div>
+  
+  <input type="text" id="newTask" placeholder="添加新任务，如：背50个单词..." style="margin-top:16px;">
+  <button class="btn btn-primary" onclick="addTask()">➕ 添加任务</button>
+</div>
+
+<div class="card">
+  <h2>🤖 AI 学习建议</h2>
+  <textarea id="learnTopic" placeholder="告诉AI你今天在学什么，例如：Python机器学习基础..."></textarea>
+  <button class="btn btn-success" onclick="getAITip()">✨ 获取AI学习建议</button>
+  <div class="ai-tip" id="aiTipBox" style="display:none;"></div>
+</div>
+
+<div class="card">
+  <h2>📅 本周打卡</h2>
+  <div class="streak" id="streakView"></div>
+  <p style="font-size:0.8rem;color:#9ca3af;margin-top:10px;">坚持每天学习，维持连击！</p>
+</div>
+
+<div class="footer">
+  🦐 小蓝虾复刻 · 基于 Gizmo AI $22M A轮融资案例 · 2026-05-22
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const LEVELS = ['🌱 Lv.1 菜鸟','🌿 Lv.2 入门','⚡ Lv.3 进阶','🔥 Lv.4 高手','💎 Lv.5 大师','🏆 Lv.6 传说'];
+const XP_PER_LEVEL = [100, 250, 500, 1000, 2000, 5000];
+
+let state = JSON.parse(localStorage.getItem('studyTracker') || '{}');
+if (!state.tasks) state.tasks = [
+  {id:1, text:'复习今日笔记 10分钟', xp:20, done:false},
+  {id:2, text:'做3道练习题', xp:30, done:false},
+  {id:3, text:'阅读一篇技术文章', xp:25, done:false},
+];
+if (!state.totalXP) state.totalXP = 0;
+if (!state.streak) state.streak = [];
+
+function save() { localStorage.setItem('studyTracker', JSON.stringify(state)); }
+
+function getLevel(xp) {
+  for(let i=0; i<XP_PER_LEVEL.length; i++) {
+    if(xp < XP_PER_LEVEL[i]) return {level: i, cur: i>0 ? xp - XP_PER_LEVEL[i-1] : xp, max: i>0 ? XP_PER_LEVEL[i] - XP_PER_LEVEL[i-1] : XP_PER_LEVEL[0]};
+  }
+  return {level: 5, cur: 100, max: 100};
+}
+
+function render() {
+  const todayStr = new Date().toISOString().slice(0,10);
+  const doneTasks = state.tasks.filter(t=>t.done).length;
+  
+  document.getElementById('totalXP').textContent = state.totalXP;
+  document.getElementById('todayTasks').textContent = doneTasks;
+  
+  // Streak
+  if (!state.streak.includes(todayStr) && doneTasks > 0) {
+    state.streak.push(todayStr);
+    save();
+  }
+  document.getElementById('streakDays').textContent = state.streak.length;
+  
+  // Level
+  const lv = getLevel(state.totalXP);
+  document.getElementById('levelBadge').textContent = LEVELS[lv.level] || LEVELS[5];
+  document.getElementById('xpBar').style.width = Math.min(100, (lv.cur/lv.max)*100) + '%';
+  document.getElementById('xpProgress').textContent = `${lv.cur} / ${lv.max} XP → 升级`;
+  
+  // Tasks
+  const list = document.getElementById('taskList');
+  list.innerHTML = state.tasks.map(t => `
+    <div class="task-item ${t.done?'done':''}" onclick="toggleTask(${t.id})">
+      <div class="task-check">${t.done?'✓':''}</div>
+      <div class="task-text">${t.text}</div>
+      <div class="task-xp">+${t.xp} XP</div>
+    </div>
+  `).join('');
+  
+  // Streak dots
+  const days = ['一','二','三','四','五','六','日'];
+  const weekStart = new Date(); weekStart.setDate(weekStart.getDate() - weekStart.getDay() + 1);
+  document.getElementById('streakView').innerHTML = days.map((d,i) => {
+    const dt = new Date(weekStart); dt.setDate(dt.getDate()+i);
+    const dtStr = dt.toISOString().slice(0,10);
+    const active = state.streak.includes(dtStr);
+    return `<div class="streak-dot ${active?'active':'inactive'}">${active?'✓':d}</div>`;
+  }).join('');
+}
+
+function toggleTask(id) {
+  const task = state.tasks.find(t=>t.id===id);
+  if (!task) return;
+  if (!task.done) {
+    task.done = true;
+    state.totalXP += task.xp;
+    showToast(`+${task.xp} XP 获得！继续加油 🔥`);
+  }
+  save(); render();
+}
+
+function addTask() {
+  const input = document.getElementById('newTask');
+  const text = input.value.trim();
+  if (!text) return;
+  const xp = Math.floor(Math.random() * 20) + 15;
+  state.tasks.push({id: Date.now(), text, xp, done: false});
+  input.value = '';
+  save(); render();
+  showToast('任务已添加！');
+}
+
+const AI_TIPS = [
+  '用费曼技巧——学完后试着向别人解释，能暴露你真正没懂的地方',
+  '番茄工作法：25分钟专注 + 5分钟休息，大脑接受度比连续学习高43%',
+  '新知识要在24小时内复习一次，遗忘曲线在这时候下降最快',
+  '把复杂概念拆成"是什么/为什么/怎么做"三段式，理解深度提升2倍',
+  '多感官学习：边写边读出声，记忆留存率比纯阅读高65%',
+  '结合实际案例练习，抽象知识会变得具体可操作',
+  '睡前复习效果最好——睡眠期间大脑会自动巩固记忆',
+];
+
+function getAITip() {
+  const tip = document.getElementById('aiTipBox');
+  const topic = document.getElementById('learnTopic').value.trim();
+  const randomTip = AI_TIPS[Math.floor(Math.random()*AI_TIPS.length)];
+  const prefix = topic ? `针对"${topic}"：` : '';
+  tip.style.display = 'block';
+  tip.textContent = prefix + randomTip;
+  showToast('AI建议已生成！');
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+render();
+</script>
+</body>
+</html>

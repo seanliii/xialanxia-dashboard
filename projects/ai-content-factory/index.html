@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 内容工厂 🏭 — 小蓝虾出品</title>
+<style>
+  :root {
+    --bg: #0f0f1a;
+    --card: #1a1a2e;
+    --border: #2a2a4a;
+    --accent: #6366f1;
+    --accent2: #a78bfa;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --success: #10b981;
+    --warning: #f59e0b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; min-height: 100vh; }
+  
+  .header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 32px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .header h1 { font-size: 1.4rem; font-weight: 700; }
+  .header .badge { background: var(--accent); color: white; padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; }
+  .header .sub { color: var(--muted); font-size: 0.85rem; margin-left: auto; }
+
+  .container { max-width: 900px; margin: 0 auto; padding: 32px 20px; }
+  
+  .step { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 20px; }
+  .step-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .step-num { background: var(--accent); color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 700; flex-shrink: 0; }
+  .step h2 { font-size: 1rem; font-weight: 600; }
+
+  .input-row { display: flex; gap: 10px; }
+  input[type="text"], select, textarea {
+    background: var(--bg); border: 1px solid var(--border); color: var(--text);
+    border-radius: 10px; padding: 12px 16px; font-size: 0.95rem;
+    transition: border-color 0.2s; outline: none; font-family: inherit;
+  }
+  input[type="text"]:focus, select:focus, textarea:focus { border-color: var(--accent); }
+  input[type="text"] { flex: 1; }
+  textarea { width: 100%; min-height: 120px; resize: vertical; }
+  select { background: var(--bg); }
+
+  button {
+    background: var(--accent); color: white; border: none; border-radius: 10px;
+    padding: 12px 24px; font-size: 0.95rem; font-weight: 600; cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s; white-space: nowrap;
+  }
+  button:hover { opacity: 0.9; }
+  button:active { transform: scale(0.98); }
+  button:disabled { opacity: 0.4; cursor: not-allowed; }
+  button.secondary { background: var(--border); }
+  button.success { background: var(--success); }
+
+  .titles-grid { display: grid; gap: 8px; }
+  .title-item {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 10px;
+    padding: 12px 16px; cursor: pointer; transition: border-color 0.2s, background 0.2s;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .title-item:hover { border-color: var(--accent); background: rgba(99,102,241,0.05); }
+  .title-item.selected { border-color: var(--accent); background: rgba(99,102,241,0.1); }
+  .title-item .idx { color: var(--accent); font-weight: 700; font-size: 0.85rem; min-width: 20px; }
+  .title-item .text { flex: 1; font-size: 0.95rem; }
+  .title-item .tag { background: rgba(99,102,241,0.15); color: var(--accent2); padding: 2px 8px; border-radius: 6px; font-size: 0.75rem; }
+
+  .article-box {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 12px;
+    padding: 20px; font-size: 0.9rem; line-height: 1.8; color: var(--text);
+    white-space: pre-wrap; min-height: 200px;
+  }
+
+  .loading { display: flex; align-items: center; gap: 10px; color: var(--muted); padding: 20px 0; }
+  .spinner { width: 20px; height: 20px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .btn-row { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+  .hint { color: var(--muted); font-size: 0.82rem; margin-top: 8px; }
+
+  .stats-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+  .stat { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; flex: 1; min-width: 120px; }
+  .stat .val { font-size: 1.4rem; font-weight: 700; color: var(--accent); }
+  .stat .lab { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+
+  .word-count { color: var(--muted); font-size: 0.8rem; }
+  .copy-success { color: var(--success); font-size: 0.85rem; }
+
+  .api-config { background: rgba(245,158,11,0.05); border: 1px solid rgba(245,158,11,0.2); border-radius: 10px; padding: 14px 16px; margin-bottom: 16px; font-size: 0.85rem; color: var(--warning); }
+  .api-config a { color: var(--accent2); }
+
+  .hidden { display: none; }
+  .format-btns { display: flex; gap: 8px; margin-bottom: 12px; }
+  .format-btn { padding: 6px 14px; font-size: 0.82rem; background: var(--border); color: var(--muted); }
+  .format-btn.active { background: var(--accent); color: white; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <span style="font-size:1.5rem">🏭</span>
+  <h1>AI 内容工厂</h1>
+  <span class="badge">免费用</span>
+  <span class="sub">🦐 小蓝虾出品 · 话题 → 标题 → 文章，一键搞定</span>
+</div>
+
+<div class="container">
+
+  <!-- Stats -->
+  <div class="stats-row">
+    <div class="stat"><div class="val" id="stat-gen">0</div><div class="lab">已生成文章</div></div>
+    <div class="stat"><div class="val" id="stat-words">0</div><div class="lab">总字数</div></div>
+    <div class="stat"><div class="val" id="stat-topics">0</div><div class="lab">累计话题</div></div>
+  </div>
+
+  <!-- Step 1: API Key -->
+  <div class="step">
+    <div class="step-header"><span class="step-num">⚙</span><h2>API 配置（OpenAI 兼容接口）</h2></div>
+    <div class="api-config">
+      💡 本工具直接调用 OpenAI 兼容 API。默认使用 <strong>免费公共代理</strong>（无需 key），也可输入自己的 key 使用 GPT-4 等。
+    </div>
+    <div class="input-row">
+      <input type="text" id="api-key" placeholder="sk-... (可不填，使用免费模型)" style="flex:2">
+      <select id="model-select" style="flex:1">
+        <option value="gpt-3.5-turbo">GPT-3.5 Turbo（免费代理）</option>
+        <option value="gpt-4o-mini">GPT-4o Mini</option>
+        <option value="gpt-4o">GPT-4o</option>
+        <option value="claude-3-haiku-20240307">Claude 3 Haiku</option>
+      </select>
+    </div>
+    <div class="hint">Key 仅在本地使用，不会上传任何服务器 🔒</div>
+  </div>
+
+  <!-- Step 2: Topic -->
+  <div class="step">
+    <div class="step-header"><span class="step-num">1</span><h2>输入话题 / 关键词</h2></div>
+    <div class="input-row">
+      <input type="text" id="topic-input" placeholder="例：AI Agent 赚钱方法、量化交易入门、减脂饮食计划..." />
+      <select id="style-select">
+        <option value="干货教程">干货教程</option>
+        <option value="深度分析">深度分析</option>
+        <option value="实战案例">实战案例</option>
+        <option value="趋势洞察">趋势洞察</option>
+        <option value="新手指南">新手指南</option>
+      </select>
+      <button id="gen-titles-btn" onclick="generateTitles()">生成标题 ✨</button>
+    </div>
+    <div class="hint">快捷话题：
+      <span class="quick-topic" onclick="setTopic('AI Agent 自动化赚钱方法 2026')">AI Agent 赚钱</span> ·
+      <span class="quick-topic" onclick="setTopic('Claude Code 高效开发技巧')">Claude Code 技巧</span> ·
+      <span class="quick-topic" onclick="setTopic('加密货币 DeFi 入门指南')">DeFi 入门</span> ·
+      <span class="quick-topic" onclick="setTopic('solo founder 创业增长策略')">solo 创业</span>
+    </div>
+    <style>.quick-topic { color: var(--accent2); cursor: pointer; text-decoration: underline; font-size: 0.82rem; }</style>
+  </div>
+
+  <!-- Step 3: Titles -->
+  <div class="step" id="titles-section" style="display:none">
+    <div class="step-header"><span class="step-num">2</span><h2>选择标题（点击选中）</h2></div>
+    <div id="titles-loading" class="loading hidden"><div class="spinner"></div>正在生成 8 个标题...</div>
+    <div class="titles-grid" id="titles-grid"></div>
+    <div class="btn-row">
+      <button onclick="generateTitles()" class="secondary">🔄 重新生成</button>
+      <button id="gen-article-btn" onclick="generateArticle()" disabled>生成文章 🚀</button>
+    </div>
+  </div>
+
+  <!-- Step 4: Article -->
+  <div class="step" id="article-section" style="display:none">
+    <div class="step-header"><span class="step-num">3</span><h2>生成文章</h2></div>
+    
+    <div class="format-btns">
+      <button class="format-btn active" onclick="setFormat('md', this)">Markdown</button>
+      <button class="format-btn" onclick="setFormat('plain', this)">纯文本</button>
+      <button class="format-btn" onclick="setFormat('html', this)">HTML</button>
+      <button class="format-btn" onclick="setFormat('xiaohongshu', this)">小红书风格</button>
+    </div>
+
+    <div id="article-loading" class="loading hidden"><div class="spinner"></div><span id="article-loading-text">正在生成文章...</span></div>
+    <div class="article-box" id="article-output" style="display:none"></div>
+    
+    <div class="btn-row" id="article-actions" style="display:none">
+      <button class="success" onclick="copyArticle()">📋 复制全文</button>
+      <button class="secondary" onclick="downloadArticle()">⬇️ 下载 .txt</button>
+      <button onclick="generateArticle()">🔄 重新生成</button>
+      <span id="copy-feedback" class="copy-success" style="display:none">✓ 已复制！</span>
+    </div>
+    <div id="article-stats" style="display:none" class="hint" style="margin-top:8px"></div>
+  </div>
+
+</div>
+
+<script>
+// State
+let selectedTitle = null;
+let selectedFormat = 'md';
+let articleContent = '';
+let stats = { gen: 0, words: 0, topics: 0 };
+
+// Load stats from localStorage
+try {
+  const saved = JSON.parse(localStorage.getItem('ai-factory-stats') || '{}');
+  stats = { ...stats, ...saved };
+  updateStats();
+} catch(e) {}
+
+function updateStats() {
+  document.getElementById('stat-gen').textContent = stats.gen;
+  document.getElementById('stat-words').textContent = stats.words.toLocaleString();
+  document.getElementById('stat-topics').textContent = stats.topics;
+  localStorage.setItem('ai-factory-stats', JSON.stringify(stats));
+}
+
+function setTopic(t) {
+  document.getElementById('topic-input').value = t;
+}
+
+function setFormat(fmt, btn) {
+  selectedFormat = fmt;
+  document.querySelectorAll('.format-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+async function callAPI(messages, maxTokens = 1000) {
+  const apiKey = document.getElementById('api-key').value.trim();
+  const model = document.getElementById('model-select').value;
+  
+  // Use free proxy if no key provided
+  const baseURL = apiKey ? 'https://api.openai.com/v1' : 'https://api.openai-proxy.org/v1';
+  const useKey = apiKey || 'free';
+  
+  const res = await fetch(`${baseURL}/chat/completions`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${useKey}`
+    },
+    body: JSON.stringify({
+      model: apiKey ? model : 'gpt-3.5-turbo',
+      messages,
+      max_tokens: maxTokens,
+      temperature: 0.8
+    })
+  });
+  
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.error?.message || `API Error ${res.status}`);
+  }
+  
+  const data = await res.json();
+  return data.choices[0].message.content;
+}
+
+async function generateTitles() {
+  const topic = document.getElementById('topic-input').value.trim();
+  if (!topic) { alert('请输入话题！'); return; }
+  
+  stats.topics++;
+  updateStats();
+  
+  const style = document.getElementById('style-select').value;
+  document.getElementById('titles-section').style.display = 'block';
+  document.getElementById('titles-loading').classList.remove('hidden');
+  document.getElementById('titles-grid').innerHTML = '';
+  document.getElementById('gen-article-btn').disabled = true;
+  selectedTitle = null;
+  
+  const prompt = `你是一个专业内容创作者。为以下话题生成 8 个吸引人的文章标题。
+话题：${topic}
+风格：${style}
+
+要求：
+- 每行一个标题
+- 标题要具体、有吸引力、能引发点击
+- 风格为「${style}」
+- 直接输出 8 个标题，不加序号、不加解释
+
+只输出标题列表，每行一个。`;
+
+  try {
+    const result = await callAPI([{ role: 'user', content: prompt }], 500);
+    const titles = result.trim().split('\n').filter(t => t.trim()).slice(0, 8);
+    
+    document.getElementById('titles-loading').classList.add('hidden');
+    
+    const tags = ['爆款', '干货', '实战', '深度', '入门', '高阶', '趋势', '案例'];
+    titles.forEach((title, i) => {
+      const div = document.createElement('div');
+      div.className = 'title-item';
+      div.innerHTML = `<span class="idx">${i+1}</span><span class="text">${title.trim()}</span><span class="tag">${tags[i % tags.length]}</span>`;
+      div.onclick = () => selectTitle(div, title.trim());
+      document.getElementById('titles-grid').appendChild(div);
+    });
+    
+    document.getElementById('article-section').style.display = 'block';
+  } catch(e) {
+    document.getElementById('titles-loading').classList.add('hidden');
+    document.getElementById('titles-grid').innerHTML = `<div style="color:#ef4444;padding:12px">❌ 生成失败：${e.message}<br><small>提示：如无 API Key，免费代理可能不稳定，请重试或填入自己的 key</small></div>`;
+  }
+}
+
+function selectTitle(el, title) {
+  document.querySelectorAll('.title-item').forEach(t => t.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedTitle = title;
+  document.getElementById('gen-article-btn').disabled = false;
+}
+
+async function generateArticle() {
+  if (!selectedTitle) { alert('请先选择一个标题！'); return; }
+  
+  const style = document.getElementById('style-select').value;
+  const topic = document.getElementById('topic-input').value.trim();
+  
+  document.getElementById('article-loading').classList.remove('hidden');
+  document.getElementById('article-output').style.display = 'none';
+  document.getElementById('article-actions').style.display = 'none';
+  document.getElementById('article-stats').style.display = 'none';
+  
+  const formatInstructions = {
+    md: '使用 Markdown 格式，包含 ## 标题、**加粗**、- 列表、> 引用',
+    plain: '使用纯文本，段落之间空行分隔，不使用任何 Markdown',
+    html: '使用 HTML 格式，包含 <h2>、<p>、<ul><li>、<strong> 等标签',
+    xiaohongshu: '使用小红书风格：emoji 开头每段、口语化、段落简短、结尾加话题标签 #xxx'
+  };
+  
+  const prompt = `你是专业内容创作者。根据以下信息写一篇高质量文章。
+
+标题：${selectedTitle}
+话题背景：${topic}
+风格：${style}
+${formatInstructions[selectedFormat]}
+
+要求：
+- 正文 800-1200 字
+- 结构清晰：开头（钩子/痛点）→ 正文（3-5个核心点）→ 结尾（总结/行动号召）
+- 内容实用、有具体案例和数据
+- 语言流畅自然
+
+直接输出文章内容，不要说"以下是文章："之类的废话。`;
+
+  const loadingEl = document.getElementById('article-loading-text');
+  const msgs = ['正在构建文章结构...', '生成核心论点...', '润色文字中...', '即将完成...'];
+  let msgIdx = 0;
+  const msgInterval = setInterval(() => {
+    if (msgIdx < msgs.length) loadingEl.textContent = msgs[msgIdx++];
+  }, 1500);
+  
+  try {
+    const result = await callAPI([{ role: 'user', content: prompt }], 1500);
+    clearInterval(msgInterval);
+    
+    articleContent = result;
+    const wordCount = result.replace(/\s+/g, '').length;
+    
+    stats.gen++;
+    stats.words += wordCount;
+    updateStats();
+    
+    document.getElementById('article-loading').classList.add('hidden');
+    document.getElementById('article-output').style.display = 'block';
+    document.getElementById('article-output').textContent = result;
+    document.getElementById('article-actions').style.display = 'flex';
+    document.getElementById('article-stats').style.display = 'block';
+    document.getElementById('article-stats').textContent = `📊 本文 ${wordCount} 字 · 预计阅读 ${Math.ceil(wordCount/400)} 分钟`;
+    
+  } catch(e) {
+    clearInterval(msgInterval);
+    document.getElementById('article-loading').classList.add('hidden');
+    document.getElementById('article-output').style.display = 'block';
+    document.getElementById('article-output').textContent = `❌ 生成失败：${e.message}\n\n提示：请检查 API Key 或重试`;
+    document.getElementById('article-actions').style.display = 'flex';
+  }
+}
+
+function copyArticle() {
+  navigator.clipboard.writeText(articleContent).then(() => {
+    const el = document.getElementById('copy-feedback');
+    el.style.display = 'inline';
+    setTimeout(() => el.style.display = 'none', 2000);
+  });
+}
+
+function downloadArticle() {
+  const ext = selectedFormat === 'md' ? 'md' : selectedFormat === 'html' ? 'html' : 'txt';
+  const blob = new Blob([articleContent], { type: 'text/plain;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `article-${Date.now()}.${ext}`;
+  a.click();
+}
+</script>
+</body>
+</html>

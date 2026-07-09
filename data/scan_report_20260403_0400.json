@@ -1,0 +1,96 @@
+{
+  "scan_time": "2026-04-03 04:00",
+  "triggers_fired": [
+    {
+      "ticker": "BATL",
+      "account": "aggressive",
+      "price": 6.69,
+      "trigger_price": 8.0,
+      "shares": 747,
+      "cost": 4997.43,
+      "company": "Battalion Oil Corp",
+      "target": 20.0,
+      "stop": 4.0
+    }
+  ],
+  "stops_triggered": [
+    {
+      "ticker": "TSM",
+      "account": "institutional",
+      "exit_price": 162.07,
+      "stop_price": 275.0,
+      "pnl": -3675.1,
+      "pnl_pct": -50.76
+    }
+  ],
+  "watchlist_approaching": [
+    {
+      "ticker": "VST",
+      "account": "institutional",
+      "current": 151.13,
+      "trigger": 150.0,
+      "gap_pct": 0.8,
+      "priority": "A",
+      "status": "entered"
+    },
+    {
+      "ticker": "CVNA",
+      "account": "institutional",
+      "current": 313.548,
+      "trigger": 310.0,
+      "gap_pct": 1.1,
+      "priority": "A",
+      "status": "entered"
+    },
+    {
+      "ticker": "NVDA",
+      "account": "institutional",
+      "current": 177.375,
+      "trigger": 170.0,
+      "gap_pct": 4.3,
+      "priority": "B",
+      "status": "watch"
+    },
+    {
+      "ticker": "HOOD",
+      "account": "blueshrimp",
+      "current": 65.51,
+      "trigger": 62.0,
+      "gap_pct": 5.7,
+      "priority": "A",
+      "status": "watch"
+    }
+  ],
+  "portfolio_summary": {
+    "institutional": {
+      "name": "大机构",
+      "emoji": "🏦",
+      "total_value": 48973.52,
+      "cash": 9117.56,
+      "position_value": 39855.96,
+      "pnl": -1026.48,
+      "return_pct": -2.05,
+      "positions": 5
+    },
+    "aggressive": {
+      "name": "激进交易",
+      "emoji": "⚡",
+      "total_value": 46866.54,
+      "cash": 24979.47,
+      "position_value": 21887.07,
+      "pnl": -3133.46,
+      "return_pct": -6.27,
+      "positions": 5
+    },
+    "blueshrimp": {
+      "name": "蓝虾交易",
+      "emoji": "🦐",
+      "total_value": 48925.51,
+      "cash": 42999.24,
+      "position_value": 5926.27,
+      "pnl": -1074.49,
+      "return_pct": -2.15,
+      "positions": 2
+    }
+  }
+}

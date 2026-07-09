@@ -1,0 +1,85 @@
+{
+  "date": "2026-06-11T11:09:08.157455",
+  "word_version": 16,
+  "candidates_generated": 20,
+  "candidates_tested": 2,
+  "strong_add_tier2": [],
+  "add_tier3": [],
+  "weak_signal": [
+    {
+      "word": "RPA 产品 2026年6月",
+      "strategy": "hot_combination",
+      "source": "RPA",
+      "rationale": "热点产品 'RPA' + 场景 '产品' + 当前年月",
+      "engine_results": {
+        "bocha-search": {
+          "success": true,
+          "has_results": true,
+          "url_count": 10,
+          "raw_length": 4091,
+          "snippet": "{\"results\": [{\"url\": \"https://publichealth.severndeanery.nhs.uk/events/show/public-health-arcp-assessments-59\", \"title\": \"Events - Public Health\", \"snippet\": \"Public\\nHealth\\nARCP\\nAssessments\\nCategory:\\nARCP\\nDates\\n-\\nOther\\nDate:\\nJune\\n17th\\n2026\\nLocation:\\nvia\\nMS\\nTe\", \"content\": \"Public\\nHealth\\nARCP\\nAssessments\\nCategory:\\nARCP\\nDates\\n-\\nOther\\nDate:\\nJune\\n17th\\n2026\\nLocation:\\nvia\\nMS\\nTe\", \"source\": \"bocha-search\", \"publish_time\": \"2026-06-07T07:42:05+08:00\", \"content_filled\": fa"
+        }
+      },
+      "success_rate": 1.0,
+      "total_urls": 10,
+      "recommendation": "weak_signal"
+    },
+    {
+      "word": "RPA 发布 2026年6月",
+      "strategy": "hot_combination",
+      "source": "RPA",
+      "rationale": "热点产品 'RPA' + 场景 '发布' + 当前年月",
+      "engine_results": {
+        "bocha-search": {
+          "success": true,
+          "has_results": true,
+          "url_count": 10,
+          "raw_length": 4117,
+          "snippet": "{\"results\": [{\"url\": \"https://publichealth.severndeanery.nhs.uk/events/show/public-health-arcp-assessments-59\", \"title\": \"Events - Public Health\", \"snippet\": \"Public\\nHealth\\nARCP\\nAssessments\\nCategory:\\nARCP\\nDates\\n-\\nOther\\nDate:\\nJune\\n17th\\n2026\\nLocation:\\nvia\\nMS\\nTe\", \"content\": \"Public\\nHealth\\nARCP\\nAssessments\\nCategory:\\nARCP\\nDates\\n-\\nOther\\nDate:\\nJune\\n17th\\n2026\\nLocation:\\nvia\\nMS\\nTe\", \"source\": \"bocha-search\", \"publish_time\": \"2026-06-07T07:42:05+08:00\", \"content_filled\": fa"
+        }
+      },
+      "success_rate": 1.0,
+      "total_urls": 10,
+      "recommendation": "weak_signal"
+    }
+  ],
+  "skip": [],
+  "all_results": [
+    {
+      "word": "RPA 产品 2026年6月",
+      "strategy": "hot_combination",
+      "source": "RPA",
+      "rationale": "热点产品 'RPA' + 场景 '产品' + 当前年月",
+      "engine_results": {
+        "bocha-search": {
+          "success": true,
+          "has_results": true,
+          "url_count": 10,
+          "raw_length": 4091,
+          "snippet": "{\"results\": [{\"url\": \"https://publichealth.severndeanery.nhs.uk/events/show/public-health-arcp-assessments-59\", \"title\": \"Events - Public Health\", \"snippet\": \"Public\\nHealth\\nARCP\\nAssessments\\nCategory:\\nARCP\\nDates\\n-\\nOther\\nDate:\\nJune\\n17th\\n2026\\nLocation:\\nvia\\nMS\\nTe\", \"content\": \"Public\\nHealth\\nARCP\\nAssessments\\nCategory:\\nARCP\\nDates\\n-\\nOther\\nDate:\\nJune\\n17th\\n2026\\nLocation:\\nvia\\nMS\\nTe\", \"source\": \"bocha-search\", \"publish_time\": \"2026-06-07T07:42:05+08:00\", \"content_filled\": fa"
+        }
+      },
+      "success_rate": 1.0,
+      "total_urls": 10,
+      "recommendation": "weak_signal"
+    },
+    {
+      "word": "RPA 发布 2026年6月",
+      "strategy": "hot_combination",
+      "source": "RPA",
+      "rationale": "热点产品 'RPA' + 场景 '发布' + 当前年月",
+      "engine_results": {
+        "bocha-search": {
+          "success": true,
+          "has_results": true,
+          "url_count": 10,
+          "raw_length": 4117,
+          "snippet": "{\"results\": [{\"url\": \"https://publichealth.severndeanery.nhs.uk/events/show/public-health-arcp-assessments-59\", \"title\": \"Events - Public Health\", \"snippet\": \"Public\\nHealth\\nARCP\\nAssessments\\nCategory:\\nARCP\\nDates\\n-\\nOther\\nDate:\\nJune\\n17th\\n2026\\nLocation:\\nvia\\nMS\\nTe\", \"content\": \"Public\\nHealth\\nARCP\\nAssessments\\nCategory:\\nARCP\\nDates\\n-\\nOther\\nDate:\\nJune\\n17th\\n2026\\nLocation:\\nvia\\nMS\\nTe\", \"source\": \"bocha-search\", \"publish_time\": \"2026-06-07T07:42:05+08:00\", \"content_filled\": fa"
+        }
+      },
+      "success_rate": 1.0,
+      "total_urls": 10,
+      "recommendation": "weak_signal"
+    }
+  ]
+}

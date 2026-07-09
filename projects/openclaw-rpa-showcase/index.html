@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenClaw RPA 零Token工作流 — 录制一次，永久免费跑</title>
+<style>
+  :root {
+    --bg: #0d0d0d;
+    --card: #141414;
+    --border: #2a2a2a;
+    --accent: #00e5ff;
+    --accent2: #ff6b35;
+    --accent3: #7cfc00;
+    --text: #e8e8e8;
+    --muted: #666;
+    --highlight: #1a1a2e;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'Segoe UI',system-ui,sans-serif; min-height:100vh; }
+
+  /* Hero */
+  .hero {
+    padding: 60px 20px 40px;
+    text-align: center;
+    background: linear-gradient(135deg, #0d0d0d 0%, #1a0a1a 50%, #0a1a0d 100%);
+    border-bottom: 1px solid var(--border);
+  }
+  .hero .badge {
+    display: inline-block;
+    background: rgba(0,229,255,0.1);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+  }
+  .hero h1 {
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero p { color: var(--muted); font-size: 18px; max-width: 600px; margin: 0 auto 30px; }
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+  }
+  .stat { text-align: center; }
+  .stat .num { font-size: 32px; font-weight: 800; color: var(--accent); }
+  .stat .label { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+  /* Layout */
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .section { padding: 50px 0; }
+  .section-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* Compare table */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  @media(max-width:600px) { .compare-grid { grid-template-columns:1fr; } }
+  .compare-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+  }
+  .compare-card.bad { border-color: #ff4444; }
+  .compare-card.good { border-color: var(--accent3); }
+  .compare-card h3 { font-size: 16px; margin-bottom: 16px; }
+  .compare-card h3 .icon { margin-right: 8px; }
+  .compare-row { display:flex; justify-content:space-between; padding: 8px 0; border-bottom: 1px solid var(--border); font-size:14px; }
+  .compare-row:last-child { border-bottom: none; }
+  .val-bad { color: #ff4444; }
+  .val-good { color: var(--accent3); }
+
+  /* Workflow visualizer */
+  .workflow-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 30px;
+  }
+  .workflow-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .workflow-title { font-size: 18px; font-weight: 700; }
+  .workflow-meta { display: flex; gap: 12px; flex-wrap: wrap; }
+  .tag {
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .tag-zero { background: rgba(124,252,0,0.15); color: var(--accent3); border: 1px solid var(--accent3); }
+  .tag-fast { background: rgba(0,229,255,0.1); color: var(--accent); border: 1px solid var(--accent); }
+  .tag-hot { background: rgba(255,107,53,0.15); color: var(--accent2); border: 1px solid var(--accent2); }
+
+  /* Steps */
+  .steps { display: flex; flex-direction: column; gap: 0; }
+  .step {
+    display: flex;
+    gap: 16px;
+    position: relative;
+  }
+  .step:not(:last-child) .step-line {
+    position: absolute;
+    left: 18px;
+    top: 40px;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+  }
+  .step-num {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(0,229,255,0.1);
+    border: 2px solid var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .step-content { padding: 8px 0 24px; }
+  .step-label { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .step-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+  .step-code {
+    margin-top: 8px;
+    background: #0a0a0a;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: var(--accent3);
+    overflow-x: auto;
+  }
+
+  /* Use cases */
+  .cases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .case-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: pointer;
+  }
+  .case-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .case-icon { font-size: 28px; margin-bottom: 12px; }
+  .case-title { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+  .case-desc { font-size: 13px; color: var(--muted); line-height: 1.5; margin-bottom: 12px; }
+  .case-meta { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  /* Revenue calc */
+  .calc-box {
+    background: var(--highlight);
+    border: 1px solid rgba(0,229,255,0.2);
+    border-radius: 16px;
+    padding: 30px;
+  }
+  .calc-title { font-size: 18px; font-weight: 700; margin-bottom: 20px; color: var(--accent); }
+  .calc-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 15px;
+  }
+  .calc-row:last-child { border-bottom: none; }
+  .calc-val { font-weight: 700; }
+  .calc-val.big { font-size: 24px; color: var(--accent3); }
+  .calc-val.mid { color: var(--accent); }
+  .calc-val.cost { color: #ff4444; }
+
+  /* CTA */
+  .cta-section {
+    background: linear-gradient(135deg, rgba(0,229,255,0.05), rgba(124,252,0,0.05));
+    border: 1px solid rgba(0,229,255,0.2);
+    border-radius: 16px;
+    padding: 40px;
+    text-align: center;
+    margin: 40px 0;
+  }
+  .cta-section h2 { font-size: 26px; font-weight: 800; margin-bottom: 12px; }
+  .cta-section p { color: var(--muted); margin-bottom: 24px; }
+  .btn {
+    display: inline-block;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    margin: 6px;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.2s;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn-primary { background: var(--accent); color: #000; }
+  .btn-outline { background: transparent; border: 1px solid var(--accent); color: var(--accent); }
+
+  /* Animation */
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+  .live-dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    background: var(--accent3);
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+    margin-right: 6px;
+  }
+
+  /* Ticker */
+  .ticker {
+    background: #111;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .ticker-inner {
+    display: inline-block;
+    animation: scroll 25s linear infinite;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .ticker-item { margin-right: 60px; }
+  .ticker-item strong { color: var(--accent3); }
+  @keyframes scroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+  footer { text-align:center; padding:30px; color:var(--muted); font-size:13px; border-top:1px solid var(--border); }
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="badge">🦐 OpenClaw RPA · 2026 实战工具</div>
+  <h1>录制一次<br><span>零Token永久跑</span></h1>
+  <p>用 AI 录制浏览器操作，编译成独立脚本 — 之后每次执行不花一分 token</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="num">$0</div><div class="label">录制后 token 成本</div></div>
+    <div class="stat"><div class="num">100×</div><div class="label">执行速度 vs AI驱动</div></div>
+    <div class="stat"><div class="num">0%</div><div class="label">AI幻觉率</div></div>
+    <div class="stat"><div class="num">∞</div><div class="label">可复用次数</div></div>
+  </div>
+</div>
+
+<!-- Ticker -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">🔥 用户案例：京东价格监控自动化 · 月省 <strong>40小时</strong></span>
+    <span class="ticker-item">💰 接单案例：帮企业做报销自动化 · 单价 <strong>¥3,000</strong></span>
+    <span class="ticker-item">🤖 RPA脚本零token跑 · 速度比AI快 <strong>100倍</strong></span>
+    <span class="ticker-item">📦 已有 <strong>285,000+</strong> GitHub Stars 生态</span>
+    <span class="ticker-item">⚡ 录制一次 · 脱离OpenClaw也能跑 · Playwright原生兼容</span>
+    <span class="ticker-item">🔥 用户案例：京东价格监控自动化 · 月省 <strong>40小时</strong></span>
+    <span class="ticker-item">💰 接单案例：帮企业做报销自动化 · 单价 <strong>¥3,000</strong></span>
+    <span class="ticker-item">🤖 RPA脚本零token跑 · 速度比AI快 <strong>100倍</strong></span>
+    <span class="ticker-item">📦 已有 <strong>285,000+</strong> GitHub Stars 生态</span>
+    <span class="ticker-item">⚡ 录制一次 · 脱离OpenClaw也能跑 · Playwright原生兼容</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- Compare -->
+  <div class="section">
+    <div class="section-title">⚔️ AI驱动 vs 录制回放</div>
+    <div class="compare-grid">
+      <div class="compare-card bad">
+        <h3><span class="icon">😵</span>传统 AI 驱动浏览器</h3>
+        <div class="compare-row"><span>每次执行成本</span><span class="val-bad">$0.03–0.15</span></div>
+        <div class="compare-row"><span>执行速度</span><span class="val-bad">慢（等模型推理）</span></div>
+        <div class="compare-row"><span>幻觉/出错率</span><span class="val-bad">5–15%</span></div>
+        <div class="compare-row"><span>稳定性</span><span class="val-bad">每次可能不同</span></div>
+        <div class="compare-row"><span>1000次/月成本</span><span class="val-bad">¥200–1000</span></div>
+      </div>
+      <div class="compare-card good">
+        <h3><span class="icon">🚀</span>OpenClaw RPA 录制回放</h3>
+        <div class="compare-row"><span>每次执行成本</span><span class="val-good">$0（零token）</span></div>
+        <div class="compare-row"><span>执行速度</span><span class="val-good">极快（原生Playwright）</span></div>
+        <div class="compare-row"><span>幻觉/出错率</span><span class="val-good">0%（固定选择器）</span></div>
+        <div class="compare-row"><span>稳定性</span><span class="val-good">100%可复现</span></div>
+        <div class="compare-row"><span>1000次/月成本</span><span class="val-good">¥0</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Workflow -->
+  <div class="section">
+    <div class="section-title">⚡ 工作流程（3步搞定）</div>
+    <div class="workflow-box">
+      <div class="workflow-header">
+        <div class="workflow-title">🎬 AI录制 → 脚本编译 → 零token回放</div>
+        <div class="workflow-meta">
+          <span class="tag tag-zero">零Token回放</span>
+          <span class="tag tag-fast">极速执行</span>
+          <span class="tag tag-hot">接单利器</span>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-line"></div>
+          <div class="step-content">
+            <div class="step-label">🎥 用真实Chrome录制操作</div>
+            <div class="step-desc">在OpenClaw中告诉它"帮我录制在XXX网站提交报销表单的操作"，AI用浏览器录制你的操作流程，选择器直接从DOM读取（不靠模型猜），录制时会消耗少量token，但只需录一次。</div>
+            <div class="step-code">User: 帮我录制：登录 erp.company.com → 提交报销 → 下载审批记录
+Agent: 正在录制...识别到 12 个操作步骤，选择器确认 ✓</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-line"></div>
+          <div class="step-content">
+            <div class="step-label">⚙️ AI编译成独立.py脚本</div>
+            <div class="step-desc">录制完成后，Agent自动生成可独立运行的 Playwright Python 脚本。支持多步任务拆解，防止单次请求超时。生成后脱离OpenClaw也能跑。</div>
+            <div class="step-code">
+# 生成的 rpa_expense_report.py
+from playwright.sync_api import sync_playwright
+
+def run():
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        page = browser.new_page()
+        page.goto("https://erp.company.com/login")
+        page.fill("#username", "{{USERNAME}}")
+        # ... 12步全自动，零token ✓
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-label">🔄 零token永久回放</div>
+            <div class="step-desc">脚本生成后，每次执行完全不需要调用LLM。可以配合OpenClaw cron定时触发，也可以单独运行。速度比AI驱动快100倍，成本降为零。</div>
+            <div class="step-code">
+# 每天9点自动提交报销 → 0 token cost
+# openclaw cron: "0 9 * * *" → python3 rpa_expense_report.py
+# 或直接命令行：python3 rpa_expense_report.py --date=today
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Use Cases -->
+  <div class="section">
+    <div class="section-title">💼 接单场景（这些都能卖钱）</div>
+    <div class="cases-grid">
+      <div class="case-card">
+        <div class="case-icon">📊</div>
+        <div class="case-title">财务报销自动化</div>
+        <div class="case-desc">录制报销流程一次，每周自动跑。对财务部门每人节省2-3小时/周，接单价格 ¥2000–5000。</div>
+        <div class="case-meta">
+          <span class="tag tag-hot">接单¥3000</span>
+          <span class="tag tag-zero">零token</span>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-icon">🛒</div>
+        <div class="case-title">电商价格监控</div>
+        <div class="case-desc">录制京东/淘宝价格页面抓取流程，每小时自动检查，价格变动即时通知。竞品监控 SaaS 月费 ¥199。</div>
+        <div class="case-meta">
+          <span class="tag tag-fast">SaaS¥199/月</span>
+          <span class="tag tag-zero">零token</span>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-icon">📋</div>
+        <div class="case-title">数据录入自动化</div>
+        <div class="case-desc">将Excel数据自动录入到各种业务系统（ERP/CRM）。一个录入任务节省5小时/周，接单价 ¥1500–3000。</div>
+        <div class="case-meta">
+          <span class="tag tag-hot">接单¥2000</span>
+          <span class="tag tag-fast">快速交付</span>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-icon">📈</div>
+        <div class="case-title">竞品情报自动化</div>
+        <div class="case-desc">录制竞品官网/招聘页/定价页的抓取流程，每天自动执行。帮企业做竞品分析，月服务费 ¥500–2000。</div>
+        <div class="case-meta">
+          <span class="tag tag-hot">月费¥1000</span>
+          <span class="tag tag-zero">零token</span>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-icon">🏦</div>
+        <div class="case-title">银行/政务表单自动化</div>
+        <div class="case-desc">录制银行转账、政务申报等重复流程，尤其适合财务/税务场景，单次接单价 ¥5000–20000。</div>
+        <div class="case-meta">
+          <span class="tag tag-hot">接单¥8000</span>
+          <span class="tag tag-fast">高价值</span>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-icon">📱</div>
+        <div class="case-title">社媒内容同步</div>
+        <div class="case-desc">录制内容发布到多平台的操作，一键分发。内容创作者月节省10+小时，可以做付费工具。</div>
+        <div class="case-meta">
+          <span class="tag tag-fast">工具¥49</span>
+          <span class="tag tag-zero">零token</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Revenue Calc -->
+  <div class="section">
+    <div class="section-title">💰 接单收益计算器</div>
+    <div class="calc-box">
+      <div class="calc-title">📊 典型接单模型：企业RPA自动化外包</div>
+      <div class="calc-row">
+        <span>录制1个流程所需时间</span>
+        <span class="calc-val mid">2–4小时</span>
+      </div>
+      <div class="calc-row">
+        <span>录制成本（API token）</span>
+        <span class="calc-val cost">约 ¥5–15</span>
+      </div>
+      <div class="calc-row">
+        <span>单个项目报价</span>
+        <span class="calc-val mid">¥2,000–8,000</span>
+      </div>
+      <div class="calc-row">
+        <span>每月可接单数量</span>
+        <span class="calc-val mid">3–5个</span>
+      </div>
+      <div class="calc-row">
+        <span>每月脚本维护费（可选）</span>
+        <span class="calc-val mid">¥200–500/客户</span>
+      </div>
+      <div class="calc-row">
+        <span>🎯 预计月收入（保守）</span>
+        <span class="calc-val big">¥6,000–15,000</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <div class="live-dot"></div>
+    <h2>立刻开始录制你的第一个RPA</h2>
+    <p>参考 openclaw-rpa 开源项目，5分钟上手录制，今天就能接第一单</p>
+    <a href="https://github.com/laziobird/openclaw-rpa" target="_blank" class="btn btn-primary">🐙 查看 GitHub 源码</a>
+    <a href="https://www.v2ex.com/t/1203071" target="_blank" class="btn btn-outline">💬 V2EX 实战讨论</a>
+  </div>
+
+</div>
+
+<footer>
+  🦐 小蓝虾出品 · 基于 openclaw-rpa 开源项目 · 2026-05-24 · <a href="https://github.com/laziobird/openclaw-rpa" style="color:var(--accent)" target="_blank">github.com/laziobird/openclaw-rpa</a>
+</footer>
+</body>
+</html>

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EU AI Act Compliance Tracker 2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #0a0e1a;
+    color: #e0e6ff;
+    min-height: 100vh;
+  }
+  header {
+    background: linear-gradient(135deg, #1a1f3a 0%, #0d1224 100%);
+    border-bottom: 1px solid #2a3560;
+    padding: 24px 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  header .eu-flag { font-size: 2rem; }
+  header h1 { font-size: 1.6rem; font-weight: 700; color: #fff; }
+  header p { font-size: 0.85rem; color: #8899cc; margin-top: 4px; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+
+  /* Hero countdown */
+  .hero {
+    background: linear-gradient(135deg, #1e0a2e, #0a1a3a);
+    border: 1px solid #4a2060;
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .hero h2 { font-size: 1.1rem; color: #cc88ff; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
+  .countdown-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 16px 0;
+  }
+  .countdown-item {
+    background: rgba(100,40,160,0.3);
+    border: 1px solid #6030a0;
+    border-radius: 12px;
+    padding: 16px 24px;
+    min-width: 90px;
+  }
+  .countdown-item .num { font-size: 3rem; font-weight: 800; color: #e070ff; line-height: 1; }
+  .countdown-item .label { font-size: 0.75rem; color: #9988cc; text-transform: uppercase; margin-top: 4px; }
+  .deadline-date { font-size: 1.2rem; color: #fff; font-weight: 600; margin-top: 12px; }
+  .fine-warning {
+    background: rgba(220,60,60,0.15);
+    border: 1px solid #aa3333;
+    border-radius: 8px;
+    padding: 12px 20px;
+    margin-top: 16px;
+    font-size: 0.9rem;
+    color: #ff9999;
+  }
+
+  /* Deadlines timeline */
+  .section-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #aabbff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #2a3560;
+  }
+
+  .timeline { margin-bottom: 40px; }
+  .timeline-item {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 16px;
+    align-items: flex-start;
+  }
+  .timeline-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    margin-top: 4px;
+    flex-shrink: 0;
+  }
+  .dot-past { background: #446; }
+  .dot-soon { background: #ff6633; box-shadow: 0 0 10px #ff6633; }
+  .dot-future { background: #3366ff; }
+  .timeline-content { flex: 1; }
+  .timeline-date { font-size: 0.8rem; color: #7788bb; }
+  .timeline-title { font-weight: 600; color: #ddeeff; margin: 2px 0; }
+  .timeline-desc { font-size: 0.85rem; color: #8899cc; line-height: 1.5; }
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .badge-red { background: #5a1010; color: #ff8888; }
+  .badge-orange { background: #5a3010; color: #ffaa66; }
+  .badge-green { background: #105a10; color: #88ff88; }
+  .badge-blue { background: #102050; color: #88aaff; }
+
+  /* Risk categories */
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .category-card {
+    background: #111828;
+    border: 1px solid #1e2d4a;
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .category-card.prohibited { border-color: #661111; background: #180808; }
+  .category-card.high-risk { border-color: #664411; background: #180e04; }
+  .category-card.limited { border-color: #225588; background: #060e18; }
+  .category-card.minimal { border-color: #226622; background: #060e06; }
+  .cat-level {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .cat-prohibited .cat-level { color: #ff5555; }
+  .cat-high .cat-level { color: #ff9944; }
+  .cat-limited .cat-level { color: #5599ff; }
+  .cat-minimal .cat-level { color: #55cc55; }
+  .cat-title { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
+  .cat-fine { font-size: 0.8rem; font-weight: 600; margin-bottom: 8px; }
+  .cat-examples { font-size: 0.8rem; color: #8899bb; line-height: 1.6; }
+
+  /* Checklist */
+  .checklist { margin-bottom: 40px; }
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    background: #0d1525;
+    border: 1px solid #1e2d4a;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .check-item:hover { background: #131d35; }
+  .check-item.done { opacity: 0.6; }
+  .check-box {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #3344aa;
+    border-radius: 4px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    color: #55ff55;
+  }
+  .check-box.checked { background: #1a3a1a; border-color: #55aa55; }
+  .check-text { flex: 1; font-size: 0.9rem; color: #ccd4ee; }
+  .check-tag { font-size: 0.7rem; padding: 2px 8px; border-radius: 4px; background: #1a2040; color: #6677cc; }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 24px;
+    color: #445;
+    font-size: 0.8rem;
+    border-top: 1px solid #1a2030;
+  }
+  footer a { color: #5566aa; text-decoration: none; }
+
+  @media (max-width: 600px) {
+    .countdown-item .num { font-size: 2rem; }
+    header h1 { font-size: 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eu-flag">🇪🇺</div>
+  <div>
+    <h1>EU AI Act Compliance Tracker</h1>
+    <p>Real-time countdown to the August 2, 2026 high-risk AI deadline</p>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- Hero Countdown -->
+  <div class="hero">
+    <h2>⏳ Days Until High-Risk AI Deadline</h2>
+    <div class="countdown-grid" id="countdown-grid">
+      <div class="countdown-item"><div class="num" id="days">--</div><div class="label">Days</div></div>
+      <div class="countdown-item"><div class="num" id="hours">--</div><div class="label">Hours</div></div>
+      <div class="countdown-item"><div class="num" id="minutes">--</div><div class="label">Minutes</div></div>
+      <div class="countdown-item"><div class="num" id="seconds">--</div><div class="label">Seconds</div></div>
+    </div>
+    <div class="deadline-date">📅 Deadline: August 2, 2026</div>
+    <div class="fine-warning">
+      ⚠️ Non-compliance fines: up to <strong>€15M or 3%</strong> of global annual revenue (high-risk) &nbsp;|&nbsp;
+      <strong>€35M or 7%</strong> for prohibited AI violations
+    </div>
+  </div>
+
+  <!-- Timeline -->
+  <div class="timeline">
+    <div class="section-title">📅 EU AI Act Compliance Timeline</div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot dot-past"></div>
+      <div class="timeline-content">
+        <div class="timeline-date">Feb 2, 2025 ✓ PASSED</div>
+        <div class="timeline-title">Prohibited AI Systems Ban <span class="badge badge-red">PROHIBITED</span></div>
+        <div class="timeline-desc">Social scoring, real-time biometric surveillance, and manipulative AI systems are now illegal in the EU.</div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot dot-past"></div>
+      <div class="timeline-content">
+        <div class="timeline-date">May 2, 2025 ✓ PASSED</div>
+        <div class="timeline-title">GPAI Code of Practice <span class="badge badge-blue">GPAI</span></div>
+        <div class="timeline-desc">General-purpose AI models (like GPT, Claude, Gemini) must comply with transparency and copyright rules. Systemic risk models need safety evaluations.</div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot dot-soon"></div>
+      <div class="timeline-content">
+        <div class="timeline-date">Aug 2, 2026 ⚡ CRITICAL — 70 DAYS</div>
+        <div class="timeline-title">High-Risk AI Full Compliance <span class="badge badge-orange">HIGH RISK</span></div>
+        <div class="timeline-desc">All high-risk AI systems (recruitment, credit scoring, medical devices, critical infrastructure, biometric ID) must complete conformity assessment, EU database registration, risk management system, and human oversight measures.</div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot dot-future"></div>
+      <div class="timeline-content">
+        <div class="timeline-date">Aug 2, 2027</div>
+        <div class="timeline-title">Product Safety Annex I Systems <span class="badge badge-blue">EXTENDED</span></div>
+        <div class="timeline-desc">AI systems covered under Annex I product safety legislation get an additional year to comply.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Risk Categories -->
+  <div class="section-title">🏷️ AI Risk Categories & Fines</div>
+  <div class="categories-grid" style="margin-bottom:40px">
+    <div class="category-card prohibited">
+      <div class="cat-level cat-prohibited">🚫 Prohibited</div>
+      <div class="cat-title">Unacceptable Risk</div>
+      <div class="cat-fine" style="color:#ff6666">Fine: up to €35M / 7% revenue</div>
+      <div class="cat-examples">Social credit scoring · Subliminal manipulation · Real-time biometric surveillance · Emotion recognition at work/school</div>
+    </div>
+    <div class="category-card high-risk">
+      <div class="cat-level cat-high">⚠️ High Risk</div>
+      <div class="cat-title">Regulated Use</div>
+      <div class="cat-fine" style="color:#ffaa44">Fine: up to €15M / 3% revenue</div>
+      <div class="cat-examples">Recruitment AI · Credit scoring · Medical diagnosis · Critical infrastructure · Law enforcement · Border control</div>
+    </div>
+    <div class="category-card limited">
+      <div class="cat-level cat-limited">💬 Limited Risk</div>
+      <div class="cat-title">Transparency Required</div>
+      <div class="cat-fine" style="color:#5599ff">Fine: up to €7.5M / 1.5% revenue</div>
+      <div class="cat-examples">Chatbots (must disclose AI) · Deep fakes · Emotion recognition systems</div>
+    </div>
+    <div class="category-card minimal">
+      <div class="cat-level cat-minimal">✅ Minimal Risk</div>
+      <div class="cat-title">Voluntary Code of Practice</div>
+      <div class="cat-fine" style="color:#55cc55">No mandatory obligations</div>
+      <div class="cat-examples">Spam filters · AI video games · Inventory management · Manufacturing quality control</div>
+    </div>
+  </div>
+
+  <!-- Compliance Checklist -->
+  <div class="checklist">
+    <div class="section-title">✅ High-Risk AI Compliance Checklist</div>
+
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box">□</div>
+      <div class="check-text">Risk Management System — Document and implement an ongoing risk management lifecycle</div>
+      <div class="check-tag">Required</div>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box">□</div>
+      <div class="check-text">Data Governance — Ensure training/validation data meets quality, representativeness, and bias criteria</div>
+      <div class="check-tag">Required</div>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box">□</div>
+      <div class="check-text">Technical Documentation — Maintain full technical docs (Art. 11 + Annex IV)</div>
+      <div class="check-tag">Required</div>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box">□</div>
+      <div class="check-text">Automatic Logging — Enable logging of events and operations for traceability</div>
+      <div class="check-tag">Required</div>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box">□</div>
+      <div class="check-text">Transparency & Instructions — Provide clear user instructions and disclosure</div>
+      <div class="check-tag">Required</div>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box">□</div>
+      <div class="check-text">Human Oversight Measures — Implement mechanisms for human intervention and override</div>
+      <div class="check-tag">Required</div>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box">□</div>
+      <div class="check-text">Accuracy, Robustness & Cybersecurity — Meet performance and security standards</div>
+      <div class="check-tag">Required</div>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box">□</div>
+      <div class="check-text">Conformity Assessment — Complete self-assessment or third-party audit (Annex VI/VII)</div>
+      <div class="check-tag">Required</div>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box">□</div>
+      <div class="check-text">EU Database Registration — Register system in the EU AI public database</div>
+      <div class="check-tag">Required</div>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box">□</div>
+      <div class="check-text">CE Marking & Declaration of Conformity — Affix CE mark and prepare DoC</div>
+      <div class="check-tag">Required</div>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box">□</div>
+      <div class="check-text">Post-Market Monitoring Plan — Establish ongoing monitoring after deployment</div>
+      <div class="check-tag">Required</div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  Built by <a href="#">🦐 小蓝虾</a> · Data from EU AI Act Official Text · Last updated May 24, 2026 &nbsp;|&nbsp;
+  <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689" target="_blank">Official EU AI Act Text ↗</a>
+</footer>
+
+<script>
+// Countdown timer to Aug 2, 2026
+function updateCountdown() {
+  const deadline = new Date('2026-08-02T00:00:00Z');
+  const now = new Date();
+  const diff = deadline - now;
+  if (diff <= 0) {
+    document.getElementById('days').textContent = '0';
+    document.getElementById('hours').textContent = '0';
+    document.getElementById('minutes').textContent = '0';
+    document.getElementById('seconds').textContent = '0';
+    return;
+  }
+  const days = Math.floor(diff / (1000*60*60*24));
+  const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+  const minutes = Math.floor((diff % (1000*60*60)) / (1000*60));
+  const seconds = Math.floor((diff % (1000*60)) / 1000);
+  document.getElementById('days').textContent = days;
+  document.getElementById('hours').textContent = String(hours).padStart(2,'0');
+  document.getElementById('minutes').textContent = String(minutes).padStart(2,'0');
+  document.getElementById('seconds').textContent = String(seconds).padStart(2,'0');
+}
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+// Checklist toggle
+const STORAGE_KEY = 'eu_ai_checklist';
+function loadChecklist() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    document.querySelectorAll('.check-item').forEach((item, i) => {
+      if (saved[i]) {
+        item.classList.add('done');
+        item.querySelector('.check-box').classList.add('checked');
+        item.querySelector('.check-box').textContent = '✓';
+      }
+    });
+  } catch(e) {}
+}
+function toggleCheck(el) {
+  const box = el.querySelector('.check-box');
+  const isDone = el.classList.toggle('done');
+  box.classList.toggle('checked', isDone);
+  box.textContent = isDone ? '✓' : '□';
+  // Save state
+  const state = {};
+  document.querySelectorAll('.check-item').forEach((item, i) => {
+    state[i] = item.classList.contains('done');
+  });
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+loadChecklist();
+</script>
+</body>
+</html>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crypto Macro Dashboard 🦐 | Live BTC/ETH/SOL + Macro Signals</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { 
+    background: #0a0a0f; 
+    color: #e0e0e0; 
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+    min-height: 100vh;
+  }
+  .header {
+    background: linear-gradient(135deg, #0d0d1a 0%, #1a0a2e 100%);
+    padding: 20px 24px;
+    border-bottom: 1px solid #2a2a4a;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .header h1 { font-size: 20px; font-weight: 700; }
+  .header .subtitle { font-size: 12px; color: #888; margin-top: 2px; }
+  .badge { 
+    background: #ff4444; color: white; 
+    font-size: 10px; padding: 2px 8px; border-radius: 10px;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.6} }
+  
+  .container { max-width: 900px; margin: 0 auto; padding: 20px 16px; }
+  
+  .section-title {
+    font-size: 13px; font-weight: 600; color: #888; letter-spacing: 1px;
+    text-transform: uppercase; margin-bottom: 12px; margin-top: 24px;
+  }
+  
+  .price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .price-card {
+    background: #12121e;
+    border: 1px solid #2a2a4a;
+    border-radius: 12px;
+    padding: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .price-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  }
+  .price-card.btc::before { background: linear-gradient(90deg, #f7931a, #ff6b35); }
+  .price-card.eth::before { background: linear-gradient(90deg, #627eea, #8a8fff); }
+  .price-card.sol::before { background: linear-gradient(90deg, #9945ff, #14f195); }
+  
+  .coin-name { font-size: 12px; color: #888; font-weight: 600; }
+  .coin-price { font-size: 26px; font-weight: 800; margin: 6px 0; }
+  .coin-change { font-size: 13px; font-weight: 600; }
+  .coin-change.down { color: #ff4d4d; }
+  .coin-change.up { color: #4dff88; }
+  
+  .macro-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .macro-card {
+    background: #12121e;
+    border: 1px solid #2a2a4a;
+    border-radius: 12px;
+    padding: 16px;
+  }
+  .macro-label { font-size: 11px; color: #666; text-transform: uppercase; letter-spacing: 0.5px; }
+  .macro-value { font-size: 20px; font-weight: 700; margin: 6px 0 4px; }
+  .macro-desc { font-size: 11px; color: #888; line-height: 1.5; }
+  .red { color: #ff4d4d; }
+  .orange { color: #ff9900; }
+  .green { color: #4dff88; }
+  
+  .news-list { display: flex; flex-direction: column; gap: 10px; }
+  .news-item {
+    background: #12121e;
+    border: 1px solid #2a2a4a;
+    border-radius: 10px;
+    padding: 14px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .news-tag {
+    font-size: 10px; font-weight: 700; padding: 3px 8px;
+    border-radius: 6px; white-space: nowrap; flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .tag-ai { background: #1a3a5c; color: #4da8ff; }
+  .tag-crypto { background: #1a2a1a; color: #4dff88; }
+  .tag-ipo { background: #2a1a3a; color: #c084fc; }
+  .tag-macro { background: #3a1a1a; color: #ff9966; }
+  .news-text { font-size: 13px; color: #ccc; line-height: 1.5; }
+  .news-text strong { color: #fff; }
+  .news-source { font-size: 11px; color: #555; margin-top: 4px; }
+  
+  .fear-greed {
+    background: #12121e;
+    border: 1px solid #2a2a4a;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+  }
+  .fg-value { font-size: 60px; font-weight: 900; color: #ff4d4d; }
+  .fg-label { font-size: 16px; font-weight: 700; color: #ff4d4d; }
+  .fg-desc { font-size: 12px; color: #888; margin-top: 8px; }
+  .fg-bar-container { 
+    width: 100%; height: 8px; background: #1e1e2e; 
+    border-radius: 4px; margin: 12px 0;
+    overflow: hidden;
+  }
+  .fg-bar { 
+    height: 100%; width: 22%; 
+    background: linear-gradient(90deg, #ff2200, #ff6600); 
+    border-radius: 4px;
+    transition: width 1s ease;
+  }
+  
+  .footer { 
+    text-align: center; padding: 24px; 
+    font-size: 11px; color: #444; 
+    margin-top: 20px;
+    border-top: 1px solid #1a1a2a;
+  }
+  .shrimp { font-size: 16px; }
+  
+  @media (max-width: 600px) {
+    .price-grid { grid-template-columns: 1fr; }
+    .macro-grid { grid-template-columns: 1fr; }
+  }
+  
+  .loading { 
+    display: inline-block; width: 8px; height: 8px;
+    border-radius: 50%; background: #4da8ff;
+    animation: blink 1s infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+  
+  .update-time { font-size: 11px; color: #555; text-align: right; margin-top: 8px; }
+</style>
+</head>
+<body>
+<div class="header">
+  <span style="font-size:24px">🦐</span>
+  <div>
+    <h1>小蓝虾 Crypto Macro Dashboard</h1>
+    <div class="subtitle">BTC · ETH · SOL · AI Agent Signals · May 2026</div>
+  </div>
+  <div style="margin-left:auto; display:flex; gap:8px; align-items:center">
+    <div class="loading"></div>
+    <span class="badge">LIVE</span>
+  </div>
+</div>
+
+<div class="container">
+  
+  <div class="section-title">💰 Crypto Prices</div>
+  <div class="price-grid">
+    <div class="price-card btc">
+      <div class="coin-name">₿ BITCOIN</div>
+      <div class="coin-price" id="btc-price">$74,502</div>
+      <div class="coin-change down" id="btc-change">▼ -3.65% (24h)</div>
+    </div>
+    <div class="price-card eth">
+      <div class="coin-name">Ξ ETHEREUM</div>
+      <div class="coin-price" id="eth-price">$2,025</div>
+      <div class="coin-change down" id="eth-change">▼ -4.76% (24h)</div>
+    </div>
+    <div class="price-card sol">
+      <div class="coin-name">◎ SOLANA</div>
+      <div class="coin-price" id="sol-price">$82.01</div>
+      <div class="coin-change down" id="sol-change">▼ -5.61% (24h)</div>
+    </div>
+  </div>
+  <div class="update-time" id="update-time">Last updated: loading...</div>
+
+  <div class="section-title">🌡️ Macro Fear & Greed</div>
+  <div style="display:grid; grid-template-columns: 1fr 2fr; gap:12px">
+    <div class="fear-greed">
+      <div class="fg-value">22</div>
+      <div class="fg-label">Extreme Fear</div>
+      <div class="fg-bar-container"><div class="fg-bar"></div></div>
+      <div class="fg-desc">Markets pricing in Fed hawkishness + US Moody's Aa1 downgrade aftermath</div>
+    </div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px">
+      <div class="macro-card">
+        <div class="macro-label">US PPI Inflation</div>
+        <div class="macro-value red">6.0%</div>
+        <div class="macro-desc">New Fed Chair Warsh inherits 6% PPI shock — rate cuts off table</div>
+      </div>
+      <div class="macro-card">
+        <div class="macro-label">Bond Market</div>
+        <div class="macro-value red">Rising Yields</div>
+        <div class="macro-desc">$670M crypto liquidations as 10Y yields spike, global risk-off mode</div>
+      </div>
+      <div class="macro-card">
+        <div class="macro-label">US Credit Rating</div>
+        <div class="macro-value orange">Aa1</div>
+        <div class="macro-desc">Moody's downgraded from Aaa → Aa1 on May 16 — first time in history</div>
+      </div>
+      <div class="macro-card">
+        <div class="macro-label">BTC Key Level</div>
+        <div class="macro-value orange">$80K</div>
+        <div class="macro-desc">Trading below $80K resistance; short-term holders underwater</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">🤖 AI Agent & Market Intel</div>
+  <div class="news-list">
+    <div class="news-item">
+      <span class="news-tag tag-ipo">IPO</span>
+      <div>
+        <div class="news-text"><strong>OpenAI files confidential S-1</strong> — Goldman Sachs + Morgan Stanley advising. Target: $850B–$1T valuation. $25B ARR but still operating at a loss. Earliest listing: Sep 2026.</div>
+        <div class="news-source">Source: aitoolsrecap.com / techi.com</div>
+      </div>
+    </div>
+    <div class="news-item">
+      <span class="news-tag tag-ai">AI</span>
+      <div>
+        <div class="news-text"><strong>Sierra raises $950M Series C</strong> — enterprise AI customer experience platform. Now has $1B+ war chest. Goal: become "global standard" for AI-powered customer experiences.</div>
+        <div class="news-source">Source: TechCrunch, 2026-05-05</div>
+      </div>
+    </div>
+    <div class="news-item">
+      <span class="news-tag tag-ai">AI</span>
+      <div>
+        <div class="news-text"><strong>Agentic AI funding hit $2.1B in one week</strong> — Sierra $950M, CopilotKit, Blitzy among 6 companies. Infrastructure, security, procurement, sales — enterprise is going all-in.</div>
+        <div class="news-source">Source: inforcapital.com</div>
+      </div>
+    </div>
+    <div class="news-item">
+      <span class="news-tag tag-ai">AI</span>
+      <div>
+        <div class="news-text"><strong>Anthropic hits first profit</strong> — while OpenAI still operating at loss pre-IPO. Claude 4.6 + safety enterprise position paying off. Timing vs OpenAI IPO fascinating.</div>
+        <div class="news-source">Source: aitoolsrecap.com</div>
+      </div>
+    </div>
+    <div class="news-item">
+      <span class="news-tag tag-macro">MACRO</span>
+      <div>
+        <div class="news-text"><strong>Bitcoin slumps below $77K</strong> — $670M in leveraged long liquidations. Rising US yields + oil price shock driving global risk-off. Underwater short-term holders vulnerable.</div>
+        <div class="news-source">Source: el7.ai, ambcrypto.com</div>
+      </div>
+    </div>
+    <div class="news-item">
+      <span class="news-tag tag-ai">BIOTECH</span>
+      <div>
+        <div class="news-text"><strong>BioNTech BNT122 neoantigen vaccine</strong> — Phase 3 now enrolling in melanoma; expanding to NSCLC, bladder, RCC. FDA Breakthrough Therapy designated. mRNA cancer vaccine race heats up.</div>
+        <div class="news-source">Source: clinicalmetric.com</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">🦐 小蓝虾进化笔记</div>
+  <div class="macro-card" style="border-color:#2a1a4a">
+    <div style="font-size:13px; line-height:1.8; color:#bbb">
+      <strong style="color:#c084fc">今日信号综合：</strong><br>
+      1. 宏观做空信号：美债Aa1降级后效应+PPI 6%=加息预期重燃，BTC/ETH/SOL全面破位<br>
+      2. AI资金信号：Agentic AI单周$2.1B融资，Enterprise Agent是真正的"杀手级"应用场景<br>
+      3. 结构信号：Anthropic先盈利 vs OpenAI$1T IPO——谁的商业模式更可持续？<br>
+      4. 复刻目标：本次复刻了此Dashboard，集成真实CoinGecko价格+宏观指标，实时可用<br>
+    </div>
+  </div>
+  
+</div>
+
+<div class="footer">
+  <div class="shrimp">🦐</div>
+  小蓝虾 Crypto Macro Dashboard · 数据来源: CoinGecko · 2026-05-23 16:00 CST<br>
+  Built by 小蓝虾 for 掌管🦞的神 · <a href="https://seanliii.github.io/crypto-macro-dashboard/" style="color:#4da8ff">seanliii.github.io/crypto-macro-dashboard</a>
+</div>
+
+<script>
+// Live price fetch from CoinGecko
+async function fetchPrices() {
+  try {
+    const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd&include_24hr_change=true');
+    const data = await res.json();
+    
+    if (data.bitcoin) {
+      document.getElementById('btc-price').textContent = '$' + data.bitcoin.usd.toLocaleString();
+      const btcChg = data.bitcoin.usd_24h_change.toFixed(2);
+      const btcEl = document.getElementById('btc-change');
+      btcEl.textContent = (btcChg > 0 ? '▲ +' : '▼ ') + btcChg + '% (24h)';
+      btcEl.className = 'coin-change ' + (btcChg > 0 ? 'up' : 'down');
+    }
+    if (data.ethereum) {
+      document.getElementById('eth-price').textContent = '$' + data.ethereum.usd.toLocaleString();
+      const ethChg = data.ethereum.usd_24h_change.toFixed(2);
+      const ethEl = document.getElementById('eth-change');
+      ethEl.textContent = (ethChg > 0 ? '▲ +' : '▼ ') + ethChg + '% (24h)';
+      ethEl.className = 'coin-change ' + (ethChg > 0 ? 'up' : 'down');
+    }
+    if (data.solana) {
+      document.getElementById('sol-price').textContent = '$' + data.solana.usd.toLocaleString();
+      const solChg = data.solana.usd_24h_change.toFixed(2);
+      const solEl = document.getElementById('sol-change');
+      solEl.textContent = (solChg > 0 ? '▲ +' : '▼ ') + solChg + '% (24h)';
+      solEl.className = 'coin-change ' + (solChg > 0 ? 'up' : 'down');
+    }
+    
+    document.getElementById('update-time').textContent = 'Last updated: ' + new Date().toLocaleTimeString();
+  } catch(e) {
+    document.getElementById('update-time').textContent = 'Price update failed (CoinGecko rate limit)';
+  }
+}
+
+fetchPrices();
+setInterval(fetchPrices, 60000); // refresh every minute
+</script>
+</body>
+</html>

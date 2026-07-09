@@ -1,0 +1,57 @@
+{
+  "scan_time": "2026-06-23 10:00",
+  "triggers_fired": [],
+  "stops_triggered": [],
+  "watchlist_approaching": [
+    {
+      "ticker": "METC",
+      "account": "aggressive",
+      "current": 13.41,
+      "trigger": 13.0,
+      "gap_pct": 3.2,
+      "priority": "B",
+      "status": "watch"
+    },
+    {
+      "ticker": "MLEC",
+      "account": "aggressive",
+      "current": 7.99,
+      "trigger": 7.5,
+      "gap_pct": 6.5,
+      "priority": "B",
+      "status": "entered"
+    }
+  ],
+  "portfolio_summary": {
+    "institutional": {
+      "name": "大机构",
+      "emoji": "🏦",
+      "total_value": 39275.04,
+      "cash": 13640.35,
+      "position_value": 25634.69,
+      "pnl": -10724.96,
+      "return_pct": -21.45,
+      "positions": 3
+    },
+    "aggressive": {
+      "name": "激进交易",
+      "emoji": "⚡",
+      "total_value": 49105.14,
+      "cash": 26329.88,
+      "position_value": 22775.26,
+      "pnl": -894.86,
+      "return_pct": -1.79,
+      "positions": 4
+    },
+    "blueshrimp": {
+      "name": "蓝虾交易",
+      "emoji": "🦐",
+      "total_value": 48748.77,
+      "cash": 39062.13,
+      "position_value": 9686.64,
+      "pnl": -1251.23,
+      "return_pct": -2.5,
+      "positions": 2
+    }
+  }
+}

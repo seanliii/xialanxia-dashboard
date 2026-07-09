@@ -1,0 +1,93 @@
+{
+  "scan_time": "2026-04-02 16:04",
+  "triggers_fired": [],
+  "stops_triggered": [],
+  "watchlist_approaching": [
+    {
+      "ticker": "CVNA",
+      "account": "institutional",
+      "current": 312.04,
+      "trigger": 310.0,
+      "gap_pct": 0.7,
+      "priority": "A",
+      "status": "entered"
+    },
+    {
+      "ticker": "RKLB",
+      "account": "blueshrimp",
+      "current": 60.93,
+      "trigger": 60.0,
+      "gap_pct": 1.5,
+      "priority": "A",
+      "status": "watch"
+    },
+    {
+      "ticker": "SOFI",
+      "account": "institutional",
+      "current": 15.63,
+      "trigger": 16.0,
+      "gap_pct": -2.3,
+      "priority": "A",
+      "status": "entered"
+    },
+    {
+      "ticker": "VST",
+      "account": "institutional",
+      "current": 153.99,
+      "trigger": 150.0,
+      "gap_pct": 2.7,
+      "priority": "A",
+      "status": "entered"
+    },
+    {
+      "ticker": "NVDA",
+      "account": "institutional",
+      "current": 175.75,
+      "trigger": 170.0,
+      "gap_pct": 3.4,
+      "priority": "B",
+      "status": "watch"
+    },
+    {
+      "ticker": "TSM",
+      "account": "institutional",
+      "current": 341.95,
+      "trigger": 330.0,
+      "gap_pct": 3.6,
+      "priority": "S",
+      "status": "entered"
+    }
+  ],
+  "portfolio_summary": {
+    "institutional": {
+      "name": "大机构",
+      "emoji": "🏦",
+      "total_value": 50759.67,
+      "cash": 5552.02,
+      "position_value": 45207.65,
+      "pnl": 759.67,
+      "return_pct": 1.52,
+      "positions": 6
+    },
+    "aggressive": {
+      "name": "激进交易",
+      "emoji": "⚡",
+      "total_value": 46678.25,
+      "cash": 29976.9,
+      "position_value": 16701.35,
+      "pnl": -3321.75,
+      "return_pct": -6.64,
+      "positions": 4
+    },
+    "blueshrimp": {
+      "name": "蓝虾交易",
+      "emoji": "🦐",
+      "total_value": 52017.2,
+      "cash": 42999.24,
+      "position_value": 9017.96,
+      "pnl": 2017.2,
+      "return_pct": 4.03,
+      "positions": 2
+    }
+  }
+}

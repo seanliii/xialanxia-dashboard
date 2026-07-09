@@ -1,0 +1,87 @@
+{
+  "scan_time": "2026-05-16 04:01",
+  "triggers_fired": [
+    {
+      "ticker": "IMVT",
+      "account": "blueshrimp",
+      "price": 15.2,
+      "trigger_price": 18.0,
+      "shares": 263,
+      "cost": 3997.6,
+      "company": "Immunovant Inc",
+      "target": 28.0,
+      "stop": 14.0
+    }
+  ],
+  "stops_triggered": [],
+  "watchlist_approaching": [
+    {
+      "ticker": "SOFI",
+      "account": "institutional",
+      "current": 15.84,
+      "trigger": 16.0,
+      "gap_pct": -1.0,
+      "priority": "A",
+      "status": "entered"
+    },
+    {
+      "ticker": "VST",
+      "account": "institutional",
+      "current": 142.0,
+      "trigger": 150.0,
+      "gap_pct": -5.3,
+      "priority": "A",
+      "status": "entered"
+    },
+    {
+      "ticker": "UPXI",
+      "account": "aggressive",
+      "current": 1.38,
+      "trigger": 1.3,
+      "gap_pct": 6.2,
+      "priority": "A",
+      "status": "entered"
+    },
+    {
+      "ticker": "SOUN",
+      "account": "aggressive",
+      "current": 8.52,
+      "trigger": 8.0,
+      "gap_pct": 6.5,
+      "priority": "A",
+      "status": "entered"
+    }
+  ],
+  "portfolio_summary": {
+    "institutional": {
+      "name": "大机构",
+      "emoji": "🏦",
+      "total_value": 44792.47,
+      "cash": 13346.21,
+      "position_value": 31446.26,
+      "pnl": -5207.53,
+      "return_pct": -10.42,
+      "positions": 4
+    },
+    "aggressive": {
+      "name": "激进交易",
+      "emoji": "⚡",
+      "total_value": 56526.18,
+      "cash": 26025.59,
+      "position_value": 30500.59,
+      "pnl": 6526.18,
+      "return_pct": 13.05,
+      "positions": 5
+    },
+    "blueshrimp": {
+      "name": "蓝虾交易",
+      "emoji": "🦐",
+      "total_value": 52703.48,
+      "cash": 39001.64,
+      "position_value": 13701.84,
+      "pnl": 2703.48,
+      "return_pct": 5.41,
+      "positions": 3
+    }
+  }
+}

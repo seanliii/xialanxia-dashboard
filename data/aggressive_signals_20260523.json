@@ -1,0 +1,55 @@
+{
+  "scan_time": "2026-07-01 04:01",
+  "penny_stocks_found": [
+    {
+      "ticker": "UPXI",
+      "price": 1.4,
+      "change_5d": "+87%",
+      "volume_surge": "5.1x avg",
+      "market_cap": "$28M",
+      "catalyst": "AI\u6570\u636e\u4e2d\u5fc3\u8f6c\u578b\u516c\u544a",
+      "signal": "\u5df2\u5728\u6301\u4ed3\u4e2d - \u5f3a\u52bf\u7a81\u7834"
+    },
+    {
+      "ticker": "QUBT",
+      "price": 12.31,
+      "change_5d": "+320%",
+      "volume_surge": "12x avg",
+      "market_cap": "$890M",
+      "catalyst": "\u91cf\u5b50\u8ba1\u7b97\u7a81\u7834+\u653f\u5e9c\u5408\u540c",
+      "signal": "\u5df2\u5728\u6301\u4ed3\u4e2d - \u91cf\u5b50\u9f99\u5934"
+    }
+  ],
+  "high_momentum": [
+    {
+      "ticker": "TOI",
+      "price": 4.47,
+      "change_5d": "+145%",
+      "volume_surge": "8.5x avg",
+      "market_cap": "$42M",
+      "catalyst": "\u6bd4\u7279\u5e01\u77ff\u573a\u6269\u5bb9+AI\u6570\u636e\u4e2d\u5fc3\u516c\u544a",
+      "signal": "\u5df2\u5728\u6301\u4ed3\u4e2d - \u7ee7\u7eed\u6301\u6709"
+    },
+    {
+      "ticker": "IMVT",
+      "price": 34.15,
+      "change_5d": "+124%",
+      "volume_surge": "3.2x avg",
+      "market_cap": "$1.8B",
+      "catalyst": "\u6536\u8d2d\u62a5\u4ef7$40/\u80a1",
+      "signal": "\u5df2\u5728\u6301\u4ed3\u4e2d - \u76ee\u6807\u5373\u5c06\u5230\u8fbe"
+    }
+  ],
+  "unusual_volume": [],
+  "merger_plays": [
+    {
+      "ticker": "MLEC",
+      "price": 7.36,
+      "change_5d": "+45%",
+      "volume_surge": "2.8x avg",
+      "market_cap": "$95M",
+      "catalyst": "\u751f\u547d\u79d1\u5b66SPAC\u5408\u5e76\u9884\u671f",
+      "signal": "\u5df2\u5728\u6301\u4ed3\u4e2d - \u6301\u6709\u7b49\u5f85"
+    }
+  ]
+}

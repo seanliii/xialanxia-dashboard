@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solo Founder AI OS — 一人公司全栈仪表盘</title>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --card: #12121a;
+    --border: #1e1e2e;
+    --accent: #7c3aed;
+    --accent2: #2563eb;
+    --green: #10b981;
+    --red: #ef4444;
+    --yellow: #f59e0b;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --radius: 12px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    padding: 24px;
+  }
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .header-left h1 {
+    font-size: 22px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #7c3aed, #2563eb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .header-left p { color: var(--muted); font-size: 13px; margin-top: 4px; }
+  .live-badge {
+    display: flex; align-items: center; gap: 6px;
+    background: rgba(16,185,129,0.1);
+    border: 1px solid rgba(16,185,129,0.3);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 12px;
+    color: var(--green);
+  }
+  .live-dot {
+    width: 7px; height: 7px;
+    background: var(--green);
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+  .grid { display: grid; gap: 16px; }
+  .grid-4 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+  .grid-3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .grid-2 { grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    transition: border-color 0.2s;
+  }
+  .card:hover { border-color: var(--accent); }
+  .card-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .metric-value {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+  .metric-sub {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  .metric-delta {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 6px;
+    padding: 2px 8px;
+    border-radius: 20px;
+  }
+  .delta-up { background: rgba(16,185,129,0.1); color: var(--green); }
+  .delta-down { background: rgba(239,68,68,0.1); color: var(--red); }
+  .section-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 28px 0 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .progress-bar {
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+    margin: 8px 0 4px;
+  }
+  .progress-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 1s ease;
+  }
+  .fill-purple { background: linear-gradient(90deg, #7c3aed, #a855f7); }
+  .fill-blue { background: linear-gradient(90deg, #2563eb, #3b82f6); }
+  .fill-green { background: linear-gradient(90deg, #059669, #10b981); }
+  .fill-yellow { background: linear-gradient(90deg, #d97706, #f59e0b); }
+  .task-list { list-style: none; }
+  .task-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .task-item:last-child { border-bottom: none; }
+  .task-check {
+    width: 16px; height: 16px;
+    border: 1.5px solid var(--muted);
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 1px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+  }
+  .task-check.done {
+    background: var(--green);
+    border-color: var(--green);
+  }
+  .task-check.done::after {
+    content: '✓';
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+  }
+  .task-text.done { text-decoration: line-through; color: var(--muted); }
+  .task-tag {
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 10px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .tag-high { background: rgba(239,68,68,0.15); color: #f87171; }
+  .tag-mid { background: rgba(245,158,11,0.15); color: #fbbf24; }
+  .tag-low { background: rgba(100,116,139,0.15); color: var(--muted); }
+  .revenue-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+    height: 80px;
+    margin-top: 12px;
+  }
+  .bar {
+    flex: 1;
+    border-radius: 4px 4px 0 0;
+    position: relative;
+    transition: opacity 0.2s;
+    cursor: pointer;
+    min-height: 4px;
+  }
+  .bar:hover { opacity: 0.8; }
+  .bar-label {
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 9px;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .revenue-chart-wrap { padding-bottom: 22px; }
+  .channel-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .channel-row:last-child { border-bottom: none; }
+  .channel-icon {
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+  .channel-name { flex: 1; margin-left: 10px; }
+  .channel-num { font-weight: 600; }
+  .channel-delta { font-size: 11px; margin-left: 8px; }
+  .ai-insight {
+    background: linear-gradient(135deg, rgba(124,58,237,0.08), rgba(37,99,235,0.08));
+    border: 1px solid rgba(124,58,237,0.2);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin-top: 4px;
+  }
+  .ai-insight p { font-size: 13px; line-height: 1.6; color: #c4b5fd; }
+  .ai-insight .ai-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #7c3aed;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .mini-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .mini-tab {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    background: transparent;
+    transition: all 0.15s;
+  }
+  .mini-tab.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+  }
+  .footer {
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .footer a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  /* Input areas */
+  .editable {
+    background: var(--border);
+    border: none;
+    border-radius: 6px;
+    padding: 4px 8px;
+    color: var(--text);
+    font-size: inherit;
+    font-family: inherit;
+    width: 100%;
+    cursor: text;
+  }
+  .add-item-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--muted);
+    background: none;
+    border: 1px dashed var(--border);
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 8px;
+    transition: all 0.15s;
+  }
+  .add-item-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .top-banner {
+    background: linear-gradient(135deg, rgba(124,58,237,0.15), rgba(37,99,235,0.1));
+    border: 1px solid rgba(124,58,237,0.25);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    color: #c4b5fd;
+  }
+  .top-banner .emoji { font-size: 20px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <h1>🚀 Solo Founder AI OS</h1>
+    <p>一人公司全栈自动化仪表盘 · 实时监控你的业务</p>
+  </div>
+  <div class="live-badge">
+    <div class="live-dot"></div>
+    LIVE
+  </div>
+</div>
+
+<div class="top-banner">
+  <span class="emoji">🤖</span>
+  <div>
+    <strong style="color:#a78bfa">AI 洞察</strong> · 本周收入环比 +23%，主要来自 SaaS 订阅增长。建议：下周重点投入 Product Hunt 发布，预计可带来 200+ 新注册用户。
+  </div>
+</div>
+
+<!-- KPI 核心指标 -->
+<div class="section-title">📊 核心指标</div>
+<div class="grid grid-4">
+  <div class="card">
+    <div class="card-title">💰 本月收入 (MRR)</div>
+    <div class="metric-value" id="mrr">$4,280</div>
+    <div class="metric-sub">月经常性收入</div>
+    <div class="metric-delta delta-up">▲ 23% vs 上月</div>
+  </div>
+  <div class="card">
+    <div class="card-title">👥 活跃用户</div>
+    <div class="metric-value" id="dau">1,847</div>
+    <div class="metric-sub">DAU / MAU: 38%</div>
+    <div class="metric-delta delta-up">▲ 156 新增本周</div>
+  </div>
+  <div class="card">
+    <div class="card-title">📦 内容产出</div>
+    <div class="metric-value" id="content">42</div>
+    <div class="metric-sub">本月发布条数</div>
+    <div class="metric-delta delta-up">▲ 8 vs 上月</div>
+  </div>
+  <div class="card">
+    <div class="card-title">⚡ 自动化率</div>
+    <div class="metric-value" id="auto">87%</div>
+    <div class="metric-sub">AI 处理任务占比</div>
+    <div class="metric-delta delta-up">▲ 12% vs Q1</div>
+  </div>
+</div>
+
+<!-- 收入趋势 + 用户渠道 -->
+<div class="section-title">📈 增长趋势</div>
+<div class="grid grid-2">
+  <div class="card">
+    <div class="card-title">💵 收入趋势（近7周）</div>
+    <div class="revenue-chart-wrap">
+      <div class="revenue-chart">
+        <div class="bar fill-purple" style="height:35%" title="Week 1: $1,820"><div class="bar-label">W1</div></div>
+        <div class="bar fill-purple" style="height:42%" title="Week 2: $2,180"><div class="bar-label">W2</div></div>
+        <div class="bar fill-purple" style="height:38%" title="Week 3: $1,980"><div class="bar-label">W3</div></div>
+        <div class="bar fill-purple" style="height:55%" title="Week 4: $2,840"><div class="bar-label">W4</div></div>
+        <div class="bar fill-purple" style="height:62%" title="Week 5: $3,220"><div class="bar-label">W5</div></div>
+        <div class="bar fill-blue" style="height:78%" title="Week 6: $3,980"><div class="bar-label">W6</div></div>
+        <div class="bar fill-green" style="height:95%" title="Week 7 (本周): $4,280"><div class="bar-label">本周</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🔗 用户获取渠道</div>
+    <div class="channel-row">
+      <div class="channel-icon" style="background:rgba(249,115,22,0.15)">🔴</div>
+      <div class="channel-name">Product Hunt</div>
+      <div class="channel-num">423</div>
+      <div class="channel-delta delta-up">▲34%</div>
+    </div>
+    <div class="channel-row">
+      <div class="channel-icon" style="background:rgba(59,130,246,0.15)">🐦</div>
+      <div class="channel-name">Twitter / X</div>
+      <div class="channel-num">318</div>
+      <div class="channel-delta delta-up">▲28%</div>
+    </div>
+    <div class="channel-row">
+      <div class="channel-icon" style="background:rgba(255,122,0,0.15)">🔶</div>
+      <div class="channel-name">Hacker News</div>
+      <div class="channel-num">201</div>
+      <div class="channel-delta delta-up">▲12%</div>
+    </div>
+    <div class="channel-row">
+      <div class="channel-icon" style="background:rgba(22,163,74,0.15)">🔗</div>
+      <div class="channel-name">SEO / Organic</div>
+      <div class="channel-num">187</div>
+      <div class="channel-delta delta-up">▲67%</div>
+    </div>
+    <div class="channel-row">
+      <div class="channel-icon" style="background:rgba(100,116,139,0.15)">📧</div>
+      <div class="channel-name">Email Referral</div>
+      <div class="channel-num">98</div>
+      <div class="channel-delta delta-up">▲5%</div>
+    </div>
+  </div>
+</div>
+
+<!-- 目标进度 -->
+<div class="section-title">🎯 季度目标</div>
+<div class="grid grid-3">
+  <div class="card">
+    <div class="card-title">🏆 MRR 目标</div>
+    <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px">
+      <span>$4,280 / $6,000</span>
+      <span style="color:var(--green);font-weight:600">71%</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill fill-green" style="width:71%"></div></div>
+    <div class="metric-sub" style="margin-top:6px">还差 $1,720，预计 Q2 末达成</div>
+  </div>
+  <div class="card">
+    <div class="card-title">👤 用户目标</div>
+    <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px">
+      <span>1,847 / 3,000</span>
+      <span style="color:var(--yellow);font-weight:600">62%</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill fill-yellow" style="width:62%"></div></div>
+    <div class="metric-sub" style="margin-top:6px">周增速 156，6周可达目标</div>
+  </div>
+  <div class="card">
+    <div class="card-title">📝 内容目标</div>
+    <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px">
+      <span>42 / 60 条</span>
+      <span style="color:var(--accent);font-weight:600">70%</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill fill-purple" style="width:70%"></div></div>
+    <div class="metric-sub" style="margin-top:6px">还差 18 条，月均 14 条可达</div>
+  </div>
+</div>
+
+<!-- 待办 & AI 洞察 -->
+<div class="section-title">✅ 今日任务</div>
+<div class="grid grid-2">
+  <div class="card">
+    <div class="card-title">📋 高优先级任务</div>
+    <ul class="task-list" id="task-list">
+      <li class="task-item">
+        <div class="task-check" onclick="toggleTask(this)"></div>
+        <span class="task-text">发布 Product Hunt — AI Dashboard v1.0</span>
+        <span class="task-tag tag-high">紧急</span>
+      </li>
+      <li class="task-item">
+        <div class="task-check done" onclick="toggleTask(this)"></div>
+        <span class="task-text done">完成 Stripe 订阅集成测试</span>
+        <span class="task-tag tag-low">Done</span>
+      </li>
+      <li class="task-item">
+        <div class="task-check" onclick="toggleTask(this)"></div>
+        <span class="task-text">写本周 Newsletter（预估 800 字）</span>
+        <span class="task-tag tag-mid">今日</span>
+      </li>
+      <li class="task-item">
+        <div class="task-check" onclick="toggleTask(this)"></div>
+        <span class="task-text">跟进 3 封 B2B 潜客邮件回复</span>
+        <span class="task-tag tag-mid">今日</span>
+      </li>
+      <li class="task-item">
+        <div class="task-check done" onclick="toggleTask(this)"></div>
+        <span class="task-text done">部署 SEO 优化批次 #7</span>
+        <span class="task-tag tag-low">Done</span>
+      </li>
+    </ul>
+    <button class="add-item-btn" onclick="addTask()">＋ 添加任务</button>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🤖 AI 周度洞察</div>
+    <div class="ai-insight">
+      <div class="ai-label">📊 本周摘要</div>
+      <p>本周 MRR 增长 23%，增长来源主要为 Product Hunt 流量（423 注册），SEO 渠道同比增长 67%，表明内容策略开始发力。建议：在 HN 发一篇技术深度文章，历史数据显示可带来 200–400 注册用户。</p>
+    </div>
+    <div class="ai-insight" style="margin-top:10px">
+      <div class="ai-label">⚠️ 风险提示</div>
+      <p>Churn Rate 过去 2 周从 2.1% 升至 3.8%。建议在下周 onboarding 流程中增加「第一次成功」引导，降低用户流失。</p>
+    </div>
+  </div>
+</div>
+
+<!-- 自动化状态 -->
+<div class="section-title">⚡ 自动化系统状态</div>
+<div class="grid grid-4">
+  <div class="card">
+    <div class="card-title">✍️ 内容自动化</div>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+      <div class="live-dot" style="background:var(--green)"></div>
+      <span style="font-size:13px;color:var(--green)">运行中</span>
+    </div>
+    <div class="metric-sub">今日已生成 6 条草稿</div>
+    <div class="metric-sub" style="margin-top:4px">下次运行：明天 09:00</div>
+  </div>
+  <div class="card">
+    <div class="card-title">📧 邮件营销</div>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+      <div class="live-dot" style="background:var(--green)"></div>
+      <span style="font-size:13px;color:var(--green)">运行中</span>
+    </div>
+    <div class="metric-sub">序列 #4 开信率 34.2%</div>
+    <div class="metric-sub" style="margin-top:4px">下次发送：明天 10:00</div>
+  </div>
+  <div class="card">
+    <div class="card-title">🔍 SEO 监控</div>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+      <div class="live-dot" style="background:var(--yellow)"></div>
+      <span style="font-size:13px;color:var(--yellow)">检查中</span>
+    </div>
+    <div class="metric-sub">核心词排名第 8 → 第 5</div>
+    <div class="metric-sub" style="margin-top:4px">每6小时更新</div>
+  </div>
+  <div class="card">
+    <div class="card-title">💳 支付系统</div>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+      <div class="live-dot" style="background:var(--green)"></div>
+      <span style="font-size:13px;color:var(--green)">正常</span>
+    </div>
+    <div class="metric-sub">今日交易 12 笔 / $680</div>
+    <div class="metric-sub" style="margin-top:4px">零失败率</div>
+  </div>
+</div>
+
+<div class="footer">
+  <span>Built with ❤️ by 小蓝虾🦐 · 一人公司也能有航天级仪表盘</span>
+  <span>更新于 <span id="update-time">—</span></span>
+</div>
+
+<script>
+  // 更新时间
+  function updateTime() {
+    const now = new Date();
+    document.getElementById('update-time').textContent = now.toLocaleString('zh-CN', {timeZone: 'Asia/Shanghai'});
+  }
+  updateTime();
+  setInterval(updateTime, 30000);
+
+  // 任务勾选
+  function toggleTask(el) {
+    el.classList.toggle('done');
+    const text = el.nextElementSibling;
+    text.classList.toggle('done');
+  }
+
+  // 添加任务
+  function addTask() {
+    const input = prompt('输入任务内容：');
+    if (!input) return;
+    const list = document.getElementById('task-list');
+    const li = document.createElement('li');
+    li.className = 'task-item';
+    li.innerHTML = `
+      <div class="task-check" onclick="toggleTask(this)"></div>
+      <span class="task-text">${input}</span>
+      <span class="task-tag tag-mid">新增</span>
+    `;
+    list.appendChild(li);
+  }
+
+  // 数字动画
+  function animateValue(el, target, prefix='', suffix='') {
+    const start = 0;
+    const duration = 1200;
+    const startTime = performance.now();
+    function update(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.round(eased * target);
+      el.textContent = prefix + current.toLocaleString() + suffix;
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+
+  // 进场动画
+  window.addEventListener('load', () => {
+    animateValue(document.getElementById('dau'), 1847);
+    animateValue(document.getElementById('content'), 42);
+  });
+</script>
+</body>
+</html>

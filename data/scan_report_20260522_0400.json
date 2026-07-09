@@ -1,0 +1,48 @@
+{
+  "scan_time": "2026-05-22 04:00",
+  "triggers_fired": [],
+  "stops_triggered": [],
+  "watchlist_approaching": [
+    {
+      "ticker": "VST",
+      "account": "institutional",
+      "current": 149.1,
+      "trigger": 150.0,
+      "gap_pct": -0.6,
+      "priority": "A",
+      "status": "entered"
+    }
+  ],
+  "portfolio_summary": {
+    "institutional": {
+      "name": "大机构",
+      "emoji": "🏦",
+      "total_value": 36551.82,
+      "cash": 13640.35,
+      "position_value": 22911.47,
+      "pnl": -13448.18,
+      "return_pct": -26.9,
+      "positions": 3
+    },
+    "aggressive": {
+      "name": "激进交易",
+      "emoji": "⚡",
+      "total_value": 55712.28,
+      "cash": 26025.59,
+      "position_value": 29686.69,
+      "pnl": 5712.28,
+      "return_pct": 11.42,
+      "positions": 5
+    },
+    "blueshrimp": {
+      "name": "蓝虾交易",
+      "emoji": "🦐",
+      "total_value": 56792.24,
+      "cash": 39001.64,
+      "position_value": 17790.6,
+      "pnl": 6792.24,
+      "return_pct": 13.58,
+      "positions": 3
+    }
+  }
+}

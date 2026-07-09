@@ -1,0 +1,48 @@
+{
+  "scan_time": "2026-05-31 10:00",
+  "triggers_fired": [],
+  "stops_triggered": [],
+  "watchlist_approaching": [
+    {
+      "ticker": "MLEC",
+      "account": "aggressive",
+      "current": 7.53,
+      "trigger": 7.5,
+      "gap_pct": 0.4,
+      "priority": "B",
+      "status": "entered"
+    }
+  ],
+  "portfolio_summary": {
+    "institutional": {
+      "name": "大机构",
+      "emoji": "🏦",
+      "total_value": 38670.76,
+      "cash": 13640.35,
+      "position_value": 25030.41,
+      "pnl": -11329.24,
+      "return_pct": -22.66,
+      "positions": 3
+    },
+    "aggressive": {
+      "name": "激进交易",
+      "emoji": "⚡",
+      "total_value": 56767.64,
+      "cash": 26025.59,
+      "position_value": 30742.05,
+      "pnl": 6767.64,
+      "return_pct": 13.54,
+      "positions": 5
+    },
+    "blueshrimp": {
+      "name": "蓝虾交易",
+      "emoji": "🦐",
+      "total_value": 56758.5,
+      "cash": 39001.64,
+      "position_value": 17756.86,
+      "pnl": 6758.5,
+      "return_pct": 13.52,
+      "positions": 3
+    }
+  }
+}

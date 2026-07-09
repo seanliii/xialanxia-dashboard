@@ -1,0 +1,26 @@
+{
+  "scan_time": "2026-07-08T16:02:40.207220",
+  "signals": [
+    {
+      "ticker": "FBGL",
+      "price": 0.5886,
+      "chg_1d": 9.0,
+      "volume": 264543,
+      "market_cap": null,
+      "source": "Unusual Volume Stocks",
+      "url": "https://finance.yahoo.com/markets/stocks/unusual-volume-stocks",
+      "reason": "\u4f4e\u4ef7\u80a1$0.59 \u5f02\u52a8",
+      "type": "sub_50m"
+    },
+    {
+      "ticker": "OTCQX",
+      "price": 0.0,
+      "chg_1d": 0,
+      "volume": 0,
+      "source": "OTC Markets Q1 2026 slides: revenue surges 14%, earnings beat by 52%",
+      "url": "https://www.investing.com/news/company-news/otc-markets-q1-2026-slides-revenue-surges-14-earnings-beat-by-52-93CH-4669086",
+      "reason": "OTC/\u7c89\u5355\u80a1\u66b4\u91cf $0.00",
+      "type": "otc_volume"
+    }
+  ]
+}

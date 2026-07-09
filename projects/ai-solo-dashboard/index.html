@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SoloDash — 一人公司 AI 仪表盘</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0a0e1a; --surface: #111827; --surface2: #1a2236;
+  --border: #1f2d45; --accent: #6366f1; --accent2: #10b981;
+  --accent3: #f59e0b; --accent4: #ef4444;
+  --text: #e2e8f0; --text2: #94a3b8; --text3: #64748b;
+}
+body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; min-height:100vh; }
+.topbar { display:flex; align-items:center; justify-content:space-between; padding:14px 24px; border-bottom:1px solid var(--border); background:var(--surface); position:sticky; top:0; z-index:100; }
+.logo { font-size:18px; font-weight:800; background:linear-gradient(135deg,#6366f1,#10b981); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.badge { background:rgba(99,102,241,.15); color:var(--accent); padding:2px 10px; border-radius:20px; font-size:11px; font-weight:600; border:1px solid rgba(99,102,241,.3); margin-left:10px; }
+.dot { width:8px; height:8px; border-radius:50%; background:var(--accent2); box-shadow:0 0 8px var(--accent2); animation:pulse 2s infinite; display:inline-block; margin-right:6px; }
+@keyframes pulse { 0%,100%{opacity:1}50%{opacity:.4} }
+.upd { font-size:12px; color:var(--text3); }
+.container { padding:20px 24px; max-width:1300px; margin:0 auto; }
+.greeting h1 { font-size:22px; font-weight:700; margin-bottom:4px; }
+.greeting p { color:var(--text2); font-size:13px; margin-bottom:20px; }
+.stats-row { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:20px; }
+.stat-card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:16px; position:relative; overflow:hidden; }
+.stat-card::before { content:''; position:absolute; top:0;left:0;width:100%;height:3px; }
+.stat-card.revenue::before{background:linear-gradient(90deg,#10b981,#34d399)}
+.stat-card.users::before{background:linear-gradient(90deg,#6366f1,#818cf8)}
+.stat-card.content::before{background:linear-gradient(90deg,#f59e0b,#fbbf24)}
+.stat-card.tasks::before{background:linear-gradient(90deg,#ef4444,#f87171)}
+.stat-label { font-size:11px; color:var(--text3); text-transform:uppercase; letter-spacing:.5px; margin-bottom:6px; }
+.stat-value { font-size:28px; font-weight:800; line-height:1; letter-spacing:-1px; margin-bottom:6px; }
+.stat-value.green{color:var(--accent2)} .stat-value.purple{color:#818cf8} .stat-value.yellow{color:var(--accent3)} .stat-value.red{color:#f87171}
+.stat-change { font-size:12px; }
+.change-up{color:var(--accent2)} .change-dn{color:var(--accent4)} .change-neu{color:var(--text3)}
+.grid2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px; }
+.grid3 { display:grid; grid-template-columns:3fr 2fr; gap:14px; margin-bottom:14px; }
+.card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:18px; }
+.card-hdr { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
+.card-ttl { font-size:13px; font-weight:600; }
+.card-btn { font-size:11px; color:var(--accent); cursor:pointer; background:rgba(99,102,241,.1); padding:4px 10px; border-radius:6px; border:1px solid rgba(99,102,241,.2); }
+.chart-wrap { position:relative; height:150px; }
+/* Sources */
+.src-item { display:flex; align-items:center; gap:10px; padding:8px 0; border-bottom:1px solid var(--border); }
+.src-item:last-child{border:none}
+.src-icon { width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0; }
+.src-info{flex:1;min-width:0}
+.src-name{font-size:12px;font-weight:600}
+.src-sub{font-size:10px;color:var(--text3)}
+.src-amt{font-size:13px;font-weight:700;color:var(--accent2)}
+.src-bar{width:50px;height:3px;background:var(--border);border-radius:2px;margin-top:3px}
+.src-bar-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,#10b981,#34d399)}
+/* Content */
+.cnt-item { display:flex;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:1px solid var(--border); }
+.cnt-item:last-child{border:none}
+.cnt-type{padding:2px 7px;border-radius:3px;font-size:9px;font-weight:700;text-transform:uppercase;flex-shrink:0;margin-top:2px;}
+.t-tw{background:rgba(29,161,242,.15);color:#1da1f2}
+.t-bl{background:rgba(99,102,241,.15);color:#818cf8}
+.t-yt{background:rgba(239,68,68,.15);color:#f87171}
+.t-em{background:rgba(245,158,11,.15);color:#fbbf24}
+.t-gh{background:rgba(100,116,139,.15);color:#94a3b8}
+.t-pr{background:rgba(16,185,129,.15);color:#34d399}
+.cnt-body{flex:1;min-width:0}
+.cnt-title{font-size:12px;font-weight:500;line-height:1.4;margin-bottom:2px}
+.cnt-meta{font-size:10px;color:var(--text3);display:flex;gap:6px;align-items:center}
+.s-pub{background:rgba(16,185,129,.15);color:#34d399;padding:1px 5px;border-radius:3px;font-size:9px;font-weight:600}
+.s-sch{background:rgba(245,158,11,.15);color:#fbbf24;padding:1px 5px;border-radius:3px;font-size:9px;font-weight:600}
+.s-dft{background:rgba(100,116,139,.15);color:#94a3b8;padding:1px 5px;border-radius:3px;font-size:9px;font-weight:600}
+/* Tasks */
+.task-item{display:flex;align-items:center;gap:8px;padding:7px 8px;border-radius:7px;cursor:pointer;transition:background .15s;}
+.task-item:hover{background:var(--surface2)}
+.task-check{width:16px;height:16px;border-radius:4px;border:2px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;transition:all .15s;}
+.task-check.done{background:var(--accent2);border-color:var(--accent2);color:#0a0e1a}
+.task-txt{font-size:12px;flex:1;line-height:1.4}
+.task-txt.done{text-decoration:line-through;color:var(--text3)}
+.pri-h{background:rgba(239,68,68,.15);color:#f87171;padding:1px 5px;border-radius:3px;font-size:9px;font-weight:600}
+.pri-m{background:rgba(245,158,11,.15);color:#fbbf24;padding:1px 5px;border-radius:3px;font-size:9px;font-weight:600}
+.pri-l{background:rgba(100,116,139,.15);color:#94a3b8;padding:1px 5px;border-radius:3px;font-size:9px;font-weight:600}
+/* Goal ring */
+.goal-sec{display:flex;align-items:center;gap:16px;margin-top:4px}
+.ring-wrap{position:relative;width:72px;height:72px;flex-shrink:0}
+.ring-wrap svg{transform:rotate(-90deg)}
+.ring-lbl{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center}
+.ring-pct{font-size:14px;font-weight:800;color:var(--accent2);display:block;line-height:1}
+.ring-sub{font-size:8px;color:var(--text3);text-transform:uppercase}
+.goal-dtl{flex:1}
+.goal-name{font-size:13px;font-weight:600;margin-bottom:4px}
+.goal-bar{height:5px;background:var(--border);border-radius:3px;overflow:hidden;margin-bottom:5px}
+.goal-bar-fill{height:100%;background:linear-gradient(90deg,#10b981,#34d399);border-radius:3px;transition:width 1s ease}
+.goal-meta{font-size:10px;color:var(--text3);display:flex;justify-content:space-between}
+/* Mini bars */
+.mini-bars{display:flex;align-items:flex-end;gap:3px;height:55px;margin-top:10px}
+.mb{flex:1;border-radius:2px 2px 0 0;background:linear-gradient(180deg,rgba(99,102,241,.8),rgba(99,102,241,.3));min-height:3px;cursor:pointer;transition:opacity .15s;}
+.mb:hover{opacity:.75}
+.mb-labels{display:flex;gap:3px;margin-top:3px}
+.mb-lbl{flex:1;text-align:center;font-size:8px;color:var(--text3)}
+.metrics-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+.metric{background:var(--surface2);border-radius:8px;padding:10px;text-align:center}
+.metric-val{font-size:18px;font-weight:800;margin-bottom:2px}
+.metric-lbl{font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px}
+/* Activity */
+.act-item{display:flex;gap:8px;padding:7px 0;border-bottom:1px solid var(--border);align-items:flex-start}
+.act-item:last-child{border:none}
+.act-dot{width:7px;height:7px;border-radius:50%;margin-top:4px;flex-shrink:0}
+.act-body{flex:1}
+.act-txt{font-size:12px;line-height:1.5;color:var(--text2)}
+.act-time{font-size:10px;color:var(--text3);margin-top:1px}
+/* Inputs */
+.inp-row{display:flex;gap:8px;margin-top:12px}
+.inp{flex:1;background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:8px 12px;border-radius:7px;font-size:12px;outline:none;transition:border-color .2s}
+.inp:focus{border-color:var(--accent)}
+.inp::placeholder{color:var(--text3)}
+.btn-p{padding:8px 14px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;border:none;background:var(--accent);color:white;transition:all .15s}
+.btn-p:hover{background:#4f52e0}
+.btn-g{padding:8px 14px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;background:transparent;color:var(--text2);border:1px solid var(--border)}
+/* Data edit */
+.edit-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-top:10px}
+.edit-lbl{font-size:10px;color:var(--text3);display:block;margin-bottom:3px}
+.footer{text-align:center;padding:16px;color:var(--text3);font-size:11px;border-top:1px solid var(--border);margin-top:16px}
+.footer a{color:var(--accent);text-decoration:none}
+@media(max-width:900px){.stats-row,.grid2,.grid3{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.stats-row{grid-template-columns:1fr 1fr}.container{padding:12px}.stat-value{font-size:22px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div style="display:flex;align-items:center">
+    <div class="logo">⚡ SoloDash</div>
+    <div class="badge">ONE-PERSON CO.</div>
+  </div>
+  <div style="display:flex;align-items:center">
+    <span class="dot"></span>
+    <span class="upd" id="upd">Live</span>
+  </div>
+</div>
+
+<div class="container">
+  <div class="greeting">
+    <h1 id="greet">Good day, founder 👋</h1>
+    <p id="greetDate">Loading...</p>
+  </div>
+
+  <!-- KPI ROW -->
+  <div class="stats-row">
+    <div class="stat-card revenue">
+      <div class="stat-label">💰 MRR</div>
+      <div class="stat-value green" id="kMrr">$0</div>
+      <div class="stat-change change-up" id="kMrrC">↑ 0%</div>
+    </div>
+    <div class="stat-card users">
+      <div class="stat-label">👥 Users</div>
+      <div class="stat-value purple" id="kUsers">0</div>
+      <div class="stat-change change-up" id="kUsersC">+0 this week</div>
+    </div>
+    <div class="stat-card content">
+      <div class="stat-label">📝 Content</div>
+      <div class="stat-value yellow" id="kContent">0</div>
+      <div class="stat-change change-neu" id="kContentC">0 scheduled</div>
+    </div>
+    <div class="stat-card tasks">
+      <div class="stat-label">✅ Tasks Today</div>
+      <div class="stat-value red" id="kTasks">0/0</div>
+      <div class="stat-change change-neu" id="kTasksC">0% done</div>
+    </div>
+  </div>
+
+  <!-- ROW 1 -->
+  <div class="grid2">
+    <div class="card">
+      <div class="card-hdr">
+        <div class="card-ttl">📈 Revenue Chart</div>
+        <select id="chartPer" onchange="drawChart()" style="background:var(--surface2);color:var(--text);border:1px solid var(--border);border-radius:5px;font-size:11px;padding:2px 6px;cursor:pointer">
+          <option value="6">6 mo</option><option value="12">12 mo</option><option value="3">3 mo</option>
+        </select>
+      </div>
+      <div class="chart-wrap"><canvas id="revChart"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-hdr">
+        <div class="card-ttl">💎 Revenue Sources</div>
+        <div class="card-btn" onclick="addSrc()">+ Add</div>
+      </div>
+      <div id="srcList"></div>
+    </div>
+  </div>
+
+  <!-- ROW 2 -->
+  <div class="grid3">
+    <div class="card">
+      <div class="card-hdr">
+        <div class="card-ttl">🗓️ Content Pipeline</div>
+        <div class="card-btn" onclick="addCnt()">+ Schedule</div>
+      </div>
+      <div id="cntFeed"></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="card">
+        <div class="card-hdr">
+          <div class="card-ttl">🎯 Today's Focus</div>
+          <div class="card-btn" onclick="addTask()">+ Add</div>
+        </div>
+        <div id="taskList"></div>
+      </div>
+      <div class="card">
+        <div class="card-hdr">
+          <div class="card-ttl">🏆 Monthly Goal</div>
+          <div class="card-btn" onclick="editGoal()">Edit</div>
+        </div>
+        <div class="goal-sec">
+          <div class="ring-wrap">
+            <svg width="72" height="72">
+              <circle cx="36" cy="36" r="28" fill="none" stroke="var(--border)" stroke-width="5"/>
+              <circle cx="36" cy="36" r="28" fill="none" stroke="#10b981" stroke-width="5"
+                stroke-dasharray="175.93" id="gRing" stroke-dashoffset="175.93" stroke-linecap="round"/>
+            </svg>
+            <div class="ring-lbl">
+              <span class="ring-pct" id="gPct">0%</span>
+              <span class="ring-sub">done</span>
+            </div>
+          </div>
+          <div class="goal-dtl">
+            <div class="goal-name" id="gName">Set a goal →</div>
+            <div class="goal-bar"><div class="goal-bar-fill" id="gFill" style="width:0%"></div></div>
+            <div class="goal-meta">
+              <span id="gCur">$0</span><span id="gTgt">/ $0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROW 3 -->
+  <div class="grid2">
+    <div class="card">
+      <div class="card-hdr"><div class="card-ttl">📊 User Growth (12 Weeks)</div></div>
+      <div class="mini-bars" id="uBars"></div>
+      <div class="mb-labels" id="uLabels"></div>
+      <div class="metrics-row">
+        <div class="metric"><div class="metric-val purple" id="mDAU">0</div><div class="metric-lbl">DAU</div></div>
+        <div class="metric"><div class="metric-val purple" id="mMAU">0</div><div class="metric-lbl">MAU</div></div>
+        <div class="metric"><div class="metric-val green" id="mChurn">0%</div><div class="metric-lbl">Churn</div></div>
+        <div class="metric"><div class="metric-val yellow" id="mARPA">$0</div><div class="metric-lbl">ARPA</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-hdr">
+        <div class="card-ttl">⚡ Activity Log</div>
+        <div class="card-btn" onclick="clearAct()">Clear</div>
+      </div>
+      <div id="actLog" style="max-height:180px;overflow-y:auto"></div>
+      <div class="inp-row">
+        <input class="inp" id="actInp" placeholder="Log an update... (Enter to submit)" onkeydown="if(event.key==='Enter')logAct()" />
+        <button class="btn-p" onclick="logAct()">Log</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDIT PANEL -->
+  <div class="card" style="margin-top:14px">
+    <div class="card-hdr">
+      <div class="card-ttl">⚙️ Update Your Numbers</div>
+      <div class="card-btn" onclick="saveAll()">💾 Save</div>
+    </div>
+    <div class="edit-grid">
+      <div><label class="edit-lbl">MRR ($)</label><input class="inp" id="eMrr" placeholder="e.g. 4200"/></div>
+      <div><label class="edit-lbl">MRR Change (%)</label><input class="inp" id="eMrrC" placeholder="e.g. 12.5"/></div>
+      <div><label class="edit-lbl">Total Users</label><input class="inp" id="eUsers" placeholder="e.g. 312"/></div>
+      <div><label class="edit-lbl">New Users (week)</label><input class="inp" id="eUsersW" placeholder="e.g. 24"/></div>
+      <div><label class="edit-lbl">DAU</label><input class="inp" id="eDAU" placeholder="e.g. 45"/></div>
+      <div><label class="edit-lbl">MAU</label><input class="inp" id="eMAU" placeholder="e.g. 189"/></div>
+      <div><label class="edit-lbl">Churn (%)</label><input class="inp" id="eChurn" placeholder="e.g. 3.2"/></div>
+      <div><label class="edit-lbl">ARPA ($)</label><input class="inp" id="eARPA" placeholder="e.g. 22"/></div>
+      <div><label class="edit-lbl">Goal Name</label><input class="inp" id="eGName" placeholder="e.g. Hit $5k MRR"/></div>
+      <div><label class="edit-lbl">Goal Target ($)</label><input class="inp" id="eGTgt" placeholder="e.g. 5000"/></div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">Built with ❤️ by <a href="https://seanliii.github.io/ai-solo-dashboard/">SoloDash</a> · One-person company starter kit · <a href="https://github.com/seanliii/ai-solo-dashboard">GitHub</a></div>
+
+<script>
+// ── DATA STORE ──────────────────────────────────────────────────────
+const KEY = 'solodash_v2';
+const DEFAULTS = {
+  mrr: 2840, mrrChange: 18.4,
+  users: 234, usersWeek: 31,
+  dau: 38, mau: 156, churn: 2.8, arpa: 18,
+  goalName: 'Hit $5k MRR', goalTarget: 5000,
+  content: [
+    {type:'twitter',title:'AI founder hack: how I 10x\'d signups in a weekend',status:'published',date:'Today'},
+    {type:'blog',title:'Building a one-person SaaS in 2026: full playbook',status:'published',date:'May 22'},
+    {type:'youtube',title:'Live coding session: from 0 to MVP in 4 hours',status:'scheduled',date:'May 25'},
+    {type:'email',title:'Weekly digest: top tools + revenue update',status:'scheduled',date:'May 26'},
+    {type:'github',title:'Open-sourced my automation scripts (50+ stars)',status:'published',date:'May 20'},
+  ],
+  sources: [
+    {icon:'🛍️',name:'SaaS Subscriptions',sub:'Pro plan $29/mo',amount:1680,color:'#10b981'},
+    {icon:'📚',name:'Digital Products',sub:'Templates & guides',amount:620,color:'#6366f1'},
+    {icon:'🤝',name:'Consulting',sub:'1:1 sessions',amount:400,color:'#f59e0b'},
+    {icon:'📣',name:'Sponsorships',sub:'Newsletter & socials',amount:140,color:'#ef4444'},
+  ],
+  tasks: [
+    {text:'Ship landing page v2',done:true,pri:'h'},
+    {text:'Write launch tweet thread',done:true,pri:'h'},
+    {text:'Record product demo video',done:false,pri:'h'},
+    {text:'Set up email drip sequence',done:false,pri:'m'},
+    {text:'Update pricing page',done:false,pri:'m'},
+    {text:'Reply to 5 user emails',done:true,pri:'l'},
+  ],
+  revHistory: [580,820,1100,1380,1710,2010,2200,2480,2610,2720,2840,2840],
+  userHistory: [12,19,28,41,55,73,92,118,151,183,210,234],
+  activity: [
+    {text:'Shipped <strong>email onboarding sequence</strong> – 3 steps, 60% open rate so far',time:'2h ago',color:'#10b981'},
+    {text:'<strong>31 new signups</strong> from Twitter thread this week',time:'5h ago',color:'#6366f1'},
+    {text:'Closed <strong>2 consulting clients</strong> at $200/hr',time:'Yesterday',color:'#f59e0b'},
+    {text:'Deployed <strong>v1.4.2</strong> – fixed auth bug, added CSV export',time:'2 days ago',color:'#818cf8'},
+  ]
+};
+
+function load() {
+  try { return {...DEFAULTS, ...JSON.parse(localStorage.getItem(KEY)||'{}')}; }
+  catch(e) { return {...DEFAULTS}; }
+}
+function save(d) { localStorage.setItem(KEY, JSON.stringify(d)); }
+let D = load();
+
+// ── CHART ────────────────────────────────────────────────────────────
+let chart;
+function drawChart() {
+  const n = parseInt(document.getElementById('chartPer').value);
+  const labels = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'].slice(-n);
+  const data = D.revHistory.slice(-n);
+  if (chart) chart.destroy();
+  chart = new Chart(document.getElementById('revChart'), {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [{
+        data,
+        borderColor: '#6366f1',
+        backgroundColor: 'rgba(99,102,241,0.1)',
+        fill: true,
+        tension: 0.4,
+        pointBackgroundColor: '#6366f1',
+        pointRadius: 4,
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: {display:false} },
+      scales: {
+        x: { grid:{color:'rgba(255,255,255,0.03)'}, ticks:{color:'#64748b',font:{size:10}} },
+        y: { grid:{color:'rgba(255,255,255,0.05)'}, ticks:{color:'#64748b',font:{size:10},callback:v=>'$'+v.toLocaleString()} }
+      }
+    }
+  });
+}
+
+// ── RENDER ───────────────────────────────────────────────────────────
+function fmt(n) { return n>=1000?'$'+(n/1000).toFixed(1)+'k':'$'+n; }
+
+function render() {
+  // Greeting
+  const h = new Date().getHours();
+  const greet = h<12?'Good morning':'h<17?'Good afternoon':'Good evening';
+  document.getElementById('greet').textContent = greet+', founder 👋';
+  document.getElementById('greetDate').textContent = new Date().toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'}) + ' · SoloDash';
+  document.getElementById('upd').textContent = 'Updated '+new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
+
+  // KPIs
+  document.getElementById('kMrr').textContent = fmt(D.mrr);
+  document.getElementById('kMrrC').textContent = '↑ '+D.mrrChange+'% vs last month';
+  document.getElementById('kUsers').textContent = D.users.toLocaleString();
+  document.getElementById('kUsersC').textContent = '+'+D.usersWeek+' this week';
+  const pub = D.content.filter(c=>c.status==='published').length;
+  const sch = D.content.filter(c=>c.status==='scheduled').length;
+  document.getElementById('kContent').textContent = pub+pub;
+  document.getElementById('kContent').textContent = pub;
+  document.getElementById('kContentC').textContent = sch+' scheduled';
+  const done = D.tasks.filter(t=>t.done).length;
+  document.getElementById('kTasks').textContent = done+'/'+D.tasks.length;
+  document.getElementById('kTasksC').textContent = Math.round(done/Math.max(1,D.tasks.length)*100)+'% done';
+
+  // Metrics
+  document.getElementById('mDAU').textContent = D.dau;
+  document.getElementById('mMAU').textContent = D.mau;
+  document.getElementById('mChurn').textContent = D.churn+'%';
+  document.getElementById('mARPA').textContent = '$'+D.arpa;
+
+  // Sources
+  const maxAmt = Math.max(...D.sources.map(s=>s.amount));
+  document.getElementById('srcList').innerHTML = D.sources.map(s=>`
+    <div class="src-item">
+      <div class="src-icon" style="background:${s.color}22">${s.icon}</div>
+      <div class="src-info">
+        <div class="src-name">${s.name}</div>
+        <div class="src-sub">${s.sub}</div>
+        <div class="src-bar"><div class="src-bar-fill" style="width:${Math.round(s.amount/maxAmt*100)}%;background:${s.color}"></div></div>
+      </div>
+      <div class="src-amt">${fmt(s.amount)}</div>
+    </div>
+  `).join('');
+
+  // Content
+  const typeMap = {twitter:'t-tw',blog:'t-bl',youtube:'t-yt',email:'t-em',github:'t-gh',product:'t-pr'};
+  const statMap = {published:'s-pub',scheduled:'s-sch',draft:'s-dft'};
+  document.getElementById('cntFeed').innerHTML = D.content.map(c=>`
+    <div class="cnt-item">
+      <div class="cnt-type ${typeMap[c.type]||'t-pr'}">${c.type}</div>
+      <div class="cnt-body">
+        <div class="cnt-title">${c.title}</div>
+        <div class="cnt-meta"><span class="${statMap[c.status]||'s-dft'}">${c.status}</span>${c.date}</div>
+      </div>
+    </div>
+  `).join('');
+
+  // Tasks
+  document.getElementById('taskList').innerHTML = D.tasks.map((t,i)=>`
+    <div class="task-item" onclick="toggleTask(${i})">
+      <div class="task-check ${t.done?'done':''}">${t.done?'✓':''}</div>
+      <div class="task-txt ${t.done?'done':''}">${t.text}</div>
+      <div class="${t.pri==='h'?'pri-h':t.pri==='m'?'pri-m':'pri-l'}">${t.pri}</div>
+    </div>
+  `).join('');
+
+  // Goal ring
+  const pct = Math.min(100, Math.round(D.mrr/Math.max(1,D.goalTarget)*100));
+  document.getElementById('gPct').textContent = pct+'%';
+  document.getElementById('gName').textContent = D.goalName;
+  document.getElementById('gFill').style.width = pct+'%';
+  document.getElementById('gCur').textContent = fmt(D.mrr)+' earned';
+  document.getElementById('gTgt').textContent = '/ '+fmt(D.goalTarget);
+  const circumference = 175.93;
+  document.getElementById('gRing').style.strokeDashoffset = circumference*(1-pct/100);
+
+  // User bars
+  const maxU = Math.max(...D.userHistory);
+  document.getElementById('uBars').innerHTML = D.userHistory.map((v,i)=>`
+    <div class="mb" style="height:${Math.max(8,Math.round(v/maxU*55))}px" title="${v} users week ${i+1}"></div>
+  `).join('');
+  document.getElementById('uLabels').innerHTML = D.userHistory.map((_,i)=>`
+    <div class="mb-lbl">W${i+1}</div>
+  `).join('');
+
+  // Activity
+  document.getElementById('actLog').innerHTML = D.activity.slice(0,8).map(a=>`
+    <div class="act-item">
+      <div class="act-dot" style="background:${a.color||'#6366f1'}"></div>
+      <div class="act-body">
+        <div class="act-txt">${a.text}</div>
+        <div class="act-time">${a.time}</div>
+      </div>
+    </div>
+  `).join('');
+
+  drawChart();
+}
+
+// ── ACTIONS ──────────────────────────────────────────────────────────
+function toggleTask(i) {
+  D.tasks[i].done = !D.tasks[i].done;
+  save(D); render();
+}
+function addTask() {
+  const t = prompt('New task:'); if (!t) return;
+  const p = prompt('Priority (h/m/l):','m') || 'm';
+  D.tasks.push({text:t,done:false,pri:p});
+  save(D); render();
+}
+function addSrc() {
+  const name = prompt('Source name:'); if (!name) return;
+  const amt = parseInt(prompt('Monthly amount ($):','0')||'0');
+  const icons = ['💰','🛍️','📚','🤝','📣','🎯'];
+  const colors = ['#10b981','#6366f1','#f59e0b','#ef4444','#818cf8'];
+  D.sources.push({icon:icons[D.sources.length%icons.length],name,sub:'New source',amount:amt,color:colors[D.sources.length%colors.length]});
+  save(D); render();
+}
+function addCnt() {
+  const title = prompt('Content title:'); if (!title) return;
+  const type = prompt('Type (twitter/blog/youtube/email/github):','twitter') || 'twitter';
+  const status = prompt('Status (published/scheduled/draft):','scheduled') || 'scheduled';
+  D.content.unshift({type,title,status,date:'Today'});
+  save(D); render();
+}
+function editGoal() {
+  const name = prompt('Goal name:',D.goalName); if (!name) return;
+  const target = parseInt(prompt('Target amount ($):',D.goalTarget)||'5000');
+  D.goalName = name; D.goalTarget = target;
+  save(D); render();
+}
+function logAct() {
+  const inp = document.getElementById('actInp');
+  const txt = inp.value.trim(); if (!txt) return;
+  D.activity.unshift({text:txt, time:'Just now', color:'#6366f1'});
+  if (D.activity.length > 20) D.activity = D.activity.slice(0,20);
+  inp.value = '';
+  save(D); render();
+}
+function clearAct() {
+  if (!confirm('Clear activity log?')) return;
+  D.activity = []; save(D); render();
+}
+function saveAll() {
+  const g = (id) => document.getElementById(id).value.trim();
+  if (g('eMrr')) D.mrr = parseInt(g('eMrr'));
+  if (g('eMrrC')) D.mrrChange = parseFloat(g('eMrrC'));
+  if (g('eUsers')) D.users = parseInt(g('eUsers'));
+  if (g('eUsersW')) D.usersWeek = parseInt(g('eUsersW'));
+  if (g('eDAU')) D.dau = parseInt(g('eDAU'));
+  if (g('eMAU')) D.mau = parseInt(g('eMAU'));
+  if (g('eChurn')) D.churn = parseFloat(g('eChurn'));
+  if (g('eARPA')) D.arpa = parseInt(g('eARPA'));
+  if (g('eGName')) D.goalName = g('eGName');
+  if (g('eGTgt')) D.goalTarget = parseInt(g('eGTgt'));
+  // Update history arrays
+  if (g('eMrr')) { D.revHistory.push(D.mrr); if(D.revHistory.length>12) D.revHistory.shift(); }
+  if (g('eUsers')) { D.userHistory.push(D.users); if(D.userHistory.length>12) D.userHistory.shift(); }
+  save(D);
+  // Clear inputs
+  ['eMrr','eMrrC','eUsers','eUsersW','eDAU','eMAU','eChurn','eARPA','eGName','eGTgt'].forEach(id=>document.getElementById(id).value='');
+  logAct_auto('Dashboard data updated manually');
+  render();
+}
+function logAct_auto(msg) {
+  D.activity.unshift({text:msg,time:'Just now',color:'#10b981'});
+  if (D.activity.length>20) D.activity=D.activity.slice(0,20);
+  save(D);
+}
+
+// ── INIT ─────────────────────────────────────────────────────────────
+render();
+setInterval(()=>{
+  document.getElementById('upd').textContent = 'Updated '+new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
+}, 60000);
+</script>
+</body>
+</html>

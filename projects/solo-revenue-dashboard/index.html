@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solo Founder Revenue Dashboard 🦐</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f0f0f; color: #e0e0e0; min-height: 100vh; }
+  .header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); padding: 24px 32px; border-bottom: 1px solid #2a2a3e; }
+  .header h1 { font-size: 1.6rem; font-weight: 700; color: #fff; }
+  .header p { color: #888; font-size: 0.9rem; margin-top: 4px; }
+  .badge { display: inline-block; background: #00d4ff22; color: #00d4ff; border: 1px solid #00d4ff44; border-radius: 12px; padding: 2px 10px; font-size: 0.75rem; margin-left: 8px; vertical-align: middle; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 24px 16px; }
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
+  .stat-card { background: #1a1a2e; border: 1px solid #2a2a4e; border-radius: 12px; padding: 20px; }
+  .stat-card .label { font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 0.05em; }
+  .stat-card .value { font-size: 2rem; font-weight: 700; margin-top: 6px; color: #fff; }
+  .stat-card .change { font-size: 0.8rem; margin-top: 4px; }
+  .green { color: #00d4aa; }
+  .red { color: #ff6b6b; }
+  .yellow { color: #ffd93d; }
+  .chart-row { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-bottom: 24px; }
+  .chart-card { background: #1a1a2e; border: 1px solid #2a2a4e; border-radius: 12px; padding: 20px; }
+  .chart-card h3 { font-size: 0.9rem; color: #aaa; margin-bottom: 16px; font-weight: 600; }
+  .chart-canvas-wrap { position: relative; height: 220px; }
+  .form-section { background: #1a1a2e; border: 1px solid #2a2a4e; border-radius: 12px; padding: 20px; margin-bottom: 24px; }
+  .form-section h3 { font-size: 1rem; color: #e0e0e0; margin-bottom: 16px; font-weight: 600; }
+  .form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+  .form-group label { display: block; font-size: 0.75rem; color: #888; margin-bottom: 4px; text-transform: uppercase; }
+  .form-group input, .form-group select { width: 100%; background: #0f0f1f; border: 1px solid #2a2a4e; border-radius: 8px; color: #e0e0e0; padding: 8px 12px; font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
+  .form-group input:focus, .form-group select:focus { border-color: #00d4ff; }
+  .btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 18px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.88rem; font-weight: 600; transition: all 0.2s; }
+  .btn-primary { background: linear-gradient(135deg, #00d4ff, #0080ff); color: #fff; }
+  .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
+  .btn-danger { background: #ff6b6b22; color: #ff6b6b; border: 1px solid #ff6b6b44; }
+  .btn-danger:hover { background: #ff6b6b33; }
+  .table-wrap { background: #1a1a2e; border: 1px solid #2a2a4e; border-radius: 12px; overflow: hidden; margin-bottom: 24px; }
+  .table-wrap h3 { font-size: 0.9rem; color: #aaa; padding: 16px 20px 0; font-weight: 600; }
+  table { width: 100%; border-collapse: collapse; }
+  th { font-size: 0.72rem; color: #666; text-transform: uppercase; padding: 12px 16px; text-align: left; border-bottom: 1px solid #2a2a3e; background: #12122a; }
+  td { padding: 11px 16px; font-size: 0.88rem; border-bottom: 1px solid #1a1a2e; }
+  tr:hover td { background: #1f1f35; }
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 600; }
+  .tag-revenue { background: #00d4aa22; color: #00d4aa; }
+  .tag-ai { background: #00d4ff22; color: #00d4ff; }
+  .tag-other { background: #ffd93d22; color: #ffd93d; }
+  .roi-indicator { font-weight: 700; }
+  .empty-state { text-align: center; padding: 40px; color: #555; }
+  .actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  @media (max-width: 700px) { .chart-row { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🦐 Solo Founder Revenue Dashboard <span class="badge">AI-Powered</span></h1>
+  <p>Track your one-person company — Revenue vs AI Tool Investment, ROI at a glance</p>
+</div>
+<div class="container">
+
+  <!-- Stats -->
+  <div class="stats-grid" id="statsGrid">
+    <div class="stat-card"><div class="label">Total Revenue</div><div class="value green" id="totalRevenue">$0</div><div class="change" id="revenueHint">Add your first entry ↓</div></div>
+    <div class="stat-card"><div class="label">AI Tool Spend</div><div class="value yellow" id="totalAI">$0</div><div class="change" id="aiHint">Monthly subscriptions etc.</div></div>
+    <div class="stat-card"><div class="label">Net Profit</div><div class="value" id="netProfit">$0</div><div class="change" id="profitHint">Revenue - AI costs</div></div>
+    <div class="stat-card"><div class="label">AI ROI</div><div class="value" id="aiROI">—</div><div class="change" id="roiHint">Revenue per $ on AI tools</div></div>
+  </div>
+
+  <!-- Charts -->
+  <div class="chart-row">
+    <div class="chart-card">
+      <h3>📈 Revenue vs AI Spend (Monthly)</h3>
+      <div class="chart-canvas-wrap"><canvas id="revenueChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <h3>🥧 Revenue Breakdown</h3>
+      <div class="chart-canvas-wrap"><canvas id="pieChart"></canvas></div>
+    </div>
+  </div>
+
+  <!-- Add Entry -->
+  <div class="form-section">
+    <h3>➕ Add Entry</h3>
+    <div class="form-row" id="entryForm">
+      <div class="form-group">
+        <label>Month</label>
+        <input type="month" id="fMonth" />
+      </div>
+      <div class="form-group">
+        <label>Type</label>
+        <select id="fType">
+          <option value="revenue">💰 Revenue</option>
+          <option value="ai">🤖 AI Tool Cost</option>
+          <option value="other">📦 Other Expense</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Amount ($)</label>
+        <input type="number" id="fAmount" placeholder="0" min="0" />
+      </div>
+      <div class="form-group">
+        <label>Source / Note</label>
+        <input type="text" id="fNote" placeholder="e.g. SaaS subscriptions" />
+      </div>
+      <div class="form-group" style="display:flex;align-items:flex-end;">
+        <button class="btn btn-primary" onclick="addEntry()">＋ Add</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div class="table-wrap">
+    <h3 style="margin-bottom:12px;">📋 All Entries</h3>
+    <table>
+      <thead><tr><th>Month</th><th>Type</th><th>Amount</th><th>Note</th><th>Action</th></tr></thead>
+      <tbody id="entryTable"><tr><td colspan="5"><div class="empty-state">No entries yet — add your first one above 🦐</div></td></tr></tbody>
+    </table>
+  </div>
+
+  <div class="actions">
+    <button class="btn btn-danger" onclick="clearAll()">🗑 Clear All Data</button>
+    <button class="btn" style="background:#1a1a2e;border:1px solid #2a2a4e;color:#888;" onclick="loadDemo()">📊 Load Demo Data</button>
+    <span style="color:#555;font-size:0.8rem;margin-left:8px;">Data stored locally in your browser</span>
+  </div>
+
+</div>
+
+<script>
+const STORE_KEY = 'solo_dashboard_v1';
+
+function loadData() {
+  try { return JSON.parse(localStorage.getItem(STORE_KEY)) || []; } catch { return []; }
+}
+function saveData(d) { localStorage.setItem(STORE_KEY, JSON.stringify(d)); }
+
+function fmt(n) {
+  if (n >= 1000000) return '$' + (n/1000000).toFixed(1) + 'M';
+  if (n >= 1000) return '$' + (n/1000).toFixed(1) + 'K';
+  return '$' + n.toLocaleString();
+}
+
+function addEntry() {
+  const month = document.getElementById('fMonth').value;
+  const type = document.getElementById('fType').value;
+  const amount = parseFloat(document.getElementById('fAmount').value);
+  const note = document.getElementById('fNote').value.trim();
+  if (!month || isNaN(amount) || amount <= 0) { alert('Please fill in month and a valid amount.'); return; }
+  const data = loadData();
+  data.push({ id: Date.now(), month, type, amount, note });
+  saveData(data);
+  document.getElementById('fAmount').value = '';
+  document.getElementById('fNote').value = '';
+  render();
+}
+
+function deleteEntry(id) {
+  saveData(loadData().filter(e => e.id !== id));
+  render();
+}
+
+function clearAll() {
+  if (confirm('Clear all data?')) { saveData([]); render(); }
+}
+
+function loadDemo() {
+  const demo = [
+    {id:1, month:'2026-01', type:'revenue', amount:3200, note:'Consulting'},
+    {id:2, month:'2026-01', type:'ai', amount:180, note:'Claude Pro + Cursor'},
+    {id:3, month:'2026-02', type:'revenue', amount:4800, note:'SaaS MRR'},
+    {id:4, month:'2026-02', type:'ai', amount:220, note:'OpenAI + tools'},
+    {id:5, month:'2026-03', type:'revenue', amount:7200, note:'SaaS + freelance'},
+    {id:6, month:'2026-03', type:'ai', amount:310, note:'Full stack AI tools'},
+    {id:7, month:'2026-04', type:'revenue', amount:9500, note:'Product launch'},
+    {id:8, month:'2026-04', type:'ai', amount:280, note:'AI infra + Claude'},
+    {id:9, month:'2026-04', type:'other', amount:400, note:'Domain + hosting'},
+    {id:10, month:'2026-05', type:'revenue', amount:12000, note:'MRR milestone'},
+    {id:11, month:'2026-05', type:'ai', amount:340, note:'Agent APIs + tools'},
+  ];
+  saveData(demo); render();
+}
+
+let revChart, pieChart;
+
+function render() {
+  const data = loadData();
+  const totalRev = data.filter(e=>e.type==='revenue').reduce((a,e)=>a+e.amount,0);
+  const totalAI = data.filter(e=>e.type==='ai').reduce((a,e)=>a+e.amount,0);
+  const totalOther = data.filter(e=>e.type==='other').reduce((a,e)=>a+e.amount,0);
+  const net = totalRev - totalAI - totalOther;
+  const roi = totalAI > 0 ? (totalRev / totalAI).toFixed(1) : null;
+
+  document.getElementById('totalRevenue').textContent = fmt(totalRev);
+  document.getElementById('totalAI').textContent = fmt(totalAI);
+  document.getElementById('netProfit').textContent = fmt(net);
+  document.getElementById('netProfit').className = 'value ' + (net >= 0 ? 'green' : 'red');
+  document.getElementById('aiROI').textContent = roi ? roi + 'x' : '—';
+  document.getElementById('aiROI').className = 'value ' + (roi && roi > 1 ? 'green' : 'yellow');
+  if (roi) document.getElementById('roiHint').textContent = `Every $1 on AI → $${roi} revenue`;
+
+  // Monthly data
+  const months = [...new Set(data.map(e=>e.month))].sort();
+  const revByMonth = months.map(m => data.filter(e=>e.month===m&&e.type==='revenue').reduce((a,e)=>a+e.amount,0));
+  const aiByMonth = months.map(m => data.filter(e=>e.month===m&&e.type==='ai').reduce((a,e)=>a+e.amount,0));
+
+  // Revenue Chart
+  const ctx1 = document.getElementById('revenueChart').getContext('2d');
+  if (revChart) revChart.destroy();
+  revChart = new Chart(ctx1, {
+    type: 'bar',
+    data: {
+      labels: months.map(m => m.slice(0,7)),
+      datasets: [
+        { label: 'Revenue', data: revByMonth, backgroundColor: '#00d4aa88', borderColor: '#00d4aa', borderWidth: 2, borderRadius: 6 },
+        { label: 'AI Cost', data: aiByMonth, backgroundColor: '#00d4ff44', borderColor: '#00d4ff', borderWidth: 2, borderRadius: 6 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { labels: { color: '#888', font: { size: 11 } } } },
+      scales: {
+        x: { ticks: { color: '#666' }, grid: { color: '#1a1a2e' } },
+        y: { ticks: { color: '#666', callback: v => '$'+v.toLocaleString() }, grid: { color: '#1f1f35' } }
+      }
+    }
+  });
+
+  // Pie Chart
+  const ctx2 = document.getElementById('pieChart').getContext('2d');
+  if (pieChart) pieChart.destroy();
+  const pieData = [totalRev, totalAI, totalOther].filter(v=>v>0);
+  const pieLabels = ['Revenue','AI Spend','Other'].filter((_,i)=>[totalRev,totalAI,totalOther][i]>0);
+  pieChart = new Chart(ctx2, {
+    type: 'doughnut',
+    data: { labels: pieLabels, datasets: [{ data: pieData, backgroundColor: ['#00d4aa88','#00d4ff88','#ffd93d88'], borderColor: ['#00d4aa','#00d4ff','#ffd93d'], borderWidth: 2 }] },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: '#888', font: { size: 11 } }, position: 'bottom' } } }
+  });
+
+  // Table
+  const tbody = document.getElementById('entryTable');
+  if (data.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="5"><div class="empty-state">No entries yet 🦐</div></td></tr>';
+    return;
+  }
+  const sorted = [...data].sort((a,b)=>b.month.localeCompare(a.month));
+  tbody.innerHTML = sorted.map(e => `
+    <tr>
+      <td>${e.month}</td>
+      <td><span class="tag tag-${e.type}">${e.type==='revenue'?'💰 Revenue':e.type==='ai'?'🤖 AI Cost':'📦 Other'}</span></td>
+      <td class="${e.type==='revenue'?'green':e.type==='ai'?'yellow':''}"><strong>${fmt(e.amount)}</strong></td>
+      <td style="color:#888">${e.note||'—'}</td>
+      <td><button class="btn btn-danger" style="padding:4px 10px;font-size:0.78rem;" onclick="deleteEntry(${e.id})">✕</button></td>
+    </tr>
+  `).join('');
+}
+
+// Init month to current
+document.getElementById('fMonth').value = new Date().toISOString().slice(0,7);
+render();
+</script>
+</body>
+</html>

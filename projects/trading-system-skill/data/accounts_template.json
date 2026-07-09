@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "total_capital": 150000,
+    "created": "2026-01-01",
+    "description": "三账户模拟交易系统",
+    "accounts": ["institutional", "aggressive", "blueshrimp"]
+  },
+  "accounts": {
+    "institutional": {
+      "id": "institutional",
+      "name": "大机构",
+      "emoji": "🏦",
+      "capital": 50000,
+      "cash": 50000,
+      "strategy": "跟踪13F最聪明机构持仓变化 + 顶级投资人建仓信号，低频高确定性",
+      "signal_sources": ["13F季报", "SEC Form 4大机构", "顶级VC/PE买入"],
+      "hold_style": "中长线，30-90天",
+      "max_position_pct": 20,
+      "positions": [],
+      "closed_positions": [],
+      "trade_log": []
+    },
+    "aggressive": {
+      "id": "aggressive",
+      "name": "激进交易",
+      "emoji": "⚡",
+      "capital": 50000,
+      "cash": 50000,
+      "strategy": "小微股暴涨信号 + watchlist触发建仓，短线高波动",
+      "signal_sources": ["Twitter情绪", "Reddit WSB/Penny", "异动监控", "内部人异常买入"],
+      "hold_style": "短线，7-14天",
+      "max_position_pct": 10,
+      "positions": [],
+      "closed_positions": [],
+      "trade_log": []
+    },
+    "blueshrimp": {
+      "id": "blueshrimp",
+      "name": "蓝虾",
+      "emoji": "🦐",
+      "capital": 50000,
+      "cash": 50000,
+      "strategy": "综合多信源自主决策，灵活仓位",
+      "signal_sources": ["Perplexity深度分析", "Scholar论文", "多引擎搜索", "自研评分模型"],
+      "hold_style": "灵活，视信号强度定",
+      "max_position_pct": 15,
+      "positions": [],
+      "closed_positions": [],
+      "trade_log": []
+    }
+  }
+}

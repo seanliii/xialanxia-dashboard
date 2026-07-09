@@ -1,88 +1,29 @@
 {
-  "date": "2026-03-31",
-  "last_updated": "22:04",
-  "memory": [
-    {
-      "time": "22:04",
-      "content": "22:00 今日收尾完成：记忆压缩已跳过（无内容）+学城日报创建失败（需大象授权）+Dashboard更新"
-    }
-  ],
+  "date": "2026-07-09",
+  "last_updated": "11:03",
+  "memory": [],
   "stocks": {
     "snapshot": {
-      "total": 931133.58,
-      "pnl_pct": -5.96,
-      "cash": 799878.78,
-      "positions": 6,
-      "price_time": "2026-03-30 08:05 CST",
-      "time": "22:00"
+      "total": 134739.43,
+      "pnl_pct": -10.17,
+      "cash": 70141.83,
+      "positions": 11,
+      "price_time": "2026-06-25 04:03 CST",
+      "time": "10:02"
     },
     "actions": []
   },
-  "evolution": [
-    {
-      "time": "10:21",
-      "content": "ClawWork Agent时薪579/本地商家6Agent建站500/三层内容流水线00MRR/双Agent自审省40%成本"
-    },
-    {
-      "time": "17:19",
-      "content": "Agent OS架构（Sycamore 5M）+垂直Skill 60x溢价+SOUL.md多Agent一致性是Q1末最确定的三条进化路径"
-    }
-  ],
+  "evolution": [],
   "intel": [
     {
-      "time": "09:09",
-      "source": "Twitter",
-      "content": "3月31日早报：关税解放日T-1/Claude Code Channels vs OpenClaw/GPT-5.4+Opus4.6+Gemini3.1三强格局/Nvidia H200重启中国销售"
+      "time": "10:36",
+      "source": "Tavily/catclaw/multi-engine",
+      "content": "AI Agent 97%企业部署/B市场; Novartis Fabhalta FDA加速批准IgAN; 柔性制造+AI一人公司新方向; OpenClaw July 2026发布"
     },
     {
-      "time": "10:32",
-      "source": "AISA/Google搜索",
-      "content": "NVIDIA NemoClaw GTC官宣/Temporal 00M B/YC春2026 AI原生机构/BTC 7983 关税T-1/Siren Bio GBM基因疗法IND"
-    },
-    {
-      "time": "11:01",
+      "time": "11:03",
       "source": "AISA",
-      "content": "7只标的出现内部人Form4活跃+价格下跌信号，RKLB跌幅最大(-6.6%)但内部人仍买入，SOFI/JOBY/ACHR同步活跃，整体市场偏弱"
-    },
-    {
-      "time": "12:03",
-      "source": "AISA/Google",
-      "content": "12:00深度推送：BTC7.6k关税倒计时T-32h，Microsoft Board Agents今日上线，TrendMicro企业安全框架纳入OpenClaw，WashU CAR-T获FDA突破性认定，Hamburg全球Meetup今晚开幕"
-    },
-    {
-      "time": "13:32",
-      "source": "Twitter",
-      "content": "Karpathy宣判VibeCoding过时/ClaudeCode三强格局/BTC67813季末关税T20h极度恐慌/Solana meme市值崩至36B/OpenClaw多智能体浪潮席卷中文开发者社区"
-    },
-    {
-      "time": "14:04",
-      "source": "AISA/Google/CoinGecko",
-      "content": "1400深度：Wonderful €129.8M/Isara 4M/Gumloop 0M三大AI Agent融资+Felix 77k OpenClaw商业案例+Denali AVLAYAH血脑屏障FDA突破+BTC7618关税T-1"
-    },
-    {
-      "time": "16:04",
-      "source": "AISA/Catclaw-Search",
-      "content": "Q1末日深度推送：Sycamore $65M企业Agent OS种子轮(Coatue+Lightspeed)/哈佛开设OpenClaw悖论课/BTC67k SOL83关税T-0/Harvard HKS AI社会影响研究正式起步"
-    },
-    {
-      "time": "17:04",
-      "source": "Twitter",
-      "content": "3月31日傍晚情报：美股Q1最差季度收官，BTC 7-68K恐惧指数11，OpenClaw 28万Stars变现案例持续发酵，AI融资Q1爆发超2025全年"
-    },
-    {
-      "time": "17:05",
-      "source": "Twitter",
-      "content": "3月31日傍晚情报：美股Q1最差季度收官，BTC 67-68K恐惧指数11，OpenClaw 28万Stars变现案例发酵，AI融资Q1爆发"
-    },
-    {
-      "time": "18:06",
-      "source": "13F",
-      "content": "Q4 2025 13F：GOOGL被巴菲特/Tiger/D.E.Shaw齐增仓共识最强；巴菲特减仓AMZN -76%近清空，新建仓NYT；RenTech大幅增仓TSLA +224%/MU +328%；Third Point新买BABA"
-    },
-    {
-      "time": "19:03",
-      "source": "AISA/CoinGecko/GoogleSearch",
-      "content": "Q1尾盘BTC66307 ETH2024 SOL80.5关税解放日前夜；Meta烟草时刻280B蒸发；GenSpark Claw托管版OpenClaw实测；FDA批准Teclistamab+Daratumumab RRMM联合疗法；EMA CHMP推荐5款新药"
+      "content": "Alpha扫描冷淡日：SNDX/NVTS/SPCE 仅内部人Form4活跃，无价格异动叠加，watchlist跟踪"
     }
   ]
 }

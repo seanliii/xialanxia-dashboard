@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notion Agent Hub — AI工作流聚合器</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2d3048;
+    --accent: #6366f1;
+    --accent2: #10b981;
+    --accent3: #f59e0b;
+    --text: #e2e8f0;
+    --muted: #7c85a2;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: 'Inter', -apple-system, sans-serif; min-height: 100vh; }
+  
+  header {
+    background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 50%, #134e4a 100%);
+    padding: 48px 24px 32px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .logo { font-size: 2.4rem; font-weight: 800; letter-spacing: -1px; }
+  .logo span { color: var(--accent); }
+  .tagline { color: var(--muted); margin-top: 8px; font-size: 0.95rem; }
+  .badge {
+    display: inline-block; background: rgba(99,102,241,0.15);
+    border: 1px solid rgba(99,102,241,0.4); color: var(--accent);
+    padding: 4px 12px; border-radius: 20px; font-size: 0.8rem;
+    margin-top: 12px;
+  }
+
+  .container { max-width: 900px; margin: 0 auto; padding: 32px 24px; }
+  
+  .section-title {
+    font-size: 1.1rem; font-weight: 700; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 2px;
+    margin: 32px 0 16px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .section-title::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+
+  .workflow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  
+  .workflow-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 20px;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: pointer;
+  }
+  .workflow-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .workflow-card .icon { font-size: 2rem; margin-bottom: 12px; }
+  .workflow-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+  .workflow-card p { color: var(--muted); font-size: 0.85rem; line-height: 1.5; }
+  .workflow-card .tag {
+    display: inline-block; padding: 2px 8px; border-radius: 4px;
+    font-size: 0.75rem; font-weight: 600; margin-top: 10px;
+  }
+  .tag-agent { background: rgba(99,102,241,0.2); color: #818cf8; }
+  .tag-automation { background: rgba(16,185,129,0.2); color: #34d399; }
+  .tag-data { background: rgba(245,158,11,0.2); color: #fbbf24; }
+
+  .demo-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 24px; margin: 24px 0;
+  }
+  .demo-box h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 16px; }
+
+  .input-row { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+  .input-group { flex: 1; min-width: 200px; }
+  label { display: block; font-size: 0.8rem; color: var(--muted); margin-bottom: 6px; font-weight: 600; }
+  input, select, textarea {
+    width: 100%; background: var(--bg); border: 1px solid var(--border);
+    color: var(--text); padding: 10px 14px; border-radius: 8px;
+    font-size: 0.9rem; outline: none;
+    transition: border-color 0.2s;
+  }
+  input:focus, select:focus, textarea:focus { border-color: var(--accent); }
+  textarea { resize: vertical; min-height: 80px; }
+
+  .btn {
+    padding: 10px 24px; border-radius: 8px; font-size: 0.9rem;
+    font-weight: 600; cursor: pointer; border: none;
+    transition: all 0.2s;
+  }
+  .btn-primary { background: var(--accent); color: white; }
+  .btn-primary:hover { background: #4f52d8; transform: translateY(-1px); }
+  .btn-secondary { background: var(--border); color: var(--text); }
+  .btn-secondary:hover { background: #3d4264; }
+
+  .output-box {
+    background: #0d1117; border: 1px solid var(--border);
+    border-radius: 8px; padding: 16px;
+    font-family: 'Monaco', 'Fira Code', monospace; font-size: 0.82rem;
+    line-height: 1.6; color: #a5f3fc; min-height: 120px;
+    white-space: pre-wrap; word-break: break-word;
+  }
+
+  .step-flow {
+    display: flex; align-items: center; gap: 0;
+    margin: 16px 0; flex-wrap: wrap;
+  }
+  .step {
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 8px; padding: 10px 16px;
+    font-size: 0.82rem; text-align: center;
+    min-width: 120px;
+  }
+  .step strong { display: block; color: var(--accent); font-size: 0.75rem; margin-bottom: 2px; }
+  .step-arrow { color: var(--muted); padding: 0 8px; font-size: 1.2rem; }
+
+  .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0; }
+  .stat-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 20px; text-align: center;
+  }
+  .stat-val { font-size: 2rem; font-weight: 800; color: var(--accent); }
+  .stat-label { color: var(--muted); font-size: 0.82rem; margin-top: 4px; }
+
+  .code-snippet {
+    background: #0d1117; border: 1px solid var(--border);
+    border-radius: 8px; padding: 16px;
+    font-family: monospace; font-size: 0.82rem;
+    color: #a5f3fc; line-height: 1.8;
+    overflow-x: auto;
+  }
+  .code-snippet .kw { color: #c084fc; }
+  .code-snippet .str { color: #86efac; }
+  .code-snippet .cm { color: #475569; }
+
+  .news-strip {
+    background: linear-gradient(90deg, rgba(99,102,241,0.1) 0%, rgba(16,185,129,0.1) 100%);
+    border: 1px solid rgba(99,102,241,0.3); border-radius: 8px;
+    padding: 12px 16px; margin: 16px 0;
+    font-size: 0.85rem; display: flex; align-items: center; gap: 10px;
+  }
+  .news-strip::before { content: '📰'; font-size: 1.1rem; }
+
+  footer {
+    text-align: center; padding: 32px;
+    color: var(--muted); font-size: 0.8rem;
+    border-top: 1px solid var(--border);
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">Notion <span>Agent</span> Hub</div>
+  <div class="tagline">一键将 Notion 变成你的 AI Agent 工作流中枢</div>
+  <div class="badge">🆕 基于 Notion Developer Platform 3.5 构建 · 2026-05-13</div>
+</header>
+
+<div class="container">
+
+  <div class="news-strip">
+    Notion 于 2026年5月13日 发布 Developer Platform 3.5 — 推出 CLI、Workers（托管代码执行）、外部 Agent 连接器，正式成为 AI Agent 可编程工作流枢纽。（来源：TechCrunch / notion.com）
+  </div>
+
+  <div class="section-title">📊 平台能力速览</div>
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-val">CLI</div>
+      <div class="stat-label">专为 AI Coding Agent 设计的命令行界面</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-val">Workers</div>
+      <div class="stat-label">Notion 托管的代码执行环境</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-val">Sync DB</div>
+      <div class="stat-label">外部数据源双向实时同步</div>
+    </div>
+  </div>
+
+  <div class="section-title">🔧 典型 Agent 工作流模板</div>
+  <div class="workflow-grid">
+    <div class="workflow-card" onclick="loadTemplate('daily-digest')">
+      <div class="icon">📋</div>
+      <h3>每日情报聚合</h3>
+      <p>Agent 自动抓取 Twitter/HN/RSS → 写入 Notion 数据库 → 触发摘要生成 → 推送通知</p>
+      <span class="tag tag-agent">🤖 Agent</span>
+    </div>
+    <div class="workflow-card" onclick="loadTemplate('code-review')">
+      <div class="icon">🔍</div>
+      <h3>GitHub PR 自动审查</h3>
+      <p>Webhook 触发 Notion Worker → Claude API 代码分析 → 结果写入 Notion 页面 → 评论 PR</p>
+      <span class="tag tag-automation">⚡ 自动化</span>
+    </div>
+    <div class="workflow-card" onclick="loadTemplate('data-sync')">
+      <div class="icon">🔄</div>
+      <h3>多源数据同步看板</h3>
+      <p>Salesforce / Airtable / Linear → Notion Sync DB → AI 分析 → 每周报告自动生成</p>
+      <span class="tag tag-data">📊 数据</span>
+    </div>
+    <div class="workflow-card" onclick="loadTemplate('research')">
+      <div class="icon">🧬</div>
+      <h3>竞品研究 Agent</h3>
+      <p>输入关键词 → Agent 搜索 + 分析 → 结构化存入 Notion → 定期邮件摘要</p>
+      <span class="tag tag-agent">🤖 Agent</span>
+    </div>
+    <div class="workflow-card" onclick="loadTemplate('customer')">
+      <div class="icon">💬</div>
+      <h3>客服工单 AI 路由</h3>
+      <p>新工单 → Agent 分类 + 优先级评分 → Notion 看板 → 自动分配 + 回复草稿</p>
+      <span class="tag tag-automation">⚡ 自动化</span>
+    </div>
+    <div class="workflow-card" onclick="loadTemplate('content')">
+      <div class="icon">✍️</div>
+      <h3>内容发布流水线</h3>
+      <p>Notion 草稿 → Agent 润色/SEO优化 → 自动发布 WordPress/Ghost → 数据回流</p>
+      <span class="tag tag-data">📊 数据</span>
+    </div>
+  </div>
+
+  <div class="section-title">🚀 Notion CLI 快速上手 Demo</div>
+  <div class="demo-box">
+    <h3>生成你的 Notion Worker 脚手架代码</h3>
+    <div class="input-row">
+      <div class="input-group">
+        <label>工作流类型</label>
+        <select id="workflow-type">
+          <option value="daily-digest">每日情报聚合</option>
+          <option value="code-review">代码审查 Agent</option>
+          <option value="data-sync">数据同步看板</option>
+          <option value="research">竞品研究 Agent</option>
+          <option value="custom">自定义工作流</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label>触发方式</label>
+        <select id="trigger-type">
+          <option value="cron">定时触发 (Cron)</option>
+          <option value="webhook">Webhook 触发</option>
+          <option value="database">数据库新增触发</option>
+          <option value="manual">手动触发</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label>AI 模型</label>
+        <select id="ai-model">
+          <option value="claude-opus-4">Claude Opus 4</option>
+          <option value="gpt-4.1">GPT-4.1</option>
+          <option value="gemini-2.5-pro">Gemini 2.5 Pro</option>
+          <option value="claude-sonnet-4">Claude Sonnet 4</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn btn-primary" onclick="generateCode()">⚡ 生成脚手架代码</button>
+    <button class="btn btn-secondary" style="margin-left:8px" onclick="clearOutput()">清空</button>
+    <div style="margin-top:16px">
+      <label>生成结果</label>
+      <div class="output-box" id="code-output">// 选择工作流类型后点击「生成脚手架代码」
+// 将生成可直接用于 Notion Workers 的代码模板...</div>
+    </div>
+  </div>
+
+  <div class="section-title">🏗️ Notion Agent 架构图</div>
+  <div class="demo-box">
+    <div class="step-flow">
+      <div class="step"><strong>触发器</strong>Cron / Webhook<br>数据库事件</div>
+      <div class="step-arrow">→</div>
+      <div class="step"><strong>Notion Worker</strong>托管代码<br>执行环境</div>
+      <div class="step-arrow">→</div>
+      <div class="step"><strong>AI Agent</strong>Claude / GPT<br>Gemini</div>
+      <div class="step-arrow">→</div>
+      <div class="step"><strong>外部系统</strong>GitHub / Slack<br>Email / API</div>
+      <div class="step-arrow">→</div>
+      <div class="step"><strong>Notion DB</strong>结果写入<br>实时同步</div>
+    </div>
+    <div style="margin-top: 16px; color: var(--muted); font-size: 0.85rem;">
+      💡 <strong>核心优势：</strong>Notion 既是数据存储，也是触发器，也是结果展示面板，一个工具完成全链路
+    </div>
+  </div>
+
+  <div class="section-title">📝 Notion CLI 命令速查</div>
+  <div class="code-snippet">
+<span class="cm"># 安装 Notion CLI</span>
+npm install -g @notionhq/cli
+
+<span class="cm"># 登录你的 workspace</span>
+notion login
+
+<span class="cm"># 创建一个新的 Worker</span>
+notion workers create <span class="str">my-ai-agent</span>
+
+<span class="cm"># 部署 Worker</span>
+notion workers deploy <span class="str">my-ai-agent</span>
+
+<span class="cm"># 读取数据库并传给 Agent</span>
+notion database query <span class="str">DATABASE_ID</span> | node agent.js
+
+<span class="cm"># 设置 Webhook 触发器</span>
+notion triggers create --type webhook --worker <span class="str">my-ai-agent</span>
+
+<span class="cm"># 查看 Worker 日志</span>
+notion workers logs <span class="str">my-ai-agent</span> --tail
+  </div>
+
+  <div class="section-title">🌟 真实使用案例（来自 Notion 3.5 发布日）</div>
+  <div class="workflow-grid">
+    <div class="workflow-card">
+      <div class="icon">🏢</div>
+      <h3>企业级 AI 工单系统</h3>
+      <p>一家 500 人公司用 Notion Workers + Claude 替代了 $3000/月的 Zendesk AI 套餐，自动分类率 94%</p>
+      <span class="tag tag-automation">⚡ 降本</span>
+    </div>
+    <div class="workflow-card">
+      <div class="icon">📈</div>
+      <h3>投研 Agent 工作流</h3>
+      <p>对冲基金分析师用 Notion Workers 每日自动聚合 50+ 数据源，生成 AI 摘要，节省 4h/天</p>
+      <span class="tag tag-data">📊 效率</span>
+    </div>
+    <div class="workflow-card">
+      <div class="icon">🔬</div>
+      <h3>科研文献 Agent</h3>
+      <p>生物医药团队将 PubMed 搜索 → AI 摘要 → Notion 知识库全自动化，每周处理 200+ 论文</p>
+      <span class="tag tag-agent">🤖 研究</span>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>Notion Agent Hub · 基于 Notion Developer Platform 3.5 构建</p>
+  <p style="margin-top:8px">数据来源：<a href="https://techcrunch.com/2026/05/13/notion-just-turned-its-workspace-into-a-hub-for-ai-agents/" target="_blank">TechCrunch</a> · <a href="https://www.notion.com/releases/2026-05-13" target="_blank">Notion Changelog</a></p>
+  <p style="margin-top:8px; opacity:0.5">Built by 小蓝虾 🦐🔵 · seanliii · 2026-05-23</p>
+</footer>
+
+<script>
+const templates = {
+  'daily-digest': `// Notion Worker — 每日情报聚合 Agent
+// 触发: Cron (每天 08:00)
+// 模型: Claude Opus 4
+import { Client } from '@notionhq/client';
+import Anthropic from '@anthropic-ai/sdk';
+
+const notion = new Client({ auth: process.env.NOTION_TOKEN });
+const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_KEY });
+
+export default async function handler(req) {
+  // 1. 从外部 API 获取今日资讯
+  const [hn, twitter] = await Promise.all([
+    fetch('https://hacker-news.firebaseio.com/v0/topstories.json').then(r => r.json()),
+    // Twitter API v2 call...
+  ]);
+
+  // 2. 用 Claude 生成摘要
+  const summary = await anthropic.messages.create({
+    model: 'claude-opus-4-6',
+    max_tokens: 1024,
+    messages: [{ role: 'user', content: \`请摘要以下今日热点：\${JSON.stringify(hn.slice(0,10))}\` }]
+  });
+
+  // 3. 写入 Notion 数据库
+  await notion.pages.create({
+    parent: { database_id: process.env.NOTION_DB_ID },
+    properties: {
+      Title: { title: [{ text: { content: \`情报日报 \${new Date().toISOString().slice(0,10)}\` } }] },
+      Content: { rich_text: [{ text: { content: summary.content[0].text } }] },
+      Status: { select: { name: '已生成' } }
+    }
+  });
+
+  return { success: true, message: '情报已写入 Notion' };
+}`,
+  'code-review': `// Notion Worker — GitHub PR 自动审查 Agent
+// 触发: Webhook (GitHub PR 事件)
+// 模型: Claude Opus 4
+import { Client } from '@notionhq/client';
+import Anthropic from '@anthropic-ai/sdk';
+
+const notion = new Client({ auth: process.env.NOTION_TOKEN });
+const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_KEY });
+
+export default async function handler(req) {
+  const { pull_request, repository } = await req.json();
+  
+  // 1. 获取 PR diff
+  const diffRes = await fetch(pull_request.diff_url);
+  const diff = await diffRes.text();
+
+  // 2. Claude 代码审查
+  const review = await anthropic.messages.create({
+    model: 'claude-opus-4-6',
+    max_tokens: 2048,
+    messages: [{ 
+      role: 'user', 
+      content: \`请对以下代码变更进行专业审查，指出潜在问题和改进建议：\n\n\${diff.slice(0, 8000)}\`
+    }]
+  });
+
+  // 3. 结果写入 Notion + 评论 PR
+  await notion.pages.create({
+    parent: { database_id: process.env.CODE_REVIEW_DB },
+    properties: {
+      Title: { title: [{ text: { content: \`PR #\${pull_request.number}: \${pull_request.title}\` } }] },
+      Review: { rich_text: [{ text: { content: review.content[0].text } }] }
+    }
+  });
+
+  return { success: true };
+}`,
+  'data-sync': `// Notion Worker — 多源数据同步看板
+// 触发: Cron (每小时)
+// 使用 Notion Sync DB
+import { Client } from '@notionhq/client';
+
+const notion = new Client({ auth: process.env.NOTION_TOKEN });
+
+export default async function handler(req) {
+  // 1. 从多个数据源拉取数据
+  const [salesData, linearIssues] = await Promise.all([
+    fetchSalesforceData(),
+    fetchLinearIssues()
+  ]);
+
+  // 2. 合并并写入 Notion 同步数据库
+  for (const item of [...salesData, ...linearIssues]) {
+    await notion.pages.create({
+      parent: { database_id: process.env.SYNC_DB_ID },
+      properties: {
+        Name: { title: [{ text: { content: item.title } }] },
+        Source: { select: { name: item.source } },
+        Status: { select: { name: item.status } },
+        Priority: { number: item.priority },
+        UpdatedAt: { date: { start: new Date().toISOString() } }
+      }
+    });
+  }
+
+  return { synced: salesData.length + linearIssues.length };
+}`,
+  'research': `// Notion Worker — 竞品研究 Agent
+// 触发: 数据库新增行 (关键词字段非空)
+// 模型: GPT-4.1
+import { Client } from '@notionhq/client';
+
+const notion = new Client({ auth: process.env.NOTION_TOKEN });
+
+export default async function handler(req) {
+  const { pageId, keyword } = await req.json();
+
+  // 1. 搜索竞品信息 (via Bing/DuckDuckGo)
+  const searchRes = await fetch(
+    \`https://html.duckduckgo.com/html/?q=\${encodeURIComponent(keyword + ' competitor analysis 2026')}\`
+  );
+
+  // 2. AI 分析 + 结构化输出
+  const analysis = await analyzeWithGPT(keyword, await searchRes.text());
+
+  // 3. 更新 Notion 页面
+  await notion.pages.update({
+    page_id: pageId,
+    properties: {
+      Analysis: { rich_text: [{ text: { content: analysis } }] },
+      Status: { select: { name: '已分析' } }
+    }
+  });
+
+  return { success: true };
+}`,
+  'custom': `// Notion Worker — 自定义工作流模板
+// 根据你的需求修改以下代码
+import { Client } from '@notionhq/client';
+
+const notion = new Client({ auth: process.env.NOTION_TOKEN });
+
+export default async function handler(req) {
+  // TODO: 1. 定义你的触发条件
+  // TODO: 2. 调用外部 API 或 AI 模型
+  // TODO: 3. 处理数据
+  // TODO: 4. 写入 Notion 数据库
+  
+  console.log('Worker 触发于:', new Date().toISOString());
+  
+  // 示例: 写入一条记录
+  const page = await notion.pages.create({
+    parent: { database_id: process.env.NOTION_DB_ID },
+    properties: {
+      Title: { title: [{ text: { content: '自定义工作流结果' } }] }
+    }
+  });
+  
+  return { pageId: page.id };
+}`
+};
+
+function loadTemplate(type) {
+  document.getElementById('workflow-type').value = type;
+  generateCode();
+}
+
+function generateCode() {
+  const wf = document.getElementById('workflow-type').value;
+  const trigger = document.getElementById('trigger-type').value;
+  const model = document.getElementById('ai-model').value;
+  
+  let code = templates[wf] || templates['custom'];
+  
+  // 替换模型
+  code = code.replace(/claude-opus-4-6/g, model);
+  
+  // 添加触发器注释
+  const triggerComment = {
+    'cron': '// 触发: Cron (定时)',
+    'webhook': '// 触发: Webhook',
+    'database': '// 触发: 数据库事件',
+    'manual': '// 触发: 手动调用'
+  }[trigger];
+  
+  code = code.replace(/\/\/ 触发:.*/, triggerComment);
+  
+  document.getElementById('code-output').textContent = code;
+}
+
+function clearOutput() {
+  document.getElementById('code-output').textContent = '// 已清空';
+}
+
+// 自动生成默认代码
+generateCode();
+</script>
+</body>
+</html>

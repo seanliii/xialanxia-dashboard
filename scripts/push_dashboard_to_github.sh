@@ -2,7 +2,7 @@
 # 把最新 dashboard.html 推送到 GitHub Pages
 # 每次持仓更新后调用
 
-GITHUB_TOKEN="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"
+GITHUB_TOKEN="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"
 GITHUB_USER="seanliii"
 REPO_NAME="xialanxia-dashboard"
 DASHBOARD_PATH="/root/.openclaw/workspace/dashboard/dashboard.html"
@@ -26,4 +26,4 @@ git fetch -q origin main 2>/dev/null || true
 git branch -M main
 
 # force push（每次用新 commit 覆盖，保持 repo 干净）
-https_proxy="http://10.59.78.158:3128" git push -f origin main -q 2>&1 && echo "✅ Dashboard pushed to GitHub Pages" || echo "❌ Push failed"
+https_proxy="http://127.0.0.1:8118" git push -f origin main -q 2>&1 && echo "✅ Dashboard pushed to GitHub Pages" || echo "❌ Push failed"
